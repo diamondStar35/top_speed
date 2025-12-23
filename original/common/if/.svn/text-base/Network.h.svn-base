@@ -1,0 +1,13 @@
+#ifndef __COMMON_NETWORK_H__
+#define __COMMON_NETWORK_H__
+
+#include <Common/If/Common.h>
+
+class Network
+{
+public:
+    _common_ static UInt localIP( );
+};
+
+
+#endif /* __COMMON_NETWORK_H__ */

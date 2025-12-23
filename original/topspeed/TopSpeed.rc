@@ -1,0 +1,307 @@
+/**
+* Top Speed 3
+* Copyright 2003-2013 Playing in the Dark (http://playinginthedark.net)
+* Code contributors: Davy Kager, Davy Loots and Leonard de Ruijter
+* This program is distributed under the terms of the GNU General Public License version 3.
+*/
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_TOPSPEED_DIALOG DIALOGEX 0, 0, 350, 222
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Top Speed 3 - Prepare To Race"
+FONT 8, "Verdana"
+BEGIN
+    CONTROL         151,IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE | WS_DISABLED,78,7,187,172
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,0
+ PRODUCTVERSION 3,0,0,0
+ FILEFLAGSMASK 0x0L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS VOS__WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Playing in the Dark & Ruby AccessWare\0"
+            VALUE "FileDescription", "Top Speed 3\0"
+            VALUE "FileVersion", "3.0.4\0"
+            VALUE "InternalName", "Top Speed 3\0"
+            VALUE "OriginalFilename", "TopSpeed.exe\0"
+            VALUE "ProductName", "Top Speed 3\0"
+            VALUE "ProductVersion", "3.0.4\0"
+            VALUE "Comments", "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003-2011 Playing in the Dark\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_TOPSPEED_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Netherlands) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+#endif    // Dutch (Netherlands) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Belgium) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLB)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH_BELGIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TopSpeed.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\TopSpeed.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+IDR_PITD_LOGO       WAVE    DISCARDABLE     "Sounds\\pitd_logo.wav"
+IDR_VEHICLE1B               WAVE    DISCARDABLE     "Sounds\\vehicle1_b.wav"
+IDR_VEHICLE1C               WAVE    DISCARDABLE     "Sounds\\vehicle1_c.wav"
+IDR_VEHICLE10E              WAVE    DISCARDABLE     "Sounds\\vehicle10_e.wav"
+IDR_VEHICLE11E            WAVE    DISCARDABLE     "Sounds\\vehicle11_e.wav"
+IDR_VEHICLE10S         WAVE    DISCARDABLE     "Sounds\\vehicle10_s.wav"
+IDR_VEHICLE11S       WAVE    DISCARDABLE     "Sounds\\vehicle11_s.wav"
+IDR_VEHICLE1S           WAVE    DISCARDABLE     "Sounds\\vehicle1_s.wav"
+IDR_VEHICLE2S           WAVE    DISCARDABLE     "Sounds\\vehicle2_s.wav"
+IDR_CRASH_SHORT         WAVE    DISCARDABLE     "Sounds\\crashshort.wav"
+IDR_VEHICLE1E                WAVE    DISCARDABLE     "Sounds\\vehicle1_e.wav"
+IDR_VEHICLE2E                WAVE    DISCARDABLE     "Sounds\\vehicle2_e.wav"
+IDR_CROWD               WAVE    DISCARDABLE     "Sounds\\crowd.wav"
+IDR_OCEAN               WAVE    DISCARDABLE     "Sounds\\ocean.wav"
+IDR_ASPHALT             WAVE    DISCARDABLE     "Sounds\\asphalt.wav"
+IDR_RAIN                WAVE    DISCARDABLE     "Sounds\\rain.wav"
+IDR_WIPERS              WAVE    DISCARDABLE     "Sounds\\wipers.wav"
+IDR_DESERT               WAVE    DISCARDABLE     "Sounds\\desert.wav"
+IDR_AIRPLANE            WAVE    DISCARDABLE     "Sounds\\airplane.wav"
+IDR_CLOCK            WAVE    DISCARDABLE     "Sounds\\clock.wav"
+IDR_VEHICLE1CM           WAVE    DISCARDABLE     "Sounds\\vehicle1_cm.wav"
+IDR_VEHICLE3E                WAVE    DISCARDABLE     "Sounds\\vehicle3_e.wav"
+IDR_VEHICLE4E                WAVE    DISCARDABLE     "Sounds\\vehicle4_e.wav"
+IDR_VEHICLE5E                WAVE    DISCARDABLE     "Sounds\\vehicle5_e.wav"
+IDR_VEHICLE6E                WAVE    DISCARDABLE     "Sounds\\vehicle6_e.wav"
+IDR_VEHICLE7E                WAVE    DISCARDABLE     "Sounds\\vehicle7_e.wav"
+// IDR_BUTTON              WAVE    DISCARDABLE     "Sounds\\button.wav"
+IDR_BUMP1               WAVE    DISCARDABLE     "Sounds\\bump.wav"
+IDR_VEHICLE10H           WAVE    DISCARDABLE     "Sounds\\vehicle10_h.wav"
+IDR_VEHICLE1H            WAVE    DISCARDABLE     "Sounds\\vehicle1_h.wav"
+IDR_VEHICLE2H            WAVE    DISCARDABLE     "Sounds\\vehicle2_h.wav"
+IDR_VEHICLE3H            WAVE    DISCARDABLE     "Sounds\\vehicle3_h.wav"
+IDR_VEHICLE4H            WAVE    DISCARDABLE     "Sounds\\vehicle4_h.wav"
+IDR_VEHICLE5H            WAVE    DISCARDABLE     "Sounds\\vehicle5_h.wav"
+IDR_VEHICLE6H            WAVE    DISCARDABLE     "Sounds\\vehicle6_h.wav"
+IDR_BADSWITCH           WAVE    DISCARDABLE     "Sounds\\badswitch.wav"
+IDR_GRAVEL              WAVE    DISCARDABLE     "Sounds\\gravel.wav"
+IDR_SAND              WAVE    DISCARDABLE     "Sounds\\sand.wav"
+IDR_WATER               WAVE    DISCARDABLE     "Sounds\\water.wav"
+IDR_VEHICLE1T       WAVE    DISCARDABLE     "Sounds\\vehicle1_t.wav"
+IDR_VEHICLE2T       WAVE    DISCARDABLE     "Sounds\\vehicle2_t.wav"
+IDR_VEHICLE9E       WAVE    DISCARDABLE     "Sounds\\vehicle9_e.wav"
+IDR_VEHICLE9S       WAVE    DISCARDABLE     "Sounds\\vehicle9_s.wav"
+IDR_VEHICLE9T       WAVE    DISCARDABLE     "Sounds\\vehicle9_t.wav"
+IDR_VEHICLE9H       WAVE    DISCARDABLE     "Sounds\\vehicle9_h.wav"
+IDR_VEHICLE9F       WAVE    DISCARDABLE     "Sounds\\vehicle9_f.wav"
+IDR_JET       WAVE    DISCARDABLE     "Sounds\\jet.wav"
+IDR_VEHICLE12E       WAVE    DISCARDABLE     "Sounds\\vehicle12_e.wav"
+IDR_VEHICLE12S       WAVE    DISCARDABLE     "Sounds\\vehicle12_s.wav"
+IDR_VEHICLE12H       WAVE    DISCARDABLE     "Sounds\\vehicle12_h.wav"
+IDR_VEHICLE12T       WAVE    DISCARDABLE     "Sounds\\vehicle12_t.wav"
+IDR_VEHICLE12F       WAVE    DISCARDABLE     "Sounds\\vehicle12_f.wav"
+IDR_THUNDER       WAVE    DISCARDABLE     "Sounds\\thunder.wav"
+IDR_VEHICLE3B       WAVE    DISCARDABLE     "Sounds\\vehicle3_b.wav"
+IDR_PILE       WAVE    DISCARDABLE     "Sounds\\pile.wav"
+IDR_VEHICLE8E       WAVE    DISCARDABLE     "Sounds\\vehicle8_e.wav"
+IDR_VEHICLE3C       WAVE    DISCARDABLE     "Sounds\\vehicle3_c.wav"
+IDR_VEHICLE3CM       WAVE    DISCARDABLE     "Sounds\\vehicle3_cm.wav"
+IDR_VEHICLE9C       WAVE    DISCARDABLE     "Sounds\\vehicle9_c.wav"
+IDR_VEHICLE9CM       WAVE    DISCARDABLE     "Sounds\\vehicle9_cm.wav"
+IDR_VEHICLE10C       WAVE    DISCARDABLE     "Sounds\\vehicle10_c.wav"
+IDR_VEHICLE10CM       WAVE    DISCARDABLE     "Sounds\\vehicle10_cm.wav"
+IDR_ERROR       WAVE    DISCARDABLE     "Sounds\\error.wav"
+IDR_SNOW       WAVE    DISCARDABLE     "Sounds\\snow.wav"
+IDR_CONST       WAVE    DISCARDABLE     "Sounds\\const.wav"
+IDR_VEHICLE9B       WAVE    DISCARDABLE     "Sounds\\vehicle9_b.wav"
+IDR_RIVER       WAVE    DISCARDABLE     "Sounds\\river.wav"
+IDR_AIRPORT       WAVE    DISCARDABLE     "Sounds\\airport.wav"
+IDR_WIND       WAVE    DISCARDABLE     "Sounds\\wind.wav"
+IDR_HELICOPTER       WAVE    DISCARDABLE     "Sounds\\helicopter.wav"
+IDR_VEHICLE6B       WAVE    DISCARDABLE     "Sounds\\vehicle6_b.wav"
+IDR_STORM       WAVE    DISCARDABLE     "Sounds\\storm.wav"
+IDR_UNKEY1       WAVE    DISCARDABLE     "Sounds\\unkey1.wav"
+IDR_UNKEY2       WAVE    DISCARDABLE     "Sounds\\unkey2.wav"
+IDR_UNKEY3       WAVE    DISCARDABLE     "Sounds\\unkey3.wav"
+IDR_UNKEY4       WAVE    DISCARDABLE     "Sounds\\unkey4.wav"
+IDR_UNKEY5       WAVE    DISCARDABLE     "Sounds\\unkey5.wav"
+IDR_UNKEY6       WAVE    DISCARDABLE     "Sounds\\unkey6.wav"
+IDR_UNKEY7       WAVE    DISCARDABLE     "Sounds\\unkey7.wav"
+IDR_UNKEY8       WAVE    DISCARDABLE     "Sounds\\unkey8.wav"
+IDR_UNKEY9       WAVE    DISCARDABLE     "Sounds\\unkey9.wav"
+IDR_UNKEY10       WAVE    DISCARDABLE     "Sounds\\unkey10.wav"
+IDR_UNKEY11       WAVE    DISCARDABLE     "Sounds\\unkey11.wav"
+IDR_UNKEY12       WAVE    DISCARDABLE     "Sounds\\unkey12.wav"
+IDR_OWL       WAVE    DISCARDABLE     "Sounds\\owl.wav"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+IDB_BMP_PITDLOGO               BITMAP  DISCARDABLE     "res\\PitDLogo.bmp"
+#endif    // Dutch (Belgium) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+// #include "res\TopSpeed.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

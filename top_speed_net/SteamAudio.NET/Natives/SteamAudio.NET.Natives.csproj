@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Shared.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<!-- NuGet -->
+	<PropertyGroup>
+		<!-- Packaging -->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+		<!-- Metadata -->
+		<PackageId>SteamAudio.NET.Natives</PackageId>
+		<Version>$(NativesVersion)</Version>
+		<Authors>Valve Software, Mirsario</Authors>
+		<Description>Valve Software's Steam Audio (Phonon) natives packaged for NuGet</Description>
+		<PackageTags>SteamAudio Phonon Audio Sound</PackageTags>
+		<RepositoryType>Git</RepositoryType>
+		<RepositoryUrl>https://github.com/Mirsario/SteamAudio.NET</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Mirsario/SteamAudio.NET</PackageProjectUrl>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<!-- Content -->
+	<ItemGroup>
+		<Content Include="..\LICENSE.Natives.md" PackagePath="LICENSE.md" />
+		<Content Include="..\Natives\steamaudio\lib\android-armv7\**" PackagePath="runtimes\android-armv7\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\android-armv8\**" PackagePath="runtimes\android-armv8\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\android-x64\**" PackagePath="runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\android-x86\**" PackagePath="runtimes\android-x86\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\linux-x64\**" PackagePath="runtimes\linux-x64\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\linux-x86\**" PackagePath="runtimes\linux-x86\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\osx\**" PackagePath="runtimes\osx-universal\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\windows-x64\**" PackagePath="runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Content Include="..\Natives\steamaudio\lib\windows-x86\**" PackagePath="runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+</Project>

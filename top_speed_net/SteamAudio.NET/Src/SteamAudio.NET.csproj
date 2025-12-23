@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Shared.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<Platforms>AnyCPU</Platforms>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>SteamAudio.NET</AssemblyName>
+		<RootNamespace>SteamAudio</RootNamespace>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<!-- NuGet -->
+	<PropertyGroup>
+		<!-- Packaging -->
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+		<!-- Metadata -->
+		<PackageId>SteamAudio.NET</PackageId>
+		<Version>$(BindingsVersion)</Version>
+		<Authors>Mirsario</Authors>
+		<Description>C#-friendly P/Invoke .NET bindings for Valve Software's Steam Audio (Phonon)</Description>
+		<PackageTags>SteamAudio Phonon C# F# .NET Audio Sound</PackageTags>
+		<RepositoryType>Git</RepositoryType>
+		<RepositoryUrl>https://github.com/Mirsario/SteamAudio.NET</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Mirsario/SteamAudio.NET</PackageProjectUrl>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<!-- Content -->
+	<ItemGroup>
+		<Content Include="..\LICENSE.md" PackagePath="LICENSE.md" />
+	</ItemGroup>
+
+</Project>

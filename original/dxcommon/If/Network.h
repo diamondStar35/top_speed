@@ -1,0 +1,145 @@
+/**
+* DXCommon library
+* Copyright 2003-2013 Playing in the Dark (http://playinginthedark.net)
+* Code contributors: Davy Kager, Davy Loots and Leonard de Ruijter
+* This program is distributed under the terms of the GNU General Public License version 3.
+*/
+#ifndef __DXCOMMON_NETWORK_H__
+#define __DXCOMMON_NETWORK_H__
+
+#include <DxCommon/If/Common.h>
+#include <dplay8.h>
+
+#define DXCOMMON_NMAXSESSIONS       (256)
+
+namespace DirectX
+{
+
+class Server;
+class IServer;
+class Client;
+class IClient;
+
+
+class IServer
+{
+public:
+    virtual ~IServer() { };
+
+public:
+    virtual void    onPacket(UInt from, void* buffer, UInt size) = 0;
+    virtual void    onAddConnection(UInt id) = 0;
+    virtual void    onRemoveConnection(UInt id) = 0;
+    virtual void    onSessionLost( ) = 0;
+};
+
+
+
+class Server
+{
+public:
+    _dxcommon_  Server( );
+    _dxcommon_  virtual ~Server( );
+
+public:
+    _dxcommon_  virtual Int     startSession(Char* name, UInt port);
+    _dxcommon_  virtual void    stopSession( );
+
+    _dxcommon_  virtual void    sendPacket(UInt to, void* buffer, UInt size, Boolean secure, UInt timeout = 0);
+
+public:
+    _dxcommon_  void        setIServer(IServer* server)     { m_iServer = server;       }
+    _dxcommon_  void        setGUID(GUID& guid)             { m_applicationGUID = guid; }
+
+
+public:
+    static HRESULT WINAPI   directPlayMessageHandler(void* pvUserContext, DWORD dwMessageId, void* pMsgBuffer);
+
+    HRESULT WINAPI          localMessageHandler(/* void* context, */ UInt messageId, void* msgBuffer);
+
+private:
+    IDirectPlay8Server*         m_directPlayServer;
+    PDIRECTPLAY8ADDRESS         m_directPlayAddress;
+    DPN_APPLICATION_DESC        m_directPlayAppDesc;
+    GUID                        m_applicationGUID;
+    IServer*                    m_iServer;
+    Boolean                     m_started;
+};
+
+
+
+class IClient
+{
+public:
+    virtual ~IClient() { };
+
+public:
+    virtual void    onPacket(UInt from, void* buffer, UInt size) = 0;
+    virtual void    onSessionLost( ) = 0;
+};
+
+
+class Client
+{
+public:
+    struct SessionInfo
+    {
+        DPN_APPLICATION_DESC    appDesc;
+        IDirectPlay8Address*    hostAddress;
+        IDirectPlay8Address*    deviceAddress;
+        TCHAR                   sessionName[MAX_PATH];
+    };
+
+public:
+    _dxcommon_  Client( );
+    _dxcommon_  virtual ~Client( );
+
+public:
+
+    _dxcommon_  virtual Int     initialize( );
+    _dxcommon_  virtual Int     finalize( );
+
+    _dxcommon_  virtual Int     sendPacket(void* buffer, UInt size, Boolean secure, UInt timeout = 0);
+
+    _dxcommon_  virtual Int     startSessionEnum(UInt port, const Char* ipaddress = 0);
+    _dxcommon_  virtual Int     stopSessionEnum( );
+
+    _dxcommon_  virtual UInt    nSessions( )                { return m_nSessions;   }
+    _dxcommon_  virtual Int     session(UInt i, SessionInfo& info);
+
+    _dxcommon_  virtual Int     joinSession(UInt i);
+    _dxcommon_  virtual Int     joinSessionAt(UInt port, const Char* ipaddress);
+
+private:
+    _dxcommon_  void        sessionEnumCallback(const DPN_APPLICATION_DESC* appDesc, 
+                                                IDirectPlay8Address* addressHost,
+                                                IDirectPlay8Address* addressDevice);
+
+public:
+    _dxcommon_  void        setIClient(IClient* client)     { m_iClient = client;       }
+    _dxcommon_  void        setGUID(GUID& guid)             { m_applicationGUID = guid; }
+
+public:
+    static HRESULT WINAPI   directPlayMessageHandler(void* pvUserContext, DWORD dwMessageId, void* pMsgBuffer);
+
+    HRESULT WINAPI          localMessageHandler(/* void* context, */ UInt messageId, void* msgBuffer);
+
+
+private:
+    IDirectPlay8Client*         m_directPlayClient;
+    IClient*                    m_iClient;
+    DPNHANDLE                   m_directPlayEnumHandle;
+    GUID                        m_applicationGUID;
+
+    Mutex                       m_mutex;
+    UInt                        m_nSessions;
+
+    SessionInfo                 m_sessions[DXCOMMON_NMAXSESSIONS];
+};
+
+
+
+};
+
+
+#endif /* __DXCOMMON_NETWORK_H__ */

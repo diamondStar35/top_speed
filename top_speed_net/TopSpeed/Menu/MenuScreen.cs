@@ -1,0 +1,332 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using SharpDX.DirectInput;
+using TopSpeed.Audio;
+using TopSpeed.Core;
+using TopSpeed.Input;
+using TopSpeed.Speech;
+using TS.Audio;
+
+namespace TopSpeed.Menu
+{
+    internal sealed class MenuScreen : IDisposable
+    {
+        private const string DefaultNavigateSound = "menu_navigate.wav";
+        private const string DefaultWrapSound = "menu_wrap.wav";
+        private const string DefaultActivateSound = "menu_enter.wav";
+        private const int NoSelection = -1;
+        private readonly List<MenuItem> _items;
+        private readonly AudioManager _audio;
+        private readonly SpeechService _speech;
+        private readonly string _menuSoundRoot;
+        private readonly string _legacySoundRoot;
+        private readonly string _musicRoot;
+        private bool _initialized;
+        private int _index;
+        private AudioSourceHandle? _music;
+        private float _musicVolume;
+        private AudioSourceHandle? _navigateSound;
+        private AudioSourceHandle? _wrapSound;
+        private AudioSourceHandle? _activateSound;
+
+        public string Id { get; }
+        public IReadOnlyList<MenuItem> Items => _items;
+        public bool WrapNavigation { get; set; } = true;
+        public string? MusicFile { get; set; }
+        public string? NavigateSoundFile { get; set; } = DefaultNavigateSound;
+        public string? WrapSoundFile { get; set; } = DefaultWrapSound;
+        public string? ActivateSoundFile { get; set; } = DefaultActivateSound;
+        public bool EnableItemSounds { get; set; } = false;
+        public float MusicVolume
+        {
+            get => _musicVolume;
+            set => _musicVolume = Math.Max(0f, Math.Min(1f, value));
+        }
+        public Action<float>? MusicVolumeChanged { get; set; }
+
+        public MenuScreen(string id, IEnumerable<MenuItem> items, AudioManager audio, SpeechService speech, string? title = null)
+        {
+            Id = id;
+            _audio = audio;
+            _speech = speech;
+            _items = new List<MenuItem>(items);
+            _menuSoundRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Menu");
+            _legacySoundRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
+            _musicRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Music");
+            _musicVolume = 0.6f;
+            Title = title ?? id;
+        }
+
+        public string Title { get; }
+
+        public void Initialize()
+        {
+            if (_initialized)
+                return;
+
+            if (EnableItemSounds)
+            {
+                foreach (var item in _items)
+                {
+                    if (string.IsNullOrWhiteSpace(item.SoundFile))
+                        continue;
+
+                    var path = ResolveSoundPath(item.SoundFile);
+                    if (path != null)
+                        item.Sound = _audio.CreateSource(path, streamFromDisk: true);
+                }
+            }
+
+            _navigateSound = LoadDefaultSound(NavigateSoundFile);
+            _wrapSound = LoadDefaultSound(WrapSoundFile);
+            _activateSound = LoadDefaultSound(ActivateSoundFile);
+
+            if (!string.IsNullOrWhiteSpace(MusicFile))
+            {
+                var themePath = Path.Combine(_musicRoot, MusicFile!);
+                if (File.Exists(themePath))
+                {
+                    _music = _audio.CreateSource(themePath, streamFromDisk: true);
+                    _music.SetVolume(_musicVolume);
+                    _music.Play(loop: true);
+                }
+            }
+
+            _initialized = true;
+        }
+
+        public MenuUpdateResult Update(InputManager input)
+        {
+            if (_items.Count == 0)
+                return MenuUpdateResult.None;
+
+            if (_index == NoSelection)
+            {
+                if (input.WasPressed(Key.Down))
+                {
+                    MoveToIndex(0);
+                }
+                else if (input.WasPressed(Key.Up))
+                {
+                    MoveToIndex(_items.Count - 1);
+                }
+                else if (input.WasPressed(Key.Home))
+                {
+                    MoveToIndex(0);
+                }
+                else if (input.WasPressed(Key.End))
+                {
+                    MoveToIndex(_items.Count - 1);
+                }
+            }
+            else
+            {
+                if (input.WasPressed(Key.Up))
+                {
+                    MoveSelectionAndAnnounce(-1);
+                }
+                else if (input.WasPressed(Key.Down))
+                {
+                    MoveSelectionAndAnnounce(1);
+                }
+                else if (input.WasPressed(Key.Home))
+                {
+                    MoveToIndex(0);
+                }
+                else if (input.WasPressed(Key.End))
+                {
+                    MoveToIndex(_items.Count - 1);
+                }
+            }
+
+            if (input.WasPressed(Key.PageUp))
+            {
+                SetMusicVolume(_musicVolume + 0.05f);
+            }
+            else if (input.WasPressed(Key.PageDown))
+            {
+                SetMusicVolume(_musicVolume - 0.05f);
+            }
+
+            if (input.WasPressed(Key.Return) || input.WasPressed(Key.NumberPadEnter))
+            {
+                if (_index == NoSelection)
+                    return MenuUpdateResult.None;
+                PlaySfx(_activateSound);
+                return MenuUpdateResult.Activated(_items[_index]);
+            }
+
+            if (input.WasPressed(Key.Escape))
+                return MenuUpdateResult.Back;
+
+            return MenuUpdateResult.None;
+        }
+
+        public void ResetSelection()
+        {
+            _index = NoSelection;
+        }
+
+        private void MoveSelectionAndAnnounce(int delta)
+        {
+            var moved = MoveSelection(delta, out var wrapped);
+            if (moved)
+            {
+                if (wrapped)
+                {
+                    PlaySfx(_navigateSound);
+                    PlaySfx(_wrapSound);
+                }
+                else
+                {
+                    PlaySfx(_navigateSound);
+                }
+                AnnounceCurrent();
+            }
+            else if (wrapped)
+            {
+                PlaySfx(_wrapSound);
+            }
+        }
+
+        private void MoveToIndex(int targetIndex)
+        {
+            if (targetIndex < 0 || targetIndex >= _items.Count)
+                return;
+            if (_index == NoSelection)
+            {
+                _index = targetIndex;
+                PlaySfx(_navigateSound);
+                AnnounceCurrent();
+                return;
+            }
+            if (targetIndex == _index)
+            {
+                PlaySfx(_wrapSound);
+                return;
+            }
+            _index = targetIndex;
+            PlaySfx(_navigateSound);
+            AnnounceCurrent();
+        }
+
+        private bool MoveSelection(int delta, out bool wrapped)
+        {
+            wrapped = false;
+            if (_items.Count == 0)
+                return false;
+            if (_index == NoSelection)
+            {
+                _index = delta >= 0 ? 0 : _items.Count - 1;
+                return true;
+            }
+            var previous = _index;
+            if (WrapNavigation)
+            {
+                var next = _index + delta;
+                if (next < 0 || next >= _items.Count)
+                    wrapped = true;
+                _index = (next + _items.Count) % _items.Count;
+                return _index != previous;
+            }
+
+            _index = Math.Max(0, Math.Min(_items.Count - 1, _index + delta));
+            if (_index == previous)
+                wrapped = true;
+            return _index != previous;
+        }
+
+        public void AnnounceSelection()
+        {
+            AnnounceCurrent();
+        }
+
+        private void AnnounceCurrent()
+        {
+            if (_index == NoSelection)
+                return;
+            var item = _items[_index];
+            _speech.Speak(item.GetDisplayText(), interrupt: true);
+            if (EnableItemSounds && item.Sound != null)
+            {
+                item.Sound.Stop();
+                item.Sound.Play(loop: false);
+            }
+        }
+
+        public void AnnounceTitle()
+        {
+            if (string.IsNullOrWhiteSpace(Title))
+                return;
+
+            _speech.Speak(Title, interrupt: true);
+        }
+
+        private void SetMusicVolume(float volume)
+        {
+            _musicVolume = Math.Max(0f, Math.Min(1f, volume));
+            if (_music != null)
+                _music.SetVolume(_musicVolume);
+            MusicVolumeChanged?.Invoke(_musicVolume);
+        }
+
+        private AudioSourceHandle? LoadDefaultSound(string? fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                return null;
+            var enRoot = Path.Combine(AssetPaths.SoundsRoot, "En");
+            var enPath = Path.Combine(enRoot, fileName);
+            if (File.Exists(enPath))
+                return _audio.CreateSource(enPath, streamFromDisk: true);
+            var legacyPath = Path.Combine(_legacySoundRoot, fileName);
+            if (File.Exists(legacyPath))
+                return _audio.CreateSource(legacyPath, streamFromDisk: true);
+            var menuPath = Path.Combine(_menuSoundRoot, fileName);
+            if (File.Exists(menuPath))
+                return _audio.CreateSource(menuPath, streamFromDisk: true);     
+            return null;
+        }
+
+        private string? ResolveSoundPath(string? soundFile)
+        {
+            if (string.IsNullOrWhiteSpace(soundFile))
+                return null;
+            if (Path.IsPathRooted(soundFile))
+                return File.Exists(soundFile) ? soundFile : null;
+
+            var menuPath = Path.Combine(_menuSoundRoot, soundFile);
+            if (File.Exists(menuPath))
+                return menuPath;
+
+            var legacyPath = Path.Combine(_legacySoundRoot, soundFile);
+            if (File.Exists(legacyPath))
+                return legacyPath;
+
+            var enPath = Path.Combine(AssetPaths.SoundsRoot, "En", soundFile);  
+            if (File.Exists(enPath))
+                return enPath;
+
+            return null;
+        }
+
+        private static void PlaySfx(AudioSourceHandle? sound)
+        {
+            if (sound == null)
+                return;
+            sound.Stop();
+            sound.SeekToStart();
+            sound.Play(loop: false);
+        }
+
+        public void Dispose()
+        {
+            foreach (var item in _items)
+                item.Sound?.Dispose();
+            _navigateSound?.Dispose();
+            _wrapSound?.Dispose();
+            _activateSound?.Dispose();
+            _music?.Dispose();
+        }
+    }
+}

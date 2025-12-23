@@ -1,0 +1,14 @@
+#include <Common/If/Common.h>
+#include <time.h>
+
+Int 
+random(Int max)
+{
+    static Boolean firstrun = true;
+    if (firstrun)
+    {
+        ::srand( (unsigned)time( NULL ) );
+        firstrun = false;
+    }
+    return (rand( ) % max);
+}

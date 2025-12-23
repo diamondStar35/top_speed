@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SteamAudioTest": {
+      "commandName": "Project",
+      "commandLineArgs": "../../../Quincas Moreira - Moskito.raw"
+    }
+  }
+}

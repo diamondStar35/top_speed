@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopSpeed", "TopSpeed.vcproj", "{70DC185A-85DF-4017-866B-E0549DAA093F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release sse2|Win32 = Release sse2|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Debug|Win32.Build.0 = Debug|Win32
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Release sse2|Win32.ActiveCfg = Release sse2|Win32
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Release sse2|Win32.Build.0 = Release sse2|Win32
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Release|Win32.ActiveCfg = Release|Win32
+		{70DC185A-85DF-4017-866B-E0549DAA093F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

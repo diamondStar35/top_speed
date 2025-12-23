@@ -1,0 +1,805 @@
+/**
+* DXCommon library
+* Copyright 2003-2013 Playing in the Dark (http://playinginthedark.net)
+* Code contributors: Davy Kager, Davy Loots and Leonard de Ruijter
+* This program is distributed under the terms of the GNU General Public License version 3.
+*/
+#include <DxCommon/If/Music.h>
+#include <DxCommon/If/Utilities.h>
+
+//#define STRICT
+#include <dmusicc.h>
+#include <dmusici.h>
+#include <dsound.h>
+#include <dxerr8.h>
+#include <dmusicf.h>
+
+
+namespace DirectX
+{
+
+MusicManager::MusicManager()
+{
+    DXCOMMON("(+) MusicManager");
+    m_loader       = NULL;
+    m_performance  = NULL;
+    m_groove       = 1;
+
+    // Initialize COM
+    HRESULT hRes = CoInitialize(NULL);
+    m_cleanupCOM = SUCCEEDED(hRes);
+}
+
+
+
+MusicManager::~MusicManager()
+{
+    DXCOMMON("(-) MusicManager");
+    SAFE_RELEASE(m_loader); 
+
+    if (m_performance)
+    {
+        // If there is any music playing, stop it.
+        m_performance->Stop( NULL, NULL, 0, 0 );
+        m_performance->CloseDown();
+
+        SAFE_RELEASE(m_performance);
+    }
+    
+    if (m_cleanupCOM)
+        CoUninitialize();
+}
+
+
+
+
+Int MusicManager::initialize(Window::Handle window, UInt nPChannels, AudioPathType defaultPathType)
+{
+    DXCOMMON("MusicManager::initilialize : window = %d, nPChannels = %d, AudioPathType = %d", window, nPChannels, defaultPathType);
+    HRESULT hRes;
+
+    // Create loader object
+    if (FAILED(hRes = CoCreateInstance(CLSID_DirectMusicLoader, NULL, CLSCTX_INPROC, 
+                                       IID_IDirectMusicLoader8, (void**)&m_loader)))
+    {
+        DXCOMMON("(!) MusicManager::initialize : failed to create DirectMusicLoader interface, errno = %x", hRes);
+        return dxFailed;
+    }
+
+    // Create performance object
+    if (FAILED(hRes = CoCreateInstance(CLSID_DirectMusicPerformance, NULL, CLSCTX_INPROC, 
+                                       IID_IDirectMusicPerformance8, (void**)&m_performance)))
+    {
+        DXCOMMON("(!) MusicManager::initialize : failed to create DirectMusicPerformance interface, errno = %x", hRes);
+        return dxFailed;
+    }
+
+    // Initialize the performance with the standard audio path.
+    // This initializes both DirectMusic and DirectSound and 
+    // sets up the synthesizer. Typcially its easist to use an 
+    // audio path for playing music and sound effects.
+    if (FAILED(hRes = m_performance->InitAudio(NULL, NULL, window, defaultPathType, 
+                                               nPChannels, DMUS_AUDIOF_ALL, NULL)))
+    {
+        if (hRes == DSERR_NODRIVER)
+        {
+            DXCOMMON("(!) MusicManager::intialize : failed to locate Soundcard.");
+            return dxFailed;
+        }
+
+        DXCOMMON("(!) MusicManager::initialize : failed to initialize the performance interface, errno = %x", hRes);
+        return dxFailed;
+    }
+
+    return dxSuccess;
+}
+
+
+
+
+Int MusicManager::setSearchDirectory(const Char* path)
+{
+    if (m_loader == 0)
+    {
+        DXCOMMON("(!) MusicManager::setSearchDirectory : loader not initialized");
+        return dxFailed;
+    }
+
+    // DMusic only takes wide strings
+    WCHAR wideString[MAX_PATH];
+    convertStringToWide(wideString, path);
+
+    if (FAILED(m_loader->SetSearchDirectory(GUID_DirectMusicAllTypes, wideString, FALSE)))
+    {
+        DXCOMMON("(!) MusicManager::setSearchDirectory(%s) : failed to set search directory");
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+
+IDirectMusicAudioPath8* 
+MusicManager::defaultAudioPath()
+{
+    IDirectMusicAudioPath8* audioPath = NULL;
+    if (m_performance == 0)
+        return 0;
+
+    m_performance->GetDefaultAudioPath(&audioPath);
+    return audioPath;
+}
+
+
+
+
+void 
+MusicManager::collectGarbage()
+{
+    if (m_loader)
+        m_loader->CollectGarbage();
+}
+
+
+
+Int 
+MusicManager::createSegmentFromFile(MusicSegment** segment, 
+                                    Char* filename, 
+                                    Boolean downloadNow, 
+                                    Boolean isMidiFile)
+{
+    HRESULT               hRes;
+    IDirectMusicSegment8* pSegment = 0;
+
+    // DMusic only takes wide strings
+    WCHAR wideString[MAX_PATH];
+    convertStringToWide(wideString, filename);
+
+    if (FAILED(hRes = m_loader->LoadObjectFromFile(CLSID_DirectMusicSegment,
+                                                   IID_IDirectMusicSegment8,
+                                                   wideString,
+                                                   (LPVOID*) &pSegment)))
+    {
+        if (hRes == DMUS_E_LOADER_FAILEDOPEN)
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromFile : failed to open file %s.", filename);
+            return dxFailed;
+        }
+        else
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromFile(%s) failed, errno = %x", filename, hRes);
+            return dxFailed;
+        }
+    }
+
+    *segment = new MusicSegment(m_performance, m_loader, pSegment);
+    if (!*segment)
+    {
+        DXCOMMON("(!) MusicManager::createSegmentFromFile(%s) failed, out of memory?", filename);
+        return dxFailed;
+    }
+
+    if (isMidiFile)
+    {
+        if (FAILED(hRes = pSegment->SetParam(GUID_StandardMIDIFile, 0xFFFFFFFF, 0, 0, NULL)))
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromFile(%s) : failed to set midi parameter.", filename);
+            return dxFailed;
+        }
+    }
+
+    if (downloadNow)
+    {
+        if ((*segment)->download() != dxSuccess)
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromFile(%s) : failed to download segment", filename);
+            return dxFailed;
+        }
+    }
+
+    return dxSuccess;
+}
+
+
+
+Int
+MusicManager::createSegmentFromResource(MusicSegment** segment, 
+                                        TCHAR* resource,
+                                        TCHAR* resourceType,
+                                        Boolean downloadNow,
+                                        Boolean isMidiFile)
+{
+    HRESULT               hRes;
+    IDirectMusicSegment8* pSegment      = NULL;
+    HRSRC                 hResRes       = NULL;
+    void*                 pMem          = NULL;
+    UInt                  resourceSize  = 0;
+    DMUS_OBJECTDESC       objdesc;
+
+    // Find the resource
+    hResRes = FindResource(NULL, resource, resourceType);
+    if (hResRes == 0)
+    {
+        DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to locate resource");
+        return dxFailed;
+    }
+
+    // Load the resource
+    pMem = (void*)LoadResource(NULL, hResRes);
+    if (pMem == 0) 
+    {
+        DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to load resource");
+        return dxFailed;
+    }
+
+    // Store the size of the resource
+    resourceSize = SizeofResource(NULL, hResRes); 
+    
+    // Set up our object description 
+    ZeroMemory(&objdesc,sizeof(DMUS_OBJECTDESC));
+    objdesc.dwSize = sizeof(DMUS_OBJECTDESC);
+    objdesc.dwValidData = DMUS_OBJ_MEMORY | DMUS_OBJ_CLASS;
+    objdesc.guidClass = CLSID_DirectMusicSegment;
+    objdesc.llMemLength =(LONGLONG)resourceSize;
+    objdesc.pbMemData = (BYTE*)pMem;
+    
+    if (FAILED(hRes = m_loader->GetObject(&objdesc,
+                                          IID_IDirectMusicSegment8,
+                                          (void**)&pSegment)))
+    {
+        if (hRes == DMUS_E_LOADER_FAILEDOPEN)
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to open resource");
+            return dxFailed;
+        }
+        else
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to get resource object");
+            return dxFailed;
+        }
+    }
+
+    *segment = new MusicSegment(m_performance, m_loader, pSegment);
+    if (*segment == 0)
+    {
+        DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to create MusicSegment, out of memory?");
+        return dxFailed;
+    }
+
+    if (isMidiFile)
+    {
+        // Do this to make sure that the default General MIDI set 
+        // is connected appropriately to the MIDI file and 
+        // all instruments sound correct.                  
+        if (FAILED(hRes = pSegment->SetParam(GUID_StandardMIDIFile, 0xFFFFFFFF, 0, 0, NULL)))
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to set midi parameter, errno = %x", hRes);
+            return dxFailed;
+        }
+    }
+
+    if (downloadNow)
+    {
+        // The segment needs to be download first before playing.  
+        // However, some apps may want to wait before calling this 
+        // to because the download allocates memory for the 
+        // instruments. The more instruments currently downloaded, 
+        // the more memory is in use by the synthesizer.
+        if ((*segment)->download() != dxSuccess)
+        {
+            DXCOMMON("(!) MusicManager::createSegmentFromResource : failed to download segment");
+            return dxFailed;
+        }
+    }
+
+    return dxSuccess;
+}
+
+
+
+/*
+//-----------------------------------------------------------------------------
+// Name: CMusicManager::CreateScriptFromFile()
+// Desc: 
+//-----------------------------------------------------------------------------
+HRESULT CMusicManager::CreateScriptFromFile( CMusicScript** ppScript, 
+                                             TCHAR* strFileName )
+{
+    HRESULT               hr;
+    IDirectMusicScript* pScript = NULL;
+
+    // DMusic only takes wide strings
+    WCHAR wstrFileName[MAX_PATH];
+    DXUtil_ConvertGenericStringToWide( wstrFileName, strFileName );
+    
+    if ( FAILED( hr = m_pLoader->LoadObjectFromFile( CLSID_DirectMusicScript,
+                                                     IID_IDirectMusicScript8,
+                                                     wstrFileName,
+                                                     (LPVOID*) &pScript ) ) )
+        return DXTRACE_ERR_NOMSGBOX( TEXT("LoadObjectFromFile"), hr );
+
+    if ( FAILED( hr = pScript->Init( m_pPerformance, NULL ) ) )
+        return DXTRACE_ERR( TEXT("Init"), hr );
+
+    *ppScript = new CMusicScript( m_pPerformance, m_pLoader, pScript );
+    if (!*ppScript)
+        return E_OUTOFMEMORY;
+
+    return hr;
+}
+*/
+
+
+
+Int
+MusicManager::createChordMapFromFile(IDirectMusicChordMap8** chordMap, 
+                                     Char* filename)
+{
+    // DMusic only takes wide strings
+    WCHAR wideString[MAX_PATH];
+    convertStringToWide(wideString, filename);
+
+    HRESULT hRes;
+    if (FAILED(hRes = m_loader->LoadObjectFromFile(CLSID_DirectMusicChordMap,
+                                                   IID_IDirectMusicChordMap8,
+                                                   wideString, (LPVOID*) chordMap)))
+    {
+        DXCOMMON("(!) MusicManager::createChordMapFromFile(%s) : failed to load object, errno = %x", filename, hRes);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+
+Int
+MusicManager::createStyleFromFile(IDirectMusicStyle8** style, 
+                                  Char* filename)
+{
+    // DMusic only takes wide strings
+    WCHAR wideString[MAX_PATH];
+    convertStringToWide(wideString, filename);
+
+    HRESULT hRes;
+    if (FAILED(hRes = m_loader->LoadObjectFromFile(CLSID_DirectMusicStyle,
+                                                   IID_IDirectMusicStyle8,
+                                                   wideString, (LPVOID*) style)))
+    {
+        DXCOMMON("(!) MusicManager::createStyleFromFile(%s) : failed to load object, errno = %x", filename, hRes);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+
+Int
+MusicManager::getMotifFromStyle(IDirectMusicSegment8** motif, 
+                                Char* style, Char* motifName)
+{       
+    HRESULT              hRes;
+    IDirectMusicStyle8*  pStyle = NULL;
+    IDirectMusicSegment* pMotif = NULL;
+
+    if (createStyleFromFile(&pStyle, style) != dxSuccess)
+    {
+        DXCOMMON("(!) MusicManager::getMotifFromStyle : failed to create style");
+        return dxFailed;
+    }
+
+    if (pStyle)
+    {
+        // DMusic only takes wide strings
+        WCHAR wideStringMotif[MAX_PATH];
+        convertStringToWide(wideStringMotif, motifName);
+
+        hRes = pStyle->GetMotif(wideStringMotif, &pMotif);
+        SAFE_RELEASE(pStyle);
+
+        if (FAILED(hRes))
+        {
+            DXCOMMON("(!) MusicManager::getMotifFromStyle : failed to get motif %s", motifName);
+            return dxFailed;
+        }
+        pMotif->QueryInterface(IID_IDirectMusicSegment8, (LPVOID*) motif);
+    }
+
+    return dxSuccess;
+}
+
+
+
+void
+MusicManager::volume(UInt volume)
+{
+    if (volume > 100)
+        volume = 100;
+    long Volume = (long)(DMUS_VOLUME_MIN + (volume/100.0f) * (DMUS_VOLUME_MAX - DMUS_VOLUME_MIN));
+    m_performance->SetGlobalParam(GUID_PerfMasterVolume, 
+                                  (void*)&Volume, sizeof(long) );  
+}
+
+
+
+void
+MusicManager::groove(Int groove)
+{
+    if (groove > 100)
+        groove = 100;
+    else if (groove == 0)
+        groove = 1;
+    if (groove != m_groove)
+    {
+        HRESULT hRes;
+        m_groove = groove;
+        Char grv = (Char)groove;
+        hRes = m_performance->SetGlobalParam(GUID_PerfMasterGrooveLevel, 
+                                    (void*)&grv, sizeof(Char));  
+        /*
+        MUSIC_TIME time;
+        m_performance->GetTime(NULL, &time);
+        
+        //DMUS_COMMAND_PARAM_2 param = {time ,DMUS_COMMANDT_GROOVE, groove, 0, DMUS_PATTERNT_RANDOM };
+        DMUS_COMMAND_PARAM param = {DMUS_COMMANDT_GROOVE, grv, 2, DMUS_PATTERNT_RANDOM };
+        hRes = m_performance->SetParam(GUID_CommandParam, 0xffffffff, DMUS_SEG_ALLTRACKS, time, &param);
+        */
+    }
+}
+
+
+MusicSegment::MusicSegment(IDirectMusicPerformance8* performance, 
+                           IDirectMusicLoader8*      loader,
+                           IDirectMusicSegment8*     segment)
+{
+    DXCOMMON("(+) MusicSegment");
+    m_performance          = performance;
+    m_loader               = loader;
+    m_segment              = segment;
+    m_embeddedAudioPath    = 0;
+    m_downloaded           = false;
+    
+    // Try to pull out an audio path from the segment itself if there is one.
+    // This embedded audio path will be used instead of the default
+    // audio path if the app doesn't wish to use an overriding audio path.
+    IUnknown* pConfig = NULL;
+    if (SUCCEEDED(m_segment->GetAudioPathConfig(&pConfig)))
+    {
+        m_performance->CreateAudioPath(pConfig, TRUE, &m_embeddedAudioPath);
+        SAFE_RELEASE(pConfig);
+    } 
+}
+
+
+
+MusicSegment::~MusicSegment()
+{
+    DXCOMMON("(-) MusicSegment");
+    if (m_segment)
+    {
+        // Tell the loader that this object should now be released
+        if (m_loader)
+            m_loader->ReleaseObjectByUnknown(m_segment);
+
+        if (m_downloaded)
+        {
+            if (m_embeddedAudioPath)
+                m_segment->Unload(m_embeddedAudioPath);
+            else
+                m_segment->Unload(m_performance);
+        }
+
+        SAFE_RELEASE(m_embeddedAudioPath); 
+        SAFE_RELEASE(m_segment); 
+    }
+
+    m_performance = NULL;
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+// Name: CMusicSegment::Play()
+// Desc: Plays the sound using voice management flags.  Pass in DSBPLAY_LOOPING
+//       in the dwFlags to loop the sound
+//-----------------------------------------------------------------------------
+Int
+MusicSegment::play(Boolean looped, Boolean secondary,
+                            IDirectMusicAudioPath8* audioPath)
+{
+    if (m_segment == 0 || m_performance == 0)
+    {
+        DXCOMMON("(!) MusicSegment::play : segment not initialized");
+        return dxFailed;
+    }
+
+    if (!m_downloaded)
+    {
+        DXCOMMON("(!) MusicSegment::play : segment was not downloaded");
+        return dxFailed;
+    }
+
+    // If an audio path was passed in then use it, otherwise
+    // use the embedded audio path if there was one.
+    if (audioPath == 0 && m_embeddedAudioPath != 0)
+        audioPath = m_embeddedAudioPath;
+        
+    // If pAudioPath is NULL then this plays on the default audio path.
+    UInt flags = 0;
+    if (looped)
+        flags |= DSBPLAY_LOOPING;
+    if (secondary)
+        flags |= DMUS_SEGF_SECONDARY;
+
+    HRESULT hRes;
+    if (FAILED(hRes = m_performance->PlaySegmentEx(m_segment, 0, NULL, flags, 
+                                                   0, 0, NULL, audioPath)))
+    {
+        DXCOMMON("(!) MusicSegment::play : failed to play segment with flags %x, errno = %x", flags, hRes);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+Int
+MusicSegment::download(IDirectMusicAudioPath8* audioPath)
+{
+    HRESULT hRes;
+    
+    if (m_segment == 0)
+    {
+        DXCOMMON("(!) MusicSegment::download : segment not initialized");
+        return dxFailed;
+    }
+     
+    // If no audio path was passed in, then download
+    // to the embedded audio path if it exists 
+    // else download to the performance
+    if (audioPath == 0)
+    {
+        if (m_embeddedAudioPath)
+            hRes = m_segment->Download(m_embeddedAudioPath);
+        else    
+            hRes = m_segment->Download(m_performance);
+    }
+    else
+    {
+        hRes = m_segment->Download(audioPath);
+    }
+    
+    if (SUCCEEDED(hRes))
+        m_downloaded = true;
+    else
+    {
+        DXCOMMON("(!) MusicSegment::download : failed to download segment, errno = %x", hRes);
+        return dxFailed;
+    }
+
+    return dxSuccess;
+}
+
+
+
+Int
+MusicSegment::unload(IDirectMusicAudioPath8* audioPath)
+{
+    HRESULT hRes;
+    
+    if (m_segment == 0)
+    {
+        DXCOMMON("(!) MusicSegment::unload : segment not initialized");
+        return dxFailed;
+    }
+
+    // If no audio path was passed in, then unload 
+    // from the embedded audio path if it exists 
+    // else unload from the performance
+    if (audioPath == 0)
+    {
+        if (m_embeddedAudioPath)
+            hRes = m_segment->Unload(m_embeddedAudioPath);
+        else    
+            hRes = m_segment->Unload(m_performance);
+    }
+    else
+    {
+        hRes = m_segment->Unload(audioPath);
+    }
+        
+    if (SUCCEEDED(hRes))
+    {
+        m_downloaded = false;
+    }
+    else
+    {
+        DXCOMMON("(!) MusicSegment::unload : failed to unload segment, errno = %x", hRes);
+        return dxFailed;
+    }
+
+    return dxSuccess;
+}
+
+
+
+
+Boolean
+MusicSegment::isPlaying( )
+{
+    if (m_segment == 0 || m_performance == 0)
+    {
+        DXCOMMON("(!) MusicSegment::isPlaying : segment not intialized");
+        return false;
+    }
+
+    return (m_performance->IsPlaying(m_segment, NULL) == S_OK);
+}
+
+
+
+
+Int
+MusicSegment::stop(Boolean immediately)
+{
+    if (m_segment == 0 || m_performance == 0)
+    {
+        DXCOMMON("(!) MusicSegment::stop : segment not initialized");
+        return dxFailed;
+    }
+
+    UInt flags = 0;
+    if (!immediately)
+        flags |= DMUS_SEGF_MEASURE;
+    
+    HRESULT hRes;
+    if (FAILED(hRes = m_performance->Stop(m_segment, NULL, 0, flags)))
+    {
+        DXCOMMON("(!) MusicSegment::stop : stop failed with errno = %x", hRes);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+
+Int
+MusicSegment::repeats(Int times)
+{
+    if (m_segment == NULL)
+    {
+        DXCOMMON("(!) MusicSegment::repeats : segment not initialized");
+        return dxFailed;
+    }
+
+    DWORD dwRepeats;
+    if (times == -1)
+        dwRepeats = DMUS_SEG_REPEAT_INFINITE;
+    else
+        dwRepeats = (DWORD) times;
+
+    HRESULT hRes;
+    if (FAILED(hRes = m_segment->SetRepeats(dwRepeats)))
+    {
+        DXCOMMON("(!) MusicSegment::repeats : SetRepeats failed with errno = %x", hRes);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+
+
+
+Int
+MusicSegment::style(IDirectMusicStyle8** style, UInt styleIndex)
+{
+    // Get the Style from the Segment by calling the Segment's GetData() with
+    // the data type GUID_StyleTrackStyle. 0xffffffff indicates to look at
+    // tracks in all TrackGroups in the segment. The first 0 indicates to
+    // retrieve the Style from the first Track  in the indicated TrackGroup.
+    // The second 0 indicates to retrieve the Style from the beginning of the
+    // segment, i.e. time 0 in Segment time. If this Segment was loaded from a
+    // section file, there is only one Style and it is at time 0.
+    HRESULT hRes;
+    if (FAILED(hRes = m_segment->GetParam(GUID_IDirectMusicStyle, 0xffffffff, styleIndex, 
+                                          0, NULL, (VOID*)style)))
+    {
+        DXCOMMON("(!) MusicSegment::style : failed to get style parameter for index %d", styleIndex);
+        return dxFailed;
+    }
+    return dxSuccess;
+}
+
+
+/*
+//-----------------------------------------------------------------------------
+// Name: CMusicScript::CMusicScript()
+// Desc: Constructs the class
+//-----------------------------------------------------------------------------
+CMusicScript::CMusicScript( IDirectMusicPerformance8* pPerformance, 
+                            IDirectMusicLoader8* pLoader,                   
+                            IDirectMusicScript8* pScript )
+{
+    m_pPerformance = pPerformance;
+    m_pLoader      = pLoader;
+    m_pScript      = pScript;
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+// Name: CMusicScript::~CMusicScript()
+// Desc: Destroys the class
+//-----------------------------------------------------------------------------
+CMusicScript::~CMusicScript()
+{
+    if( m_pLoader )
+    {
+        // Tell the loader that this object should now be released
+        m_pLoader->ReleaseObjectByUnknown( m_pScript );
+        m_pLoader = NULL;
+    }
+
+    SAFE_RELEASE( m_pScript ); 
+    m_pPerformance = NULL;
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+// Name: CMusicScript::Play()
+// Desc: Calls a routine in the script
+//-----------------------------------------------------------------------------
+HRESULT CMusicScript::CallRoutine( TCHAR* strRoutine )
+{
+    // DMusic only takes wide strings
+    WCHAR wstrRoutine[MAX_PATH];
+    DXUtil_ConvertGenericStringToWide( wstrRoutine, strRoutine );
+
+    return m_pScript->CallRoutine( wstrRoutine, NULL );
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+// Name: CMusicScript::SetVariableNumber()
+// Desc: Sets the value of a variable in the script
+//-----------------------------------------------------------------------------
+HRESULT CMusicScript::SetVariableNumber( TCHAR* strVariable, LONG lValue )
+{
+    // DMusic only takes wide strings
+    WCHAR wstrVariable[MAX_PATH];
+    DXUtil_ConvertGenericStringToWide( wstrVariable, strVariable );
+
+    return m_pScript->SetVariableNumber( wstrVariable, lValue, NULL );
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+// Name: CMusicScript::GetVariableNumber()
+// Desc: Gets the value of a variable in the script
+//-----------------------------------------------------------------------------
+HRESULT CMusicScript::GetVariableNumber( TCHAR* strVariable, LONG* plValue )
+{
+    // DMusic only takes wide strings
+    WCHAR wstrVariable[MAX_PATH];
+    DXUtil_ConvertGenericStringToWide( wstrVariable, strVariable );
+
+    return m_pScript->GetVariableNumber( wstrVariable, plValue, NULL );
+}
+
+
+
+*/
+
+} // namespace DirectX

@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Shared.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<RestoreSources>../Src/bin/$(Configuration);../Natives/bin/$(Configuration);https://api.nuget.org/v3/index.json</RestoreSources>
+	</PropertyGroup>
+
+	<!-- References -->
+	<ItemGroup>
+		<PackageReference Include="SteamAudio.NET" Version="$(BindingsVersion)" />
+		<PackageReference Include="SteamAudio.NET.Natives" Version="$(NativesVersion)" />
+		<PackageReference Include="Silk.NET.OpenAL " Version="2.13.0" />
+		<PackageReference Include="Silk.NET.OpenAL.Extensions.EXT" Version="2.13.0" />
+		<PackageReference Include="Silk.NET.OpenAL.Soft.Native" Version="1.21.1.1" />
+	</ItemGroup>
+
+</Project>

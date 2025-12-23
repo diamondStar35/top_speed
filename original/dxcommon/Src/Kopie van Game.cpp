@@ -1,0 +1,733 @@
+/**
+* DXCommon library
+* Copyright 2003-2013 Playing in the Dark (http://playinginthedark.net)
+* Code contributors: Davy Kager, Davy Loots and Leonard de Ruijter
+* This program is distributed under the terms of the GNU General Public License version 3.
+*/
+#include <DxCommon/If/Game.h>
+#include <Common/If/Algorithm.h>
+
+#include <Dxerr8.h>
+
+namespace DirectX
+{
+
+
+static Game* _mainGame     = 0;
+
+
+struct MODELVERTEX
+{
+    D3DXVECTOR3 p;
+    D3DXVECTOR3 n;
+    FLOAT       tu, tv;
+};
+
+#define D3DFVF_MODELVERTEX  (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX1)
+
+
+
+
+LRESULT CALLBACK StaticMsgProcGame(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    if (_mainGame)
+    {
+        return _mainGame->MsgProc(hWnd, uMsg, wParam, lParam);
+    }
+    else
+        return TRUE;
+}
+
+
+Game::Game( ) :
+    m_control3D(0),
+    m_active(true),
+    m_fullscreen(false),
+    m_screenWidth(800),   
+    m_screenHeight(600),
+    m_font(0),
+    m_showFPS(false),
+    m_backgroundColor(Color::black),
+    m_input(0),
+    m_multisampleCapable(false)
+{
+    DXCOMMON("(+) Game.");
+
+    _mainGame = this;
+}
+
+
+
+Game::~Game( )
+{
+    DXCOMMON("(-) Game.");
+
+    SAFE_DELETE(m_control3D);
+    SAFE_DELETE(m_input);
+
+    _mainGame = 0;
+}
+
+
+Int Game::create(Window::Instance instance, Int icon)
+{
+    // Register the window class
+    WNDCLASS wndClass = { CS_DBLCLKS, StaticMsgProcGame, 0, 0, instance,
+                          LoadIcon( instance, MAKEINTRESOURCE(icon) ),
+                          LoadCursor( NULL, IDC_ARROW ),
+                          (HBRUSH)GetStockObject( BLACK_BRUSH ),
+                          NULL, TEXT("DxGameClass") };
+    RegisterClass( &wndClass );
+
+    // Create our main window
+    m_mainWindow = CreateWindowEx( 0, TEXT("DxGameClass"), TEXT("DxGame"),
+                                   WS_VISIBLE|WS_POPUP|WS_CAPTION|WS_SYSMENU,
+                                   0, 0, m_screenWidth, m_screenHeight, NULL, NULL,
+                                   instance, NULL );
+    if (m_mainWindow == 0)
+    {
+        DXCOMMON("(!) Game::create : failed to create main window.");
+        return dxFailed;
+    }
+
+    UpdateWindow(m_mainWindow);
+
+    m_input = new InputManager( );
+    m_input->initialize(m_mainWindow);
+
+    if (initialize( ) != dxSuccess)
+    {
+        DXCOMMON("(!) Game::create : failed to initialize Game.");
+        DestroyWindow(m_mainWindow);
+        return dxFailed;
+    }
+    return (initializeDisplay());
+}
+
+
+
+Int Game::run(Int keyboardAccelerator)
+{
+    // Load keyboard accelerators
+    HACCEL hAccel = LoadAccelerators( NULL, MAKEINTRESOURCE(keyboardAccelerator) );
+
+    // Now we're ready to recieve and process Windows messages.
+    BOOL bGotMsg;
+    MSG  msg;
+    PeekMessage( &msg, NULL, 0U, 0U, PM_NOREMOVE );
+
+    while( WM_QUIT != msg.message  )
+    {
+        // Use PeekMessage() if the app is active, so we can use idle time to
+        // render the scene. Else, use GetMessage() to avoid eating CPU time.
+        if(m_active)
+            bGotMsg = PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE );
+        else
+            bGotMsg = GetMessage( &msg, NULL, 0U, 0U );
+
+        if( bGotMsg )
+        {
+            // Translate and dispatch the message
+            TranslateMessage( &msg );
+            DispatchMessage( &msg );
+        }
+        else
+        {
+            static Int frame = 0;
+            // Clear the scene
+            m_d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER,
+                               m_backgroundColor, 1.0f, 0x00000000);
+
+            m_input->update( );
+
+            if (m_d3dDevice->BeginScene())
+            {
+                static Huge FPS = 0;
+                Huge helapsed = m_timer.microElapsed( );
+                Float elapsed = helapsed / 1000000.0f;
+                prepareNextFrame(elapsed);
+
+                frame++;
+                
+                render(elapsed);
+
+                if (m_showFPS)
+                {
+                    if (frame % 50 == 0)
+                    {
+                        FPS = (Huge) 1000000/helapsed;
+                    }
+                    Char  FPS_text[32];
+                    sprintf(FPS_text, "FPS : %d", FPS);
+                    m_font->drawText(0,0, DirectX::Color::yellow, FPS_text);
+                }
+                
+                // End the scene
+                m_d3dDevice->EndScene();
+                m_d3dDevice->Present( 0, 0, 0, 0 );
+            }
+       
+        }
+    }
+
+    return (int)msg.wParam;
+}
+
+
+
+LRESULT Game::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch(uMsg)
+    {
+        case WM_ACTIVATEAPP:
+            m_active = (Boolean) (wParam != 0);
+            /*
+            m_bIsActive = (BOOL)wParam;
+            m_bMouseVisible   = FALSE;
+
+            if( m_bIsActive )
+            {
+                DXUtil_Timer( TIMER_START );
+            }
+            else
+            {
+                DXUtil_Timer( TIMER_STOP );
+            }*/
+            break;
+
+        case WM_GETMINMAXINFO:
+            ((MINMAXINFO*)lParam)->ptMinTrackSize.x = 320;
+            ((MINMAXINFO*)lParam)->ptMinTrackSize.y = 200;
+            break;
+
+        case WM_SETCURSOR:
+            SetCursor( NULL );
+            /*
+            if( !m_bMouseVisible && m_dwAppState!=APPSTATE_DISPLAYSPLASH )
+                SetCursor( NULL );
+            else
+                SetCursor( LoadCursor( NULL, IDC_ARROW ) );
+            */
+            //SetCursor(LoadCursor(NULL, IDC_ARROW));
+            return TRUE;
+
+        case WM_SYSCOMMAND:
+            // Prevent moving/sizing and power loss
+            switch( wParam )
+            {
+                case SC_MOVE:
+                case SC_SIZE:
+                case SC_MAXIMIZE:
+                case SC_KEYMENU:
+                case SC_MONITORPOWER:
+                        return 1;
+            }
+            break;
+
+                case WM_SYSKEYDOWN:
+                /*
+                // Handle Alt+Enter to do mode-switching
+                if( VK_RETURN == wParam )
+                {
+                    SwitchDisplayModes( !m_bFullScreen, m_dwScreenWidth,
+                                        m_dwScreenHeight );
+                }
+                */
+                break;
+
+        case WM_KEYDOWN:
+            /*
+            // Move from splash screen when user presses a key
+            if( m_dwAppState == APPSTATE_DISPLAYSPLASH )
+            {
+                if( wParam==VK_ESCAPE )
+                {
+                    // Escape keys exits the app
+                    PostMessage( hWnd, WM_CLOSE, 0, 0 );
+                    m_bDisplayReady = FALSE;
+                }
+                else
+                {
+                    // Get rid of splash bitmap
+                    DeleteObject( m_hSplashBitmap );
+
+                    // Advance to the first level
+                    m_dwAppState = APPSTATE_BEGINLEVELSCREEN;
+                    DXUtil_Timer( TIMER_START );
+                    AdvanceLevel();
+                }
+            }*/
+            return 0;
+
+        case WM_PAINT:
+            /*
+            if( m_dwAppState == APPSTATE_DISPLAYSPLASH )
+            {
+                BITMAP bmp;
+                RECT rc;
+                GetClientRect( m_hWndMain, &rc );
+
+                // Display the splash bitmap in the window
+                HDC hDCWindow = GetDC( m_hWndMain );
+                HDC hDCImage  = CreateCompatibleDC( NULL );
+                SelectObject( hDCImage, m_hSplashBitmap );
+                GetObject( m_hSplashBitmap, sizeof(bmp), &bmp );
+                StretchBlt( hDCWindow, 0, 0, rc.right, rc.bottom,
+                            hDCImage, 0, 0,
+                            bmp.bmWidth, bmp.bmHeight, SRCCOPY );
+                DeleteDC( hDCImage );
+                ReleaseDC( m_hWndMain, hDCWindow );
+            }
+            else
+            {
+                if( m_bDisplayReady )
+                {
+                    DrawDisplayList();
+                    ShowFrame();
+                }
+            }
+            */
+            break;
+
+        case WM_DESTROY:
+            finalize();
+            PostQuitMessage( 0 );
+            break;
+    }
+
+    return DefWindowProc(hWnd, uMsg, wParam, lParam);
+}
+
+
+
+Int Game::initializeDisplay( )
+{
+    DXCOMMON("Game::initializeDisplay : initializing 3D mode");
+    HRESULT hr;
+
+    // Construct a new display
+    LPDIRECT3D8 d3d = Direct3DCreate8( D3D_SDK_VERSION );
+    if (d3d == 0) 
+    {
+        DXCOMMON("(!) Game::initializeDisplay : Display doesn't support Direct3D.");
+        Messagebox(m_mainWindow, "Foutmelding", "Applicatie kan DirectX niet vinden.");
+        return dxFailed;
+    }
+
+    // Get the current desktop format
+    d3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &m_desktopMode);
+
+    const D3DFORMAT fmtFullscreenArray[] = 
+    {
+        D3DFMT_R5G6B5,
+        D3DFMT_X1R5G5B5,
+        D3DFMT_A1R5G5B5,
+        D3DFMT_X8R8G8B8,
+        D3DFMT_A8R8G8B8,
+    };
+    const Int numFullscreenFmts = sizeof(fmtFullscreenArray) / sizeof(fmtFullscreenArray[0]);
+    INT i;
+
+    // Find a pixel format that will be good for fullscreen back buffers
+    for (i = 0; i < numFullscreenFmts; ++i)
+    {
+        if (SUCCEEDED(d3d->CheckDeviceType( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, 
+            fmtFullscreenArray[i], fmtFullscreenArray[i], FALSE )))
+        {
+            m_d3dFullscreenFormat = fmtFullscreenArray[i];
+            break;
+        }
+    }
+
+    const D3DFORMAT fmtTextureArray[] = 
+    {
+        D3DFMT_A1R5G5B5,
+        D3DFMT_A4R4G4B4,
+        D3DFMT_A8R8G8B8,
+    };
+    const Int numTextureFmts = sizeof(fmtTextureArray) / sizeof(fmtTextureArray[0]);
+
+    // Find a format that is supported as a texture map for the current mode
+    for (i = 0; i < numTextureFmts; i++)
+    {
+        if (SUCCEEDED(d3d->CheckDeviceFormat( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, 
+            m_desktopMode.Format, 0, D3DRTYPE_TEXTURE, fmtTextureArray[i])))
+        {
+            m_d3dTextureFormat = fmtTextureArray[i];
+            break;
+        }
+    }
+
+    // Set up presentation parameters for the display
+    ZeroMemory( &m_d3dPresentParameters, sizeof(m_d3dPresentParameters) );
+    m_d3dPresentParameters.Windowed               = !m_fullscreen;
+    m_d3dPresentParameters.BackBufferCount        = 1;
+    m_d3dPresentParameters.SwapEffect             = D3DSWAPEFFECT_DISCARD;
+    m_d3dPresentParameters.EnableAutoDepthStencil = TRUE;
+    m_d3dPresentParameters.AutoDepthStencilFormat = D3DFMT_D16;
+    if (m_fullscreen )
+    {
+        m_d3dPresentParameters.hDeviceWindow    = m_mainWindow;
+        m_d3dPresentParameters.BackBufferWidth  = m_screenWidth;
+        m_d3dPresentParameters.BackBufferHeight = m_screenHeight;
+        m_d3dPresentParameters.BackBufferFormat = m_d3dFullscreenFormat;
+    }
+    else
+    {
+        m_d3dPresentParameters.BackBufferFormat = m_desktopMode.Format;
+    }
+    
+    // Create the device
+    hr = d3d->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, m_mainWindow,
+                             D3DCREATE_SOFTWARE_VERTEXPROCESSING,
+                             &m_d3dPresentParameters, &m_d3dDevice);
+    d3d->Release();
+    if (FAILED(hr))
+    {
+        DXCOMMON("(!) Game::initializeDisplay : couldn't create 3D device.");
+        Messagebox(m_mainWindow, "Error", "Couldn't find Direct3D compatible videocards.");
+        return dxFailed;
+    }
+
+
+    hr = m_d3dDevice->GetDeviceCaps(&m_d3dCapabilities);
+    if (FAILED(hr))
+    {
+        DXCOMMON("(!) Game::initializeDisplay : couldn't probe 3D device capabilities");
+    }
+
+    m_control3D = new Control3D(this, m_d3dDevice, m_screenWidth, m_screenHeight);
+
+    DXCOMMON("Game::initializeDisplay : successfully initialized 3D mode.");
+
+    m_font = new D3DFont("Arial", 14);
+    m_font->initDevices(m_d3dDevice);
+    m_font->restoreDevices(m_d3dDevice );
+    return dxSuccess;
+}
+
+
+Int Game::displayMode(Int width, Int height, Boolean fullscreen, Boolean antialiasing)
+{
+    HRESULT result;
+
+    if (!m_active)
+        return dxSuccess;
+
+    // Check to see if a change was actually requested
+    if (fullscreen)
+    {
+        if (m_screenWidth==width && m_screenHeight==height &&
+            m_fullscreen==fullscreen )
+            return dxSuccess;
+    }
+    else
+    {
+        if (!m_fullscreen)
+            return dxSuccess;
+    }
+
+    // Invalidate the old display objects
+    //m_bDisplayReady = FALSE;
+    //InvalidateDisplayObjects();
+    m_font->invalidateDevices();
+
+    // Set up the new presentation parameters
+    if (fullscreen )
+    {
+        m_d3dPresentParameters.Windowed         = FALSE;
+        m_d3dPresentParameters.hDeviceWindow    = m_mainWindow;
+        m_d3dPresentParameters.BackBufferWidth  = m_screenWidth  = width;
+        m_d3dPresentParameters.BackBufferHeight = m_screenHeight = height;
+        m_d3dPresentParameters.BackBufferFormat = m_d3dFullscreenFormat;
+        m_multisampleCapable                    = false;
+        if (antialiasing)
+        {
+            IDirect3D8* d3d;
+            if (SUCCEEDED(m_d3dDevice->GetDirect3D(&d3d)))
+                if (SUCCEEDED(d3d->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL , m_d3dFullscreenFormat, 
+                                                              FALSE, D3DMULTISAMPLE_2_SAMPLES)))
+                {
+                    // Full-scene antialiasing is supported. Enable it here.
+                    m_d3dPresentParameters.MultiSampleType  = D3DMULTISAMPLE_2_SAMPLES;
+                    m_multisampleCapable                    = true;
+                }
+        }
+    }
+    else
+    {
+        m_d3dPresentParameters.Windowed         = TRUE;
+        m_d3dPresentParameters.hDeviceWindow    = NULL;
+        m_d3dPresentParameters.BackBufferWidth  = 0L;
+        m_d3dPresentParameters.BackBufferHeight = 0L;
+        m_d3dPresentParameters.BackBufferFormat = m_desktopMode.Format;
+        m_multisampleCapable                    = false;
+    }
+
+    // Reset the device
+    result = m_d3dDevice->Reset(&m_d3dPresentParameters);
+    switch (result)
+    {
+    case D3DERR_INVALIDCALL :
+        DXCOMMON("(!) Game::displayMode : Invalid call");
+        break;
+    case D3DERR_OUTOFVIDEOMEMORY :
+        DXCOMMON("(!) Game::displayMode : Out of video memory");
+        break;
+    case E_OUTOFMEMORY :
+        DXCOMMON("(!) Game::displayMode : Out of memory");
+        break;
+    case 0 :
+        DXCOMMON("Game::displayMode : successfully reset device.");
+        break;
+    default :
+        DXCOMMON("(!) Game::displayMode : unknown error %s.", DXGetErrorString8(result));
+        break;
+    }
+
+    if (SUCCEEDED(result))
+    {
+        m_fullscreen   = fullscreen;
+        /*
+        if (SUCCEEDED(RestoreDisplayObjects()))
+        {
+            m_bDisplayReady = TRUE;
+            SetCursor( NULL );
+            return S_OK;
+        }
+        */
+        m_font->restoreDevices(m_d3dDevice);
+        return dxSuccess;
+    }
+
+    // If we get here, a fatal error occurred
+    PostMessage(m_mainWindow, WM_CLOSE, 0, 0);
+    return dxFailed;
+}
+
+
+
+
+void Game::enableFog(UInt color, Float near, Float far, Float density)
+{
+    // start fog
+    m_d3dDevice->SetRenderState(D3DRS_FOGENABLE, TRUE);
+    m_d3dDevice->SetRenderState(D3DRS_FOGCOLOR,  color);
+
+    m_d3dDevice->SetRenderState(D3DRS_FOGSTART,   floatToDWORD(3.0f));
+    m_d3dDevice->SetRenderState(D3DRS_FOGEND,     floatToDWORD(10.0f));
+    m_d3dDevice->SetRenderState(D3DRS_FOGDENSITY, floatToDWORD(0.0f));
+
+    m_d3dDevice->SetRenderState(D3DRS_FOGTABLEMODE,   D3DFOG_NONE);
+    m_d3dDevice->SetRenderState(D3DRS_FOGVERTEXMODE,  D3DFOG_LINEAR);
+    m_d3dDevice->SetRenderState(D3DRS_RANGEFOGENABLE, FALSE);
+}
+
+
+
+void Game::disableFog( )
+{
+    // stop fog
+    m_d3dDevice->SetRenderState(D3DRS_FOGENABLE, FALSE);
+}
+
+
+
+Game::Control3D::Control3D(Game* game, LPDIRECT3DDEVICE8 device, Int screenWidth, Int screenHeight) :
+    m_game(game),
+    m_d3dDevice(device),
+    m_screenWidth(screenWidth),
+    m_screenHeight(screenHeight)
+{
+    
+}
+       
+Game::Control3D::~Control3D( )
+{
+
+}
+
+
+    
+void Game::Control3D::view(Float fromx, Float fromy, Float fromz, Float tox, Float toy, Float toz)
+{
+    D3DXMatrixLookAtLH(&m_viewMatrix , &D3DXVECTOR3(fromx,fromy,fromz) , &D3DXVECTOR3(tox,toy,toz) , &D3DXVECTOR3(0,1,0) );
+    //m_d3dDevice->GetTransform(D3DTS_VIEW , &view);
+    //view.m[0][0] = fromx;
+    m_d3dDevice->SetTransform(D3DTS_VIEW , &m_viewMatrix);
+}
+
+
+void Game::Control3D::view(Vector3 from, Vector3 to)
+{
+    D3DXMATRIX  view;
+    D3DXMatrixLookAtLH(&view , &D3DXVECTOR3(from.x,from.y,from.z) , &D3DXVECTOR3(to.x,to.y,to.z) , &D3DXVECTOR3(0,1,0) );
+    m_d3dDevice->SetTransform(D3DTS_VIEW , &view);
+}
+
+
+void Game::Control3D::projection(Float Near, Float Far)
+{
+    D3DXMATRIX proj;
+    INT cx, cy;
+    INT dx, dy;
+    INT dd;
+    FLOAT l,r,t,b;
+
+    cx = m_screenWidth / 2;
+    cy = m_screenHeight / 2;
+    dx = m_screenWidth;
+    dy = m_screenHeight;
+    
+    dd = (dx > dy ? dy : dx);
+
+    l = FLOAT(-cx) / (FLOAT)(dd);
+    r = FLOAT(m_screenWidth - cx) / (FLOAT)(dd);
+    t = FLOAT(-cy) / (FLOAT)(dd);
+    b = FLOAT(m_screenHeight - cy) / (FLOAT)(dd);
+
+    l *= Near;
+    r *= Near;
+    t *= Near;
+    b *= Near;
+
+    D3DXMatrixPerspectiveOffCenterLH(&proj, l, r, t, b, Near, Far);
+    m_d3dDevice->SetTransform(D3DTS_PROJECTION, &proj);
+}
+
+
+void Game::Control3D::projection(Float Near, Float Far, Float angle)
+{
+    D3DXMATRIX proj;
+    D3DXMatrixPerspectiveFovLH(&proj, angle, Float(m_screenWidth)/Float(m_screenHeight), Near, Far);
+    m_d3dDevice->SetTransform(D3DTS_PROJECTION, &proj);
+}
+
+
+
+void Game::Control3D::material(UInt color, Float alpha)
+{
+    D3DMATERIAL8 mtrl;
+    ZeroMemory( &mtrl, sizeof(D3DMATERIAL8) );
+    mtrl.Diffuse.r = mtrl.Ambient.r = Float((color >> 16) & 0xff)/255.0f;
+    mtrl.Diffuse.g = mtrl.Ambient.g = Float((color >> 8) & 0xff)/255.0f;
+    mtrl.Diffuse.b = mtrl.Ambient.b = Float(color & 0xff)/255.0f;
+    mtrl.Diffuse.a = mtrl.Ambient.a = alpha;
+                
+    m_d3dDevice->SetMaterial( &mtrl );
+}
+
+
+void Game::Control3D::ambient(UInt color)
+{
+    m_d3dDevice->SetRenderState(D3DRS_AMBIENT, color);
+}
+    
+
+void Game::Control3D::alpha(Boolean enable)
+{
+    if (m_game->capabilities( ).AlphaCmpCaps & D3DPCMPCAPS_GREATEREQUAL)
+    {
+        m_d3dDevice->SetRenderState(D3DRS_ALPHATESTENABLE, enable);
+        m_d3dDevice->SetRenderState(D3DRS_ALPHAREF,        0x08);
+        m_d3dDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
+    }
+}
+
+
+void Game::Control3D::antialiasing(Boolean enable)
+{
+    if (m_game->multisampleCapable( ))
+        m_d3dDevice->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, enable);
+}
+
+
+void 
+Game::Control3D::position(LPDIRECT3DDEVICE8 d3dDevice, Float x, Float y, Float z)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixTranslation(&mat2, x, y, z);
+	D3DXMatrixMultiply(&mat3, &mat1, &mat2);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+
+void 
+Game::Control3D::position(LPDIRECT3DDEVICE8 d3dDevice, Vector3 pos)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixTranslation(&mat2, pos.x, pos.y, pos.z);
+	D3DXMatrixMultiply(&mat3, &mat1, &mat2);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+
+void 
+Game::Control3D::yawPitchRoll(LPDIRECT3DDEVICE8 d3dDevice, Float yaw, Float pitch, Float roll)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixRotationYawPitchRoll(&mat2, yaw, pitch, roll);
+    D3DXMatrixMultiply(&mat3, &mat1, &mat2);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+
+void 
+Game::Control3D::yawPitchRoll(LPDIRECT3DDEVICE8 d3dDevice, Vector3 ypr)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixRotationYawPitchRoll(&mat2, ypr.x, ypr.y, ypr.z);
+    D3DXMatrixMultiply(&mat3, &mat1, &mat2);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+void 
+Game::Control3D::rotateAxis(LPDIRECT3DDEVICE8 d3dDevice, DirectX::Vector3 axis, Float angle)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXVECTOR3 d3daxis = D3DXVECTOR3(axis.x, axis.y, axis.z);
+    D3DXMatrixRotationAxis(&mat2, &d3daxis, angle);
+    D3DXMatrixMultiply(&mat3, &mat1, &mat2);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+
+void
+Game::Control3D::scale(LPDIRECT3DDEVICE8 d3dDevice, Float scale)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixScaling(&mat2, scale, scale, scale);
+    D3DXMatrixMultiply(&mat3, &mat2, &mat1);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+
+void
+Game::Control3D::scale(LPDIRECT3DDEVICE8 d3dDevice, Float scaleX, Float scaleY, Float scaleZ)
+{
+    D3DXMATRIX mat1, mat2, mat3;
+    d3dDevice->GetTransform(D3DTS_WORLDMATRIX(0), &mat1);
+    D3DXMatrixScaling(&mat2, scaleX, scaleY, scaleZ);
+    D3DXMatrixMultiply(&mat3, &mat2, &mat1);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat3);
+}
+
+void
+Game::Control3D::reset(LPDIRECT3DDEVICE8 d3dDevice)
+{
+    D3DXMATRIX mat1;
+    D3DXMatrixIdentity(&mat1);
+    d3dDevice->SetTransform(D3DTS_WORLD, &mat1);
+}
+
+
+
+} // namespace DirectX
+
+

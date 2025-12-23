@@ -1,0 +1,17 @@
+enginesound=streetracerengine.wav
+;throttlesound=
+startsound=builtin1
+hornsound=builtin4
+;backfiresound=
+crashsound=builtin3
+brakesound=builtin6
+acceleration=14
+deceleration=45
+topspeed=24000
+idlefreq=11025
+topfreq=65000
+shiftfreq=47000
+numberofgears=5
+steering=215
+steeringfactor=93
+haswipers=1

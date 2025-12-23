@@ -1,0 +1,166 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using TopSpeed.Core;
+using TopSpeed.Data;
+using TopSpeed.Tracks;
+
+namespace TopSpeed.Vehicles
+{
+    internal static class VehicleLoader
+    {
+        private const string BuiltinPrefix = "builtin";
+
+        public static VehicleDefinition LoadOfficial(int vehicleIndex, TrackWeather weather)
+        {
+            if (vehicleIndex < 0 || vehicleIndex >= VehicleCatalog.VehicleCount)
+                vehicleIndex = 0;
+
+            var parameters = VehicleCatalog.Vehicles[vehicleIndex];
+            var legacyRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
+
+            return new VehicleDefinition
+            {
+                CarType = (CarType)vehicleIndex,
+                UserDefined = false,
+                Acceleration = parameters.Acceleration,
+                Deceleration = parameters.Deceleration,
+                TopSpeed = parameters.TopSpeed,
+                IdleFreq = parameters.IdleFreq,
+                TopFreq = parameters.TopFreq,
+                ShiftFreq = parameters.ShiftFreq,
+                Gears = parameters.Gears,
+                Steering = parameters.Steering,
+                SteeringFactor = parameters.SteeringFactor,
+                HasWipers = parameters.HasWipers == 1 && weather == TrackWeather.Rain ? 1 : 0,
+                EngineSound = CombineSound(legacyRoot, parameters.EngineSound),
+                StartSound = CombineSound(legacyRoot, parameters.StartSound),
+                HornSound = CombineSound(legacyRoot, parameters.HornSound),
+                ThrottleSound = CombineSound(legacyRoot, parameters.ThrottleSound),
+                CrashSound = CombineSound(legacyRoot, parameters.CrashSound),
+                BrakeSound = CombineSound(legacyRoot, parameters.BrakeSound),
+                BackfireSound = CombineSound(legacyRoot, parameters.BackfireSound)
+            };
+        }
+
+        public static VehicleDefinition LoadCustom(string vehicleFile, TrackWeather weather)
+        {
+            var filePath = Path.IsPathRooted(vehicleFile)
+                ? vehicleFile
+                : Path.Combine(AssetPaths.Root, vehicleFile);
+            var settings = ReadVehicleFile(filePath);
+            var legacyRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
+            var vehiclesRoot = Path.Combine(AssetPaths.Root, "Vehicles");
+
+            var acceleration = ReadInt(settings, "acceleration", 10);
+            var deceleration = ReadInt(settings, "deceleration", 40);
+            var topSpeed = ReadInt(settings, "topspeed", 15000);
+            var idleFreq = ReadInt(settings, "idlefreq", 11000);
+            var topFreq = ReadInt(settings, "topfreq", 50000);
+            var shiftFreq = ReadInt(settings, "shiftfreq", 40000);
+            var gears = ReadInt(settings, "numberofgears", 5);
+            var steering = ReadInt(settings, "steering", 100);
+            var steeringFactor = ReadInt(settings, "steeringfactor", 40);
+
+            var engineSound = ReadString(settings, "enginesound", "builtin1");
+            var throttleSound = ReadString(settings, "throttlesound", string.Empty);
+            var startSound = ReadString(settings, "startsound", "builtin1");
+            var hornSound = ReadString(settings, "hornsound", "builtin1");
+            var backfireSound = ReadString(settings, "backfiresound", string.Empty);
+            var crashSound = ReadString(settings, "crashsound", "builtin1");
+            var brakeSound = ReadString(settings, "brakesound", "builtin1");
+
+            var hasWipers = 0;
+            if (weather == TrackWeather.Rain)
+                hasWipers = ReadInt(settings, "haswipers", 1);
+
+            return new VehicleDefinition
+            {
+                CarType = CarType.Vehicle1,
+                UserDefined = true,
+                CustomFile = Path.GetFileNameWithoutExtension(filePath),
+                Acceleration = acceleration,
+                Deceleration = deceleration,
+                TopSpeed = topSpeed,
+                IdleFreq = idleFreq,
+                TopFreq = topFreq,
+                ShiftFreq = shiftFreq,
+                Gears = gears,
+                Steering = steering,
+                SteeringFactor = steeringFactor,
+                HasWipers = hasWipers,
+                EngineSound = ResolveSound(engineSound, legacyRoot, vehiclesRoot, p => p.EngineSound),
+                StartSound = ResolveSound(startSound, legacyRoot, vehiclesRoot, p => p.StartSound),
+                HornSound = ResolveSound(hornSound, legacyRoot, vehiclesRoot, p => p.HornSound),
+                ThrottleSound = ResolveSound(throttleSound, legacyRoot, vehiclesRoot, p => p.ThrottleSound),
+                CrashSound = ResolveSound(crashSound, legacyRoot, vehiclesRoot, p => p.CrashSound),
+                BrakeSound = ResolveSound(brakeSound, legacyRoot, vehiclesRoot, p => p.BrakeSound),
+                BackfireSound = ResolveSound(backfireSound, legacyRoot, vehiclesRoot, p => p.BackfireSound)
+            };
+        }
+
+        private static string? CombineSound(string root, string? file)
+        {
+            if (string.IsNullOrWhiteSpace(file))
+                return null;
+            return Path.Combine(root, file);
+        }
+
+        private static string? ResolveSound(string? value, string legacyRoot, string vehiclesRoot, Func<VehicleParameters, string?> selector)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            if (value!.StartsWith(BuiltinPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!int.TryParse(value.Substring(BuiltinPrefix.Length), out var index))
+                    return null;
+                index -= 1;
+                if (index < 0 || index >= VehicleCatalog.VehicleCount)
+                    return null;
+                var parameters = VehicleCatalog.Vehicles[index];
+                var file = selector(parameters);
+                return CombineSound(legacyRoot, file);
+            }
+
+            return Path.Combine(vehiclesRoot, value);
+        }
+
+        private static Dictionary<string, string> ReadVehicleFile(string filePath)
+        {
+            var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            if (!File.Exists(filePath))
+                return result;
+
+            foreach (var line in File.ReadLines(filePath))
+            {
+                var trimmed = line.Trim();
+                if (trimmed.Length == 0)
+                    continue;
+                if (trimmed.StartsWith(";") || trimmed.StartsWith("#"))
+                    continue;
+                var idx = trimmed.IndexOf('=');
+                if (idx <= 0)
+                    continue;
+                var key = trimmed.Substring(0, idx).Trim();
+                var value = trimmed.Substring(idx + 1).Trim();
+                result[key] = value;
+            }
+            return result;
+        }
+
+        private static int ReadInt(Dictionary<string, string> values, string key, int defaultValue)
+        {
+            if (values.TryGetValue(key, out var raw) && int.TryParse(raw, out var value))
+                return value;
+            return defaultValue;
+        }
+
+        private static string ReadString(Dictionary<string, string> values, string key, string defaultValue)
+        {
+            if (values.TryGetValue(key, out var raw))
+                return raw;
+            return defaultValue;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+/**
+* Common library
+* Copyright 2003-2013 Playing in the Dark (http://playinginthedark.net)
+* Code contributors: Davy Kager, Davy Loots and Leonard de Ruijter
+* This program is distributed under the terms of the GNU General Public License version 3.
+*/
+#include <Common/If/Tracer.h>
+
+#include <stdio.h>
+#include <windows.h>
+#include <tchar.h> // _vsntprintf
+
+
+Tracer::Tracer(const Char name[] ) :
+    m_enabled(false),
+    m_name(name),
+    m_file(0)
+{
+
+}
+
+
+Tracer::~Tracer( )
+{
+
+}
+
+
+
+void Tracer::bind(File* file)
+{
+    m_file = file;
+}
+
+
+void Tracer::trace(const Char* fmt, ...)
+{
+    if (m_enabled)
+    {
+        char buffer[512];
+        sprintf(buffer, "[%s] ", m_name);
+        va_list args;
+        va_start(args, fmt);
+        _vsntprintf( buffer + strlen(buffer), 512, fmt, args );
+        sprintf(buffer + strlen(buffer), "\n");
+        va_end(args);
+        if (m_file)
+        {
+            fprintf(m_file->getStream(), buffer);
+            fflush(m_file->getStream());
+        }
+        else
+            printf(buffer);
+    }
+}

@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>0618</NoWarn>
+    <PackageId>JAJ.Packages.MiniAudioEx</PackageId>
+    <Version>2.6.7</Version>
+    <Authors>W.M.R Jap-A-Joe</Authors>
+    <PackageTags>miniaudio miniaudioex audio sound playback spatial dsp effects wav mp3 flac ogg</PackageTags>
+    <Description>
+      A wrapper for a modified version of miniaudio.
+    </Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/japajoe/MiniAudioExNET</PackageProjectUrl> 
+    <RepositoryUrl>https://github.com/japajoe/MiniAudioExNET.git</RepositoryUrl> 
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <Copyright>Copyright $([System.DateTime]::Now.Year) W.M.R Jap-A-Joe</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="runtimes/**" PackagePath="runtimes" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="**/examples/**" />
+    <Compile Remove="**/examples/**" />
+    <EmbeddedResource Remove="**/examples/**" />
+    <None Remove="**/examples/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="**/test/**" />
+    <Compile Remove="**/test/**" />
+    <EmbeddedResource Remove="**/test/**" />
+    <None Remove="**/test/**" />
+  </ItemGroup>
+
+</Project>

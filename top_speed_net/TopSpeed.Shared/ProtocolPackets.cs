@@ -1,8 +1,9 @@
 using System;
+using TopSpeed.Data;
 
-namespace TopSpeed.Server.Protocol
+namespace TopSpeed.Protocol
 {
-    internal struct PlayerRaceData
+    public struct PlayerRaceData
     {
         public int PositionX;
         public int PositionY;
@@ -10,39 +11,31 @@ namespace TopSpeed.Server.Protocol
         public int Frequency;
     }
 
-    internal struct MultiplayerDefinition
-    {
-        public byte Type { get; set; }
-        public byte Surface { get; set; }
-        public byte Noise { get; set; }
-        public uint Length { get; set; }
-    }
-
-    internal struct PacketHeader
+    public sealed class PacketHeader
     {
         public byte Version;
         public Command Command;
     }
 
-    internal sealed class PacketPlayer
+    public sealed class PacketPlayer
     {
         public uint PlayerId;
         public byte PlayerNumber;
     }
 
-    internal sealed class PacketPlayerHello
+    public sealed class PacketPlayerHello
     {
         public string Name = string.Empty;
     }
 
-    internal sealed class PacketPlayerState
+    public sealed class PacketPlayerState
     {
         public uint PlayerId;
         public byte PlayerNumber;
         public PlayerState State;
     }
 
-    internal sealed class PacketPlayerData
+    public sealed class PacketPlayerData
     {
         public uint PlayerId;
         public byte PlayerNumber;
@@ -55,7 +48,7 @@ namespace TopSpeed.Server.Protocol
         public bool Backfiring;
     }
 
-    internal sealed class PacketPlayerBumped
+    public sealed class PacketPlayerBumped
     {
         public uint PlayerId;
         public byte PlayerNumber;
@@ -64,24 +57,31 @@ namespace TopSpeed.Server.Protocol
         public ushort BumpSpeed;
     }
 
-    internal sealed class PacketLoadCustomTrack
+    public sealed class PacketLoadCustomTrack
     {
         public byte NrOfLaps;
         public string TrackName = string.Empty;
-        public byte TrackWeather;
-        public byte TrackAmbience;
+        public TrackWeather TrackWeather;
+        public TrackAmbience TrackAmbience;
         public ushort TrackLength;
-        public MultiplayerDefinition[] Definitions = Array.Empty<MultiplayerDefinition>();
+        public TrackDefinition[] Definitions = Array.Empty<TrackDefinition>();
     }
 
-    internal sealed class PacketRaceResults
+    public sealed class PacketRaceResults
     {
         public byte NPlayers;
         public byte[] Results = Array.Empty<byte>();
     }
 
-    internal sealed class PacketServerInfo
+    public sealed class PacketServerInfo
     {
         public string Motd = string.Empty;
+    }
+
+    public sealed class PacketPlayerJoined
+    {
+        public uint PlayerId;
+        public byte PlayerNumber;
+        public string Name = string.Empty;
     }
 }

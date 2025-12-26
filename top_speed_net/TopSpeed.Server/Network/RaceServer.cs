@@ -5,6 +5,8 @@ using System.Net;
 using TopSpeed.Server.Logging;
 using TopSpeed.Server.Protocol;
 using TopSpeed.Server.Tracks;
+using TopSpeed.Data;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Server.Network
 {
@@ -25,6 +27,7 @@ namespace TopSpeed.Server.Network
         public bool Horning { get; set; }
         public bool Backfiring { get; set; }
         public DateTime LastSeenUtc { get; set; }
+        public bool JoinBroadcasted { get; set; }
 
         public PlayerConnection(IPEndPoint endPoint, uint id)
         {
@@ -43,6 +46,7 @@ namespace TopSpeed.Server.Network
             Horning = false;
             Backfiring = false;
             LastSeenUtc = DateTime.UtcNow;
+            JoinBroadcasted = false;
         }
 
         public PacketPlayerData ToPacket(PlayerState overrideState)
@@ -333,6 +337,20 @@ namespace TopSpeed.Server.Network
             if (name.Length > ProtocolConstants.MaxPlayerNameLength)
                 name = name.Substring(0, ProtocolConstants.MaxPlayerNameLength);
             connection.Name = name;
+            if (!connection.JoinBroadcasted)
+            {
+                connection.JoinBroadcasted = true;
+                var displayName = string.IsNullOrWhiteSpace(name)
+                    ? $"Player {connection.PlayerNumber + 1}"
+                    : name;
+                var joined = new PacketPlayerJoined
+                {
+                    PlayerId = connection.Id,
+                    PlayerNumber = connection.PlayerNumber,
+                    Name = displayName
+                };
+                SendExcept(connection.Id, PacketSerializer.WritePlayerJoined(joined));
+            }
         }
 
         private void HandlePlayerFinished(PlayerConnection connection, PacketPlayer packet)
@@ -413,13 +431,14 @@ namespace TopSpeed.Server.Network
             if (_trackData == null)
                 return;
 
+            var trackLength = (ushort)Math.Min(_trackData.Definitions.Length, ProtocolConstants.MaxMultiTrackLength);
             var packet = new PacketLoadCustomTrack
             {
                 NrOfLaps = _trackData.Laps,
                 TrackName = _trackData.UserDefined ? "custom" : _trackName,
                 TrackWeather = _trackData.Weather,
                 TrackAmbience = _trackData.Ambience,
-                TrackLength = _trackData.Length,
+                TrackLength = trackLength,
                 Definitions = _trackData.Definitions
             };
             _transport.Send(connection.EndPoint, PacketSerializer.WriteLoadCustomTrack(packet));

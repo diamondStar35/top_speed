@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TopSpeed.Core;
 using TopSpeed.Data;
+using TopSpeed.Protocol;
 using TopSpeed.Tracks;
 
 namespace TopSpeed.Vehicles

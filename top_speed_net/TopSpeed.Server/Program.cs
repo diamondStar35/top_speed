@@ -6,6 +6,7 @@ using System.Threading;
 using TopSpeed.Server.Config;
 using TopSpeed.Server.Logging;
 using TopSpeed.Server.Network;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Server
 {
@@ -199,7 +200,7 @@ namespace TopSpeed.Server
 
             if (TryGetIntArg(args, "--max-players", out var maxPlayers))
             {
-                if (maxPlayers >= 1 && maxPlayers <= TopSpeed.Server.Protocol.ProtocolConstants.MaxPlayers)
+                if (maxPlayers >= 1 && maxPlayers <= ProtocolConstants.MaxPlayers)
                     settings.MaxPlayers = maxPlayers;
                 else
                     logger.Warning("Invalid --max-players value. Using configured max players.");

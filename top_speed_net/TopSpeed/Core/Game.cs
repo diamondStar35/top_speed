@@ -11,6 +11,7 @@ using TopSpeed.Data;
 using TopSpeed.Input;
 using TopSpeed.Menu;
 using TopSpeed.Network;
+using TopSpeed.Protocol;
 using TopSpeed.Race;
 using TopSpeed.Speech;
 using TopSpeed.Windowing;
@@ -25,6 +26,7 @@ namespace TopSpeed.Core
             Menu,
             TimeTrial,
             SingleRace,
+            MultiplayerRace,
             Paused
         }
 
@@ -122,6 +124,7 @@ namespace TopSpeed.Core
         private bool _pauseKeyReleased = true;
         private LevelTimeTrial? _timeTrial;
         private LevelSingleRace? _singleRace;
+        private LevelMultiplayer? _multiplayerRace;
         private bool _textInputActive;
         private Action<string>? _textInputHandler;
         private Action? _textInputCancelled;
@@ -133,6 +136,10 @@ namespace TopSpeed.Core
         private string _pendingServerAddress = string.Empty;
         private int _pendingServerPort;
         private string _pendingCallSign = string.Empty;
+        private TrackData? _pendingMultiplayerTrack;
+        private string _pendingMultiplayerTrackName = string.Empty;
+        private int _pendingMultiplayerLaps;
+        private bool _pendingMultiplayerStart;
 
         public event Action? ExitRequested;
 
@@ -181,6 +188,13 @@ namespace TopSpeed.Core
                     if (UpdateModalOperations())
                         break;
 
+                    if (_session != null)
+                    {
+                        ProcessMultiplayerPackets();
+                        if (_state != AppState.Menu)
+                            break;
+                    }
+
                     if (_mappingActive)
                     {
                         UpdateMapping();
@@ -195,6 +209,9 @@ namespace TopSpeed.Core
                     break;
                 case AppState.SingleRace:
                     RunSingleRace(deltaSeconds);
+                    break;
+                case AppState.MultiplayerRace:
+                    RunMultiplayerRace(deltaSeconds);
                     break;
                 case AppState.Paused:
                     UpdatePaused();
@@ -244,6 +261,7 @@ namespace TopSpeed.Core
 
             _menu.Register(BuildMultiplayerMenu());
             _menu.Register(BuildMultiplayerServersMenu());
+            _menu.Register(BuildMultiplayerLobbyMenu());
 
             _menu.Register(BuildTrackTypeMenu("time_trial_type", RaceMode.TimeTrial));
             _menu.Register(BuildTrackTypeMenu("single_race_type", RaceMode.SingleRace));
@@ -306,6 +324,19 @@ namespace TopSpeed.Core
                 BackItem()
             };
             return _menu.CreateMenu("multiplayer_servers", items, "Available servers");
+        }
+
+        private MenuScreen BuildMultiplayerLobbyMenu()
+        {
+            var items = new List<MenuItem>
+            {
+                new MenuItem("Create a new game", MenuAction.None, null, onActivate: SpeakNotImplemented),
+                new MenuItem("Join an existing game", MenuAction.None, null, onActivate: SpeakNotImplemented),
+                new MenuItem("Who is online", MenuAction.None, null, onActivate: SpeakNotImplemented),
+                new MenuItem("Options", MenuAction.None, null, nextMenuId: "options_main"),
+                new MenuItem("Disconnect", MenuAction.None, null, onActivate: DisconnectFromServer)
+            };
+            return _menu.CreateMenu("multiplayer_lobby", items, string.Empty);
         }
 
         private MenuScreen BuildTrackMenu(string id, RaceMode mode, TrackCategory category)
@@ -448,14 +479,17 @@ namespace TopSpeed.Core
                 return;
 
             _textInputActive = false;
-            _input.Resume();
             if (result.Cancelled)
             {
                 _textInputCancelled?.Invoke();
-                return;
+            }
+            else
+            {
+                _textInputHandler?.Invoke(result.Text ?? string.Empty);
             }
 
-            _textInputHandler?.Invoke(result.Text ?? string.Empty);
+            if (!_textInputActive)
+                _input.Resume();
         }
 
         private void BeginTextInput(string prompt, string? initialValue, Action<string> onSubmit, Action? onCancel = null)
@@ -522,6 +556,11 @@ namespace TopSpeed.Core
             BeginTextInput("Enter the server IP address or domain.", _settings.LastServerAddress, HandleServerAddressInput);
         }
 
+        private void SpeakNotImplemented()
+        {
+            _speech.Speak("Not implemented yet.", interrupt: true);
+        }
+
         private void HandleServerAddressInput(string text)
         {
             var trimmed = (text ?? string.Empty).Trim();
@@ -571,6 +610,25 @@ namespace TopSpeed.Core
             AttemptConnect(_pendingServerAddress, _pendingServerPort, _pendingCallSign);
         }
 
+        private void DisconnectFromServer()
+        {
+            _multiplayerRace?.FinalizeLevelMultiplayer();
+            _multiplayerRace?.Dispose();
+            _multiplayerRace = null;
+
+            _pendingMultiplayerTrack = null;
+            _pendingMultiplayerTrackName = string.Empty;
+            _pendingMultiplayerLaps = 0;
+            _pendingMultiplayerStart = false;
+
+            _session?.Dispose();
+            _session = null;
+
+            _state = AppState.Menu;
+            _menu.ShowRoot("main");
+            _speech.Speak("Main menu", interrupt: true);
+        }
+
         private void AttemptConnect(string host, int port, string callSign)
         {
             _speech.Speak("Attempting to connect, please wait...", interrupt: true);
@@ -586,11 +644,19 @@ namespace TopSpeed.Core
         {
             if (result.Success)
             {
-                var address = result.Address?.ToString() ?? _pendingServerAddress;
                 _session = result.Session;
+                _pendingMultiplayerTrack = null;
+                _pendingMultiplayerTrackName = string.Empty;
+                _pendingMultiplayerLaps = 0;
+                _pendingMultiplayerStart = false;
+                _session?.SendPlayerState(PlayerState.NotReady);
+
+                var welcome = "You are now in the lobby.";
                 if (!string.IsNullOrWhiteSpace(result.Motd))
-                    _speech.Speak($"Message of the day: {result.Motd}.", interrupt: true);
-                _speech.Speak($"Connected to server {address}. Multiplayer gameplay is not implemented yet.", interrupt: true);
+                    welcome += $" Message of the day: {result.Motd}.";
+                _speech.Speak(welcome, interrupt: true);
+                _menu.ShowRoot("multiplayer_lobby");
+                _state = AppState.Menu;
                 return;
             }
 
@@ -1533,6 +1599,138 @@ namespace TopSpeed.Core
                 EnterPause(AppState.SingleRace);
             if (_singleRace.WantsExit || _input.WasPressed(SharpDX.DirectInput.Key.Escape))
                 EndRace();
+        }
+
+        private void RunMultiplayerRace(float elapsed)
+        {
+            if (_multiplayerRace == null)
+            {
+                EndMultiplayerRace();
+                return;
+            }
+
+            ProcessMultiplayerPackets();
+            if (_multiplayerRace == null)
+                return;
+            _multiplayerRace.Run(elapsed);
+            if (_multiplayerRace.WantsExit || _input.WasPressed(SharpDX.DirectInput.Key.Escape))
+                EndMultiplayerRace();
+        }
+
+        private void ProcessMultiplayerPackets()
+        {
+            if (_session == null)
+                return;
+
+            while (_session.TryDequeuePacket(out var packet))
+            {
+                switch (packet.Command)
+                {
+                    case Command.PlayerJoined:
+                        if (ClientPacketSerializer.TryReadPlayerJoined(packet.Payload, out var joined))
+                        {
+                            if (joined.PlayerNumber != _session.PlayerNumber)
+                            {
+                                var name = string.IsNullOrWhiteSpace(joined.Name)
+                                    ? $"Player {joined.PlayerNumber + 1}"
+                                    : joined.Name;
+                                _speech.Speak($"{name} joined.", interrupt: true);
+                            }
+                        }
+                        break;
+                    case Command.LoadCustomTrack:
+                        if (ClientPacketSerializer.TryReadLoadCustomTrack(packet.Payload, out var track))
+                        {
+                            var name = string.IsNullOrWhiteSpace(track.TrackName) ? "custom" : track.TrackName;
+                            var userDefined = string.Equals(name, "custom", StringComparison.OrdinalIgnoreCase);
+                            _pendingMultiplayerTrack = new TrackData(userDefined, track.TrackWeather, track.TrackAmbience, track.Definitions);
+                            _pendingMultiplayerTrackName = name;
+                            _pendingMultiplayerLaps = track.NrOfLaps;
+                            if (_pendingMultiplayerStart)
+                                StartMultiplayerRace();
+                        }
+                        break;
+                    case Command.StartRace:
+                        StartMultiplayerRace();
+                        break;
+                    case Command.PlayerData:
+                        if (_multiplayerRace != null && ClientPacketSerializer.TryReadPlayerData(packet.Payload, out var playerData))
+                            _multiplayerRace.ApplyRemoteData(playerData);
+                        break;
+                    case Command.PlayerBumped:
+                        if (_multiplayerRace != null && ClientPacketSerializer.TryReadPlayerBumped(packet.Payload, out var bump))
+                            _multiplayerRace.ApplyBump(bump);
+                        break;
+                    case Command.PlayerDisconnected:
+                        if (_multiplayerRace != null && ClientPacketSerializer.TryReadPlayer(packet.Payload, out var disconnected))
+                            _multiplayerRace.RemoveRemotePlayer(disconnected.PlayerNumber);
+                        break;
+                    case Command.StopRace:
+                    case Command.RaceAborted:
+                        if (_state == AppState.MultiplayerRace)
+                            EndMultiplayerRace();
+                        break;
+                }
+            }
+        }
+
+        private void StartMultiplayerRace()
+        {
+            if (_session == null)
+                return;
+            if (_multiplayerRace != null)
+                return;
+            if (_pendingMultiplayerTrack == null)
+            {
+                _pendingMultiplayerStart = true;
+                return;
+            }
+
+            _pendingMultiplayerStart = false;
+            var trackName = string.IsNullOrWhiteSpace(_pendingMultiplayerTrackName) ? "custom" : _pendingMultiplayerTrackName;
+            var laps = _pendingMultiplayerLaps > 0 ? _pendingMultiplayerLaps : _settings.NrOfLaps;
+            var vehicleIndex = 0;
+            var automatic = true;
+
+            _multiplayerRace?.FinalizeLevelMultiplayer();
+            _multiplayerRace?.Dispose();
+            _multiplayerRace = new LevelMultiplayer(
+                _audio,
+                _speech,
+                _settings,
+                _raceInput,
+                _pendingMultiplayerTrack!,
+                trackName,
+                automatic,
+                laps,
+                vehicleIndex,
+                null,
+                _input.Joystick,
+                _session,
+                _session.PlayerId,
+                _session.PlayerNumber);
+            _multiplayerRace.Initialize();
+            _state = AppState.MultiplayerRace;
+        }
+
+        private void EndMultiplayerRace()
+        {
+            _multiplayerRace?.FinalizeLevelMultiplayer();
+            _multiplayerRace?.Dispose();
+            _multiplayerRace = null;
+
+            if (_session != null)
+            {
+                _session.SendPlayerState(PlayerState.NotReady);
+                _state = AppState.Menu;
+                _menu.ShowRoot("multiplayer_lobby");
+            }
+            else
+            {
+                _state = AppState.Menu;
+                _menu.ShowRoot("main");
+                _speech.Speak("Main menu", interrupt: true);
+            }
         }
 
         private void UpdatePaused()

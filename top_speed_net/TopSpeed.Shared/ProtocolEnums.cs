@@ -1,6 +1,6 @@
-namespace TopSpeed.Server.Protocol
+namespace TopSpeed.Protocol
 {
-    internal enum CarType : byte
+    public enum CarType : byte
     {
         Vehicle1 = 0,
         Vehicle2 = 1,
@@ -17,7 +17,7 @@ namespace TopSpeed.Server.Protocol
         CustomVehicle = 12
     }
 
-    internal enum PlayerState : byte
+    public enum PlayerState : byte
     {
         Undefined = 0,
         NotReady = 1,
@@ -26,7 +26,7 @@ namespace TopSpeed.Server.Protocol
         Finished = 4
     }
 
-    internal enum Command : byte
+    public enum Command : byte
     {
         Disconnect = 0,
         PlayerNumber = 1,
@@ -45,6 +45,7 @@ namespace TopSpeed.Server.Protocol
         LoadCustomTrack = 14,
         PlayerHello = 15,
         ServerInfo = 16,
-        KeepAlive = 17
+        KeepAlive = 17,
+        PlayerJoined = 18
     }
 }

@@ -6,6 +6,7 @@ using TopSpeed.Common;
 using TopSpeed.Core;
 using TopSpeed.Data;
 using TopSpeed.Input;
+using TopSpeed.Protocol;
 using TopSpeed.Tracks;
 using TS.Audio;
 

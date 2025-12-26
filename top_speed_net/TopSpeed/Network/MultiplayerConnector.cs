@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Network
 {
@@ -62,6 +63,7 @@ namespace TopSpeed.Network
             var keepAlivePayload = BuildKeepAlivePacket();
             var nextKeepAlive = DateTime.UtcNow + TimeSpan.FromSeconds(1);
             byte? playerNumber = null;
+            uint? playerId = null;
             string? motd = null;
             while (DateTime.UtcNow < deadline && !token.IsCancellationRequested)
             {
@@ -92,27 +94,28 @@ namespace TopSpeed.Network
                 if (!TryReadHeader(result.Buffer, out var command))
                     continue;
 
-                if (command == ClientCommand.Disconnect)
+                if (command == Command.Disconnect)
                 {
                     client.Dispose();
                     return ConnectResult.CreateFail("The server refused the connection (server may be full).");
                 }
-                if (command == ClientCommand.PlayerNumber && TryReadPlayerNumber(result.Buffer, out var assignedNumber))
+                if (command == Command.PlayerNumber && TryReadPlayerNumber(result.Buffer, out var assignedId, out var assignedNumber))
                 {
+                    playerId = assignedId;
                     playerNumber = assignedNumber;
                     if (!string.IsNullOrWhiteSpace(motd))
-                        return ConnectResult.CreateSuccess(client, endpoint, assignedNumber, motd, sanitizedCallSign);
+                        return ConnectResult.CreateSuccess(client, endpoint, assignedId, assignedNumber, motd, sanitizedCallSign);
                 }
-                else if (command == ClientCommand.ServerInfo && TryReadServerInfo(result.Buffer, out var message))
+                else if (command == Command.ServerInfo && TryReadServerInfo(result.Buffer, out var message))
                 {
                     motd = message;
-                    if (playerNumber.HasValue)
-                        return ConnectResult.CreateSuccess(client, endpoint, playerNumber.Value, motd, sanitizedCallSign);
+                    if (playerNumber.HasValue && playerId.HasValue)
+                        return ConnectResult.CreateSuccess(client, endpoint, playerId.Value, playerNumber.Value, motd, sanitizedCallSign);
                 }
             }
 
-            if (playerNumber.HasValue)
-                return ConnectResult.CreateSuccess(client, endpoint, playerNumber.Value, motd, sanitizedCallSign);
+            if (playerNumber.HasValue && playerId.HasValue)
+                return ConnectResult.CreateSuccess(client, endpoint, playerId.Value, playerNumber.Value, motd, sanitizedCallSign);
 
             client.Dispose();
             return ConnectResult.CreateFail("No response from server. The server may be offline or unreachable.");
@@ -123,18 +126,18 @@ namespace TopSpeed.Network
             var trimmed = (callSign ?? string.Empty).Trim();
             if (trimmed.Length == 0)
                 trimmed = "Player";
-            if (trimmed.Length > ClientProtocol.MaxPlayerNameLength)
-                trimmed = trimmed.Substring(0, ClientProtocol.MaxPlayerNameLength);
+            if (trimmed.Length > ProtocolConstants.MaxPlayerNameLength)
+                trimmed = trimmed.Substring(0, ProtocolConstants.MaxPlayerNameLength);
             return trimmed;
         }
 
         private static byte[] BuildPlayerHelloPacket(string callSign)
         {
-            var buffer = new byte[2 + ClientProtocol.MaxPlayerNameLength];
-            buffer[0] = ClientProtocol.Version;
-            buffer[1] = (byte)ClientCommand.PlayerHello;
+            var buffer = new byte[2 + ProtocolConstants.MaxPlayerNameLength];
+            buffer[0] = ProtocolConstants.Version;
+            buffer[1] = (byte)Command.PlayerHello;
             var bytes = Encoding.ASCII.GetBytes(callSign ?? string.Empty);
-            var count = Math.Min(bytes.Length, ClientProtocol.MaxPlayerNameLength);
+            var count = Math.Min(bytes.Length, ProtocolConstants.MaxPlayerNameLength);
             Array.Copy(bytes, 0, buffer, 2, count);
             for (var i = 2 + count; i < buffer.Length; i++)
                 buffer[i] = 0;
@@ -144,39 +147,41 @@ namespace TopSpeed.Network
         private static byte[] BuildPlayerStatePacket()
         {
             var buffer = new byte[2 + 4 + 1 + 1];
-            buffer[0] = ClientProtocol.Version;
-            buffer[1] = (byte)ClientCommand.PlayerState;
+            buffer[0] = ProtocolConstants.Version;
+            buffer[1] = (byte)Command.PlayerState;
             var idBytes = BitConverter.GetBytes(0u);
             buffer[2] = idBytes[0];
             buffer[3] = idBytes[1];
             buffer[4] = idBytes[2];
             buffer[5] = idBytes[3];
             buffer[6] = 0;
-            buffer[7] = (byte)ClientPlayerState.NotReady;
+            buffer[7] = (byte)PlayerState.NotReady;
             return buffer;
         }
 
         private static byte[] BuildKeepAlivePacket()
         {
-            return new[] { ClientProtocol.Version, (byte)ClientCommand.KeepAlive };
+            return new[] { ProtocolConstants.Version, (byte)Command.KeepAlive };
         }
 
-        private static bool TryReadHeader(byte[] data, out ClientCommand command)
+        private static bool TryReadHeader(byte[] data, out Command command)
         {
-            command = ClientCommand.Disconnect;
+            command = Command.Disconnect;
             if (data.Length < 2)
                 return false;
-            if (data[0] != ClientProtocol.Version)
+            if (data[0] != ProtocolConstants.Version)
                 return false;
-            command = (ClientCommand)data[1];
+            command = (Command)data[1];
             return true;
         }
 
-        private static bool TryReadPlayerNumber(byte[] data, out byte playerNumber)
+        private static bool TryReadPlayerNumber(byte[] data, out uint playerId, out byte playerNumber)
         {
+            playerId = 0;
             playerNumber = 0;
             if (data.Length < 2 + 4 + 1)
                 return false;
+            playerId = BitConverter.ToUInt32(data, 2);
             playerNumber = data[6];
             return true;
         }
@@ -184,11 +189,11 @@ namespace TopSpeed.Network
         private static bool TryReadServerInfo(byte[] data, out string motd)
         {
             motd = string.Empty;
-            if (data.Length < 2 + ClientProtocol.MaxMotdLength)
+            if (data.Length < 2 + ProtocolConstants.MaxMotdLength)
                 return false;
-            if (data[0] != ClientProtocol.Version || data[1] != (byte)ClientCommand.ServerInfo)
+            if (data[0] != ProtocolConstants.Version || data[1] != (byte)Command.ServerInfo)
                 return false;
-            var text = Encoding.ASCII.GetString(data, 2, ClientProtocol.MaxMotdLength);
+            var text = Encoding.ASCII.GetString(data, 2, ProtocolConstants.MaxMotdLength);
             var nullIndex = text.IndexOf('\0');
             motd = nullIndex >= 0 ? text.Substring(0, nullIndex) : text.Trim();
             return true;
@@ -205,6 +210,7 @@ namespace TopSpeed.Network
             Address = session?.Address;
             Port = session?.Port ?? 0;
             PlayerNumber = session?.PlayerNumber ?? 0;
+            PlayerId = session?.PlayerId ?? 0;
             Motd = motd ?? string.Empty;
         }
 
@@ -214,11 +220,12 @@ namespace TopSpeed.Network
         public IPAddress? Address { get; }
         public int Port { get; }
         public byte PlayerNumber { get; }
+        public uint PlayerId { get; }
         public string Motd { get; }
 
-        public static ConnectResult CreateSuccess(UdpClient client, IPEndPoint endPoint, byte playerNumber, string? motd, string? playerName)
+        public static ConnectResult CreateSuccess(UdpClient client, IPEndPoint endPoint, uint playerId, byte playerNumber, string? motd, string? playerName)
         {
-            var session = new MultiplayerSession(client, endPoint, playerNumber, motd, playerName);
+            var session = new MultiplayerSession(client, endPoint, playerId, playerNumber, motd, playerName);
             return new ConnectResult(true, "Connected.", session, motd);
         }
 

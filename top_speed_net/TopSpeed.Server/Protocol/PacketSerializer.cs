@@ -1,12 +1,14 @@
 using System;
+using TopSpeed.Data;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Server.Protocol
 {
     internal static class PacketSerializer
     {
-        public static bool TryReadHeader(ReadOnlySpan<byte> data, out PacketHeader header)
+        public static bool TryReadHeader(byte[] data, out PacketHeader header)
         {
-            header = default;
+            header = new PacketHeader();
             if (data.Length < 2)
                 return false;
             header.Version = data[0];
@@ -14,7 +16,7 @@ namespace TopSpeed.Server.Protocol
             return true;
         }
 
-        public static bool TryReadPlayerState(ReadOnlySpan<byte> data, out PacketPlayerState packet)
+        public static bool TryReadPlayerState(byte[] data, out PacketPlayerState packet)
         {
             packet = new PacketPlayerState();
             if (data.Length < 2 + 4 + 1 + 1)
@@ -28,7 +30,7 @@ namespace TopSpeed.Server.Protocol
             return true;
         }
 
-        public static bool TryReadPlayer(ReadOnlySpan<byte> data, out PacketPlayer packet)
+        public static bool TryReadPlayer(byte[] data, out PacketPlayer packet)
         {
             packet = new PacketPlayer();
             if (data.Length < 2 + 4 + 1)
@@ -41,7 +43,7 @@ namespace TopSpeed.Server.Protocol
             return true;
         }
 
-        public static bool TryReadPlayerHello(ReadOnlySpan<byte> data, out PacketPlayerHello packet)
+        public static bool TryReadPlayerHello(byte[] data, out PacketPlayerHello packet)
         {
             packet = new PacketPlayerHello();
             if (data.Length < 2 + ProtocolConstants.MaxPlayerNameLength)
@@ -53,7 +55,7 @@ namespace TopSpeed.Server.Protocol
             return true;
         }
 
-        public static bool TryReadPlayerData(ReadOnlySpan<byte> data, out PacketPlayerData packet)
+        public static bool TryReadPlayerData(byte[] data, out PacketPlayerData packet)
         {
             packet = new PacketPlayerData();
             if (data.Length < 2 + 4 + 1 + 1 + 4 + 4 + 2 + 4 + 1 + 1 + 1 + 1 + 1)
@@ -158,16 +160,16 @@ namespace TopSpeed.Server.Protocol
             writer.WriteByte((byte)Command.LoadCustomTrack);
             writer.WriteByte(track.NrOfLaps);
             writer.WriteFixedString(track.TrackName, 12);
-            writer.WriteByte(track.TrackWeather);
-            writer.WriteByte(track.TrackAmbience);
+            writer.WriteByte((byte)track.TrackWeather);
+            writer.WriteByte((byte)track.TrackAmbience);
             writer.WriteUInt16(maxLength);
             for (var i = 0; i < definitionCount; i++)
             {
                 var def = track.Definitions[i];
-                writer.WriteByte(def.Type);
-                writer.WriteByte(def.Surface);
-                writer.WriteByte(def.Noise);
-                writer.WriteUInt32(def.Length);
+                writer.WriteByte((byte)def.Type);
+                writer.WriteByte((byte)def.Surface);
+                writer.WriteByte((byte)def.Noise);
+                writer.WriteUInt32((uint)def.Length);
             }
             return buffer;
         }
@@ -193,6 +195,18 @@ namespace TopSpeed.Server.Protocol
             writer.WriteByte(ProtocolConstants.Version);
             writer.WriteByte((byte)Command.ServerInfo);
             writer.WriteFixedString(info.Motd ?? string.Empty, ProtocolConstants.MaxMotdLength);
+            return buffer;
+        }
+
+        public static byte[] WritePlayerJoined(PacketPlayerJoined joined)
+        {
+            var buffer = WritePacketHeader(Command.PlayerJoined, 4 + 1 + ProtocolConstants.MaxPlayerNameLength);
+            var writer = new PacketWriter(buffer);
+            writer.WriteByte(ProtocolConstants.Version);
+            writer.WriteByte((byte)Command.PlayerJoined);
+            writer.WriteUInt32(joined.PlayerId);
+            writer.WriteByte(joined.PlayerNumber);
+            writer.WriteFixedString(joined.Name ?? string.Empty, ProtocolConstants.MaxPlayerNameLength);
             return buffer;
         }
 

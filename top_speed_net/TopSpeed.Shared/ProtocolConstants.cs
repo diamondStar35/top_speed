@@ -1,6 +1,6 @@
-namespace TopSpeed.Server.Protocol
+namespace TopSpeed.Protocol
 {
-    internal static class ProtocolConstants
+    public static class ProtocolConstants
     {
         public const int MaxPlayers = 8;
         public const int MaxMultiTrackLength = 8192;

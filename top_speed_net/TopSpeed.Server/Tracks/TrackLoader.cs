@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using TopSpeed.Server.Protocol;
+using TopSpeed.Data;
 
 namespace TopSpeed.Server.Tracks
 {
@@ -16,25 +16,13 @@ namespace TopSpeed.Server.Tracks
         {
             if (TrackCatalog.BuiltIn.TryGetValue(nameOrPath, out var builtIn))
             {
-                return CloneWithLaps(builtIn, ResolveLaps(nameOrPath, defaultLaps));
+                var laps = ResolveLaps(nameOrPath, defaultLaps);
+                return new TrackData(builtIn.UserDefined, builtIn.Weather, builtIn.Ambience, builtIn.Definitions, laps);
             }
 
             var data = ReadCustomTrackData(nameOrPath);
             data.Laps = ResolveLaps(nameOrPath, defaultLaps);
             return data;
-        }
-
-        private static TrackData CloneWithLaps(TrackData source, byte laps)
-        {
-            return new TrackData
-            {
-                UserDefined = source.UserDefined,
-                Weather = source.Weather,
-                Ambience = source.Ambience,
-                Definitions = source.Definitions,
-                Length = (ushort)Math.Min(source.Definitions.Length, ProtocolConstants.MaxMultiTrackLength),
-                Laps = laps
-            };
         }
 
         private static byte ResolveLaps(string trackName, byte defaultLaps)
@@ -79,7 +67,7 @@ namespace TopSpeed.Server.Tracks
                 return CreateFallbackTrack();
             }
 
-            var definitions = new MultiplayerDefinition[length];
+            var definitions = new TrackDefinition[length];
             index = 0;
             for (var i = 0; i < length; i++)
             {
@@ -117,13 +105,7 @@ namespace TopSpeed.Server.Tracks
                 if (lengthValue < MinPartLength)
                     lengthValue = MinPartLength;
 
-                definitions[i] = new MultiplayerDefinition
-                {
-                    Type = (byte)typeValue,
-                    Surface = (byte)surfaceValue,
-                    Noise = (byte)noiseValue,
-                    Length = (uint)lengthValue
-                };
+                definitions[i] = new TrackDefinition((TrackType)typeValue, (TrackSurface)surfaceValue, (TrackNoise)noiseValue, lengthValue);
             }
 
             if (index < values.Count)
@@ -136,14 +118,7 @@ namespace TopSpeed.Server.Tracks
             if (ambienceValue < 0)
                 ambienceValue = 0;
 
-            return new TrackData
-            {
-                UserDefined = true,
-                Weather = (byte)weatherValue,
-                Ambience = (byte)ambienceValue,
-                Definitions = definitions,
-                Length = (ushort)Math.Min(definitions.Length, ProtocolConstants.MaxMultiTrackLength)
-            };
+            return new TrackData(true, (TrackWeather)weatherValue, (TrackAmbience)ambienceValue, definitions);
         }
 
         private static string? ResolveTrackPath(string nameOrPath)
@@ -163,23 +138,10 @@ namespace TopSpeed.Server.Tracks
         {
             var definitions = new[]
             {
-                new MultiplayerDefinition
-                {
-                    Type = (byte)TrackType.Straight,
-                    Surface = (byte)TrackSurface.Asphalt,
-                    Noise = (byte)TrackNoise.NoNoise,
-                    Length = MinPartLength
-                }
+                new TrackDefinition(TrackType.Straight, TrackSurface.Asphalt, TrackNoise.NoNoise, MinPartLength)
             };
 
-            return new TrackData
-            {
-                UserDefined = true,
-                Weather = (byte)TrackWeather.Sunny,
-                Ambience = (byte)TrackAmbience.NoAmbience,
-                Definitions = definitions,
-                Length = 1
-            };
+            return new TrackData(true, TrackWeather.Sunny, TrackAmbience.NoAmbience, definitions);
         }
     }
 }

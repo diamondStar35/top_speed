@@ -108,6 +108,23 @@ namespace TopSpeed.Race
             int vehicle,
             string? vehicleFile,
             JoystickDevice? joystick)
+            : this(audio, speech, settings, input, track, automaticTransmission, nrOfLaps, vehicle, vehicleFile, joystick, null, userDefined: false)
+        {
+        }
+
+        protected Level(
+            AudioManager audio,
+            SpeechService speech,
+            RaceSettings settings,
+            RaceInput input,
+            string track,
+            bool automaticTransmission,
+            int nrOfLaps,
+            int vehicle,
+            string? vehicleFile,
+            JoystickDevice? joystick,
+            TrackData? trackData,
+            bool userDefined)
         {
             _audio = audio;
             _speech = speech;
@@ -129,7 +146,9 @@ namespace TopSpeed.Race
             _acceptPlayerInfo = true;
             _acceptCurrentRaceInfo = true;
 
-            _track = Track.Load(track, audio);
+            _track = trackData == null
+                ? Track.Load(track, audio)
+                : Track.LoadFromData(track, trackData, audio, userDefined);
             _car = new Car(audio, _track, input, settings, vehicle, vehicleFile, () => _elapsedTotal, () => _started, joystick);
 
             if (!string.IsNullOrWhiteSpace(track) &&

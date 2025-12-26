@@ -1,6 +1,6 @@
 namespace TopSpeed.Data
 {
-    internal enum TrackType
+    public enum TrackType
     {
         Straight = 0,
         EasyLeft = 1,
@@ -13,7 +13,7 @@ namespace TopSpeed.Data
         HairpinRight = 8
     }
 
-    internal enum TrackSurface
+    public enum TrackSurface
     {
         Asphalt = 0,
         Gravel = 1,
@@ -22,7 +22,7 @@ namespace TopSpeed.Data
         Snow = 4
     }
 
-    internal enum TrackNoise
+    public enum TrackNoise
     {
         NoNoise = 0,
         Crowd = 1,
@@ -38,7 +38,7 @@ namespace TopSpeed.Data
         Owl = 11
     }
 
-    internal enum TrackWeather
+    public enum TrackWeather
     {
         Sunny = 0,
         Rain = 1,
@@ -46,14 +46,14 @@ namespace TopSpeed.Data
         Storm = 3
     }
 
-    internal enum TrackAmbience
+    public enum TrackAmbience
     {
         NoAmbience = 0,
         Desert = 1,
         Airport = 2
     }
 
-    internal readonly struct TrackDefinition
+    public readonly struct TrackDefinition
     {
         public TrackType Type { get; }
         public TrackSurface Surface { get; }
@@ -69,20 +69,22 @@ namespace TopSpeed.Data
         }
     }
 
-    internal sealed class TrackData
+    public sealed class TrackData
     {
         public bool UserDefined { get; }
         public TrackWeather Weather { get; }
         public TrackAmbience Ambience { get; }
         public TrackDefinition[] Definitions { get; }
         public int Length => Definitions.Length;
+        public byte Laps { get; set; }
 
-        public TrackData(bool userDefined, TrackWeather weather, TrackAmbience ambience, TrackDefinition[] definitions)
+        public TrackData(bool userDefined, TrackWeather weather, TrackAmbience ambience, TrackDefinition[] definitions, byte laps = 0)
         {
             UserDefined = userDefined;
             Weather = weather;
             Ambience = ambience;
             Definitions = definitions;
+            Laps = laps;
         }
     }
 }

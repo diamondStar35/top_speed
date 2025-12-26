@@ -1,3 +1,5 @@
+using TopSpeed.Protocol;
+
 namespace TopSpeed.Vehicles
 {
     internal sealed class VehicleDefinition

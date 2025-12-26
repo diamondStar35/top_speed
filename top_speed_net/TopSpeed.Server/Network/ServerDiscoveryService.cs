@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using TopSpeed.Server.Logging;
-using TopSpeed.Server.Protocol;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Server.Network
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TopSpeed.Data
 {
-    internal static class TrackCatalog
+    public static class TrackCatalog
     {
         private static readonly TrackDefinition[] TrAmerica =
         {

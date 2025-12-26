@@ -1,5 +1,5 @@
 using System;
-using TopSpeed.Server.Protocol;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Server.Network
 {

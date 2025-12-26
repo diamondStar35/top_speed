@@ -66,6 +66,7 @@ namespace TopSpeed.Vehicles
         private bool _finished;
         private bool _horning;
         private bool _backfirePlayedAuto;
+        private bool _networkBackfireActive;
         private int _frame;
 
         private AudioSourceHandle _soundEngine;
@@ -121,6 +122,7 @@ namespace TopSpeed.Vehicles
             _frame = 1;
             _finished = false;
             _random = Algorithm.RandomInt(100);
+            _networkBackfireActive = false;
 
             var definition = VehicleLoader.LoadOfficial(vehicleIndex, track.Weather);
             _acceleration = definition.Acceleration;
@@ -427,6 +429,94 @@ namespace TopSpeed.Vehicles
                     }
                 }
             }
+        }
+
+        public void ApplyNetworkState(
+            int positionX,
+            int positionY,
+            int speed,
+            int frequency,
+            bool engineRunning,
+            bool braking,
+            bool horning,
+            bool backfiring,
+            int playerX,
+            int playerY,
+            int trackLength)
+        {
+            _positionX = positionX;
+            _positionY = positionY;
+            _speed = speed;
+            _trackLength = trackLength;
+            _state = ComputerState.Running;
+
+            _diffX = _positionX - playerX;
+            _diffY = _positionY - playerY;
+            _diffY = ((_diffY % _trackLength) + _trackLength) % _trackLength;
+            if (_diffY > _trackLength / 2)
+                _diffY = (_diffY - _trackLength) % _trackLength;
+
+            var relX = _laneWidth == 0 ? 0f : _diffX / (float)_laneWidth;
+            var relY = _diffY / 12000.0f;
+            SetSoundPosition(_soundEngine, relX, relY);
+            SetSoundPosition(_soundStart, relX, relY);
+            SetSoundPosition(_soundHorn, relX, relY);
+            SetSoundPosition(_soundCrash, relX, relY);
+            SetSoundPosition(_soundBrake, relX, relY);
+            if (_soundBackfire != null)
+                SetSoundPosition(_soundBackfire, relX, relY);
+            SetSoundPosition(_soundBump, relX, relY);
+            SetSoundPosition(_soundMiniCrash, relX, relY);
+
+            if (engineRunning)
+            {
+                if (!_soundEngine.IsPlaying)
+                    _soundEngine.Play(loop: true);
+                var targetFrequency = frequency > 0 ? frequency : _idleFreq;
+                if (_prevFrequency != targetFrequency)
+                {
+                    _soundEngine.SetFrequency(targetFrequency);
+                    _prevFrequency = targetFrequency;
+                }
+            }
+            else if (_soundEngine.IsPlaying)
+            {
+                _soundEngine.Stop();
+            }
+
+            if (braking)
+            {
+                if (!_soundBrake.IsPlaying)
+                    _soundBrake.Play(loop: true);
+                var targetBrakeFrequency = 11025 + 22050 * _speed / _topSpeed;
+                if (_prevBrakeFrequency != targetBrakeFrequency)
+                {
+                    _soundBrake.SetFrequency(targetBrakeFrequency);
+                    _prevBrakeFrequency = targetBrakeFrequency;
+                }
+            }
+            else if (_soundBrake.IsPlaying)
+            {
+                _soundBrake.Stop();
+            }
+
+            if (horning)
+            {
+                if (!_soundHorn.IsPlaying)
+                    _soundHorn.Play(loop: true);
+            }
+            else if (_soundHorn.IsPlaying)
+            {
+                _soundHorn.Stop();
+            }
+
+            if (backfiring && !_networkBackfireActive && _soundBackfire != null)
+            {
+                _soundBackfire.Stop();
+                _soundBackfire.SeekToStart();
+                _soundBackfire.Play(loop: false);
+            }
+            _networkBackfireActive = backfiring;
         }
 
         public void Evaluate(Track.Road road)

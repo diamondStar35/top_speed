@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Network
 {
@@ -67,7 +68,7 @@ namespace TopSpeed.Network
         {
             var buffer = new byte[RequestMagic.Length + 1];
             Buffer.BlockCopy(RequestMagic, 0, buffer, 0, RequestMagic.Length);
-            buffer[RequestMagic.Length] = ClientProtocol.Version;
+            buffer[RequestMagic.Length] = ProtocolConstants.Version;
             return buffer;
         }
 
@@ -84,7 +85,7 @@ namespace TopSpeed.Network
 
             var offset = ResponseMagic.Length;
             var version = data[offset++];
-            if (version != ClientProtocol.Version)
+            if (version != ProtocolConstants.Version)
                 return false;
 
             var port = (ushort)(data[offset] | (data[offset + 1] << 8));

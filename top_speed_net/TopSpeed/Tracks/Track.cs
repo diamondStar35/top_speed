@@ -91,6 +91,13 @@ namespace TopSpeed.Tracks
             return new Track(nameOrPath, data, audio, userDefined: true);
         }
 
+        public static Track LoadFromData(string trackName, TrackData data, AudioManager audio, bool userDefined)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            return new Track(trackName, data, audio, userDefined);
+        }
+
         public string TrackName => _trackName;
         public int Length => _lapDistance;
         public int SegmentCount => _length;

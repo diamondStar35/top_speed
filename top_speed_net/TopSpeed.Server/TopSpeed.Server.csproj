@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -8,5 +7,7 @@
     <RootNamespace>TopSpeed.Server</RootNamespace>
     <AssemblyName>TopSpeed.Server</AssemblyName>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\TopSpeed.Shared\TopSpeed.Shared.csproj" />
+  </ItemGroup>
 </Project>

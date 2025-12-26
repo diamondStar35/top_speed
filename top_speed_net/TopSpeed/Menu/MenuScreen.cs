@@ -79,11 +79,20 @@ namespace TopSpeed.Menu
                 {
                     _music = _audio.CreateLoopingSource(themePath);
                     _music.SetVolume(_musicVolume);
-                    _music.Play(loop: true);
+                    PlayMusic();
                 }
             }
 
             _initialized = true;
+        }
+
+        public void PlayMusic()
+        {
+            if (_music == null)
+                return;
+
+            _music.SeekToStart();
+            _music.Play(loop: true);
         }
 
         public MenuUpdateResult Update(InputManager input)
@@ -321,6 +330,11 @@ namespace TopSpeed.Menu
             sound.Play(loop: false);
         }
 
+        public void StopMusic()
+        {
+            _music?.Stop();
+        }
+
         public void Dispose()
         {
             foreach (var item in _items)
@@ -328,6 +342,7 @@ namespace TopSpeed.Menu
             _navigateSound?.Dispose();
             _wrapSound?.Dispose();
             _activateSound?.Dispose();
+            _music?.Stop();
             _music?.Dispose();
         }
 

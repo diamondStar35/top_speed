@@ -39,6 +39,7 @@ namespace TopSpeed.Menu
             var screen = GetScreen(id);
             screen.ResetSelection();
             screen.Initialize();
+            screen.PlayMusic();
             _stack.Push(screen);
             screen.AnnounceTitle();
         }
@@ -48,6 +49,7 @@ namespace TopSpeed.Menu
             var screen = GetScreen(id);
             screen.ResetSelection();
             screen.Initialize();
+            screen.PlayMusic();
             _stack.Push(screen);
             screen.AnnounceTitle();
         }
@@ -106,6 +108,14 @@ namespace TopSpeed.Menu
             if (!_screens.TryGetValue(id, out var screen))
                 throw new InvalidOperationException($"Menu not registered: {id}");
             return screen;
+        }
+
+        public void StopAllMusic()
+        {
+            foreach (var screen in _stack)
+            {
+                screen.StopMusic();
+            }
         }
 
         public void Dispose()

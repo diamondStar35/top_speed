@@ -1781,6 +1781,8 @@ namespace TopSpeed.Core
 
         private void StartRace(RaceMode mode)
         {
+            _menu.StopAllMusic();
+
             var track = string.IsNullOrWhiteSpace(_setup.TrackNameOrFile)
                 ? RaceTracks[0].Key
                 : _setup.TrackNameOrFile!;

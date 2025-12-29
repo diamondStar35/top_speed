@@ -32,7 +32,11 @@ namespace TopSpeed.Core
         private void OnLoad(object? sender, EventArgs e)
         {
             _game = new Game(_window);
-            _game.ExitRequested += () => _window.Close();
+            _game.ExitRequested += () =>
+            {
+                _game.FadeOutMenuMusic();
+                _window.Close();
+            };
             _game.Initialize();
             _stopwatch.Start();
             _lastTicks = _stopwatch.ElapsedTicks;

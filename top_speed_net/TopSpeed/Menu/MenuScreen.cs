@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using SharpDX.DirectInput;
 using TopSpeed.Audio;
 using TopSpeed.Core;
@@ -54,7 +55,7 @@ namespace TopSpeed.Menu
             _menuSoundRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Menu");
             _legacySoundRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
             _musicRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Music");
-            _musicVolume = 0.6f;
+            _musicVolume = 0.0f;
             Title = title ?? id;
         }
 
@@ -263,6 +264,22 @@ namespace TopSpeed.Menu
                 return;
 
             _speech.Speak(Title, interrupt: true);
+        }
+
+        public void FadeOutMusic()
+        {
+            if (_music == null || !_music.IsPlaying)
+                return;
+
+            var current = _musicVolume;
+            for (var i = 0; i < 10; i++)
+            {
+                current -= _musicVolume / 10f;
+                if (current < 0) current = 0;
+                _music.SetVolume(current);
+                Thread.Sleep(50);
+            }
+            _music.Stop();
         }
 
         private void SetMusicVolume(float volume)

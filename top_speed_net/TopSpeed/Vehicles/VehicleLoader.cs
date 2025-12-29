@@ -109,11 +109,16 @@ namespace TopSpeed.Vehicles
         private static string? ResolveOfficialFallback(string root, string vehicleFolder, VehicleAction action)
         {
             var fileName = GetDefaultFileName(action);
-            var primaryPath = Path.Combine(root, vehicleFolder, fileName);
+            var primaryPath = Path.GetFullPath(Path.Combine(root, vehicleFolder, fileName));
             if (File.Exists(primaryPath))
                 return primaryPath;
 
-            var fallbackPath = Path.Combine(root, DefaultVehicleFolder, fileName);
+            // Only fallback to 'default' folder for non-optional sounds
+            // Throttle and Backfire are vehicle-specific features
+            if (action == VehicleAction.Backfire || action == VehicleAction.Throttle)
+                return null;
+
+            var fallbackPath = Path.GetFullPath(Path.Combine(root, DefaultVehicleFolder, fileName));
             if (File.Exists(fallbackPath))
                 return fallbackPath;
 

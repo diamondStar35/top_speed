@@ -198,10 +198,6 @@ namespace TopSpeed.Core
             if (TryNext(values, ref index, out value)) settings.NrOfComputers = Math.Max(1, Math.Min(7, value));
             if (TryNext(values, ref index, out value)) settings.Difficulty = AsDifficulty(value, settings.Difficulty);
             if (TryNext(values, ref index, out value)) settings.ThreeDSound = value != 0;
-            if (hasHardwareAcceleration)
-            {
-                if (TryNext(values, ref index, out value)) { }
-            }
             if (TryNext(values, ref index, out value)) settings.ReverseStereo = value != 0;
             if (TryNext(values, ref index, out value)) settings.RandomCustomTracks = value != 0;
             if (TryNext(values, ref index, out value)) settings.RandomCustomVehicles = value != 0;

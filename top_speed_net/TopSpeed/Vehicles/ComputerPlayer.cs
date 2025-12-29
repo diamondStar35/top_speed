@@ -169,10 +169,26 @@ namespace TopSpeed.Vehicles
             _soundEngine.Stop();
         }
 
-        public void PendingStart()
+        public void PendingStart(float baseDelay)
         {
-            var randomTime = Algorithm.RandomInt(100);
-            var startTime = 1.5f + (3.0f * randomTime) / 100f;
+            float difficultyDelay;
+            var randomValue = Algorithm.RandomInt(100) / 100f;
+
+            switch (_difficulty)
+            {
+                case 2: // Hard
+                    difficultyDelay = 0.1f + (randomValue * 0.4f);
+                    break;
+                case 1: // Normal
+                    difficultyDelay = 1.0f + (randomValue * 1.5f);
+                    break;
+                case 0: // Easy
+                default:
+                    difficultyDelay = 2.5f + (randomValue * 2.5f);
+                    break;
+            }
+
+            var startTime = baseDelay + difficultyDelay;
             PushEvent(BotEventType.CarComputerStart, startTime);
         }
 

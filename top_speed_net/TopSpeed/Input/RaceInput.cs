@@ -406,6 +406,8 @@ namespace TopSpeed.Input
 
         public bool GetPause() => _lastState.IsDown(_kbPause);
 
+        public bool GetStartEngine() => WasPressed(Key.Return) || WasPressed(Key.NumberPadEnter);
+
         public bool GetFlush() => _lastState.IsDown(_kbFlush);
 
         private int GetAxis(JoystickAxisOrButton axis)

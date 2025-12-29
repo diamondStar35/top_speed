@@ -115,6 +115,14 @@ namespace TopSpeed.Menu
             _stack.Clear();
         }
 
+        public void FadeOutMenuMusic()
+        {
+            if (_stack.Count > 0)
+            {
+                _stack.Peek().FadeOutMusic();
+            }
+        }
+
         public MenuScreen CreateMenu(string id, IEnumerable<MenuItem> items, string? title = null)
         {
             return new MenuScreen(id, items, _audio, _speech, title);

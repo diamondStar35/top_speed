@@ -1687,6 +1687,7 @@ namespace TopSpeed.Core
             }
 
             _pendingMultiplayerStart = false;
+            FadeOutMenuMusic();
             var trackName = string.IsNullOrWhiteSpace(_pendingMultiplayerTrackName) ? "custom" : _pendingMultiplayerTrackName;
             var laps = _pendingMultiplayerLaps > 0 ? _pendingMultiplayerLaps : _settings.NrOfLaps;
             var vehicleIndex = 0;
@@ -1781,6 +1782,7 @@ namespace TopSpeed.Core
 
         private void StartRace(RaceMode mode)
         {
+            FadeOutMenuMusic();
             var track = string.IsNullOrWhiteSpace(_setup.TrackNameOrFile)
                 ? RaceTracks[0].Key
                 : _setup.TrackNameOrFile!;
@@ -1833,6 +1835,11 @@ namespace TopSpeed.Core
             _session?.Dispose();
             _speech.Dispose();
             _audio.Dispose();
+        }
+
+        public void FadeOutMenuMusic()
+        {
+            _menu.FadeOutMenuMusic();
         }
 
         private void SaveSettings()

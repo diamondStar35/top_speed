@@ -60,7 +60,7 @@ namespace TopSpeed.Race
                 switch (e.Type)
                 {
                     case RaceEventType.CarStart:
-                        _car.Start();
+                        // Manual start now
                         break;
                     case RaceEventType.RaceStart:
                         _raceTime = 0;
@@ -133,6 +133,12 @@ namespace TopSpeed.Race
                 {
                     Speak(_soundLaps[_nrOfLaps - _lap], true);
                 }
+            }
+
+            if (_input.GetStartEngine() && _started && !_engineStarted && !_finished)
+            {
+                _engineStarted = true;
+                _car.Start();
             }
 
             if (_input.GetCurrentGear() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)

@@ -127,7 +127,7 @@ namespace TopSpeed.Race
             if (_elapsedTotal == 0.0f)
             {
                 for (var botIndex = 0; botIndex < _nComputerPlayers; botIndex++)
-                    _computerPlayers[botIndex]?.PendingStart();
+                    _computerPlayers[botIndex]?.PendingStart(6.5f);
                 PushEvent(RaceEventType.CarStart, 3.0f);
                 PushEvent(RaceEventType.RaceStart, 6.5f);
                 PushEvent(RaceEventType.PlaySound, 1.5f, _soundStart);
@@ -139,7 +139,7 @@ namespace TopSpeed.Race
                 switch (e.Type)
                 {
                     case RaceEventType.CarStart:
-                        _car.Start();
+                        // Player car start is now manual via Enter key
                         break;
                     case RaceEventType.RaceStart:
                         _raceTime = 0;
@@ -226,6 +226,12 @@ namespace TopSpeed.Race
             }
 
             CheckForBumps();
+
+            if (_input.GetStartEngine() && _started && !_engineStarted && !_finished)
+            {
+                _engineStarted = true;
+                _car.Start();
+            }
 
             if (_input.GetCurrentGear() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
             {

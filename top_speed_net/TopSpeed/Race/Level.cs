@@ -67,6 +67,7 @@ namespace TopSpeed.Race
         protected int _highscore;
         protected bool _started;
         protected bool _finished;
+        protected bool _engineStarted;
         protected bool _acceptPlayerInfo;
         protected bool _acceptCurrentRaceInfo;
         protected float _sayTimeLength;
@@ -236,6 +237,7 @@ namespace TopSpeed.Race
             _stopwatchDiffMs = 0;
             _started = false;
             _finished = false;
+            _engineStarted = false;
             _currentRoad.Surface = _track.InitialSurface;
             _car.ManualTransmission = _manualTransmission;
         }

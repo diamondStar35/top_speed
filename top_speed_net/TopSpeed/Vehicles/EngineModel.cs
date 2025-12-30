@@ -222,11 +222,14 @@ namespace TopSpeed.Vehicles
             }
             else
             {
-                // No throttle: RPM decays towards idle (engine braking)
-                // Base decay rate is 1000 RPM/sec, scaled by engineBraking parameter
-                var decayRate = 1000f * _engineBraking;
-                if (_rpm > _idleRpm)
-                    _rpm = Math.Max(_idleRpm, _rpm - decayRate * elapsed);
+                // No throttle: RPM tracks target RPM based on speed (simulating engaged clutch)
+                // Decay rate scaled by engine braking to allow tuning (flexible decay)
+                var decayRate = 3000f * _engineBraking;
+                
+                if (_rpm > targetRpm)
+                    _rpm = Math.Max(targetRpm, _rpm - decayRate * elapsed);
+                else
+                    _rpm = Math.Min(targetRpm, _rpm + decayRate * elapsed);
             }
 
             // Clamp RPM to valid range

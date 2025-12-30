@@ -576,7 +576,9 @@ namespace TopSpeed.Vehicles
                 else
                 {
                     // Engine braking: gradual deceleration when coasting
-                    _speedDiff = (elapsed * -_currentDeceleration * 0.3f * _speed / _topSpeed);
+                    // Increased scalar to 20.0f to provide noticeable drag/engine braking
+                    var speedFactor = Math.Max(0.1f, _speed / _topSpeed);
+                    _speedDiff = (elapsed * -_currentDeceleration * 20.0f * speedFactor);
                 }
 
                 if (_speedDiff > 0)
@@ -1026,9 +1028,10 @@ namespace TopSpeed.Vehicles
 
         private void UpdateEngineFreq()
         {
-            var gearRange = _topSpeed / (_gears + 1);
+            var gearRange = _topSpeed / _gears;
             if ((_speed / gearRange) < 2)
             {
+                _gear = (_speed < gearRange) ? 1 : 2;
                 var gearSpeed = _speed / (2.0f * gearRange);
                 _frequency = (int)(gearSpeed * (_topFreq - _idleFreq)) + _idleFreq;
             }

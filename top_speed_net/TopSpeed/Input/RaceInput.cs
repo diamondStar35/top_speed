@@ -410,6 +410,10 @@ namespace TopSpeed.Input
 
         public bool GetFlush() => _lastState.IsDown(_kbFlush);
 
+        // Speed and distance reporting hotkeys
+        public bool GetSpeedReport() => WasPressed(Key.S);
+        public bool GetDistanceReport() => WasPressed(Key.C);
+
         private int GetAxis(JoystickAxisOrButton axis)
         {
             return GetAxis(axis, _lastJoystick);

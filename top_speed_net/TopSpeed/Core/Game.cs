@@ -365,7 +365,7 @@ namespace TopSpeed.Core
             for (var i = 0; i < VehicleCatalog.VehicleCount; i++)
             {
                 var index = i;
-                var name = $"Vehicle {i + 1}";
+                var name = VehicleCatalog.Vehicles[i].Name;
                 var soundFile = Path.Combine("Vehicles", $"vehicle{i + 1}.ogg");
                 items.Add(new MenuItem(name, MenuAction.None, soundFile, nextMenuId: nextMenuId, onActivate: () => SelectVehicle(index)));
             }

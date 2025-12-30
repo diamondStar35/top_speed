@@ -327,6 +327,29 @@ namespace TopSpeed.Race
                 PushEvent(RaceEventType.AcceptCurrentRaceInfo, _soundNumbers[_playerNumber + 1].GetLengthSeconds());
             }
 
+            // Speed and RPM report (S key)
+            if (_input.GetSpeedReport() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
+            {
+                _acceptCurrentRaceInfo = false;
+                var speedKmh = _car.SpeedKmh;
+                var rpm = _car.EngineRpm;
+                SpeakText($"{speedKmh:F0} kilometers per hour, {rpm:F0} RPM");
+                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
+            }
+
+            // Distance traveled report (C key)
+            if (_input.GetDistanceReport() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
+            {
+                _acceptCurrentRaceInfo = false;
+                var distanceM = _car.DistanceMeters;
+                var distanceKm = distanceM / 1000f;
+                if (distanceKm >= 1f)
+                    SpeakText($"{distanceKm:F1} kilometers traveled");
+                else
+                    SpeakText($"{distanceM:F0} meters traveled");
+                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
+            }
+
             if (!_input.GetPause() && !_pauseKeyReleased)
             {
                 _pauseKeyReleased = true;
@@ -527,20 +550,20 @@ namespace TopSpeed.Race
             {
                 if (_car.UserDefined && !string.IsNullOrWhiteSpace(_car.CustomFile))
                     return FormatVehicleName(_car.CustomFile);
-                return $"Vehicle {(int)_car.CarType + 1}";
+                return _car.VehicleName;
             }
 
             if (playerIndex < _playerNumber)
             {
                 var bot = _computerPlayers[playerIndex];
                 if (bot != null)
-                    return $"Vehicle {bot.VehicleIndex + 1}";
+                    return VehicleCatalog.Vehicles[bot.VehicleIndex].Name;
             }
             else if (playerIndex > _playerNumber)
             {
                 var bot = _computerPlayers[playerIndex - 1];
                 if (bot != null)
-                    return $"Vehicle {bot.VehicleIndex + 1}";
+                    return VehicleCatalog.Vehicles[bot.VehicleIndex].Name;
             }
 
             return "Vehicle";

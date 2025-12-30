@@ -25,6 +25,7 @@ namespace TopSpeed.Vehicles
             var def = new VehicleDefinition
             {
                 CarType = (CarType)vehicleIndex,
+                Name = parameters.Name,
                 UserDefined = false,
                 Acceleration = parameters.Acceleration,
                 Deceleration = parameters.Deceleration,
@@ -35,7 +36,13 @@ namespace TopSpeed.Vehicles
                 Gears = parameters.Gears,
                 Steering = parameters.Steering,
                 SteeringFactor = parameters.SteeringFactor,
-                HasWipers = parameters.HasWipers == 1 && weather == TrackWeather.Rain ? 1 : 0
+                HasWipers = parameters.HasWipers == 1 && weather == TrackWeather.Rain ? 1 : 0,
+                IdleRpm = parameters.IdleRpm,
+                MaxRpm = parameters.MaxRpm,
+                RevLimiter = parameters.RevLimiter,
+                EngineBraking = parameters.EngineBraking,
+                PowerFactor = parameters.PowerFactor,
+                GearRatios = parameters.GearRatios
             };
 
             foreach (VehicleAction action in Enum.GetValues(typeof(VehicleAction)))
@@ -77,9 +84,18 @@ namespace TopSpeed.Vehicles
             if (weather == TrackWeather.Rain)
                 hasWipers = ReadInt(settings, "haswipers", 1);
 
+            // Engine simulation parameters
+            var idleRpm = ReadFloat(settings, "idlerpm", 800f);
+            var maxRpm = ReadFloat(settings, "maxrpm", 7000f);
+            var revLimiter = ReadFloat(settings, "revlimiter", 6500f);
+            var engineBraking = ReadFloat(settings, "enginebraking", 0.3f);
+            var powerFactor = ReadFloat(settings, "powerfactor", 0.5f);
+            var gearRatios = ReadFloatArray(settings, "gearratios");
+
             var def = new VehicleDefinition
             {
                 CarType = CarType.Vehicle1,
+                Name = ReadString(settings, "name", Path.GetFileNameWithoutExtension(filePath)),
                 UserDefined = true,
                 CustomFile = Path.GetFileNameWithoutExtension(filePath),
                 Acceleration = acceleration,
@@ -91,7 +107,13 @@ namespace TopSpeed.Vehicles
                 Gears = gears,
                 Steering = steering,
                 SteeringFactor = steeringFactor,
-                HasWipers = hasWipers
+                HasWipers = hasWipers,
+                IdleRpm = idleRpm,
+                MaxRpm = maxRpm,
+                RevLimiter = revLimiter,
+                EngineBraking = engineBraking,
+                PowerFactor = powerFactor,
+                GearRatios = gearRatios
             };
 
             def.SetSoundPath(VehicleAction.Engine, ResolveSound(ReadString(settings, "enginesound", "engine.wav"), builtinRoot, customVehiclesRoot, p => p.GetSoundPath(VehicleAction.Engine)));
@@ -172,7 +194,7 @@ namespace TopSpeed.Vehicles
         {
             // Simple hack to detect the action from the selector if needed for builtin resolution
             // In a production environment, we'd pass the action explicitly.
-            var testParams = new VehicleParameters("e", "s", "h", "t", "c", "cm", "b", "f", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            var testParams = new VehicleParameters("Test", "e", "s", "h", "t", "c", "cm", "b", "f", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             var result = selector(testParams);
             switch (result)
             {
@@ -223,6 +245,28 @@ namespace TopSpeed.Vehicles
             if (values.TryGetValue(key, out var raw))
                 return raw;
             return defaultValue;
+        }
+
+        private static float ReadFloat(Dictionary<string, string> values, string key, float defaultValue)
+        {
+            if (values.TryGetValue(key, out var raw) && float.TryParse(raw, out var value))
+                return value;
+            return defaultValue;
+        }
+
+        private static float[]? ReadFloatArray(Dictionary<string, string> values, string key)
+        {
+            if (!values.TryGetValue(key, out var raw) || string.IsNullOrWhiteSpace(raw))
+                return null;
+
+            var parts = raw.Split(',');
+            var result = new System.Collections.Generic.List<float>();
+            foreach (var part in parts)
+            {
+                if (float.TryParse(part.Trim(), out var value))
+                    result.Add(value);
+            }
+            return result.Count > 0 ? result.ToArray() : null;
         }
     }
 }

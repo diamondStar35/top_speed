@@ -102,6 +102,8 @@ namespace TopSpeed.Vehicles
         private ForceFeedbackEffect? _effectBumpRight;
         private ForceFeedbackEffect? _effectGravel;
 
+        private EngineModel _engine;
+
         public Car(
             AudioManager audio,
             Track track,
@@ -164,6 +166,7 @@ namespace TopSpeed.Vehicles
                 _userDefined = true;
             }
 
+            VehicleName = definition.Name;
             _acceleration = definition.Acceleration;
             _deceleration = definition.Deceleration;
             _topSpeed = definition.TopSpeed;
@@ -174,6 +177,15 @@ namespace TopSpeed.Vehicles
             _steering = definition.Steering;
             _steeringFactor = definition.SteeringFactor;
             _frequency = _idleFreq;
+
+            // Initialize engine model
+            _engine = new EngineModel(
+                definition.IdleRpm,
+                definition.MaxRpm,
+                definition.RevLimiter,
+                definition.EngineBraking,
+                definition.TopSpeed,
+                definition.Gears);
 
             _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true);
             _soundStart = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Start));
@@ -235,6 +247,12 @@ namespace TopSpeed.Vehicles
         public bool Horning => _soundHorn.IsPlaying;
         public bool UserDefined => _userDefined;
         public string? CustomFile => _customFile;
+        public string VehicleName { get; private set; } = "Vehicle";
+
+        // Engine simulation properties for reporting
+        public float SpeedKmh => _engine.SpeedKmh;
+        public float EngineRpm => _engine.Rpm;
+        public float DistanceMeters => _engine.DistanceMeters;
 
         public void Initialize(float positionX = 0, float positionY = 0)
         {
@@ -263,6 +281,7 @@ namespace TopSpeed.Vehicles
             PushEvent(CarEventType.CarStart, delay);
             _soundStart.Restart(loop: false);
             _speed = 0;
+            _engine.Reset();
             _prevFrequency = _idleFreq;
             _frequency = _idleFreq;
             _prevBrakeFrequency = 0;
@@ -285,6 +304,7 @@ namespace TopSpeed.Vehicles
         public void Crash()
         {
             _speed = 0;
+            _engine.Reset();
             _throttleVolume = 0.0f;
             _soundCrash.Restart(loop: false);
             _soundEngine.Stop();
@@ -542,6 +562,7 @@ namespace TopSpeed.Vehicles
                 if (_currentSteering != 0 && _speed > _topSpeed / 2)
                     _factor2 = 1.0 - (1.5 * _speed / _topSpeed) * Math.Abs(_currentSteering) / 100.0;
 
+                // Original speed calculation with proper gear physics
                 if (_thrust > 10)
                 {
                     _speedDiff = (elapsed * _thrust * _currentAcceleration * _factor1 * (float)_factor2 / 100f);
@@ -554,7 +575,8 @@ namespace TopSpeed.Vehicles
                 }
                 else
                 {
-                    _speedDiff = (elapsed * -10.0f);
+                    // Engine braking: gradual deceleration when coasting
+                    _speedDiff = (elapsed * -_currentDeceleration * 0.3f * _speed / _topSpeed);
                 }
 
                 if (_speedDiff > 0)
@@ -564,6 +586,9 @@ namespace TopSpeed.Vehicles
                     _speed = _topSpeed;
                 if (_speed < 0)
                     _speed = 0;
+
+                // Update engine model for RPM and distance tracking (reporting only)
+                _engine.SyncFromSpeed(_speed, _gear, elapsed);
 
                 if (_thrust <= 0)
                 {

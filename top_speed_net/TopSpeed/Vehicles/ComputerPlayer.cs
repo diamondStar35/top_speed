@@ -15,6 +15,7 @@ namespace TopSpeed.Vehicles
     internal sealed class ComputerPlayer : IDisposable
     {
         private const float CallLength = 30.0f;
+        private const float BaseLateralSpeed = 15.0f;
 
         private readonly AudioManager _audio;
         private readonly Track _track;
@@ -363,17 +364,12 @@ namespace TopSpeed.Vehicles
                 if (_thrust < -50 && _speed > 50.0f)
                     _currentSteering = _currentSteering * 2 / 3;
 
-                _positionY += (_speed * elapsed);
-                if (_surface != TrackSurface.Snow)
-                {
-                    _positionX += (_currentSteering * elapsed * _steering *
-                        ((50.0f + _speed * _steeringFactor / 100f) / _topSpeed));
-                }
-                else
-                {
-                    _positionX += (_currentSteering * elapsed * (_steering * 1.44f) *
-                        ((500.0f + _speed * _steeringFactor / 100f) / _topSpeed));
-                }
+                var speedMps = _speed / 3.6f;
+                _positionY += (speedMps * elapsed);
+                var surfaceMultiplier = _surface == TrackSurface.Snow ? 1.44f : 1.0f;
+                var steeringInput = _currentSteering / 100.0f;
+                var lateralSpeed = BaseLateralSpeed * _steering * steeringInput * surfaceMultiplier;
+                _positionX += (lateralSpeed * elapsed);
 
                 if (_frame % 4 == 0)
                 {
@@ -734,16 +730,22 @@ namespace TopSpeed.Vehicles
 
         private void UpdateEngineFreq()
         {
-            var gearRange = _topSpeed / (_gears + 1);
-            if ((_speed / gearRange) < 2)
+            var gearRange = _topSpeed / _gears;
+            var gearForSound = (int)(_speed / gearRange) + 1;
+            if (gearForSound > _gears)
+                gearForSound = _gears;
+            if (gearForSound < 1)
+                gearForSound = 1;
+
+            if (gearForSound == 1)
             {
-                var gearSpeed = _speed / (2.0f * gearRange);
+                var gearSpeed = Math.Min(1.0f, _speed / gearRange);
                 _frequency = (int)(gearSpeed * (_topFreq - _idleFreq)) + _idleFreq;
             }
             else
             {
-                var gear = _speed / gearRange;
-                var gearSpeed = (_speed - gear * gearRange) / (float)gearRange;
+                var gearStart = (gearForSound - 1) * gearRange;
+                var gearSpeed = (_speed - gearStart) / (float)gearRange;
                 if (gearSpeed < 0.07f)
                 {
                     _frequency = (int)(((0.07f - gearSpeed) / 0.07f) * (_topFreq - _shiftFreq) + _shiftFreq);

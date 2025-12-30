@@ -15,6 +15,7 @@ namespace TopSpeed.Vehicles
     internal sealed class Car : IDisposable
     {
         private const int MaxSurfaceFreq = 100000;
+        private const float BaseLateralSpeed = 15.0f;
 
         private static bool s_stickReleased;
 
@@ -185,7 +186,8 @@ namespace TopSpeed.Vehicles
                 definition.RevLimiter,
                 definition.EngineBraking,
                 definition.TopSpeed,
-                definition.Gears);
+                definition.Gears,
+                definition.GearRatios);
 
             _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true);
             _soundStart = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Start));
@@ -627,15 +629,12 @@ namespace TopSpeed.Vehicles
                     _soundSnow.SetVolumePercent(90);
                 }
 
-                _positionY += (_speed * elapsed);
-                if (_surface != TrackSurface.Snow)
-                {
-                    _positionX += (_currentSteering * elapsed * _steering * ((50.0f + _speed * _steeringFactor / 100.0f) / _topSpeed));
-                }
-                else
-                {
-                    _positionX += (_currentSteering * elapsed * (_steering * 1.44f) * ((500.0f + _speed * _steeringFactor / 100.0f) / _topSpeed));
-                }
+                var speedMps = _speed / 3.6f;
+                _positionY += (speedMps * elapsed);
+                var surfaceMultiplier = _surface == TrackSurface.Snow ? 1.44f : 1.0f;
+                var steeringInput = _currentSteering / 100.0f;
+                var lateralSpeed = BaseLateralSpeed * _steering * steeringInput * surfaceMultiplier;
+                _positionX += (lateralSpeed * elapsed);
 
                 if (_frame % 4 == 0)
                 {
@@ -850,11 +849,19 @@ namespace TopSpeed.Vehicles
 
         public void Evaluate(Track.Road road)
         {
+            var roadWidth = road.Right - road.Left;
+            if (roadWidth > 0f)
+                _laneWidth = roadWidth;
+            else
+                roadWidth = _laneWidth;
+
             if (_state == CarState.Stopped)
             {
                 if (_frame % 4 == 0)
                 {
-                    _relPos = (_positionX - road.Left) / (float)_laneWidth;
+                    _relPos = roadWidth <= 0f
+                        ? 0.5f
+                        : (_positionX - road.Left) / roadWidth;
                     _panPos = CalculatePan(_relPos);
                     _soundStart.SetPanPercent(_panPos);
                     _soundEngine.SetPanPercent(_panPos);
@@ -891,10 +898,12 @@ namespace TopSpeed.Vehicles
                     {
                         _soundSnow.Stop();
                         SwitchSurfaceSound(road.Surface);
-                    }
+                    } 
 
                     _surface = road.Surface;
-                    _relPos = (_positionX - road.Left) / (float)_laneWidth;
+                    _relPos = roadWidth <= 0f
+                        ? 0.5f
+                        : (_positionX - road.Left) / roadWidth;
                     _panPos = CalculatePan(_relPos);
                     ApplyPan(_panPos);
 
@@ -1029,18 +1038,21 @@ namespace TopSpeed.Vehicles
         private void UpdateEngineFreq()
         {
             var gearRange = _topSpeed / _gears;
-            if ((_speed / gearRange) < 2)
+            _gear = (int)(_speed / gearRange) + 1;
+            if (_gear > _gears)
+                _gear = _gears;
+            if (_gear < 1)
+                _gear = 1;
+
+            if (_gear == 1)
             {
-                _gear = (_speed < gearRange) ? 1 : 2;
-                var gearSpeed = _speed / (2.0f * gearRange);
+                var gearSpeed = Math.Min(1.0f, _speed / gearRange);
                 _frequency = (int)(gearSpeed * (_topFreq - _idleFreq)) + _idleFreq;
             }
             else
             {
-                _gear = (int)(_speed / gearRange);
-                if (_gear > _gears)
-                    _gear = _gears;
-                var gearSpeed = (_speed - _gear * gearRange) / (float)gearRange;
+                var gearStart = (_gear - 1) * gearRange;
+                var gearSpeed = (_speed - gearStart) / (float)gearRange;
                 if (gearSpeed < 0.07f)
                 {
                     _frequency = (int)(((0.07f - gearSpeed) / 0.07f) * (_topFreq - _shiftFreq) + _shiftFreq);
@@ -1221,7 +1233,7 @@ namespace TopSpeed.Vehicles
 
         private static int CalculatePan(float relPos)
         {
-            var pan = (relPos - 1.0f) * 100.0f;
+            var pan = (relPos - 0.5f) * 200.0f;
             if (pan < -100.0f) pan = -100.0f;
             if (pan > 100.0f) pan = 100.0f;
             return (int)pan;

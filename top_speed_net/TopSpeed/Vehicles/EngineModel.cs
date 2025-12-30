@@ -34,20 +34,23 @@ namespace TopSpeed.Vehicles
             float revLimiter,
             float engineBraking,
             float topSpeedKmh,
-            int gearCount)
+            int gearCount,
+            float[]? gearRatios = null)
         {
             _idleRpm = Math.Max(500f, idleRpm);
             _maxRpm = Math.Max(_idleRpm + 1000f, maxRpm);
-            _revLimiter = Math.Min(_maxRpm, Math.Max(_idleRpm, revLimiter));
-            _engineBraking = Math.Max(0.05f, Math.Min(1.0f, engineBraking));
+            _revLimiter = Math.Min(_maxRpm, Math.Max(_idleRpm, revLimiter));    
+            _engineBraking = Math.Max(0.05f, Math.Min(1.0f, engineBraking));    
             _topSpeedKmh = Math.Max(50f, topSpeedKmh);
             _gearCount = Math.Max(1, gearCount);
             _rpm = _idleRpm;
             _distanceMeters = 0f;
             _speedMps = 0f;
 
-            // Calculate gear ratios for smooth progression
-            _gearRatios = CalculateGearRatios(_gearCount);
+            if (gearRatios != null && gearRatios.Length == _gearCount)
+                _gearRatios = gearRatios;
+            else
+                _gearRatios = CalculateGearRatios(_gearCount);
         }
 
         /// <summary>Current engine RPM.</summary>
@@ -197,16 +200,15 @@ namespace TopSpeed.Vehicles
         {
             // Convert game speed units to a ratio (0 to 1)
             var speedRatio = Math.Min(1f, Math.Max(0f, speedGameUnits / _topSpeedKmh));
-            
-            // Calculate gear range for RPM computation
-            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
-            var gearRange = 1f / _gearCount;
-            var gearSpeedRatio = speedRatio - (clampedGear - 1) * gearRange;
-            var gearProgress = gearSpeedRatio / gearRange;
-            gearProgress = Math.Max(0f, Math.Min(1f, gearProgress));
 
-            // Calculate target RPM based on position within gear
-            var targetRpm = _idleRpm + (_revLimiter - _idleRpm) * gearProgress;
+            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
+            var gearRatio = _gearRatios[clampedGear - 1];
+            var topGearRatio = _gearRatios[_gearCount - 1];
+            var ratioScale = topGearRatio > 0f ? gearRatio / topGearRatio : 1f;
+
+            // Calculate target RPM based on speed and gear ratio
+            var rpmRatio = Math.Max(0f, Math.Min(1f, speedRatio * ratioScale));
+            var targetRpm = _idleRpm + (_revLimiter - _idleRpm) * rpmRatio;
             targetRpm = Math.Max(_idleRpm, Math.Min(_maxRpm, targetRpm));
 
             // Apply throttle-based RPM behavior
@@ -224,7 +226,7 @@ namespace TopSpeed.Vehicles
             {
                 // No throttle: RPM tracks target RPM based on speed (simulating engaged clutch)
                 // Decay rate scaled by engine braking to allow tuning (flexible decay)
-                var decayRate = 3000f * _engineBraking;
+                var decayRate = (throttle <= 0.05f ? 6000f : 4000f) * _engineBraking;
                 
                 if (_rpm > targetRpm)
                     _rpm = Math.Max(targetRpm, _rpm - decayRate * elapsed);

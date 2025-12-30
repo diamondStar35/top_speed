@@ -626,6 +626,7 @@ namespace TopSpeed.Core
 
             _state = AppState.Menu;
             _menu.ShowRoot("main");
+            _menu.FadeInMenuMusic();
             _speech.Speak("Main menu", interrupt: true);
         }
 
@@ -1730,6 +1731,7 @@ namespace TopSpeed.Core
             {
                 _state = AppState.Menu;
                 _menu.ShowRoot("main");
+                _menu.FadeInMenuMusic();
                 _speech.Speak("Main menu", interrupt: true);
             }
         }
@@ -1824,6 +1826,7 @@ namespace TopSpeed.Core
 
             _state = AppState.Menu;
             _menu.ShowRoot("main");
+            _menu.FadeInMenuMusic();
             _speech.Speak("Main menu", interrupt: true);
         }
 

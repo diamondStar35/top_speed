@@ -45,6 +45,8 @@ namespace TopSpeed.Menu
             set => _musicVolume = Math.Max(0f, Math.Min(1f, value));
         }
         public Action<float>? MusicVolumeChanged { get; set; }
+        internal bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
+        internal bool IsMusicPlaying => _music != null && _music.IsPlaying;
 
         public MenuScreen(string id, IEnumerable<MenuItem> items, AudioManager audio, SpeechService speech, string? title = null)
         {
@@ -280,6 +282,38 @@ namespace TopSpeed.Menu
                 Thread.Sleep(50);
             }
             _music.Stop();
+        }
+
+        public void FadeInMusic()
+        {
+            if (!HasMusic)
+                return;
+
+            if (_music == null)
+            {
+                var themePath = Path.Combine(_musicRoot, MusicFile!);
+                if (!File.Exists(themePath))
+                    return;
+                _music = _audio.CreateLoopingSource(themePath);
+            }
+
+            if (_music.IsPlaying)
+            {
+                _music.SetVolume(_musicVolume);
+                return;
+            }
+
+            var targetVolume = _musicVolume;
+            _music.SetVolume(0f);
+            _music.Play(loop: true);
+
+            const int steps = 10;
+            for (var i = 0; i < steps; i++)
+            {
+                var volume = targetVolume * ((i + 1) / (float)steps);
+                _music.SetVolume(volume);
+                Thread.Sleep(50);
+            }
         }
 
         private void SetMusicVolume(float volume)

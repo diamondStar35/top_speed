@@ -12,6 +12,7 @@ namespace TopSpeed.Menu
         private readonly Stack<MenuScreen> _stack;
         private readonly AudioManager _audio;
         private readonly SpeechService _speech;
+        private bool _menuMusicSuspended;
 
         public MenuManager(AudioManager audio, SpeechService speech)
         {
@@ -117,15 +118,52 @@ namespace TopSpeed.Menu
 
         public void FadeOutMenuMusic()
         {
-            if (_stack.Count > 0)
-            {
-                _stack.Peek().FadeOutMusic();
-            }
+            var screen = FindScreenWithPlayingMusic();
+            if (screen == null)
+                return;
+
+            screen.FadeOutMusic();
+            _menuMusicSuspended = true;
+        }
+
+        public void FadeInMenuMusic()
+        {
+            if (!_menuMusicSuspended)
+                return;
+
+            var screen = FindScreenWithMusic();
+            if (screen == null)
+                return;
+
+            screen.FadeInMusic();
+            _menuMusicSuspended = false;
         }
 
         public MenuScreen CreateMenu(string id, IEnumerable<MenuItem> items, string? title = null)
         {
             return new MenuScreen(id, items, _audio, _speech, title);
+        }
+
+        private MenuScreen? FindScreenWithPlayingMusic()
+        {
+            foreach (var screen in _stack)
+            {
+                if (screen.IsMusicPlaying)
+                    return screen;
+            }
+
+            return null;
+        }
+
+        private MenuScreen? FindScreenWithMusic()
+        {
+            foreach (var screen in _stack)
+            {
+                if (screen.HasMusic)
+                    return screen;
+            }
+
+            return null;
         }
     }
 }

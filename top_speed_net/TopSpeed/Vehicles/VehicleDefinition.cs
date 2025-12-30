@@ -36,6 +36,12 @@ namespace TopSpeed.Vehicles
         /// Each gear ratio affects torque multiplication - higher = more torque, lower speed.
         /// </summary>
         public float[]? GearRatios { get; set; }
+        
+        /// <summary>
+        /// Brake strength multiplier (0.5 = weak brakes, 1.0 = normal, 2.0 = strong).
+        /// Affects how quickly the vehicle decelerates when braking.
+        /// </summary>
+        public float BrakeStrength { get; set; } = 1.0f;
 
         private readonly string?[] _sounds = new string?[8];
 

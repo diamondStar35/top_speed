@@ -588,7 +588,7 @@ namespace TopSpeed.Vehicles
                     _speed = 0;
 
                 // Update engine model for RPM and distance tracking (reporting only)
-                _engine.SyncFromSpeed(_speed, _gear, elapsed);
+                _engine.SyncFromSpeed(_speed, _gear, elapsed, _currentThrottle);
 
                 if (_thrust <= 0)
                 {

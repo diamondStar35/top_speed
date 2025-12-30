@@ -192,7 +192,8 @@ namespace TopSpeed.Vehicles
         /// <param name="speedGameUnits">Speed in game units (same scale as topSpeed)</param>
         /// <param name="gear">Current gear (1-based)</param>
         /// <param name="elapsed">Time elapsed in seconds</param>
-        public void SyncFromSpeed(float speedGameUnits, int gear, float elapsed)
+        /// <param name="throttleInput">Throttle input (0-100), used for RPM decay</param>
+        public void SyncFromSpeed(float speedGameUnits, int gear, float elapsed, int throttleInput = 0)
         {
             // Convert game speed units to a ratio (0 to 1)
             var speedRatio = Math.Min(1f, Math.Max(0f, speedGameUnits / _topSpeedKmh));
@@ -204,8 +205,31 @@ namespace TopSpeed.Vehicles
             var gearProgress = gearSpeedRatio / gearRange;
             gearProgress = Math.Max(0f, Math.Min(1f, gearProgress));
 
-            // Calculate RPM based on position within gear
-            _rpm = _idleRpm + (_revLimiter - _idleRpm) * gearProgress;
+            // Calculate target RPM based on position within gear
+            var targetRpm = _idleRpm + (_revLimiter - _idleRpm) * gearProgress;
+            targetRpm = Math.Max(_idleRpm, Math.Min(_maxRpm, targetRpm));
+
+            // Apply throttle-based RPM behavior
+            var throttle = Math.Max(0, throttleInput) / 100f;
+            if (throttle > 0.1f)
+            {
+                // Throttle applied: RPM rises quickly towards target
+                var rpmRiseRate = 3000f * throttle;
+                if (_rpm < targetRpm)
+                    _rpm = Math.Min(targetRpm, _rpm + rpmRiseRate * elapsed);
+                else
+                    _rpm = Math.Max(targetRpm, _rpm - rpmRiseRate * 0.5f * elapsed);
+            }
+            else
+            {
+                // No throttle: RPM decays towards idle (engine braking)
+                // Base decay rate is 1000 RPM/sec, scaled by engineBraking parameter
+                var decayRate = 1000f * _engineBraking;
+                if (_rpm > _idleRpm)
+                    _rpm = Math.Max(_idleRpm, _rpm - decayRate * elapsed);
+            }
+
+            // Clamp RPM to valid range
             _rpm = Math.Max(_idleRpm, Math.Min(_maxRpm, _rpm));
 
             // Update distance - convert game speed to m/s (topSpeed is in km/h)

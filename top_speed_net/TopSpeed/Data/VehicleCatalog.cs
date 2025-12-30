@@ -28,6 +28,7 @@ namespace TopSpeed.Data
         public float EngineBraking { get; }
         public float PowerFactor { get; }
         public float[]? GearRatios { get; }
+        public float BrakeStrength { get; }
 
         public VehicleParameters(
             string name,
@@ -54,7 +55,8 @@ namespace TopSpeed.Data
             float revLimiter = 6500f,
             float engineBraking = 0.3f,
             float powerFactor = 0.5f,
-            float[]? gearRatios = null)
+            float[]? gearRatios = null,
+            float brakeStrength = 1.0f)
         {
             Name = name;
             _sounds[(int)VehicleAction.Engine] = engineSound;
@@ -83,6 +85,7 @@ namespace TopSpeed.Data
             EngineBraking = engineBraking;
             PowerFactor = powerFactor;
             GearRatios = gearRatios;
+            BrakeStrength = brakeStrength;
         }
     }
 

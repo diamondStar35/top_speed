@@ -42,7 +42,8 @@ namespace TopSpeed.Vehicles
                 RevLimiter = parameters.RevLimiter,
                 EngineBraking = parameters.EngineBraking,
                 PowerFactor = parameters.PowerFactor,
-                GearRatios = parameters.GearRatios
+                GearRatios = parameters.GearRatios,
+                BrakeStrength = parameters.BrakeStrength
             };
 
             foreach (VehicleAction action in Enum.GetValues(typeof(VehicleAction)))
@@ -91,6 +92,7 @@ namespace TopSpeed.Vehicles
             var engineBraking = ReadFloat(settings, "enginebraking", 0.3f);
             var powerFactor = ReadFloat(settings, "powerfactor", 0.5f);
             var gearRatios = ReadFloatArray(settings, "gearratios");
+            var brakeStrength = ReadFloat(settings, "brakestrength", 1.0f);
 
             var def = new VehicleDefinition
             {
@@ -113,7 +115,8 @@ namespace TopSpeed.Vehicles
                 RevLimiter = revLimiter,
                 EngineBraking = engineBraking,
                 PowerFactor = powerFactor,
-                GearRatios = gearRatios
+                GearRatios = gearRatios,
+                BrakeStrength = brakeStrength
             };
 
             def.SetSoundPath(VehicleAction.Engine, ResolveSound(ReadString(settings, "enginesound", "engine.wav"), builtinRoot, customVehiclesRoot, p => p.GetSoundPath(VehicleAction.Engine)));

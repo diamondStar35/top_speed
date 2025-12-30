@@ -13,7 +13,7 @@
 [Rr]elease/
 [Rr]eleases/
 x64/
-x86/
+!top_speed_net/TopSpeed/ThirdParty/Tolk/x64/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/

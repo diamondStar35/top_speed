@@ -456,7 +456,7 @@ namespace TopSpeed.Vehicles
                 _engine.SyncFromSpeed(_speed, _gear, elapsed, _currentThrottle);
                 if (_lastDriveRpm > 0f && _lastDriveRpm > _engine.Rpm)
                     _engine.OverrideRpm(_lastDriveRpm);
-                if (_thrust < -50 && _speed > 50.0f)
+                if (_thrust < -50 && _speed > 0)
                     _currentSteering = _currentSteering * 2 / 3;
 
                 var speedMps = _speed / 3.6f;

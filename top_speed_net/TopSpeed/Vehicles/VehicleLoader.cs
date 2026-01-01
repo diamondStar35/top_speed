@@ -40,7 +40,10 @@ namespace TopSpeed.Vehicles
                 IdleRpm = parameters.IdleRpm,
                 MaxRpm = parameters.MaxRpm,
                 RevLimiter = parameters.RevLimiter,
+                AutoShiftRpm = parameters.AutoShiftRpm > 0f ? parameters.AutoShiftRpm : parameters.RevLimiter * 0.92f,
                 EngineBraking = parameters.EngineBraking,
+                FinalDriveRatio = parameters.FinalDriveRatio,
+                TireCircumferenceM = parameters.TireCircumferenceM,
                 PowerFactor = parameters.PowerFactor,
                 GearRatios = parameters.GearRatios,
                 BrakeStrength = parameters.BrakeStrength
@@ -89,10 +92,24 @@ namespace TopSpeed.Vehicles
             var idleRpm = ReadFloat(settings, "idlerpm", 800f);
             var maxRpm = ReadFloat(settings, "maxrpm", 7000f);
             var revLimiter = ReadFloat(settings, "revlimiter", 6500f);
-            var engineBraking = ReadFloat(settings, "enginebraking", 0.3f);
+            var autoShiftRpm = ReadFloat(settings, "autoshiftrpm", 0f);
+            var engineBraking = ReadFloat(settings, "enginebraking", 0.3f);     
+            var finalDriveRatio = ReadFloat(settings, "finaldrive", 3.5f);
             var powerFactor = ReadFloat(settings, "powerfactor", 0.5f);
             var gearRatios = ReadFloatArray(settings, "gearratios");
-            var brakeStrength = ReadFloat(settings, "brakestrength", 1.0f);
+            var brakeStrength = ReadFloat(settings, "brakestrength", 1.0f);     
+
+            var tireCircumferenceM = ReadFloat(settings, "tirecircumference", 0f);
+            if (tireCircumferenceM <= 0f)
+            {
+                var tireWidth = ReadInt(settings, "tirewidth", 0);
+                var tireAspect = ReadInt(settings, "tireaspect", 0);
+                var tireRim = ReadInt(settings, "tirerim", 0);
+                if (tireWidth > 0 && tireAspect > 0 && tireRim > 0)
+                    tireCircumferenceM = CalculateTireCircumferenceM(tireWidth, tireAspect, tireRim);
+            }
+            if (tireCircumferenceM <= 0f)
+                tireCircumferenceM = 2.0f;
 
             var def = new VehicleDefinition
             {
@@ -113,7 +130,10 @@ namespace TopSpeed.Vehicles
                 IdleRpm = idleRpm,
                 MaxRpm = maxRpm,
                 RevLimiter = revLimiter,
+                AutoShiftRpm = autoShiftRpm > 0f ? autoShiftRpm : revLimiter * 0.92f,
                 EngineBraking = engineBraking,
+                FinalDriveRatio = finalDriveRatio,
+                TireCircumferenceM = tireCircumferenceM,
                 PowerFactor = powerFactor,
                 GearRatios = gearRatios,
                 BrakeStrength = brakeStrength
@@ -257,6 +277,13 @@ namespace TopSpeed.Vehicles
             return defaultValue;
         }
 
+        private static float CalculateTireCircumferenceM(int widthMm, int aspectPercent, int rimInches)
+        {
+            var sidewallMm = widthMm * (aspectPercent / 100f);
+            var diameterMm = (rimInches * 25.4f) + (2f * sidewallMm);
+            return (float)(Math.PI * (diameterMm / 1000f));
+        }
+
         private static float[]? ReadFloatArray(Dictionary<string, string> values, string key)
         {
             if (!values.TryGetValue(key, out var raw) || string.IsNullOrWhiteSpace(raw))
@@ -273,3 +300,4 @@ namespace TopSpeed.Vehicles
         }
     }
 }
+

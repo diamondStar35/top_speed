@@ -178,8 +178,11 @@ namespace TopSpeed.Vehicles
                 definition.IdleRpm,
                 definition.MaxRpm,
                 definition.RevLimiter,
+                definition.AutoShiftRpm,
                 definition.EngineBraking,
                 definition.TopSpeed,
+                definition.FinalDriveRatio,
+                definition.TireCircumferenceM,
                 definition.Gears,
                 definition.GearRatios);
 
@@ -621,6 +624,17 @@ namespace TopSpeed.Vehicles
                 if (_speed < 0)
                     _speed = 0;
 
+                if (_manualTransmission)
+                {
+                    var gearMax = _engine.GetGearMaxSpeedKmh(_gear);
+                    if (_speed > gearMax)
+                        _speed = gearMax;
+                }
+                else
+                {
+                    _gear = _engine.GetGearForSpeedKmh(_speed);
+                }
+
                 // Update engine model for RPM and distance tracking (reporting only)
                 _engine.SyncFromSpeed(_speed, _gear, elapsed, _currentThrottle);
 
@@ -962,7 +976,7 @@ namespace TopSpeed.Vehicles
                     if (_relPos < 0 || _relPos > 1)
                     {
                         // Crash if speed is above 1.5 gear ranges (e.g. 60 km/h for 5-gear 200 km/h car)
-                        var crashThreshold = 1.5f * _topSpeed / _gears;
+                        var crashThreshold = 1.5f * _engine.GetGearMaxSpeedKmh(1);
                         if (_speed < crashThreshold)
                             MiniCrash((road.Right + road.Left) / 2);
                         else
@@ -1079,8 +1093,7 @@ namespace TopSpeed.Vehicles
 
         private void UpdateEngineFreq()
         {
-            var gearRange = _topSpeed / _gears;
-            _gear = (int)(_speed / gearRange) + 1;
+            _gear = _engine.GetGearForSpeedKmh(_speed);
             if (_gear > _gears)
                 _gear = _gears;
             if (_gear < 1)
@@ -1091,11 +1104,12 @@ namespace TopSpeed.Vehicles
 
         private void UpdateEngineFreqManual()
         {
-            var gearRange = _topSpeed / _gears;
+            var gearRange = _engine.GetGearRangeKmh(_gear);
+            var gearMin = _engine.GetGearMinSpeedKmh(_gear);
 
             if (_gear == 1)
             {
-                // Gear 1: frequency scales with speed relative to gear range
+                // Gear 1: frequency scales with speed relative to gear range   
                 if (_speed < (4.0f / 3.0f) * gearRange)
                 {
                     _frequency = _idleFreq + (int)((_speed * 3.0f / (2.0f * gearRange)) * (_topFreq - _idleFreq));
@@ -1103,15 +1117,18 @@ namespace TopSpeed.Vehicles
                 else
                 {
                     // Cap at 2x the frequency range above idle when speed exceeds gear capability
-                    _frequency = _idleFreq + 2 * (_topFreq - _idleFreq);
+                    _frequency = _idleFreq + 2 * (_topFreq - _idleFreq);        
                 }
             }
             else
             {
-                // Higher gears: frequency = (speed / shiftPoint) * topFreq
-                // where shiftPoint = (2/3 + (gear-1)) * gearRange
-                var shiftPoint = ((2.0f / 3.0f) + (_gear - 1)) * gearRange;
-                _frequency = (int)((_speed / shiftPoint) * _topFreq);
+                // Higher gears: frequency = (speed / shiftPoint) * topFreq     
+                // where shiftPoint = gearMin + (2/3) * gearRange
+                var shiftPoint = gearMin + ((2.0f / 3.0f) * gearRange);
+                if (shiftPoint > 0f)
+                    _frequency = (int)((_speed / shiftPoint) * _topFreq);
+                else
+                    _frequency = _idleFreq;
 
                 // Clamp frequency to valid range
                 if (_frequency > 2 * _topFreq)
@@ -1143,22 +1160,23 @@ namespace TopSpeed.Vehicles
 
         private void UpdateEngineFreqForGear(int gear)
         {
-            var gearRange = _topSpeed / _gears;
             var clampedGear = gear;
             if (clampedGear > _gears)
                 clampedGear = _gears;
             if (clampedGear < 1)
                 clampedGear = 1;
 
+            var gearRange = _engine.GetGearRangeKmh(clampedGear);
+            var gearMin = _engine.GetGearMinSpeedKmh(clampedGear);
+
             if (clampedGear == 1)
             {
-                var gearSpeed = Math.Min(1.0f, _speed / gearRange);
+                var gearSpeed = gearRange <= 0f ? 0f : Math.Min(1.0f, _speed / gearRange);
                 _frequency = (int)(gearSpeed * (_topFreq - _idleFreq)) + _idleFreq;
             }
             else
             {
-                var gearStart = (clampedGear - 1) * gearRange;
-                var gearSpeed = (_speed - gearStart) / (float)gearRange;
+                var gearSpeed = (_speed - gearMin) / (float)gearRange;
                 if (gearSpeed < 0.07f)
                 {
                     _frequency = (int)(((0.07f - gearSpeed) / 0.07f) * (_topFreq - _shiftFreq) + _shiftFreq);
@@ -1200,10 +1218,11 @@ namespace TopSpeed.Vehicles
 
         private int CalculateAcceleration()
         {
-            var gearSpeed = _topSpeed / _gears;
-            var gearCenter = (int)(gearSpeed * (_gear - 0.82f));
+            var gearRange = _engine.GetGearRangeKmh(_gear);
+            var gearMin = _engine.GetGearMinSpeedKmh(_gear);
+            var gearCenter = gearMin + (gearRange * 0.18f);
             _speedDiff = _speed - gearCenter;
-            var relSpeedDiff = _speedDiff / (float)gearSpeed;
+            var relSpeedDiff = _speedDiff / gearRange;
             if (Math.Abs(relSpeedDiff) < 1.9f)
             {
                 var acceleration = (int)(100.0f * (0.5f + Math.Cos(relSpeedDiff * Math.PI * 0.5f)));

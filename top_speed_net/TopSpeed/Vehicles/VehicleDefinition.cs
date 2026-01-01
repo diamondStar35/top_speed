@@ -23,7 +23,10 @@ namespace TopSpeed.Vehicles
         public float IdleRpm { get; set; } = 800f;
         public float MaxRpm { get; set; } = 7000f;
         public float RevLimiter { get; set; } = 6500f;
+        public float AutoShiftRpm { get; set; } = 0f;
         public float EngineBraking { get; set; } = 0.3f;
+        public float FinalDriveRatio { get; set; } = 3.5f;
+        public float TireCircumferenceM { get; set; } = 2.0f;
         
         /// <summary>
         /// Power factor controls how fast the vehicle accelerates (0.1 = very slow, 1.0 = fast).

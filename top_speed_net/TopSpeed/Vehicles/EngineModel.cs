@@ -10,10 +10,16 @@ namespace TopSpeed.Vehicles
         private readonly float _idleRpm;
         private readonly float _maxRpm;
         private readonly float _revLimiter;
+        private readonly float _autoShiftRpm;
         private readonly float _engineBraking;
         private readonly float _topSpeedKmh;
+        private readonly float _finalDriveRatio;
+        private readonly float _tireCircumferenceM;
         private readonly int _gearCount;
         private readonly float[] _gearRatios;
+        private readonly float[] _gearMaxSpeedMps;
+        private readonly float[] _gearAutoShiftSpeedMps;
+        private readonly float[] _gearMinSpeedMps;
 
         private float _rpm;
         private float _distanceMeters;
@@ -32,16 +38,24 @@ namespace TopSpeed.Vehicles
             float idleRpm,
             float maxRpm,
             float revLimiter,
+            float autoShiftRpm,
             float engineBraking,
             float topSpeedKmh,
+            float finalDriveRatio,
+            float tireCircumferenceM,
             int gearCount,
             float[]? gearRatios = null)
         {
             _idleRpm = Math.Max(500f, idleRpm);
             _maxRpm = Math.Max(_idleRpm + 1000f, maxRpm);
             _revLimiter = Math.Min(_maxRpm, Math.Max(_idleRpm, revLimiter));    
+            _autoShiftRpm = autoShiftRpm <= 0f
+                ? _revLimiter * 0.92f
+                : Math.Max(_idleRpm, Math.Min(_revLimiter, autoShiftRpm));
             _engineBraking = Math.Max(0.05f, Math.Min(1.0f, engineBraking));    
             _topSpeedKmh = Math.Max(50f, topSpeedKmh);
+            _finalDriveRatio = Math.Max(0.1f, finalDriveRatio);
+            _tireCircumferenceM = Math.Max(0.5f, tireCircumferenceM);
             _gearCount = Math.Max(1, gearCount);
             _rpm = 0f;  // Engine starts OFF
             _distanceMeters = 0f;
@@ -51,6 +65,18 @@ namespace TopSpeed.Vehicles
                 _gearRatios = gearRatios;
             else
                 _gearRatios = CalculateGearRatios(_gearCount);
+
+            _gearMaxSpeedMps = new float[_gearCount];
+            _gearAutoShiftSpeedMps = new float[_gearCount];
+            _gearMinSpeedMps = new float[_gearCount];
+            var shiftRpm = _idleRpm + (_revLimiter - _idleRpm) * 0.35f;
+            for (int i = 0; i < _gearCount; i++)
+            {
+                var gearIndex = i + 1;
+                _gearMaxSpeedMps[i] = SpeedMpsFromRpm(_revLimiter, gearIndex);
+                _gearAutoShiftSpeedMps[i] = SpeedMpsFromRpm(_autoShiftRpm, gearIndex);
+                _gearMinSpeedMps[i] = i == 0 ? 0f : SpeedMpsFromRpm(shiftRpm, gearIndex);
+            }
         }
 
         /// <summary>Current engine RPM.</summary>
@@ -64,6 +90,41 @@ namespace TopSpeed.Vehicles
 
         /// <summary>Total distance traveled in meters.</summary>
         public float DistanceMeters => _distanceMeters;
+
+        public float GetGearMaxSpeedKmh(int gear)
+        {
+            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
+            return _gearMaxSpeedMps[clampedGear - 1] * 3.6f;
+        }
+
+        public float GetGearMinSpeedKmh(int gear)
+        {
+            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
+            return _gearMinSpeedMps[clampedGear - 1] * 3.6f;
+        }
+
+        public float GetGearRangeKmh(int gear)
+        {
+            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
+            var range = _gearMaxSpeedMps[clampedGear - 1] - _gearMinSpeedMps[clampedGear - 1];
+            return Math.Max(0.1f, range * 3.6f);
+        }
+
+        public int GetGearForSpeedKmh(float speedKmh)
+        {
+            var speedMps = Math.Max(0f, speedKmh / 3.6f);
+            var topSpeedMps = _topSpeedKmh / 3.6f;
+            for (int i = 0; i < _gearCount; i++)
+            {
+                var gearMax = i == _gearCount - 1
+                    ? _gearMaxSpeedMps[i]
+                    : _gearAutoShiftSpeedMps[i];
+                gearMax = Math.Min(gearMax, topSpeedMps);
+                if (speedMps <= gearMax + 0.01f)
+                    return i + 1;
+            }
+            return _gearCount;
+        }
 
         /// <summary>
         /// Updates the engine state for one frame.
@@ -91,18 +152,19 @@ namespace TopSpeed.Vehicles
 
             // Calculate target RPM based on current speed and gear
             // Each gear has its own speed range where RPM scales from base to rev limiter
-            var gearRange = _topSpeedKmh / 3.6f / _gearCount; // in m/s
             float targetRpmFromSpeed;
-            
+
             if (clampedGear == 1)
             {
-                var positionInGear = Math.Min(1f, Math.Max(0f, _speedMps / gearRange));
+                var gearMax = _gearMaxSpeedMps[clampedGear - 1];
+                var positionInGear = gearMax <= 0f ? 0f : Math.Min(1f, Math.Max(0f, _speedMps / gearMax));
                 targetRpmFromSpeed = _idleRpm + (_revLimiter - _idleRpm) * positionInGear;
             }
             else
             {
-                var gearStartSpeed = (clampedGear - 1) * gearRange;
-                var positionInGear = Math.Min(1f, Math.Max(0f, (_speedMps - gearStartSpeed) / gearRange));
+                var gearMin = _gearMinSpeedMps[clampedGear - 1];
+                var gearRange = Math.Max(0.1f, _gearMaxSpeedMps[clampedGear - 1] - gearMin);
+                var positionInGear = Math.Min(1f, Math.Max(0f, (_speedMps - gearMin) / gearRange));
                 var shiftRpm = _idleRpm + (_revLimiter - _idleRpm) * 0.35f;
                 targetRpmFromSpeed = shiftRpm + (_revLimiter - shiftRpm) * positionInGear;
             }
@@ -177,7 +239,8 @@ namespace TopSpeed.Vehicles
 
             // Update speed
             _speedMps += acceleration * elapsed;
-            _speedMps = Math.Max(0f, Math.Min(_topSpeedKmh / 3.6f, _speedMps));
+            var maxSpeedInGear = Math.Min(_topSpeedKmh / 3.6f, _gearMaxSpeedMps[clampedGear - 1]);
+            _speedMps = Math.Max(0f, Math.Min(maxSpeedInGear, _speedMps));
 
             // Update distance
             _distanceMeters += _speedMps * elapsed;
@@ -235,26 +298,24 @@ namespace TopSpeed.Vehicles
         public void SyncFromSpeed(float speedGameUnits, int gear, float elapsed, int throttleInput = 0)
         {
             var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
-            
-            // Calculate speed ranges for each gear
-            var gearRange = _topSpeedKmh / _gearCount;
-            
             float targetRpm;
-            
+
             if (clampedGear == 1)
             {
                 // Gear 1: RPM scales from idle to rev limiter within first gear range
                 // At 0 speed: idle RPM
                 // At end of gear 1 range: rev limiter
-                var positionInGear = Math.Min(1f, Math.Max(0f, speedGameUnits / gearRange));
+                var gearMax = _gearMaxSpeedMps[clampedGear - 1] * 3.6f;
+                var positionInGear = gearMax <= 0f ? 0f : Math.Min(1f, Math.Max(0f, speedGameUnits / gearMax));
                 targetRpm = _idleRpm + (_revLimiter - _idleRpm) * positionInGear;
             }
             else
             {
                 // Higher gears: RPM scales from shift frequency to rev limiter
                 // Each gear covers its own speed range
-                var gearStartSpeed = (clampedGear - 1) * gearRange;
-                var positionInGear = Math.Min(1f, Math.Max(0f, (speedGameUnits - gearStartSpeed) / gearRange));
+                var gearMin = _gearMinSpeedMps[clampedGear - 1] * 3.6f;
+                var gearRange = Math.Max(0.1f, (_gearMaxSpeedMps[clampedGear - 1] - _gearMinSpeedMps[clampedGear - 1]) * 3.6f);
+                var positionInGear = Math.Min(1f, Math.Max(0f, (speedGameUnits - gearMin) / gearRange));
                 
                 // Use shift frequency (lower RPM after upshift) as base
                 var shiftRpm = _idleRpm + (_revLimiter - _idleRpm) * 0.35f; // ~35% of range after upshift
@@ -306,6 +367,15 @@ namespace TopSpeed.Vehicles
             var speedMps = speedGameUnits / 3.6f;
             _distanceMeters += speedMps * elapsed;
             _speedMps = speedMps;
+        }
+
+        private float SpeedMpsFromRpm(float rpm, int gear)
+        {
+            var clampedGear = Math.Max(1, Math.Min(_gearCount, gear));
+            var ratio = _gearRatios[clampedGear - 1] * _finalDriveRatio;
+            if (ratio <= 0f)
+                return 0f;
+            return (rpm / ratio) * (_tireCircumferenceM / 60f);
         }
 
         private static float[] CalculateGearRatios(int gearCount)

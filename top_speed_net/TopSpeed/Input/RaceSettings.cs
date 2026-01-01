@@ -104,8 +104,8 @@ namespace TopSpeed.Input
             Language = "en";
             JoystickLeft = JoystickAxisOrButton.AxisXNeg;
             JoystickRight = JoystickAxisOrButton.AxisXPos;
-            JoystickThrottle = JoystickAxisOrButton.AxisYPos;
-            JoystickBrake = JoystickAxisOrButton.AxisYNeg;
+            JoystickThrottle = JoystickAxisOrButton.AxisRzPos;
+            JoystickBrake = JoystickAxisOrButton.AxisZPos;
             JoystickGearUp = JoystickAxisOrButton.Button2;
             JoystickGearDown = JoystickAxisOrButton.Button1;
             JoystickHorn = JoystickAxisOrButton.Button3;

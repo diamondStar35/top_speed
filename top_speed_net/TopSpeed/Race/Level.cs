@@ -47,7 +47,7 @@ namespace TopSpeed.Race
         protected readonly SpeechService _speech;
         protected readonly RaceSettings _settings;
         protected readonly RaceInput _input;
-        protected readonly JoystickDevice? _joystick;
+        protected readonly IVibrationDevice? _vibrationDevice;
         protected readonly Track _track;
         protected readonly Car _car;
         protected readonly List<RaceEvent> _events;
@@ -108,8 +108,8 @@ namespace TopSpeed.Race
             int nrOfLaps,
             int vehicle,
             string? vehicleFile,
-            JoystickDevice? joystick)
-            : this(audio, speech, settings, input, track, automaticTransmission, nrOfLaps, vehicle, vehicleFile, joystick, null, userDefined: false)
+            IVibrationDevice? vibrationDevice)
+            : this(audio, speech, settings, input, track, automaticTransmission, nrOfLaps, vehicle, vehicleFile, vibrationDevice, null, userDefined: false)
         {
         }
 
@@ -123,7 +123,7 @@ namespace TopSpeed.Race
             int nrOfLaps,
             int vehicle,
             string? vehicleFile,
-            JoystickDevice? joystick,
+            IVibrationDevice? vibrationDevice,
             TrackData? trackData,
             bool userDefined)
         {
@@ -131,7 +131,7 @@ namespace TopSpeed.Race
             _speech = speech;
             _settings = settings;
             _input = input;
-            _joystick = joystick;
+            _vibrationDevice = vibrationDevice;
             _events = new List<RaceEvent>();
             _stopwatch = new Stopwatch();
             _soundQueue = new SoundQueue();
@@ -150,7 +150,7 @@ namespace TopSpeed.Race
             _track = trackData == null
                 ? Track.Load(track, audio)
                 : Track.LoadFromData(track, trackData, audio, userDefined);
-            _car = new Car(audio, _track, input, settings, vehicle, vehicleFile, () => _elapsedTotal, () => _started, joystick);
+            _car = new Car(audio, _track, input, settings, vehicle, vehicleFile, () => _elapsedTotal, () => _started, _vibrationDevice);
 
             if (!string.IsNullOrWhiteSpace(track) &&
                 track.IndexOf("adv", StringComparison.OrdinalIgnoreCase) >= 0)

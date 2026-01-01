@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
 using SharpDX;
 using SharpDX.DirectInput;
 
 namespace TopSpeed.Input
 {
-    internal sealed class JoystickDevice : IDisposable
+    internal sealed class JoystickDevice : IVibrationDevice
     {
         private readonly Joystick? _joystick;
         private JoystickStateSnapshot _state;
+        private readonly Dictionary<VibrationEffectType, ForceFeedbackEffect> _effects = new Dictionary<VibrationEffectType, ForceFeedbackEffect>();
+        private bool _connected;
 
         public JoystickDevice(DirectInput directInput, IntPtr windowHandle)
         {
@@ -37,9 +40,11 @@ namespace TopSpeed.Input
             {
                 // Some devices do not support auto-centering configuration.
             }
+
+            _connected = true;
         }
 
-        public bool IsAvailable => _joystick != null;
+        public bool IsAvailable => _joystick != null && _connected;
 
         internal Joystick? Device => _joystick;
 
@@ -65,18 +70,55 @@ namespace TopSpeed.Input
                 _joystick.Poll();
                 var state = _joystick.GetCurrentState();
                 _state = JoystickStateSnapshot.From(state);
+                _connected = true;
                 return true;
             }
             catch (SharpDXException)
             {
+                _connected = false;
                 return false;
             }
+        }
+
+        public void LoadEffect(VibrationEffectType type, string effectPath)
+        {
+            if (!ForceFeedbackCapable || _joystick == null)
+                return;
+
+            if (_effects.TryGetValue(type, out var existing))
+            {
+                existing.Dispose();
+                _effects.Remove(type);
+            }
+
+            _effects[type] = new ForceFeedbackEffect(this, effectPath);
+        }
+
+        public void PlayEffect(VibrationEffectType type, int intensity = 10000)
+        {
+            if (_effects.TryGetValue(type, out var effect))
+                effect.Play();
+        }
+
+        public void StopEffect(VibrationEffectType type)
+        {
+            if (_effects.TryGetValue(type, out var effect))
+                effect.Stop();
+        }
+
+        public void Gain(VibrationEffectType type, int value)
+        {
+            if (_effects.TryGetValue(type, out var effect))
+                effect.Gain(value);
         }
 
         public void Dispose()
         {
             if (_joystick == null)
                 return;
+            foreach (var effect in _effects.Values)
+                effect.Dispose();
+            _effects.Clear();
             try
             {
                 _joystick.Unacquire();

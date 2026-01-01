@@ -454,7 +454,7 @@ namespace TopSpeed.Input
                         return Math.Min(_center.Rx - state.Rx, 100);
                     break;
                 case JoystickAxisOrButton.AxisRxPos:
-                    if (state.Rx - _center.Rz > 0)
+                    if (state.Rx - _center.Rx > 0)
                         return Math.Min(state.Rx - _center.Rx, 100);
                     break;
                 case JoystickAxisOrButton.AxisRyNeg:

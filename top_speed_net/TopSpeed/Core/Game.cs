@@ -1327,7 +1327,7 @@ namespace TopSpeed.Core
         {
             if (mode == InputMappingMode.Joystick)
             {
-                if (_input.Joystick == null || !_input.Joystick.IsAvailable)
+                if (_input.VibrationDevice == null || !_input.VibrationDevice.IsAvailable)
                 {
                     _speech.Speak("No joystick detected.", interrupt: true);
                     return;
@@ -1707,7 +1707,7 @@ namespace TopSpeed.Core
                 laps,
                 vehicleIndex,
                 null,
-                _input.Joystick,
+                _input.VibrationDevice,
                 _session,
                 _session.PlayerId,
                 _session.PlayerNumber);
@@ -1797,7 +1797,7 @@ namespace TopSpeed.Core
                 case RaceMode.TimeTrial:
                     _timeTrial?.FinalizeLevelTimeTrial();
                     _timeTrial?.Dispose();
-                    _timeTrial = new LevelTimeTrial(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.Joystick);
+                    _timeTrial = new LevelTimeTrial(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.VibrationDevice);
                     _timeTrial.Initialize();
                     _state = AppState.TimeTrial;
                     _speech.Speak("Time trial.", interrupt: true);
@@ -1806,7 +1806,7 @@ namespace TopSpeed.Core
                 case RaceMode.SingleRace:
                     _singleRace?.FinalizeLevelSingleRace();
                     _singleRace?.Dispose();
-                    _singleRace = new LevelSingleRace(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.Joystick);
+                    _singleRace = new LevelSingleRace(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.VibrationDevice);
                     _singleRace.Initialize(Algorithm.RandomInt(_settings.NrOfComputers + 1));
                     _state = AppState.SingleRace;
                     _speech.Speak(mode == RaceMode.QuickStart ? "Quick start." : "Single race.", interrupt: true);

@@ -16,6 +16,8 @@ namespace TopSpeed.Vehicles
     {
         private const int MaxSurfaceFreq = 100000;
         private const float BaseLateralSpeed = 15.0f;
+        private const float CrashVibrationSeconds = 1.5f;
+        private const float BumpVibrationSeconds = 0.2f;
 
         private static bool s_stickReleased;
 
@@ -93,15 +95,7 @@ namespace TopSpeed.Vehicles
         private AudioSourceHandle _soundBadSwitch;
         private AudioSourceHandle? _soundBackfire;
 
-        private ForceFeedbackEffect? _effectStart;
-        private ForceFeedbackEffect? _effectCrash;
-        private ForceFeedbackEffect? _effectSpring;
-        private ForceFeedbackEffect? _effectEngine;
-        private ForceFeedbackEffect? _effectCurbLeft;
-        private ForceFeedbackEffect? _effectCurbRight;
-        private ForceFeedbackEffect? _effectBumpLeft;
-        private ForceFeedbackEffect? _effectBumpRight;
-        private ForceFeedbackEffect? _effectGravel;
+        private readonly IVibrationDevice? _vibration;
 
         private EngineModel _engine;
 
@@ -114,7 +108,7 @@ namespace TopSpeed.Vehicles
             string? vehicleFile,
             Func<float> currentTime,
             Func<bool> started,
-            JoystickDevice? joystick = null)
+            IVibrationDevice? vibrationDevice = null)
         {
             _audio = audio;
             _track = track;
@@ -212,18 +206,21 @@ namespace TopSpeed.Vehicles
             _soundBump = CreateRequiredSound(Path.Combine(_legacyRoot, "bump.wav"));
             _soundBadSwitch = CreateRequiredSound(Path.Combine(_legacyRoot, "badswitch.wav"));
 
-            if (joystick != null && joystick.ForceFeedbackCapable && _settings.ForceFeedback && _settings.UseJoystick)
+            _vibration = vibrationDevice != null && vibrationDevice.IsAvailable && vibrationDevice.ForceFeedbackCapable && _settings.ForceFeedback && _settings.UseJoystick
+                ? vibrationDevice
+                : null;
+            if (_vibration != null)
             {
-                _effectStart = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "carstart.ffe"));
-                _effectCrash = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "crash.ffe"));
-                _effectSpring = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "spring.ffe"));
-                _effectEngine = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "engine.ffe"));
-                _effectCurbLeft = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "curbleft.ffe"));
-                _effectCurbRight = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "curbright.ffe"));
-                _effectGravel = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "gravel.ffe"));
-                _effectBumpLeft = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "bumpleft.ffe"));
-                _effectBumpRight = new ForceFeedbackEffect(joystick, Path.Combine(_effectsRoot, "bumpright.ffe"));
-                _effectGravel.Gain(0);
+                _vibration.LoadEffect(VibrationEffectType.Start, Path.Combine(_effectsRoot, "carstart.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.Crash, Path.Combine(_effectsRoot, "crash.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.Spring, Path.Combine(_effectsRoot, "spring.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.Engine, Path.Combine(_effectsRoot, "engine.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.CurbLeft, Path.Combine(_effectsRoot, "curbleft.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.CurbRight, Path.Combine(_effectsRoot, "curbright.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.Gravel, Path.Combine(_effectsRoot, "gravel.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.BumpLeft, Path.Combine(_effectsRoot, "bumpleft.ffe"));
+                _vibration.LoadEffect(VibrationEffectType.BumpRight, Path.Combine(_effectsRoot, "bumpright.ffe"));
+                _vibration.Gain(VibrationEffectType.Gravel, 0);
             }
         }
 
@@ -261,7 +258,7 @@ namespace TopSpeed.Vehicles
             _positionX = positionX;
             _positionY = positionY;
             _laneWidth = _track.LaneWidth * 2;
-            _effectSpring?.Play();
+            _vibration?.PlayEffect(VibrationEffectType.Spring);
         }
 
         public void SetPosition(float positionX, float positionY)
@@ -274,7 +271,7 @@ namespace TopSpeed.Vehicles
         {
             _soundEngine.Stop();
             _soundThrottle?.Stop();
-            _effectSpring?.Stop();
+            _vibration?.StopEffect(VibrationEffectType.Spring);
         }
 
         public void Start()
@@ -299,8 +296,8 @@ namespace TopSpeed.Vehicles
             _soundSnow.SetFrequency(_surfaceFrequency);
             _state = CarState.Starting;
             _listener?.OnStart();
-            _effectStart?.Play();
-            _effectEngine?.Play();
+            _vibration?.PlayEffect(VibrationEffectType.Start);
+            _vibration?.PlayEffect(VibrationEffectType.Engine);
         }
 
         /// <summary>
@@ -328,8 +325,8 @@ namespace TopSpeed.Vehicles
             _soundSnow.SetFrequency(_surfaceFrequency);
             _state = CarState.Starting;
             _listener?.OnStart();
-            _effectStart?.Play();
-            _effectEngine?.Play();
+            _vibration?.PlayEffect(VibrationEffectType.Start);
+            _vibration?.PlayEffect(VibrationEffectType.Engine);
         }
 
         public void Crash()
@@ -394,19 +391,21 @@ namespace TopSpeed.Vehicles
             // Transition to Crashed state after crash animation completes (player must manually restart)
             PushEvent(CarEventType.CrashComplete, _soundCrash.GetLengthSeconds() + 1.25f);
             _listener?.OnCrash();
-            _effectEngine?.Stop();
-            _effectCrash?.Play();
-            _effectCurbLeft?.Stop();
-            _effectCurbRight?.Stop();
+            _vibration?.StopEffect(VibrationEffectType.Engine);
+            _vibration?.PlayEffect(VibrationEffectType.Crash);
+            PushEvent(CarEventType.StopVibration, CrashVibrationSeconds, VibrationEffectType.Crash);
+            _vibration?.StopEffect(VibrationEffectType.CurbLeft);
+            _vibration?.StopEffect(VibrationEffectType.CurbRight);
         }
 
         public void MiniCrash(float newPosition)
         {
             _speed /= 4;
-            if (_effectBumpLeft != null && _positionX < newPosition)
-                _effectBumpLeft.Play();
-            if (_effectBumpRight != null && _positionX > newPosition)
-                _effectBumpRight.Play();
+            if (_positionX < newPosition)
+                _vibration?.PlayEffect(VibrationEffectType.BumpLeft);
+            if (_positionX > newPosition)
+                _vibration?.PlayEffect(VibrationEffectType.BumpRight);
+            PushEvent(CarEventType.StopBumpVibration, BumpVibrationSeconds);
 
             _positionX = newPosition;
             _throttleVolume = 0.0f;
@@ -426,26 +425,27 @@ namespace TopSpeed.Vehicles
             {
                 _positionX += 2 * bumpX;
                 _speed -= _speed / 5;
-                _effectBumpLeft?.Play();
+                _vibration?.PlayEffect(VibrationEffectType.BumpLeft);
             }
             else if (bumpX < 0)
             {
                 _positionX += 2 * bumpX;
                 _speed -= _speed / 5;
-                _effectBumpRight?.Play();
+                _vibration?.PlayEffect(VibrationEffectType.BumpRight);
             }
 
             if (_speed < 0)
                 _speed = 0;
             _soundBump.Play(loop: false);
+            PushEvent(CarEventType.StopBumpVibration, BumpVibrationSeconds);
         }
 
         public void Stop()
         {
             _soundBrake.Stop();
             _soundWipers?.Stop();
-            _effectCurbLeft?.Stop();
-            _effectCurbRight?.Stop();
+            _vibration?.StopEffect(VibrationEffectType.CurbLeft);
+            _vibration?.StopEffect(VibrationEffectType.CurbRight);
             _state = CarState.Stopping;
         }
 
@@ -460,9 +460,9 @@ namespace TopSpeed.Vehicles
             _soundWater.SetVolumePercent(90);
             _soundSand.SetVolumePercent(90);
             _soundSnow.SetVolumePercent(90);
-            _effectCurbLeft?.Stop();
-            _effectCurbRight?.Stop();
-            _effectEngine?.Stop();
+            _vibration?.StopEffect(VibrationEffectType.CurbLeft);
+            _vibration?.StopEffect(VibrationEffectType.CurbRight);
+            _vibration?.StopEffect(VibrationEffectType.Engine);
         }
         public void Run(float elapsed)
         {
@@ -640,7 +640,7 @@ namespace TopSpeed.Vehicles
                 if (_thrust < -50 && _speed > 0)
                 {
                     BrakeSound();
-                    _effectSpring?.Gain((int)(50.0f * _speed / _topSpeed));
+                    _vibration?.Gain(VibrationEffectType.Spring, (int)(50.0f * _speed / _topSpeed));
                     _currentSteering = _currentSteering * 2 / 3;
                 }
                 else if (_currentSteering != 0 && _speed > _topSpeed / 2)
@@ -684,26 +684,22 @@ namespace TopSpeed.Vehicles
                     else
                         UpdateEngineFreq();
                     UpdateSoundRoad();
-                    if (_effectGravel != null)
+                    if (_vibration != null)
                     {
                         if (_surface == TrackSurface.Gravel)
-                            _effectGravel.Gain((int)(_speed * 10000 / _topSpeed));
+                            _vibration.Gain(VibrationEffectType.Gravel, (int)(_speed * 10000 / _topSpeed));
                         else
-                            _effectGravel.Gain(0);
-                    }
-                    if (_effectSpring != null)
-                    {
+                            _vibration.Gain(VibrationEffectType.Gravel, 0);
+
                         if (_speed == 0)
-                            _effectSpring.Gain(10000);
+                            _vibration.Gain(VibrationEffectType.Spring, 10000);
                         else
-                            _effectSpring.Gain((int)(10000 * _speed / _topSpeed));
-                    }
-                    if (_effectEngine != null)
-                    {
+                            _vibration.Gain(VibrationEffectType.Spring, (int)(10000 * _speed / _topSpeed));
+
                         if (_speed < _topSpeed / 10)
-                            _effectEngine.Gain((int)(10000 - _speed * 10 / _topSpeed));
+                            _vibration.Gain(VibrationEffectType.Engine, (int)(10000 - _speed * 10 / _topSpeed));
                         else
-                            _effectEngine.Gain(0);
+                            _vibration.Gain(VibrationEffectType.Engine, 0);
                     }
                 }
 
@@ -781,23 +777,31 @@ namespace TopSpeed.Vehicles
                         case CarEventType.CarStart:
                             _soundEngine.SetFrequency(_idleFreq);
                             _soundThrottle?.SetFrequency(_idleFreq);
-                            _effectStart?.Stop();
+                            _vibration?.StopEffect(VibrationEffectType.Start);
                             _soundEngine.Play(loop: true);
                             _soundWipers?.Play(loop: true);
                             _engine.StartEngine();  // Set RPM to idle
                             _state = CarState.Running;
                             break;
                         case CarEventType.CarRestart:
-                            _effectCrash?.Stop();
+                            _vibration?.StopEffect(VibrationEffectType.Crash);
                             Start();
                             break;
                         case CarEventType.CrashComplete:
                             // Crash animation done - set to Crashed state, awaiting manual restart
-                            _effectCrash?.Stop();
+                            _vibration?.StopEffect(VibrationEffectType.Crash);
                             _state = CarState.Crashed;
                             break;
                         case CarEventType.InGear:
                             _switchingGear = 0;
+                            break;
+                        case CarEventType.StopVibration:
+                            if (e.Effect.HasValue)
+                                _vibration?.StopEffect(e.Effect.Value);
+                            break;
+                        case CarEventType.StopBumpVibration:
+                            _vibration?.StopEffect(VibrationEffectType.BumpLeft);
+                            _vibration?.StopEffect(VibrationEffectType.BumpRight);
                             break;
                     }
                     _events.RemoveAt(i);
@@ -943,19 +947,17 @@ namespace TopSpeed.Vehicles
                     _panPos = CalculatePan(_relPos);
                     ApplyPan(_panPos);
 
-                    if (_effectCurbLeft != null)
+                    if (_vibration != null)
                     {
                         if (_relPos < 0.05 && _speed > _topSpeed / 10)
-                            _effectCurbLeft.Play();
+                            _vibration.PlayEffect(VibrationEffectType.CurbLeft);
                         else
-                            _effectCurbLeft.Stop();
-                    }
-                    if (_effectCurbRight != null)
-                    {
+                            _vibration.StopEffect(VibrationEffectType.CurbLeft);
+
                         if (_relPos > 0.95 && _speed > _topSpeed / 10)
-                            _effectCurbRight.Play();
+                            _vibration.PlayEffect(VibrationEffectType.CurbRight);
                         else
-                            _effectCurbRight.Stop();
+                            _vibration.StopEffect(VibrationEffectType.CurbRight);
                     }
                     if (_relPos < 0 || _relPos > 1)
                     {
@@ -1038,6 +1040,7 @@ namespace TopSpeed.Vehicles
 
         public void Dispose()
         {
+            StopAllVibrations();
             _soundEngine.Dispose();
             _soundThrottle?.Dispose();
             _soundHorn.Dispose();
@@ -1054,22 +1057,23 @@ namespace TopSpeed.Vehicles
             _soundBump.Dispose();
             _soundBadSwitch.Dispose();
             _soundBackfire?.Dispose();
-            _effectStart?.Dispose();
-            _effectCrash?.Dispose();
-            _effectSpring?.Dispose();
-            _effectEngine?.Dispose();
-            _effectCurbLeft?.Dispose();
-            _effectCurbRight?.Dispose();
-            _effectGravel?.Dispose();
-            _effectBumpLeft?.Dispose();
-            _effectBumpRight?.Dispose();
         }
-        private void PushEvent(CarEventType type, float time)
+
+        private void StopAllVibrations()
+        {
+            if (_vibration == null)
+                return;
+            foreach (VibrationEffectType effect in Enum.GetValues(typeof(VibrationEffectType)))
+                _vibration.StopEffect(effect);
+        }
+
+        private void PushEvent(CarEventType type, float time, VibrationEffectType? effect = null)
         {
             _events.Add(new CarEvent
             {
                 Type = type,
-                Time = _currentTime() + time
+                Time = _currentTime() + time,
+                Effect = effect
             });
         }
 
@@ -1322,6 +1326,7 @@ namespace TopSpeed.Vehicles
         {
             public float Time { get; set; }
             public CarEventType Type { get; set; }
+            public VibrationEffectType? Effect { get; set; }
         }
 
         private enum CarEventType
@@ -1329,7 +1334,9 @@ namespace TopSpeed.Vehicles
             CarStart,
             CarRestart,
             CrashComplete,
-            InGear
+            InGear,
+            StopVibration,
+            StopBumpVibration
         }
     }
 }

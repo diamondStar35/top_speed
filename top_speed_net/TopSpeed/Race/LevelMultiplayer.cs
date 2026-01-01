@@ -64,11 +64,11 @@ namespace TopSpeed.Race
             int nrOfLaps,
             int vehicle,
             string? vehicleFile,
-            JoystickDevice? joystick,
+            IVibrationDevice? vibrationDevice,
             MultiplayerSession session,
             uint playerId,
             byte playerNumber)
-            : base(audio, speech, settings, input, trackName, automaticTransmission, nrOfLaps, vehicle, vehicleFile, joystick, trackData, trackData.UserDefined)
+            : base(audio, speech, settings, input, trackName, automaticTransmission, nrOfLaps, vehicle, vehicleFile, vibrationDevice, trackData, trackData.UserDefined)
         {
             _session = session ?? throw new ArgumentNullException(nameof(session));
             _playerId = playerId;

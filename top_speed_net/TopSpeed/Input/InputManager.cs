@@ -6,22 +6,29 @@ namespace TopSpeed.Input
 {
     internal sealed class InputManager : IDisposable
     {
+        private const int JoystickRescanIntervalMs = 1000;
         private readonly DirectInput _directInput;
         private readonly Keyboard _keyboard;
-        private readonly JoystickDevice? _joystick;
+        private readonly GamepadDevice _gamepad;
+        private JoystickDevice? _joystick;
         private readonly InputState _current;
         private readonly InputState _previous;
+        private readonly IntPtr _windowHandle;
+        private int _lastJoystickScan;
         private bool _suspended;
 
         public InputState Current => _current;
 
         public InputManager(IntPtr windowHandle)
         {
+            _windowHandle = windowHandle;
             _directInput = new DirectInput();
             _keyboard = new Keyboard(_directInput);
             _keyboard.Properties.BufferSize = 128;
             _keyboard.SetCooperativeLevel(windowHandle, CooperativeLevel.Foreground | CooperativeLevel.NonExclusive);
-            _joystick = new JoystickDevice(_directInput, windowHandle);
+            _gamepad = new GamepadDevice();
+            if (!_gamepad.IsAvailable)
+                TryRescanJoystick(force: true);
             _current = new InputState();
             _previous = new InputState();
             TryAcquire();
@@ -44,7 +51,13 @@ namespace TopSpeed.Input
                 _current.Set(key, true);
             }
 
-            _joystick?.Update();
+            _gamepad.Update();
+            if (!_gamepad.IsAvailable)
+            {
+                if (_joystick == null || !_joystick.IsAvailable)
+                    TryRescanJoystick();
+                _joystick?.Update();
+            }
         }
 
         public bool IsDown(Key key) => _current.IsDown(key);
@@ -53,16 +66,19 @@ namespace TopSpeed.Input
 
         public bool TryGetJoystickState(out JoystickStateSnapshot state)
         {
-            if (_joystick != null && _joystick.IsAvailable)
+            var device = VibrationDevice;
+            if (device != null && device.IsAvailable)
             {
-                state = _joystick.State;
+                state = device.State;
                 return true;
             }
             state = default;
             return false;
         }
 
-        public JoystickDevice? Joystick => _joystick;
+        public IVibrationDevice? VibrationDevice => _gamepad.IsAvailable
+            ? _gamepad
+            : (_joystick != null && _joystick.IsAvailable ? _joystick : null);
 
         public void Suspend()
         {
@@ -96,10 +112,27 @@ namespace TopSpeed.Input
             }
         }
 
+        private void TryRescanJoystick(bool force = false)
+        {
+            var now = Environment.TickCount;
+            if (!force && unchecked((uint)(now - _lastJoystickScan)) < (uint)JoystickRescanIntervalMs)
+                return;
+            _lastJoystickScan = now;
+
+            _joystick?.Dispose();
+            _joystick = new JoystickDevice(_directInput, _windowHandle);
+            if (_joystick.IsAvailable)
+                return;
+
+            _joystick.Dispose();
+            _joystick = null;
+        }
+
         public void Dispose()
         {
             _keyboard.Unacquire();
             _keyboard.Dispose();
+            _gamepad.Dispose();
             _joystick?.Dispose();
             _directInput.Dispose();
         }

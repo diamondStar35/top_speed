@@ -38,7 +38,6 @@ namespace TopSpeed.Menu
         public string? NavigateSoundFile { get; set; } = DefaultNavigateSound;
         public string? WrapSoundFile { get; set; } = DefaultWrapSound;
         public string? ActivateSoundFile { get; set; } = DefaultActivateSound;
-        public bool EnableItemSounds { get; set; } = false;
         public float MusicVolume
         {
             get => _musicVolume;
@@ -67,9 +66,6 @@ namespace TopSpeed.Menu
         {
             if (_initialized)
                 return;
-
-            if (EnableItemSounds)
-                LoadItemSounds();
 
             _navigateSound = LoadDefaultSound(NavigateSoundFile);
             _wrapSound = LoadDefaultSound(WrapSoundFile);
@@ -163,14 +159,9 @@ namespace TopSpeed.Menu
 
         public void ReplaceItems(IEnumerable<MenuItem> items)
         {
-            foreach (var item in _items)
-                item.Sound?.Dispose();
             _items.Clear();
             _items.AddRange(items);
             _index = NoSelection;
-
-            if (_initialized && EnableItemSounds)
-                LoadItemSounds();
         }
 
         private void MoveSelectionAndAnnounce(int delta)
@@ -253,11 +244,6 @@ namespace TopSpeed.Menu
                 return;
             var item = _items[_index];
             _speech.Speak(item.GetDisplayText(), interrupt: true);
-            if (EnableItemSounds && item.Sound != null)
-            {
-                item.Sound.Stop();
-                item.Sound.Play(loop: false);
-            }
         }
 
         public void AnnounceTitle()
@@ -341,28 +327,6 @@ namespace TopSpeed.Menu
             return null;
         }
 
-        private string? ResolveSoundPath(string? soundFile)
-        {
-            if (string.IsNullOrWhiteSpace(soundFile))
-                return null;
-            if (Path.IsPathRooted(soundFile))
-                return File.Exists(soundFile) ? soundFile : null;
-
-            var menuPath = Path.Combine(_menuSoundRoot, soundFile);
-            if (File.Exists(menuPath))
-                return menuPath;
-
-            var legacyPath = Path.Combine(_legacySoundRoot, soundFile);
-            if (File.Exists(legacyPath))
-                return legacyPath;
-
-            var enPath = Path.Combine(AssetPaths.SoundsRoot, "En", soundFile);  
-            if (File.Exists(enPath))
-                return enPath;
-
-            return null;
-        }
-
         private static void PlaySfx(AudioSourceHandle? sound)
         {
             if (sound == null)
@@ -374,25 +338,10 @@ namespace TopSpeed.Menu
 
         public void Dispose()
         {
-            foreach (var item in _items)
-                item.Sound?.Dispose();
             _navigateSound?.Dispose();
             _wrapSound?.Dispose();
             _activateSound?.Dispose();
             _music?.Dispose();
-        }
-
-        private void LoadItemSounds()
-        {
-            foreach (var item in _items)
-            {
-                if (string.IsNullOrWhiteSpace(item.SoundFile))
-                    continue;
-
-                var path = ResolveSoundPath(item.SoundFile);
-                if (path != null)
-                    item.Sound = _audio.CreateSource(path, streamFromDisk: true);
-            }
         }
     }
 }

@@ -55,48 +55,46 @@ namespace TopSpeed.Core
 
         private readonly struct TrackInfo
         {
-            public TrackInfo(string key, string display, string soundFile)
+            public TrackInfo(string key, string display)
             {
                 Key = key;
                 Display = display;
-                SoundFile = soundFile;
             }
 
             public string Key { get; }
             public string Display { get; }
-            public string SoundFile { get; }
         }
 
         private static readonly TrackInfo[] RaceTracks =
         {
-            new TrackInfo("america", "America", Path.Combine("Tracks", "america.ogg")),
-            new TrackInfo("austria", "Austria", Path.Combine("Tracks", "austria.ogg")),
-            new TrackInfo("belgium", "Belgium", Path.Combine("Tracks", "belgium.ogg")),
-            new TrackInfo("brazil", "Brazil", Path.Combine("Tracks", "brazil.ogg")),
-            new TrackInfo("china", "China", Path.Combine("Tracks", "china.ogg")),
-            new TrackInfo("england", "England", Path.Combine("Tracks", "england.ogg")),
-            new TrackInfo("finland", "Finland", Path.Combine("Tracks", "finland.ogg")),
-            new TrackInfo("france", "France", Path.Combine("Tracks", "france.ogg")),
-            new TrackInfo("germany", "Germany", Path.Combine("Tracks", "germany.ogg")),
-            new TrackInfo("ireland", "Ireland", Path.Combine("Tracks", "ireland.ogg")),
-            new TrackInfo("italy", "Italy", Path.Combine("Tracks", "italy.ogg")),
-            new TrackInfo("netherlands", "Netherlands", Path.Combine("Tracks", "netherlands.ogg")),
-            new TrackInfo("portugal", "Portugal", Path.Combine("Tracks", "portugal.ogg")),
-            new TrackInfo("russia", "Russia", Path.Combine("Tracks", "russia.ogg")),
-            new TrackInfo("spain", "Spain", Path.Combine("Tracks", "spain.ogg")),
-            new TrackInfo("sweden", "Sweden", Path.Combine("Tracks", "sweden.ogg")),
-            new TrackInfo("switserland", "Switserland", Path.Combine("Tracks", "switserland.ogg"))
+            new TrackInfo("america", "America"),
+            new TrackInfo("austria", "Austria"),
+            new TrackInfo("belgium", "Belgium"),
+            new TrackInfo("brazil", "Brazil"),
+            new TrackInfo("china", "China"),
+            new TrackInfo("england", "England"),
+            new TrackInfo("finland", "Finland"),
+            new TrackInfo("france", "France"),
+            new TrackInfo("germany", "Germany"),
+            new TrackInfo("ireland", "Ireland"),
+            new TrackInfo("italy", "Italy"),
+            new TrackInfo("netherlands", "Netherlands"),
+            new TrackInfo("portugal", "Portugal"),
+            new TrackInfo("russia", "Russia"),
+            new TrackInfo("spain", "Spain"),
+            new TrackInfo("sweden", "Sweden"),
+            new TrackInfo("switserland", "Switserland")
         };
 
         private static readonly TrackInfo[] AdventureTracks =
         {
-            new TrackInfo("advHills", "Rally hills", Path.Combine("Tracks", "rallyhills.ogg")),
-            new TrackInfo("advCoast", "French coast", Path.Combine("Tracks", "frenchcoast.ogg")),
-            new TrackInfo("advCountry", "English country", Path.Combine("Tracks", "englishcountry.ogg")),
-            new TrackInfo("advAirport", "Ride airport", Path.Combine("Tracks", "rideairport.ogg")),
-            new TrackInfo("advDesert", "Rally desert", Path.Combine("Tracks", "rallydesert.ogg")),
-            new TrackInfo("advRush", "Rush hour", Path.Combine("Tracks", "rushhour.ogg")),
-            new TrackInfo("advEscape", "Polar escape", Path.Combine("Tracks", "polarescape.ogg"))
+            new TrackInfo("advHills", "Rally hills"),
+            new TrackInfo("advCoast", "French coast"),
+            new TrackInfo("advCountry", "English country"),
+            new TrackInfo("advAirport", "Ride airport"),
+            new TrackInfo("advDesert", "Rally desert"),
+            new TrackInfo("advRush", "Rush hour"),
+            new TrackInfo("advEscape", "Polar escape")
         };
 
         private readonly GameWindow _window;
@@ -247,12 +245,12 @@ namespace TopSpeed.Core
         {
             var mainMenu = _menu.CreateMenu("main", new[]
             {
-                new MenuItem("Quick start", MenuAction.QuickStart, "quickstart.ogg"),
-                new MenuItem("Time trial", MenuAction.None, "timetrial.ogg", nextMenuId: "time_trial_type", onActivate: () => PrepareMode(RaceMode.TimeTrial)),
-                new MenuItem("Single race", MenuAction.None, "singlerace.ogg", nextMenuId: "single_race_type", onActivate: () => PrepareMode(RaceMode.SingleRace)),
-                new MenuItem("MultiPlayer game", MenuAction.None, "multiplayergame.ogg", nextMenuId: "multiplayer"),
-                new MenuItem("Options", MenuAction.None, "options.ogg", nextMenuId: "options_main"),
-                new MenuItem("Exit Game", MenuAction.Exit, "exitgame.ogg")
+                new MenuItem("Quick start", MenuAction.QuickStart),
+                new MenuItem("Time trial", MenuAction.None, nextMenuId: "time_trial_type", onActivate: () => PrepareMode(RaceMode.TimeTrial)),
+                new MenuItem("Single race", MenuAction.None, nextMenuId: "single_race_type", onActivate: () => PrepareMode(RaceMode.SingleRace)),
+                new MenuItem("MultiPlayer game", MenuAction.None, nextMenuId: "multiplayer"),
+                new MenuItem("Options", MenuAction.None, nextMenuId: "options_main"),
+                new MenuItem("Exit Game", MenuAction.Exit)
             }, "Main menu");
             mainMenu.MusicFile = "theme1.ogg";
             mainMenu.MusicVolume = _settings.MusicVolume;
@@ -297,9 +295,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Race track", MenuAction.None, "racetrack.ogg", nextMenuId: TrackMenuId(mode, TrackCategory.RaceTrack), onActivate: () => _setup.TrackCategory = TrackCategory.RaceTrack),
-                new MenuItem("Street adventure", MenuAction.None, "streetadventure.ogg", nextMenuId: TrackMenuId(mode, TrackCategory.StreetAdventure), onActivate: () => _setup.TrackCategory = TrackCategory.StreetAdventure),
-                new MenuItem("Random", MenuAction.None, "random.ogg", onActivate: () => PushRandomTrackType(mode)),
+                new MenuItem("Race track", MenuAction.None, nextMenuId: TrackMenuId(mode, TrackCategory.RaceTrack), onActivate: () => _setup.TrackCategory = TrackCategory.RaceTrack),
+                new MenuItem("Street adventure", MenuAction.None, nextMenuId: TrackMenuId(mode, TrackCategory.StreetAdventure), onActivate: () => _setup.TrackCategory = TrackCategory.StreetAdventure),
+                new MenuItem("Random", MenuAction.None, onActivate: () => PushRandomTrackType(mode)),
                 BackItem()
             };
             var title = "Choose track type";
@@ -310,8 +308,8 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Join a game on the local network", MenuAction.None, null, onActivate: StartServerDiscovery, suppressPostActivateAnnouncement: true),
-                new MenuItem("Enter the IP address or domain manually", MenuAction.None, null, onActivate: BeginManualServerEntry, suppressPostActivateAnnouncement: true),
+                new MenuItem("Join a game on the local network", MenuAction.None, onActivate: StartServerDiscovery, suppressPostActivateAnnouncement: true),
+                new MenuItem("Enter the IP address or domain manually", MenuAction.None, onActivate: BeginManualServerEntry, suppressPostActivateAnnouncement: true),
                 BackItem()
             };
             return _menu.CreateMenu("multiplayer", items, "Multiplayer");
@@ -330,11 +328,11 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Create a new game", MenuAction.None, null, onActivate: SpeakNotImplemented),
-                new MenuItem("Join an existing game", MenuAction.None, null, onActivate: SpeakNotImplemented),
-                new MenuItem("Who is online", MenuAction.None, null, onActivate: SpeakNotImplemented),
-                new MenuItem("Options", MenuAction.None, null, nextMenuId: "options_main"),
-                new MenuItem("Disconnect", MenuAction.None, null, onActivate: DisconnectFromServer)
+                new MenuItem("Create a new game", MenuAction.None, onActivate: SpeakNotImplemented),
+                new MenuItem("Join an existing game", MenuAction.None, onActivate: SpeakNotImplemented),
+                new MenuItem("Who is online", MenuAction.None, onActivate: SpeakNotImplemented),
+                new MenuItem("Options", MenuAction.None, nextMenuId: "options_main"),
+                new MenuItem("Disconnect", MenuAction.None, onActivate: DisconnectFromServer)
             };
             return _menu.CreateMenu("multiplayer_lobby", items, string.Empty);
         }
@@ -348,10 +346,10 @@ namespace TopSpeed.Core
             foreach (var track in trackList)
             {
                 var key = track.Key;
-                items.Add(new MenuItem(track.Display, MenuAction.None, track.SoundFile, nextMenuId: nextMenuId, onActivate: () => SelectTrack(category, key)));
+                items.Add(new MenuItem(track.Display, MenuAction.None, nextMenuId: nextMenuId, onActivate: () => SelectTrack(category, key)));
             }
 
-            items.Add(new MenuItem("Random", MenuAction.None, "random.ogg", nextMenuId: nextMenuId, onActivate: () => SelectRandomTrack(category)));
+            items.Add(new MenuItem("Random", MenuAction.None, nextMenuId: nextMenuId, onActivate: () => SelectRandomTrack(category)));
             items.Add(BackItem());
             var title = "Choose track";
             return _menu.CreateMenu(id, items, title);
@@ -366,18 +364,17 @@ namespace TopSpeed.Core
             {
                 var index = i;
                 var name = VehicleCatalog.Vehicles[i].Name;
-                var soundFile = Path.Combine("Vehicles", $"vehicle{i + 1}.ogg");
-                items.Add(new MenuItem(name, MenuAction.None, soundFile, nextMenuId: nextMenuId, onActivate: () => SelectVehicle(index)));
+                items.Add(new MenuItem(name, MenuAction.None, nextMenuId: nextMenuId, onActivate: () => SelectVehicle(index)));
             }
 
             foreach (var file in GetCustomVehicleFiles())
             {
                 var filePath = file;
                 var fileName = Path.GetFileNameWithoutExtension(filePath) ?? "Custom vehicle";
-                items.Add(new MenuItem(fileName, MenuAction.None, null, nextMenuId: nextMenuId, onActivate: () => SelectCustomVehicle(filePath)));
+                items.Add(new MenuItem(fileName, MenuAction.None, nextMenuId: nextMenuId, onActivate: () => SelectCustomVehicle(filePath)));
             }
 
-            items.Add(new MenuItem("Random", MenuAction.None, "random.ogg", nextMenuId: nextMenuId, onActivate: SelectRandomVehicle));
+            items.Add(new MenuItem("Random", MenuAction.None, nextMenuId: nextMenuId, onActivate: SelectRandomVehicle));
             items.Add(BackItem());
             var title = "Choose vehicle";
             return _menu.CreateMenu(id, items, title);
@@ -387,9 +384,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Automatic", MenuAction.None, "automatictransmission.ogg", onActivate: () => CompleteTransmission(mode, TransmissionMode.Automatic)),
-                new MenuItem("Manual", MenuAction.None, "manualtransmission.ogg", onActivate: () => CompleteTransmission(mode, TransmissionMode.Manual)),
-                new MenuItem("Random", MenuAction.None, "random.ogg", onActivate: () => CompleteTransmission(mode, Algorithm.RandomInt(2) == 0 ? TransmissionMode.Automatic : TransmissionMode.Manual)),
+                new MenuItem("Automatic", MenuAction.None, onActivate: () => CompleteTransmission(mode, TransmissionMode.Automatic)),
+                new MenuItem("Manual", MenuAction.None, onActivate: () => CompleteTransmission(mode, TransmissionMode.Manual)),
+                new MenuItem("Random", MenuAction.None, onActivate: () => CompleteTransmission(mode, Algorithm.RandomInt(2) == 0 ? TransmissionMode.Automatic : TransmissionMode.Manual)),
                 BackItem()
             };
             var title = "Choose transmission";
@@ -400,11 +397,11 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Game settings", MenuAction.None, "gamesettings.ogg", nextMenuId: "options_game"),
-                new MenuItem("Controls", MenuAction.None, "controls.ogg", nextMenuId: "options_controls"),
-                new MenuItem("Race settings", MenuAction.None, "racesettings.ogg", nextMenuId: "options_race"),
-                new MenuItem("Server settings", MenuAction.None, null, nextMenuId: "options_server"),
-                new MenuItem("Restore default settings", MenuAction.None, "restoredefaults.ogg", nextMenuId: "options_restore"),
+                new MenuItem("Game settings", MenuAction.None, nextMenuId: "options_game"),
+                new MenuItem("Controls", MenuAction.None, nextMenuId: "options_controls"),
+                new MenuItem("Race settings", MenuAction.None, nextMenuId: "options_race"),
+                new MenuItem("Server settings", MenuAction.None, nextMenuId: "options_server"),
+                new MenuItem("Restore default settings", MenuAction.None, nextMenuId: "options_restore"),
                 BackItem()
             };
             return _menu.CreateMenu("options_main", items, "Options");
@@ -414,9 +411,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"Include custom tracks in randomization: {FormatOnOff(_settings.RandomCustomTracks)}", MenuAction.None, "randomcustomtracks.ogg", onActivate: () => ToggleSetting(() => _settings.RandomCustomTracks = !_settings.RandomCustomTracks)),
-                new MenuItem(() => $"Include custom vehicles in randomization: {FormatOnOff(_settings.RandomCustomVehicles)}", MenuAction.None, "randomcustomvehicles.ogg", onActivate: () => ToggleSetting(() => _settings.RandomCustomVehicles = !_settings.RandomCustomVehicles)),
-                new MenuItem(() => $"Enable Three-D sound: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, "threed.ogg", onActivate: () => ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
+                new MenuItem(() => $"Include custom tracks in randomization: {FormatOnOff(_settings.RandomCustomTracks)}", MenuAction.None, onActivate: () => ToggleSetting(() => _settings.RandomCustomTracks = !_settings.RandomCustomTracks)),
+                new MenuItem(() => $"Include custom vehicles in randomization: {FormatOnOff(_settings.RandomCustomVehicles)}", MenuAction.None, onActivate: () => ToggleSetting(() => _settings.RandomCustomVehicles = !_settings.RandomCustomVehicles)),
+                new MenuItem(() => $"Enable Three-D sound: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, onActivate: () => ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
                 BackItem()
             };
             return _menu.CreateMenu("options_game", items, "Game settings");
@@ -426,7 +423,7 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"Custom server port: {FormatServerPort(_settings.ServerPort)}", MenuAction.None, null, onActivate: BeginServerPortEntry),
+                new MenuItem(() => $"Custom server port: {FormatServerPort(_settings.ServerPort)}", MenuAction.None, onActivate: BeginServerPortEntry),
                 BackItem()
             };
             return _menu.CreateMenu("options_server", items, "Server settings");
@@ -537,7 +534,7 @@ namespace TopSpeed.Core
             {
                 var info = server;
                 var label = $"{info.Address}:{info.Port}";
-                items.Add(new MenuItem(label, MenuAction.None, null, onActivate: () => SelectDiscoveredServer(info), suppressPostActivateAnnouncement: true));
+                items.Add(new MenuItem(label, MenuAction.None, onActivate: () => SelectDiscoveredServer(info), suppressPostActivateAnnouncement: true));
             }
             items.Add(BackItem());
             _menu.UpdateItems("multiplayer_servers", items);
@@ -663,8 +660,8 @@ namespace TopSpeed.Core
 
             _speech.Speak($"Failed to connect: {result.Message}", interrupt: true);
             _state = AppState.Menu;
-            _menu.ShowRoot("main");
-            _speech.Speak("Main menu", interrupt: true);
+                _menu.ShowRoot("main");
+                _speech.Speak("Main menu", interrupt: true);
         }
 
         private void BeginServerPortEntry()
@@ -705,10 +702,10 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"Select device: {DeviceLabel(_settings.DeviceMode)}", MenuAction.None, "selectdevice.ogg", nextMenuId: "options_controls_device"),
-                new MenuItem(() => $"Force feedback: {FormatOnOff(_settings.ForceFeedback)}", MenuAction.None, "forcefeedback.ogg", onActivate: () => ToggleSetting(() => _settings.ForceFeedback = !_settings.ForceFeedback)),
-                new MenuItem("Map keyboard keys", MenuAction.None, "assignkeyboard.ogg", nextMenuId: "options_controls_keyboard"),
-                new MenuItem("Map joystick keys", MenuAction.None, "assignjoystick.ogg", nextMenuId: "options_controls_joystick"),
+                new MenuItem(() => $"Select device: {DeviceLabel(_settings.DeviceMode)}", MenuAction.None, nextMenuId: "options_controls_device"),
+                new MenuItem(() => $"Force feedback: {FormatOnOff(_settings.ForceFeedback)}", MenuAction.None, onActivate: () => ToggleSetting(() => _settings.ForceFeedback = !_settings.ForceFeedback)),
+                new MenuItem("Map keyboard keys", MenuAction.None, nextMenuId: "options_controls_keyboard"),
+                new MenuItem("Map joystick keys", MenuAction.None, nextMenuId: "options_controls_joystick"),
                 BackItem()
             };
             return _menu.CreateMenu("options_controls", items, "Controls");
@@ -718,9 +715,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Keyboard", MenuAction.Back, "keyboard.ogg", onActivate: () => SetDevice(InputDeviceMode.Keyboard)),
-                new MenuItem("Joystick", MenuAction.Back, "joystickorwheel.ogg", onActivate: () => SetDevice(InputDeviceMode.Joystick)),
-                new MenuItem("Both", MenuAction.Back, null, onActivate: () => SetDevice(InputDeviceMode.Both)),
+                new MenuItem("Keyboard", MenuAction.Back, onActivate: () => SetDevice(InputDeviceMode.Keyboard)),
+                new MenuItem("Joystick", MenuAction.Back, onActivate: () => SetDevice(InputDeviceMode.Joystick)),
+                new MenuItem("Both", MenuAction.Back, onActivate: () => SetDevice(InputDeviceMode.Both)),
                 BackItem()
             };
             return _menu.CreateMenu("options_controls_device", items, "Choose control device");
@@ -742,19 +739,19 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"{ActionLabel(MappingAction.SteerLeft)}: {FormatMappingValue(MappingAction.SteerLeft, mode)}", MenuAction.None, "steerleft.ogg", onActivate: () => BeginMapping(mode, MappingAction.SteerLeft)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.SteerRight)}: {FormatMappingValue(MappingAction.SteerRight, mode)}", MenuAction.None, "steerright.ogg", onActivate: () => BeginMapping(mode, MappingAction.SteerRight)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.Throttle)}: {FormatMappingValue(MappingAction.Throttle, mode)}", MenuAction.None, "throttle.ogg", onActivate: () => BeginMapping(mode, MappingAction.Throttle)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.Brake)}: {FormatMappingValue(MappingAction.Brake, mode)}", MenuAction.None, "brake.ogg", onActivate: () => BeginMapping(mode, MappingAction.Brake)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.GearUp)}: {FormatMappingValue(MappingAction.GearUp, mode)}", MenuAction.None, "shiftgearup.ogg", onActivate: () => BeginMapping(mode, MappingAction.GearUp)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.GearDown)}: {FormatMappingValue(MappingAction.GearDown, mode)}", MenuAction.None, "shiftgeardown.ogg", onActivate: () => BeginMapping(mode, MappingAction.GearDown)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.Horn)}: {FormatMappingValue(MappingAction.Horn, mode)}", MenuAction.None, "usehorn.ogg", onActivate: () => BeginMapping(mode, MappingAction.Horn)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.RequestInfo)}: {FormatMappingValue(MappingAction.RequestInfo, mode)}", MenuAction.None, "requestinfo.ogg", onActivate: () => BeginMapping(mode, MappingAction.RequestInfo)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentGear)}: {FormatMappingValue(MappingAction.CurrentGear, mode)}", MenuAction.None, "currentgear.ogg", onActivate: () => BeginMapping(mode, MappingAction.CurrentGear)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentLapNr)}: {FormatMappingValue(MappingAction.CurrentLapNr, mode)}", MenuAction.None, "currentlapnr.ogg", onActivate: () => BeginMapping(mode, MappingAction.CurrentLapNr)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentRacePerc)}: {FormatMappingValue(MappingAction.CurrentRacePerc, mode)}", MenuAction.None, "currentracepercentage.ogg", onActivate: () => BeginMapping(mode, MappingAction.CurrentRacePerc)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentLapPerc)}: {FormatMappingValue(MappingAction.CurrentLapPerc, mode)}", MenuAction.None, "currentlappercentage.ogg", onActivate: () => BeginMapping(mode, MappingAction.CurrentLapPerc)),
-                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentRaceTime)}: {FormatMappingValue(MappingAction.CurrentRaceTime, mode)}", MenuAction.None, "currentracetime.ogg", onActivate: () => BeginMapping(mode, MappingAction.CurrentRaceTime)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.SteerLeft)}: {FormatMappingValue(MappingAction.SteerLeft, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.SteerLeft)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.SteerRight)}: {FormatMappingValue(MappingAction.SteerRight, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.SteerRight)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.Throttle)}: {FormatMappingValue(MappingAction.Throttle, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.Throttle)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.Brake)}: {FormatMappingValue(MappingAction.Brake, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.Brake)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.GearUp)}: {FormatMappingValue(MappingAction.GearUp, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.GearUp)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.GearDown)}: {FormatMappingValue(MappingAction.GearDown, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.GearDown)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.Horn)}: {FormatMappingValue(MappingAction.Horn, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.Horn)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.RequestInfo)}: {FormatMappingValue(MappingAction.RequestInfo, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.RequestInfo)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentGear)}: {FormatMappingValue(MappingAction.CurrentGear, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.CurrentGear)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentLapNr)}: {FormatMappingValue(MappingAction.CurrentLapNr, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.CurrentLapNr)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentRacePerc)}: {FormatMappingValue(MappingAction.CurrentRacePerc, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.CurrentRacePerc)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentLapPerc)}: {FormatMappingValue(MappingAction.CurrentLapPerc, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.CurrentLapPerc)),
+                new MenuItem(() => $"{ActionLabel(MappingAction.CurrentRaceTime)}: {FormatMappingValue(MappingAction.CurrentRaceTime, mode)}", MenuAction.None, onActivate: () => BeginMapping(mode, MappingAction.CurrentRaceTime)),
                 BackItem()
             };
             return items;
@@ -764,12 +761,12 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"Copilot: {CopilotLabel(_settings.Copilot)}", MenuAction.None, "copilot.ogg", nextMenuId: "options_race_copilot"),
-                new MenuItem(() => $"Curve announcements: {CurveLabel(_settings.CurveAnnouncement)}", MenuAction.None, "curveannouncement.ogg", onActivate: ToggleCurveAnnouncements),
-                new MenuItem(() => $"Automatic race information: {AutomaticInfoLabel(_settings.AutomaticInfo)}", MenuAction.None, "automaticinformation.ogg", nextMenuId: "options_race_info"),
-                new MenuItem(() => $"Number of laps: {_settings.NrOfLaps}", MenuAction.None, "nroflaps.ogg", nextMenuId: "options_race_laps"),
-                new MenuItem(() => $"Number of computer players: {_settings.NrOfComputers}", MenuAction.None, "nrofcomputers.ogg", nextMenuId: "options_race_computers"),
-                new MenuItem(() => $"Single race difficulty: {DifficultyLabel(_settings.Difficulty)}", MenuAction.None, "difficulty.ogg", nextMenuId: "options_race_difficulty"),
+                new MenuItem(() => $"Copilot: {CopilotLabel(_settings.Copilot)}", MenuAction.None, nextMenuId: "options_race_copilot"),
+                new MenuItem(() => $"Curve announcements: {CurveLabel(_settings.CurveAnnouncement)}", MenuAction.None, onActivate: ToggleCurveAnnouncements),
+                new MenuItem(() => $"Automatic race information: {AutomaticInfoLabel(_settings.AutomaticInfo)}", MenuAction.None, nextMenuId: "options_race_info"),
+                new MenuItem(() => $"Number of laps: {_settings.NrOfLaps}", MenuAction.None, nextMenuId: "options_race_laps"),
+                new MenuItem(() => $"Number of computer players: {_settings.NrOfComputers}", MenuAction.None, nextMenuId: "options_race_computers"),
+                new MenuItem(() => $"Single race difficulty: {DifficultyLabel(_settings.Difficulty)}", MenuAction.None, nextMenuId: "options_race_difficulty"),
                 BackItem()
             };
             return _menu.CreateMenu("options_race", items, "Race settings");    
@@ -779,9 +776,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Off", MenuAction.Back, "off.ogg", onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.Off)),
-                new MenuItem("Laps only", MenuAction.Back, "lapsonly.ogg", onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.LapsOnly)),
-                new MenuItem("On", MenuAction.Back, "on.ogg", onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.On)),
+                new MenuItem("Off", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.Off)),
+                new MenuItem("Laps only", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.LapsOnly)),
+                new MenuItem("On", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.On)),
                 BackItem()
             };
             return _menu.CreateMenu("options_race_info", items, "Automatic information");
@@ -791,9 +788,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Off", MenuAction.Back, "off.ogg", onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.Off)),
-                new MenuItem("Curves only", MenuAction.Back, "curvesonly.ogg", onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.CurvesOnly)),
-                new MenuItem("All", MenuAction.Back, "all.ogg", onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.All)),
+                new MenuItem("Off", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.Off)),
+                new MenuItem("Curves only", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.CurvesOnly)),
+                new MenuItem("All", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Copilot = CopilotMode.All)),
                 BackItem()
             };
             return _menu.CreateMenu("options_race_copilot", items, "Copilot settings");
@@ -805,8 +802,7 @@ namespace TopSpeed.Core
             for (var laps = 2; laps <= 20; laps++)
             {
                 var value = laps;
-                var sound = Path.Combine("Numbers", $"{laps}.ogg");
-                items.Add(new MenuItem(laps.ToString(), MenuAction.Back, sound, onActivate: () => UpdateSetting(() => _settings.NrOfLaps = value)));
+                items.Add(new MenuItem(laps.ToString(), MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.NrOfLaps = value)));
             }
             items.Add(BackItem());
             return _menu.CreateMenu("options_race_laps", items, "Choose lap count");
@@ -818,8 +814,7 @@ namespace TopSpeed.Core
             for (var count = 1; count <= 7; count++)
             {
                 var value = count;
-                var sound = Path.Combine("Numbers", $"{count}.ogg");
-                items.Add(new MenuItem(count.ToString(), MenuAction.Back, sound, onActivate: () => UpdateSetting(() => _settings.NrOfComputers = value)));
+                items.Add(new MenuItem(count.ToString(), MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.NrOfComputers = value)));
             }
             items.Add(BackItem());
             return _menu.CreateMenu("options_race_computers", items, "Choose number of computer players");
@@ -829,9 +824,9 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Easy", MenuAction.Back, "easy.ogg", onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Easy)),
-                new MenuItem("Normal", MenuAction.Back, "normal.ogg", onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Normal)),
-                new MenuItem("Hard", MenuAction.Back, "hard.ogg", onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Hard)),
+                new MenuItem("Easy", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Easy)),
+                new MenuItem("Normal", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Normal)),
+                new MenuItem("Hard", MenuAction.Back, onActivate: () => UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Hard)),
                 BackItem()
             };
             return _menu.CreateMenu("options_race_difficulty", items, "Choose difficulty");
@@ -841,8 +836,8 @@ namespace TopSpeed.Core
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Yes", MenuAction.Back, "yes.ogg", onActivate: RestoreDefaults),
-                new MenuItem("No", MenuAction.Back, "no.ogg"),
+                new MenuItem("Yes", MenuAction.Back, onActivate: RestoreDefaults),
+                new MenuItem("No", MenuAction.Back),
                 BackItem()
             };
             return _menu.CreateMenu("options_restore", items, "Restore defaults");
@@ -1497,7 +1492,7 @@ namespace TopSpeed.Core
 
         private static MenuItem BackItem()
         {
-            return new MenuItem("Go back", MenuAction.Back, "goback.ogg");
+            return new MenuItem("Go back", MenuAction.Back);
         }
 
         private static string FormatOnOff(bool value) => value ? "on" : "off";

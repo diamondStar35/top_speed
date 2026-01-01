@@ -136,59 +136,13 @@ namespace TopSpeed.Race
             }
 
             // Allow starting engine initially or restarting after crash
-            if (_input.GetStartEngine() && _started && !_finished)
-            {
-                var canStart = !_engineStarted || _car.State == CarState.Crashed;
-                if (canStart)
-                {
-                    _engineStarted = true;
-                    if (_car.State == CarState.Crashed)
-                        _car.RestartAfterCrash();
-                    else
-                        _car.Start();
-                }
-            }
+            HandleEngineStartRequest();
 
-            if (_input.GetCurrentGear() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var gear = _car.Gear;
-                SpeakText($"Gear {gear}");
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            if (_input.GetCurrentLapNr() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                SpeakText($"Lap {_lap}");
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            if (_input.GetCurrentRacePerc() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var perc = (_car.PositionY / (float)(_track.Length * _nrOfLaps)) * 100.0f;
-                var units = Math.Max(0, Math.Min(100, (int)perc));
-                SpeakText(FormatPercentageText("Race percentage", units));
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            if (_input.GetCurrentLapPerc() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var perc = ((_car.PositionY - (_track.Length * (_lap - 1))) / _track.Length) * 100.0f;
-                var units = Math.Max(0, Math.Min(100, (int)perc));
-                SpeakText(FormatPercentageText("Lap percentage", units));
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            if (_input.GetCurrentRaceTime() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var text = FormatTimeText((int)(_stopwatch.ElapsedMilliseconds - _stopwatchDiffMs), detailed: false);
-                SpeakText($"Race time {text}");
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
+            HandleCurrentGearRequest();
+            HandleCurrentLapNumberRequest();
+            HandleCurrentRacePercentageRequest();
+            HandleCurrentLapPercentageRequest();
+            HandleCurrentRaceTimeRequestActiveOnly();
 
             if (_input.TryGetPlayerInfo(out var player) && _acceptPlayerInfo && player == 0)
             {
@@ -197,45 +151,10 @@ namespace TopSpeed.Race
                 PushEvent(RaceEventType.AcceptPlayerInfo, 0.5f);
             }
 
-            if (_input.GetTrackName() && _acceptCurrentRaceInfo)
-            {
-                _acceptCurrentRaceInfo = false;
-                SpeakText(FormatTrackName(_track.TrackName));
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            // Speed and RPM report (S key)
-            if (_input.GetSpeedReport() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var speedKmh = _car.SpeedKmh;
-                var rpm = _car.EngineRpm;
-                SpeakText($"{speedKmh:F0} kilometers per hour, {rpm:F0} RPM");
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            // Distance traveled report (C key)
-            if (_input.GetDistanceReport() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
-            {
-                _acceptCurrentRaceInfo = false;
-                var distanceM = _car.DistanceMeters;
-                var distanceKm = distanceM / 1000f;
-                if (distanceKm >= 1f)
-                    SpeakText($"{distanceKm:F1} kilometers traveled");
-                else
-                    SpeakText($"{distanceM:F0} meters traveled");
-                PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
-            }
-
-            if (!_input.GetPause() && !_pauseKeyReleased)
-            {
-                _pauseKeyReleased = true;
-            }
-            else if (_input.GetPause() && _pauseKeyReleased && _started && _lap <= _nrOfLaps && _car.State == CarState.Running)
-            {
-                _pauseKeyReleased = false;
-                PauseRequested = true;
-            }
+            HandleTrackNameRequest();
+            HandleSpeedReportRequest();
+            HandleDistanceReportRequest();
+            HandlePauseRequest(ref _pauseKeyReleased);
 
             if (UpdateExitWhenQueueIdle())
                 return;

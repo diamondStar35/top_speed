@@ -1,5 +1,4 @@
 using System;
-using TS.Audio;
 
 namespace TopSpeed.Menu
 {
@@ -11,15 +10,12 @@ namespace TopSpeed.Menu
         public string Text => _text;
         public MenuAction Action { get; }
         public string? NextMenuId { get; }
-        public string? SoundFile { get; }
-        public AudioSourceHandle? Sound { get; set; }
         public Action? OnActivate { get; }
         public bool SuppressPostActivateAnnouncement { get; }
 
         public MenuItem(
             string text,
             MenuAction action,
-            string? soundFile,
             string? nextMenuId = null,
             Action? onActivate = null,
             bool suppressPostActivateAnnouncement = false)
@@ -27,7 +23,6 @@ namespace TopSpeed.Menu
             _text = text;
             _textProvider = null;
             Action = action;
-            SoundFile = soundFile;
             NextMenuId = nextMenuId;
             OnActivate = onActivate;
             SuppressPostActivateAnnouncement = suppressPostActivateAnnouncement;
@@ -36,7 +31,6 @@ namespace TopSpeed.Menu
         public MenuItem(
             Func<string> textProvider,
             MenuAction action,
-            string? soundFile,
             string? nextMenuId = null,
             Action? onActivate = null,
             bool suppressPostActivateAnnouncement = false)
@@ -44,7 +38,6 @@ namespace TopSpeed.Menu
             _text = string.Empty;
             _textProvider = textProvider ?? throw new ArgumentNullException(nameof(textProvider));
             Action = action;
-            SoundFile = soundFile;
             NextMenuId = nextMenuId;
             OnActivate = onActivate;
             SuppressPostActivateAnnouncement = suppressPostActivateAnnouncement;

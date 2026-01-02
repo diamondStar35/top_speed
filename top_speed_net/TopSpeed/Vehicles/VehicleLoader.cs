@@ -58,6 +58,8 @@ namespace TopSpeed.Vehicles
                 TireCircumferenceM = parameters.TireCircumferenceM,
                 LateralGripCoefficient = parameters.LateralGripCoefficient,
                 HighSpeedStability = parameters.HighSpeedStability,
+                WheelbaseM = parameters.WheelbaseM,
+                MaxSteerDeg = parameters.MaxSteerDeg,
                 PowerFactor = parameters.PowerFactor,
                 GearRatios = parameters.GearRatios,
                 BrakeStrength = parameters.BrakeStrength
@@ -126,6 +128,8 @@ namespace TopSpeed.Vehicles
             var brakeStrength = ReadFloat(settings, "brakestrength", 1.0f);     
             var lateralGrip = ReadFloat(settings, "lateralgrip", 1.0f);
             var highSpeedStability = ReadFloat(settings, "highspeedstability", 0.0f);
+            var wheelbase = ReadFloat(settings, "wheelbase", 2.7f);
+            var maxSteerDeg = ReadFloat(settings, "maxsteerdeg", 35f);
 
             var tireCircumferenceM = ReadFloat(settings, "tirecircumference", 0f);
             if (tireCircumferenceM <= 0f)
@@ -176,6 +180,8 @@ namespace TopSpeed.Vehicles
                 TireCircumferenceM = tireCircumferenceM,
                 LateralGripCoefficient = lateralGrip,
                 HighSpeedStability = highSpeedStability,
+                WheelbaseM = wheelbase,
+                MaxSteerDeg = maxSteerDeg,
                 PowerFactor = powerFactor,
                 GearRatios = gearRatios,
                 BrakeStrength = brakeStrength

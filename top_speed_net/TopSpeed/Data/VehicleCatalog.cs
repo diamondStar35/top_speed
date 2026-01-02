@@ -44,6 +44,8 @@ namespace TopSpeed.Data
         public float TireCircumferenceM { get; }
         public float LateralGripCoefficient { get; }
         public float HighSpeedStability { get; }
+        public float WheelbaseM { get; }
+        public float MaxSteerDeg { get; }
         public float PowerFactor { get; }
         public float[]? GearRatios { get; }
         public float BrakeStrength { get; }
@@ -89,6 +91,8 @@ namespace TopSpeed.Data
             float tireCircumferenceM = 2.0f,
             float lateralGripCoefficient = 1.0f,
             float highSpeedStability = 0.0f,
+            float wheelbaseM = 2.7f,
+            float maxSteerDeg = 35f,
             float powerFactor = 0.5f,
             float[]? gearRatios = null,
             float brakeStrength = 1.0f)
@@ -135,6 +139,8 @@ namespace TopSpeed.Data
             TireCircumferenceM = tireCircumferenceM;
             LateralGripCoefficient = lateralGripCoefficient;
             HighSpeedStability = highSpeedStability;
+            WheelbaseM = wheelbaseM;
+            MaxSteerDeg = maxSteerDeg;
             PowerFactor = powerFactor;
             GearRatios = gearRatios;
             BrakeStrength = brakeStrength;
@@ -152,7 +158,7 @@ namespace TopSpeed.Data
             return (float)(Math.PI * (diameterMm / 1000f));
         }
 
-                // Real-world gear ratios per vehicle (see sources in project notes)
+                // Real-world gear ratios per vehicle
         private static readonly float[] GtrRatios = new[] { 4.06f, 2.30f, 1.59f, 1.25f, 1.00f, 0.80f };
         private static readonly float[] Gt3RsRatios = new[] { 3.75f, 2.38f, 1.72f, 1.34f, 1.11f, 0.96f, 0.84f };
         private static readonly float[] Fiat500Ratios = new[] { 3.909f, 2.238f, 1.520f, 1.156f, 0.872f };
@@ -177,7 +183,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 652f, peakTorqueRpm: 3600f, idleTorqueNm: 652f * 0.3f, redlineTorqueNm: 652f * 0.6f,
                 dragCoefficient: 0.26f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2500f,
                 finalDriveRatio: 3.70f, tireCircumferenceM: TireCircumferenceM(285, 35, 20),
-                powerFactor: 0.7f, gearRatios: GtrRatios),
+                wheelbaseM: 2.779f, powerFactor: 0.7f, gearRatios: GtrRatios),
 
             // Vehicle 2: Racing car - very responsive, high-revving
             new VehicleParameters("Porsche 911 GT3 RS", null, null, null, null, null, null, null, null,
@@ -188,7 +194,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 465f, peakTorqueRpm: 6250f, idleTorqueNm: 465f * 0.3f, redlineTorqueNm: 465f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.0f, rollingResistanceCoefficient: 0.015f, launchRpm: 3000f,
                 finalDriveRatio: 3.97f, tireCircumferenceM: TireCircumferenceM(325, 30, 21),
-                powerFactor: 0.75f, gearRatios: Gt3RsRatios),
+                wheelbaseM: 2.456f, powerFactor: 0.75f, gearRatios: Gt3RsRatios),
 
             // Vehicle 3: Small car - slow acceleration, economical
             new VehicleParameters("Fiat 500", null, null, null, null, null, null, null, null,
@@ -199,7 +205,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 102f, peakTorqueRpm: 3000f, idleTorqueNm: 102f * 0.3f, redlineTorqueNm: 102f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.1f, rollingResistanceCoefficient: 0.015f, launchRpm: 1800f,
                 finalDriveRatio: 3.353f, tireCircumferenceM: TireCircumferenceM(195, 45, 16),
-                powerFactor: 0.35f, gearRatios: Fiat500Ratios),
+                wheelbaseM: 2.300f, powerFactor: 0.35f, gearRatios: Fiat500Ratios),
 
             // Vehicle 4: Small sporty car - better than Fiat but not racing
             new VehicleParameters("Mini Cooper S", null, null, null, null, null, null, null, null,
@@ -210,7 +216,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 280f, peakTorqueRpm: 1250f, idleTorqueNm: 280f * 0.3f, redlineTorqueNm: 280f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.1f, rollingResistanceCoefficient: 0.015f, launchRpm: 2200f,
                 finalDriveRatio: 3.59f, tireCircumferenceM: TireCircumferenceM(195, 55, 16),
-                powerFactor: 0.45f, gearRatios: MiniCooperSRatios),
+                wheelbaseM: 2.494f, powerFactor: 0.45f, gearRatios: MiniCooperSRatios),
 
             // Vehicle 5: Classic muscle car - torquey but heavy
             new VehicleParameters("Ford Mustang 1969", null, null, null, null, null, null, null, null,
@@ -221,7 +227,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 481f, peakTorqueRpm: 3000f, idleTorqueNm: 481f * 0.3f, redlineTorqueNm: 481f * 0.6f,
                 dragCoefficient: 0.45f, frontalAreaM2: 2.5f, rollingResistanceCoefficient: 0.018f, launchRpm: 2000f,
                 finalDriveRatio: 3.25f, tireCircumferenceM: TireCircumferenceM(215, 70, 14),
-                powerFactor: 0.4f, gearRatios: Mustang69Ratios),
+                wheelbaseM: 2.743f, powerFactor: 0.4f, gearRatios: Mustang69Ratios),
 
             // Vehicle 6: Common sedan - comfortable, not sporty
             new VehicleParameters("Toyota Camry", null, null, null, null, null, null, null, null,
@@ -232,7 +238,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 250f, peakTorqueRpm: 5000f, idleTorqueNm: 250f * 0.3f, redlineTorqueNm: 250f * 0.6f,
                 dragCoefficient: 0.29f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2000f,
                 finalDriveRatio: 2.80f, tireCircumferenceM: TireCircumferenceM(215, 55, 17),
-                powerFactor: 0.35f, gearRatios: CamryRatios),
+                wheelbaseM: 2.825f, powerFactor: 0.35f, gearRatios: CamryRatios),
 
             // Vehicle 7: Supercar - fastest acceleration, high power
             new VehicleParameters("Lamborghini Aventador", null, null, null, null, null, null, null, null,
@@ -243,7 +249,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 720f, peakTorqueRpm: 5500f, idleTorqueNm: 720f * 0.3f, redlineTorqueNm: 720f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.0f, rollingResistanceCoefficient: 0.015f, launchRpm: 3000f,
                 finalDriveRatio: 2.86f, tireCircumferenceM: TireCircumferenceM(355, 25, 21),
-                powerFactor: 0.8f, gearRatios: AventadorRatios),
+                wheelbaseM: 2.700f, powerFactor: 0.8f, gearRatios: AventadorRatios),
 
             // Vehicle 8: Premium sedan - balanced performance
             new VehicleParameters("BMW 3 Series", null, null, null, null, null, null, null, null,
@@ -254,7 +260,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 350f, peakTorqueRpm: 1250f, idleTorqueNm: 350f * 0.3f, redlineTorqueNm: 350f * 0.6f,
                 dragCoefficient: 0.29f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2000f,
                 finalDriveRatio: 3.15f, tireCircumferenceM: TireCircumferenceM(225, 50, 17),
-                powerFactor: 0.45f, gearRatios: Bmw3SeriesRatios),
+                wheelbaseM: 2.810f, powerFactor: 0.45f, gearRatios: Bmw3SeriesRatios),
 
             // Vehicle 9: Bus/Van - very slow acceleration, heavy
             new VehicleParameters("Mercedes Sprinter", null, null, null, null, null, null, null, null,
@@ -265,7 +271,7 @@ namespace TopSpeed.Data
                 peakTorqueNm: 440f, peakTorqueRpm: 1400f, idleTorqueNm: 440f * 0.3f, redlineTorqueNm: 440f * 0.6f,
                 dragCoefficient: 0.35f, frontalAreaM2: 2.9f, rollingResistanceCoefficient: 0.020f, launchRpm: 1800f,
                 finalDriveRatio: 3.923f, tireCircumferenceM: TireCircumferenceM(245, 75, 16),
-                powerFactor: 0.2f, gearRatios: SprinterRatios),
+                wheelbaseM: 3.658f, powerFactor: 0.2f, gearRatios: SprinterRatios),
 
             // Vehicle 10: Sport motorcycle - quick, light, high-revving
             new VehicleParameters("Kawasaki Ninja ZX-10R", null, null, null, null, null, null, null, null,
@@ -277,7 +283,7 @@ namespace TopSpeed.Data
                 dragCoefficient: 0.58f, frontalAreaM2: 0.6f, rollingResistanceCoefficient: 0.016f, launchRpm: 4000f,
                 finalDriveRatio: 3.8562f, tireCircumferenceM: TireCircumferenceM(190, 55, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
-                powerFactor: 0.85f, gearRatios: Zx10rRatios),
+                wheelbaseM: 1.450f, powerFactor: 0.85f, gearRatios: Zx10rRatios),
 
             // Vehicle 11: Superbike - fastest motorcycle
             new VehicleParameters("Ducati Panigale V4", null, null, null, null, null, null, null, null,
@@ -289,7 +295,7 @@ namespace TopSpeed.Data
                 dragCoefficient: 0.55f, frontalAreaM2: 0.6f, rollingResistanceCoefficient: 0.016f, launchRpm: 4000f,
                 finalDriveRatio: 4.6125f, tireCircumferenceM: TireCircumferenceM(200, 60, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
-                powerFactor: 0.9f, gearRatios: PanigaleV4Ratios),
+                wheelbaseM: 1.469f, powerFactor: 0.9f, gearRatios: PanigaleV4Ratios),
 
             // Vehicle 12: Sport motorcycle - balanced
             new VehicleParameters("Yamaha YZF-R1", null, null, null, null, null, null, null, null,
@@ -301,7 +307,7 @@ namespace TopSpeed.Data
                 dragCoefficient: 0.55f, frontalAreaM2: 0.6f, rollingResistanceCoefficient: 0.016f, launchRpm: 4000f,
                 finalDriveRatio: 4.1807f, tireCircumferenceM: TireCircumferenceM(190, 55, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
-                powerFactor: 0.8f, gearRatios: R1Ratios)
+                wheelbaseM: 1.405f, powerFactor: 0.8f, gearRatios: R1Ratios)
         };
     }
 }

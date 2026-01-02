@@ -16,6 +16,8 @@ namespace TopSpeed.Vehicles
     {
         private const float CallLength = 30.0f;
         private const float BaseLateralSpeed = 15.0f;
+        private const float StabilitySpeedRef = 60.0f;
+        private const float RealLaneWidthMeters = 8.33f;
 
         private readonly AudioManager _audio;
         private readonly Track _track;
@@ -62,6 +64,8 @@ namespace TopSpeed.Vehicles
         private float _lastDriveRpm;
         private float _lateralGripCoefficient;
         private float _highSpeedStability;
+        private float _wheelbaseM;
+        private float _maxSteerDeg;
         private int _idleFreq;
         private int _topFreq;
         private int _shiftFreq;
@@ -175,6 +179,8 @@ namespace TopSpeed.Vehicles
             _launchRpm = Math.Max(_idleRpm, Math.Min(_revLimiter, definition.LaunchRpm));
             _lateralGripCoefficient = Math.Max(0.1f, definition.LateralGripCoefficient);
             _highSpeedStability = Math.Max(0f, Math.Min(1.0f, definition.HighSpeedStability));
+            _wheelbaseM = Math.Max(0.5f, definition.WheelbaseM);
+            _maxSteerDeg = Math.Max(5f, Math.Min(60f, definition.MaxSteerDeg));
             _idleFreq = definition.IdleFreq;
             _topFreq = definition.TopFreq;
             _shiftFreq = definition.ShiftFreq;
@@ -404,15 +410,24 @@ namespace TopSpeed.Vehicles
                     _thrust = _currentBrake;
                 }
 
-                var steeringFactor = 1.0;
-                if (_currentSteering != 0 && _speed > _topSpeed / 2)
-                    steeringFactor = 1.0 - (1.5 * _speed / _topSpeed) * Math.Abs(_currentSteering) / 100.0;
-
                 if (_thrust > 10)
                 {
                     var speedMpsCurrent = _speed / 3.6f;
                     var throttle = Math.Max(0f, Math.Min(100f, _currentThrottle)) / 100f;
                     var surfaceTractionMod = _surfaceTractionFactor > 0f ? _currentSurfaceTractionFactor / _surfaceTractionFactor : 1.0f;
+                    var steeringCommandAccel = (_currentSteering / 100.0f) * _steering;
+                    if (steeringCommandAccel > 1.0f)
+                        steeringCommandAccel = 1.0f;
+                    else if (steeringCommandAccel < -1.0f)
+                        steeringCommandAccel = -1.0f;
+                    var steerRadAccel = (float)(Math.PI / 180.0) * (_maxSteerDeg * steeringCommandAccel);
+                    var curvatureAccel = (float)Math.Tan(steerRadAccel) / _wheelbaseM;
+                    var desiredLatAccel = curvatureAccel * speedMpsCurrent * speedMpsCurrent;
+                    var desiredLatAccelAbs = Math.Abs(desiredLatAccel);
+                    var grip = _tireGripCoefficient * surfaceTractionMod * _lateralGripCoefficient;
+                    var maxLatAccel = grip * 9.80665f;
+                    var lateralRatio = maxLatAccel > 0f ? Math.Min(1.0f, desiredLatAccelAbs / maxLatAccel) : 0f;
+                    var longitudinalGripFactor = Math.Sqrt(Math.Max(0.0, 1.0 - (lateralRatio * lateralRatio)));
                     var driveRpm = CalculateDriveRpm(speedMpsCurrent, throttle);
                     var engineTorque = CalculateEngineTorqueNm(driveRpm) * throttle * _powerFactor;
                     var gearRatio = _engine.GetGearRatio(_gear);
@@ -421,7 +436,7 @@ namespace TopSpeed.Vehicles
                     var tractionLimit = _tireGripCoefficient * surfaceTractionMod * _massKg * 9.80665f;
                     if (wheelForce > tractionLimit)
                         wheelForce = tractionLimit;
-                    wheelForce *= (float)steeringFactor;
+                    wheelForce *= (float)longitudinalGripFactor;
 
                     var dragForce = 0.5f * 1.225f * _dragCoefficient * _frontalAreaM2 * speedMpsCurrent * speedMpsCurrent;
                     var rollingForce = _rollingResistanceCoefficient * _massKg * 9.80665f;
@@ -466,12 +481,38 @@ namespace TopSpeed.Vehicles
                 var speedMps = _speed / 3.6f;
                 _positionY += (speedMps * elapsed);
                 var surfaceMultiplier = _surface == TrackSurface.Snow ? 1.44f : 1.0f;
-                var steeringInput = _currentSteering / 100.0f;
-                var speedFactor = _topSpeed > 0f ? Math.Min(1.0f, _speed / _topSpeed) : 0f;
-                var stabilityScale = 1.0f - (_highSpeedStability * speedFactor);
+                var steeringCommandLat = (_currentSteering / 100.0f) * _steering;
+                if (steeringCommandLat > 1.0f)
+                    steeringCommandLat = 1.0f;
+                else if (steeringCommandLat < -1.0f)
+                    steeringCommandLat = -1.0f;
+                var steerRadLat = (float)(Math.PI / 180.0) * (_maxSteerDeg * steeringCommandLat);
+                var curvatureLat = (float)Math.Tan(steerRadLat) / _wheelbaseM;
+                var surfaceTractionModLat = _surfaceTractionFactor > 0f ? _currentSurfaceTractionFactor / _surfaceTractionFactor : 1.0f;
+                var gripLat = _tireGripCoefficient * surfaceTractionModLat * _lateralGripCoefficient;
+                var maxLatAccelLat = gripLat * 9.80665f;
+                var desiredLatAccelLat = curvatureLat * speedMps * speedMps;
+                var massFactor = (float)Math.Sqrt(1500f / _massKg);
+                if (massFactor > 3.0f)
+                    massFactor = 3.0f;
+                var stabilityScale = 1.0f - (_highSpeedStability * (speedMps / StabilitySpeedRef) * massFactor);
                 if (stabilityScale < 0.2f)
                     stabilityScale = 0.2f;
-                var lateralSpeed = BaseLateralSpeed * _steering * steeringInput * surfaceMultiplier * _lateralGripCoefficient * stabilityScale;
+                else if (stabilityScale > 1.0f)
+                    stabilityScale = 1.0f;
+                var responseTime = BaseLateralSpeed / 20.0f;
+                var maxLatSpeed = maxLatAccelLat * responseTime * stabilityScale;
+                var desiredLatSpeed = desiredLatAccelLat * responseTime;
+                var trackScale = _track.LaneWidth / RealLaneWidthMeters;
+                if (trackScale < 0.1f)
+                    trackScale = 0.1f;
+                maxLatSpeed *= trackScale;
+                desiredLatSpeed *= trackScale;
+                if (desiredLatSpeed > maxLatSpeed)
+                    desiredLatSpeed = maxLatSpeed;
+                else if (desiredLatSpeed < -maxLatSpeed)
+                    desiredLatSpeed = -maxLatSpeed;
+                var lateralSpeed = desiredLatSpeed * surfaceMultiplier;
                 _positionX += (lateralSpeed * elapsed);
 
                 if (_frame % 4 == 0)

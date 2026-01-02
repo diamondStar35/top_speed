@@ -44,6 +44,8 @@ namespace TopSpeed.Vehicles
         public float TireCircumferenceM { get; set; } = 2.0f;
         public float LateralGripCoefficient { get; set; } = 1.0f;
         public float HighSpeedStability { get; set; } = 0.0f;
+        public float WheelbaseM { get; set; } = 2.7f;
+        public float MaxSteerDeg { get; set; } = 35f;
         
         /// <summary>
         /// Power factor controls how fast the vehicle accelerates (0.1 = very slow, 1.0 = fast).

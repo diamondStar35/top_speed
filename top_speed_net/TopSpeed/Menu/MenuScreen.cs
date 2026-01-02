@@ -114,6 +114,7 @@ namespace TopSpeed.Menu
                 moveUp |= WasJoystickUpPressed(joystick, previous);
                 moveDown |= WasJoystickDownPressed(joystick, previous);
                 activate |= WasJoystickActivatePressed(joystick, previous);
+                back |= WasJoystickBackPressed(joystick, previous);
                 _prevJoystick = joystick;
                 _hasPrevJoystick = true;
             }
@@ -394,6 +395,13 @@ namespace TopSpeed.Menu
             if (currentRight && !previousRight)
                 return true;
             return current.B1 && !previous.B1;
+        }
+
+        private static bool WasJoystickBackPressed(JoystickStateSnapshot current, JoystickStateSnapshot previous)
+        {
+            var currentLeft = current.X < -JoystickThreshold || current.Pov4;
+            var previousLeft = previous.X < -JoystickThreshold || previous.Pov4;
+            return currentLeft && !previousLeft;
         }
 
         public void Dispose()

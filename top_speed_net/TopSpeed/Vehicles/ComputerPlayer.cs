@@ -15,8 +15,8 @@ namespace TopSpeed.Vehicles
     internal sealed class ComputerPlayer : IDisposable
     {
         private const float CallLength = 30.0f;
-        private const float BaseLateralSpeed = 15.0f;
-        private const float StabilitySpeedRef = 60.0f;
+        private const float BaseLateralSpeed = 6.0f;
+        private const float StabilitySpeedRef = 45.0f;
 
         private readonly AudioManager _audio;
         private readonly Track _track;

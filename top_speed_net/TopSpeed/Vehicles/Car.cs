@@ -15,8 +15,8 @@ namespace TopSpeed.Vehicles
     internal sealed class Car : IDisposable
     {
         private const int MaxSurfaceFreq = 100000;
-        private const float BaseLateralSpeed = 15.0f;
-        private const float StabilitySpeedRef = 60.0f;
+        private const float BaseLateralSpeed = 6.0f;
+        private const float StabilitySpeedRef = 45.0f;
         private const float CrashVibrationSeconds = 1.5f;
         private const float BumpVibrationSeconds = 0.2f;
 

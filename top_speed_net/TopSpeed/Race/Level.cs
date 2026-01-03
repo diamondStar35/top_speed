@@ -552,7 +552,7 @@ namespace TopSpeed.Race
 
         protected void SpeakText(string text)
         {
-            _speech.Speak(text, interrupt: true);
+            _speech.Speak(text);
         }
 
         protected static string FormatTimeText(int raceTimeMs, bool detailed)

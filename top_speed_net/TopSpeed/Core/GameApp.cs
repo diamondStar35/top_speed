@@ -48,6 +48,8 @@ namespace TopSpeed.Core
             {
                 if (_game == null)
                     return;
+                if (_game.IsModalInputActive)
+                    return;
 
                 var now = _stopwatch.ElapsedTicks;
                 var deltaSeconds = (float)(now - _lastTicks) / Stopwatch.Frequency;

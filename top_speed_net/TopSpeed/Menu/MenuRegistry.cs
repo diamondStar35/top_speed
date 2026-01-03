@@ -19,6 +19,7 @@ namespace TopSpeed.Menu
         void SpeakNotImplemented();
         void BeginServerPortEntry();
         void RestoreDefaults();
+        void RecalibrateScreenReaderRate();
         void SetDevice(InputDeviceMode mode);
         void ToggleCurveAnnouncements();
         void ToggleSetting(Action update);
@@ -62,7 +63,7 @@ namespace TopSpeed.Menu
                 new MenuItem("MultiPlayer game", MenuAction.None, nextMenuId: "multiplayer"),
                 new MenuItem("Options", MenuAction.None, nextMenuId: "options_main"),
                 new MenuItem("Exit Game", MenuAction.Exit)
-            }, "Main menu");
+            }, "Main menu", titleProvider: MainMenuTitle);
             mainMenu.MusicFile = "theme1.ogg";
             mainMenu.MusicVolume = _settings.MusicVolume;
             mainMenu.MusicVolumeChanged = _actions.SaveMusicVolume;
@@ -138,11 +139,11 @@ namespace TopSpeed.Menu
         {
             var items = new List<MenuItem>
             {
-                new MenuItem("Join a game on the local network", MenuAction.None, onActivate: _actions.StartServerDiscovery, suppressPostActivateAnnouncement: true),
-                new MenuItem("Enter the IP address or domain manually", MenuAction.None, onActivate: _actions.BeginManualServerEntry, suppressPostActivateAnnouncement: true),
+                new MenuItem("Join a game on the local network", MenuAction.None, onActivate: _actions.StartServerDiscovery),
+                new MenuItem("Enter the IP address or domain manually", MenuAction.None, onActivate: _actions.BeginManualServerEntry),
                 BackItem()
             };
-            return _menu.CreateMenu("multiplayer", items, "Multiplayer");
+            return _menu.CreateMenu("multiplayer", items);
         }
 
         private MenuScreen BuildMultiplayerServersMenu()
@@ -181,14 +182,13 @@ namespace TopSpeed.Menu
 
             items.Add(new MenuItem("Random", MenuAction.None, nextMenuId: nextMenuId, onActivate: () => _selection.SelectRandomTrack(category)));
             items.Add(BackItem());
-            var title = "Choose track";
-            return _menu.CreateMenu(id, items, title);
+            return _menu.CreateMenu(id, items, "Select a track");
         }
 
         private MenuScreen BuildCustomTrackMenu(string id, RaceMode mode)
         {
             var items = BuildCustomTrackItems(mode);
-            var title = "Choose custom track";
+            var title = "Select a custom track";
             return _menu.CreateMenu(id, items, title);
         }
 
@@ -243,7 +243,7 @@ namespace TopSpeed.Menu
 
             items.Add(new MenuItem("Random", MenuAction.None, nextMenuId: nextMenuId, onActivate: _selection.SelectRandomVehicle));
             items.Add(BackItem());
-            var title = "Choose vehicle";
+            var title = "Select a vehicle";
             return _menu.CreateMenu(id, items, title);
         }
 
@@ -256,7 +256,7 @@ namespace TopSpeed.Menu
                 new MenuItem("Random", MenuAction.None, onActivate: () => CompleteTransmission(mode, Algorithm.RandomInt(2) == 0 ? TransmissionMode.Automatic : TransmissionMode.Manual)),
                 BackItem()
             };
-            var title = "Choose transmission";
+            var title = "Select transmission mode";
             return _menu.CreateMenu(id, items, title);
         }
 
@@ -271,7 +271,7 @@ namespace TopSpeed.Menu
                 new MenuItem("Restore default settings", MenuAction.None, nextMenuId: "options_restore"),
                 BackItem()
             };
-            return _menu.CreateMenu("options_main", items, "Options");
+            return _menu.CreateMenu("options_main", items);
         }
 
         private MenuScreen BuildOptionsGameSettingsMenu()
@@ -282,9 +282,10 @@ namespace TopSpeed.Menu
                 new MenuItem(() => $"Include custom vehicles in randomization: {FormatOnOff(_settings.RandomCustomVehicles)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.RandomCustomVehicles = !_settings.RandomCustomVehicles)),
                 new MenuItem(() => $"Enable Three-D sound: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
                 new MenuItem(() => $"Units: {UnitsLabel(_settings.Units)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.Units = _settings.Units == UnitSystem.Metric ? UnitSystem.Imperial : UnitSystem.Metric)),
+                new MenuItem("Recalibrate screen reader rate", MenuAction.None, onActivate: _actions.RecalibrateScreenReaderRate),
                 BackItem()
             };
-            return _menu.CreateMenu("options_game", items, "Game settings");
+            return _menu.CreateMenu("options_game", items);
         }
 
         private MenuScreen BuildOptionsServerSettingsMenu()
@@ -294,7 +295,7 @@ namespace TopSpeed.Menu
                 new MenuItem(() => $"Custom server port: {FormatServerPort(_settings.ServerPort)}", MenuAction.None, onActivate: _actions.BeginServerPortEntry),
                 BackItem()
             };
-            return _menu.CreateMenu("options_server", items, "Server settings");
+            return _menu.CreateMenu("options_server", items);
         }
 
         private MenuScreen BuildOptionsControlsMenu()
@@ -307,7 +308,7 @@ namespace TopSpeed.Menu
                 new MenuItem("Map joystick keys", MenuAction.None, nextMenuId: "options_controls_joystick"),
                 BackItem()
             };
-            return _menu.CreateMenu("options_controls", items, "Controls");
+            return _menu.CreateMenu("options_controls", items);
         }
 
         private MenuScreen BuildOptionsControlsDeviceMenu()
@@ -319,19 +320,19 @@ namespace TopSpeed.Menu
                 new MenuItem("Both", MenuAction.Back, onActivate: () => _actions.SetDevice(InputDeviceMode.Both)),
                 BackItem()
             };
-            return _menu.CreateMenu("options_controls_device", items, "Choose control device");
+            return _menu.CreateMenu("options_controls_device", items, "Select input device");
         }
 
         private MenuScreen BuildOptionsControlsKeyboardMenu()
         {
             var items = BuildMappingItems(InputMappingMode.Keyboard);
-            return _menu.CreateMenu("options_controls_keyboard", items, "Map keyboard keys");
+            return _menu.CreateMenu("options_controls_keyboard", items);
         }
 
         private MenuScreen BuildOptionsControlsJoystickMenu()
         {
             var items = BuildMappingItems(InputMappingMode.Joystick);
-            return _menu.CreateMenu("options_controls_joystick", items, "Map joystick keys");
+            return _menu.CreateMenu("options_controls_joystick", items);
         }
 
         private List<MenuItem> BuildMappingItems(InputMappingMode mode)
@@ -361,7 +362,7 @@ namespace TopSpeed.Menu
                 new MenuItem(() => $"Single race difficulty: {DifficultyLabel(_settings.Difficulty)}", MenuAction.None, nextMenuId: "options_race_difficulty"),
                 BackItem()
             };
-            return _menu.CreateMenu("options_race", items, "Race settings");
+            return _menu.CreateMenu("options_race", items);
         }
 
         private MenuScreen BuildOptionsAutomaticInfoMenu()
@@ -373,7 +374,7 @@ namespace TopSpeed.Menu
                 new MenuItem("On", MenuAction.Back, onActivate: () => _actions.UpdateSetting(() => _settings.AutomaticInfo = AutomaticInfoMode.On)),
                 BackItem()
             };
-            return _menu.CreateMenu("options_race_info", items, "Automatic information");
+            return _menu.CreateMenu("options_race_info", items, "Automatic information controls the automatic announcements reported to you during the race, such as lab numbers and player positions.");
         }
 
         private MenuScreen BuildOptionsCopilotMenu()
@@ -385,7 +386,7 @@ namespace TopSpeed.Menu
                 new MenuItem("All", MenuAction.Back, onActivate: () => _actions.UpdateSetting(() => _settings.Copilot = CopilotMode.All)),
                 BackItem()
             };
-            return _menu.CreateMenu("options_race_copilot", items, "Copilot settings");
+            return _menu.CreateMenu("options_race_copilot", items, "What information should the copilot report to you during the race.");
         }
 
         private MenuScreen BuildOptionsLapsMenu()
@@ -397,7 +398,7 @@ namespace TopSpeed.Menu
                 items.Add(new MenuItem(laps.ToString(), MenuAction.Back, onActivate: () => _actions.UpdateSetting(() => _settings.NrOfLaps = value)));
             }
             items.Add(BackItem());
-            return _menu.CreateMenu("options_race_laps", items, "Choose lap count");
+            return _menu.CreateMenu("options_race_laps", items, "How many labs should the session be. This applys to single race, time trial and multiPlayer modes.");
         }
 
         private MenuScreen BuildOptionsComputersMenu()
@@ -409,7 +410,7 @@ namespace TopSpeed.Menu
                 items.Add(new MenuItem(count.ToString(), MenuAction.Back, onActivate: () => _actions.UpdateSetting(() => _settings.NrOfComputers = value)));
             }
             items.Add(BackItem());
-            return _menu.CreateMenu("options_race_computers", items, "Choose number of computer players");
+            return _menu.CreateMenu("options_race_computers", items, "Number of computer players");
         }
 
         private MenuScreen BuildOptionsDifficultyMenu()
@@ -421,7 +422,7 @@ namespace TopSpeed.Menu
                 new MenuItem("Hard", MenuAction.Back, onActivate: () => _actions.UpdateSetting(() => _settings.Difficulty = RaceDifficulty.Hard)),
                 BackItem()
             };
-            return _menu.CreateMenu("options_race_difficulty", items, "Choose difficulty");
+            return _menu.CreateMenu("options_race_difficulty", items);
         }
 
         private MenuScreen BuildOptionsRestoreMenu()
@@ -432,7 +433,7 @@ namespace TopSpeed.Menu
                 new MenuItem("No", MenuAction.Back),
                 BackItem()
             };
-            return _menu.CreateMenu("options_restore", items, "Restore defaults");
+            return _menu.CreateMenu("options_restore", items, "Are you sure you would like to restore all settings to their default values?");
         }
 
         private void PushRandomTrackType(RaceMode mode)
@@ -478,6 +479,20 @@ namespace TopSpeed.Menu
         private static MenuItem BackItem()
         {
             return new MenuItem("Go back", MenuAction.Back);
+        }
+
+        private string MainMenuTitle()
+        {
+            const string keyboard = "Main Menu. Use your arrow keys to navigate the options. Press ENTER to select. Press ESCAPE to back out of any menu. Pressing HOME or END will move you to the top or bottom of a menu.";
+            const string joystick = "Main Menu. Use the view finder to move through the options. Press up or down to navigate. Press right or button 1 to select. Press left to back out of any menu.";
+            const string both = "Main Menu. Use your arrow keys or the view finder to move through the options. Press ENTER or right or button 1 to select. Press ESCAPE or left to back out of any menu. Pressing HOME or END will move you to the top or bottom of a menu.";
+
+            return _settings.DeviceMode switch
+            {
+                InputDeviceMode.Keyboard => keyboard,
+                InputDeviceMode.Joystick => joystick,
+                _ => both
+            };
         }
 
         private static string FormatOnOff(bool value) => value ? "on" : "off";

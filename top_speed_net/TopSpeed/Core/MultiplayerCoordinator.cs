@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TopSpeed.Menu;
 using TopSpeed.Network;
 using TopSpeed.Protocol;
+using TopSpeed.Windowing;
 using TopSpeed.Input;
 using TopSpeed.Speech;
 
@@ -16,7 +17,7 @@ namespace TopSpeed.Core
         private readonly SpeechService _speech;
         private readonly RaceSettings _settings;
         private readonly MultiplayerConnector _connector;
-        private readonly Action<string, string?, Action<string>, Action?> _beginTextInput;
+        private readonly Func<string, string?, SpeechService.SpeakFlag, bool, TextInputResult> _promptTextInput;
         private readonly Action _saveSettings;
         private readonly Action _enterMenuState;
         private readonly Action<MultiplayerSession> _setSession;
@@ -36,7 +37,7 @@ namespace TopSpeed.Core
             SpeechService speech,
             RaceSettings settings,
             MultiplayerConnector connector,
-            Action<string, string?, Action<string>, Action?> beginTextInput,
+            Func<string, string?, SpeechService.SpeakFlag, bool, TextInputResult> promptTextInput,
             Action saveSettings,
             Action enterMenuState,
             Action<MultiplayerSession> setSession,
@@ -47,7 +48,7 @@ namespace TopSpeed.Core
             _speech = speech ?? throw new ArgumentNullException(nameof(speech));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _connector = connector ?? throw new ArgumentNullException(nameof(connector));
-            _beginTextInput = beginTextInput ?? throw new ArgumentNullException(nameof(beginTextInput));
+            _promptTextInput = promptTextInput ?? throw new ArgumentNullException(nameof(promptTextInput));
             _saveSettings = saveSettings ?? throw new ArgumentNullException(nameof(saveSettings));
             _enterMenuState = enterMenuState ?? throw new ArgumentNullException(nameof(enterMenuState));
             _setSession = setSession ?? throw new ArgumentNullException(nameof(setSession));
@@ -95,7 +96,7 @@ namespace TopSpeed.Core
             if (_discoveryTask != null && !_discoveryTask.IsCompleted)
                 return;
 
-            _speech.Speak("Please wait. Scanning for servers on the local network.", interrupt: true);
+            _speech.Speak("Please wait. Scanning for servers on the local network.");
             _discoveryCts?.Cancel();
             _discoveryCts?.Dispose();
             _discoveryCts = new CancellationTokenSource();
@@ -108,20 +109,32 @@ namespace TopSpeed.Core
 
         public void BeginManualServerEntry()
         {
-            _beginTextInput("Enter the server IP address or domain.", _settings.LastServerAddress, HandleServerAddressInput, null);
+            while (true)
+            {
+                var result = _promptTextInput("Enter the server IP address or domain.", _settings.LastServerAddress,
+                    SpeechService.SpeakFlag.InterruptableButStop, true);
+                if (result.Cancelled)
+                    return;
+                if (HandleServerAddressInput(result.Text))
+                    return;
+            }
         }
 
         public void BeginServerPortEntry()
         {
             var current = _settings.ServerPort > 0 ? _settings.ServerPort.ToString() : string.Empty;
-            _beginTextInput("Enter a custom server port, or leave empty for default.", current, HandleServerPortInput, null);
+            var result = _promptTextInput("Enter a custom server port, or leave empty for default.", current,
+                SpeechService.SpeakFlag.None, true);
+            if (result.Cancelled)
+                return;
+            HandleServerPortInput(result.Text);
         }
 
         private void HandleDiscoveryResult(IReadOnlyList<ServerInfo> servers)
         {
             if (servers == null || servers.Count == 0)
             {
-                _speech.Speak("No servers were found on the local network. You can enter an address manually.", interrupt: true);
+                _speech.Speak("No servers were found on the local network. You can enter an address manually.");
                 return;
             }
 
@@ -151,17 +164,16 @@ namespace TopSpeed.Core
 
         private void SpeakNotImplemented()
         {
-            _speech.Speak("Not implemented yet.", interrupt: true);
+            _speech.Speak("Not implemented yet.");
         }
 
-        private void HandleServerAddressInput(string text)
+        private bool HandleServerAddressInput(string text)
         {
             var trimmed = (text ?? string.Empty).Trim();
             if (string.IsNullOrWhiteSpace(trimmed))
             {
-                _speech.Speak("Please enter a server address.", interrupt: true);
-                BeginManualServerEntry();
-                return;
+                _speech.Speak("Please enter a server address.");
+                return false;
             }
 
             var host = trimmed;
@@ -181,31 +193,39 @@ namespace TopSpeed.Core
             _saveSettings();
             _pendingServerAddress = host;
             _pendingServerPort = overridePort ?? ResolveServerPort();
-            BeginCallSignInput();
+            return BeginCallSignInput();
         }
 
-        private void BeginCallSignInput()
+        private bool BeginCallSignInput()
         {
-            _beginTextInput("Enter your call sign.", null, HandleCallSignInput, null);
+            while (true)
+            {
+                var result = _promptTextInput("Enter your call sign.", null,
+                    SpeechService.SpeakFlag.InterruptableButStop, true);
+                if (result.Cancelled)
+                    return false;
+                if (HandleCallSignInput(result.Text))
+                    return true;
+            }
         }
 
-        private void HandleCallSignInput(string text)
+        private bool HandleCallSignInput(string text)
         {
             var trimmed = (text ?? string.Empty).Trim();
             if (string.IsNullOrWhiteSpace(trimmed))
             {
-                _speech.Speak("Call sign cannot be empty.", interrupt: true);
-                BeginCallSignInput();
-                return;
+                _speech.Speak("Call sign cannot be empty.");
+                return false;
             }
 
             _pendingCallSign = trimmed;
             AttemptConnect(_pendingServerAddress, _pendingServerPort, _pendingCallSign);
+            return true;
         }
 
         private void AttemptConnect(string host, int port, string callSign)
         {
-            _speech.Speak("Attempting to connect, please wait...", interrupt: true);
+            _speech.Speak("Attempting to connect, please wait...");
             _clearSession();
             _connectCts?.Cancel();
             _connectCts?.Dispose();
@@ -225,13 +245,13 @@ namespace TopSpeed.Core
                 var welcome = "You are now in the lobby.";
                 if (!string.IsNullOrWhiteSpace(result.Motd))
                     welcome += $" Message of the day: {result.Motd}.";
-                _speech.Speak(welcome, interrupt: true);
+                _speech.Speak(welcome);
                 _menu.ShowRoot("multiplayer_lobby");
                 _enterMenuState();
                 return;
             }
 
-            _speech.Speak($"Failed to connect: {result.Message}", interrupt: true);
+            _speech.Speak($"Failed to connect: {result.Message}");
             _enterMenuState();
         }
 
@@ -242,20 +262,20 @@ namespace TopSpeed.Core
             {
                 _settings.ServerPort = 0;
                 _saveSettings();
-                _speech.Speak("Server port cleared. The default port will be used.", interrupt: true);
+                _speech.Speak("Server port cleared. The default port will be used.");
                 return;
             }
 
             if (!int.TryParse(trimmed, out var port) || port < 1 || port > 65535)
             {
-                _speech.Speak("Invalid port. Enter a number between 1 and 65535.", interrupt: true);
+                _speech.Speak("Invalid port. Enter a number between 1 and 65535.");
                 BeginServerPortEntry();
                 return;
             }
 
             _settings.ServerPort = port;
             _saveSettings();
-            _speech.Speak($"Server port set to {port}.", interrupt: true);
+            _speech.Speak($"Server port set to {port}.");
         }
 
         private int ResolveServerPort()

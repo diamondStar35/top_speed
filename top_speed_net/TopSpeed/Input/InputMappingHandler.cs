@@ -41,7 +41,7 @@ namespace TopSpeed.Input
             {
                 if (_input.VibrationDevice == null || !_input.VibrationDevice.IsAvailable)
                 {
-                    _speech.Speak("No joystick detected.", interrupt: true);
+                    _speech.Speak("No joystick detected.");
                     return;
                 }
             }
@@ -62,13 +62,13 @@ namespace TopSpeed.Input
             {
                 _mappingNeedsInstruction = false;
                 var instruction = _raceInput.KeyMap.GetMappingInstruction(_mappingMode == InputMappingMode.Keyboard, _mappingAction);
-                _speech.Speak(instruction, interrupt: true);
+                _speech.Speak(instruction);
             }
 
             if (_input.WasPressed(Key.Escape))
             {
                 _mappingActive = false;
-                _speech.Speak("Mapping cancelled.", interrupt: true);
+                _speech.Speak("Mapping cancelled.");
                 return;
             }
 
@@ -94,12 +94,12 @@ namespace TopSpeed.Input
                     continue;
                 if (KeyMapManager.IsReservedKey(key))
                 {
-                    _speech.Speak("That key is reserved.", interrupt: true);
+                    _speech.Speak("That key is reserved.");
                     return;
                 }
                 if (_raceInput.KeyMap.IsKeyInUse(key, _mappingAction))
                 {
-                    _speech.Speak("That key is already in use.", interrupt: true);
+                    _speech.Speak("That key is already in use.");
                     return;
                 }
 
@@ -107,7 +107,7 @@ namespace TopSpeed.Input
                 _saveSettings();
                 _mappingActive = false;
                 var label = _raceInput.KeyMap.GetLabel(_mappingAction);
-                _speech.Speak($"{label} set to {KeyMapManager.FormatKey(key)}.", interrupt: true);
+                _speech.Speak($"{label} set to {KeyMapManager.FormatKey(key)}.");
                 return;
             }
         }
@@ -117,7 +117,7 @@ namespace TopSpeed.Input
             if (!_input.TryGetJoystickState(out var state))
             {
                 _mappingActive = false;
-                _speech.Speak("No joystick detected.", interrupt: true);
+                _speech.Speak("No joystick detected.");
                 return;
             }
 
@@ -134,7 +134,7 @@ namespace TopSpeed.Input
                 return;
             if (_raceInput.KeyMap.IsAxisInUse(axis, _mappingAction))
             {
-                _speech.Speak("That control is already in use.", interrupt: true);
+                _speech.Speak("That control is already in use.");
                 return;
             }
 
@@ -142,7 +142,7 @@ namespace TopSpeed.Input
             _saveSettings();
             _mappingActive = false;
             var label = _raceInput.KeyMap.GetLabel(_mappingAction);
-            _speech.Speak($"{label} set to {KeyMapManager.FormatAxis(axis)}.", interrupt: true);
+            _speech.Speak($"{label} set to {KeyMapManager.FormatAxis(axis)}.");
         }
 
         private JoystickAxisOrButton FindTriggeredAxis(JoystickStateSnapshot current, JoystickStateSnapshot previous)

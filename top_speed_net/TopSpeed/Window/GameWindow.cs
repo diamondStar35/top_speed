@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace TopSpeed.Windowing
@@ -23,7 +24,6 @@ namespace TopSpeed.Windowing
             _inputBox = new TextBox
             {
                 Visible = false,
-                Enabled = false,
                 AcceptsReturn = true,
                 CausesValidation = false,
                 ImeMode = ImeMode.NoControl,
@@ -44,16 +44,14 @@ namespace TopSpeed.Windowing
             _submitPending = false;
             _cancelPending = false;
             _inputBox.Text = initialText ?? string.Empty;
-            _inputBox.Enabled = true;
             _inputBox.Visible = true;
             _inputBox.Focus();
-            _inputBox.SelectAll();
         }
 
         public void HideTextInput()
         {
             _inputBox.Visible = false;
-            _inputBox.Enabled = false;
+            _inputBox.Clear();
             Focus();
         }
 
@@ -73,6 +71,29 @@ namespace TopSpeed.Windowing
             }
             result = default;
             return false;
+        }
+
+        public TextInputResult ReceiveTextInput(string? initialText, bool password = false)
+        {
+            _submittedText = string.Empty;
+            _submitPending = false;
+            _cancelPending = false;
+            _inputBox.PasswordChar = password ? '*' : '\0';
+            ShowTextInput(initialText);
+            Application.DoEvents();
+            while (!_submitPending && !_cancelPending)
+            {
+                Application.DoEvents();
+                Thread.Sleep(10);
+            }
+            _inputBox.PasswordChar = '\0';
+            if (_cancelPending)
+            {
+                _cancelPending = false;
+                return TextInputResult.CreateCancelled();
+            }
+            _submitPending = false;
+            return TextInputResult.Submitted(_submittedText);
         }
 
         private void OnInputKeyDown(object? sender, KeyEventArgs e)

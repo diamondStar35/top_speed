@@ -37,6 +37,13 @@ namespace TopSpeed.Input
         public bool Pov7;
         public bool Pov8;
 
+        public bool HasAnyButtonDown()
+        {
+            return B1 || B2 || B3 || B4 || B5 || B6 || B7 || B8 || B9 || B10 ||
+                   B11 || B12 || B13 || B14 || B15 || B16 ||
+                   Pov1 || Pov2 || Pov3 || Pov4 || Pov5 || Pov6 || Pov7 || Pov8;
+        }
+
         public static JoystickStateSnapshot From(SharpDX.DirectInput.JoystickState state)
         {
             var snapshot = new JoystickStateSnapshot

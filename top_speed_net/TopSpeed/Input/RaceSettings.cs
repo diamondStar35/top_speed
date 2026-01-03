@@ -109,6 +109,7 @@ namespace TopSpeed.Input
         public bool SingleRaceCustomVehicles { get; set; }
         public string LastServerAddress { get; set; } = string.Empty;
         public int ServerPort { get; set; }
+        public float ScreenReaderRateMs { get; set; }
 
         public bool UseJoystick
         {
@@ -177,6 +178,7 @@ namespace TopSpeed.Input
             MusicVolume = 0.6f;
             LastServerAddress = string.Empty;
             ServerPort = 0;
+            ScreenReaderRateMs = 0f;
         }
     }
 }

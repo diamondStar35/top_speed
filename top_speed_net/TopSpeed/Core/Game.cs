@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using SharpDX.DirectInput;
 using TopSpeed.Audio;
 using TopSpeed.Common;
@@ -22,7 +23,8 @@ namespace TopSpeed.Core
             TimeTrial,
             SingleRace,
             MultiplayerRace,
-            Paused
+            Paused,
+            Calibration
         }
 
         private readonly GameWindow _window;
@@ -42,19 +44,28 @@ namespace TopSpeed.Core
         private LogoScreen? _logo;
         private AppState _state;
         private AppState _pausedState;
+        private bool _needsCalibration;
+        private bool _calibrationMenusRegistered;
+        private string? _calibrationReturnMenuId;
+        private Stopwatch? _calibrationStopwatch;
         private bool _pendingRaceStart;
         private RaceMode _pendingMode;
         private bool _pauseKeyReleased = true;
         private LevelTimeTrial? _timeTrial;
         private LevelSingleRace? _singleRace;
         private LevelMultiplayer? _multiplayerRace;
-        private bool _textInputActive;
-        private Action<string>? _textInputHandler;
-        private Action? _textInputCancelled;
         private TrackData? _pendingMultiplayerTrack;
         private string _pendingMultiplayerTrackName = string.Empty;
         private int _pendingMultiplayerLaps;
         private bool _pendingMultiplayerStart;
+        public bool IsModalInputActive { get; private set; }
+
+        private const string CalibrationIntroMenuId = "calibration_intro";
+        private const string CalibrationSampleMenuId = "calibration_sample";
+        private const string CalibrationInstructions =
+            "Screen-reader calibration. You'll be presented with a short piece of text on the next screen. Press ENTER when your screen-reader finishes speaking it.";
+        private const string CalibrationSampleText =
+            "I really have nothing interesting to put here not even the secret to life except this really long run on sentence that is probably the most boring thing you have ever read but that will help me get an idea of how fast your screen reader is speaking.";
 
         public event Action? ExitRequested;
 
@@ -64,8 +75,9 @@ namespace TopSpeed.Core
             _settingsManager = new SettingsManager();
             _settings = _settingsManager.Load();
             _audio = new AudioManager(_settings.ThreeDSound);
-            _speech = new SpeechService();
             _input = new InputManager(_window.Handle);
+            _speech = new SpeechService(_input.IsAnyInputHeld);
+            _speech.ScreenReaderRateMs = _settings.ScreenReaderRateMs;
             _raceInput = new RaceInput(_settings);
             _setup = new RaceSetup();
             _menu = new MenuManager(_audio, _speech);
@@ -77,13 +89,14 @@ namespace TopSpeed.Core
                 _speech,
                 _settings,
                 new MultiplayerConnector(),
-                BeginTextInput,
+                PromptTextInput,
                 SaveSettings,
                 EnterMenuState,
                 SetSession,
                 ClearSession,
                 ResetPendingMultiplayerState);
             _menuRegistry.RegisterAll();
+            _needsCalibration = _settings.ScreenReaderRateMs <= 0f;
         }
 
         public void Initialize()
@@ -104,14 +117,23 @@ namespace TopSpeed.Core
             switch (_state)
             {
                 case AppState.Logo:
-                    if (_logo == null || _logo.Update(_input, deltaSeconds))
+                    if (_logo == null || _logo.Update(_input, deltaSeconds))    
                     {
                         _logo?.Dispose();
                         _logo = null;
-                        _menu.ShowRoot("main");
-                        _speech.Speak("Main menu", interrupt: true);
-                        _state = AppState.Menu;
+                        if (_needsCalibration)
+                        {
+                            StartCalibrationSequence();
+                        }
+                        else
+                        {
+                            _menu.ShowRoot("main");
+                            _state = AppState.Menu;
+                        }
                     }
+                    break;
+                case AppState.Calibration:
+                    _menu.Update(_input);
                     break;
                 case AppState.Menu:
                     if (UpdateModalOperations())
@@ -174,41 +196,75 @@ namespace TopSpeed.Core
 
         private bool UpdateModalOperations()
         {
-            if (_textInputActive)
-            {
-                UpdateTextInput();
-                return true;
-            }
             return _multiplayerCoordinator.UpdatePendingOperations();
         }
 
-        private void UpdateTextInput()
+        private TextInputResult PromptTextInput(string prompt, string? initialValue,
+            SpeechService.SpeakFlag speakFlag = SpeechService.SpeakFlag.None, bool speakBeforeInput = true)
         {
-            if (!_window.TryConsumeTextInput(out var result))
-                return;
+            if (speakBeforeInput)
+                _speech.Speak(prompt, speakFlag);
 
-            _textInputActive = false;
-            if (result.Cancelled)
-            {
-                _textInputCancelled?.Invoke();
-            }
-            else
-            {
-                _textInputHandler?.Invoke(result.Text ?? string.Empty);
-            }
+            IsModalInputActive = true;
+            _input.Suspend();
+            var result = _window.ReceiveTextInput(initialValue);
+            _input.Resume();
+            IsModalInputActive = false;
 
-            if (!_textInputActive)
-                _input.Resume();
+            return result;
         }
 
-        private void BeginTextInput(string prompt, string? initialValue, Action<string> onSubmit, Action? onCancel = null)
+        private void StartCalibrationSequence(string? returnMenuId = null)
         {
-            _textInputHandler = onSubmit;
-            _textInputCancelled = onCancel;
-            _textInputActive = true;
-            _input.Suspend();
-            _window.ShowTextInput(initialValue);
-            _speech.Speak(prompt, interrupt: true);
+            _calibrationReturnMenuId = returnMenuId;
+            _calibrationStopwatch = null;
+            EnsureCalibrationMenus();
+            _menu.ShowRoot(CalibrationIntroMenuId);
+            _state = AppState.Calibration;
+        }
+
+        private void EnsureCalibrationMenus()
+        {
+            if (_calibrationMenusRegistered)
+                return;
+
+            var introItems = new[]
+            {
+                new MenuItem("Ok", MenuAction.None, onActivate: BeginCalibrationSample)
+            };
+            var sampleItems = new[]
+            {
+                new MenuItem("Ok", MenuAction.None, onActivate: CompleteCalibration)
+            };
+
+            _menu.Register(_menu.CreateMenu(CalibrationIntroMenuId, introItems, CalibrationInstructions));
+            _menu.Register(_menu.CreateMenu(CalibrationSampleMenuId, sampleItems, CalibrationSampleText));
+            _calibrationMenusRegistered = true;
+        }
+
+        private void BeginCalibrationSample()
+        {
+            _calibrationStopwatch = Stopwatch.StartNew();
+            _menu.ShowRoot(CalibrationSampleMenuId);
+        }
+
+        private void CompleteCalibration()
+        {
+            if (_calibrationStopwatch == null)
+                return;
+
+            var elapsedMs = _calibrationStopwatch.ElapsedMilliseconds;
+            var words = CalibrationSampleText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            var rate = words > 0 ? (float)elapsedMs / words : 0f;
+            _settings.ScreenReaderRateMs = rate;
+            _speech.ScreenReaderRateMs = rate;
+            SaveSettings();
+
+            _needsCalibration = false;
+            var returnMenu = _calibrationReturnMenuId ?? "main";
+            _calibrationReturnMenuId = null;
+            _menu.ShowRoot(returnMenu);
+            _state = AppState.Menu;
         }
 
         private void EnterMenuState()
@@ -246,15 +302,16 @@ namespace TopSpeed.Core
             _state = AppState.Menu;
             _menu.ShowRoot("main");
             _menu.FadeInMenuMusic();
-            _speech.Speak("Main menu", interrupt: true);
         }
 
         private void RestoreDefaults()
         {
             _settings.RestoreDefaults();
             _raceInput.SetDevice(_settings.DeviceMode);
+            _speech.ScreenReaderRateMs = _settings.ScreenReaderRateMs;
+            _needsCalibration = _settings.ScreenReaderRateMs <= 0f;
             SaveSettings();
-            _speech.Speak("Defaults restored.", interrupt: true);
+            _speech.Speak("Defaults restored.");
         }
 
         private void SetDevice(InputDeviceMode mode)
@@ -362,7 +419,7 @@ namespace TopSpeed.Core
                                 var name = string.IsNullOrWhiteSpace(joined.Name)
                                     ? $"Player {joined.PlayerNumber + 1}"
                                     : joined.Name;
-                                _speech.Speak($"{name} joined.", interrupt: true);
+                                _speech.Speak($"{name} joined.");
                             }
                         }
                         break;
@@ -459,7 +516,6 @@ namespace TopSpeed.Core
                 _state = AppState.Menu;
                 _menu.ShowRoot("main");
                 _menu.FadeInMenuMusic();
-                _speech.Speak("Main menu", interrupt: true);
             }
         }
 
@@ -527,7 +583,7 @@ namespace TopSpeed.Core
                     _timeTrial = new LevelTimeTrial(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.VibrationDevice);
                     _timeTrial.Initialize();
                     _state = AppState.TimeTrial;
-                    _speech.Speak("Time trial.", interrupt: true);
+                    _speech.Speak("Time trial.");
                     break;
                 case RaceMode.QuickStart:
                 case RaceMode.SingleRace:
@@ -536,7 +592,7 @@ namespace TopSpeed.Core
                     _singleRace = new LevelSingleRace(_audio, _speech, _settings, _raceInput, track, automatic, _settings.NrOfLaps, vehicleIndex, vehicleFile, _input.VibrationDevice);
                     _singleRace.Initialize(Algorithm.RandomInt(_settings.NrOfComputers + 1));
                     _state = AppState.SingleRace;
-                    _speech.Speak(mode == RaceMode.QuickStart ? "Quick start." : "Single race.", interrupt: true);
+                    _speech.Speak(mode == RaceMode.QuickStart ? "Quick start." : "Single race.");
                     break;
             }
         }
@@ -554,7 +610,6 @@ namespace TopSpeed.Core
             _state = AppState.Menu;
             _menu.ShowRoot("main");
             _menu.FadeInMenuMusic();
-            _speech.Speak("Main menu", interrupt: true);
         }
 
         public void Dispose()
@@ -588,9 +643,10 @@ namespace TopSpeed.Core
         void IMenuActions.StartServerDiscovery() => _multiplayerCoordinator.StartServerDiscovery();
         void IMenuActions.BeginManualServerEntry() => _multiplayerCoordinator.BeginManualServerEntry();
         void IMenuActions.DisconnectFromServer() => DisconnectFromServer();
-        void IMenuActions.SpeakNotImplemented() => _speech.Speak("Not implemented yet.", interrupt: true);
+        void IMenuActions.SpeakNotImplemented() => _speech.Speak("Not implemented yet.");
         void IMenuActions.BeginServerPortEntry() => _multiplayerCoordinator.BeginServerPortEntry();
         void IMenuActions.RestoreDefaults() => RestoreDefaults();
+        void IMenuActions.RecalibrateScreenReaderRate() => StartCalibrationSequence("options_game");
         void IMenuActions.SetDevice(InputDeviceMode mode) => SetDevice(mode);
         void IMenuActions.ToggleCurveAnnouncements() => ToggleCurveAnnouncements();
         void IMenuActions.ToggleSetting(Action update) => ToggleSetting(update);

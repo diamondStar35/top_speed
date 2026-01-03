@@ -39,6 +39,7 @@ namespace TopSpeed.Core
 
             var language = settings.Language;
             var serverAddress = settings.LastServerAddress;
+            var screenReaderRate = settings.ScreenReaderRateMs;
             var values = new List<int>();
             foreach (var rawLine in lines)
             {
@@ -61,6 +62,12 @@ namespace TopSpeed.Core
                     {
                         serverAddress = val;
                     }
+                    if (key.Equals("sr_rate", StringComparison.OrdinalIgnoreCase) ||
+                        key.Equals("screen_reader_rate", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (float.TryParse(val, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedRate))
+                            screenReaderRate = parsedRate;
+                    }
                     continue;
                 }
 
@@ -70,6 +77,7 @@ namespace TopSpeed.Core
 
             settings.Language = language;
             settings.LastServerAddress = serverAddress ?? string.Empty;
+            settings.ScreenReaderRateMs = screenReaderRate;
             ApplyValues(settings, values);
             return settings;
         }
@@ -83,6 +91,8 @@ namespace TopSpeed.Core
             };
             if (!string.IsNullOrWhiteSpace(settings.LastServerAddress))
                 lines.Add($"server_addr={settings.LastServerAddress}");
+            if (settings.ScreenReaderRateMs > 0f)
+                lines.Add($"sr_rate={settings.ScreenReaderRateMs.ToString(CultureInfo.InvariantCulture)}");
 
             AppendValue(lines, (int)settings.JoystickLeft);
             AppendValue(lines, (int)settings.JoystickRight);

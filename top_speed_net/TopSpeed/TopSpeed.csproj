@@ -22,25 +22,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ThirdParty\Tolk\**\*.cs" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ThirdParty\Tolk\x64\*.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>%(Filename)%(Extension)</Link>
-    </Content>
-    <Content Include="ThirdParty\Tolk\TolkDotNet.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>%(Filename)%(Extension)</Link>
-    </Content>
     <Content Include="..\MiniAudioExNET\runtimes\win-x64\native\miniaudioex.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>miniaudioex.dll</Link>
     </Content>
-    <Content Include="ThirdParty\phonon.dll">
+    <Content Include="ThirdParty\*.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>phonon.dll</Link>
+      <Link>%(Filename)%(Extension)</Link>
     </Content>
     <Content Include="Effects\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

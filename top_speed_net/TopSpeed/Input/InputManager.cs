@@ -7,6 +7,7 @@ namespace TopSpeed.Input
     internal sealed class InputManager : IDisposable
     {
         private const int JoystickRescanIntervalMs = 1000;
+        private const int MenuBackThreshold = 50;
         private readonly DirectInput _directInput;
         private readonly Keyboard _keyboard;
         private readonly GamepadDevice _gamepad;
@@ -16,6 +17,7 @@ namespace TopSpeed.Input
         private readonly IntPtr _windowHandle;
         private int _lastJoystickScan;
         private bool _suspended;
+        private bool _menuBackLatched;
 
         public InputState Current => _current;
 
@@ -64,7 +66,49 @@ namespace TopSpeed.Input
 
         public bool WasPressed(Key key) => _current.IsDown(key) && !_previous.IsDown(key);
 
-        public bool TryGetJoystickState(out JoystickStateSnapshot state)
+        public bool IsAnyInputHeld()
+        {
+            if (_suspended)
+                return false;
+
+            UpdateMenuBackLatchImmediate();
+
+            if (IsAnyKeyboardKeyHeld())
+                return true;
+
+            return IsAnyJoystickButtonHeld();
+        }
+
+        public bool IsMenuBackHeld()
+        {
+            if (_suspended)
+                return false;
+
+            if (IsDown(Key.Escape))
+                return true;
+
+            if (TryGetJoystickState(out var state))
+                return state.X < -MenuBackThreshold || state.Pov4;
+
+            return false;
+        }
+
+        public void LatchMenuBack()
+        {
+            _menuBackLatched = true;
+        }
+
+        public bool ShouldIgnoreMenuBack()
+        {
+            if (!_menuBackLatched)
+                return false;
+            if (IsMenuBackHeld())
+                return true;
+            _menuBackLatched = false;
+            return false;
+        }
+
+        public bool TryGetJoystickState(out JoystickStateSnapshot state)        
         {
             var device = VibrationDevice;
             if (device != null && device.IsAvailable)
@@ -76,9 +120,15 @@ namespace TopSpeed.Input
             return false;
         }
 
-        public IVibrationDevice? VibrationDevice => _gamepad.IsAvailable
+        public void ResetState()
+        {
+            _current.Clear();
+            _previous.Clear();
+        }
+
+        public IVibrationDevice? VibrationDevice => _gamepad.IsAvailable        
             ? _gamepad
-            : (_joystick != null && _joystick.IsAvailable ? _joystick : null);
+            : (_joystick != null && _joystick.IsAvailable ? _joystick : null);  
 
         public void Suspend()
         {
@@ -97,6 +147,77 @@ namespace TopSpeed.Input
         {
             _suspended = false;
             TryAcquire();
+        }
+
+        private bool IsAnyKeyboardKeyHeld()
+        {
+            try
+            {
+                _keyboard.Acquire();
+                var state = _keyboard.GetCurrentState();
+                return state.PressedKeys.Count > 0;
+            }
+            catch (SharpDXException)
+            {
+                return false;
+            }
+        }
+
+        private bool IsAnyJoystickButtonHeld()
+        {
+            if (_gamepad.IsAvailable)
+            {
+                _gamepad.Update();
+                return _gamepad.State.HasAnyButtonDown();
+            }
+
+            if (_joystick == null || !_joystick.IsAvailable)
+                TryRescanJoystick();
+
+            if (_joystick == null || !_joystick.IsAvailable)
+                return false;
+
+            return _joystick.Update() && _joystick.State.HasAnyButtonDown();
+        }
+
+        private void UpdateMenuBackLatchImmediate()
+        {
+            if (!_menuBackLatched)
+                return;
+            if (!IsMenuBackHeldImmediate())
+                _menuBackLatched = false;
+        }
+
+        private bool IsMenuBackHeldImmediate()
+        {
+            try
+            {
+                _keyboard.Acquire();
+                var state = _keyboard.GetCurrentState();
+                foreach (var key in state.PressedKeys)
+                {
+                    if (key == Key.Escape)
+                        return true;
+                }
+            }
+            catch (SharpDXException)
+            {
+            }
+
+            if (_gamepad.IsAvailable)
+            {
+                _gamepad.Update();
+                var state = _gamepad.State;
+                return state.X < -MenuBackThreshold || state.Pov4;
+            }
+
+            if (_joystick == null || !_joystick.IsAvailable)
+                TryRescanJoystick();
+
+            if (_joystick == null || !_joystick.IsAvailable)
+                return false;
+
+            return _joystick.Update() && (_joystick.State.X < -MenuBackThreshold || _joystick.State.Pov4);
         }
 
         private bool TryAcquire()

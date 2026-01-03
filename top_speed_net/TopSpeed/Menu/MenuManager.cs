@@ -77,6 +77,7 @@ namespace TopSpeed.Menu
             {
                 var item = result.ActivatedItem;
                 var stackCount = _stack.Count;
+                _speech.Purge();
                 item.OnActivate?.Invoke();
                 var stackChanged = _stack.Count != stackCount || _stack.Peek() != current;
                 if (item.Action == MenuAction.Back)
@@ -139,9 +140,9 @@ namespace TopSpeed.Menu
             _menuMusicSuspended = false;
         }
 
-        public MenuScreen CreateMenu(string id, IEnumerable<MenuItem> items, string? title = null)
+        public MenuScreen CreateMenu(string id, IEnumerable<MenuItem> items, string? title = null, Func<string>? titleProvider = null)
         {
-            return new MenuScreen(id, items, _audio, _speech, title);
+            return new MenuScreen(id, items, _audio, _speech, title, titleProvider);
         }
 
         private MenuScreen? FindScreenWithPlayingMusic()

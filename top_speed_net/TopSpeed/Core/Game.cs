@@ -47,6 +47,7 @@ namespace TopSpeed.Core
         private bool _needsCalibration;
         private bool _calibrationMenusRegistered;
         private string? _calibrationReturnMenuId;
+        private bool _calibrationOverlay;
         private Stopwatch? _calibrationStopwatch;
         private bool _pendingRaceStart;
         private RaceMode _pendingMode;
@@ -135,6 +136,11 @@ namespace TopSpeed.Core
                     break;
                 case AppState.Calibration:
                     _menu.Update(_input);
+                    if (_calibrationOverlay && !IsCalibrationMenu(_menu.CurrentId))
+                    {
+                        _calibrationOverlay = false;
+                        _state = AppState.Menu;
+                    }
                     break;
                 case AppState.Menu:
                     if (UpdateModalOperations())
@@ -219,7 +225,11 @@ namespace TopSpeed.Core
             _calibrationReturnMenuId = returnMenuId;
             _calibrationStopwatch = null;
             EnsureCalibrationMenus();
-            _menu.ShowRoot(CalibrationIntroMenuId);
+            _calibrationOverlay = !string.IsNullOrWhiteSpace(returnMenuId) && _menu.HasActiveMenu;
+            if (_calibrationOverlay)
+                _menu.Push(CalibrationIntroMenuId);
+            else
+                _menu.ShowRoot(CalibrationIntroMenuId);
             _state = AppState.Calibration;
         }
 
@@ -245,7 +255,10 @@ namespace TopSpeed.Core
         private void BeginCalibrationSample()
         {
             _calibrationStopwatch = Stopwatch.StartNew();
-            _menu.ShowRoot(CalibrationSampleMenuId);
+            if (_calibrationOverlay)
+                _menu.ReplaceTop(CalibrationSampleMenuId);
+            else
+                _menu.ShowRoot(CalibrationSampleMenuId);
         }
 
         private void CompleteCalibration()
@@ -263,9 +276,22 @@ namespace TopSpeed.Core
             _needsCalibration = false;
             var returnMenu = _calibrationReturnMenuId ?? "main";
             _calibrationReturnMenuId = null;
-            _menu.ShowRoot(returnMenu);
+            if (_calibrationOverlay && _menu.CanPop)
+            {
+                _menu.PopToPrevious();
+            }
+            else
+            {
+                _menu.ShowRoot(returnMenu);
+            }
+            _calibrationOverlay = false;
             _menu.FadeInMenuMusic(force: true);
             _state = AppState.Menu;
+        }
+
+        private static bool IsCalibrationMenu(string? id)
+        {
+            return id == CalibrationIntroMenuId || id == CalibrationSampleMenuId;
         }
 
         private void EnterMenuState()

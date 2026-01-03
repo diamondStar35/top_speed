@@ -54,6 +54,35 @@ namespace TopSpeed.Menu
             screen.AnnounceTitle();
         }
 
+        public void ReplaceTop(string id)
+        {
+            if (_stack.Count == 0)
+            {
+                ShowRoot(id);
+                return;
+            }
+
+            _stack.Pop();
+            var screen = GetScreen(id);
+            screen.ResetSelection();
+            screen.Initialize();
+            _stack.Push(screen);
+            screen.AnnounceTitle();
+        }
+
+        public void PopToPrevious()
+        {
+            if (_stack.Count <= 1)
+                return;
+
+            _stack.Pop();
+            _stack.Peek().AnnounceTitle();
+        }
+
+        public bool HasActiveMenu => _stack.Count > 0;
+        public bool CanPop => _stack.Count > 1;
+        public string? CurrentId => _stack.Count > 0 ? _stack.Peek().Id : null;
+
         public MenuAction Update(InputManager input)
         {
             if (_stack.Count == 0)

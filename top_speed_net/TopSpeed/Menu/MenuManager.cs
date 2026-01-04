@@ -108,7 +108,7 @@ namespace TopSpeed.Menu
                 var item = result.ActivatedItem;
                 var stackCount = _stack.Count;
                 _speech.Purge();
-                item.OnActivate?.Invoke();
+                var announcement = item.ActivateAndGetAnnouncement();
                 var stackChanged = _stack.Count != stackCount || _stack.Peek() != current;
                 if (item.Action == MenuAction.Back)
                 {
@@ -124,6 +124,10 @@ namespace TopSpeed.Menu
                 {
                     Push(item.NextMenuId!);
                     return MenuAction.None;
+                }
+                if (!stackChanged && !item.SuppressPostActivateAnnouncement && !string.IsNullOrWhiteSpace(announcement))
+                {
+                    _speech.Speak(announcement);
                 }
                 return item.Action;
             }

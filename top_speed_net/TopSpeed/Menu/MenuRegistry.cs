@@ -278,10 +278,24 @@ namespace TopSpeed.Menu
         {
             var items = new List<MenuItem>
             {
-                new MenuItem(() => $"Include custom tracks in randomization: {FormatOnOff(_settings.RandomCustomTracks)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.RandomCustomTracks = !_settings.RandomCustomTracks)),
-                new MenuItem(() => $"Include custom vehicles in randomization: {FormatOnOff(_settings.RandomCustomVehicles)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.RandomCustomVehicles = !_settings.RandomCustomVehicles)),
-                new MenuItem(() => $"Enable HRTF Three-D audio: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
-                new MenuItem(() => $"Units: {UnitsLabel(_settings.Units)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.Units = _settings.Units == UnitSystem.Metric ? UnitSystem.Imperial : UnitSystem.Metric)),
+                new CheckBoxMenuItem(
+                    "Include custom tracks in randomization",
+                    () => _settings.RandomCustomTracks,
+                    value => _actions.UpdateSetting(() => _settings.RandomCustomTracks = value)),
+                new CheckBoxMenuItem(
+                    "Include custom vehicles in randomization",
+                    () => _settings.RandomCustomVehicles,
+                    value => _actions.UpdateSetting(() => _settings.RandomCustomVehicles = value)),
+                new CheckBoxMenuItem(
+                    "Enable HRTF Three-D audio",
+                    () => _settings.ThreeDSound,
+                    value => _actions.UpdateSetting(() => _settings.ThreeDSound = value)),
+                new SwitchMenuItem(
+                    "Units",
+                    "metric",
+                    "imperial",
+                    () => _settings.Units == UnitSystem.Metric,
+                    value => _actions.UpdateSetting(() => _settings.Units = value ? UnitSystem.Metric : UnitSystem.Imperial)),
                 new MenuItem("Recalibrate screen reader rate", MenuAction.None, onActivate: _actions.RecalibrateScreenReaderRate),
                 BackItem()
             };

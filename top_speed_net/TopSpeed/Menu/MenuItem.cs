@@ -2,7 +2,7 @@ using System;
 
 namespace TopSpeed.Menu
 {
-    internal sealed class MenuItem
+    internal class MenuItem
     {
         private readonly string _text;
         private readonly Func<string>? _textProvider;
@@ -43,7 +43,18 @@ namespace TopSpeed.Menu
             SuppressPostActivateAnnouncement = suppressPostActivateAnnouncement;
         }
 
-        public string GetDisplayText()
+        public virtual string GetDisplayText()
+        {
+            return _textProvider?.Invoke() ?? _text;
+        }
+
+        public virtual string? ActivateAndGetAnnouncement()
+        {
+            OnActivate?.Invoke();
+            return null;
+        }
+
+        protected string GetBaseText()
         {
             return _textProvider?.Invoke() ?? _text;
         }

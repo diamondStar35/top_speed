@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Numerics;
 using TS.Audio;
 
 namespace TopSpeed.Audio
@@ -8,11 +9,8 @@ namespace TopSpeed.Audio
     {
         private readonly AudioSystem _system;
         private readonly AudioOutput _output;
-        private readonly bool _useHrtf;
-
         public AudioManager(bool useHrtf = false)
         {
-            _useHrtf = useHrtf;
             var config = new AudioSystemConfig
             {
                 UseHrtf = useHrtf
@@ -25,7 +23,7 @@ namespace TopSpeed.Audio
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException("Audio file not found.", path);
-            return _output.CreateSource(path, streamFromDisk, useHrtf && _useHrtf);
+            return _output.CreateSource(path, streamFromDisk, useHrtf);
         }
 
         public AudioSourceHandle CreateLoopingSource(string path, bool useHrtf = false)
@@ -33,9 +31,27 @@ namespace TopSpeed.Audio
             return CreateSource(path, streamFromDisk: false, useHrtf: useHrtf);
         }
 
+        public AudioSourceHandle CreateSpatialSource(string path, bool streamFromDisk = true, bool allowHrtf = true)
+        {
+            if (!File.Exists(path))
+                throw new FileNotFoundException("Audio file not found.", path);
+
+            return _output.CreateSpatialSource(path, streamFromDisk, allowHrtf);
+        }
+
+        public AudioSourceHandle CreateLoopingSpatialSource(string path, bool allowHrtf = true)
+        {
+            return CreateSpatialSource(path, streamFromDisk: false, allowHrtf: allowHrtf);
+        }
+
         public void Update()
         {
             _system.Update();
+        }
+
+        public void UpdateListener(Vector3 position, Vector3 forward, Vector3 up, Vector3 velocity)
+        {
+            _system.UpdateListenerAll(position, forward, up, velocity);
         }
 
         public void Dispose()

@@ -31,6 +31,7 @@ namespace TS.Audio
         private readonly AudioSourceSpatialParams _spatial;
         private SteamAudioSpatializer? _spatializer;
         private bool _useHrtf;
+        private readonly bool _spatialize;
         private readonly bool _trueStereoHrtf;
         private float _basePitch = 1.0f;
         private bool _ownsSound;
@@ -42,12 +43,18 @@ namespace TS.Audio
         private Action? _onEnd;
 
         public AudioSourceHandle(AudioOutput output, string filePath, bool streamFromDisk, bool useHrtf = true)
+            : this(output, filePath, streamFromDisk, spatialize: useHrtf, useHrtf: useHrtf)
+        {
+        }
+
+        public AudioSourceHandle(AudioOutput output, string filePath, bool streamFromDisk, bool spatialize, bool useHrtf)
         {
             _output = output;
             _sound = new MaSound();
             _spatial = new AudioSourceSpatialParams();
             _ownsSound = true;
             _trueStereoHrtf = output.TrueStereoHrtf;
+            _spatialize = spatialize;
 
             ma_sound_flags flags = streamFromDisk ? ma_sound_flags.stream : 0;
             var init = _sound.InitializeFromFile(_output.Engine, filePath, flags, null!);
@@ -56,7 +63,7 @@ namespace TS.Audio
 
             CacheFormat();
             _spatializer = _output.SteamAudio != null ? new SteamAudioSpatializer(_output.SteamAudio, _output.PeriodSizeInFrames, _trueStereoHrtf, _output.DownmixMode) : null;
-            _useHrtf = useHrtf && _output.SteamAudio != null;
+            _useHrtf = _spatialize && useHrtf && _output.SteamAudio != null;
 
             if (_useHrtf)
             {
@@ -69,13 +76,22 @@ namespace TS.Audio
                 _sound.AttachOutputBus(0, _effectNode.NodeHandle, 0);
                 _effectNode.AttachOutputBus(0, _output.Engine.GetEndPoint(), 0);
             }
-            else
+            else if (_spatialize)
             {
                 _sound.SetSpatializationEnabled(true);
+            }
+            else
+            {
+                _sound.SetSpatializationEnabled(false);
             }
         }
 
         internal AudioSourceHandle(AudioOutput output, MaSound sound, bool ownsSound, bool useHrtf = true, IDisposable? userData = null)
+            : this(output, sound, ownsSound, spatialize: useHrtf, useHrtf: useHrtf, userData: userData)
+        {
+        }
+
+        internal AudioSourceHandle(AudioOutput output, MaSound sound, bool ownsSound, bool spatialize, bool useHrtf, IDisposable? userData = null)
         {
             _output = output;
             _sound = sound ?? throw new ArgumentNullException(nameof(sound));
@@ -83,10 +99,11 @@ namespace TS.Audio
             _ownsSound = ownsSound;
             _userData = userData;
             _trueStereoHrtf = output.TrueStereoHrtf;
+            _spatialize = spatialize;
 
             CacheFormat();
             _spatializer = _output.SteamAudio != null ? new SteamAudioSpatializer(_output.SteamAudio, _output.PeriodSizeInFrames, _trueStereoHrtf, _output.DownmixMode) : null;
-            _useHrtf = useHrtf && _output.SteamAudio != null;
+            _useHrtf = _spatialize && useHrtf && _output.SteamAudio != null;
 
             if (_useHrtf)
             {
@@ -99,9 +116,13 @@ namespace TS.Audio
                 _sound.AttachOutputBus(0, _effectNode.NodeHandle, 0);
                 _effectNode.AttachOutputBus(0, _output.Engine.GetEndPoint(), 0);
             }
-            else
+            else if (_spatialize)
             {
                 _sound.SetSpatializationEnabled(true);
+            }
+            else
+            {
+                _sound.SetSpatializationEnabled(false);
             }
         }
 
@@ -141,7 +162,7 @@ namespace TS.Audio
 
         public void SetPan(float pan)
         {
-            if (_useHrtf)
+            if (_spatialize)
                 return;
 
             _sound.SetPan(pan);
@@ -149,6 +170,9 @@ namespace TS.Audio
 
         public void SetPosition(Vector3 position)
         {
+            if (!_spatialize)
+                return;
+
             Volatile.Write(ref _spatial.PosX, position.X);
             Volatile.Write(ref _spatial.PosY, position.Y);
             Volatile.Write(ref _spatial.PosZ, position.Z);
@@ -161,6 +185,9 @@ namespace TS.Audio
 
         public void SetVelocity(Vector3 velocity)
         {
+            if (!_spatialize)
+                return;
+
             Volatile.Write(ref _spatial.VelX, velocity.X);
             Volatile.Write(ref _spatial.VelY, velocity.Y);
             Volatile.Write(ref _spatial.VelZ, velocity.Z);
@@ -173,6 +200,9 @@ namespace TS.Audio
 
         public void SetDistanceModel(DistanceModel model, float refDistance, float maxDistance, float rolloff)
         {
+            if (!_spatialize)
+                return;
+
             if (refDistance <= 0f)
                 refDistance = 0.0001f;
             if (maxDistance <= 0f)
@@ -196,6 +226,9 @@ namespace TS.Audio
 
         public void ApplyCurveDistanceScaler(float curveDistanceScaler)
         {
+            if (!_spatialize)
+                return;
+
             if (curveDistanceScaler <= 0f)
                 curveDistanceScaler = 0.0001f;
 
@@ -204,6 +237,9 @@ namespace TS.Audio
 
         public void SetDopplerFactor(float dopplerFactor)
         {
+            if (!_spatialize)
+                return;
+
             if (!_useHrtf)
             {
                 _sound.SetDopplerFactor(dopplerFactor);

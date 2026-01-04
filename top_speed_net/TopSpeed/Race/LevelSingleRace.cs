@@ -214,8 +214,6 @@ namespace TopSpeed.Race
                 bot.Run(elapsed, _car.PositionX, _car.PositionY);
                 if (_track.Lap(bot.PositionY) > _nrOfLaps && !bot.Finished)
                 {
-                    if (!_settings.ThreeDSound)
-                        bot.Quiet();
                     bot.Stop();
                     bot.SetFinished(true);
                     Speak(_soundPlayerNr[bot.PlayerNumber]!, true);
@@ -227,6 +225,7 @@ namespace TopSpeed.Race
 
             var road = _track.RoadAtPosition(_car.PositionY);
             _car.Evaluate(road);
+            UpdateAudioListener(elapsed);
             if (_track.NextRoad(_car.PositionY, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
                 CallNextRoad(nextRoad);
 

@@ -112,6 +112,7 @@ namespace TopSpeed.Race
             _track.Run(_car.PositionY);
             var road = _track.RoadAtPosition(_car.PositionY);
             _car.Evaluate(road);
+            UpdateAudioListener(elapsed);
             if (_track.NextRoad(_car.PositionY, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
                 CallNextRoad(nextRoad);
 

@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Remove="ThirdParty\Tolk\**\*.cs" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>

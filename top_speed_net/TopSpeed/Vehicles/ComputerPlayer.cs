@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Numerics;
 using TopSpeed.Audio;
 using TopSpeed.Common;
 using TopSpeed.Core;
@@ -101,6 +102,9 @@ namespace TopSpeed.Vehicles
         private bool _backfirePlayedAuto;
         private bool _networkBackfireActive;
         private int _frame;
+        private Vector3 _lastAudioPosition;
+        private bool _audioInitialized;
+        private float _lastAudioUpdateTime;
 
         private AudioSourceHandle _soundEngine;
         private AudioSourceHandle _soundHorn;
@@ -237,6 +241,9 @@ namespace TopSpeed.Vehicles
             _positionY = positionY;
             _trackLength = trackLength;
             _laneWidth = _track.LaneWidth;
+            _audioInitialized = false;
+            _lastAudioPosition = new Vector3(positionX, 0f, positionY);
+            _lastAudioUpdateTime = 0f;
         }
 
         public void FinalizePlayer()
@@ -361,17 +368,7 @@ namespace TopSpeed.Vehicles
                 }
             }
 
-            var relX = _laneWidth == 0 ? 0f : _diffX / (float)_laneWidth;
-            var relY = _diffY / 120.0f;
-            SetSoundPosition(_soundEngine, relX, relY);
-            SetSoundPosition(_soundStart, relX, relY);
-            SetSoundPosition(_soundHorn, relX, relY);
-            SetSoundPosition(_soundCrash, relX, relY);
-            SetSoundPosition(_soundBrake, relX, relY);
-            if (_soundBackfire != null)
-                SetSoundPosition(_soundBackfire, relX, relY);
-            SetSoundPosition(_soundBump, relX, relY);
-            SetSoundPosition(_soundMiniCrash, relX, relY);
+            UpdateSpatialAudio(playerX, playerY, _trackLength, elapsed);
 
             if (_state == ComputerState.Running && _started())
             {
@@ -635,17 +632,16 @@ namespace TopSpeed.Vehicles
             if (_diffY > _trackLength / 2)
                 _diffY = (_diffY - _trackLength) % _trackLength;
 
-            var relX = _laneWidth == 0 ? 0f : _diffX / (float)_laneWidth;
-            var relY = _diffY / 120.0f;
-            SetSoundPosition(_soundEngine, relX, relY);
-            SetSoundPosition(_soundStart, relX, relY);
-            SetSoundPosition(_soundHorn, relX, relY);
-            SetSoundPosition(_soundCrash, relX, relY);
-            SetSoundPosition(_soundBrake, relX, relY);
-            if (_soundBackfire != null)
-                SetSoundPosition(_soundBackfire, relX, relY);
-            SetSoundPosition(_soundBump, relX, relY);
-            SetSoundPosition(_soundMiniCrash, relX, relY);
+            var elapsed = 0f;
+            var now = _currentTime();
+            if (_audioInitialized)
+            {
+                elapsed = now - _lastAudioUpdateTime;
+                if (elapsed < 0f)
+                    elapsed = 0f;
+            }
+            _lastAudioUpdateTime = now;
+            UpdateSpatialAudio(playerX, playerY, _trackLength, elapsed);
 
             if (engineRunning)
             {
@@ -1122,16 +1118,40 @@ namespace TopSpeed.Vehicles
             return Math.Max(0f, decelMps2 * 3.6f);
         }
 
-        private void SetSoundPosition(AudioSourceHandle sound, float relX, float relY)
+        private void UpdateSpatialAudio(float listenerX, float listenerY, float trackLength, float elapsed)
         {
-            var distance = (float)Math.Sqrt((relX * relX) + (relY * relY));
-            var pan = (int)Math.Max(-100f, Math.Min(100f, relX * 120.0f));
-            sound.SetPanPercent(pan);
+            var trackWidth = Math.Max(0.01f, _laneWidth * 2.0f);
+            var relX = _diffX / trackWidth;
+            var relY = trackLength > 0f ? _diffY / trackLength : 0f;
 
-            var volume = (int)(100.0f - (distance * 25.0f));
-            if (volume < 0) volume = 0;
-            if (volume > 100) volume = 100;
-            sound.SetVolumePercent(volume);
+            var worldX = listenerX + (relX * trackWidth);
+            var worldZ = listenerY + (relY * trackLength);
+            var position = new Vector3(worldX, 0f, worldZ);
+
+            var velocity = Vector3.Zero;
+            if (_audioInitialized && elapsed > 0f)
+            {
+                velocity = (position - _lastAudioPosition) / elapsed;
+            }
+            _lastAudioPosition = position;
+            _audioInitialized = true;
+
+            SetSpatial(_soundEngine, position, velocity);
+            SetSpatial(_soundStart, position, velocity);
+            SetSpatial(_soundHorn, position, velocity);
+            SetSpatial(_soundCrash, position, velocity);
+            SetSpatial(_soundBrake, position, velocity);
+            SetSpatial(_soundBackfire, position, velocity);
+            SetSpatial(_soundBump, position, velocity);
+            SetSpatial(_soundMiniCrash, position, velocity);
+        }
+
+        private static void SetSpatial(AudioSourceHandle? sound, Vector3 position, Vector3 velocity)
+        {
+            if (sound == null)
+                return;
+            sound.SetPosition(position);
+            sound.SetVelocity(velocity);
         }
 
         private AudioSourceHandle CreateRequiredSound(string? path, string label, bool looped = false)
@@ -1142,8 +1162,8 @@ namespace TopSpeed.Vehicles
             if (!File.Exists(resolved))
                 throw new FileNotFoundException("Sound file not found.", resolved);
             return looped
-                ? _audio.CreateLoopingSource(resolved, useHrtf: false)
-                : _audio.CreateSource(resolved, streamFromDisk: true, useHrtf: false);
+                ? _audio.CreateLoopingSource(resolved, useHrtf: true)
+                : _audio.CreateSource(resolved, streamFromDisk: true, useHrtf: true);
         }
 
         private AudioSourceHandle? TryCreateSound(string? path, bool looped = false)
@@ -1154,8 +1174,8 @@ namespace TopSpeed.Vehicles
             if (!File.Exists(resolved))
                 return null;
             return looped
-                ? _audio.CreateLoopingSource(resolved, useHrtf: false)
-                : _audio.CreateSource(resolved, streamFromDisk: true, useHrtf: false);
+                ? _audio.CreateLoopingSource(resolved, useHrtf: true)
+                : _audio.CreateSource(resolved, streamFromDisk: true, useHrtf: true);
         }
 
         private sealed class BotEvent

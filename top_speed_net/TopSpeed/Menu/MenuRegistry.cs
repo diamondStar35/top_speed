@@ -280,7 +280,7 @@ namespace TopSpeed.Menu
             {
                 new MenuItem(() => $"Include custom tracks in randomization: {FormatOnOff(_settings.RandomCustomTracks)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.RandomCustomTracks = !_settings.RandomCustomTracks)),
                 new MenuItem(() => $"Include custom vehicles in randomization: {FormatOnOff(_settings.RandomCustomVehicles)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.RandomCustomVehicles = !_settings.RandomCustomVehicles)),
-                new MenuItem(() => $"Enable Three-D sound: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
+                new MenuItem(() => $"Enable HRTF Three-D audio: {FormatOnOff(_settings.ThreeDSound)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.ThreeDSound = !_settings.ThreeDSound)),
                 new MenuItem(() => $"Units: {UnitsLabel(_settings.Units)}", MenuAction.None, onActivate: () => _actions.ToggleSetting(() => _settings.Units = _settings.Units == UnitSystem.Metric ? UnitSystem.Imperial : UnitSystem.Metric)),
                 new MenuItem("Recalibrate screen reader rate", MenuAction.None, onActivate: _actions.RecalibrateScreenReaderRate),
                 BackItem()

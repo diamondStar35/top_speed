@@ -33,13 +33,13 @@ namespace TS.Audio
         public HrtfDownmixMode HrtfDownmixMode = HrtfDownmixMode.Average;
         public string? HrtfSofaPath = null;
         public float SpeedOfSound = 343.0f;
-        public float DopplerFactor = 1.0f;
+        public float DopplerFactor = 0.5f;
         public bool UseCurveDistanceScaler = false;
         public float CurveDistanceScaler = 1.0f;
         public float MinDistance = 1.0f;
-        public float MaxDistance = 10000.0f;
+        public float MaxDistance = 200.0f;
         public float RollOff = 1.0f;
-        public DistanceModel DistanceModel = DistanceModel.Inverse;
+        public DistanceModel DistanceModel = DistanceModel.Linear;
         public bool UseVerticalVelocity = false;
     }
 

@@ -207,6 +207,7 @@ namespace TopSpeed.Race
 
             var road = _track.RoadAtPosition(_car.PositionY);
             _car.Evaluate(road);
+            UpdateAudioListener(elapsed);
             if (_track.NextRoad(_car.PositionY, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
                 CallNextRoad(nextRoad);
 
@@ -361,8 +362,6 @@ namespace TopSpeed.Race
             if (data.State == PlayerState.Finished && !remote.Finished)
             {
                 remote.Finished = true;
-                if (!_settings.ThreeDSound)
-                    remote.Player.Quiet();
                 remote.Player.Stop();
                 if ((int)data.PlayerNumber < _soundPlayerNr.Length)
                 {

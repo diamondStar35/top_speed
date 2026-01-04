@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Numerics;
 using System.Threading;
 using TopSpeed.Audio;
 using TopSpeed.Common;
@@ -79,6 +80,8 @@ namespace TopSpeed.Race
         protected Track.Road _currentRoad;
         protected long _oldStopwatchMs;
         protected long _stopwatchDiffMs;
+        private Vector3 _lastListenerPosition;
+        private bool _listenerInitialized;
 
         protected AudioSourceHandle _soundStart;
         protected AudioSourceHandle[] _soundLaps;
@@ -243,6 +246,8 @@ namespace TopSpeed.Race
             _engineStarted = false;
             _currentRoad.Surface = _track.InitialSurface;
             _car.ManualTransmission = _manualTransmission;
+            _listenerInitialized = false;
+            _lastListenerPosition = Vector3.Zero;
         }
 
         protected void FinalizeLevel()
@@ -553,6 +558,30 @@ namespace TopSpeed.Race
         protected void SpeakText(string text)
         {
             _speech.Speak(text);
+        }
+
+        protected void UpdateAudioListener(float elapsed)
+        {
+            var driverOffsetX = -_car.WidthM * 0.25f;
+            var driverOffsetZ = _car.LengthM * 0.1f;
+            var position = new Vector3(_car.PositionX + driverOffsetX, 0f, _car.PositionY + driverOffsetZ);
+
+            var velocity = Vector3.Zero;
+            if (_listenerInitialized && elapsed > 0f)
+            {
+                velocity = (position - _lastListenerPosition) / elapsed;
+            }
+            _lastListenerPosition = position;
+            _listenerInitialized = true;
+
+            var forward = new Vector3(velocity.X, 0f, velocity.Z);
+            if (forward.LengthSquared() < 0.0001f)
+                forward = new Vector3(0f, 0f, 1f);
+            else
+                forward = Vector3.Normalize(forward);
+
+            var up = new Vector3(0f, 1f, 0f);
+            _audio.UpdateListener(position, forward, up, velocity);
         }
 
         protected static string FormatTimeText(int raceTimeMs, bool detailed)

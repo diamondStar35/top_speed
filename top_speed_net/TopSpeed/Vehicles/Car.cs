@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Numerics;
 using TopSpeed.Audio;
 using TopSpeed.Common;
 using TopSpeed.Core;
@@ -21,6 +22,7 @@ namespace TopSpeed.Vehicles
         private const float BumpVibrationSeconds = 0.2f;
         private const float AutoShiftHysteresis = 0.05f;
         private const float AutoShiftCooldownSeconds = 0.15f;
+        private const float EnginePanScale = 1.0f;
 
         private static bool s_stickReleased;
 
@@ -106,6 +108,10 @@ namespace TopSpeed.Vehicles
         private int _frame;
         private float _prevThrottleVolume;
         private float _throttleVolume;
+        private float _lastAudioX;
+        private float _lastAudioY;
+        private bool _audioInitialized;
+        private float _lastAudioElapsed;
 
         private AudioSourceHandle _soundEngine;
         private AudioSourceHandle? _soundThrottle;
@@ -239,10 +245,10 @@ namespace TopSpeed.Vehicles
                 definition.Gears,
                 definition.GearRatios);
 
-            _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true);
+            _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true, allowHrtf: false);
             _soundStart = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Start));
             _soundHorn = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Horn), looped: true);
-            _soundThrottle = TryCreateSound(definition.GetSoundPath(VehicleAction.Throttle), looped: true);
+            _soundThrottle = TryCreateSound(definition.GetSoundPath(VehicleAction.Throttle), looped: true, allowHrtf: false);
             _soundCrash = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Crash));
             _soundBrake = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Brake), looped: true);
             _soundBackfire = TryCreateSound(definition.GetSoundPath(VehicleAction.Backfire));
@@ -253,11 +259,11 @@ namespace TopSpeed.Vehicles
             if (_hasWipers == 1)
                 _soundWipers = CreateRequiredSound(Path.Combine(_legacyRoot, "wipers.wav"), looped: true);
 
-            _soundAsphalt = CreateRequiredSound(Path.Combine(_legacyRoot, "asphalt.wav"), looped: true);
-            _soundGravel = CreateRequiredSound(Path.Combine(_legacyRoot, "gravel.wav"), looped: true);
-            _soundWater = CreateRequiredSound(Path.Combine(_legacyRoot, "water.wav"), looped: true);
-            _soundSand = CreateRequiredSound(Path.Combine(_legacyRoot, "sand.wav"), looped: true);
-            _soundSnow = CreateRequiredSound(Path.Combine(_legacyRoot, "snow.wav"), looped: true);
+            _soundAsphalt = CreateRequiredSound(Path.Combine(_legacyRoot, "asphalt.wav"), looped: true, allowHrtf: false);
+            _soundGravel = CreateRequiredSound(Path.Combine(_legacyRoot, "gravel.wav"), looped: true, allowHrtf: false);
+            _soundWater = CreateRequiredSound(Path.Combine(_legacyRoot, "water.wav"), looped: true, allowHrtf: false);
+            _soundSand = CreateRequiredSound(Path.Combine(_legacyRoot, "sand.wav"), looped: true, allowHrtf: false);
+            _soundSnow = CreateRequiredSound(Path.Combine(_legacyRoot, "snow.wav"), looped: true, allowHrtf: false);
             _soundMiniCrash = CreateRequiredSound(Path.Combine(_legacyRoot, "crashshort.wav"));
             _soundBump = CreateRequiredSound(Path.Combine(_legacyRoot, "bump.wav"));
             _soundBadSwitch = CreateRequiredSound(Path.Combine(_legacyRoot, "badswitch.wav"));
@@ -278,6 +284,14 @@ namespace TopSpeed.Vehicles
                 _vibration.LoadEffect(VibrationEffectType.BumpRight, Path.Combine(_effectsRoot, "bumpright.ffe"));
                 _vibration.Gain(VibrationEffectType.Gravel, 0);
             }
+
+            _soundEngine.SetDopplerFactor(0f);
+            _soundThrottle?.SetDopplerFactor(0f);
+            _soundAsphalt.SetDopplerFactor(0f);
+            _soundGravel.SetDopplerFactor(0f);
+            _soundWater.SetDopplerFactor(0f);
+            _soundSand.SetDopplerFactor(0f);
+            _soundSnow.SetDopplerFactor(0f);
         }
 
         public CarState State => _state;
@@ -316,6 +330,10 @@ namespace TopSpeed.Vehicles
             _positionX = positionX;
             _positionY = positionY;
             _laneWidth = _track.LaneWidth * 2;
+            _audioInitialized = false;
+            _lastAudioX = positionX;
+            _lastAudioY = positionY;
+            _lastAudioElapsed = 0f;
             _vibration?.PlayEffect(VibrationEffectType.Spring);
         }
 
@@ -524,6 +542,7 @@ namespace TopSpeed.Vehicles
         }
         public void Run(float elapsed)
         {
+            _lastAudioElapsed = elapsed;
             var horning = _input.GetHorn();
 
             if (_state == CarState.Running && _started())
@@ -1049,6 +1068,7 @@ namespace TopSpeed.Vehicles
                     _soundEngine.SetPanPercent(_panPos);
                     _soundHorn.SetPanPercent(_panPos);
                     _soundWipers?.SetPanPercent(_panPos);
+                    UpdateSpatialAudio(road);
                 }
             }
 
@@ -1088,6 +1108,7 @@ namespace TopSpeed.Vehicles
                         : (_positionX - road.Left) / roadWidth;
                     _panPos = CalculatePan(_relPos);
                     ApplyPan(_panPos);
+                    UpdateSpatialAudio(road);
 
                     if (_vibration != null)
                     {
@@ -1638,20 +1659,108 @@ namespace TopSpeed.Vehicles
             return (int)pan;
         }
 
-        private AudioSourceHandle CreateRequiredSound(string? path, bool looped = false)
+        private AudioSourceHandle CreateRequiredSound(string? path, bool looped = false, bool spatialize = true, bool allowHrtf = true)
         {
             if (string.IsNullOrWhiteSpace(path))
                 throw new InvalidOperationException("Sound path not provided.");
             if (!File.Exists(path))
                 throw new FileNotFoundException("Sound file not found.", path);
-            return looped ? _audio.CreateLoopingSource(path!) : _audio.CreateSource(path!, streamFromDisk: true);
+            if (!spatialize)
+            {
+                return looped
+                    ? _audio.CreateLoopingSource(path!, useHrtf: false)
+                    : _audio.CreateSource(path!, streamFromDisk: true, useHrtf: false);
+            }
+
+            return looped
+                ? _audio.CreateLoopingSpatialSource(path!, allowHrtf: allowHrtf)
+                : _audio.CreateSpatialSource(path!, streamFromDisk: true, allowHrtf: allowHrtf);
         }
 
-        private AudioSourceHandle? TryCreateSound(string? path, bool looped = false)
+        private AudioSourceHandle? TryCreateSound(string? path, bool looped = false, bool spatialize = true, bool allowHrtf = true)
         {
             if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
                 return null;
-            return looped ? _audio.CreateLoopingSource(path!) : _audio.CreateSource(path!, streamFromDisk: true);
+            if (!spatialize)
+            {
+                return looped
+                    ? _audio.CreateLoopingSource(path!, useHrtf: false)
+                    : _audio.CreateSource(path!, streamFromDisk: true, useHrtf: false);
+            }
+
+            return looped
+                ? _audio.CreateLoopingSpatialSource(path!, allowHrtf: allowHrtf)
+                : _audio.CreateSpatialSource(path!, streamFromDisk: true, allowHrtf: allowHrtf);
+        }
+
+        private void UpdateSpatialAudio(Track.Road road)
+        {
+            var elapsed = _lastAudioElapsed;
+            if (elapsed <= 0f)
+                return;
+
+            var trackWidth = road.Right - road.Left;
+            if (trackWidth <= 0f)
+                trackWidth = _laneWidth > 0f ? _laneWidth : 1.0f;
+
+            var relX = (_positionX - road.Left) / trackWidth;
+            var worldX = road.Left + (relX * trackWidth);
+            var worldZ = _positionY;
+            var centerX = (road.Left + road.Right) * 0.5f;
+            var lateralFromCenter = worldX - centerX;
+            var audioX = centerX - (lateralFromCenter * EnginePanScale);
+            var position = new Vector3(audioX, 0f, worldZ);
+
+            var velocity = Vector3.Zero;
+            if (_audioInitialized)
+            {
+                velocity = new Vector3((audioX - _lastAudioX) / elapsed, 0f, (worldZ - _lastAudioY) / elapsed);
+            }
+            _lastAudioX = audioX;
+            _lastAudioY = worldZ;
+            _audioInitialized = true;
+
+            var engineOffsetZ = _lengthM * 0.35f;
+            var enginePos = new Vector3(position.X, position.Y, position.Z + engineOffsetZ);
+
+            SetSpatial(_soundEngine, enginePos, velocity);
+            SetSpatial(_soundThrottle, enginePos, velocity);
+            SetSpatial(_soundHorn, enginePos, velocity);
+            SetSpatial(_soundBrake, position, velocity);
+            SetSpatial(_soundBackfire, enginePos, velocity);
+            SetSpatial(_soundStart, enginePos, velocity);
+            SetSpatial(_soundCrash, position, velocity);
+            SetSpatial(_soundMiniCrash, position, velocity);
+            SetSpatial(_soundBump, position, velocity);
+            SetSpatial(_soundBadSwitch, enginePos, velocity);
+            SetSpatial(_soundWipers, position, velocity);
+
+            switch (_surface)
+            {
+                case TrackSurface.Asphalt:
+                    SetSpatial(_soundAsphalt, position, velocity);
+                    break;
+                case TrackSurface.Gravel:
+                    SetSpatial(_soundGravel, position, velocity);
+                    break;
+                case TrackSurface.Water:
+                    SetSpatial(_soundWater, position, velocity);
+                    break;
+                case TrackSurface.Sand:
+                    SetSpatial(_soundSand, position, velocity);
+                    break;
+                case TrackSurface.Snow:
+                    SetSpatial(_soundSnow, position, velocity);
+                    break;
+            }
+        }
+
+        private static void SetSpatial(AudioSourceHandle? sound, Vector3 position, Vector3 velocity)
+        {
+            if (sound == null)
+                return;
+            sound.SetPosition(position);
+            sound.SetVelocity(velocity);
         }
 
         private sealed class CarEvent

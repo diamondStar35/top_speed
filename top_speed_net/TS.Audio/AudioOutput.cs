@@ -128,7 +128,17 @@ namespace TS.Audio
 
         public AudioSourceHandle CreateSource(string filePath, bool streamFromDisk = true, bool useHrtf = true)
         {
-            var source = new AudioSourceHandle(this, filePath, streamFromDisk, useHrtf);
+            return CreateSource(filePath, streamFromDisk, spatialize: useHrtf, useHrtf: useHrtf);
+        }
+
+        public AudioSourceHandle CreateSpatialSource(string filePath, bool streamFromDisk = true, bool allowHrtf = true)
+        {
+            return CreateSource(filePath, streamFromDisk, spatialize: true, useHrtf: allowHrtf);
+        }
+
+        internal AudioSourceHandle CreateSource(string filePath, bool streamFromDisk, bool spatialize, bool useHrtf)
+        {
+            var source = new AudioSourceHandle(this, filePath, streamFromDisk, spatialize, useHrtf);
             if (_systemConfig.UseCurveDistanceScaler)
                 source.ApplyCurveDistanceScaler(_systemConfig.CurveDistanceScaler);
             else

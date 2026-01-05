@@ -564,23 +564,25 @@ namespace TopSpeed.Race
         {
             var driverOffsetX = -_car.WidthM * 0.25f;
             var driverOffsetZ = _car.LengthM * 0.1f;
-            var position = new Vector3(_car.PositionX + driverOffsetX, 0f, _car.PositionY + driverOffsetZ);
+            var worldPosition = new Vector3(_car.PositionX + driverOffsetX, 0f, _car.PositionY + driverOffsetZ);
 
-            var velocity = Vector3.Zero;
+            var worldVelocity = Vector3.Zero;
             if (_listenerInitialized && elapsed > 0f)
             {
-                velocity = (position - _lastListenerPosition) / elapsed;
+                worldVelocity = (worldPosition - _lastListenerPosition) / elapsed;
             }
-            _lastListenerPosition = position;
+            _lastListenerPosition = worldPosition;
             _listenerInitialized = true;
 
-            var forward = new Vector3(velocity.X, 0f, velocity.Z);
+            var forward = new Vector3(worldVelocity.X, 0f, worldVelocity.Z);
             if (forward.LengthSquared() < 0.0001f)
                 forward = new Vector3(0f, 0f, 1f);
             else
                 forward = Vector3.Normalize(forward);
 
             var up = new Vector3(0f, 1f, 0f);
+            var position = AudioWorld.ToMeters(worldPosition);
+            var velocity = AudioWorld.ToMeters(worldVelocity);
             _audio.UpdateListener(position, forward, up, velocity);
         }
 

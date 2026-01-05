@@ -1126,20 +1126,20 @@ namespace TopSpeed.Vehicles
 
         private void UpdateSpatialAudio(float listenerX, float listenerY, float trackLength, float elapsed)
         {
-            var trackWidth = Math.Max(0.01f, _laneWidth * 2.0f);
-            var relX = _diffX / trackWidth;
-            var relY = trackLength > 0f ? _diffY / trackLength : 0f;
+            var dx = _positionX - listenerX;
+            var dz = AudioWorld.WrapDelta(_positionY - listenerY, trackLength);
+            var worldX = listenerX + dx;
+            var worldZ = listenerY + dz;
 
-            var worldX = listenerX + (relX * trackWidth);
-            var worldZ = listenerY + (relY * trackLength);
-            var position = new Vector3(worldX, 0f, worldZ);
+            var position = AudioWorld.Position(worldX, worldZ);
 
             var velocity = Vector3.Zero;
             if (_audioInitialized && elapsed > 0f)
             {
-                velocity = (position - _lastAudioPosition) / elapsed;
+                var velUnits = new Vector3((worldX - _lastAudioPosition.X) / elapsed, 0f, (worldZ - _lastAudioPosition.Z) / elapsed);
+                velocity = AudioWorld.ToMeters(velUnits);
             }
-            _lastAudioPosition = position;
+            _lastAudioPosition = new Vector3(worldX, 0f, worldZ);
             _audioInitialized = true;
 
             SetSpatial(_soundEngine, position, velocity);

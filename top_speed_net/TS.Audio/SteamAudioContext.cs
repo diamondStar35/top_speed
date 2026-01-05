@@ -66,7 +66,7 @@ namespace TS.Audio
 
             var normForward = Vector3.Normalize(forward);
             var normUp = Vector3.Normalize(up);
-            var right = Vector3.Normalize(Vector3.Cross(normForward, normUp));
+            var right = Vector3.Normalize(Vector3.Cross(normUp, normForward));
 
             ListenerTransform = new IPL.CoordinateSpace3
             {

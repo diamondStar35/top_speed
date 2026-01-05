@@ -22,8 +22,7 @@ namespace TopSpeed.Vehicles
         private const float BumpVibrationSeconds = 0.2f;
         private const float AutoShiftHysteresis = 0.05f;
         private const float AutoShiftCooldownSeconds = 0.15f;
-        private const float EnginePanScale = 1.0f;
-
+        private const float EngineLateralScale = 0.5f;
         private static bool s_stickReleased;
 
         private readonly AudioManager _audio;
@@ -245,10 +244,10 @@ namespace TopSpeed.Vehicles
                 definition.Gears,
                 definition.GearRatios);
 
-            _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true, allowHrtf: false);
+            _soundEngine = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Engine), looped: true, allowHrtf: true);
             _soundStart = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Start));
             _soundHorn = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Horn), looped: true);
-            _soundThrottle = TryCreateSound(definition.GetSoundPath(VehicleAction.Throttle), looped: true, allowHrtf: false);
+            _soundThrottle = TryCreateSound(definition.GetSoundPath(VehicleAction.Throttle), looped: true, allowHrtf: true);
             _soundCrash = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Crash));
             _soundBrake = CreateRequiredSound(definition.GetSoundPath(VehicleAction.Brake), looped: true);
             _soundBackfire = TryCreateSound(definition.GetSoundPath(VehicleAction.Backfire));
@@ -420,12 +419,10 @@ namespace TopSpeed.Vehicles
             _soundCrash.Restart(loop: false);
             _soundEngine.Stop();
             _soundEngine.SeekToStart();
-            _soundEngine.SetPanPercent(0);
             if (_soundThrottle != null)
             {
                 _soundThrottle.Stop();
                 _soundThrottle.SeekToStart();
-                _soundThrottle.SetPanPercent(0);
             }
             _soundStart.SetPanPercent(0);
             switch (_surface)
@@ -1072,7 +1069,6 @@ namespace TopSpeed.Vehicles
                         : (_positionX - road.Left) / roadWidth;
                     _panPos = CalculatePan(_relPos);
                     _soundStart.SetPanPercent(_panPos);
-                    _soundEngine.SetPanPercent(_panPos);
                     _soundHorn.SetPanPercent(_panPos);
                     _soundWipers?.SetPanPercent(_panPos);
                     UpdateSpatialAudio(road);
@@ -1632,8 +1628,6 @@ namespace TopSpeed.Vehicles
 
         private void ApplyPan(int pan)
         {
-            _soundEngine.SetPanPercent(pan);
-            _soundThrottle?.SetPanPercent(pan);
             _soundHorn.SetPanPercent(pan);
             _soundBrake.SetPanPercent(pan);
             _soundBackfire?.SetPanPercent(pan);
@@ -1706,29 +1700,29 @@ namespace TopSpeed.Vehicles
             if (elapsed <= 0f)
                 return;
 
-            var trackWidth = road.Right - road.Left;
-            if (trackWidth <= 0f)
-                trackWidth = _laneWidth > 0f ? _laneWidth : 1.0f;
-
-            var relX = (_positionX - road.Left) / trackWidth;
-            var worldX = road.Left + (relX * trackWidth);
+            var worldX = _positionX;
             var worldZ = _positionY;
-            var centerX = (road.Left + road.Right) * 0.5f;
-            var lateralFromCenter = worldX - centerX;
-            var audioX = centerX - (lateralFromCenter * EnginePanScale);
-            var position = new Vector3(audioX, 0f, worldZ);
+            var position = AudioWorld.Position(worldX, worldZ);
 
             var velocity = Vector3.Zero;
-            if (_audioInitialized)
+            if (_audioInitialized && elapsed > 0f)
             {
-                velocity = new Vector3((audioX - _lastAudioX) / elapsed, 0f, (worldZ - _lastAudioY) / elapsed);
+                var velUnits = new Vector3((worldX - _lastAudioX) / elapsed, 0f, (worldZ - _lastAudioY) / elapsed);
+                velocity = AudioWorld.ToMeters(velUnits);
             }
-            _lastAudioX = audioX;
+            _lastAudioX = worldX;
             _lastAudioY = worldZ;
             _audioInitialized = true;
 
+            var centerX = (road.Left + road.Right) * 0.5f;
+            if (!IsFinite(centerX))
+                centerX = worldX;
+            var lateralFromCenter = worldX - centerX;
+            var driverOffsetX = -_widthM * 0.25f;
+            var engineXUnits = (worldX + driverOffsetX) + (lateralFromCenter * EngineLateralScale);
+
             var engineOffsetZ = _lengthM * 0.35f;
-            var enginePos = new Vector3(position.X, position.Y, position.Z + engineOffsetZ);
+            var enginePos = new Vector3(AudioWorld.ToMeters(engineXUnits), position.Y, position.Z + engineOffsetZ);
 
             SetSpatial(_soundEngine, enginePos, velocity);
             SetSpatial(_soundThrottle, enginePos, velocity);

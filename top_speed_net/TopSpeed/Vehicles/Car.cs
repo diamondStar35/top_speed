@@ -1749,12 +1749,14 @@ namespace TopSpeed.Vehicles
             var angle = normalized * (float)(Math.PI / 2.0);
 
             var enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset);
+            var brakeForwardOffset = Math.Max(0.01f, engineForwardOffset * 0.6f);
+            var brakePos = PlaceOnArc(listenerX, listenerZ, angle, brakeForwardOffset);
             var vehiclePos = PlaceOnArc(listenerX, listenerZ, angle, vehicleForwardOffset);
 
             SetSpatial(_soundEngine, enginePos, velocity);
             SetSpatial(_soundThrottle, enginePos, velocity);
-            SetSpatial(_soundHorn, vehiclePos, velocity);
-            SetSpatial(_soundBrake, vehiclePos, velocity);
+            SetSpatial(_soundHorn, enginePos, velocity);
+            SetSpatial(_soundBrake, brakePos, velocity);
             SetSpatial(_soundBackfire, enginePos, velocity);
             SetSpatial(_soundStart, enginePos, velocity);
             SetSpatial(_soundCrash, vehiclePos, velocity);

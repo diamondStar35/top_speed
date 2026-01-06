@@ -7,6 +7,8 @@ namespace TopSpeed.Windowing
 {
     internal sealed class GameWindow : Form
     {
+        private const int WmSysCommand = 0x0112;
+        private const int ScKeyMenu = 0xF100;
         private readonly TextBox _inputBox;
         private bool _submitPending;
         private bool _cancelPending;
@@ -131,6 +133,24 @@ namespace TopSpeed.Windowing
             }
 
             action();
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WmSysCommand && ((int)m.WParam & 0xFFF0) == ScKeyMenu)
+            {
+                return;
+            }
+
+            base.WndProc(ref m);
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F10)
+                return true;
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 

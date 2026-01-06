@@ -9,6 +9,7 @@ namespace TopSpeed.Audio
     {
         private readonly AudioSystem _system;
         private readonly AudioOutput _output;
+        public bool IsHrtfActive => _system.IsHrtfActive;
         public AudioManager(bool useHrtf = false)
         {
             var config = new AudioSystemConfig

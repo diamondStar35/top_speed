@@ -6,17 +6,34 @@ namespace TS.Audio
 {
     public sealed class SteamAudioContext : IDisposable
     {
+        internal sealed class ListenerState
+        {
+            public readonly IPL.Vector3 Right;
+            public readonly IPL.Vector3 Up;
+            public readonly IPL.Vector3 Ahead;
+            public readonly IPL.Vector3 Origin;
+
+            public ListenerState(IPL.Vector3 right, IPL.Vector3 up, IPL.Vector3 ahead, IPL.Vector3 origin)
+            {
+                Right = right;
+                Up = up;
+                Ahead = ahead;
+                Origin = origin;
+            }
+        }
+
         public IPL.Context Context;
         public IPL.Hrtf Hrtf;
         public readonly int SampleRate;
         public readonly int FrameSize;
-        public IPL.CoordinateSpace3 ListenerTransform;
+        private volatile ListenerState _listenerState;
+        internal ListenerState ListenerSnapshot => _listenerState;
 
         public SteamAudioContext(int sampleRate, int frameSize, string? hrtfSofaPath)
         {
             SampleRate = sampleRate;
             FrameSize = frameSize;
-            ListenerTransform = CreateIdentityTransform();
+            _listenerState = CreateIdentityState();
 
             var contextSettings = new IPL.ContextSettings
             {
@@ -68,13 +85,11 @@ namespace TS.Audio
             var normUp = Vector3.Normalize(up);
             var right = Vector3.Normalize(Vector3.Cross(normUp, normForward));
 
-            ListenerTransform = new IPL.CoordinateSpace3
-            {
-                Right = ToIpl(right),
-                Up = ToIpl(normUp),
-                Ahead = new IPL.Vector3 { X = -normForward.X, Y = -normForward.Y, Z = -normForward.Z },
-                Origin = ToIpl(position)
-            };
+            _listenerState = new ListenerState(
+                ToIpl(right),
+                ToIpl(normUp),
+                new IPL.Vector3 { X = -normForward.X, Y = -normForward.Y, Z = -normForward.Z },
+                ToIpl(position));
         }
 
         public void Dispose()
@@ -97,15 +112,13 @@ namespace TS.Audio
             return new IPL.Vector3 { X = v.X, Y = v.Y, Z = v.Z };
         }
 
-        private static IPL.CoordinateSpace3 CreateIdentityTransform()
+        private static ListenerState CreateIdentityState()
         {
-            return new IPL.CoordinateSpace3
-            {
-                Right = new IPL.Vector3 { X = 1, Y = 0, Z = 0 },
-                Up = new IPL.Vector3 { X = 0, Y = 1, Z = 0 },
-                Ahead = new IPL.Vector3 { X = 0, Y = 0, Z = -1 },
-                Origin = new IPL.Vector3 { X = 0, Y = 0, Z = 0 }
-            };
+            return new ListenerState(
+                new IPL.Vector3 { X = 1, Y = 0, Z = 0 },
+                new IPL.Vector3 { X = 0, Y = 1, Z = 0 },
+                new IPL.Vector3 { X = 0, Y = 0, Z = -1 },
+                new IPL.Vector3 { X = 0, Y = 0, Z = 0 });
         }
     }
 }

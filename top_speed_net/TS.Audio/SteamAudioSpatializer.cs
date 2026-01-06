@@ -274,7 +274,7 @@ namespace TS.Audio
                 Z = Volatile.Read(ref spatial.PosZ)
             };
 
-            var listener = _ctx.ListenerTransform;
+            var listener = _ctx.ListenerSnapshot;
 
             var worldDir = new IPL.Vector3
             {

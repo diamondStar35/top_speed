@@ -110,6 +110,8 @@ namespace TopSpeed.Vehicles
         private float _lastAudioY;
         private bool _audioInitialized;
         private float _lastAudioElapsed;
+        private Vector3 _audioForward;
+        private bool _audioForwardInitialized;
 
         private AudioSourceHandle _soundEngine;
         private AudioSourceHandle? _soundThrottle;
@@ -330,12 +332,14 @@ namespace TopSpeed.Vehicles
         public float EngineRpm => _engine.Rpm;
         public float DistanceMeters => _engine.DistanceMeters;
 
-        public void Initialize(float positionX = 0, float positionY = 0)
+        public void Initialize(float positionX = 0, float positionY = 0)        
         {
             _positionX = positionX;
             _positionY = positionY;
             _laneWidth = _track.LaneWidth * 2;
             _audioInitialized = false;
+            _audioForwardInitialized = false;
+            _audioForward = new Vector3(0f, 0f, 1f);
             _lastAudioX = positionX;
             _lastAudioY = positionY;
             _lastAudioElapsed = 0f;
@@ -1703,9 +1707,10 @@ namespace TopSpeed.Vehicles
             var worldZ = _positionY;
 
             var velocity = Vector3.Zero;
+            var velUnits = Vector3.Zero;
             if (_audioInitialized && elapsed > 0f)
             {
-                var velUnits = new Vector3((worldX - _lastAudioX) / elapsed, 0f, (worldZ - _lastAudioY) / elapsed);
+                velUnits = new Vector3((worldX - _lastAudioX) / elapsed, 0f, (worldZ - _lastAudioY) / elapsed);
                 velocity = AudioWorld.ToMeters(velUnits);
             }
             _lastAudioX = worldX;
@@ -1731,6 +1736,12 @@ namespace TopSpeed.Vehicles
                 clampedX = maxX;
 
             var normalized = (clampedX - centerX) / trackHalfWidth;
+            if (!IsFinite(normalized))
+                normalized = 0f;
+            if (normalized < -1f)
+                normalized = -1f;
+            else if (normalized > 1f)
+                normalized = 1f;
 
             var driverOffsetX = -_widthM * 0.25f;
             var driverOffsetZ = _lengthM * 0.1f;
@@ -1748,10 +1759,45 @@ namespace TopSpeed.Vehicles
 
             var angle = normalized * (float)(Math.PI / 2.0);
 
-            var enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset);
-            var brakeForwardOffset = Math.Max(0.01f, engineForwardOffset * 0.6f);
-            var brakePos = PlaceOnArc(listenerX, listenerZ, angle, brakeForwardOffset);
-            var vehiclePos = PlaceOnArc(listenerX, listenerZ, angle, vehicleForwardOffset);
+            Vector3 enginePos;
+            Vector3 brakePos;
+            Vector3 vehiclePos;
+
+            if (_audio.IsHrtfActive)
+            {
+                var forward = _audioForward;
+                var forwardLenSq = velUnits.X * velUnits.X + velUnits.Z * velUnits.Z;
+                if (forwardLenSq > 0.0001f)
+                {
+                    forward = Vector3.Normalize(new Vector3(velUnits.X, 0f, velUnits.Z));
+                    _audioForward = forward;
+                    _audioForwardInitialized = true;
+                }
+                else if (!_audioForwardInitialized)
+                {
+                    forward = new Vector3(0f, 0f, 1f);
+                }
+
+                var listenerPos = AudioWorld.ToMeters(new Vector3(listenerX, 0f, listenerZ));
+                var engineLateralOffset = clampedX - centerX;
+                var engineOffset = AudioWorld.ToMeters(engineForwardOffset);
+                var brakeOffset = AudioWorld.ToMeters(Math.Max(0.01f, engineForwardOffset * 0.6f));
+                var vehicleOffset = AudioWorld.ToMeters(vehicleForwardOffset);
+
+                enginePos = new Vector3(
+                    AudioWorld.ToMeters(listenerX + engineLateralOffset),
+                    0f,
+                    AudioWorld.ToMeters(listenerZ + engineForwardOffset));
+                brakePos = listenerPos + forward * brakeOffset;
+                vehiclePos = listenerPos + forward * vehicleOffset;
+            }
+            else
+            {
+                enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset);
+                var brakeForwardOffset = Math.Max(0.01f, engineForwardOffset * 0.6f);
+                brakePos = PlaceOnArc(listenerX, listenerZ, angle, brakeForwardOffset);
+                vehiclePos = PlaceOnArc(listenerX, listenerZ, angle, vehicleForwardOffset);
+            }
 
             SetSpatial(_soundEngine, enginePos, velocity);
             SetSpatial(_soundThrottle, enginePos, velocity);

@@ -1063,9 +1063,13 @@ namespace TopSpeed.Vehicles
             else
                 roadWidth = _laneWidth;
 
+            var updateAudioThisFrame = _frame % 4 == 0;
+            if (_audio.IsHrtfActive)
+                updateAudioThisFrame = true;
+
             if (_state == CarState.Stopped)
             {
-                if (_frame % 4 == 0)
+                if (updateAudioThisFrame)
                 {
                     _relPos = roadWidth <= 0f
                         ? 0.5f
@@ -1080,7 +1084,7 @@ namespace TopSpeed.Vehicles
 
             if (_state == CarState.Running && _started())
             {
-                if (_frame % 4 == 0)
+                if (updateAudioThisFrame)
                 {
                     if (_surface == TrackSurface.Asphalt && road.Surface != TrackSurface.Asphalt)
                     {

@@ -580,10 +580,18 @@ namespace TopSpeed.Race
             _listenerInitialized = true;
 
             var forward = new Vector3(worldVelocity.X, 0f, worldVelocity.Z);
-            if (forward.LengthSquared() < 0.0001f)
+            if (_audio.IsHrtfActive)
+            {
                 forward = new Vector3(0f, 0f, 1f);
+            }
+            else if (forward.LengthSquared() < 0.0001f)
+            {
+                forward = new Vector3(0f, 0f, 1f);
+            }
             else
+            {
                 forward = Vector3.Normalize(forward);
+            }
 
             var up = new Vector3(0f, 1f, 0f);
             var position = AudioWorld.ToMeters(worldPosition);

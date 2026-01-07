@@ -110,8 +110,6 @@ namespace TopSpeed.Vehicles
         private float _lastAudioY;
         private bool _audioInitialized;
         private float _lastAudioElapsed;
-        private Vector3 _audioForward;
-        private bool _audioForwardInitialized;
 
         private AudioSourceHandle _soundEngine;
         private AudioSourceHandle? _soundThrottle;
@@ -338,8 +336,6 @@ namespace TopSpeed.Vehicles
             _positionY = positionY;
             _laneWidth = _track.LaneWidth * 2;
             _audioInitialized = false;
-            _audioForwardInitialized = false;
-            _audioForward = new Vector3(0f, 0f, 1f);
             _lastAudioX = positionX;
             _lastAudioY = positionY;
             _lastAudioElapsed = 0f;

@@ -36,6 +36,7 @@ namespace TopSpeed.Menu
         private readonly RaceInput _raceInput;
         private readonly RaceSelection _selection;
         private readonly IMenuActions _actions;
+        private readonly IReadOnlyList<string> _menuSoundPresets;
 
         public MenuRegistry(
             MenuManager menu,
@@ -51,6 +52,7 @@ namespace TopSpeed.Menu
             _raceInput = raceInput ?? throw new ArgumentNullException(nameof(raceInput));
             _selection = selection ?? throw new ArgumentNullException(nameof(selection));
             _actions = actions ?? throw new ArgumentNullException(nameof(actions));
+            _menuSoundPresets = LoadMenuSoundPresets();
         }
 
         public void RegisterAll()
@@ -301,6 +303,19 @@ namespace TopSpeed.Menu
                     () => _settings.UsageHints,
                     value => _actions.UpdateSetting(() => _settings.UsageHints = value),
                     hint: "When checked, menu items can speak usage hints after a short delay. Press ENTER to toggle."),
+                new CheckBox(
+                    "Enable menu wrapping",
+                    () => _settings.MenuWrapNavigation,
+                    value => _actions.UpdateSetting(() => _settings.MenuWrapNavigation = value),
+                    onChanged: value => _menu.SetWrapNavigation(value),
+                    hint: "When checked, menu navigation wraps from the last item to the first. Press ENTER to toggle."),
+                BuildMenuSoundPresetItem(),
+                new CheckBox(
+                    "Enable menu navigation panning",
+                    () => _settings.MenuNavigatePanning,
+                    value => _actions.UpdateSetting(() => _settings.MenuNavigatePanning = value),
+                    onChanged: value => _menu.SetMenuNavigatePanning(value),
+                    hint: "When checked, menu navigation sounds pan left or right based on the item position. Press ENTER to toggle."),
                 new MenuItem("Recalibrate screen reader rate", MenuAction.None, onActivate: _actions.RecalibrateScreenReaderRate),
                 BackItem()
             };
@@ -497,6 +512,55 @@ namespace TopSpeed.Menu
         private static MenuItem BackItem()
         {
             return new MenuItem("Go back", MenuAction.Back);
+        }
+
+        private MenuItem BuildMenuSoundPresetItem()
+        {
+            if (_menuSoundPresets.Count < 2)
+            {
+                return new MenuItem(
+                    () => $"Menu sounds: {(_menuSoundPresets.Count > 0 ? _menuSoundPresets[0] : "default")}",
+                    MenuAction.None);
+            }
+
+            return new RadioButton(
+                "Menu sounds",
+                _menuSoundPresets,
+                () => GetMenuSoundPresetIndex(),
+                value => _actions.UpdateSetting(() => _settings.MenuSoundPreset = _menuSoundPresets[value]),
+                onChanged: _ => _menu.SetMenuSoundPreset(_settings.MenuSoundPreset),
+                hint: "Select the menu sound preset. Use LEFT or RIGHT to change.");
+        }
+
+        private int GetMenuSoundPresetIndex()
+        {
+            if (_menuSoundPresets.Count == 0)
+                return 0;
+            for (var i = 0; i < _menuSoundPresets.Count; i++)
+            {
+                if (string.Equals(_menuSoundPresets[i], _settings.MenuSoundPreset, StringComparison.OrdinalIgnoreCase))
+                    return i;
+            }
+            return 0;
+        }
+
+        private static IReadOnlyList<string> LoadMenuSoundPresets()
+        {
+            var root = Path.Combine(AssetPaths.SoundsRoot, "menu");
+            if (!Directory.Exists(root))
+                return Array.Empty<string>();
+
+            var presets = new List<string>();
+            foreach (var directory in Directory.GetDirectories(root))
+            {
+                var name = Path.GetFileName(directory);
+                if (string.IsNullOrWhiteSpace(name))
+                    continue;
+                presets.Add(name.Trim());
+            }
+
+            presets.Sort(StringComparer.OrdinalIgnoreCase);
+            return presets;
         }
 
         private string MainMenuTitle()

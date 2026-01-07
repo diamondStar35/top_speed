@@ -14,6 +14,9 @@ namespace TopSpeed.Menu
         private readonly AudioManager _audio;
         private readonly SpeechService _speech;
         private readonly Func<bool> _usageHintsEnabled;
+        private bool _wrapNavigation = true;
+        private bool _menuNavigatePanning;
+        private string? _menuSoundPreset;
         private bool _menuMusicSuspended;
 
         public MenuManager(AudioManager audio, SpeechService speech, Func<bool>? usageHintsEnabled = null)
@@ -184,9 +187,36 @@ namespace TopSpeed.Menu
             _menuMusicSuspended = false;
         }
 
+        public void SetWrapNavigation(bool enabled)
+        {
+            _wrapNavigation = enabled;
+            foreach (var screen in _screens.Values)
+                screen.WrapNavigation = enabled;
+        }
+
+        public void SetMenuSoundPreset(string? preset)
+        {
+            _menuSoundPreset = preset;
+            foreach (var screen in _screens.Values)
+                screen.SetMenuSoundPreset(preset);
+        }
+
+        public void SetMenuNavigatePanning(bool enabled)
+        {
+            _menuNavigatePanning = enabled;
+            foreach (var screen in _screens.Values)
+                screen.MenuNavigatePanning = enabled;
+        }
+
         public MenuScreen CreateMenu(string id, IEnumerable<MenuItem> items, string? title = null, Func<string>? titleProvider = null)
         {
-            return new MenuScreen(id, items, _audio, _speech, title, titleProvider, _usageHintsEnabled);
+            var screen = new MenuScreen(id, items, _audio, _speech, title, titleProvider, _usageHintsEnabled)
+            {
+                WrapNavigation = _wrapNavigation,
+                MenuNavigatePanning = _menuNavigatePanning
+            };
+            screen.SetMenuSoundPreset(_menuSoundPreset);
+            return screen;
         }
 
         private MenuScreen? FindScreenWithPlayingMusic()

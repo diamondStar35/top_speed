@@ -111,6 +111,9 @@ namespace TopSpeed.Input
         public int ServerPort { get; set; }
         public float ScreenReaderRateMs { get; set; }
         public bool UsageHints { get; set; }
+        public bool MenuWrapNavigation { get; set; }
+        public string MenuSoundPreset { get; set; } = "1";
+        public bool MenuNavigatePanning { get; set; }
 
         public bool UseJoystick
         {
@@ -181,6 +184,9 @@ namespace TopSpeed.Input
             ServerPort = 0;
             ScreenReaderRateMs = 0f;
             UsageHints = true;
+            MenuWrapNavigation = true;
+            MenuSoundPreset = "1";
+            MenuNavigatePanning = false;
         }
     }
 }

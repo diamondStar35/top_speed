@@ -17,13 +17,14 @@ namespace TopSpeed.Menu
         private const string DefaultNavigateSound = "menu_navigate.wav";
         private const string DefaultWrapSound = "menu_wrap.wav";
         private const string DefaultActivateSound = "menu_enter.wav";
+        private const string DefaultEdgeSound = "menu_edge.wav";
         private const int JoystickThreshold = 50;
         private const int NoSelection = -1;
         private readonly List<MenuItem> _items;
         private readonly AudioManager _audio;
         private readonly SpeechService _speech;
         private readonly Func<bool> _usageHintsEnabled;
-        private readonly string _menuSoundRoot;
+        private readonly string _defaultMenuSoundRoot;
         private readonly string _legacySoundRoot;
         private readonly string _musicRoot;
         private readonly string _title;
@@ -36,6 +37,7 @@ namespace TopSpeed.Menu
         private AudioSourceHandle? _navigateSound;
         private AudioSourceHandle? _wrapSound;
         private AudioSourceHandle? _activateSound;
+        private AudioSourceHandle? _edgeSound;
         private JoystickStateSnapshot _prevJoystick;
         private JoystickStateSnapshot _joystickCenter;
         private bool _hasPrevJoystick;
@@ -45,6 +47,7 @@ namespace TopSpeed.Menu
         private bool _autoFocusPending;
         private int _hintToken;
         private bool _disposed;
+        private string? _menuSoundPresetRoot;
 
         private const int MusicFadeStepMs = 50;
         private int _musicFadeToken;
@@ -52,10 +55,12 @@ namespace TopSpeed.Menu
         public string Id { get; }
         public IReadOnlyList<MenuItem> Items => _items;
         public bool WrapNavigation { get; set; } = true;
+        public bool MenuNavigatePanning { get; set; }
         public string? MusicFile { get; set; }
         public string? NavigateSoundFile { get; set; } = DefaultNavigateSound;
         public string? WrapSoundFile { get; set; } = DefaultWrapSound;
         public string? ActivateSoundFile { get; set; } = DefaultActivateSound;
+        public string? EdgeSoundFile { get; set; } = DefaultEdgeSound;
         public float MusicVolume
         {
             get => _musicVolume;
@@ -73,7 +78,7 @@ namespace TopSpeed.Menu
             _speech = speech;
             _usageHintsEnabled = usageHintsEnabled ?? (() => false);
             _items = new List<MenuItem>(items);
-            _menuSoundRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Menu");
+            _defaultMenuSoundRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Menu");
             _legacySoundRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
             _musicRoot = Path.Combine(AssetPaths.SoundsRoot, "En", "Music");
             _musicVolume = 0.0f;
@@ -91,6 +96,7 @@ namespace TopSpeed.Menu
             _navigateSound = LoadDefaultSound(NavigateSoundFile);
             _wrapSound = LoadDefaultSound(WrapSoundFile);
             _activateSound = LoadDefaultSound(ActivateSoundFile);
+            _edgeSound = LoadDefaultSound(EdgeSoundFile);
 
             if (!string.IsNullOrWhiteSpace(MusicFile))
             {
@@ -103,6 +109,16 @@ namespace TopSpeed.Menu
             }
 
             _initialized = true;
+        }
+
+        public void SetMenuSoundPreset(string? preset)
+        {
+            var root = ResolveMenuSoundPresetRoot(preset);
+            if (string.Equals(_menuSoundPresetRoot, root, StringComparison.OrdinalIgnoreCase))
+                return;
+            _menuSoundPresetRoot = root;
+            if (_initialized)
+                ReloadMenuSounds();
         }
 
         public MenuUpdateResult Update(InputManager input)
@@ -205,7 +221,7 @@ namespace TopSpeed.Menu
                     var item = _items[_index];
                     if (item.Adjust(adjustment.Value, out var announcement))
                     {
-                        PlaySfx(_navigateSound);
+                        PlayNavigateSound();
                         var safeAnnouncement = announcement;
                         if (!string.IsNullOrWhiteSpace(safeAnnouncement))
                         {
@@ -313,17 +329,17 @@ namespace TopSpeed.Menu
 
         private void MoveSelectionAndAnnounce(int delta)
         {
-            var moved = MoveSelection(delta, out var wrapped);
+            var moved = MoveSelection(delta, out var wrapped, out var edgeReached);
             if (moved)
             {
                 if (wrapped)
                 {
-                    PlaySfx(_navigateSound);
+                    PlayNavigateSound();
                     PlaySfx(_wrapSound);
                 }
                 else
                 {
-                    PlaySfx(_navigateSound);
+                    PlayNavigateSound();
                 }
                 AnnounceCurrent(!_justEntered);
                 _justEntered = false;
@@ -331,6 +347,10 @@ namespace TopSpeed.Menu
             else if (wrapped)
             {
                 PlaySfx(_wrapSound);
+            }
+            else if (edgeReached)
+            {
+                PlaySfx(_edgeSound);
             }
         }
 
@@ -341,25 +361,26 @@ namespace TopSpeed.Menu
             if (_index == NoSelection)
             {
                 _index = targetIndex;
-                PlaySfx(_navigateSound);
+                PlayNavigateSound();
                 AnnounceCurrent(!_justEntered);
                 _justEntered = false;
                 return;
             }
             if (targetIndex == _index)
             {
-                PlaySfx(_wrapSound);
+                PlaySfx(WrapNavigation ? _wrapSound : _edgeSound);
                 return;
             }
             _index = targetIndex;
-            PlaySfx(_navigateSound);
+            PlayNavigateSound();
             AnnounceCurrent(!_justEntered);
             _justEntered = false;
         }
 
-        private bool MoveSelection(int delta, out bool wrapped)
+        private bool MoveSelection(int delta, out bool wrapped, out bool edgeReached)
         {
             wrapped = false;
+            edgeReached = false;
             if (_items.Count == 0)
                 return false;
             if (_index == NoSelection)
@@ -377,9 +398,13 @@ namespace TopSpeed.Menu
                 return _index != previous;
             }
 
-            _index = Math.Max(0, Math.Min(_items.Count - 1, _index + delta));
-            if (_index == previous)
-                wrapped = true;
+            var nextIndex = _index + delta;
+            if (nextIndex < 0 || nextIndex >= _items.Count)
+            {
+                edgeReached = true;
+                return false;
+            }
+            _index = nextIndex;
             return _index != previous;
         }
 
@@ -419,7 +444,7 @@ namespace TopSpeed.Menu
             if (_items.Count == 0)
                 return;
             _index = 0;
-            PlaySfx(_navigateSound);
+            PlayNavigateSound();
             AnnounceCurrent(purge: false);
             _justEntered = false;
         }
@@ -516,6 +541,12 @@ namespace TopSpeed.Menu
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 return null;
+            if (!string.IsNullOrWhiteSpace(_menuSoundPresetRoot))
+            {
+                var presetPath = Path.Combine(_menuSoundPresetRoot, fileName);
+                if (File.Exists(presetPath))
+                    return _audio.CreateSource(presetPath, streamFromDisk: true);
+            }
             var enRoot = Path.Combine(AssetPaths.SoundsRoot, "En");
             var enPath = Path.Combine(enRoot, fileName);
             if (File.Exists(enPath))
@@ -523,9 +554,9 @@ namespace TopSpeed.Menu
             var legacyPath = Path.Combine(_legacySoundRoot, fileName);
             if (File.Exists(legacyPath))
                 return _audio.CreateSource(legacyPath, streamFromDisk: true);
-            var menuPath = Path.Combine(_menuSoundRoot, fileName);
+            var menuPath = Path.Combine(_defaultMenuSoundRoot, fileName);
             if (File.Exists(menuPath))
-                return _audio.CreateSource(menuPath, streamFromDisk: true);     
+                return _audio.CreateSource(menuPath, streamFromDisk: true);
             return null;
         }
 
@@ -536,6 +567,46 @@ namespace TopSpeed.Menu
             sound.Stop();
             sound.SeekToStart();
             sound.Play(loop: false);
+        }
+
+        private void PlayNavigateSound()
+        {
+            if (_navigateSound == null)
+                return;
+            _navigateSound.Stop();
+            _navigateSound.SeekToStart();
+            _navigateSound.SetPan(MenuNavigatePanning ? CalculateNavigatePan() : 0f);
+            _navigateSound.Play(loop: false);
+        }
+
+        private float CalculateNavigatePan()
+        {
+            if (_index < 0)
+                return 0f;
+            var count = _items.Count;
+            if (count <= 1)
+                return 0f;
+            return -1f + (2f * _index / (count - 1f));
+        }
+
+        private void ReloadMenuSounds()
+        {
+            _navigateSound?.Dispose();
+            _wrapSound?.Dispose();
+            _activateSound?.Dispose();
+            _edgeSound?.Dispose();
+            _navigateSound = LoadDefaultSound(NavigateSoundFile);
+            _wrapSound = LoadDefaultSound(WrapSoundFile);
+            _activateSound = LoadDefaultSound(ActivateSoundFile);
+            _edgeSound = LoadDefaultSound(EdgeSoundFile);
+        }
+
+        private static string? ResolveMenuSoundPresetRoot(string? preset)
+        {
+            var trimmed = preset?.Trim();
+            if (string.IsNullOrWhiteSpace(trimmed))
+                return null;
+            return Path.Combine(AssetPaths.SoundsRoot, "menu", trimmed);
         }
 
         private static bool IsNearCenter(JoystickStateSnapshot state)
@@ -642,6 +713,7 @@ namespace TopSpeed.Menu
             _navigateSound?.Dispose();
             _wrapSound?.Dispose();
             _activateSound?.Dispose();
+            _edgeSound?.Dispose();
             _music?.Dispose();
             _music = null;
             Interlocked.Increment(ref _musicFadeToken);

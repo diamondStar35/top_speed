@@ -10,10 +10,13 @@ namespace TopSpeed.Core
 {
     internal sealed class GameApp : IDisposable
     {
+        private const int FrameDelayMs = 5;
+        private const uint TimerResolutionMs = 1;
         private readonly GameWindow _window;
         private Game? _game;
         private readonly Stopwatch _stopwatch;
         private long _lastTicks;
+        private bool _timerResolutionSet;
 
         public GameApp()
         {
@@ -25,9 +28,11 @@ namespace TopSpeed.Core
 
         public void Run()
         {
+            TryEnableHighResolutionTimer();
             Application.Idle += OnIdle;
             Application.Run(_window);
             Application.Idle -= OnIdle;
+            DisableHighResolutionTimer();
         }
 
         private void OnLoad(object? sender, EventArgs e)
@@ -57,7 +62,7 @@ namespace TopSpeed.Core
                 var deltaSeconds = (float)(now - _lastTicks) / Stopwatch.Frequency;
                 _lastTicks = now;
                 _game.Update(deltaSeconds);
-                Thread.Sleep(1);
+                Thread.Sleep(FrameDelayMs);
             }
         }
 
@@ -65,12 +70,14 @@ namespace TopSpeed.Core
         {
             _game?.Dispose();
             _game = null;
+            DisableHighResolutionTimer();
         }
 
         public void Dispose()
         {
             _window.Dispose();
             _game?.Dispose();
+            DisableHighResolutionTimer();
         }
 
         private static bool AppStillIdle
@@ -94,5 +101,27 @@ namespace TopSpeed.Core
 
         [DllImport("user32.dll")]
         private static extern bool PeekMessage(out NativeMessage msg, IntPtr hWnd, uint messageFilterMin, uint messageFilterMax, uint flags);
+
+        [DllImport("winmm.dll")]
+        private static extern uint timeBeginPeriod(uint uPeriod);
+
+        [DllImport("winmm.dll")]
+        private static extern uint timeEndPeriod(uint uPeriod);
+
+        private void TryEnableHighResolutionTimer()
+        {
+            if (_timerResolutionSet)
+                return;
+            if (timeBeginPeriod(TimerResolutionMs) == 0)
+                _timerResolutionSet = true;
+        }
+
+        private void DisableHighResolutionTimer()
+        {
+            if (!_timerResolutionSet)
+                return;
+            timeEndPeriod(TimerResolutionMs);
+            _timerResolutionSet = false;
+        }
     }
 }

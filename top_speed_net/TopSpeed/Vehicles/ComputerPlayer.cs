@@ -861,7 +861,7 @@ namespace TopSpeed.Vehicles
                             _currentSteering = -100 + _random / 10;
                             break;
                         case 2:
-                            _currentSteering = -100 / _random / 25;
+                            _currentSteering = -100 + _random / 25;
                             break;
                     }
                 }

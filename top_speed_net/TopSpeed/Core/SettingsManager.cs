@@ -40,6 +40,7 @@ namespace TopSpeed.Core
             var language = settings.Language;
             var serverAddress = settings.LastServerAddress;
             var screenReaderRate = settings.ScreenReaderRateMs;
+            var menuSoundPreset = settings.MenuSoundPreset;
             var values = new List<int>();
             foreach (var rawLine in lines)
             {
@@ -68,6 +69,12 @@ namespace TopSpeed.Core
                         if (float.TryParse(val, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedRate))
                             screenReaderRate = parsedRate;
                     }
+                    else if (key.Equals("menu_sound", StringComparison.OrdinalIgnoreCase) ||
+                             key.Equals("menu_sound_preset", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (!string.IsNullOrWhiteSpace(val))
+                            menuSoundPreset = val.Trim();
+                    }
                     continue;
                 }
 
@@ -78,6 +85,7 @@ namespace TopSpeed.Core
             settings.Language = language;
             settings.LastServerAddress = serverAddress ?? string.Empty;
             settings.ScreenReaderRateMs = screenReaderRate;
+            settings.MenuSoundPreset = menuSoundPreset ?? settings.MenuSoundPreset;
             ApplyValues(settings, values);
             return settings;
         }
@@ -93,6 +101,8 @@ namespace TopSpeed.Core
                 lines.Add($"server_addr={settings.LastServerAddress}");
             if (settings.ScreenReaderRateMs > 0f)
                 lines.Add($"sr_rate={settings.ScreenReaderRateMs.ToString(CultureInfo.InvariantCulture)}");
+            if (!string.IsNullOrWhiteSpace(settings.MenuSoundPreset))
+                lines.Add($"menu_sound={settings.MenuSoundPreset}");
 
             AppendValue(lines, (int)settings.JoystickLeft);
             AppendValue(lines, (int)settings.JoystickRight);
@@ -156,6 +166,8 @@ namespace TopSpeed.Core
             AppendValue(lines, (int)settings.KeyPause);
             AppendValue(lines, (int)settings.Units);
             AppendValue(lines, settings.UsageHints ? 1 : 0);
+            AppendValue(lines, settings.MenuWrapNavigation ? 1 : 0);
+            AppendValue(lines, settings.MenuNavigatePanning ? 1 : 0);
 
             try
             {
@@ -238,6 +250,8 @@ namespace TopSpeed.Core
             if (TryNext(values, ref index, out value)) settings.KeyPause = AsKey(value, settings.KeyPause);
             if (TryNext(values, ref index, out value)) settings.Units = AsUnitSystem(value, settings.Units);
             if (TryNext(values, ref index, out value)) settings.UsageHints = value != 0;
+            if (TryNext(values, ref index, out value)) settings.MenuWrapNavigation = value != 0;
+            if (TryNext(values, ref index, out value)) settings.MenuNavigatePanning = value != 0;
         }
 
         private static int ClampPort(int value, int fallback)

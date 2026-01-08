@@ -81,6 +81,8 @@ namespace TopSpeed.Core
             _input = new InputManager(_window.Handle);
             _speech = new SpeechService(_input.IsAnyInputHeld);
             _speech.ScreenReaderRateMs = _settings.ScreenReaderRateMs;
+            _input.JoystickScanTimedOut += () => _speech.Speak("No joystick detected.");
+            _input.SetDeviceMode(_settings.DeviceMode);
             _raceInput = new RaceInput(_settings);
             _setup = new RaceSetup();
             _menu = new MenuManager(_audio, _speech, () => _settings.UsageHints);
@@ -340,6 +342,7 @@ namespace TopSpeed.Core
         {
             _settings.RestoreDefaults();
             _raceInput.SetDevice(_settings.DeviceMode);
+            _input.SetDeviceMode(_settings.DeviceMode);
             _speech.ScreenReaderRateMs = _settings.ScreenReaderRateMs;
             _needsCalibration = _settings.ScreenReaderRateMs <= 0f;
             _menu.SetWrapNavigation(_settings.MenuWrapNavigation);
@@ -353,6 +356,7 @@ namespace TopSpeed.Core
         {
             _settings.DeviceMode = mode;
             _raceInput.SetDevice(mode);
+            _input.SetDeviceMode(mode);
             SaveSettings();
         }
 

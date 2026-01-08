@@ -69,7 +69,7 @@ namespace TopSpeed.Speech
                 _sapi!.SpeakAsync(text);
                 while (!IsSpeaking())
                 {
-                    Thread.Sleep(0);
+                    Thread.Sleep(10);
                 }
             }
 
@@ -82,7 +82,7 @@ namespace TopSpeed.Speech
                 {
                     if (!IsSpeaking())
                         break;
-                    Thread.Sleep(0);
+                    Thread.Sleep(10);
                 }
             }
 
@@ -116,7 +116,7 @@ namespace TopSpeed.Speech
                 }
                 while (IsSpeaking())
                 {
-                    Thread.Sleep(0);
+                    Thread.Sleep(10);
                 }
             }
             _nvda.Cancel();

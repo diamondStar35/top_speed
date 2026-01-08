@@ -8,6 +8,7 @@ namespace TopSpeed.Input
     internal sealed class InputManager : IDisposable
     {
         private const int JoystickRescanIntervalMs = 1000;
+        private const int JoystickScanTimeoutMs = 5000;
         private const int MenuBackThreshold = 50;
         private readonly DirectInput _directInput;
         private readonly Keyboard _keyboard;
@@ -15,14 +16,21 @@ namespace TopSpeed.Input
         private JoystickDevice? _joystick;
         private readonly InputState _current;
         private readonly InputState _previous;
+        private readonly bool[] _keyLatch;
         private readonly IntPtr _windowHandle;
         private int _lastJoystickScan;
         private bool _suspended;
         private bool _menuBackLatched;
         private readonly object _hidLock = new object();
-        private int _hidScanPending;
+        private readonly object _hidScanLock = new object();
+        private Thread? _hidScanThread;
+        private CancellationTokenSource? _hidScanCts;
+        private bool _joystickEnabled;
+        private bool _disposed;
 
         public InputState Current => _current;
+
+        public event Action? JoystickScanTimedOut;
 
         public InputManager(IntPtr windowHandle)
         {
@@ -32,10 +40,9 @@ namespace TopSpeed.Input
             _keyboard.Properties.BufferSize = 128;
             _keyboard.SetCooperativeLevel(windowHandle, CooperativeLevel.Foreground | CooperativeLevel.NonExclusive);
             _gamepad = new GamepadDevice();
-            if (!_gamepad.IsAvailable)
-                BeginHidScan();
             _current = new InputState();
             _previous = new InputState();
+            _keyLatch = new bool[256];
             TryAcquire();
         }
 
@@ -56,26 +63,47 @@ namespace TopSpeed.Input
                 _current.Set(key, true);
             }
 
+            if (!_joystickEnabled)
+                return;
+
             _gamepad.Update();
             if (!_gamepad.IsAvailable)
             {
-                JoystickDevice? joystick;
-                lock (_hidLock)
-                {
-                    joystick = _joystick;
-                }
+                var joystick = GetJoystickDevice();
                 if (joystick == null || !joystick.IsAvailable)
-                {
-                    BeginHidScan();
                     return;
-                }
                 joystick.Update();
             }
         }
 
         public bool IsDown(Key key) => _current.IsDown(key);
 
-        public bool WasPressed(Key key) => _current.IsDown(key) && !_previous.IsDown(key);
+        public bool WasPressed(Key key)
+        {
+            if (_suspended)
+                return false;
+
+            var index = (int)key;
+            if (index < 0 || index >= _keyLatch.Length)
+                return false;
+
+            if (!TryGetKeyboardState(out var state))
+            {
+                _keyLatch[index] = false;
+                return false;
+            }
+
+            if (state.IsPressed(key))
+            {
+                if (_keyLatch[index])
+                    return false;
+                _keyLatch[index] = true;
+                return true;
+            }
+
+            _keyLatch[index] = false;
+            return false;
+        }
 
         public bool IsAnyInputHeld()
         {
@@ -109,6 +137,9 @@ namespace TopSpeed.Input
             if (IsDown(Key.Escape))
                 return true;
 
+            if (!_joystickEnabled)
+                return false;
+
             if (TryGetJoystickState(out var state))
                 return state.X < -MenuBackThreshold || state.Pov4;
 
@@ -132,6 +163,12 @@ namespace TopSpeed.Input
 
         public bool TryGetJoystickState(out JoystickStateSnapshot state)        
         {
+            if (!_joystickEnabled)
+            {
+                state = default;
+                return false;
+            }
+
             var device = VibrationDevice;
             if (device != null && device.IsAvailable)
             {
@@ -146,11 +183,31 @@ namespace TopSpeed.Input
         {
             _current.Clear();
             _previous.Clear();
+            for (var i = 0; i < _keyLatch.Length; i++)
+                _keyLatch[i] = false;
         }
 
-        public IVibrationDevice? VibrationDevice => _gamepad.IsAvailable
-            ? _gamepad
-            : GetJoystickDevice();
+        public IVibrationDevice? VibrationDevice => _gamepad.IsAvailable        
+            ? (_joystickEnabled ? _gamepad : null)
+            : (_joystickEnabled ? GetJoystickDevice() : null);
+
+        public void SetDeviceMode(InputDeviceMode mode)
+        {
+            var enableJoystick = mode != InputDeviceMode.Keyboard;
+            if (enableJoystick == _joystickEnabled)
+                return;
+
+            _joystickEnabled = enableJoystick;
+            if (!_joystickEnabled)
+            {
+                StopHidScan();
+                ClearJoystickDevice();
+                return;
+            }
+
+            if (!_gamepad.IsAvailable && GetJoystickDevice() == null)
+                StartHidScan();
+        }
 
         private JoystickDevice? GetJoystickDevice()
         {
@@ -239,8 +296,26 @@ namespace TopSpeed.Input
             }
         }
 
+        private bool TryGetKeyboardState(out KeyboardState state)
+        {
+            state = null!;
+            try
+            {
+                _keyboard.Acquire();
+                state = _keyboard.GetCurrentState();
+                return true;
+            }
+            catch (SharpDXException)
+            {
+                return false;
+            }
+        }
+
         private bool IsAnyJoystickButtonHeld()
         {
+            if (!_joystickEnabled)
+                return false;
+
             if (_gamepad.IsAvailable)
             {
                 _gamepad.Update();
@@ -249,10 +324,7 @@ namespace TopSpeed.Input
 
             var joystick = GetJoystickDevice();
             if (joystick == null || !joystick.IsAvailable)
-            {
-                BeginHidScan();
                 return false;
-            }
 
             if (!joystick.Update())
                 return false;
@@ -291,12 +363,12 @@ namespace TopSpeed.Input
                 return state.X < -MenuBackThreshold || state.Pov4;
             }
 
+            if (!_joystickEnabled)
+                return false;
+
             var joystick = GetJoystickDevice();
             if (joystick == null || !joystick.IsAvailable)
-            {
-                BeginHidScan();
                 return false;
-            }
 
             return joystick.Update() && (joystick.State.X < -MenuBackThreshold || joystick.State.Pov4);
         }
@@ -314,47 +386,125 @@ namespace TopSpeed.Input
             }
         }
 
-        private void TryRescanJoystick(bool force = false)
+        private bool TryRescanJoystick(bool force = false)
         {
+            if (_disposed)
+                return false;
             var now = Environment.TickCount;
             if (!force && unchecked((uint)(now - _lastJoystickScan)) < (uint)JoystickRescanIntervalMs)
-                return;
+                return false;
             _lastJoystickScan = now;
 
-            var newJoystick = new JoystickDevice(_directInput, _windowHandle);
+            JoystickDevice? newJoystick;
+            try
+            {
+                newJoystick = new JoystickDevice(_directInput, _windowHandle);
+            }
+            catch (SharpDXException)
+            {
+                return false;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+            JoystickDevice? oldJoystick;
+            var available = newJoystick.IsAvailable;
+            lock (_hidLock)
+            {
+                oldJoystick = _joystick;
+                _joystick = available ? newJoystick : null;
+            }
+            oldJoystick?.Dispose();
+            if (!available)
+                newJoystick.Dispose();
+            return available;
+        }
+
+        private void StartHidScan()
+        {
+            if (_disposed || !_joystickEnabled || _gamepad.IsAvailable)
+                return;
+            lock (_hidScanLock)
+            {
+                if (_hidScanThread != null && _hidScanThread.IsAlive)
+                    return;
+                _hidScanCts?.Cancel();
+                _hidScanCts?.Dispose();
+                _hidScanCts = new CancellationTokenSource();
+                var token = _hidScanCts.Token;
+                _hidScanThread = new Thread(() => HidScanWorker(token))
+                {
+                    IsBackground = true,
+                    Name = "JoystickScan"
+                };
+                _hidScanThread.Start();
+            }
+        }
+
+        private void StopHidScan()
+        {
+            CancellationTokenSource? cts;
+            Thread? thread;
+            lock (_hidScanLock)
+            {
+                cts = _hidScanCts;
+                thread = _hidScanThread;
+                _hidScanCts = null;
+                _hidScanThread = null;
+            }
+
+            if (cts != null)
+            {
+                cts.Cancel();
+                cts.Dispose();
+            }
+
+            if (thread != null && thread.IsAlive)
+                thread.Join(JoystickRescanIntervalMs + 500);
+        }
+
+        private void HidScanWorker(CancellationToken token)
+        {
+            var start = Environment.TickCount;
+            while (true)
+            {
+                if (token.IsCancellationRequested || _disposed || !_joystickEnabled)
+                    return;
+
+                if (_gamepad.IsAvailable)
+                    return;
+
+                if (TryRescanJoystick(force: true))
+                    return;
+
+                var elapsed = unchecked((uint)(Environment.TickCount - start));
+                if (elapsed >= (uint)JoystickScanTimeoutMs)
+                {
+                    JoystickScanTimedOut?.Invoke();
+                    return;
+                }
+
+                if (token.WaitHandle.WaitOne(JoystickRescanIntervalMs))
+                    return;
+            }
+        }
+
+        private void ClearJoystickDevice()
+        {
             JoystickDevice? oldJoystick;
             lock (_hidLock)
             {
                 oldJoystick = _joystick;
-                _joystick = newJoystick.IsAvailable ? newJoystick : null;
+                _joystick = null;
             }
             oldJoystick?.Dispose();
-            if (!newJoystick.IsAvailable)
-                newJoystick.Dispose();
-        }
-
-        private void BeginHidScan()
-        {
-            if (_gamepad.IsAvailable)
-                return;
-            if (Interlocked.Exchange(ref _hidScanPending, 1) == 1)
-                return;
-
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                try
-                {
-                    TryRescanJoystick(force: true);
-                }
-                finally
-                {
-                    Interlocked.Exchange(ref _hidScanPending, 0);
-                }
-            });
         }
 
         public void Dispose()
         {
+            _disposed = true;
+            StopHidScan();
             _keyboard.Unacquire();
             _keyboard.Dispose();
             _gamepad.Dispose();

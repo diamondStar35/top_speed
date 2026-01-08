@@ -49,6 +49,7 @@ namespace TS.Audio
             _context.Initialize();
 
             var autoChannels = _config.Channels == 0 || _systemConfig.Channels == 0;
+            var autoSampleRate = _config.SampleRate == 0 || _systemConfig.SampleRate == 0;
             if (_systemConfig.UseHrtf)
             {
                 _config.Channels = 2;
@@ -81,7 +82,7 @@ namespace TS.Audio
 
             _device = new MaDevice();
             var deviceConfig = _device.GetConfig(ma_device_type.playback);
-            deviceConfig.sampleRate = _config.SampleRate;
+            deviceConfig.sampleRate = autoSampleRate ? 0u : _config.SampleRate;
             deviceConfig.periodSizeInFrames = _config.PeriodSizeInFrames;
             deviceConfig.playback.format = ma_format.f32;
             deviceConfig.playback.channels = _config.Channels;
@@ -105,6 +106,16 @@ namespace TS.Audio
             if (deviceInit != ma_result.success)
             {
                 throw new InvalidOperationException("Failed to initialize audio device: " + deviceInit);
+            }
+
+            if (autoSampleRate)
+            {
+                var resolved = GetDeviceSampleRate();
+                if (resolved == 0)
+                    resolved = ResolveAutoSampleRate();
+                if (resolved == 0)
+                    resolved = 44100;
+                _config.SampleRate = resolved;
             }
 
             _engine = new MaEngine();
@@ -268,6 +279,13 @@ namespace TS.Audio
             return PickBestChannelCount(device.deviceInfo);
         }
 
+        private uint ResolveAutoSampleRate()
+        {
+            if (!TryGetPlaybackDevice(out var device))
+                return 0;
+            return PickBestSampleRate(device.deviceInfo);
+        }
+
         private bool TryGetPlaybackDevice(out MaDeviceInfo device)
         {
             device = default;
@@ -321,6 +339,51 @@ namespace TS.Audio
             }
 
             return best;
+        }
+
+        private static uint PickBestSampleRate(ma_device_info info)
+        {
+            var count = (int)info.nativeDataFormatCount;
+            if (count <= 0)
+                return 0;
+
+            uint best = 0;
+            bool has44100 = false;
+            bool has48000 = false;
+            unsafe
+            {
+                var formats = info.nativeDataFormats;
+                var max = Math.Min(count, 64);
+                for (int i = 0; i < max; i++)
+                {
+                    var sampleRate = formats[i].sampleRate;
+                    if (sampleRate == 0)
+                        continue;
+                    if (sampleRate == 44100)
+                        has44100 = true;
+                    else if (sampleRate == 48000)
+                        has48000 = true;
+                    if (sampleRate > best)
+                        best = sampleRate;
+                }
+            }
+
+            if (has48000)
+                return 48000;
+            if (has44100)
+                return 44100;
+            return best;
+        }
+
+        private uint GetDeviceSampleRate()
+        {
+            unsafe
+            {
+                ma_device* device = _device.Handle.Get();
+                if (device == null)
+                    return 0;
+                return device->sampleRate;
+            }
         }
 
         private static void OnDeviceData(ma_device_ptr pDevice, IntPtr pOutput, IntPtr pInput, uint frameCount)

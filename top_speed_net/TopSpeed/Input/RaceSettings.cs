@@ -104,6 +104,7 @@ namespace TopSpeed.Input
         public float MusicVolume { get; set; }
         public bool ThreeDSound { get; set; }
         public bool ReverseStereo { get; set; }
+        public bool AutoDetectAudioDeviceFormat { get; set; }
         public bool RandomCustomTracks { get; set; }
         public bool RandomCustomVehicles { get; set; }
         public bool SingleRaceCustomVehicles { get; set; }
@@ -176,6 +177,7 @@ namespace TopSpeed.Input
             MusicVolume = 0.6f;
             ThreeDSound = true;
             ReverseStereo = false;
+            AutoDetectAudioDeviceFormat = true;
             RandomCustomTracks = false;
             RandomCustomVehicles = false;
             SingleRaceCustomVehicles = false;

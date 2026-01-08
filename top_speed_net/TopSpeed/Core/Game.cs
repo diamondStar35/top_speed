@@ -77,7 +77,7 @@ namespace TopSpeed.Core
             _window = window ?? throw new ArgumentNullException(nameof(window));
             _settingsManager = new SettingsManager();
             _settings = _settingsManager.Load();
-            _audio = new AudioManager(_settings.ThreeDSound);
+            _audio = new AudioManager(_settings.ThreeDSound, _settings.AutoDetectAudioDeviceFormat);
             _input = new InputManager(_window.Handle);
             _speech = new SpeechService(_input.IsAnyInputHeld);
             _speech.ScreenReaderRateMs = _settings.ScreenReaderRateMs;

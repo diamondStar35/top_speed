@@ -291,6 +291,11 @@ namespace TopSpeed.Menu
                     () => _settings.ThreeDSound,
                     value => _actions.UpdateSetting(() => _settings.ThreeDSound = value),
                     hint: "When checked, Three-D audio uses HRTF spatialization for more realistic positioning. Press ENTER to toggle."),
+                new CheckBox(
+                    "Automatic audio device format",
+                    () => _settings.AutoDetectAudioDeviceFormat,
+                    value => _actions.UpdateSetting(() => _settings.AutoDetectAudioDeviceFormat = value),
+                    hint: "When checked, the game uses the device channel count and sample rate. Restart required. Press ENTER to toggle."),
                 new Switch(
                     "Units",
                     "metric",

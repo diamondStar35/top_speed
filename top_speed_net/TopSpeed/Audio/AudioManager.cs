@@ -66,15 +66,21 @@ namespace TopSpeed.Audio
         private Thread? _updateThread;
         private volatile bool _updateRunning;
         public bool IsHrtfActive => _system.IsHrtfActive;
-        public AudioManager(bool useHrtf = false)
+        public int OutputChannels => _output.Channels;
+        public int OutputSampleRate => _output.SampleRate;
+        public AudioManager(bool useHrtf = false, bool autoDetectDeviceFormat = true)
         {
             var config = new AudioSystemConfig
             {
-                UseHrtf = useHrtf,
-                Channels = 0
+                UseHrtf = useHrtf
             };
+            if (autoDetectDeviceFormat)
+            {
+                config.Channels = 0;
+                config.SampleRate = 0;
+            }
             _system = new AudioSystem(config);
-            _output = _system.CreateOutput(new AudioOutputConfig { Name = "main", Channels = 0 });
+            _output = _system.CreateOutput(new AudioOutputConfig { Name = "main", Channels = 0, SampleRate = 0 });
         }
 
         public AudioSourceHandle CreateSource(string path, bool streamFromDisk = true, bool useHrtf = false)

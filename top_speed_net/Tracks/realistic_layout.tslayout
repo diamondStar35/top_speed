@@ -1,0 +1,76 @@
+# Top Speed track layout
+[meta]
+name=Coastal Loop
+short_name=Coastal
+description=Longer layout with realistic radii and clothoid transitions.
+author=Top Speed Team
+version=0.2
+tags=realistic, clothoid, endurance
+
+[environment]
+weather=sunny
+ambience=noambience
+default_surface=asphalt
+default_noise=nonoise
+default_width=12
+sample_spacing=0.5
+enforce_closure=true
+
+[geometry]
+straight 400
+clothoid length=80 start=0 end=250 dir=right severity=normal
+arc length=220 radius=250 dir=right severity=normal bank=3
+clothoid length=80 start=250 end=0 dir=right severity=normal
+straight 150
+clothoid length=60 start=0 end=90 dir=left severity=hard
+arc length=120 radius=90 dir=left severity=hairpin bank=4
+clothoid length=60 start=90 end=0 dir=left severity=hard
+straight 300 elevation=4
+clothoid length=100 start=0 end=600 dir=right severity=easy
+arc length=350 radius=600 dir=right severity=easy bank=2
+clothoid length=100 start=600 end=0 dir=right severity=easy
+straight 250 elevation=-3
+clothoid length=70 start=0 end=140 dir=right severity=normal
+arc length=160 radius=140 dir=right severity=hard bank=3
+clothoid length=70 start=140 end=0 dir=right severity=normal
+straight 300
+clothoid length=80 start=0 end=180 dir=left severity=normal
+arc length=200 radius=180 dir=left severity=hard bank=3
+clothoid length=80 start=180 end=0 dir=left severity=normal
+straight 250
+
+[width]
+0 600 14 1 1
+600 1600 12 1 1
+1600 2400 13 1 1
+2400 3480 12 1 1
+
+[surface]
+0 900 asphalt
+900 1100 gravel
+1100 2100 asphalt
+2100 2300 gravel
+2300 3480 asphalt
+
+[noise]
+0 280 crowd
+280 520 river
+520 900 nonoise
+900 1200 construction
+1200 3480 nonoise
+
+[speed_limits]
+0 120 80
+120 400 140
+400 800 200
+800 1100 90
+1100 1800 180
+1800 2300 120
+2300 3480 200
+
+[markers]
+start 0
+sector_1 1200
+sector_2 2400
+pit_entry 90
+pit_exit 210

@@ -1,0 +1,53 @@
+# Top Speed track layout
+[meta]
+name=Training Circuit
+short_name=Training
+description=Sample layout with clothoids, arcs, and zones.
+author=Top Speed Team
+version=0.1
+tags=sample, geometry, clothoid
+
+[environment]
+weather=sunny
+ambience=noambience
+default_surface=asphalt
+default_noise=nonoise
+default_width=12
+sample_spacing=0.5
+enforce_closure=true
+
+[geometry]
+straight 120
+clothoid length=80 start=0 end=90 dir=right severity=normal
+arc length=220 radius=90 dir=right severity=hard bank=2.5
+clothoid length=80 start=90 end=0 dir=right severity=normal
+straight 140 elevation=2
+clothoid length=70 start=0 end=110 dir=left severity=normal
+arc length=200 radius=110 dir=left severity=hard bank=3
+clothoid length=70 start=110 end=0 dir=left severity=normal
+straight 120 elevation=-2
+
+[width]
+0 250 12 1 1
+250 600 14 1 1
+600 1000 12 1 1
+
+[surface]
+0 300 asphalt
+300 420 gravel
+420 1000 asphalt
+
+[noise]
+0 180 crowd
+180 260 ocean
+260 1000 nonoise
+
+[speed_limits]
+0 120 80
+120 220 120
+220 260 60
+
+[markers]
+start 0
+pit_entry 460
+pit_exit 520

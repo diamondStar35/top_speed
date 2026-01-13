@@ -271,7 +271,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.52f, weightDistributionFront: 0.55f,
                 corneringStiffnessFront: CorneringStiffness(1774f, 1.0f, 1.0f, 6.0f),
                 corneringStiffnessRear: CorneringStiffness(1774f, 1.0f, 1.0f, 6.5f),
-                maxSteerLowDeg: 30f, maxSteerHighDeg: 8f, steerSpeedKph: 90f,
+                maxSteerLowDeg: 32f, maxSteerHighDeg: 8f, steerSpeedKph: 90f,
                 powerFactor: 0.7f, gearRatios: GtrRatios),
 
             // Vehicle 2: Racing car - very responsive, high-revving
@@ -287,7 +287,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.49f, weightDistributionFront: 0.39f,
                 corneringStiffnessFront: CorneringStiffness(1450f, 1.05f, 1.0f, 7.0f),
                 corneringStiffnessRear: CorneringStiffness(1450f, 1.05f, 1.0f, 7.5f),
-                maxSteerLowDeg: 28f, maxSteerHighDeg: 8f, steerSpeedKph: 90f,
+                maxSteerLowDeg: 30f, maxSteerHighDeg: 7f, steerSpeedKph: 90f,
                 powerFactor: 0.75f, gearRatios: Gt3RsRatios),
 
             // Vehicle 3: Small car - slow acceleration, economical
@@ -303,7 +303,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.52f, weightDistributionFront: 0.65f,
                 corneringStiffnessFront: CorneringStiffness(865f, 0.88f, 1.0f, 4.5f),
                 corneringStiffnessRear: CorneringStiffness(865f, 0.88f, 1.0f, 4.8f),
-                maxSteerLowDeg: 40f, maxSteerHighDeg: 12f, steerSpeedKph: 70f,
+                maxSteerLowDeg: 38f, maxSteerHighDeg: 12f, steerSpeedKph: 70f,
                 powerFactor: 0.35f, gearRatios: Fiat500Ratios),
 
             // Vehicle 4: Small sporty car - better than Fiat but not racing
@@ -319,7 +319,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.53f, weightDistributionFront: 0.60f,
                 corneringStiffnessFront: CorneringStiffness(1265f, 0.95f, 1.0f, 5.0f),
                 corneringStiffnessRear: CorneringStiffness(1265f, 0.95f, 1.0f, 5.3f),
-                maxSteerLowDeg: 38f, maxSteerHighDeg: 11f, steerSpeedKph: 75f,
+                maxSteerLowDeg: 36f, maxSteerHighDeg: 11f, steerSpeedKph: 75f,
                 powerFactor: 0.45f, gearRatios: MiniCooperSRatios),
 
             // Vehicle 5: Classic muscle car - torquey but heavy
@@ -335,7 +335,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.55f,
                 corneringStiffnessFront: CorneringStiffness(1440f, 0.90f, 1.0f, 4.7f),
                 corneringStiffnessRear: CorneringStiffness(1440f, 0.90f, 1.0f, 5.1f),
-                maxSteerLowDeg: 32f, maxSteerHighDeg: 10f, steerSpeedKph: 80f,
+                maxSteerLowDeg: 35f, maxSteerHighDeg: 9f, steerSpeedKph: 80f,
                 powerFactor: 0.4f, gearRatios: Mustang69Ratios),
 
             // Vehicle 6: Common sedan - comfortable, not sporty
@@ -351,7 +351,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.60f,
                 corneringStiffnessFront: CorneringStiffness(1470f, 0.90f, 1.0f, 4.8f),
                 corneringStiffnessRear: CorneringStiffness(1470f, 0.90f, 1.0f, 5.0f),
-                maxSteerLowDeg: 34f, maxSteerHighDeg: 10f, steerSpeedKph: 80f,
+                maxSteerLowDeg: 36f, maxSteerHighDeg: 9f, steerSpeedKph: 85f,
                 powerFactor: 0.5f, gearRatios: CamryRatios),
 
             // Vehicle 7: Supercar - fastest acceleration, high power
@@ -367,7 +367,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.48f, weightDistributionFront: 0.43f,
                 corneringStiffnessFront: CorneringStiffness(1640f, 1.05f, 1.0f, 6.5f),
                 corneringStiffnessRear: CorneringStiffness(1640f, 1.05f, 1.0f, 7.0f),
-                maxSteerLowDeg: 27f, maxSteerHighDeg: 8f, steerSpeedKph: 95f,
+                maxSteerLowDeg: 30f, maxSteerHighDeg: 7f, steerSpeedKph: 100f,
                 powerFactor: 0.8f, gearRatios: AventadorRatios),
 
             // Vehicle 8: Premium sedan - balanced performance
@@ -383,7 +383,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.50f,
                 corneringStiffnessFront: CorneringStiffness(1524f, 0.93f, 1.0f, 5.2f),
                 corneringStiffnessRear: CorneringStiffness(1524f, 0.93f, 1.0f, 5.5f),
-                maxSteerLowDeg: 33f, maxSteerHighDeg: 10f, steerSpeedKph: 85f,
+                maxSteerLowDeg: 35f, maxSteerHighDeg: 10f, steerSpeedKph: 85f,
                 powerFactor: 0.55f, gearRatios: Bmw3SeriesRatios),
 
             // Vehicle 9: Bus/Van - very slow acceleration, heavy
@@ -399,7 +399,7 @@ namespace TopSpeed.Data
                 cgHeightM: 0.75f, weightDistributionFront: 0.55f,
                 corneringStiffnessFront: CorneringStiffness(1970f, 0.82f, 1.0f, 3.8f),
                 corneringStiffnessRear: CorneringStiffness(1970f, 0.82f, 1.0f, 4.0f),
-                maxSteerLowDeg: 30f, maxSteerHighDeg: 9f, steerSpeedKph: 70f,
+                maxSteerLowDeg: 40f, maxSteerHighDeg: 9f, steerSpeedKph: 75f,
                 powerFactor: 0.3f, gearRatios: SprinterRatios),
 
             // Vehicle 10: Sport motorcycle - quick, light, high-revving
@@ -416,8 +416,8 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.50f,
                 corneringStiffnessFront: CorneringStiffness(207f, 1.10f, 0.80f, 5.5f),
                 corneringStiffnessRear: CorneringStiffness(207f, 1.10f, 0.80f, 5.8f),
-                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
-                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.7f,
+                maxSteerLowDeg: 32f, maxSteerHighDeg: 8f, steerSpeedKph: 55f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.85f, gearRatios: Zx10rRatios),
 
@@ -435,8 +435,8 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.50f,
                 corneringStiffnessFront: CorneringStiffness(191f, 1.12f, 0.80f, 5.6f),
                 corneringStiffnessRear: CorneringStiffness(191f, 1.12f, 0.80f, 5.9f),
-                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
-                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.7f,
+                maxSteerLowDeg: 32f, maxSteerHighDeg: 8f, steerSpeedKph: 55f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.9f, gearRatios: PanigaleV4Ratios),
 
@@ -454,8 +454,8 @@ namespace TopSpeed.Data
                 cgHeightM: 0.55f, weightDistributionFront: 0.50f,
                 corneringStiffnessFront: CorneringStiffness(201f, 1.10f, 0.80f, 5.5f),
                 corneringStiffnessRear: CorneringStiffness(201f, 1.10f, 0.80f, 5.8f),
-                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
-                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.7f,
+                maxSteerLowDeg: 32f, maxSteerHighDeg: 8f, steerSpeedKph: 55f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.8f, gearRatios: R1Ratios)
         };

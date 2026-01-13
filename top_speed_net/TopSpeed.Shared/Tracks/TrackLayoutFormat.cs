@@ -751,6 +751,8 @@ namespace TopSpeed.Tracks.Geometry
                 sb.Append(" width=").Append(FormatFloat(leg.WidthMeters));
             if (leg.ApproachLengthMeters > 0f)
                 sb.Append(" approach_length=").Append(FormatFloat(leg.ApproachLengthMeters));
+            if (Math.Abs(leg.ElevationMeters) > 0.0001f)
+                sb.Append(" elevation=").Append(FormatFloat(leg.ElevationMeters));
             if (leg.SpeedLimitKph > 0f)
                 sb.Append(" speed_limit=").Append(FormatFloat(leg.SpeedLimitKph));
             if (leg.Priority != 0)
@@ -776,10 +778,16 @@ namespace TopSpeed.Tracks.Geometry
                 sb.Append(" speed_limit=").Append(FormatFloat(connector.SpeedLimitKph));
             if (connector.LaneCount > 0)
                 sb.Append(" lanes=").Append(connector.LaneCount.ToString(Culture));
+            if (Math.Abs(connector.BankDegrees) > 0.0001f)
+                sb.Append(" bank=").Append(FormatFloat(connector.BankDegrees));
+            if (Math.Abs(connector.CrossSlopeDegrees) > 0.0001f)
+                sb.Append(" cross_slope=").Append(FormatFloat(connector.CrossSlopeDegrees));
             if (connector.Priority != 0)
                 sb.Append(" priority=").Append(connector.Priority.ToString(Culture));
             if (connector.PathPoints.Count > 0)
                 sb.Append(" points=").Append(FormatPointList(connector.PathPoints));
+            if (connector.Profile.Count > 0)
+                sb.Append(" profile=").Append(FormatProfileList(connector.Profile));
             foreach (var kvp in connector.Metadata)
                 sb.Append(' ').Append(kvp.Key).Append('=').Append(EncodeValue(kvp.Value));
             return sb.ToString();
@@ -813,6 +821,12 @@ namespace TopSpeed.Tracks.Geometry
                 sb.Append(" left_edge=").Append(FormatPointList(lane.LeftEdgePoints));
             if (lane.RightEdgePoints.Count > 0)
                 sb.Append(" right_edge=").Append(FormatPointList(lane.RightEdgePoints));
+            if (Math.Abs(lane.BankDegrees) > 0.0001f)
+                sb.Append(" bank=").Append(FormatFloat(lane.BankDegrees));
+            if (Math.Abs(lane.CrossSlopeDegrees) > 0.0001f)
+                sb.Append(" cross_slope=").Append(FormatFloat(lane.CrossSlopeDegrees));
+            if (lane.Profile.Count > 0)
+                sb.Append(" profile=").Append(FormatProfileList(lane.Profile));
             if (lane.SpeedLimitKph > 0f)
                 sb.Append(" speed_limit=").Append(FormatFloat(lane.SpeedLimitKph));
             sb.Append(" surface=").Append(lane.Surface.ToString().ToLowerInvariant());
@@ -1785,6 +1799,9 @@ namespace TopSpeed.Tracks.Geometry
             var approachLength = GetFloat(named, "approach_length", "approach", positional, -1, out var approachValue)
                 ? approachValue
                 : 0f;
+            var elevation = GetFloat(named, "elevation", "elev", positional, -1, out var elevationValue)
+                ? elevationValue
+                : 0f;
             var speedLimit = GetFloat(named, "speed_limit", "speed", positional, 5, out var speedValue)
                 ? speedValue
                 : 0f;
@@ -1803,6 +1820,7 @@ namespace TopSpeed.Tracks.Geometry
                 "offset_z", "z",
                 "width", "w",
                 "approach_length", "approach",
+                "elevation", "elev",
                 "speed_limit", "speed",
                 "priority", "prio");
 
@@ -1819,6 +1837,7 @@ namespace TopSpeed.Tracks.Geometry
                     offsetZ,
                     width,
                     approachLength,
+                    elevation,
                     speedLimit,
                     priority,
                     metadata));
@@ -1874,6 +1893,12 @@ namespace TopSpeed.Tracks.Geometry
             var laneCount = GetFloat(named, "lanes", "lane_count", positional, 7, out var lanesValue)
                 ? (int)Math.Round(lanesValue)
                 : 0;
+            var bank = GetFloat(named, "bank", "bank_deg", positional, -1, out var bankValue)
+                ? bankValue
+                : 0f;
+            var crossSlope = GetFloat(named, "cross_slope", "camber", positional, -1, out var crossValue)
+                ? crossValue
+                : 0f;
             var priority = GetFloat(named, "priority", "prio", positional, 8, out var priorityValue)
                 ? (int)Math.Round(priorityValue)
                 : 0;
@@ -1886,6 +1911,15 @@ namespace TopSpeed.Tracks.Geometry
                 if (pathPoints.Count == 0 && !string.IsNullOrWhiteSpace(pointsValue))
                     return false;
             }
+            IReadOnlyList<TrackProfilePoint> profile = Array.Empty<TrackProfilePoint>();
+            if (named.TryGetValue("profile", out var profileValue) ||
+                named.TryGetValue("grade_profile", out profileValue) ||
+                named.TryGetValue("bank_profile", out profileValue))
+            {
+                profile = ParseProfileList(profileValue, lineNumber, errors, line);
+                if (profile.Count == 0 && !string.IsNullOrWhiteSpace(profileValue))
+                    return false;
+            }
 
             var metadata = CollectMetadata(named,
                 "id", "connector",
@@ -1896,8 +1930,11 @@ namespace TopSpeed.Tracks.Geometry
                 "length", "len",
                 "speed_limit", "speed",
                 "lanes", "lane_count",
+                "bank", "bank_deg",
+                "cross_slope", "camber",
                 "priority", "prio",
-                "points", "path", "polyline");
+                "points", "path", "polyline",
+                "profile", "grade_profile", "bank_profile");
 
             try
             {
@@ -1911,8 +1948,11 @@ namespace TopSpeed.Tracks.Geometry
                     length,
                     speedLimit,
                     laneCount,
+                    bank,
+                    crossSlope,
                     priority,
                     pathPoints,
+                    profile,
                     metadata));
             }
             catch (Exception ex)
@@ -2085,6 +2125,23 @@ namespace TopSpeed.Tracks.Geometry
                     return false;
             }
 
+            var bank = GetFloat(named, "bank", "bank_deg", positional, -1, out var bankValue)
+                ? bankValue
+                : 0f;
+            var crossSlope = GetFloat(named, "cross_slope", "camber", positional, -1, out var crossValue)
+                ? crossValue
+                : 0f;
+
+            IReadOnlyList<TrackProfilePoint> profile = Array.Empty<TrackProfilePoint>();
+            if (named.TryGetValue("profile", out var profileValue) ||
+                named.TryGetValue("grade_profile", out profileValue) ||
+                named.TryGetValue("bank_profile", out profileValue))
+            {
+                profile = ParseProfileList(profileValue, lineNumber, errors, line);
+                if (profile.Count == 0 && !string.IsNullOrWhiteSpace(profileValue))
+                    return false;
+            }
+
             var speedLimit = GetFloat(named, "speed_limit", "speed", positional, 12, out var speedValue)
                 ? speedValue
                 : 0f;
@@ -2132,6 +2189,9 @@ namespace TopSpeed.Tracks.Geometry
                 "centerline", "points",
                 "left_edge", "left_points",
                 "right_edge", "right_points",
+                "bank", "bank_deg",
+                "cross_slope", "camber",
+                "profile", "grade_profile", "bank_profile",
                 "speed_limit", "speed",
                 "surface",
                 "priority", "prio",
@@ -2158,6 +2218,9 @@ namespace TopSpeed.Tracks.Geometry
                     centerlinePoints,
                     leftEdgePoints,
                     rightEdgePoints,
+                    bank,
+                    crossSlope,
+                    profile,
                     speedLimit,
                     surface,
                     priority,
@@ -3405,6 +3468,61 @@ namespace TopSpeed.Tracks.Geometry
             return hasError ? Array.Empty<TrackPoint3>() : list;
         }
 
+        private static IReadOnlyList<TrackProfilePoint> ParseProfileList(string? value, int lineNumber, List<TrackLayoutError> errors, string line)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return Array.Empty<TrackProfilePoint>();
+
+            var list = new List<TrackProfilePoint>();
+            var hasError = false;
+            var segments = value!.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var segment in segments)
+            {
+                var parts = segment.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length < 2 || parts.Length > 4)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid profile point '{segment}'. Expected s,elev[,bank[,cross]].", line));
+                    hasError = true;
+                    continue;
+                }
+
+                if (!float.TryParse(parts[0], NumberStyles.Float, Culture, out var sMeters) ||
+                    !float.TryParse(parts[1], NumberStyles.Float, Culture, out var elevation))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid profile point '{segment}'. Expected numeric s,elev.", line));
+                    hasError = true;
+                    continue;
+                }
+
+                var bank = 0f;
+                var cross = 0f;
+                if (parts.Length >= 3 && !float.TryParse(parts[2], NumberStyles.Float, Culture, out bank))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid profile point '{segment}'. Expected numeric bank.", line));
+                    hasError = true;
+                    continue;
+                }
+                if (parts.Length == 4 && !float.TryParse(parts[3], NumberStyles.Float, Culture, out cross))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid profile point '{segment}'. Expected numeric cross slope.", line));
+                    hasError = true;
+                    continue;
+                }
+
+                try
+                {
+                    list.Add(new TrackProfilePoint(sMeters, elevation, bank, cross));
+                }
+                catch (Exception ex)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+                    hasError = true;
+                }
+            }
+
+            return hasError ? Array.Empty<TrackProfilePoint>() : list;
+        }
+
         private static bool TryParsePoint(string value, int lineNumber, List<TrackLayoutError> errors, string line, out float x, out float y, out float z)
         {
             x = 0f;
@@ -3481,6 +3599,27 @@ namespace TopSpeed.Tracks.Geometry
                 }
                 sb.Append(',');
                 sb.Append(FormatFloat(points[i].Z));
+            }
+            return sb.ToString();
+        }
+
+        private static string FormatProfileList(IReadOnlyList<TrackProfilePoint> profile)
+        {
+            if (profile == null || profile.Count == 0)
+                return string.Empty;
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < profile.Count; i++)
+            {
+                if (i > 0)
+                    sb.Append('|');
+                sb.Append(FormatFloat(profile[i].SMeters));
+                sb.Append(',');
+                sb.Append(FormatFloat(profile[i].ElevationMeters));
+                sb.Append(',');
+                sb.Append(FormatFloat(profile[i].BankDegrees));
+                sb.Append(',');
+                sb.Append(FormatFloat(profile[i].CrossSlopeDegrees));
             }
             return sb.ToString();
         }

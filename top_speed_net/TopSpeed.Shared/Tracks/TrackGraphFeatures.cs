@@ -379,6 +379,7 @@ namespace TopSpeed.Tracks.Geometry
         public float OffsetZMeters { get; }
         public float WidthMeters { get; }
         public float ApproachLengthMeters { get; }
+        public float ElevationMeters { get; }
         public float SpeedLimitKph { get; }
         public int Priority { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
@@ -393,6 +394,7 @@ namespace TopSpeed.Tracks.Geometry
             float offsetZMeters = 0f,
             float widthMeters = 0f,
             float approachLengthMeters = 0f,
+            float elevationMeters = 0f,
             float speedLimitKph = 0f,
             int priority = 0,
             IReadOnlyDictionary<string, string>? metadata = null)
@@ -413,6 +415,8 @@ namespace TopSpeed.Tracks.Geometry
                 throw new ArgumentOutOfRangeException(nameof(widthMeters));
             if (!TrackGraphValidation.IsFinite(approachLengthMeters) || approachLengthMeters < 0f)
                 throw new ArgumentOutOfRangeException(nameof(approachLengthMeters));
+            if (!TrackGraphValidation.IsFinite(elevationMeters))
+                throw new ArgumentOutOfRangeException(nameof(elevationMeters));
             if (!TrackGraphValidation.IsFinite(speedLimitKph) || speedLimitKph < 0f)
                 throw new ArgumentOutOfRangeException(nameof(speedLimitKph));
 
@@ -425,6 +429,7 @@ namespace TopSpeed.Tracks.Geometry
             OffsetZMeters = offsetZMeters;
             WidthMeters = widthMeters;
             ApproachLengthMeters = approachLengthMeters;
+            ElevationMeters = elevationMeters;
             SpeedLimitKph = speedLimitKph;
             Priority = priority;
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -441,8 +446,11 @@ namespace TopSpeed.Tracks.Geometry
         public float LengthMeters { get; }
         public float SpeedLimitKph { get; }
         public int LaneCount { get; }
+        public float BankDegrees { get; }
+        public float CrossSlopeDegrees { get; }
         public int Priority { get; }
         public IReadOnlyList<TrackPoint3> PathPoints { get; }
+        public IReadOnlyList<TrackProfilePoint> Profile { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
 
         public TrackIntersectionConnector(
@@ -454,8 +462,11 @@ namespace TopSpeed.Tracks.Geometry
             float lengthMeters = 0f,
             float speedLimitKph = 0f,
             int laneCount = 0,
+            float bankDegrees = 0f,
+            float crossSlopeDegrees = 0f,
             int priority = 0,
             IReadOnlyList<TrackPoint3>? pathPoints = null,
+            IReadOnlyList<TrackProfilePoint>? profile = null,
             IReadOnlyDictionary<string, string>? metadata = null)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -472,6 +483,10 @@ namespace TopSpeed.Tracks.Geometry
                 throw new ArgumentOutOfRangeException(nameof(speedLimitKph));
             if (laneCount < 0)
                 throw new ArgumentOutOfRangeException(nameof(laneCount));
+            if (!TrackGraphValidation.IsFinite(bankDegrees))
+                throw new ArgumentOutOfRangeException(nameof(bankDegrees));
+            if (!TrackGraphValidation.IsFinite(crossSlopeDegrees))
+                throw new ArgumentOutOfRangeException(nameof(crossSlopeDegrees));
 
             Id = id.Trim();
             FromLegId = fromLegId.Trim();
@@ -481,8 +496,11 @@ namespace TopSpeed.Tracks.Geometry
             LengthMeters = lengthMeters;
             SpeedLimitKph = speedLimitKph;
             LaneCount = laneCount;
+            BankDegrees = bankDegrees;
+            CrossSlopeDegrees = crossSlopeDegrees;
             Priority = priority;
             PathPoints = pathPoints ?? Array.Empty<TrackPoint3>();
+            Profile = profile ?? Array.Empty<TrackProfilePoint>();
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
     }
@@ -506,6 +524,9 @@ namespace TopSpeed.Tracks.Geometry
         public IReadOnlyList<TrackPoint3> CenterlinePoints { get; }
         public IReadOnlyList<TrackPoint3> LeftEdgePoints { get; }
         public IReadOnlyList<TrackPoint3> RightEdgePoints { get; }
+        public float BankDegrees { get; }
+        public float CrossSlopeDegrees { get; }
+        public IReadOnlyList<TrackProfilePoint> Profile { get; }
         public float SpeedLimitKph { get; }
         public TrackSurface Surface { get; }
         public int Priority { get; }
@@ -530,6 +551,9 @@ namespace TopSpeed.Tracks.Geometry
             IReadOnlyList<TrackPoint3>? centerlinePoints,
             IReadOnlyList<TrackPoint3>? leftEdgePoints,
             IReadOnlyList<TrackPoint3>? rightEdgePoints,
+            float bankDegrees,
+            float crossSlopeDegrees,
+            IReadOnlyList<TrackProfilePoint>? profile,
             float speedLimitKph,
             TrackSurface surface,
             int priority = 0,
@@ -552,6 +576,10 @@ namespace TopSpeed.Tracks.Geometry
                 throw new ArgumentOutOfRangeException(nameof(entryHeadingDegrees));
             if (!TrackGraphValidation.IsFinite(exitHeadingDegrees))
                 throw new ArgumentOutOfRangeException(nameof(exitHeadingDegrees));
+            if (!TrackGraphValidation.IsFinite(bankDegrees))
+                throw new ArgumentOutOfRangeException(nameof(bankDegrees));
+            if (!TrackGraphValidation.IsFinite(crossSlopeDegrees))
+                throw new ArgumentOutOfRangeException(nameof(crossSlopeDegrees));
             if (!TrackGraphValidation.IsFinite(speedLimitKph) || speedLimitKph < 0f)
                 throw new ArgumentOutOfRangeException(nameof(speedLimitKph));
 
@@ -572,6 +600,9 @@ namespace TopSpeed.Tracks.Geometry
             CenterlinePoints = centerlinePoints ?? Array.Empty<TrackPoint3>();
             LeftEdgePoints = leftEdgePoints ?? Array.Empty<TrackPoint3>();
             RightEdgePoints = rightEdgePoints ?? Array.Empty<TrackPoint3>();
+            BankDegrees = bankDegrees;
+            CrossSlopeDegrees = crossSlopeDegrees;
+            Profile = profile ?? Array.Empty<TrackProfilePoint>();
             SpeedLimitKph = speedLimitKph;
             Surface = surface;
             Priority = priority;
@@ -658,6 +689,35 @@ namespace TopSpeed.Tracks.Geometry
             X = x;
             Y = y;
             Z = z;
+        }
+    }
+
+    public readonly struct TrackProfilePoint
+    {
+        public float SMeters { get; }
+        public float ElevationMeters { get; }
+        public float BankDegrees { get; }
+        public float CrossSlopeDegrees { get; }
+
+        public TrackProfilePoint(
+            float sMeters,
+            float elevationMeters,
+            float bankDegrees,
+            float crossSlopeDegrees)
+        {
+            if (!TrackGraphValidation.IsFinite(sMeters) || sMeters < 0f)
+                throw new ArgumentOutOfRangeException(nameof(sMeters));
+            if (!TrackGraphValidation.IsFinite(elevationMeters))
+                throw new ArgumentOutOfRangeException(nameof(elevationMeters));
+            if (!TrackGraphValidation.IsFinite(bankDegrees))
+                throw new ArgumentOutOfRangeException(nameof(bankDegrees));
+            if (!TrackGraphValidation.IsFinite(crossSlopeDegrees))
+                throw new ArgumentOutOfRangeException(nameof(crossSlopeDegrees));
+
+            SMeters = sMeters;
+            ElevationMeters = elevationMeters;
+            BankDegrees = bankDegrees;
+            CrossSlopeDegrees = crossSlopeDegrees;
         }
     }
 

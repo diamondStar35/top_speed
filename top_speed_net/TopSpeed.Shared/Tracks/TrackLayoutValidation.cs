@@ -50,6 +50,8 @@ namespace TopSpeed.Tracks.Geometry
         public float MinRadiusMeters { get; set; } = 15f;
         public float MaxRadiusMeters { get; set; } = 20000f;
         public float WarningBankDegrees { get; set; } = 8f;
+        public float WarningCrossSlopeDegrees { get; set; } = 5f;
+        public float MaxCrossSlopeDegrees { get; set; } = 12f;
         public float MaxBankDegrees { get; set; } = 15f;
         public float WarningSlopePercent { get; set; } = 6f;
         public float MaxSlopePercent { get; set; } = 12f;
@@ -164,16 +166,13 @@ namespace TopSpeed.Tracks.Geometry
                 }
 
                 var legIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                var legLookup = new Dictionary<string, TrackIntersectionLeg>(StringComparer.OrdinalIgnoreCase);
                 var entryCount = 0;
                 var exitCount = 0;
                 foreach (var leg in intersection.Legs)
                 {
-                    if (!legIds.Add(leg.Id))
-                    {
-                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
-                            $"Intersection '{node.Id}' has duplicate leg id '{leg.Id}'.",
-                            section: "intersection"));
-                    }
+                    
+                    legLookup[leg.Id] = leg;
 
                     if (!edgeIds.Contains(leg.EdgeId))
                     {
@@ -208,8 +207,9 @@ namespace TopSpeed.Tracks.Geometry
                         issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
                             $"Intersection '{node.Id}' leg '{leg.Id}' is missing approach length.",
                             section: "intersection"));
-                    }                }
+                    }
 
+                }
                 if (intersection.Legs.Count > 0 && (entryCount == 0 || exitCount == 0))
                 {
                     issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
@@ -218,14 +218,11 @@ namespace TopSpeed.Tracks.Geometry
                 }
 
                 var connectorIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                var connectorLookup = new Dictionary<string, TrackIntersectionConnector>(StringComparer.OrdinalIgnoreCase);
                 foreach (var connector in intersection.Connectors)
                 {
-                    if (!connectorIds.Add(connector.Id))
-                    {
-                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
-                            $"Intersection '{node.Id}' has duplicate connector id '{connector.Id}'.",
-                            section: "intersection"));
-                    }
+                    
+                    connectorLookup[connector.Id] = connector;
 
                     if (intersection.Legs.Count > 0)
                     {
@@ -262,8 +259,132 @@ namespace TopSpeed.Tracks.Geometry
                         issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
                             $"Intersection '{node.Id}' connector '{connector.Id}' has too few path points.",
                             section: "intersection"));
-                    }                }
+                    }
 
+                    var connectorBankAbs = Math.Abs(connector.BankDegrees);
+                    if (connectorBankAbs > opts.MaxBankDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Intersection '{node.Id}' connector '{connector.Id}' bank {connector.BankDegrees:0.##}° exceeds max {opts.MaxBankDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+                    else if (connectorBankAbs > opts.WarningBankDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Intersection '{node.Id}' connector '{connector.Id}' bank {connector.BankDegrees:0.##}° exceeds warning {opts.WarningBankDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+
+                    var connectorCrossAbs = Math.Abs(connector.CrossSlopeDegrees);
+                    if (connectorCrossAbs > opts.MaxCrossSlopeDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Intersection '{node.Id}' connector '{connector.Id}' cross slope {connector.CrossSlopeDegrees:0.##}° exceeds max {opts.MaxCrossSlopeDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+                    else if (connectorCrossAbs > opts.WarningCrossSlopeDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Intersection '{node.Id}' connector '{connector.Id}' cross slope {connector.CrossSlopeDegrees:0.##}° exceeds warning {opts.WarningCrossSlopeDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+
+                    if (connector.Profile.Count > 0)
+                    {
+                        var lastS = -1f;
+                        for (var i = 0; i < connector.Profile.Count; i++)
+                        {
+                            var profilePoint = connector.Profile[i];
+                            if (profilePoint.SMeters < 0f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile point {i} has negative s.",
+                                    section: "intersection"));
+                            }
+                            if (profilePoint.SMeters < lastS)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile points are not sorted by s.",
+                                    section: "intersection"));
+                                break;
+                            }
+                            lastS = profilePoint.SMeters;
+
+                            var bankAbs = Math.Abs(profilePoint.BankDegrees);
+                            if (bankAbs > opts.MaxBankDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile bank {profilePoint.BankDegrees:0.##}° exceeds max {opts.MaxBankDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                            else if (bankAbs > opts.WarningBankDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile bank {profilePoint.BankDegrees:0.##}° exceeds warning {opts.WarningBankDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+
+                            var crossAbs = Math.Abs(profilePoint.CrossSlopeDegrees);
+                            if (crossAbs > opts.MaxCrossSlopeDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile cross slope {profilePoint.CrossSlopeDegrees:0.##}° exceeds max {opts.MaxCrossSlopeDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                            else if (crossAbs > opts.WarningCrossSlopeDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' profile cross slope {profilePoint.CrossSlopeDegrees:0.##}° exceeds warning {opts.WarningCrossSlopeDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+
+                    if (connector.PathPoints.Count > 0)
+                    {
+                        if (legLookup.TryGetValue(connector.FromLegId, out var fromLeg))
+                        {
+                            var startPoint = connector.PathPoints[0];
+                            var legPoint = new TrackPoint3(fromLeg.OffsetXMeters, fromLeg.ElevationMeters, fromLeg.OffsetZMeters);
+                            var dist = Distance(startPoint, legPoint);
+                            if (dist > 2f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' start is {dist:0.##}m from from-leg '{fromLeg.Id}'.",
+                                    section: "intersection"));
+                            }
+                        }
+                        if (legLookup.TryGetValue(connector.ToLegId, out var toLeg))
+                        {
+                            var endPoint = connector.PathPoints[connector.PathPoints.Count - 1];
+                            var legPoint = new TrackPoint3(toLeg.OffsetXMeters, toLeg.ElevationMeters, toLeg.OffsetZMeters);
+                            var dist = Distance(endPoint, legPoint);
+                            if (dist > 2f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' connector '{connector.Id}' end is {dist:0.##}m from to-leg '{toLeg.Id}'.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+
+                    if (connector.Profile.Count > 0 && connector.PathPoints.Count >= 2)
+                    {
+                        var pathLength = ComputePolylineLength(connector.PathPoints);
+                        var lastS = connector.Profile[connector.Profile.Count - 1].SMeters;
+                        if (lastS > 0f)
+                        {
+                            var delta = Math.Abs(lastS - pathLength);
+                            var tolerance = Math.Max(2f, pathLength * 0.1f);
+                            if (delta > tolerance)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection ''{node.Id}'' connector ''{connector.Id}'' profile length {lastS:0.##}m differs from path length {pathLength:0.##}m.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+                }
                 if (intersection.Lanes.Count > 0 && intersection.Legs.Count == 0 && intersection.Connectors.Count == 0)
                 {
                     issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
@@ -348,8 +469,161 @@ namespace TopSpeed.Tracks.Geometry
                         issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
                             $"Intersection '{node.Id}' lane '{lane.Id}' left/right edge point counts differ.",
                             section: "intersection"));
-                    }                }
+                    }
+                    var laneBankAbs = Math.Abs(lane.BankDegrees);
+                    if (laneBankAbs > opts.MaxBankDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Intersection '{node.Id}' lane '{lane.Id}' bank {lane.BankDegrees:0.##}° exceeds max {opts.MaxBankDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+                    else if (laneBankAbs > opts.WarningBankDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Intersection '{node.Id}' lane '{lane.Id}' bank {lane.BankDegrees:0.##}° exceeds warning {opts.WarningBankDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
 
+                    var laneCrossAbs = Math.Abs(lane.CrossSlopeDegrees);
+                    if (laneCrossAbs > opts.MaxCrossSlopeDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Intersection '{node.Id}' lane '{lane.Id}' cross slope {lane.CrossSlopeDegrees:0.##}° exceeds max {opts.MaxCrossSlopeDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+                    else if (laneCrossAbs > opts.WarningCrossSlopeDegrees)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Intersection '{node.Id}' lane '{lane.Id}' cross slope {lane.CrossSlopeDegrees:0.##}° exceeds warning {opts.WarningCrossSlopeDegrees:0.##}°.",
+                            section: "intersection"));
+                    }
+
+                    if (lane.Profile.Count > 0)
+                    {
+                        var lastS = -1f;
+                        for (var i = 0; i < lane.Profile.Count; i++)
+                        {
+                            var profilePoint = lane.Profile[i];
+                            if (profilePoint.SMeters < 0f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile point {i} has negative s.",
+                                    section: "intersection"));
+                            }
+                            if (profilePoint.SMeters < lastS)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile points are not sorted by s.",
+                                    section: "intersection"));
+                                break;
+                            }
+                            lastS = profilePoint.SMeters;
+
+                            var bankAbs = Math.Abs(profilePoint.BankDegrees);
+                            if (bankAbs > opts.MaxBankDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile bank {profilePoint.BankDegrees:0.##}° exceeds max {opts.MaxBankDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                            else if (bankAbs > opts.WarningBankDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile bank {profilePoint.BankDegrees:0.##}° exceeds warning {opts.WarningBankDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+
+                            var crossAbs = Math.Abs(profilePoint.CrossSlopeDegrees);
+                            if (crossAbs > opts.MaxCrossSlopeDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile cross slope {profilePoint.CrossSlopeDegrees:0.##}° exceeds max {opts.MaxCrossSlopeDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                            else if (crossAbs > opts.WarningCrossSlopeDegrees)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile cross slope {profilePoint.CrossSlopeDegrees:0.##}° exceeds warning {opts.WarningCrossSlopeDegrees:0.##}°.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+
+                    if (lane.CenterlinePoints.Count >= 2)
+                    {
+                        var entryHeading = HeadingDegreesFromPoints(lane.CenterlinePoints[0], lane.CenterlinePoints[1]);
+                        var exitHeading = HeadingDegreesFromPoints(lane.CenterlinePoints[lane.CenterlinePoints.Count - 2], lane.CenterlinePoints[lane.CenterlinePoints.Count - 1]);
+                        if (Math.Abs(lane.EntryHeadingDegrees) > 0.0001f)
+                        {
+                            var delta = AngleDeltaDegrees(lane.EntryHeadingDegrees, entryHeading);
+                            if (delta > 30f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' entry heading differs from centerline by {delta:0.##}°.",
+                                    section: "intersection"));
+                            }
+                        }
+                        if (Math.Abs(lane.ExitHeadingDegrees) > 0.0001f)
+                        {
+                            var delta = AngleDeltaDegrees(lane.ExitHeadingDegrees, exitHeading);
+                            if (delta > 30f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' exit heading differs from centerline by {delta:0.##}°.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+
+                    if (lane.CenterlinePoints.Count > 0)
+                    {
+                        if (lane.OwnerKind == TrackLaneOwnerKind.Leg && legLookup.TryGetValue(lane.OwnerId, out var laneLeg))
+                        {
+                            var startPoint = lane.CenterlinePoints[0];
+                            var legPoint = new TrackPoint3(laneLeg.OffsetXMeters, laneLeg.ElevationMeters, laneLeg.OffsetZMeters);
+                            var dist = Distance(startPoint, legPoint);
+                            if (dist > 2f)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' start is {dist:0.##}m from leg '{laneLeg.Id}'.",
+                                    section: "intersection"));
+                            }
+                        }
+                        else if (lane.OwnerKind == TrackLaneOwnerKind.Connector && connectorLookup.TryGetValue(lane.OwnerId, out var laneConnector))
+                        {
+                            if (laneConnector.PathPoints.Count > 0)
+                            {
+                                var startPoint = lane.CenterlinePoints[0];
+                                var connectorPoint = laneConnector.PathPoints[0];
+                                var dist = Distance(startPoint, connectorPoint);
+                                if (dist > 2f)
+                                {
+                                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                        $"Intersection '{node.Id}' lane '{lane.Id}' start is {dist:0.##}m from connector '{laneConnector.Id}'.",
+                                        section: "intersection"));
+                                }
+                            }
+                        }
+                    }
+
+                    if (lane.Profile.Count > 0 && lane.CenterlinePoints.Count >= 2)
+                    {
+                        var laneLength = ComputePolylineLength(lane.CenterlinePoints);
+                        var lastS = lane.Profile[lane.Profile.Count - 1].SMeters;
+                        if (lastS > 0f)
+                        {
+                            var delta = Math.Abs(lastS - laneLength);
+                            var tolerance = Math.Max(2f, laneLength * 0.1f);
+                            if (delta > tolerance)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Intersection '{node.Id}' lane '{lane.Id}' profile length {lastS:0.##}m differs from centerline length {laneLength:0.##}m.",
+                                    section: "intersection"));
+                            }
+                        }
+                    }
+
+                }
                 var laneLinkIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var link in intersection.LaneLinks)
                 {
@@ -399,8 +673,9 @@ namespace TopSpeed.Tracks.Geometry
                         issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
                             $"Intersection '{node.Id}' lane link '{link.Id}' allows lane changes but has no change_length.",
                             section: "intersection"));
-                    }                }
+                    }
 
+                }
                 var areaIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var area in intersection.Areas)
                 {
@@ -438,8 +713,10 @@ namespace TopSpeed.Tracks.Geometry
                             }
                             break;
                     }
-                }            }
-        }        private static void ValidateGeometry(
+                }
+            }
+        }
+        private static void ValidateGeometry(
             TrackGeometrySpec geometry,
             TrackLayoutValidationOptions opts,
             List<TrackLayoutIssue> issues,
@@ -789,7 +1066,53 @@ namespace TopSpeed.Tracks.Geometry
             }
         }
 
-        private static void CheckOverlaps<T>(IReadOnlyList<T> zones, string section, List<TrackLayoutIssue> issues, string? edgeId, Func<T, (float start, float end)> getRange)
+                private static float ComputePolylineLength(IReadOnlyList<TrackPoint3> points)
+        {
+            if (points == null || points.Count < 2)
+                return 0f;
+            var length = 0f;
+            for (var i = 1; i < points.Count; i++)
+            {
+                length += Distance(points[i - 1], points[i]);
+            }
+            return length;
+        }
+
+        private static float Distance(TrackPoint3 a, TrackPoint3 b)
+        {
+            var dx = a.X - b.X;
+            var dy = a.Y - b.Y;
+            var dz = a.Z - b.Z;
+            return (float)Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        private static float HeadingDegreesFromPoints(TrackPoint3 a, TrackPoint3 b)
+        {
+            var dx = b.X - a.X;
+            var dz = b.Z - a.Z;
+            if (Math.Abs(dx) < 0.0001f && Math.Abs(dz) < 0.0001f)
+                return 0f;
+            var radians = Math.Atan2(dx, dz);
+            var degrees = radians * (180.0 / Math.PI);
+            return NormalizeDegrees((float)degrees);
+        }
+
+        private static float NormalizeDegrees(float degrees)
+        {
+            var result = degrees % 360f;
+            if (result < 0f)
+                result += 360f;
+            return result;
+        }
+
+        private static float AngleDeltaDegrees(float a, float b)
+        {
+            var delta = NormalizeDegrees(a - b);
+            if (delta > 180f)
+                delta -= 360f;
+            return Math.Abs(delta);
+        }
+private static void CheckOverlaps<T>(IReadOnlyList<T> zones, string section, List<TrackLayoutIssue> issues, string? edgeId, Func<T, (float start, float end)> getRange)
         {
             var ranges = new List<(float start, float end, int index)>();
             for (var i = 0; i < zones.Count; i++)

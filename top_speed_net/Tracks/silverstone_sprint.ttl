@@ -1,0 +1,70 @@
+# Silverstone-inspired 5km circuit
+
+[meta]
+name="Silverstone Sprint"
+author=TopSpeed
+version=1.0
+
+[environment]
+weather=sunny
+ambience=noambience
+default_surface=asphalt
+default_noise=nonoise
+default_width=12
+sample_spacing=0.5
+enforce_closure=true
+
+[nodes]
+id=main_loop
+
+[edges]
+id=e_main from=main_loop to=main_loop
+
+[routes]
+id=main_route edges=e_main is_loop=true
+
+[edge e_main]
+from=main_loop
+to=main_loop
+default_surface=asphalt
+default_noise=nonoise
+default_width=12
+default_weather=sunny
+default_ambience=noambience
+
+[edge e_main.geometry]
+kind=straight length=400
+kind=clothoid length=60 start=0 end=200 direction=right severity=medium
+kind=arc length=180 radius=200 direction=right severity=medium bank=8
+kind=clothoid length=60 start=200 end=0 direction=right severity=medium
+kind=straight length=150
+kind=clothoid length=40 start=0 end=80 direction=left severity=hard
+kind=arc length=100 radius=80 direction=left severity=hard bank=10
+kind=clothoid length=40 start=80 end=0 direction=left severity=hard
+kind=straight length=50
+kind=clothoid length=40 start=0 end=60 direction=right severity=hard
+kind=arc length=120 radius=60 direction=right severity=hard bank=12
+kind=clothoid length=40 start=60 end=0 direction=right severity=hard
+kind=straight length=500 slope_start=0.01 slope_end=0.02
+kind=clothoid length=50 start=0 end=120 direction=left severity=normal
+kind=arc length=200 radius=120 direction=left severity=normal bank=6
+kind=clothoid length=50 start=120 end=0 direction=left severity=normal
+kind=straight length=200 slope_start=0.02 slope_end=0
+kind=clothoid length=45 start=0 end=100 direction=right severity=normal
+kind=arc length=150 radius=100 direction=right severity=normal bank=5
+kind=clothoid length=30 start=100 end=150 direction=right severity=easy
+kind=arc length=100 radius=150 direction=right severity=easy bank=4
+kind=clothoid length=45 start=150 end=0 direction=right severity=normal
+kind=straight length=300
+kind=clothoid length=60 start=0 end=40 direction=left severity=hard
+kind=arc length=100 radius=40 direction=left severity=hard bank=8
+kind=clothoid length=60 start=40 end=0 direction=left severity=hard
+kind=straight length=180 slope=-0.01
+kind=clothoid length=80 start=0 end=250 direction=right severity=easy
+kind=arc length=300 radius=250 direction=right severity=easy bank=5
+kind=clothoid length=80 start=250 end=0 direction=right severity=easy
+kind=straight length=350 slope=-0.015
+kind=clothoid length=50 start=0 end=150 direction=left severity=normal
+kind=arc length=180 radius=150 direction=left severity=normal bank=6
+kind=clothoid length=50 start=150 end=0 direction=left severity=normal
+kind=straight length=340

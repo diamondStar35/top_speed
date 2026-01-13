@@ -8,10 +8,19 @@ namespace TopSpeed.GeometryTest
     {
         private const float Epsilon = 0.001f;
 
-        public static int Main()
+        public static int Main(string[] args)
         {
             try
             {
+                // If a path is provided, validate just that file
+                if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
+                {
+                    var path = args[0];
+                    Console.WriteLine($"Validating: {path}");
+                    return RunSingleFile(path) ? 0 : 1;
+                }
+
+                // Otherwise run all standard tests
                 var geometry = BuildTestGeometry();
                 var ok = RunChecks(geometry, "Generated geometry", expectedLength: 940f, expectBothCurvatures: true);
                 var layoutOk = RunLayoutCheck("sample_layout.ttl", expectedLength: 1100f, expectBothCurvatures: true);
@@ -26,6 +35,56 @@ namespace TopSpeed.GeometryTest
                 Console.WriteLine(ex);
                 return 1;
             }
+        }
+
+        private static bool RunSingleFile(string path)
+        {
+            if (!System.IO.File.Exists(path))
+            {
+                Console.WriteLine($"File not found: {path}");
+                return false;
+            }
+
+            var result = TrackLayoutFormat.ParseFile(path);
+            if (!result.IsSuccess || result.Layout == null)
+            {
+                Console.WriteLine("[Parse] Failed:");
+                foreach (var error in result.Errors)
+                    Console.WriteLine($"  {error}");
+                return false;
+            }
+            Console.WriteLine("[Parse] OK");
+
+            var validation = TrackLayoutValidator.Validate(result.Layout);
+            PrintValidation(validation, System.IO.Path.GetFileName(path));
+            
+            if (!validation.IsValid)
+            {
+                Console.WriteLine("[Validation] FAILED - has errors");
+                return false;
+            }
+
+            var geometry = TrackGeometry.Build(result.Layout.Geometry);
+            Console.WriteLine($"[Geometry] Built successfully");
+            Console.WriteLine($"  Length: {geometry.LengthMeters:0.###}m");
+            Console.WriteLine($"  Spans: {result.Layout.Geometry.Spans.Count}");
+            Console.WriteLine($"  Sample Spacing: {geometry.SampleSpacingMeters:0.###}m");
+
+            // Check closure
+            var startPose = geometry.GetPose(0f);
+            var endPose = geometry.GetPose(geometry.LengthMeters);
+            var closureDistance = System.Numerics.Vector3.Distance(startPose.Position, endPose.Position);
+            var headingDelta = Math.Abs(NormalizeAngle(endPose.HeadingRadians - startPose.HeadingRadians));
+            var closureOk = closureDistance < 0.5f && headingDelta < 0.1f;
+            Console.WriteLine($"[Closure] Distance: {closureDistance:0.###}m, Heading delta: {headingDelta:0.###} rad -> {(closureOk ? "OK" : "WARN")}");
+
+            // Check for both curve directions
+            var hasBothCurvatures = CheckCurvatureSamples(geometry, true, out var curvatureSummary);
+            Console.WriteLine($"[Curvature] {curvatureSummary} -> {(hasBothCurvatures ? "OK" : "WARN")}");
+
+            Console.WriteLine();
+            Console.WriteLine(closureOk ? "=== VALIDATION PASSED ===" : "=== VALIDATION PASSED (with warnings) ===");
+            return true;
         }
 
         private static TrackGeometry BuildTestGeometry()

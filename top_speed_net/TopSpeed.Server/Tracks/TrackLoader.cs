@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TopSpeed.Data;
+using TopSpeed.Tracks.Geometry;
 
 namespace TopSpeed.Server.Tracks
 {
@@ -14,15 +15,49 @@ namespace TopSpeed.Server.Tracks
 
         public static TrackData LoadTrack(string nameOrPath, byte defaultLaps)
         {
-            if (TrackCatalog.BuiltIn.TryGetValue(nameOrPath, out var builtIn))
+            if (TryLoadLayout(nameOrPath, out var layout))
             {
                 var laps = ResolveLaps(nameOrPath, defaultLaps);
-                return new TrackData(builtIn.UserDefined, builtIn.Weather, builtIn.Ambience, builtIn.Definitions, laps);
+                var userDefined = LooksLikePath(nameOrPath);
+                return new TrackData(userDefined, layout.Weather, layout.Ambience, Array.Empty<TrackDefinition>(), laps, layout.Metadata?.Name);
             }
+
+            if (!LooksLikePath(nameOrPath))
+                throw new FileNotFoundException("Track layout not found.", nameOrPath);
 
             var data = ReadCustomTrackData(nameOrPath);
             data.Laps = ResolveLaps(nameOrPath, defaultLaps);
             return data;
+        }
+
+        private static bool TryLoadLayout(string nameOrPath, out TrackLayout layout)
+        {
+            layout = null!;
+            if (string.IsNullOrWhiteSpace(nameOrPath))
+                return false;
+
+            var root = Path.Combine(AppContext.BaseDirectory, "Tracks");
+            var sources = new ITrackLayoutSource[]
+            {
+                new FileTrackLayoutSource(new[] { root })
+            };
+            var loader = new TrackLayoutLoader(sources);
+            var request = new TrackLayoutLoadRequest(nameOrPath, validate: true, buildGeometry: false, allowWarnings: true);
+            var result = loader.Load(request);
+            if (!result.IsSuccess || result.Layout == null)
+                return false;
+
+            layout = result.Layout;
+            return true;
+        }
+
+        private static bool LooksLikePath(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(identifier))
+                return false;
+            if (identifier.IndexOfAny(new[] { '\\', '/' }) >= 0)
+                return true;
+            return Path.HasExtension(identifier);
         }
 
         private static byte ResolveLaps(string trackName, byte defaultLaps)

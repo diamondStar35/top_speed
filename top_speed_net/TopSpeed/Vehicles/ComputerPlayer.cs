@@ -562,13 +562,6 @@ namespace TopSpeed.Vehicles
                 var deltaX = Vector3.Dot(worldVelocity, poseForVel.Right);
                 _positionY += deltaS * elapsed;
                 _positionX += deltaX * elapsed;
-                if (_track.Length > 0f)
-                {
-                    _positionY %= _track.Length;
-                    if (_positionY < 0f)
-                        _positionY += _track.Length;
-                }
-
                 var pose = _track.GetPose(_positionY);
                 _worldPosition = pose.Position + pose.Right * _positionX;
                 var up = pose.Up.LengthSquared() > 0.0001f ? Vector3.Normalize(pose.Up) : Vector3.UnitY;

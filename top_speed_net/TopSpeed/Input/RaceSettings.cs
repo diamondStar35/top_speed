@@ -112,7 +112,6 @@ namespace TopSpeed.Input
         public bool RandomCustomTracks { get; set; }
         public bool RandomCustomVehicles { get; set; }
         public bool SingleRaceCustomVehicles { get; set; }
-        public bool UseTrackLayouts { get; set; }
         public string LastServerAddress { get; set; } = string.Empty;
         public int ServerPort { get; set; }
         public float ScreenReaderRateMs { get; set; }
@@ -190,7 +189,6 @@ namespace TopSpeed.Input
             RandomCustomTracks = false;
             RandomCustomVehicles = false;
             SingleRaceCustomVehicles = false;
-            UseTrackLayouts = false;
             MusicVolume = 0.6f;
             LastServerAddress = string.Empty;
             ServerPort = 0;

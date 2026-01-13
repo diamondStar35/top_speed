@@ -434,11 +434,6 @@ namespace TopSpeed.Menu
                     () => (int)_settings.Difficulty,
                     value => _actions.UpdateSetting(() => _settings.Difficulty = (RaceDifficulty)value),
                     hint: "Choose the difficulty level for single races. Use LEFT or RIGHT to change."),
-                new CheckBox(
-                    "Use new track layouts (experimental)",
-                    () => _settings.UseTrackLayouts,
-                    value => _actions.UpdateSetting(() => _settings.UseTrackLayouts = value),
-                    hint: "When checked, built-in race tracks use the new 3D layout format. Press ENTER to toggle."),
                 BackItem()
             };
             return _menu.CreateMenu("options_race", items);

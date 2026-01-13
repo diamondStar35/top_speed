@@ -122,19 +122,14 @@ namespace TopSpeed.Tracks
             InitializeSounds();
         }
 
-        public static Track Load(string nameOrPath, AudioManager audio, bool useLayouts = false)
+        public static Track Load(string nameOrPath, AudioManager audio)
         {
-            if (useLayouts)
-            {
-                var layoutTrack = TryLoadLayout(nameOrPath, audio);
-                if (layoutTrack != null)
-                    return layoutTrack;
-            }
+            var layoutTrack = TryLoadLayout(nameOrPath, audio);
+            if (layoutTrack != null)
+                return layoutTrack;
 
-            if (TrackCatalog.BuiltIn.TryGetValue(nameOrPath, out var builtIn))
-            {
-                return new Track(nameOrPath, builtIn, audio, userDefined: false);
-            }
+            if (!LooksLikePath(nameOrPath))
+                throw new FileNotFoundException("Track layout not found.", nameOrPath);
 
             var data = ReadCustomTrackData(nameOrPath);
             var displayName = ResolveCustomTrackName(nameOrPath, data.Name);
@@ -161,11 +156,9 @@ namespace TopSpeed.Tracks
             if (!result.IsSuccess || result.Layout == null || result.Geometry == null)
                 return null;
 
-            var isBuiltIn = TrackCatalog.BuiltIn.ContainsKey(nameOrPath);
-            var trackName = isBuiltIn
-                ? nameOrPath
-                : ResolveLayoutTrackName(nameOrPath, result.Layout);
-            return new Track(trackName, result.Layout, result.Geometry, audio, userDefined: !isBuiltIn);
+            var trackName = ResolveLayoutTrackName(nameOrPath, result.Layout);
+            var userDefined = LooksLikePath(nameOrPath);
+            return new Track(trackName, result.Layout, result.Geometry, audio, userDefined);
         }
 
         private static string ResolveLayoutTrackName(string identifier, TrackLayout layout)
@@ -180,6 +173,15 @@ namespace TopSpeed.Tracks
                     return fileName;
             }
             return string.IsNullOrWhiteSpace(identifier) ? "Track" : identifier;
+        }
+
+        private static bool LooksLikePath(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(identifier))
+                return false;
+            if (identifier.IndexOfAny(new[] { '\\', '/' }) >= 0)
+                return true;
+            return Path.HasExtension(identifier);
         }
 
         public string TrackName => _trackName;
@@ -426,7 +428,7 @@ namespace TopSpeed.Tracks
             }
 
             var lap = (int)(position / _lapDistance);
-            var pos = position % _lapDistance;
+            var pos = WrapDistance(position);
             var dist = 0.0f;
             var center = lap * _lapCenter;
 
@@ -466,7 +468,7 @@ namespace TopSpeed.Tracks
             }
 
             var lap = (int)(position / _lapDistance);
-            var pos = position % _lapDistance;
+            var pos = WrapDistance(position);
             var dist = 0.0f;
             var center = lap * _lapCenter;
             var relPos = 0.0f;
@@ -636,7 +638,7 @@ namespace TopSpeed.Tracks
             if (_lapDistance == 0)
                 Initialize();
 
-            var pos = position % _lapDistance;
+            var pos = WrapDistance(position);
             var dist = 0.0f;
             for (var i = 0; i < _segmentCount; i++)
             {

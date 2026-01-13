@@ -153,9 +153,10 @@ namespace TopSpeed.Race
             _acceptPlayerInfo = true;
             _acceptCurrentRaceInfo = true;
 
-            _track = trackData == null
-                ? Track.Load(track, audio, settings.UseTrackLayouts)
-                : Track.LoadFromData(track, trackData, audio, userDefined);
+            var useLegacyTrackData = trackData != null && trackData.Definitions.Length > 0;
+            _track = useLegacyTrackData
+                ? Track.LoadFromData(track, trackData!, audio, userDefined)
+                : Track.Load(track, audio);
             _car = new Car(audio, _track, input, settings, vehicle, vehicleFile, () => _elapsedTotal, () => _started, _vibrationDevice);
 
             if (!string.IsNullOrWhiteSpace(track) &&

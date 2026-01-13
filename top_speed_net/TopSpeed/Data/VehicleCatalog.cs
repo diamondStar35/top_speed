@@ -127,13 +127,13 @@ namespace TopSpeed.Data
             float powerFactor = 0.5f,
             float[]? gearRatios = null,
             float brakeStrength = 1.0f,
-            float steerInputRate = 0f,
-            float steerReturnRate = 0f,
-            float steerGamma = 0f,
-            float maxSteerLowDeg = 0f,
-            float maxSteerHighDeg = 0f,
-            float steerSpeedKph = 0f,
-            float steerSpeedExponent = 0f,
+            float steerInputRate = 0.9f,
+            float steerReturnRate = 0.7f,
+            float steerGamma = 1.8f,
+            float maxSteerLowDeg = 32f,
+            float maxSteerHighDeg = 9f,
+            float steerSpeedKph = 80f,
+            float steerSpeedExponent = 1.6f,
             float corneringStiffnessFront = 0f,
             float corneringStiffnessRear = 0f,
             float yawInertiaKgM2 = 0f,
@@ -237,6 +237,11 @@ namespace TopSpeed.Data
             return (float)(Math.PI * (diameterMm / 1000f));
         }
 
+        private static float CorneringStiffness(float massKg, float tireGrip, float lateralGrip, float factor)
+        {
+            return massKg * 9.80665f * tireGrip * lateralGrip * factor;
+        }
+
                 // Real-world gear ratios per vehicle
         private static readonly float[] GtrRatios = new[] { 4.06f, 2.30f, 1.59f, 1.25f, 1.00f, 0.80f };
         private static readonly float[] Gt3RsRatios = new[] { 3.75f, 2.38f, 1.72f, 1.34f, 1.11f, 0.96f, 0.84f };
@@ -262,7 +267,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 652f, peakTorqueRpm: 3600f, idleTorqueNm: 652f * 0.3f, redlineTorqueNm: 652f * 0.6f,
                 dragCoefficient: 0.26f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2500f,
                 finalDriveRatio: 3.70f, tireCircumferenceM: TireCircumferenceM(285, 35, 20),
-                wheelbaseM: 2.779f, widthM: 1.895f, lengthM: 4.689f,
+                wheelbaseM: 2.779f, trackWidthM: 1.600f, widthM: 1.895f, lengthM: 4.689f,
+                cgHeightM: 0.52f, weightDistributionFront: 0.55f,
+                corneringStiffnessFront: CorneringStiffness(1774f, 1.0f, 1.0f, 6.0f),
+                corneringStiffnessRear: CorneringStiffness(1774f, 1.0f, 1.0f, 6.5f),
+                maxSteerLowDeg: 30f, maxSteerHighDeg: 8f, steerSpeedKph: 90f,
                 powerFactor: 0.7f, gearRatios: GtrRatios),
 
             // Vehicle 2: Racing car - very responsive, high-revving
@@ -274,7 +283,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 465f, peakTorqueRpm: 6250f, idleTorqueNm: 465f * 0.3f, redlineTorqueNm: 465f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.0f, rollingResistanceCoefficient: 0.015f, launchRpm: 3000f,
                 finalDriveRatio: 3.97f, tireCircumferenceM: TireCircumferenceM(325, 30, 21),
-                wheelbaseM: 2.456f, widthM: 1.852f, lengthM: 4.572f,
+                wheelbaseM: 2.456f, trackWidthM: 1.577f, widthM: 1.852f, lengthM: 4.572f,
+                cgHeightM: 0.49f, weightDistributionFront: 0.39f,
+                corneringStiffnessFront: CorneringStiffness(1450f, 1.05f, 1.0f, 7.0f),
+                corneringStiffnessRear: CorneringStiffness(1450f, 1.05f, 1.0f, 7.5f),
+                maxSteerLowDeg: 28f, maxSteerHighDeg: 8f, steerSpeedKph: 90f,
                 powerFactor: 0.75f, gearRatios: Gt3RsRatios),
 
             // Vehicle 3: Small car - slow acceleration, economical
@@ -286,7 +299,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 102f, peakTorqueRpm: 3000f, idleTorqueNm: 102f * 0.3f, redlineTorqueNm: 102f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.1f, rollingResistanceCoefficient: 0.015f, launchRpm: 1800f,
                 finalDriveRatio: 3.353f, tireCircumferenceM: TireCircumferenceM(195, 45, 16),
-                wheelbaseM: 2.300f, widthM: 1.627f, lengthM: 3.546f,
+                wheelbaseM: 2.300f, trackWidthM: 1.402f, widthM: 1.627f, lengthM: 3.546f,
+                cgHeightM: 0.52f, weightDistributionFront: 0.65f,
+                corneringStiffnessFront: CorneringStiffness(865f, 0.88f, 1.0f, 4.5f),
+                corneringStiffnessRear: CorneringStiffness(865f, 0.88f, 1.0f, 4.8f),
+                maxSteerLowDeg: 40f, maxSteerHighDeg: 12f, steerSpeedKph: 70f,
                 powerFactor: 0.35f, gearRatios: Fiat500Ratios),
 
             // Vehicle 4: Small sporty car - better than Fiat but not racing
@@ -298,7 +315,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 280f, peakTorqueRpm: 1250f, idleTorqueNm: 280f * 0.3f, redlineTorqueNm: 280f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.1f, rollingResistanceCoefficient: 0.015f, launchRpm: 2200f,
                 finalDriveRatio: 3.59f, tireCircumferenceM: TireCircumferenceM(195, 55, 16),
-                wheelbaseM: 2.494f, widthM: 1.744f, lengthM: 3.876f,
+                wheelbaseM: 2.494f, trackWidthM: 1.485f, widthM: 1.744f, lengthM: 3.876f,
+                cgHeightM: 0.53f, weightDistributionFront: 0.60f,
+                corneringStiffnessFront: CorneringStiffness(1265f, 0.95f, 1.0f, 5.0f),
+                corneringStiffnessRear: CorneringStiffness(1265f, 0.95f, 1.0f, 5.3f),
+                maxSteerLowDeg: 38f, maxSteerHighDeg: 11f, steerSpeedKph: 75f,
                 powerFactor: 0.45f, gearRatios: MiniCooperSRatios),
 
             // Vehicle 5: Classic muscle car - torquey but heavy
@@ -310,7 +331,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 481f, peakTorqueRpm: 3000f, idleTorqueNm: 481f * 0.3f, redlineTorqueNm: 481f * 0.6f,
                 dragCoefficient: 0.45f, frontalAreaM2: 2.5f, rollingResistanceCoefficient: 0.018f, launchRpm: 2000f,
                 finalDriveRatio: 3.25f, tireCircumferenceM: TireCircumferenceM(215, 70, 14),
-                wheelbaseM: 2.743f, widthM: 1.811f, lengthM: 4.760f,
+                wheelbaseM: 2.743f, trackWidthM: 1.486f, widthM: 1.811f, lengthM: 4.760f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.55f,
+                corneringStiffnessFront: CorneringStiffness(1440f, 0.90f, 1.0f, 4.7f),
+                corneringStiffnessRear: CorneringStiffness(1440f, 0.90f, 1.0f, 5.1f),
+                maxSteerLowDeg: 32f, maxSteerHighDeg: 10f, steerSpeedKph: 80f,
                 powerFactor: 0.4f, gearRatios: Mustang69Ratios),
 
             // Vehicle 6: Common sedan - comfortable, not sporty
@@ -322,7 +347,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 250f, peakTorqueRpm: 5000f, idleTorqueNm: 250f * 0.3f, redlineTorqueNm: 250f * 0.6f,
                 dragCoefficient: 0.29f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2000f,
                 finalDriveRatio: 2.80f, tireCircumferenceM: TireCircumferenceM(215, 55, 17),
-                wheelbaseM: 2.825f, widthM: 1.839f, lengthM: 4.879f,
+                wheelbaseM: 2.825f, trackWidthM: 1.608f, widthM: 1.839f, lengthM: 4.879f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.60f,
+                corneringStiffnessFront: CorneringStiffness(1470f, 0.90f, 1.0f, 4.8f),
+                corneringStiffnessRear: CorneringStiffness(1470f, 0.90f, 1.0f, 5.0f),
+                maxSteerLowDeg: 34f, maxSteerHighDeg: 10f, steerSpeedKph: 80f,
                 powerFactor: 0.5f, gearRatios: CamryRatios),
 
             // Vehicle 7: Supercar - fastest acceleration, high power
@@ -334,7 +363,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 720f, peakTorqueRpm: 5500f, idleTorqueNm: 720f * 0.3f, redlineTorqueNm: 720f * 0.6f,
                 dragCoefficient: 0.33f, frontalAreaM2: 2.0f, rollingResistanceCoefficient: 0.015f, launchRpm: 3000f,
                 finalDriveRatio: 2.86f, tireCircumferenceM: TireCircumferenceM(355, 25, 21),
-                wheelbaseM: 2.700f, widthM: 2.030f, lengthM: 4.780f,
+                wheelbaseM: 2.700f, trackWidthM: 1.710f, widthM: 2.030f, lengthM: 4.780f,
+                cgHeightM: 0.48f, weightDistributionFront: 0.43f,
+                corneringStiffnessFront: CorneringStiffness(1640f, 1.05f, 1.0f, 6.5f),
+                corneringStiffnessRear: CorneringStiffness(1640f, 1.05f, 1.0f, 7.0f),
+                maxSteerLowDeg: 27f, maxSteerHighDeg: 8f, steerSpeedKph: 95f,
                 powerFactor: 0.8f, gearRatios: AventadorRatios),
 
             // Vehicle 8: Premium sedan - balanced performance
@@ -346,7 +379,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 350f, peakTorqueRpm: 1250f, idleTorqueNm: 350f * 0.3f, redlineTorqueNm: 350f * 0.6f,
                 dragCoefficient: 0.29f, frontalAreaM2: 2.2f, rollingResistanceCoefficient: 0.015f, launchRpm: 2000f,
                 finalDriveRatio: 3.15f, tireCircumferenceM: TireCircumferenceM(225, 50, 17),
-                wheelbaseM: 2.810f, widthM: 1.811f, lengthM: 4.624f,
+                wheelbaseM: 2.810f, trackWidthM: 1.597f, widthM: 1.811f, lengthM: 4.624f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.50f,
+                corneringStiffnessFront: CorneringStiffness(1524f, 0.93f, 1.0f, 5.2f),
+                corneringStiffnessRear: CorneringStiffness(1524f, 0.93f, 1.0f, 5.5f),
+                maxSteerLowDeg: 33f, maxSteerHighDeg: 10f, steerSpeedKph: 85f,
                 powerFactor: 0.55f, gearRatios: Bmw3SeriesRatios),
 
             // Vehicle 9: Bus/Van - very slow acceleration, heavy
@@ -358,7 +395,11 @@ namespace TopSpeed.Data
                 peakTorqueNm: 440f, peakTorqueRpm: 1400f, idleTorqueNm: 440f * 0.3f, redlineTorqueNm: 440f * 0.6f,
                 dragCoefficient: 0.35f, frontalAreaM2: 2.9f, rollingResistanceCoefficient: 0.020f, launchRpm: 1800f,
                 finalDriveRatio: 3.923f, tireCircumferenceM: TireCircumferenceM(245, 75, 16),
-                wheelbaseM: 3.658f, widthM: 2.019f, lengthM: 5.931f,
+                wheelbaseM: 3.658f, trackWidthM: 1.720f, widthM: 2.019f, lengthM: 5.931f,
+                cgHeightM: 0.75f, weightDistributionFront: 0.55f,
+                corneringStiffnessFront: CorneringStiffness(1970f, 0.82f, 1.0f, 3.8f),
+                corneringStiffnessRear: CorneringStiffness(1970f, 0.82f, 1.0f, 4.0f),
+                maxSteerLowDeg: 30f, maxSteerHighDeg: 9f, steerSpeedKph: 70f,
                 powerFactor: 0.3f, gearRatios: SprinterRatios),
 
             // Vehicle 10: Sport motorcycle - quick, light, high-revving
@@ -372,6 +413,11 @@ namespace TopSpeed.Data
                 finalDriveRatio: 3.8562f, tireCircumferenceM: TireCircumferenceM(190, 55, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
                 wheelbaseM: 1.450f, widthM: 0.749f, lengthM: 2.085f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.50f,
+                corneringStiffnessFront: CorneringStiffness(207f, 1.10f, 0.80f, 5.5f),
+                corneringStiffnessRear: CorneringStiffness(207f, 1.10f, 0.80f, 5.8f),
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
+                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.85f, gearRatios: Zx10rRatios),
 
@@ -386,6 +432,11 @@ namespace TopSpeed.Data
                 finalDriveRatio: 4.6125f, tireCircumferenceM: TireCircumferenceM(200, 60, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
                 wheelbaseM: 1.469f, widthM: 0.806f, lengthM: 2.110f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.50f,
+                corneringStiffnessFront: CorneringStiffness(191f, 1.12f, 0.80f, 5.6f),
+                corneringStiffnessRear: CorneringStiffness(191f, 1.12f, 0.80f, 5.9f),
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
+                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.9f, gearRatios: PanigaleV4Ratios),
 
@@ -400,6 +451,11 @@ namespace TopSpeed.Data
                 finalDriveRatio: 4.1807f, tireCircumferenceM: TireCircumferenceM(190, 55, 17),
                 lateralGripCoefficient: 0.80f, highSpeedStability: 0.25f,
                 wheelbaseM: 1.405f, widthM: 0.690f, lengthM: 2.055f,
+                cgHeightM: 0.55f, weightDistributionFront: 0.50f,
+                corneringStiffnessFront: CorneringStiffness(201f, 1.10f, 0.80f, 5.5f),
+                corneringStiffnessRear: CorneringStiffness(201f, 1.10f, 0.80f, 5.8f),
+                steerInputRate: 1.1f, steerReturnRate: 0.8f, steerGamma: 1.6f,
+                maxSteerLowDeg: 35f, maxSteerHighDeg: 12f, steerSpeedKph: 60f, steerSpeedExponent: 1.4f,
                 dynamicsModel: VehicleDynamicsModel.Bicycle,
                 powerFactor: 0.8f, gearRatios: R1Ratios)
         };

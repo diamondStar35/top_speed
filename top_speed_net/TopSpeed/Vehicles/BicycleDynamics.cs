@@ -69,7 +69,20 @@ namespace TopSpeed.Vehicles
                 dt);
 
             var driveForce = Math.Max(0f, input.DriveForce);
-            var brakeForce = Math.Max(0f, input.BrakeForce + input.EngineBrakeForce);
+            var brakeForce = Math.Max(0f, input.BrakeForce);
+            var engineBrakeForce = Math.Max(0f, input.EngineBrakeForce);
+            var speedMpsInitial = prevSpeed / 3.6f;
+            if (speedMpsInitial < 0.05f && driveForce <= 1f && (brakeForce + engineBrakeForce) > 0f)
+            {
+                state.VelLong = 0f;
+                state.VelLat = 0f;
+                state.YawRate = 0f;
+                result.SpeedKph = 0f;
+                result.SpeedDiffKph = -prevSpeed;
+                result.LateralUsage = 0f;
+                result.LongitudinalGripFactor = 1f;
+                return result;
+            }
 
             var speedForward = Math.Abs(state.VelLong);
             var dragForce = 0.5f * AirDensity * p.DragCoefficient * p.FrontalAreaM2 * speedForward * speedForward;
@@ -77,8 +90,9 @@ namespace TopSpeed.Vehicles
             var resistSign = speedForward > 0.25f ? Math.Sign(state.VelLong) : 0;
             var resistForce = (dragForce + rollingForce) * resistSign;
 
+            var speedSign = Math.Abs(state.VelLong) > 0.1f ? Math.Sign(state.VelLong) : 0f;
             var fxDrive = driveForce;
-            var fxBrake = -brakeForce;
+            var fxBrake = -(brakeForce + engineBrakeForce) * speedSign;
             var fxTotal = fxDrive + fxBrake - resistForce;
 
             var weight = p.MassKg * 9.80665f;

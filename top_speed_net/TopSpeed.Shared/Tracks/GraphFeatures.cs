@@ -222,28 +222,6 @@ namespace TopSpeed.Tracks.Geometry
         }
     }
 
-    public enum TrackBoundarySide
-    {
-        Left = 0,
-        Right = 1,
-        Both = 2
-    }
-
-    public enum TrackBoundaryType
-    {
-        Unknown = 0,
-        Wall = 1,
-        Guardrail = 2,
-        Curb = 3,
-        Grass = 4,
-        Gravel = 5,
-        Barrier = 6,
-        Fence = 7,
-        Cliff = 8,
-        Water = 9,
-        TreeLine = 10
-    }
-
     public sealed class TrackBoundaryZone
     {
         public float StartMeters { get; }
@@ -320,74 +298,6 @@ namespace TopSpeed.Tracks.Geometry
         {
             return sMeters >= StartMeters && sMeters < EndMeters;
         }
-    }
-
-    public enum TrackIntersectionShape
-    {
-        Unspecified = 0,
-        Circle = 1,
-        Box = 2,
-        Cross = 3,
-        Roundabout = 4,
-        Custom = 5
-    }
-
-    public enum TrackIntersectionControl
-    {
-        None = 0,
-        Stop = 1,
-        Yield = 2,
-        Signal = 3
-    }
-
-    public enum TrackIntersectionLegType
-    {
-        Entry = 0,
-        Exit = 1,
-        Both = 2
-    }
-
-    public enum TrackLaneOwnerKind
-    {
-        Leg = 0,
-        Connector = 1,
-        StartFinish = 2,
-        Custom = 3
-    }
-
-    public enum TrackLaneDirection
-    {
-        Forward = 0,
-        Reverse = 1,
-        Both = 2
-    }
-
-    public enum TrackLaneType
-    {
-        Travel = 0,
-        TurnLeft = 1,
-        TurnRight = 2,
-        Merge = 3,
-        Exit = 4,
-        Entry = 5,
-        Shoulder = 6,
-        Bike = 7,
-        Bus = 8,
-        Pit = 9,
-        Parking = 10,
-        Emergency = 11,
-        Custom = 12
-    }
-
-    public enum TrackLaneMarking
-    {
-        None = 0,
-        Solid = 1,
-        Dashed = 2,
-        DoubleSolid = 3,
-        DoubleDashed = 4,
-        SolidDashed = 5,
-        DashedSolid = 6
     }
 
     public sealed class TrackIntersectionLeg
@@ -633,13 +543,6 @@ namespace TopSpeed.Tracks.Geometry
         }
     }
 
-    public enum TrackLaneGroupKind
-    {
-        Leg = 0,
-        Connector = 1,
-        Custom = 2
-    }
-
     public sealed class TrackLaneGroup
     {
         public string Id { get; }
@@ -780,39 +683,6 @@ namespace TopSpeed.Tracks.Geometry
             Priority = priority;
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
-    }
-
-    public enum TrackIntersectionAreaShape
-    {
-        Circle = 0,
-        Box = 1,
-        Polygon = 2
-    }
-
-    public enum TrackIntersectionAreaKind
-    {
-        Core = 0,
-        Conflict = 1,
-        Island = 2,
-        Crosswalk = 3,
-        StopLine = 4,
-        StartLine = 5,
-        FinishLine = 6,
-        GridBox = 7,
-        TimingGate = 8,
-        Median = 9,
-        Sidewalk = 10,
-        Shoulder = 11,
-        Custom = 12
-    }
-
-    public enum TrackIntersectionAreaOwnerKind
-    {
-        None = 0,
-        Leg = 1,
-        Connector = 2,
-        LaneGroup = 3,
-        Custom = 4
     }
 
     public readonly struct TrackPoint3
@@ -1040,15 +910,6 @@ namespace TopSpeed.Tracks.Geometry
         }
     }
 
-    public enum TrackStartFinishKind
-    {
-        Start = 0,
-        Finish = 1,
-        StartFinish = 2,
-        Split = 3,
-        Custom = 4
-    }
-
     public sealed class TrackStartFinishSubgraph
     {
         public string Id { get; }
@@ -1114,6 +975,359 @@ namespace TopSpeed.Tracks.Geometry
             LaneGroups = laneGroups ?? Array.Empty<TrackLaneGroup>();
             LaneTransitions = laneTransitions ?? Array.Empty<TrackLaneTransition>();
             Areas = areas ?? Array.Empty<TrackIntersectionArea>();
+            Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    public readonly struct TrackRacingLinePoint
+    {
+        public float SMeters { get; }
+        public float OffsetMeters { get; }
+        public float? WidthMeters { get; }
+        public float? SpeedKph { get; }
+
+        public TrackRacingLinePoint(float sMeters, float offsetMeters, float? widthMeters = null, float? speedKph = null)
+        {
+            if (!TrackGraphValidation.IsFinite(sMeters))
+                throw new ArgumentOutOfRangeException(nameof(sMeters));
+            if (!TrackGraphValidation.IsFinite(offsetMeters))
+                throw new ArgumentOutOfRangeException(nameof(offsetMeters));
+            if (widthMeters.HasValue && (!TrackGraphValidation.IsFinite(widthMeters.Value) || widthMeters.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(widthMeters));
+            if (speedKph.HasValue && (!TrackGraphValidation.IsFinite(speedKph.Value) || speedKph.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(speedKph));
+
+            SMeters = sMeters;
+            OffsetMeters = offsetMeters;
+            WidthMeters = widthMeters;
+            SpeedKph = speedKph;
+        }
+    }
+
+    public sealed class TrackRacingLineVariant
+    {
+        public string Id { get; }
+        public TrackRacingLineKind Kind { get; }
+        public IReadOnlyList<TrackRacingLinePoint> Points { get; }
+        public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        public TrackRacingLineVariant(
+            string id,
+            TrackRacingLineKind kind,
+            IReadOnlyList<TrackRacingLinePoint> points,
+            IReadOnlyDictionary<string, string>? metadata = null)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Racing line id is required.", nameof(id));
+            Points = points ?? throw new ArgumentNullException(nameof(points));
+
+            Id = id.Trim();
+            Kind = kind;
+            Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    public readonly struct TrackCornerApex
+    {
+        public string Id { get; }
+        public float PositionMeters { get; }
+        public float OffsetMeters { get; }
+        public float? SpeedKph { get; }
+        public int Priority { get; }
+
+        public TrackCornerApex(string id, float positionMeters, float offsetMeters, float? speedKph = null, int priority = 0)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Apex id is required.", nameof(id));
+            if (!TrackGraphValidation.IsFinite(positionMeters))
+                throw new ArgumentOutOfRangeException(nameof(positionMeters));
+            if (!TrackGraphValidation.IsFinite(offsetMeters))
+                throw new ArgumentOutOfRangeException(nameof(offsetMeters));
+            if (speedKph.HasValue && (!TrackGraphValidation.IsFinite(speedKph.Value) || speedKph.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(speedKph));
+
+            Id = id.Trim();
+            PositionMeters = positionMeters;
+            OffsetMeters = offsetMeters;
+            SpeedKph = speedKph;
+            Priority = priority;
+        }
+    }
+
+    public sealed class TrackBrakingZone
+    {
+        public float StartMeters { get; }
+        public float EndMeters { get; }
+        public float? TargetSpeedKph { get; }
+        public float? DecelG { get; }
+        public int Priority { get; }
+
+        public TrackBrakingZone(float startMeters, float endMeters, float? targetSpeedKph = null, float? decelG = null, int priority = 0)
+        {
+            if (!TrackGraphValidation.IsFinite(startMeters))
+                throw new ArgumentOutOfRangeException(nameof(startMeters));
+            if (!TrackGraphValidation.IsFinite(endMeters))
+                throw new ArgumentOutOfRangeException(nameof(endMeters));
+            if (endMeters < startMeters)
+                throw new ArgumentException("Braking zone end must be >= start.", nameof(endMeters));
+            if (targetSpeedKph.HasValue && (!TrackGraphValidation.IsFinite(targetSpeedKph.Value) || targetSpeedKph.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(targetSpeedKph));
+            if (decelG.HasValue && (!TrackGraphValidation.IsFinite(decelG.Value) || decelG.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(decelG));
+
+            StartMeters = startMeters;
+            EndMeters = endMeters;
+            TargetSpeedKph = targetSpeedKph;
+            DecelG = decelG;
+            Priority = priority;
+        }
+    }
+
+    public sealed class TrackAccelerationZone
+    {
+        public float StartMeters { get; }
+        public float EndMeters { get; }
+        public float? TargetSpeedKph { get; }
+        public int Priority { get; }
+
+        public TrackAccelerationZone(float startMeters, float endMeters, float? targetSpeedKph = null, int priority = 0)
+        {
+            if (!TrackGraphValidation.IsFinite(startMeters))
+                throw new ArgumentOutOfRangeException(nameof(startMeters));
+            if (!TrackGraphValidation.IsFinite(endMeters))
+                throw new ArgumentOutOfRangeException(nameof(endMeters));
+            if (endMeters < startMeters)
+                throw new ArgumentException("Acceleration zone end must be >= start.", nameof(endMeters));
+            if (targetSpeedKph.HasValue && (!TrackGraphValidation.IsFinite(targetSpeedKph.Value) || targetSpeedKph.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(targetSpeedKph));
+
+            StartMeters = startMeters;
+            EndMeters = endMeters;
+            TargetSpeedKph = targetSpeedKph;
+            Priority = priority;
+        }
+    }
+
+    public sealed class TrackCornerComplexProfile
+    {
+        public string Id { get; }
+        public string? Name { get; }
+        public float StartMeters { get; }
+        public float EndMeters { get; }
+        public IReadOnlyList<TrackCornerApex> Apexes { get; }
+        public TrackBrakingZone? BrakingZone { get; }
+        public TrackAccelerationZone? AccelerationZone { get; }
+        public IReadOnlyList<TrackRacingLineVariant> RacingLines { get; }
+        public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        public TrackCornerComplexProfile(
+            string id,
+            float startMeters,
+            float endMeters,
+            IReadOnlyList<TrackCornerApex>? apexes = null,
+            TrackBrakingZone? brakingZone = null,
+            TrackAccelerationZone? accelerationZone = null,
+            IReadOnlyList<TrackRacingLineVariant>? racingLines = null,
+            string? name = null,
+            IReadOnlyDictionary<string, string>? metadata = null)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Corner complex id is required.", nameof(id));
+            if (!TrackGraphValidation.IsFinite(startMeters))
+                throw new ArgumentOutOfRangeException(nameof(startMeters));
+            if (!TrackGraphValidation.IsFinite(endMeters))
+                throw new ArgumentOutOfRangeException(nameof(endMeters));
+            if (endMeters < startMeters)
+                throw new ArgumentException("Corner complex end must be >= start.", nameof(endMeters));
+
+            Id = id.Trim();
+            StartMeters = startMeters;
+            EndMeters = endMeters;
+            Apexes = apexes ?? Array.Empty<TrackCornerApex>();
+            BrakingZone = brakingZone;
+            AccelerationZone = accelerationZone;
+            RacingLines = racingLines ?? Array.Empty<TrackRacingLineVariant>();
+            var trimmedName = name?.Trim();
+            Name = string.IsNullOrWhiteSpace(trimmedName) ? null : trimmedName;
+            Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    public sealed class TrackPitLaneSegment
+    {
+        public float StartMeters { get; }
+        public float EndMeters { get; }
+        public float WidthMeters { get; }
+        public float OffsetMeters { get; }
+        public TrackLaneDirection Direction { get; }
+        public float? SpeedLimitKph { get; }
+        public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        public TrackPitLaneSegment(
+            float startMeters,
+            float endMeters,
+            float widthMeters,
+            float offsetMeters,
+            TrackLaneDirection direction = TrackLaneDirection.Forward,
+            float? speedLimitKph = null,
+            IReadOnlyDictionary<string, string>? metadata = null)
+        {
+            if (!TrackGraphValidation.IsFinite(startMeters))
+                throw new ArgumentOutOfRangeException(nameof(startMeters));
+            if (!TrackGraphValidation.IsFinite(endMeters))
+                throw new ArgumentOutOfRangeException(nameof(endMeters));
+            if (endMeters < startMeters)
+                throw new ArgumentException("Pit lane segment end must be >= start.", nameof(endMeters));
+            if (!TrackGraphValidation.IsFinite(widthMeters) || widthMeters <= 0f)
+                throw new ArgumentOutOfRangeException(nameof(widthMeters));
+            if (!TrackGraphValidation.IsFinite(offsetMeters))
+                throw new ArgumentOutOfRangeException(nameof(offsetMeters));
+            if (speedLimitKph.HasValue && (!TrackGraphValidation.IsFinite(speedLimitKph.Value) || speedLimitKph.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(speedLimitKph));
+
+            StartMeters = startMeters;
+            EndMeters = endMeters;
+            WidthMeters = widthMeters;
+            OffsetMeters = offsetMeters;
+            Direction = direction;
+            SpeedLimitKph = speedLimitKph;
+            Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    public sealed class TrackPitBlendLine
+    {
+        public float PositionMeters { get; }
+        public float LengthMeters { get; }
+        public TrackBoundarySide Side { get; }
+        public float OffsetMeters { get; }
+        public float WidthMeters { get; }
+
+        public TrackPitBlendLine(
+            float positionMeters,
+            float lengthMeters,
+            TrackBoundarySide side,
+            float offsetMeters,
+            float widthMeters)
+        {
+            if (!TrackGraphValidation.IsFinite(positionMeters))
+                throw new ArgumentOutOfRangeException(nameof(positionMeters));
+            if (!TrackGraphValidation.IsFinite(lengthMeters) || lengthMeters < 0f)
+                throw new ArgumentOutOfRangeException(nameof(lengthMeters));
+            if (!TrackGraphValidation.IsFinite(offsetMeters))
+                throw new ArgumentOutOfRangeException(nameof(offsetMeters));
+            if (!TrackGraphValidation.IsFinite(widthMeters) || widthMeters < 0f)
+                throw new ArgumentOutOfRangeException(nameof(widthMeters));
+
+            PositionMeters = positionMeters;
+            LengthMeters = lengthMeters;
+            Side = side;
+            OffsetMeters = offsetMeters;
+            WidthMeters = widthMeters;
+        }
+    }
+
+    public sealed class TrackPitBox
+    {
+        public string Id { get; }
+        public float PositionMeters { get; }
+        public float WidthMeters { get; }
+        public float LengthMeters { get; }
+        public float OffsetMeters { get; }
+        public string? TeamId { get; }
+        public IReadOnlyList<TrackPoint3> CrewPositions { get; }
+        public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        public TrackPitBox(
+            string id,
+            float positionMeters,
+            float widthMeters,
+            float lengthMeters,
+            float offsetMeters,
+            string? teamId = null,
+            IReadOnlyList<TrackPoint3>? crewPositions = null,
+            IReadOnlyDictionary<string, string>? metadata = null)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Pit box id is required.", nameof(id));
+            if (!TrackGraphValidation.IsFinite(positionMeters))
+                throw new ArgumentOutOfRangeException(nameof(positionMeters));
+            if (!TrackGraphValidation.IsFinite(widthMeters) || widthMeters <= 0f)
+                throw new ArgumentOutOfRangeException(nameof(widthMeters));
+            if (!TrackGraphValidation.IsFinite(lengthMeters) || lengthMeters <= 0f)
+                throw new ArgumentOutOfRangeException(nameof(lengthMeters));
+            if (!TrackGraphValidation.IsFinite(offsetMeters))
+                throw new ArgumentOutOfRangeException(nameof(offsetMeters));
+
+            Id = id.Trim();
+            PositionMeters = positionMeters;
+            WidthMeters = widthMeters;
+            LengthMeters = lengthMeters;
+            OffsetMeters = offsetMeters;
+            var trimmedTeam = teamId?.Trim();
+            TeamId = string.IsNullOrWhiteSpace(trimmedTeam) ? null : trimmedTeam;
+            CrewPositions = crewPositions ?? Array.Empty<TrackPoint3>();
+            Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    public sealed class TrackPitLaneProfile
+    {
+        public string Id { get; }
+        public string? EntryEdgeId { get; }
+        public string? ExitEdgeId { get; }
+        public float? EntrySMeters { get; }
+        public float? ExitSMeters { get; }
+        public float? LengthMeters { get; }
+        public float SpeedLimitKph { get; }
+        public int Priority { get; }
+        public TrackPitLaneSegment? EntryLane { get; }
+        public TrackPitLaneSegment? ExitLane { get; }
+        public TrackPitBlendLine? BlendLine { get; }
+        public IReadOnlyList<TrackPitBox> PitBoxes { get; }
+        public IReadOnlyList<TrackSpeedLimitZone> SpeedLimitZones { get; }
+        public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        public TrackPitLaneProfile(
+            string id,
+            string? entryEdgeId = null,
+            string? exitEdgeId = null,
+            float? entrySMeters = null,
+            float? exitSMeters = null,
+            float? lengthMeters = null,
+            float speedLimitKph = 0f,
+            int priority = 0,
+            TrackPitLaneSegment? entryLane = null,
+            TrackPitLaneSegment? exitLane = null,
+            TrackPitBlendLine? blendLine = null,
+            IReadOnlyList<TrackPitBox>? pitBoxes = null,
+            IReadOnlyList<TrackSpeedLimitZone>? speedLimitZones = null,
+            IReadOnlyDictionary<string, string>? metadata = null)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Pit lane id is required.", nameof(id));
+            if (entrySMeters.HasValue && !TrackGraphValidation.IsFinite(entrySMeters.Value))
+                throw new ArgumentOutOfRangeException(nameof(entrySMeters));
+            if (exitSMeters.HasValue && !TrackGraphValidation.IsFinite(exitSMeters.Value))
+                throw new ArgumentOutOfRangeException(nameof(exitSMeters));
+            if (lengthMeters.HasValue && (!TrackGraphValidation.IsFinite(lengthMeters.Value) || lengthMeters.Value < 0f))
+                throw new ArgumentOutOfRangeException(nameof(lengthMeters));
+            if (!TrackGraphValidation.IsFinite(speedLimitKph) || speedLimitKph < 0f)
+                throw new ArgumentOutOfRangeException(nameof(speedLimitKph));
+
+            Id = id.Trim();
+            EntryEdgeId = string.IsNullOrWhiteSpace(entryEdgeId) ? null : entryEdgeId!.Trim();
+            ExitEdgeId = string.IsNullOrWhiteSpace(exitEdgeId) ? null : exitEdgeId!.Trim();
+            EntrySMeters = entrySMeters;
+            ExitSMeters = exitSMeters;
+            LengthMeters = lengthMeters;
+            SpeedLimitKph = speedLimitKph;
+            Priority = priority;
+            EntryLane = entryLane;
+            ExitLane = exitLane;
+            BlendLine = blendLine;
+            PitBoxes = pitBoxes ?? Array.Empty<TrackPitBox>();
+            SpeedLimitZones = speedLimitZones ?? Array.Empty<TrackSpeedLimitZone>();
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
     }

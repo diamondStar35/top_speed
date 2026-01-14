@@ -57,6 +57,29 @@ id=grid_0 shape=box kind=grid_box width=3.6 length=6 offset=-1.8,-2.5 owner_kind
 id=grid_1 shape=box kind=grid_box width=3.6 length=6 offset=1.8,-2.5 owner_kind=lane_group owner=g_sf_grid lane_ids=sf_lane_1 thickness=0.2 priority=2
 id=timing_gate shape=box kind=timing_gate width=12 length=1 offset=0,0 heading=90 thickness=0.2 priority=4
 
+[pit pit_hub_b]
+node=hub_b
+entry_edge=e_ab
+exit_edge=e_bc
+entry_s=400
+exit_s=30
+length=120
+speed_limit=60
+priority=1
+
+[pit pit_hub_b.entry_lane]
+start=0 end=60 width=5 offset=-3 direction=forward speed_limit=60
+
+[pit pit_hub_b.exit_lane]
+start=60 end=120 width=5 offset=-3 direction=forward speed_limit=60
+
+[pit pit_hub_b.boxes]
+id=box_1 position=25 width=3 length=7 offset=-2 team=alpha
+id=box_2 position=55 width=3 length=7 offset=-2 team=beta
+
+[pit pit_hub_b.blend_line]
+position=90 length=25 side=right offset=-2 width=5
+
 [node hub_a.intersection]
 shape=Circle radius=12 entry_lanes=2 exit_lanes=2 turn_lanes=1 speed_limit=40 control=Yield priority=1
 
@@ -257,3 +280,93 @@ kind=clothoid length=25 start=0 end=90 direction=right severity=easy
 kind=arc length=70 radius=90 direction=right severity=easy bank=4
 kind=clothoid length=25 start=90 end=0 direction=right severity=easy
 kind=straight length=90
+
+[corner c_ab_1]
+edge=e_ab
+start=200
+end=340
+name="Hub A Bend"
+
+[corner c_ab_1.apexes]
+id=apex_1 position=270 offset=-1 speed=110 priority=1
+
+[corner c_ab_1.braking]
+start=200 end=245 target_speed=120 decel_g=0.9 priority=1
+
+[corner c_ab_1.acceleration]
+start=280 end=340 target_speed=150 priority=1
+
+[corner c_ab_1.racing_lines]
+id=rl_ab_dry kind=dry points="200,-1.5,0,120|250,-1,0,110|300,-0.5,0,130|340,0,0,150"
+
+[corner c_bc_1]
+edge=e_bc
+start=180
+end=330
+name="Hub B Left"
+
+[corner c_bc_1.apexes]
+id=apex_1 position=260 offset=1 speed=105 priority=1
+
+[corner c_bc_1.braking]
+start=180 end=230 target_speed=115 decel_g=0.85 priority=1
+
+[corner c_bc_1.acceleration]
+start=270 end=330 target_speed=145 priority=1
+
+[corner c_bc_1.racing_lines]
+id=rl_bc_dry kind=dry points="180,1.5,0,120|230,1,0,110|280,0.5,0,125|330,0,0,145"
+
+[corner c_ca_1]
+edge=e_ca
+start=160
+end=320
+name="Return Right"
+
+[corner c_ca_1.apexes]
+id=apex_1 position=240 offset=-1.2 speed=108 priority=1
+
+[corner c_ca_1.braking]
+start=160 end=210 target_speed=118 decel_g=0.88 priority=1
+
+[corner c_ca_1.acceleration]
+start=260 end=320 target_speed=148 priority=1
+
+[corner c_ca_1.racing_lines]
+id=rl_ca_dry kind=dry points="160,-1.4,0,118|210,-1,0,110|260,-0.6,0,130|320,0,0,148"
+
+[corner c_bd_1]
+edge=e_bd
+start=140
+end=260
+name="Spur Left"
+
+[corner c_bd_1.apexes]
+id=apex_1 position=200 offset=0.8 speed=90 priority=1
+
+[corner c_bd_1.braking]
+start=140 end=185 target_speed=95 decel_g=0.7 priority=1
+
+[corner c_bd_1.acceleration]
+start=215 end=260 target_speed=120 priority=1
+
+[corner c_bd_1.racing_lines]
+id=rl_bd_dry kind=dry points="140,0.8,0,95|190,0.4,0,90|230,0.2,0,105|260,0,0,120"
+
+[corner c_db_1]
+edge=e_db
+start=160
+end=280
+name="Spur Right"
+
+[corner c_db_1.apexes]
+id=apex_1 position=220 offset=-0.8 speed=92 priority=1
+
+[corner c_db_1.braking]
+start=160 end=205 target_speed=96 decel_g=0.7 priority=1
+
+[corner c_db_1.acceleration]
+start=235 end=280 target_speed=122 priority=1
+
+[corner c_db_1.racing_lines]
+id=rl_db_dry kind=dry points="160,-0.8,0,96|210,-0.4,0,92|250,-0.2,0,108|280,0,0,122"

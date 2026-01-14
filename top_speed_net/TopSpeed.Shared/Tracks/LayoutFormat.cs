@@ -1,380 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using TopSpeed.Data;
 
 namespace TopSpeed.Tracks.Geometry
 {
-    public sealed class TrackLayoutError
-    {
-        public int LineNumber { get; }
-        public string Message { get; }
-        public string? LineText { get; }
-
-        public TrackLayoutError(int lineNumber, string message, string? lineText = null)
-        {
-            LineNumber = lineNumber;
-            Message = message;
-            LineText = lineText;
-        }
-
-        public override string ToString()
-        {
-            return LineText == null ? $"{LineNumber}: {Message}" : $"{LineNumber}: {Message} -> {LineText}";
-        }
-    }
-
-    public sealed class TrackLayoutParseResult
-    {
-        public TrackLayout? Layout { get; }
-        public IReadOnlyList<TrackLayoutError> Errors { get; }
-        public bool IsSuccess => Errors.Count == 0 && Layout != null;
-
-        public TrackLayoutParseResult(TrackLayout? layout, IReadOnlyList<TrackLayoutError> errors)
-        {
-            Layout = layout;
-            Errors = errors;
-        }
-    }
-
-    public static class TrackLayoutFormat
+    public static partial class TrackLayoutFormat
     {
         public const string FileExtension = ".ttl";
         private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
 
-        public static TrackLayoutParseResult ParseFile(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path))
-                throw new ArgumentException("Path is required.", nameof(path));
-
-            var lines = File.Exists(path) ? File.ReadAllLines(path) : Array.Empty<string>();
-            return ParseLines(lines, path);
-        }
-
-                public static TrackLayoutParseResult ParseLines(IEnumerable<string> lines, string? sourceName = null)
-        {
-            var errors = new List<TrackLayoutError>();
-            var meta = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var environment = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var nodes = new Dictionary<string, NodeBuilder>(StringComparer.OrdinalIgnoreCase);
-            var edges = new Dictionary<string, EdgeBuilder>(StringComparer.OrdinalIgnoreCase);
-            var routes = new List<RouteBuilder>();
-            var edgeOrder = new List<string>();
-            var startFinish = new Dictionary<string, StartFinishBuilder>(StringComparer.OrdinalIgnoreCase);
-            var startFinishOrder = new List<string>();
-
-            var section = SectionInfo.Empty;
-            var lineNumber = 0;
-
-            foreach (var rawLine in lines)
-            {
-                lineNumber++;
-                var line = StripComment(rawLine);
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
-
-                if (TryParseSection(line, out var nextSection))
-                {
-                    section = nextSection;
-                    continue;
-                }
-
-                switch (section.Kind)
-                {
-                    case "meta":
-                        ParseKeyValue(line, lineNumber, meta, errors);
-                        break;
-                    case "environment":
-                        ParseKeyValue(line, lineNumber, environment, errors);
-                        break;
-                    case "nodes":
-                        TryParseNodeLine(line, lineNumber, nodes, errors);
-                        break;
-                    case "edges":
-                        TryParseEdgeLine(line, lineNumber, edges, edgeOrder, errors);
-                        break;
-                    case "node":
-                        if (string.IsNullOrWhiteSpace(section.NodeId))
-                        {
-                            errors.Add(new TrackLayoutError(lineNumber, "Node section missing id.", rawLine));
-                            break;
-                        }
-                        var node = GetOrCreateNode(section.NodeId!, nodes);
-                        if (string.IsNullOrWhiteSpace(section.Subsection))
-                        {
-                            ParseNodeProperties(line, lineNumber, node, errors);
-                        }
-                        else
-                        {
-                            switch (section.Subsection)
-                            {
-                                case "intersection":
-                                    ParseIntersectionProperties(line, lineNumber, node, errors);
-                                    break;
-                                case "legs":
-                                    TryParseIntersectionLeg(line, lineNumber, node, errors);
-                                    break;
-                                case "connectors":
-                                    TryParseIntersectionConnector(line, lineNumber, node, errors);
-                                    break;
-                                case "lanes":
-                                    TryParseIntersectionLane(line, lineNumber, node, errors);
-                                    break;
-                                case "lane_links":
-                                case "lanelinks":
-                                    TryParseIntersectionLaneLink(line, lineNumber, node, errors);
-                                    break;
-                                case "lane_groups":
-                                case "lanegroups":
-                                    TryParseIntersectionLaneGroup(line, lineNumber, node, errors);
-                                    break;
-                                case "lane_transitions":
-                                case "lanetransitions":
-                                case "lane_group_links":
-                                case "lane_group_transitions":
-                                    TryParseIntersectionLaneTransition(line, lineNumber, node, errors);
-                                    break;
-                                case "areas":
-                                    TryParseIntersectionArea(line, lineNumber, node, errors);
-                                    break;
-                                default:
-                                    errors.Add(new TrackLayoutError(lineNumber, $"Unknown node section '{section.Subsection}'.", rawLine));
-                                    break;
-                            }
-                        }
-                        break;
-                    case "routes":
-                        TryParseRouteLine(line, lineNumber, routes, errors);
-                        break;
-                    case "edge":
-                        if (string.IsNullOrWhiteSpace(section.EdgeId))
-                        {
-                            errors.Add(new TrackLayoutError(lineNumber, "Edge section missing id.", rawLine));
-                            break;
-                        }
-                        var edge = GetOrCreateEdge(section.EdgeId!, edges, edgeOrder);
-                        if (string.IsNullOrWhiteSpace(section.Subsection))
-                        {
-                            ParseEdgeProperties(line, lineNumber, edge, errors);
-                        }
-                        else
-                        {
-                            switch (section.Subsection)
-                            {
-                                case "geometry":
-                                    TryParseGeometryLine(line, lineNumber, edge.GeometrySpans, errors);
-                                    break;
-                                case "width":
-                                    TryParseWidthZone(line, lineNumber, edge.WidthZones, errors);
-                                    break;
-                                case "surface":
-                                    TryParseSurfaceZone(line, lineNumber, edge.SurfaceZones, errors);
-                                    break;
-                                case "noise":
-                                    TryParseNoiseZone(line, lineNumber, edge.NoiseZones, errors);
-                                    break;
-                                case "speed_limits":
-                                    TryParseSpeedLimit(line, lineNumber, edge.SpeedZones, errors);
-                                    break;
-                                case "markers":
-                                    TryParseMarker(line, lineNumber, edge.Markers, errors);
-                                    break;
-                                case "weather":
-                                    TryParseWeatherZone(line, lineNumber, edge.WeatherZones, errors);
-                                    break;
-                                case "ambience":
-                                    TryParseAmbienceZone(line, lineNumber, edge.AmbienceZones, errors);
-                                    break;
-                                case "hazards":
-                                    TryParseHazard(line, lineNumber, edge.Hazards, errors);
-                                    break;
-                                case "checkpoints":
-                                    TryParseCheckpoint(line, lineNumber, edge.Checkpoints, errors);
-                                    break;
-                                case "hit_lanes":
-                                    TryParseHitLanes(line, lineNumber, edge.HitLanes, errors);
-                                    break;
-                                case "allowed_vehicles":
-                                    TryParseAllowedVehicles(line, lineNumber, edge.AllowedVehicles, errors);
-                                    break;
-                                case "emitters":
-                                    TryParseEmitter(line, lineNumber, edge.Emitters, errors);
-                                    break;
-                                case "triggers":
-                                    TryParseTrigger(line, lineNumber, edge.Triggers, errors);
-                                    break;
-                                case "boundaries":
-                                    TryParseBoundary(line, lineNumber, edge.Boundaries, errors);
-                                    break;
-                                default:
-                                    errors.Add(new TrackLayoutError(lineNumber, $"Unknown edge section '{section.Subsection}'.", rawLine));
-                                    break;
-                            }
-                        }
-                        break;
-                    case "start_finish":
-                    case "startfinish":
-                        if (string.IsNullOrWhiteSpace(section.StartFinishId))
-                        {
-                            TryParseStartFinishLine(line, lineNumber, startFinish, startFinishOrder, errors);
-                            break;
-                        }
-                        var startFinishBuilder = GetOrCreateStartFinish(section.StartFinishId!, startFinish, startFinishOrder);
-                        if (string.IsNullOrWhiteSpace(section.Subsection))
-                        {
-                            ParseStartFinishProperties(line, lineNumber, startFinishBuilder, errors);
-                        }
-                        else
-                        {
-                            switch (section.Subsection)
-                            {
-                                case "lanes":
-                                    TryParseStartFinishLane(line, lineNumber, startFinishBuilder, errors);
-                                    break;
-                                case "lane_links":
-                                case "lanelinks":
-                                    TryParseStartFinishLaneLink(line, lineNumber, startFinishBuilder, errors);
-                                    break;
-                                case "lane_groups":
-                                case "lanegroups":
-                                    TryParseStartFinishLaneGroup(line, lineNumber, startFinishBuilder, errors);
-                                    break;
-                                case "lane_transitions":
-                                case "lanetransitions":
-                                case "lane_group_links":
-                                case "lane_group_transitions":
-                                    TryParseStartFinishLaneTransition(line, lineNumber, startFinishBuilder, errors);
-                                    break;
-                                case "areas":
-                                    TryParseStartFinishArea(line, lineNumber, startFinishBuilder, errors);
-                                    break;
-                                default:
-                                    errors.Add(new TrackLayoutError(lineNumber,
-                                        $"Unknown start_finish section '{section.Subsection}'.", rawLine));
-                                    break;
-                            }
-                        }
-                        break;
-                    default:
-                        errors.Add(new TrackLayoutError(lineNumber, $"Unknown or missing section '{section.Kind}'.", rawLine));
-                        break;
-                }
-            }
-
-            if (edges.Count == 0)
-                errors.Add(new TrackLayoutError(0, "No edges defined."));
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-
-            var metadata = BuildMetadata(meta);
-            var weather = ParseEnum(environment, "weather", TrackWeather.Sunny, errors);
-            var ambience = ParseEnum(environment, "ambience", TrackAmbience.NoAmbience, errors);
-            var defaultSurface = ParseEnum(environment, "default_surface", TrackSurface.Asphalt, errors);
-            var defaultNoise = ParseEnum(environment, "default_noise", TrackNoise.NoNoise, errors);
-            var defaultWidth = ParseFloat(environment, "default_width", 12f, errors);
-            var sampleSpacing = ParseFloat(environment, "sample_spacing", 1f, errors);
-            var enforceClosure = ParseBool(environment, "enforce_closure", true, errors);
-            var primaryRouteId = ParseString(environment, "primary_route");
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-
-            foreach (var edge in edges.Values)
-            {
-                if (!string.IsNullOrWhiteSpace(edge.FromNodeId))
-                    EnsureNode(edge.FromNodeId!, nodes);
-                if (!string.IsNullOrWhiteSpace(edge.ToNodeId))
-                    EnsureNode(edge.ToNodeId!, nodes);
-            }
-
-            if (nodes.Count == 0)
-                errors.Add(new TrackLayoutError(0, "No nodes defined."));
-
-            if (routes.Count == 0)
-            {
-                var fallbackId = string.IsNullOrWhiteSpace(primaryRouteId) ? "primary" : primaryRouteId!;
-                routes.Add(new RouteBuilder(fallbackId, new List<string>(edgeOrder), isLoop: null));
-            }
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-
-            var nodeList = new List<TrackGraphNode>(nodes.Count);
-            foreach (var node in nodes.Values)
-            {
-                nodeList.Add(new TrackGraphNode(
-                    node.Id,
-                    node.Name,
-                    node.ShortName,
-                    node.Metadata,
-                    node.Intersection?.Build()));
-            }
-
-            var edgeList = new List<TrackGraphEdge>(edgeOrder.Count);
-            foreach (var edgeId in edgeOrder)
-            {
-                if (!edges.TryGetValue(edgeId, out var builder))
-                    continue;
-                var edge = builder.Build(defaultSurface, defaultNoise, defaultWidth, weather, ambience, sampleSpacing, enforceClosure, errors);
-                if (edge != null)
-                    edgeList.Add(edge);
-            }
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-
-            var routeList = new List<TrackGraphRoute>(routes.Count);
-            foreach (var route in routes)
-            {
-                var missing = route.EdgeIds.Find(id => !edges.ContainsKey(id));
-                if (missing != null)
-                {
-                    errors.Add(new TrackLayoutError(0, $"Route '{route.Id}' references missing edge '{missing}'."));
-                    continue;
-                }
-                var isLoop = route.IsLoop ?? InferRouteLoop(route.EdgeIds, edges);
-                routeList.Add(new TrackGraphRoute(route.Id, route.EdgeIds, isLoop));
-            }
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-
-            if (!string.IsNullOrWhiteSpace(primaryRouteId) &&
-                !routeList.Exists(route => route.Id.Equals(primaryRouteId, StringComparison.OrdinalIgnoreCase)))
-            {
-                errors.Add(new TrackLayoutError(0, $"Primary route '{primaryRouteId}' not found."));
-                return new TrackLayoutParseResult(null, errors);
-            }
-
-            var graph = new TrackGraph(nodeList, edgeList, routeList, primaryRouteId);
-            var startFinishList = new List<TrackStartFinishSubgraph>(startFinishOrder.Count);
-            foreach (var id in startFinishOrder)
-            {
-                if (!startFinish.TryGetValue(id, out var builder))
-                    continue;
-                var built = builder.Build(defaultSurface, errors);
-                if (built != null)
-                    startFinishList.Add(built);
-            }
-
-            if (errors.Count > 0)
-                return new TrackLayoutParseResult(null, errors);
-            var layout = new TrackLayout(
-                graph,
-                weather,
-                ambience,
-                defaultSurface,
-                defaultNoise,
-                defaultWidth,
-                metadata,
-                startFinishList);
-
-            return new TrackLayoutParseResult(layout, errors);
-        }
         public static string Write(TrackLayout layout)
         {
             if (layout == null)
@@ -504,6 +141,67 @@ namespace TopSpeed.Tracks.Geometry
                     sb.AppendLine($"[node {node.Id}.areas]");
                     foreach (var area in intersection.Areas)
                         sb.AppendLine(FormatIntersectionArea(area));
+                }
+            }
+
+            foreach (var node in layout.Graph.Nodes)
+            {
+                var pitLane = node.PitLane;
+                if (pitLane == null)
+                    continue;
+                sb.AppendLine();
+                sb.AppendLine($"[pit {pitLane.Id}]");
+                WriteValue(sb, "node", node.Id);
+                WriteValue(sb, "entry_edge", pitLane.EntryEdgeId);
+                WriteValue(sb, "exit_edge", pitLane.ExitEdgeId);
+                if (pitLane.EntrySMeters.HasValue)
+                    WriteValue(sb, "entry_s", FormatFloat(pitLane.EntrySMeters.Value));
+                if (pitLane.ExitSMeters.HasValue)
+                    WriteValue(sb, "exit_s", FormatFloat(pitLane.ExitSMeters.Value));
+                if (pitLane.LengthMeters.HasValue)
+                    WriteValue(sb, "length", FormatFloat(pitLane.LengthMeters.Value));
+                if (pitLane.SpeedLimitKph > 0f)
+                    WriteValue(sb, "speed_limit", FormatFloat(pitLane.SpeedLimitKph));
+                if (pitLane.Priority != 0)
+                    WriteValue(sb, "priority", pitLane.Priority.ToString(Culture));
+                foreach (var kvp in pitLane.Metadata)
+                    sb.AppendLine($"{kvp.Key}={EncodeValue(kvp.Value)}");
+
+                if (pitLane.EntryLane != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[pit {pitLane.Id}.entry_lane]");
+                    sb.AppendLine(FormatPitLaneSegment(pitLane.EntryLane));
+                }
+
+                if (pitLane.ExitLane != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[pit {pitLane.Id}.exit_lane]");
+                    sb.AppendLine(FormatPitLaneSegment(pitLane.ExitLane));
+                }
+
+                if (pitLane.SpeedLimitZones.Count > 0)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[pit {pitLane.Id}.speed_limits]");
+                    foreach (var zone in pitLane.SpeedLimitZones)
+                        sb.AppendLine($"{FormatFloat(zone.StartMeters)} {FormatFloat(zone.EndMeters)} {FormatFloat(zone.MaxSpeedKph)}");
+                }
+
+                if (pitLane.PitBoxes.Count > 0)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[pit {pitLane.Id}.boxes]");
+                    foreach (var box in pitLane.PitBoxes)
+                        sb.AppendLine(FormatPitBox(box));
+                }
+
+                if (pitLane.BlendLine != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[pit {pitLane.Id}.blend_line]");
+                    sb.AppendLine(FormatPitBlendLine(pitLane.BlendLine));
                 }
             }
 
@@ -753,6 +451,54 @@ namespace TopSpeed.Tracks.Geometry
                     foreach (var boundary in edge.Profile.BoundaryZones)
                     {
                         sb.AppendLine(FormatBoundary(boundary));
+                    }
+                }
+            }
+
+            foreach (var edge in layout.Graph.Edges)
+            {
+                if (edge.CornerComplexes.Count == 0)
+                    continue;
+
+                foreach (var corner in edge.CornerComplexes)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine($"[corner {corner.Id}]");
+                    WriteValue(sb, "edge", edge.Id);
+                    WriteValue(sb, "start", FormatFloat(corner.StartMeters));
+                    WriteValue(sb, "end", FormatFloat(corner.EndMeters));
+                    WriteValue(sb, "name", corner.Name);
+                    foreach (var kvp in corner.Metadata)
+                        sb.AppendLine($"{kvp.Key}={EncodeValue(kvp.Value)}");
+
+                    if (corner.Apexes.Count > 0)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine($"[corner {corner.Id}.apexes]");
+                        foreach (var apex in corner.Apexes)
+                            sb.AppendLine(FormatCornerApex(apex));
+                    }
+
+                    if (corner.BrakingZone != null)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine($"[corner {corner.Id}.braking]");
+                        sb.AppendLine(FormatBrakingZone(corner.BrakingZone));
+                    }
+
+                    if (corner.AccelerationZone != null)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine($"[corner {corner.Id}.acceleration]");
+                        sb.AppendLine(FormatAccelerationZone(corner.AccelerationZone));
+                    }
+
+                    if (corner.RacingLines.Count > 0)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine($"[corner {corner.Id}.racing_lines]");
+                        foreach (var line in corner.RacingLines)
+                            sb.AppendLine(FormatRacingLineVariant(line));
                     }
                 }
             }
@@ -1107,6 +853,107 @@ namespace TopSpeed.Tracks.Geometry
             if (area.Points.Count > 0)
                 sb.Append(" points=").Append(FormatPointList(area.Points));
             foreach (var kvp in area.Metadata)
+                sb.Append(' ').Append(kvp.Key).Append('=').Append(EncodeValue(kvp.Value));
+            return sb.ToString();
+        }
+
+        private static string FormatPitLaneSegment(TrackPitLaneSegment segment)
+        {
+            var sb = new StringBuilder();
+            sb.Append("start=").Append(FormatFloat(segment.StartMeters));
+            sb.Append(" end=").Append(FormatFloat(segment.EndMeters));
+            sb.Append(" width=").Append(FormatFloat(segment.WidthMeters));
+            if (Math.Abs(segment.OffsetMeters) > 0.0001f)
+                sb.Append(" offset=").Append(FormatFloat(segment.OffsetMeters));
+            if (segment.Direction != TrackLaneDirection.Forward)
+                sb.Append(" direction=").Append(FormatLaneDirection(segment.Direction));
+            if (segment.SpeedLimitKph.HasValue)
+                sb.Append(" speed_limit=").Append(FormatFloat(segment.SpeedLimitKph.Value));
+            foreach (var kvp in segment.Metadata)
+                sb.Append(' ').Append(kvp.Key).Append('=').Append(EncodeValue(kvp.Value));
+            return sb.ToString();
+        }
+
+        private static string FormatPitBlendLine(TrackPitBlendLine blendLine)
+        {
+            var sb = new StringBuilder();
+            sb.Append("position=").Append(FormatFloat(blendLine.PositionMeters));
+            if (blendLine.LengthMeters > 0f)
+                sb.Append(" length=").Append(FormatFloat(blendLine.LengthMeters));
+            if (blendLine.Side != TrackBoundarySide.Both)
+                sb.Append(" side=").Append(FormatBoundarySide(blendLine.Side));
+            if (Math.Abs(blendLine.OffsetMeters) > 0.0001f)
+                sb.Append(" offset=").Append(FormatFloat(blendLine.OffsetMeters));
+            if (blendLine.WidthMeters > 0f)
+                sb.Append(" width=").Append(FormatFloat(blendLine.WidthMeters));
+            return sb.ToString();
+        }
+
+        private static string FormatPitBox(TrackPitBox box)
+        {
+            var sb = new StringBuilder();
+            sb.Append("id=").Append(box.Id);
+            sb.Append(" position=").Append(FormatFloat(box.PositionMeters));
+            sb.Append(" width=").Append(FormatFloat(box.WidthMeters));
+            sb.Append(" length=").Append(FormatFloat(box.LengthMeters));
+            if (Math.Abs(box.OffsetMeters) > 0.0001f)
+                sb.Append(" offset=").Append(FormatFloat(box.OffsetMeters));
+            if (!string.IsNullOrWhiteSpace(box.TeamId))
+                sb.Append(" team=").Append(EncodeValue(box.TeamId!));
+            if (box.CrewPositions.Count > 0)
+                sb.Append(" crew=").Append(FormatPointList(box.CrewPositions));
+            foreach (var kvp in box.Metadata)
+                sb.Append(' ').Append(kvp.Key).Append('=').Append(EncodeValue(kvp.Value));
+            return sb.ToString();
+        }
+
+        private static string FormatCornerApex(TrackCornerApex apex)
+        {
+            var sb = new StringBuilder();
+            sb.Append("id=").Append(apex.Id);
+            sb.Append(" position=").Append(FormatFloat(apex.PositionMeters));
+            if (Math.Abs(apex.OffsetMeters) > 0.0001f)
+                sb.Append(" offset=").Append(FormatFloat(apex.OffsetMeters));
+            if (apex.SpeedKph.HasValue)
+                sb.Append(" speed=").Append(FormatFloat(apex.SpeedKph.Value));
+            if (apex.Priority != 0)
+                sb.Append(" priority=").Append(apex.Priority.ToString(Culture));
+            return sb.ToString();
+        }
+
+        private static string FormatBrakingZone(TrackBrakingZone zone)
+        {
+            var sb = new StringBuilder();
+            sb.Append("start=").Append(FormatFloat(zone.StartMeters));
+            sb.Append(" end=").Append(FormatFloat(zone.EndMeters));
+            if (zone.TargetSpeedKph.HasValue)
+                sb.Append(" target_speed=").Append(FormatFloat(zone.TargetSpeedKph.Value));
+            if (zone.DecelG.HasValue)
+                sb.Append(" decel_g=").Append(FormatFloat(zone.DecelG.Value));
+            if (zone.Priority != 0)
+                sb.Append(" priority=").Append(zone.Priority.ToString(Culture));
+            return sb.ToString();
+        }
+
+        private static string FormatAccelerationZone(TrackAccelerationZone zone)
+        {
+            var sb = new StringBuilder();
+            sb.Append("start=").Append(FormatFloat(zone.StartMeters));
+            sb.Append(" end=").Append(FormatFloat(zone.EndMeters));
+            if (zone.TargetSpeedKph.HasValue)
+                sb.Append(" target_speed=").Append(FormatFloat(zone.TargetSpeedKph.Value));
+            if (zone.Priority != 0)
+                sb.Append(" priority=").Append(zone.Priority.ToString(Culture));
+            return sb.ToString();
+        }
+
+        private static string FormatRacingLineVariant(TrackRacingLineVariant line)
+        {
+            var sb = new StringBuilder();
+            sb.Append("id=").Append(line.Id);
+            sb.Append(" kind=").Append(FormatRacingLineKind(line.Kind));
+            sb.Append(" points=").Append(FormatRacingLinePoints(line.Points));
+            foreach (var kvp in line.Metadata)
                 sb.Append(' ').Append(kvp.Key).Append('=').Append(EncodeValue(kvp.Value));
             return sb.ToString();
         }
@@ -1842,6 +1689,28 @@ namespace TopSpeed.Tracks.Geometry
             {
                 builder = new StartFinishBuilder(id);
                 startFinish.Add(id, builder);
+                order.Add(id);
+            }
+            return builder;
+        }
+
+        private static PitLaneBuilder GetOrCreatePitLane(string id, Dictionary<string, PitLaneBuilder> pitLanes, List<string> order)
+        {
+            if (!pitLanes.TryGetValue(id, out var builder))
+            {
+                builder = new PitLaneBuilder(id);
+                pitLanes.Add(id, builder);
+                order.Add(id);
+            }
+            return builder;
+        }
+
+        private static CornerComplexBuilder GetOrCreateCornerComplex(string id, Dictionary<string, CornerComplexBuilder> corners, List<string> order)
+        {
+            if (!corners.TryGetValue(id, out var builder))
+            {
+                builder = new CornerComplexBuilder(id);
+                corners.Add(id, builder);
                 order.Add(id);
             }
             return builder;
@@ -4425,6 +4294,38 @@ namespace TopSpeed.Tracks.Geometry
             }
         }
 
+        private static bool TryParseRacingLineKind(string value, out TrackRacingLineKind kind)
+        {
+            kind = TrackRacingLineKind.Custom;
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+            var normalized = NormalizeToken(value);
+            switch (normalized)
+            {
+                case "dry":
+                    kind = TrackRacingLineKind.Dry;
+                    return true;
+                case "wet":
+                    kind = TrackRacingLineKind.Wet;
+                    return true;
+                case "defensive":
+                case "defend":
+                    kind = TrackRacingLineKind.Defensive;
+                    return true;
+                case "custom":
+                case "line":
+                    kind = TrackRacingLineKind.Custom;
+                    return true;
+                default:
+                    if (Enum.TryParse(value, true, out TrackRacingLineKind parsed))
+                    {
+                        kind = parsed;
+                        return true;
+                    }
+                    return false;
+            }
+        }
+
         private static bool TryParseLaneType(string value, out TrackLaneType laneType)
         {
             laneType = TrackLaneType.Travel;
@@ -4897,6 +4798,21 @@ namespace TopSpeed.Tracks.Geometry
             }
         }
 
+        private static string FormatRacingLineKind(TrackRacingLineKind kind)
+        {
+            switch (kind)
+            {
+                case TrackRacingLineKind.Dry:
+                    return "dry";
+                case TrackRacingLineKind.Wet:
+                    return "wet";
+                case TrackRacingLineKind.Defensive:
+                    return "defensive";
+                default:
+                    return "custom";
+            }
+        }
+
         private readonly struct SectionInfo
         {
             public static readonly SectionInfo Empty = new SectionInfo(string.Empty, null, null, null, null);
@@ -4904,15 +4820,446 @@ namespace TopSpeed.Tracks.Geometry
             public string? NodeId { get; }
             public string? EdgeId { get; }
             public string? StartFinishId { get; }
+            public string? PitId { get; }
+            public string? CornerId { get; }
             public string? Subsection { get; }
 
-            public SectionInfo(string kind, string? nodeId, string? edgeId, string? startFinishId, string? subsection)
+            public SectionInfo(string kind, string? nodeId, string? edgeId, string? startFinishId, string? subsection, string? pitId = null, string? cornerId = null)
             {
                 Kind = kind;
                 NodeId = nodeId;
                 EdgeId = edgeId;
                 StartFinishId = startFinishId;
+                PitId = pitId;
+                CornerId = cornerId;
                 Subsection = subsection;
+            }
+        }
+
+        private static void ParsePitProperties(string line, int lineNumber, PitLaneBuilder pitLane, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            foreach (var token in tokens)
+            {
+                if (!TrySplitKeyValue(token, out var key, out var value))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, "Expected key=value in pit section.", line));
+                    continue;
+                }
+
+                switch (key.ToLowerInvariant())
+                {
+                    case "id":
+                        break;
+                    case "node":
+                    case "node_id":
+                        pitLane.NodeId = value;
+                        break;
+                    case "entry_edge":
+                    case "entry":
+                        pitLane.EntryEdgeId = value;
+                        break;
+                    case "exit_edge":
+                    case "exit":
+                        pitLane.ExitEdgeId = value;
+                        break;
+                    case "entry_s":
+                    case "entry_pos":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var entryS))
+                            pitLane.EntrySMeters = entryS;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid entry_s value '{value}'.", line));
+                        break;
+                    case "exit_s":
+                    case "exit_pos":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var exitS))
+                            pitLane.ExitSMeters = exitS;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid exit_s value '{value}'.", line));
+                        break;
+                    case "length":
+                    case "len":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var length))
+                            pitLane.LengthMeters = length;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid length value '{value}'.", line));
+                        break;
+                    case "speed_limit":
+                    case "speed":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var speed))
+                            pitLane.SpeedLimitKph = speed;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid speed_limit value '{value}'.", line));
+                        break;
+                    case "priority":
+                    case "prio":
+                        if (int.TryParse(value, NumberStyles.Integer, Culture, out var priority))
+                            pitLane.Priority = priority;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid priority '{value}'.", line));
+                        break;
+                    default:
+                        pitLane.Metadata[key] = value;
+                        break;
+                }
+            }
+        }
+
+        private static void TryParsePitLaneSegment(string line, int lineNumber, PitLaneBuilder pitLane, bool isEntry, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var start = GetFloat(named, "start", "s", positional, 0, errors, lineNumber, line);
+            var end = GetFloat(named, "end", "e", positional, 1, errors, lineNumber, line);
+            var width = GetFloat(named, "width", "w", positional, 2, errors, lineNumber, line);
+            var offset = GetFloat(named, "offset", "center_offset", positional, 3, out var offsetValue) ? offsetValue : 0f;
+            var speedLimit = GetFloat(named, "speed_limit", "speed", positional, 4, out var speedValue) ? speedValue : (float?)null;
+
+            var direction = TrackLaneDirection.Forward;
+            if (named.TryGetValue("direction", out var dirValue) || named.TryGetValue("dir", out dirValue))
+            {
+                if (!TryParseLaneDirection(dirValue, out direction))
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid lane direction '{dirValue}'.", line));
+            }
+
+            var metadata = CollectMetadata(named,
+                "start", "s",
+                "end", "e",
+                "width", "w",
+                "offset", "center_offset",
+                "direction", "dir",
+                "speed_limit", "speed");
+
+            try
+            {
+                var segment = new TrackPitLaneSegment(start, end, width, offset, direction, speedLimit, metadata);
+                if (isEntry)
+                {
+                    if (pitLane.EntryLane != null)
+                        errors.Add(new TrackLayoutError(lineNumber, $"Pit lane '{pitLane.Id}' already has an entry lane.", line));
+                    pitLane.EntryLane = segment;
+                }
+                else
+                {
+                    if (pitLane.ExitLane != null)
+                        errors.Add(new TrackLayoutError(lineNumber, $"Pit lane '{pitLane.Id}' already has an exit lane.", line));
+                    pitLane.ExitLane = segment;
+                }
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void TryParsePitBox(string line, int lineNumber, PitLaneBuilder pitLane, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var id = GetString(named, "id", "box", positional, 0, errors, lineNumber, line);
+            if (string.IsNullOrWhiteSpace(id))
+                return;
+
+            var position = GetFloat(named, "position", "s", positional, 1, errors, lineNumber, line);
+            var width = GetFloat(named, "width", "w", positional, 2, errors, lineNumber, line);
+            var length = GetFloat(named, "length", "len", positional, 3, errors, lineNumber, line);
+            var offset = GetFloat(named, "offset", "center_offset", positional, 4, out var offsetValue) ? offsetValue : 0f;
+            var team = ParseString(named, "team");
+
+            IReadOnlyList<TrackPoint3> crew = Array.Empty<TrackPoint3>();
+            if (named.TryGetValue("crew", out var crewValue) ||
+                named.TryGetValue("crew_positions", out crewValue) ||
+                named.TryGetValue("crew_points", out crewValue))
+            {
+                crew = ParsePointList(crewValue, lineNumber, errors, line);
+                if (crew.Count == 0 && !string.IsNullOrWhiteSpace(crewValue))
+                    errors.Add(new TrackLayoutError(lineNumber, "Pit box crew list is empty or invalid.", line));
+            }
+
+            var metadata = CollectMetadata(named,
+                "id", "box",
+                "position", "s",
+                "width", "w",
+                "length", "len",
+                "offset", "center_offset",
+                "team",
+                "crew", "crew_positions", "crew_points");
+
+            try
+            {
+                pitLane.PitBoxes.Add(new TrackPitBox(id!.Trim(), position, width, length, offset, team, crew, metadata));
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void TryParsePitBlendLine(string line, int lineNumber, PitLaneBuilder pitLane, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var position = GetFloat(named, "position", "s", positional, 0, errors, lineNumber, line);
+            var length = GetFloat(named, "length", "len", positional, 1, out var lenValue) ? lenValue : 0f;
+            var offset = GetFloat(named, "offset", "center_offset", positional, 2, out var offsetValue) ? offsetValue : 0f;
+            var width = GetFloat(named, "width", "w", positional, 3, out var widthValue) ? widthValue : 0f;
+
+            var side = TrackBoundarySide.Both;
+            if (named.TryGetValue("side", out var sideValue) || named.TryGetValue("dir", out sideValue))
+            {
+                if (!TryParseBoundarySide(sideValue, out side))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid blend line side '{sideValue}'.", line));
+                    side = TrackBoundarySide.Both;
+                }
+            }
+
+            try
+            {
+                var blendLine = new TrackPitBlendLine(position, length, side, offset, width);
+                if (pitLane.BlendLine != null)
+                    errors.Add(new TrackLayoutError(lineNumber, $"Pit lane '{pitLane.Id}' already has a blend line.", line));
+                pitLane.BlendLine = blendLine;
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void ParseCornerProperties(string line, int lineNumber, CornerComplexBuilder corner, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            foreach (var token in tokens)
+            {
+                if (!TrySplitKeyValue(token, out var key, out var value))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, "Expected key=value in corner section.", line));
+                    continue;
+                }
+
+                switch (key.ToLowerInvariant())
+                {
+                    case "id":
+                        break;
+                    case "edge":
+                    case "edge_id":
+                        corner.EdgeId = value;
+                        break;
+                    case "start":
+                    case "s":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var start))
+                            corner.StartMeters = start;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid start value '{value}'.", line));
+                        break;
+                    case "end":
+                    case "e":
+                        if (float.TryParse(value, NumberStyles.Float, Culture, out var end))
+                            corner.EndMeters = end;
+                        else
+                            errors.Add(new TrackLayoutError(lineNumber, $"Invalid end value '{value}'.", line));
+                        break;
+                    case "name":
+                        corner.Name = value;
+                        break;
+                    default:
+                        corner.Metadata[key] = value;
+                        break;
+                }
+            }
+        }
+
+        private static void TryParseCornerApex(string line, int lineNumber, CornerComplexBuilder corner, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var id = GetString(named, "id", "apex", positional, 0, errors, lineNumber, line);
+            if (string.IsNullOrWhiteSpace(id))
+                return;
+
+            var position = GetFloat(named, "position", "s", positional, 1, errors, lineNumber, line);
+            var offset = GetFloat(named, "offset", "x", positional, 2, out var offsetValue) ? offsetValue : 0f;
+            var speed = GetFloat(named, "speed", "speed_kph", positional, 3, out var speedValue) ? speedValue : (float?)null;
+            var priority = GetFloat(named, "priority", "prio", positional, 4, out var priorityValue) ? (int)Math.Round(priorityValue) : 0;
+
+            try
+            {
+                corner.Apexes.Add(new TrackCornerApex(id!.Trim(), position, offset, speed, priority));
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void ParseCornerBrakingZone(string line, int lineNumber, CornerComplexBuilder corner, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var start = GetFloat(named, "start", "s", positional, 0, errors, lineNumber, line);
+            var end = GetFloat(named, "end", "e", positional, 1, errors, lineNumber, line);
+            var targetSpeed = GetFloat(named, "target_speed", "speed", positional, 2, out var speedValue) ? speedValue : (float?)null;
+            var decel = GetFloat(named, "decel_g", "decel", positional, 3, out var decelValue) ? decelValue : (float?)null;
+            var priority = GetFloat(named, "priority", "prio", positional, 4, out var priorityValue) ? (int)Math.Round(priorityValue) : 0;
+
+            try
+            {
+                corner.BrakingZone = new TrackBrakingZone(start, end, targetSpeed, decel, priority);
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void ParseCornerAccelerationZone(string line, int lineNumber, CornerComplexBuilder corner, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var start = GetFloat(named, "start", "s", positional, 0, errors, lineNumber, line);
+            var end = GetFloat(named, "end", "e", positional, 1, errors, lineNumber, line);
+            var targetSpeed = GetFloat(named, "target_speed", "speed", positional, 2, out var speedValue) ? speedValue : (float?)null;
+            var priority = GetFloat(named, "priority", "prio", positional, 3, out var priorityValue) ? (int)Math.Round(priorityValue) : 0;
+
+            try
+            {
+                corner.AccelerationZone = new TrackAccelerationZone(start, end, targetSpeed, priority);
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+            }
+        }
+
+        private static void TryParseRacingLine(string line, int lineNumber, CornerComplexBuilder corner, List<TrackLayoutError> errors)
+        {
+            var tokens = SplitTokens(line);
+            if (tokens.Count == 0)
+                return;
+
+            var named = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var positional = new List<string>();
+            foreach (var token in tokens)
+            {
+                if (TrySplitKeyValue(token, out var key, out var value))
+                    named[key] = value;
+                else
+                    positional.Add(token);
+            }
+
+            var id = GetString(named, "id", "line", positional, 0, errors, lineNumber, line);
+            if (string.IsNullOrWhiteSpace(id))
+                return;
+
+            var kind = TrackRacingLineKind.Custom;
+            if (named.TryGetValue("kind", out var kindValue) || named.TryGetValue("type", out kindValue))
+            {
+                if (!TryParseRacingLineKind(kindValue, out kind))
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid racing line kind '{kindValue}'.", line));
+            }
+
+            if (!named.TryGetValue("points", out var pointsValue) &&
+                !named.TryGetValue("line", out pointsValue) &&
+                positional.Count > 1)
+            {
+                pointsValue = positional[1];
+            }
+
+            var points = ParseRacingLinePoints(pointsValue, lineNumber, errors, line);
+            if (points.Count == 0)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, $"Racing line '{id}' has no points.", line));
+                return;
+            }
+
+            var metadata = CollectMetadata(named, "id", "line", "kind", "type", "points");
+
+            try
+            {
+                corner.RacingLines.Add(new TrackRacingLineVariant(id!.Trim(), kind, points, metadata));
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
             }
         }
 
@@ -5083,6 +5430,68 @@ namespace TopSpeed.Tracks.Geometry
             return hasError ? Array.Empty<TrackPoint3>() : list;
         }
 
+        private static IReadOnlyList<TrackRacingLinePoint> ParseRacingLinePoints(string? value, int lineNumber, List<TrackLayoutError> errors, string line)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return Array.Empty<TrackRacingLinePoint>();
+
+            var segments = value!.Split(new[] { '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var list = new List<TrackRacingLinePoint>(segments.Length);
+            var hasError = false;
+            foreach (var raw in segments)
+            {
+                var segment = raw.Trim();
+                if (segment.Length == 0)
+                    continue;
+
+                var parts = segment.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length < 2 || parts.Length > 4)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid racing line point '{segment}'. Expected s,offset[,width[,speed]].", line));
+                    hasError = true;
+                    continue;
+                }
+
+                if (!float.TryParse(parts[0], NumberStyles.Float, Culture, out var sMeters) ||
+                    !float.TryParse(parts[1], NumberStyles.Float, Culture, out var offset))
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid racing line point '{segment}'. Expected numeric s,offset.", line));
+                    hasError = true;
+                    continue;
+                }
+
+                float? width = null;
+                float? speed = null;
+                if (parts.Length >= 3 && float.TryParse(parts[2], NumberStyles.Float, Culture, out var widthValue))
+                    width = widthValue;
+                else if (parts.Length >= 3)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid racing line width '{parts[2]}'.", line));
+                    hasError = true;
+                }
+
+                if (parts.Length == 4 && float.TryParse(parts[3], NumberStyles.Float, Culture, out var speedValue))
+                    speed = speedValue;
+                else if (parts.Length == 4)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, $"Invalid racing line speed '{parts[3]}'.", line));
+                    hasError = true;
+                }
+
+                try
+                {
+                    list.Add(new TrackRacingLinePoint(sMeters, offset, width, speed));
+                }
+                catch (Exception ex)
+                {
+                    errors.Add(new TrackLayoutError(lineNumber, ex.Message, line));
+                    hasError = true;
+                }
+            }
+
+            return hasError ? Array.Empty<TrackRacingLinePoint>() : list;
+        }
+
         private static IReadOnlyList<TrackProfilePoint> ParseProfileList(string? value, int lineNumber, List<TrackLayoutError> errors, string line)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -5218,6 +5627,35 @@ namespace TopSpeed.Tracks.Geometry
             return sb.ToString();
         }
 
+        private static string FormatRacingLinePoints(IReadOnlyList<TrackRacingLinePoint> points)
+        {
+            if (points == null || points.Count == 0)
+                return string.Empty;
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < points.Count; i++)
+            {
+                if (i > 0)
+                    sb.Append('|');
+                var point = points[i];
+                sb.Append(FormatFloat(point.SMeters));
+                sb.Append(',');
+                sb.Append(FormatFloat(point.OffsetMeters));
+                if (point.WidthMeters.HasValue || point.SpeedKph.HasValue)
+                {
+                    var width = point.WidthMeters ?? 0f;
+                    sb.Append(',');
+                    sb.Append(FormatFloat(width));
+                    if (point.SpeedKph.HasValue)
+                    {
+                        sb.Append(',');
+                        sb.Append(FormatFloat(point.SpeedKph.Value));
+                    }
+                }
+            }
+            return sb.ToString();
+        }
+
         private static string FormatProfileList(IReadOnlyList<TrackProfilePoint> profile)
         {
             if (profile == null || profile.Count == 0)
@@ -5325,6 +5763,62 @@ namespace TopSpeed.Tracks.Geometry
                     subsection = rest.Substring(dot + 1);
                 }
                 section = new SectionInfo("start_finish", null, null, startFinishId.Trim(), subsection?.Trim().ToLowerInvariant());
+                return true;
+            }
+
+            if (content.StartsWith("pit", StringComparison.OrdinalIgnoreCase) ||
+                content.StartsWith("pit_lane", StringComparison.OrdinalIgnoreCase) ||
+                content.StartsWith("pitlane", StringComparison.OrdinalIgnoreCase))
+            {
+                var tokenLength = content.StartsWith("pit_lane", StringComparison.OrdinalIgnoreCase)
+                    ? "pit_lane".Length
+                    : (content.StartsWith("pitlane", StringComparison.OrdinalIgnoreCase) ? "pitlane".Length : "pit".Length);
+                var rest = content.Substring(tokenLength).Trim();
+                if (rest.StartsWith(":", StringComparison.Ordinal))
+                    rest = rest.Substring(1).Trim();
+                if (string.IsNullOrWhiteSpace(rest))
+                {
+                    section = new SectionInfo("pit", null, null, null, null);
+                    return true;
+                }
+
+                string pitId = rest;
+                string? subsection = null;
+                var dot = rest.IndexOf('.');
+                if (dot >= 0)
+                {
+                    pitId = rest.Substring(0, dot);
+                    subsection = rest.Substring(dot + 1);
+                }
+                section = new SectionInfo("pit", null, null, null, subsection?.Trim().ToLowerInvariant(), pitId: pitId.Trim());
+                return true;
+            }
+
+            if (content.StartsWith("corner", StringComparison.OrdinalIgnoreCase) ||
+                content.StartsWith("corner_complex", StringComparison.OrdinalIgnoreCase) ||
+                content.StartsWith("cornercomplex", StringComparison.OrdinalIgnoreCase))
+            {
+                var tokenLength = content.StartsWith("corner_complex", StringComparison.OrdinalIgnoreCase)
+                    ? "corner_complex".Length
+                    : (content.StartsWith("cornercomplex", StringComparison.OrdinalIgnoreCase) ? "cornercomplex".Length : "corner".Length);
+                var rest = content.Substring(tokenLength).Trim();
+                if (rest.StartsWith(":", StringComparison.Ordinal))
+                    rest = rest.Substring(1).Trim();
+                if (string.IsNullOrWhiteSpace(rest))
+                {
+                    section = new SectionInfo("corner", null, null, null, null);
+                    return true;
+                }
+
+                string cornerId = rest;
+                string? subsection = null;
+                var dot = rest.IndexOf('.');
+                if (dot >= 0)
+                {
+                    cornerId = rest.Substring(0, dot);
+                    subsection = rest.Substring(dot + 1);
+                }
+                section = new SectionInfo("corner", null, null, null, subsection?.Trim().ToLowerInvariant(), cornerId: cornerId.Trim());
                 return true;
             }
 
@@ -5527,6 +6021,7 @@ namespace TopSpeed.Tracks.Geometry
             public string? ShortName { get; set; }
             public Dictionary<string, string> Metadata { get; }
             public IntersectionBuilder? Intersection { get; set; }
+            public PitLaneBuilder? PitLane { get; set; }
 
             public NodeBuilder(string id)
             {
@@ -5741,6 +6236,109 @@ namespace TopSpeed.Tracks.Geometry
             }
         }
 
+        private sealed class PitLaneBuilder
+        {
+            public string Id { get; }
+            public string? NodeId { get; set; }
+            public string? EntryEdgeId { get; set; }
+            public string? ExitEdgeId { get; set; }
+            public float? EntrySMeters { get; set; }
+            public float? ExitSMeters { get; set; }
+            public float? LengthMeters { get; set; }
+            public float? SpeedLimitKph { get; set; }
+            public int Priority { get; set; }
+            public TrackPitLaneSegment? EntryLane { get; set; }
+            public TrackPitLaneSegment? ExitLane { get; set; }
+            public TrackPitBlendLine? BlendLine { get; set; }
+            public readonly List<TrackPitBox> PitBoxes = new List<TrackPitBox>();
+            public readonly List<TrackSpeedLimitZone> SpeedLimitZones = new List<TrackSpeedLimitZone>();
+            public readonly Dictionary<string, string> Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            public PitLaneBuilder(string id)
+            {
+                Id = id;
+            }
+
+            public TrackPitLaneProfile? Build(List<TrackLayoutError> errors)
+            {
+                if (string.IsNullOrWhiteSpace(Id))
+                    return null;
+
+                try
+                {
+                    return new TrackPitLaneProfile(
+                        Id,
+                        EntryEdgeId,
+                        ExitEdgeId,
+                        EntrySMeters,
+                        ExitSMeters,
+                        LengthMeters,
+                        SpeedLimitKph ?? 0f,
+                        Priority,
+                        EntryLane,
+                        ExitLane,
+                        BlendLine,
+                        PitBoxes,
+                        SpeedLimitZones,
+                        Metadata);
+                }
+                catch (Exception ex)
+                {
+                    errors.Add(new TrackLayoutError(0, ex.Message));
+                    return null;
+                }
+            }
+        }
+
+        private sealed class CornerComplexBuilder
+        {
+            public string Id { get; }
+            public string? EdgeId { get; set; }
+            public string? Name { get; set; }
+            public float? StartMeters { get; set; }
+            public float? EndMeters { get; set; }
+            public TrackBrakingZone? BrakingZone { get; set; }
+            public TrackAccelerationZone? AccelerationZone { get; set; }
+            public readonly List<TrackCornerApex> Apexes = new List<TrackCornerApex>();
+            public readonly List<TrackRacingLineVariant> RacingLines = new List<TrackRacingLineVariant>();
+            public readonly Dictionary<string, string> Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            public CornerComplexBuilder(string id)
+            {
+                Id = id;
+            }
+
+            public TrackCornerComplexProfile? Build(List<TrackLayoutError> errors)
+            {
+                if (string.IsNullOrWhiteSpace(Id))
+                    return null;
+                if (!StartMeters.HasValue || !EndMeters.HasValue)
+                {
+                    errors.Add(new TrackLayoutError(0, $"Corner complex '{Id}' missing start/end."));
+                    return null;
+                }
+
+                try
+                {
+                    return new TrackCornerComplexProfile(
+                        Id,
+                        StartMeters.Value,
+                        EndMeters.Value,
+                        Apexes,
+                        BrakingZone,
+                        AccelerationZone,
+                        RacingLines,
+                        Name,
+                        Metadata);
+                }
+                catch (Exception ex)
+                {
+                    errors.Add(new TrackLayoutError(0, ex.Message));
+                    return null;
+                }
+            }
+        }
+
         private sealed class EdgeBuilder
         {
             public string Id { get; }
@@ -5763,6 +6361,7 @@ namespace TopSpeed.Tracks.Geometry
             public readonly List<TrackAudioEmitter> Emitters = new List<TrackAudioEmitter>();
             public readonly List<TrackTriggerZone> Triggers = new List<TrackTriggerZone>();
             public readonly List<TrackBoundaryZone> Boundaries = new List<TrackBoundaryZone>();
+            public readonly List<CornerComplexBuilder> CornerComplexes = new List<CornerComplexBuilder>();
             public readonly Dictionary<string, string> Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             public readonly List<string> ConnectorFromEdgeIds = new List<string>();
             public TrackTurnDirection TurnDirection = TrackTurnDirection.Unknown;
@@ -5856,6 +6455,14 @@ namespace TopSpeed.Tracks.Geometry
                     Triggers,
                     Boundaries);
 
+                var cornerProfiles = new List<TrackCornerComplexProfile>();
+                for (var i = 0; i < CornerComplexes.Count; i++)
+                {
+                    var built = CornerComplexes[i].Build(errors);
+                    if (built != null)
+                        cornerProfiles.Add(built);
+                }
+
                 return new TrackGraphEdge(
                     Id,
                     FromNodeId!,
@@ -5866,6 +6473,7 @@ namespace TopSpeed.Tracks.Geometry
                     profile,
                     ConnectorFromEdgeIds,
                     TurnDirection,
+                    cornerProfiles,
                     Metadata);
             }
         }

@@ -11,6 +11,7 @@ namespace TopSpeed.Tracks.Geometry
         public string? Name { get; }
         public string? ShortName { get; }
         public TrackIntersectionProfile? Intersection { get; }
+        public TrackPitLaneProfile? PitLane { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
 
         public TrackGraphNode(
@@ -18,7 +19,8 @@ namespace TopSpeed.Tracks.Geometry
             string? name = null,
             string? shortName = null,
             IReadOnlyDictionary<string, string>? metadata = null,
-            TrackIntersectionProfile? intersection = null)
+            TrackIntersectionProfile? intersection = null,
+            TrackPitLaneProfile? pitLane = null)
         {
             if (string.IsNullOrWhiteSpace(id))
                 throw new ArgumentException("Node id is required.", nameof(id));
@@ -29,17 +31,9 @@ namespace TopSpeed.Tracks.Geometry
             var trimmedShort = shortName?.Trim();
             ShortName = string.IsNullOrWhiteSpace(trimmedShort) ? null : trimmedShort;
             Intersection = intersection;
+            PitLane = pitLane;
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
-    }
-
-    public enum TrackTurnDirection
-    {
-        Unknown = 0,
-        Left = 1,
-        Right = 2,
-        Straight = 3,
-        UTurn = 4
     }
 
     public sealed class TrackEdgeProfile
@@ -163,6 +157,7 @@ namespace TopSpeed.Tracks.Geometry
         public string? ShortName { get; }
         public TrackGeometrySpec Geometry { get; }
         public TrackEdgeProfile Profile { get; }
+        public IReadOnlyList<TrackCornerComplexProfile> CornerComplexes { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
         public IReadOnlyList<string> ConnectorFromEdgeIds { get; }
         public TrackTurnDirection TurnDirection { get; }
@@ -179,6 +174,7 @@ namespace TopSpeed.Tracks.Geometry
             TrackEdgeProfile profile,
             IReadOnlyList<string>? connectorFromEdgeIds = null,
             TrackTurnDirection turnDirection = TrackTurnDirection.Unknown,
+            IReadOnlyList<TrackCornerComplexProfile>? cornerComplexes = null,
             IReadOnlyDictionary<string, string>? metadata = null)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -197,6 +193,7 @@ namespace TopSpeed.Tracks.Geometry
             ShortName = string.IsNullOrWhiteSpace(trimmedShort) ? null : trimmedShort;
             Geometry = geometry ?? throw new ArgumentNullException(nameof(geometry));
             Profile = profile ?? throw new ArgumentNullException(nameof(profile));
+            CornerComplexes = cornerComplexes ?? Array.Empty<TrackCornerComplexProfile>();
             Metadata = metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             ConnectorFromEdgeIds = connectorFromEdgeIds ?? Array.Empty<string>();
             TurnDirection = turnDirection;

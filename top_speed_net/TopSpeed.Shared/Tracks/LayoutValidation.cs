@@ -4,12 +4,6 @@ using System.Numerics;
 
 namespace TopSpeed.Tracks.Geometry
 {
-    public enum TrackLayoutIssueSeverity
-    {
-        Warning = 0,
-        Error = 1
-    }
-
     public sealed class TrackLayoutIssue
     {
         public TrackLayoutIssueSeverity Severity { get; }
@@ -106,6 +100,8 @@ namespace TopSpeed.Tracks.Geometry
             ValidateGraphEdges(layout, opts, issues);
             ValidateIntersections(layout, opts, issues);
             ValidateStartFinishSubgraphs(layout, opts, issues);
+            ValidatePitLanes(layout, opts, issues);
+            ValidateCornerComplexes(layout, opts, issues);
 
             return new TrackLayoutValidationResult(issues);
         }
@@ -1551,6 +1547,262 @@ namespace TopSpeed.Tracks.Geometry
                 }
             }
         }
+
+        private static void ValidatePitLanes(TrackLayout layout, TrackLayoutValidationOptions opts, List<TrackLayoutIssue> issues)
+        {
+            var edgeLookup = new Dictionary<string, TrackGraphEdge>(StringComparer.OrdinalIgnoreCase);
+            foreach (var edge in layout.Graph.Edges)
+                edgeLookup[edge.Id] = edge;
+
+            foreach (var node in layout.Graph.Nodes)
+            {
+                var pit = node.PitLane;
+                if (pit == null)
+                    continue;
+
+                TrackGraphEdge? entryEdge = null;
+                if (!string.IsNullOrWhiteSpace(pit.EntryEdgeId) &&
+                    !edgeLookup.TryGetValue(pit.EntryEdgeId!, out entryEdge))
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                        $"Pit lane '{pit.Id}' references missing entry edge '{pit.EntryEdgeId}'.",
+                        section: "pit"));
+                }
+                else if (pit.EntrySMeters.HasValue && entryEdge != null &&
+                         (pit.EntrySMeters.Value < 0f || pit.EntrySMeters.Value > entryEdge.LengthMeters))
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                        $"Pit lane '{pit.Id}' entry_s {pit.EntrySMeters.Value:0.###}m is outside edge length {entryEdge.LengthMeters:0.###}m.",
+                        section: "pit",
+                            edgeId: entryEdge.Id));
+                }
+
+                TrackGraphEdge? exitEdge = null;
+                if (!string.IsNullOrWhiteSpace(pit.ExitEdgeId) &&
+                    !edgeLookup.TryGetValue(pit.ExitEdgeId!, out exitEdge))
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                        $"Pit lane '{pit.Id}' references missing exit edge '{pit.ExitEdgeId}'.",
+                        section: "pit"));
+                }
+                else if (pit.ExitSMeters.HasValue && exitEdge != null &&
+                         (pit.ExitSMeters.Value < 0f || pit.ExitSMeters.Value > exitEdge.LengthMeters))
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                        $"Pit lane '{pit.Id}' exit_s {pit.ExitSMeters.Value:0.###}m is outside edge length {exitEdge.LengthMeters:0.###}m.",
+                        section: "pit",
+                        edgeId: exitEdge.Id));
+                }
+
+                var length = pit.LengthMeters;
+                if (length.HasValue && length.Value < 0f)
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                        $"Pit lane '{pit.Id}' length is negative.",
+                        section: "pit"));
+                }
+
+                if (pit.EntryLane == null)
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                        $"Pit lane '{pit.Id}' is missing an entry lane.",
+                        section: "pit"));
+                }
+                else
+                {
+                    ValidatePitLaneSegment(pit.EntryLane, length, pit.Id, issues);
+                }
+
+                if (pit.ExitLane == null)
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                        $"Pit lane '{pit.Id}' is missing an exit lane.",
+                        section: "pit"));
+                }
+                else
+                {
+                    ValidatePitLaneSegment(pit.ExitLane, length, pit.Id, issues);
+                }
+
+                if (pit.BlendLine != null && length.HasValue &&
+                    (pit.BlendLine.PositionMeters < 0f || pit.BlendLine.PositionMeters > length.Value))
+                {
+                    issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                        $"Pit lane '{pit.Id}' blend line is outside pit length.",
+                        section: "pit"));
+                }
+
+                var boxIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var box in pit.PitBoxes)
+                {
+                    if (!boxIds.Add(box.Id))
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Pit lane '{pit.Id}' has duplicate pit box id '{box.Id}'.",
+                            section: "pit"));
+                    }
+
+                    if (box.PositionMeters < 0f)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Pit lane '{pit.Id}' pit box '{box.Id}' has negative position.",
+                            section: "pit"));
+                    }
+                    else if (length.HasValue && box.PositionMeters > length.Value)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Pit lane '{pit.Id}' pit box '{box.Id}' position {box.PositionMeters:0.###}m exceeds pit length {length.Value:0.###}m.",
+                            section: "pit"));
+                    }
+                }
+
+                foreach (var zone in pit.SpeedLimitZones)
+                {
+                    if (zone.StartMeters < 0f || zone.EndMeters < 0f)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Pit lane '{pit.Id}' speed limit zone has negative start/end.",
+                            section: "pit"));
+                    }
+                    else if (length.HasValue && zone.EndMeters > length.Value)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Pit lane '{pit.Id}' speed limit zone extends beyond pit length.",
+                            section: "pit"));
+                    }
+                }
+            }
+        }
+
+        private static void ValidateCornerComplexes(TrackLayout layout, TrackLayoutValidationOptions opts, List<TrackLayoutIssue> issues)
+        {
+            foreach (var edge in layout.Graph.Edges)
+            {
+                if (edge.CornerComplexes.Count == 0)
+                    continue;
+
+                var cornerIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var corner in edge.CornerComplexes)
+                {
+                    if (!cornerIds.Add(corner.Id))
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Corner complex '{corner.Id}' has duplicate id on edge '{edge.Id}'.",
+                            section: "corner",
+                            edgeId: edge.Id));
+                    }
+
+                    if (corner.StartMeters < 0f || corner.EndMeters < 0f)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                            $"Corner complex '{corner.Id}' uses negative start/end.",
+                            section: "corner",
+                            edgeId: edge.Id));
+                    }
+                    else if (corner.EndMeters > edge.LengthMeters)
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Corner complex '{corner.Id}' end {corner.EndMeters:0.###}m exceeds edge length {edge.LengthMeters:0.###}m.",
+                            section: "corner",
+                            edgeId: edge.Id));
+                    }
+
+                    var apexIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var apex in corner.Apexes)
+                    {
+                        if (!apexIds.Add(apex.Id))
+                        {
+                            issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                                $"Corner complex '{corner.Id}' has duplicate apex id '{apex.Id}'.",
+                                section: "corner",
+                                edgeId: edge.Id));
+                        }
+
+                        if (apex.PositionMeters < corner.StartMeters || apex.PositionMeters > corner.EndMeters)
+                        {
+                            issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                $"Corner complex '{corner.Id}' apex '{apex.Id}' is outside corner bounds.",
+                                section: "corner",
+                                edgeId: edge.Id));
+                        }
+                    }
+
+                    if (corner.BrakingZone != null &&
+                        (corner.BrakingZone.StartMeters < corner.StartMeters ||
+                         corner.BrakingZone.EndMeters > corner.EndMeters))
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Corner complex '{corner.Id}' braking zone is outside corner bounds.",
+                            section: "corner",
+                            edgeId: edge.Id));
+                    }
+
+                    if (corner.AccelerationZone != null &&
+                        (corner.AccelerationZone.StartMeters < corner.StartMeters ||
+                         corner.AccelerationZone.EndMeters > corner.EndMeters))
+                    {
+                        issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                            $"Corner complex '{corner.Id}' acceleration zone is outside corner bounds.",
+                            section: "corner",
+                            edgeId: edge.Id));
+                    }
+
+                    foreach (var line in corner.RacingLines)
+                    {
+                        if (line.Points.Count < 2)
+                        {
+                            issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                $"Corner complex '{corner.Id}' racing line '{line.Id}' has fewer than 2 points.",
+                                section: "corner",
+                                edgeId: edge.Id));
+                        }
+
+                        var lastS = float.NegativeInfinity;
+                        for (var i = 0; i < line.Points.Count; i++)
+                        {
+                            var point = line.Points[i];
+                            if (point.SMeters < lastS)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Corner complex '{corner.Id}' racing line '{line.Id}' points are not sorted by s.",
+                                    section: "corner",
+                                    edgeId: edge.Id));
+                                break;
+                            }
+                            lastS = point.SMeters;
+
+                            if (point.SMeters < corner.StartMeters || point.SMeters > corner.EndMeters)
+                            {
+                                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                                    $"Corner complex '{corner.Id}' racing line '{line.Id}' point is outside corner bounds.",
+                                    section: "corner",
+                                    edgeId: edge.Id));
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void ValidatePitLaneSegment(TrackPitLaneSegment segment, float? lengthMeters, string pitId, List<TrackLayoutIssue> issues)
+        {
+            if (segment.StartMeters < 0f || segment.EndMeters < 0f)
+            {
+                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Error,
+                    $"Pit lane '{pitId}' lane segment uses negative start/end.",
+                    section: "pit"));
+                return;
+            }
+
+            if (lengthMeters.HasValue && segment.EndMeters > lengthMeters.Value)
+            {
+                issues.Add(new TrackLayoutIssue(TrackLayoutIssueSeverity.Warning,
+                    $"Pit lane '{pitId}' lane segment exceeds pit length.",
+                    section: "pit"));
+            }
+        }
+
         private static void ValidateGeometry(
             TrackGeometrySpec geometry,
             TrackLayoutValidationOptions opts,

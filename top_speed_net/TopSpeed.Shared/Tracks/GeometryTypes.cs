@@ -4,28 +4,6 @@ using TopSpeed.Data;
 
 namespace TopSpeed.Tracks.Geometry
 {
-    public enum TrackCurveDirection
-    {
-        Straight = 0,
-        Left = 1,
-        Right = 2
-    }
-
-    public enum TrackCurveSeverity
-    {
-        Easy = 1,
-        Normal = 2,
-        Hard = 3,
-        Hairpin = 4
-    }
-
-    public enum TrackGeometrySpanKind
-    {
-        Straight = 0,
-        Arc = 1,
-        Clothoid = 2
-    }
-
     public readonly struct TrackGeometrySpan
     {
         public TrackGeometrySpanKind Kind { get; }

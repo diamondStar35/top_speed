@@ -400,6 +400,10 @@ namespace TopSpeed.GeometryTest
                 {
                     PrintIntersection(node.Id, node.Intersection, verbosity);
                 }
+                if (node.PitLane != null)
+                {
+                    PrintPitLane(node.Id, node.PitLane, verbosity);
+                }
             }
 
             if (layout.StartFinishSubgraphs.Count > 0)
@@ -415,10 +419,14 @@ namespace TopSpeed.GeometryTest
             foreach (var edge in layout.Graph.Edges)
             {
                 Console.WriteLine($"  Edge {edge.Id} from={edge.FromNodeId} to={edge.ToNodeId} length={edge.LengthMeters:0.###}m");
-                Console.WriteLine($"    Name={edge.Name ?? "(none)"} short={edge.ShortName ?? "(none)"} turn={edge.TurnDirection} connectors_from={edge.ConnectorFromEdgeIds.Count}");
+                Console.WriteLine($"    Name={edge.Name ?? "(none)"} short={edge.ShortName ?? "(none)"} turn={edge.TurnDirection} connectors_from={edge.ConnectorFromEdgeIds.Count} corners={edge.CornerComplexes.Count}");
                 Console.WriteLine($"    Defaults: surface={edge.Profile.DefaultSurface}, noise={edge.Profile.DefaultNoise}, width={edge.Profile.DefaultWidthMeters:0.###}m, weather={edge.Profile.DefaultWeather}, ambience={edge.Profile.DefaultAmbience}");
                 PrintGeometrySpans(edge.Geometry.Spans);
                 PrintEdgeProfile(edge.Profile, verbosity);
+                if (edge.CornerComplexes.Count > 0)
+                {
+                    PrintCornerComplexes(edge, verbosity);
+                }
             }
         }
 
@@ -501,6 +509,86 @@ namespace TopSpeed.GeometryTest
                     PrintPointList("        Points", area.Points);
                     if (area.LaneIds.Count > 0)
                         Console.WriteLine($"        LaneIds: {string.Join(", ", area.LaneIds)}");
+                }
+            }
+        }
+
+        private static void PrintPitLane(string nodeId, TrackPitLaneProfile pitLane, int verbosity)
+        {
+            Console.WriteLine($"    PitLane id={pitLane.Id} node={nodeId} entry={pitLane.EntryEdgeId ?? "(none)"} exit={pitLane.ExitEdgeId ?? "(none)"} entry_s={(pitLane.EntrySMeters.HasValue ? pitLane.EntrySMeters.Value.ToString("0.###") : "(none)")} exit_s={(pitLane.ExitSMeters.HasValue ? pitLane.ExitSMeters.Value.ToString("0.###") : "(none)")} length={(pitLane.LengthMeters.HasValue ? pitLane.LengthMeters.Value.ToString("0.###") : "(none)")} speed_limit={pitLane.SpeedLimitKph:0.###} priority={pitLane.Priority}");
+            Console.WriteLine($"      Segments: entry={(pitLane.EntryLane != null ? "yes" : "no")} exit={(pitLane.ExitLane != null ? "yes" : "no")} blend={(pitLane.BlendLine != null ? "yes" : "no")} boxes={pitLane.PitBoxes.Count} speed_zones={pitLane.SpeedLimitZones.Count} metadata={pitLane.Metadata.Count}");
+            if (verbosity < 1)
+                return;
+
+            if (pitLane.EntryLane != null)
+            {
+                var seg = pitLane.EntryLane;
+                Console.WriteLine($"      EntryLane start={seg.StartMeters:0.###} end={seg.EndMeters:0.###} width={seg.WidthMeters:0.###} offset={seg.OffsetMeters:0.###} dir={seg.Direction} speed_limit={(seg.SpeedLimitKph.HasValue ? seg.SpeedLimitKph.Value.ToString("0.###") : "(none)")}");
+            }
+
+            if (pitLane.ExitLane != null)
+            {
+                var seg = pitLane.ExitLane;
+                Console.WriteLine($"      ExitLane start={seg.StartMeters:0.###} end={seg.EndMeters:0.###} width={seg.WidthMeters:0.###} offset={seg.OffsetMeters:0.###} dir={seg.Direction} speed_limit={(seg.SpeedLimitKph.HasValue ? seg.SpeedLimitKph.Value.ToString("0.###") : "(none)")}");
+            }
+
+            if (pitLane.BlendLine != null)
+            {
+                var blend = pitLane.BlendLine;
+                Console.WriteLine($"      BlendLine position={blend.PositionMeters:0.###} length={blend.LengthMeters:0.###} side={blend.Side} offset={blend.OffsetMeters:0.###} width={blend.WidthMeters:0.###}");
+            }
+
+            for (var i = 0; i < pitLane.PitBoxes.Count; i++)
+            {
+                var box = pitLane.PitBoxes[i];
+                Console.WriteLine($"      Box[{i}] id={box.Id} pos={box.PositionMeters:0.###} width={box.WidthMeters:0.###} length={box.LengthMeters:0.###} offset={box.OffsetMeters:0.###} team={box.TeamId ?? "(none)"} crew={box.CrewPositions.Count} metadata={box.Metadata.Count}");
+            }
+
+            for (var i = 0; i < pitLane.SpeedLimitZones.Count; i++)
+            {
+                var zone = pitLane.SpeedLimitZones[i];
+                Console.WriteLine($"      SpeedZone[{i}] {zone.StartMeters:0.###}-{zone.EndMeters:0.###}m limit={zone.MaxSpeedKph:0.###} kph");
+            }
+        }
+
+        private static void PrintCornerComplexes(TrackGraphEdge edge, int verbosity)
+        {
+            for (var i = 0; i < edge.CornerComplexes.Count; i++)
+            {
+                var corner = edge.CornerComplexes[i];
+                Console.WriteLine($"    Corner[{i}] id={corner.Id} name={corner.Name ?? "(none)"} s=({corner.StartMeters:0.###}-{corner.EndMeters:0.###}) apexes={corner.Apexes.Count} racing_lines={corner.RacingLines.Count}");
+                if (corner.BrakingZone != null)
+                {
+                    var zone = corner.BrakingZone;
+                    Console.WriteLine($"      Braking start={zone.StartMeters:0.###} end={zone.EndMeters:0.###} target={(zone.TargetSpeedKph.HasValue ? zone.TargetSpeedKph.Value.ToString("0.###") : "(none)")} decel_g={(zone.DecelG.HasValue ? zone.DecelG.Value.ToString("0.###") : "(none)")} priority={zone.Priority}");
+                }
+                if (corner.AccelerationZone != null)
+                {
+                    var zone = corner.AccelerationZone;
+                    Console.WriteLine($"      Accel start={zone.StartMeters:0.###} end={zone.EndMeters:0.###} target={(zone.TargetSpeedKph.HasValue ? zone.TargetSpeedKph.Value.ToString("0.###") : "(none)")} priority={zone.Priority}");
+                }
+
+                if (verbosity < 1)
+                    continue;
+
+                for (var j = 0; j < corner.Apexes.Count; j++)
+                {
+                    var apex = corner.Apexes[j];
+                    Console.WriteLine($"      Apex[{j}] id={apex.Id} s={apex.PositionMeters:0.###} offset={apex.OffsetMeters:0.###} speed={(apex.SpeedKph.HasValue ? apex.SpeedKph.Value.ToString("0.###") : "(none)")} priority={apex.Priority}");
+                }
+
+                for (var j = 0; j < corner.RacingLines.Count; j++)
+                {
+                    var line = corner.RacingLines[j];
+                    Console.WriteLine($"      RacingLine[{j}] id={line.Id} kind={line.Kind} points={line.Points.Count} metadata={line.Metadata.Count}");
+                    if (verbosity > 1)
+                    {
+                        for (var k = 0; k < line.Points.Count; k++)
+                        {
+                            var point = line.Points[k];
+                            Console.WriteLine($"        Point[{k}] s={point.SMeters:0.###} offset={point.OffsetMeters:0.###} width={(point.WidthMeters.HasValue ? point.WidthMeters.Value.ToString("0.###") : "(none)")} speed={(point.SpeedKph.HasValue ? point.SpeedKph.Value.ToString("0.###") : "(none)")}");
+                        }
+                    }
                 }
             }
         }

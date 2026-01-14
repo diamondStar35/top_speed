@@ -56,9 +56,9 @@ kind=clothoid length=30 start=100 end=150 direction=right severity=easy
 kind=arc length=100 radius=150 direction=right severity=easy bank=4
 kind=clothoid length=45 start=150 end=0 direction=right severity=normal
 kind=straight length=300
-kind=clothoid length=60 start=0 end=40 direction=left severity=hard
-kind=arc length=100 radius=40 direction=left severity=hard bank=8
-kind=clothoid length=60 start=40 end=0 direction=left severity=hard
+kind=clothoid length=60 start=0 end=57 direction=left severity=hard
+kind=arc length=100 radius=57 direction=left severity=hard bank=8
+kind=clothoid length=60 start=57 end=0 direction=left severity=hard
 kind=straight length=180 slope=-0.01
 kind=clothoid length=80 start=0 end=250 direction=right severity=easy
 kind=arc length=300 radius=250 direction=right severity=easy bank=5

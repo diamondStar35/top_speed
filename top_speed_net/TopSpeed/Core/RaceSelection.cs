@@ -65,6 +65,19 @@ namespace TopSpeed.Core
             SelectTrack(TrackCategory.CustomTrack, customTracks[index]);
         }
 
+        public void SelectRandomCustomExploreTrack()
+        {
+            var customTracks = GetCustomMapTrackFiles().ToList();
+            if (customTracks.Count == 0)
+            {
+                SelectTrack(TrackCategory.CustomTrack, TrackList.RaceTracks[0].Key);
+                return;
+            }
+
+            var index = Algorithm.RandomInt(customTracks.Count);
+            SelectTrack(TrackCategory.CustomTrack, customTracks[index]);
+        }
+
         public void SelectVehicle(int index)
         {
             _setup.VehicleIndex = index;
@@ -106,33 +119,23 @@ namespace TopSpeed.Core
             var root = Path.Combine(AssetPaths.Root, "Tracks");
             if (!Directory.Exists(root))
                 return Array.Empty<string>();
-            return Directory.EnumerateFiles(root, "*.trk", SearchOption.TopDirectoryOnly);
+            return Directory.EnumerateFiles(root, "*.tsm", SearchOption.TopDirectoryOnly);
+        }
+
+        public IEnumerable<string> GetCustomMapTrackFiles()
+        {
+            return GetCustomTrackFiles();
         }
 
         public IReadOnlyList<TrackInfo> GetCustomTrackInfo()
         {
             var files = GetCustomTrackFiles().ToList();
-            if (files.Count == 0)
-            {
-                _customTrackCache.Clear();
-                return Array.Empty<TrackInfo>();
-            }
+            return BuildCustomTrackInfo(files);
+        }
 
-            var items = new List<TrackInfo>(files.Count);
-            var known = new HashSet<string>(files, StringComparer.OrdinalIgnoreCase);
-            foreach (var file in files)
-            {
-                var display = ResolveCustomTrackDisplayName(file);
-                items.Add(new TrackInfo(file, display));
-            }
-
-            var staleKeys = _customTrackCache.Keys.Where(key => !known.Contains(key)).ToList();
-            foreach (var key in staleKeys)
-                _customTrackCache.Remove(key);
-
-            return items
-                .OrderBy(item => item.Display, StringComparer.OrdinalIgnoreCase)
-                .ToList();
+        public IReadOnlyList<TrackInfo> GetCustomMapTrackInfo()
+        {
+            return GetCustomTrackInfo();
         }
 
         public IEnumerable<string> GetCustomVehicleFiles()
@@ -185,6 +188,31 @@ namespace TopSpeed.Core
             {
                 return null;
             }
+        }
+
+        private IReadOnlyList<TrackInfo> BuildCustomTrackInfo(List<string> files)
+        {
+            if (files.Count == 0)
+            {
+                _customTrackCache.Clear();
+                return Array.Empty<TrackInfo>();
+            }
+
+            var items = new List<TrackInfo>(files.Count);
+            var known = new HashSet<string>(files, StringComparer.OrdinalIgnoreCase);
+            foreach (var file in files)
+            {
+                var display = ResolveCustomTrackDisplayName(file);
+                items.Add(new TrackInfo(file, display));
+            }
+
+            var staleKeys = _customTrackCache.Keys.Where(key => !known.Contains(key)).ToList();
+            foreach (var key in staleKeys)
+                _customTrackCache.Remove(key);
+
+            return items
+                .OrderBy(item => item.Display, StringComparer.OrdinalIgnoreCase)
+                .ToList();
         }
 
         private static bool TryParseNameLine(string line, out string name)      

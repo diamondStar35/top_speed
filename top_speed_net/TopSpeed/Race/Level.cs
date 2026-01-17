@@ -11,6 +11,7 @@ using TopSpeed.Data;
 using TopSpeed.Input;
 using TopSpeed.Speech;
 using TopSpeed.Tracks;
+using TopSpeed.Tracks.Map;
 using TopSpeed.Vehicles;
 using TS.Audio;
 
@@ -52,7 +53,7 @@ namespace TopSpeed.Race
         protected readonly RaceSettings _settings;
         protected readonly RaceInput _input;
         protected readonly IVibrationDevice? _vibrationDevice;
-        protected readonly Track _track;
+        protected readonly MapTrack _track;
         protected readonly Car _car;
         protected readonly List<RaceEvent> _events;
         protected readonly Stopwatch _stopwatch;
@@ -77,7 +78,7 @@ namespace TopSpeed.Race
         protected float _sayTimeLength;
         protected float _speakTime;
         protected int _unkeyQueue;
-        protected Track.Road _currentRoad;
+        protected TrackRoad _currentRoad;
         protected long _oldStopwatchMs;
         protected long _stopwatchDiffMs;
         private Vector3 _lastListenerPosition;
@@ -153,10 +154,7 @@ namespace TopSpeed.Race
             _acceptPlayerInfo = true;
             _acceptCurrentRaceInfo = true;
 
-            var useLegacyTrackData = trackData != null && trackData.Definitions.Length > 0;
-            _track = useLegacyTrackData
-                ? Track.LoadFromData(track, trackData!, audio, userDefined)
-                : Track.Load(track, audio);
+            _track = MapTrack.Load(track, audio);
             _car = new Car(audio, _track, input, settings, vehicle, vehicleFile, () => _elapsedTotal, () => _started, _vibrationDevice);
 
             if (!string.IsNullOrWhiteSpace(track) &&
@@ -319,7 +317,7 @@ namespace TopSpeed.Race
             if (_input.GetCurrentRacePerc() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
             {
                 _acceptCurrentRaceInfo = false;
-                var perc = (_car.PositionY / (float)(_track.Length * _nrOfLaps)) * 100.0f;
+                var perc = (_car.DistanceMeters / (float)(_track.Length * _nrOfLaps)) * 100.0f;
                 var units = Math.Max(0, Math.Min(100, (int)perc));
                 SpeakText(FormatPercentageText("Race percentage", units));
                 PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
@@ -331,7 +329,7 @@ namespace TopSpeed.Race
             if (_input.GetCurrentLapPerc() && _started && _acceptCurrentRaceInfo && _lap <= _nrOfLaps)
             {
                 _acceptCurrentRaceInfo = false;
-                var perc = ((_car.PositionY - (_track.Length * (_lap - 1))) / _track.Length) * 100.0f;
+                var perc = ((_car.DistanceMeters - (_track.Length * (_lap - 1))) / _track.Length) * 100.0f;
                 var units = Math.Max(0, Math.Min(100, (int)perc));
                 SpeakText(FormatPercentageText("Lap percentage", units));
                 PushEvent(RaceEventType.AcceptCurrentRaceInfo, 0.5f);
@@ -505,7 +503,7 @@ namespace TopSpeed.Race
             }
         }
 
-        protected void CallNextRoad(Track.Road nextRoad)
+        protected void CallNextRoad(TrackRoad nextRoad)
         {
             if ((int)_settings.Copilot > 0 && nextRoad.Type != TrackType.Straight)
             {
@@ -620,12 +618,9 @@ namespace TopSpeed.Race
             _audio.UpdateListener(position, forward, up, velocity);
         }
 
-        protected float GetRelativeTrackDelta(float otherPositionY)
+        protected float GetRelativeTrackDelta(float otherDistanceMeters)
         {
-            var length = _track.Length;
-            if (length <= 0f)
-                return otherPositionY - _car.PositionY;
-            return AudioWorld.WrapDelta(otherPositionY - _car.PositionY, length);
+            return otherDistanceMeters - _car.DistanceMeters;
         }
 
         protected static string FormatTimeText(int raceTimeMs, bool detailed)

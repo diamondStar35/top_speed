@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TopSpeed.Common;
 using TopSpeed.Core;
 using TopSpeed.Data;
@@ -62,6 +63,7 @@ namespace TopSpeed.Menu
                 new MenuItem("Quick start", MenuAction.QuickStart),
                 new MenuItem("Time trial", MenuAction.None, nextMenuId: "time_trial_type", onActivate: () => PrepareMode(RaceMode.TimeTrial)),
                 new MenuItem("Single race", MenuAction.None, nextMenuId: "single_race_type", onActivate: () => PrepareMode(RaceMode.SingleRace)),
+                new MenuItem("Exploration mode", MenuAction.None, nextMenuId: "explore_type", onActivate: () => PrepareMode(RaceMode.Exploration)),
                 new MenuItem("MultiPlayer game", MenuAction.None, nextMenuId: "multiplayer"),
                 new MenuItem("Options", MenuAction.None, nextMenuId: "options_main"),
                 new MenuItem("Exit Game", MenuAction.Exit)
@@ -77,6 +79,7 @@ namespace TopSpeed.Menu
 
             _menu.Register(BuildTrackTypeMenu("time_trial_type", RaceMode.TimeTrial));
             _menu.Register(BuildTrackTypeMenu("single_race_type", RaceMode.SingleRace));
+            _menu.Register(BuildExploreTrackTypeMenu());
 
             _menu.Register(BuildTrackMenu("time_trial_tracks_race", RaceMode.TimeTrial, TrackCategory.RaceTrack));
             _menu.Register(BuildTrackMenu("time_trial_tracks_adventure", RaceMode.TimeTrial, TrackCategory.StreetAdventure));
@@ -84,6 +87,9 @@ namespace TopSpeed.Menu
             _menu.Register(BuildTrackMenu("single_race_tracks_race", RaceMode.SingleRace, TrackCategory.RaceTrack));
             _menu.Register(BuildTrackMenu("single_race_tracks_adventure", RaceMode.SingleRace, TrackCategory.StreetAdventure));
             _menu.Register(BuildCustomTrackMenu("single_race_tracks_custom", RaceMode.SingleRace));
+            _menu.Register(BuildExploreTrackMenu("explore_tracks_race", TrackCategory.RaceTrack));
+            _menu.Register(BuildExploreTrackMenu("explore_tracks_adventure", TrackCategory.StreetAdventure));
+            _menu.Register(BuildExploreCustomTrackMenu("explore_tracks_custom"));
 
             _menu.Register(BuildVehicleMenu("time_trial_vehicles", RaceMode.TimeTrial));
             _menu.Register(BuildVehicleMenu("single_race_vehicles", RaceMode.SingleRace));
@@ -109,6 +115,12 @@ namespace TopSpeed.Menu
             _setup.ClearSelection();
         }
 
+        private void StartExploration(TrackCategory category, string trackKey)
+        {
+            _selection.SelectTrack(category, trackKey);
+            _actions.QueueRaceStart(RaceMode.Exploration);
+        }
+
         private void CompleteTransmission(RaceMode mode, TransmissionMode transmission)
         {
             _setup.Transmission = transmission;
@@ -131,6 +143,32 @@ namespace TopSpeed.Menu
             };
             var title = "Choose track type";
             return _menu.CreateMenu(id, items, title);
+        }
+
+        private MenuScreen BuildExploreTrackTypeMenu()
+        {
+            var items = new List<MenuItem>
+            {
+                new MenuItem("Race track", MenuAction.None, nextMenuId: "explore_tracks_race", onActivate: () => _setup.TrackCategory = TrackCategory.RaceTrack),
+                new MenuItem("Street adventure", MenuAction.None, nextMenuId: "explore_tracks_adventure", onActivate: () => _setup.TrackCategory = TrackCategory.StreetAdventure),
+                new MenuItem("Custom track", MenuAction.None, nextMenuId: "explore_tracks_custom", onActivate: () =>
+                {
+                    _setup.TrackCategory = TrackCategory.CustomTrack;
+                    RefreshExploreCustomTrackMenu();
+                }),
+                new MenuItem("Random", MenuAction.None, onActivate: StartRandomExploration),
+                BackItem()
+            };
+            return _menu.CreateMenu("explore_type", items, "Choose track type");
+        }
+
+        private void StartRandomExploration()
+        {
+            var customTracks = _selection.GetCustomTrackFiles();
+            var pick = TrackList.GetRandomTrackAny(customTracks);
+            _setup.TrackCategory = pick.Category;
+            _setup.TrackNameOrFile = pick.Key;
+            _actions.QueueRaceStart(RaceMode.Exploration);
         }
 
         private MenuScreen BuildMultiplayerMenu()
@@ -183,11 +221,69 @@ namespace TopSpeed.Menu
             return _menu.CreateMenu(id, items, "Select a track");
         }
 
-        private MenuScreen BuildCustomTrackMenu(string id, RaceMode mode)
+        private MenuScreen BuildExploreTrackMenu(string id, TrackCategory category)
+        {
+            var items = new List<MenuItem>();
+            var trackList = TrackList.GetTracks(category);
+            foreach (var track in trackList)
+            {
+                var key = track.Key;
+                items.Add(new MenuItem(track.Display, MenuAction.None, onActivate: () => StartExploration(category, key)));
+            }
+
+            items.Add(new MenuItem("Random", MenuAction.None, onActivate: () =>
+            {
+                _setup.TrackCategory = category;
+                _setup.TrackNameOrFile = TrackList.GetRandomTrackKey(category, _selection.GetCustomMapTrackFiles());
+                _actions.QueueRaceStart(RaceMode.Exploration);
+            }));
+            items.Add(BackItem());
+            return _menu.CreateMenu(id, items, "Select a track");
+        }
+
+        private MenuScreen BuildCustomTrackMenu(string id, RaceMode mode)       
         {
             var items = BuildCustomTrackItems(mode);
             var title = "Select a custom track";
             return _menu.CreateMenu(id, items, title);
+        }
+
+        private MenuScreen BuildExploreCustomTrackMenu(string id)
+        {
+            var items = BuildExploreCustomTrackItems();
+            var title = "Select a custom track";
+            return _menu.CreateMenu(id, items, title);
+        }
+
+        private void RefreshExploreCustomTrackMenu()
+        {
+            _menu.UpdateItems("explore_tracks_custom", BuildExploreCustomTrackItems());
+        }
+
+        private List<MenuItem> BuildExploreCustomTrackItems()
+        {
+            var items = new List<MenuItem>();
+            var customTracks = _selection.GetCustomMapTrackInfo();
+            if (customTracks.Count == 0)
+            {
+                items.Add(new MenuItem("No custom tracks found", MenuAction.None));
+                items.Add(BackItem());
+                return items;
+            }
+
+            foreach (var track in customTracks)
+            {
+                var key = track.Key;
+                items.Add(new MenuItem(track.Display, MenuAction.None, onActivate: () => StartExploration(TrackCategory.CustomTrack, key)));
+            }
+
+            items.Add(new MenuItem("Random", MenuAction.None, onActivate: () =>
+            {
+                _selection.SelectRandomCustomExploreTrack();
+                _actions.QueueRaceStart(RaceMode.Exploration);
+            }));
+            items.Add(BackItem());
+            return items;
         }
 
         private void RefreshCustomTrackMenu(RaceMode mode)

@@ -4,7 +4,8 @@ namespace TopSpeed.Core
     {
         QuickStart,
         TimeTrial,
-        SingleRace
+        SingleRace,
+        Exploration
     }
 
     internal enum TrackCategory

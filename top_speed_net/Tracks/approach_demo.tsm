@@ -1,0 +1,167 @@
+# Approach demo map (grid + sectors + portals + approaches)
+[meta]
+name=Approach Demo
+cell_size=1
+default_surface=asphalt
+default_noise=nonoise
+default_width=12
+weather=sunny
+ambience=noambience
+start_x=0
+start_z=0
+start_heading=east
+
+# Loop (4x4)
+[line]
+x=0
+z=0
+dir=east
+length=4
+exits=E,W
+
+[line]
+x=3
+z=0
+dir=north
+length=4
+exits=N,S
+
+[line]
+x=3
+z=3
+dir=west
+length=4
+exits=E,W
+
+[line]
+x=0
+z=3
+dir=south
+length=4
+exits=N,S
+
+# Cross lines
+[line]
+x=1
+z=0
+dir=north
+length=4
+exits=N,S
+
+[line]
+x=0
+z=1
+dir=east
+length=4
+exits=E,W
+
+# Corners
+[cell]
+x=0
+z=0
+exits=NE
+
+[cell]
+x=3
+z=0
+exits=NW
+
+[cell]
+x=3
+z=3
+exits=SW
+
+[cell]
+x=0
+z=3
+exits=SE
+
+# Center intersection
+[cell]
+x=1
+z=1
+exits=NESW
+
+# Shapes
+[shape: loop_shape]
+type=rectangle
+x=0
+z=0
+width=3
+height=3
+
+[shape: beacon_zone]
+type=circle
+x=1.5
+z=1.5
+radius=1.2
+
+# Areas
+[area: loop_area]
+type=zone
+shape=loop_shape
+surface=asphalt
+noise=nonoise
+
+# Sector (track-native)
+[sector: main_loop]
+type=straight
+name=Main loop
+area=loop_area
+
+# Portals (entry/exit geometry)
+[portal: p_loop_entry]
+sector=main_loop
+x=0
+z=0
+width=10
+entry_heading=east
+role=entry
+
+[portal: p_loop_exit]
+sector=main_loop
+x=3
+z=3
+width=10
+exit_heading=west
+role=exit
+
+[link]
+from=p_loop_entry
+to=p_loop_exit
+dir=oneway
+
+[path: loop_path]
+type=road
+from=p_loop_entry
+to=p_loop_exit
+width=12
+name=Loop path
+
+# Beacons / markers
+[beacon: b_center]
+type=voice
+role=guidance
+name=Center guide
+shape=beacon_zone
+x=1.5
+z=1.5
+heading=north
+
+[marker: m_apex]
+type=apex
+name=Corner apex
+x=3
+z=0
+heading=270
+
+# Approach definition (explicit alignment; airport-style aliases are accepted too)
+[approach: main_loop]
+name=Main loop alignment
+entry_portal=p_loop_entry
+exit_portal=p_loop_exit
+entry_heading=east
+exit_heading=west
+width=12
+length=40
+tolerance=8

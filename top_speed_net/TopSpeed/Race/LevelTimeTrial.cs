@@ -109,16 +109,16 @@ namespace TopSpeed.Race
             }
 
             _car.Run(elapsed);
-            _track.Run(_car.TrackPosition);
-            var road = _track.RoadAtPosition(_car.TrackPosition);
+            _track.Run(_car.MapState);
+            var road = _track.RoadAt(_car.MapState);
             _car.Evaluate(road);
             UpdateAudioListener(elapsed);
-            if (_track.NextRoad(_car.TrackPosition, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
+            if (_track.NextRoad(_car.MapState, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
                 CallNextRoad(nextRoad);
 
-            if (_track.Lap(_car.PositionY) > _lap)
+            if (_track.Lap(_car.DistanceMeters) > _lap)
             {
-                _lap = _track.Lap(_car.PositionY);
+                _lap = _track.Lap(_car.DistanceMeters);
                 if (_lap > _nrOfLaps)
                 {
                     var finishSound = _randomSounds[(int)RandomSound.Finish][Algorithm.RandomInt(_totalRandomSounds[(int)RandomSound.Finish])];

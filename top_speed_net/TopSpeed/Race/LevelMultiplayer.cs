@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using TopSpeed.Audio;
 using TopSpeed.Common;
 using TopSpeed.Data;
@@ -8,6 +9,7 @@ using TopSpeed.Network;
 using TopSpeed.Protocol;
 using TopSpeed.Speech;
 using TopSpeed.Tracks;
+using TopSpeed.Tracks.Map;
 using TopSpeed.Vehicles;
 using TS.Audio;
 
@@ -17,7 +19,6 @@ namespace TopSpeed.Race
     {
         private const int MaxPlayers = 8;
         private const float SendIntervalSeconds = 0.1f;
-        private const float StartLineY = 140.0f;
 
         private sealed class RemotePlayer
         {
@@ -94,9 +95,8 @@ namespace TopSpeed.Race
             _sentFinish = false;
 
             var rowSpacing = Math.Max(10.0f, _car.LengthM * 1.5f);
-            var positionX = CalculateStartX(_playerNumber, _car.WidthM);
-            var positionY = CalculateStartY(_playerNumber, rowSpacing);
-            _car.SetPosition(positionX, positionY);
+            var startPosition = CalculateStartPosition(_playerNumber, _car.WidthM, rowSpacing);
+            _car.SetPosition(startPosition.X, startPosition.Z);
 
             for (var i = 0; i < MaxPlayers; i++)
             {
@@ -203,17 +203,17 @@ namespace TopSpeed.Race
 
             UpdatePositions();
             _car.Run(elapsed);
-            _track.Run(_car.TrackPosition);
+            _track.Run(_car.MapState);
 
-            var road = _track.RoadAtPosition(_car.TrackPosition);
+            var road = _track.RoadAt(_car.MapState);
             _car.Evaluate(road);
             UpdateAudioListener(elapsed);
-            if (_track.NextRoad(_car.TrackPosition, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
+            if (_track.NextRoad(_car.MapState, _car.Speed, (int)_settings.CurveAnnouncement, out var nextRoad))
                 CallNextRoad(nextRoad);
 
-            if (_track.Lap(_car.PositionY) > _lap)
+            if (_track.Lap(_car.DistanceMeters) > _lap)
             {
-                _lap = _track.Lap(_car.PositionY);
+                _lap = _track.Lap(_car.DistanceMeters);
                 if (_lap > _nrOfLaps)
                 {
                     var finishSound = _randomSounds[(int)RandomSound.Finish][Algorithm.RandomInt(_totalRandomSounds[(int)RandomSound.Finish])];
@@ -311,8 +311,8 @@ namespace TopSpeed.Race
                     state = PlayerState.Racing;
                 var raceData = new PlayerRaceData
                 {
-                    PositionX = _car.PositionX,
-                    PositionY = _car.PositionY,
+                    PositionX = _car.WorldPosition.X,
+                    PositionY = _car.WorldPosition.Z,
                     Speed = (ushort)_car.Speed,
                     Frequency = _car.Frequency
                 };
@@ -382,8 +382,8 @@ namespace TopSpeed.Race
                 data.Braking,
                 data.Horning,
                 data.Backfiring,
-                _car.PositionX,
-                _car.PositionY,
+                _car.WorldPosition.X,
+                _car.WorldPosition.Z,
                 _track.Length);
         }
 
@@ -409,26 +409,27 @@ namespace TopSpeed.Race
             _position = 1;
             foreach (var remote in _remotePlayers.Values)
             {
-                if (remote.Player.PositionY > _car.PositionY)
+                if (remote.Player.DistanceMeters > _car.DistanceMeters)
                     _position++;
             }
         }
 
-        private float CalculateStartX(int gridIndex, float vehicleWidth)
+        private Vector3 CalculateStartPosition(int gridIndex, float vehicleWidth, float rowSpacing)
         {
+            var start = _track.Map.CellToWorld(_track.Map.StartX, _track.Map.StartZ);
+            var forward = MapMovement.DirectionVector(_track.Map.StartHeading);
+            var right = new Vector3(forward.Z, 0f, -forward.X);
+
             var halfWidth = Math.Max(0.1f, vehicleWidth * 0.5f);
             var margin = 0.3f;
             var laneHalfWidth = _track.LaneWidth;
             var laneOffset = laneHalfWidth - halfWidth - margin;
             if (laneOffset < 0f)
                 laneOffset = 0f;
-            return gridIndex % 2 == 1 ? laneOffset : -laneOffset;
-        }
 
-        private float CalculateStartY(int gridIndex, float rowSpacing)
-        {
             var row = gridIndex / 2;
-            return StartLineY - (row * rowSpacing);
+            var columnOffset = gridIndex % 2 == 1 ? laneOffset : -laneOffset;
+            return start + (right * columnOffset) - (forward * (row * rowSpacing));
         }
 
         private void Comment(bool automatic)
@@ -445,12 +446,12 @@ namespace TopSpeed.Race
             foreach (var remote in _remotePlayers.Values)
             {
                 var bot = remote.Player;
-                if (bot.PositionY > _car.PositionY)
+                if (bot.DistanceMeters > _car.DistanceMeters)
                 {
                     position++;
                 }
 
-                var delta = GetRelativeTrackDelta(bot.PositionY);
+                var delta = GetRelativeTrackDelta(bot.DistanceMeters);
                 if (delta > 0f)
                 {
                     var dist = delta;
@@ -513,18 +514,18 @@ namespace TopSpeed.Race
         private int CalculatePlayerPerc(int player)
         {
             if (player == _playerNumber)
-                return ClampPercent(_car.PositionY);
+                return ClampPercent(_car.DistanceMeters);
 
             var targetNumber = (byte)player;
             if (_remotePlayers.TryGetValue(targetNumber, out var remote))
-                return ClampPercent(remote.Player.PositionY);
+                return ClampPercent(remote.Player.DistanceMeters);
 
             return 0;
         }
 
-        private int ClampPercent(float positionY)
+        private int ClampPercent(float distanceMeters)
         {
-            var perc = (int)((positionY / (float)(_track.Length * _nrOfLaps)) * 100.0f);
+            var perc = (int)((distanceMeters / (float)(_track.Length * _nrOfLaps)) * 100.0f);
             if (perc > 100)
                 perc = 100;
             if (perc < 0)

@@ -9,6 +9,8 @@ using TopSpeed.Data;
 using TopSpeed.Input;
 using TopSpeed.Protocol;
 using TopSpeed.Tracks;
+using TopSpeed.Tracks.Geometry;
+using TopSpeed.Tracks.Map;
 using TS.Audio;
 
 namespace TopSpeed.Vehicles
@@ -25,7 +27,7 @@ namespace TopSpeed.Vehicles
         private static bool s_stickReleased;
 
         private readonly AudioManager _audio;
-        private readonly Track _track;
+        private readonly MapTrack _track;
         private readonly RaceInput _input;
         private readonly RaceSettings _settings;
         private readonly Func<float> _currentTime;
@@ -40,7 +42,7 @@ namespace TopSpeed.Vehicles
         private float _speed;
         private float _positionX;
         private float _positionY;
-        private TrackPosition _trackPosition;
+        private MapMovementState _mapState;
         private bool _manualTransmission;
         private bool _backfirePlayed;
         private bool _backfirePlayedAuto;
@@ -146,7 +148,7 @@ namespace TopSpeed.Vehicles
 
         public Car(
             AudioManager audio,
-            Track track,
+            MapTrack track,
             RaceInput input,
             RaceSettings settings,
             int vehicleIndex,
@@ -384,20 +386,23 @@ namespace TopSpeed.Vehicles
         // Engine simulation properties for reporting
         public float SpeedKmh => _engine.SpeedKmh;
         public float EngineRpm => _engine.Rpm;
-        public float DistanceMeters => _engine.DistanceMeters;
-        public TrackPosition TrackPosition => _trackPosition;
+        public float DistanceMeters => _mapState.DistanceMeters;
+        public MapMovementState MapState => _mapState;
 
         public void Initialize(float positionX = 0, float positionY = 0)
         {
-            _positionX = positionX;
-            _positionY = positionY;
-            _trackPosition = _track.CreateStartPosition(positionY);
+            if (Math.Abs(positionX) > 0.001f || Math.Abs(positionY) > 0.001f)
+                _mapState = _track.CreateStateFromWorld(new Vector3(positionX, 0f, positionY), _track.Map.StartHeading);
+            else
+                _mapState = _track.CreateStartState();
+            _positionX = 0f;
+            _positionY = _mapState.DistanceMeters;
             _laneWidth = _track.LaneWidth * 2;
             _audioInitialized = false;
-            _lastAudioX = positionX;
-            _lastAudioY = positionY;
+            _lastAudioX = _mapState.WorldPosition.X;
+            _lastAudioY = _mapState.WorldPosition.Z;
             _lastAudioElapsed = 0f;
-            var pose = _track.GetPose(_trackPosition);
+            var pose = _track.GetPose(_mapState);
             _dynamicsState = new VehicleDynamicsState
             {
                 VelLong = 0f,
@@ -411,20 +416,20 @@ namespace TopSpeed.Vehicles
             _turnTickInitialized = false;
             _turnTickAccumulator = 0f;
             _lastHeadingDegrees = HeadingDegrees;
-            _worldPosition = pose.Position + pose.Right * _positionX;
-            _worldForward = new Vector3((float)Math.Sin(_dynamicsState.Yaw), 0f, (float)Math.Cos(_dynamicsState.Yaw));
-            _worldUp = pose.Up.LengthSquared() > 0f ? Vector3.Normalize(pose.Up) : Vector3.UnitY;
+            _worldPosition = pose.Position;
+            _worldForward = pose.Tangent;
+            _worldUp = Vector3.UnitY;
             _worldVelocity = Vector3.Zero;
             _vibration?.PlayEffect(VibrationEffectType.Spring);
         }
 
         public void SetPosition(float positionX, float positionY)
         {
-            _positionX = positionX;
-            _positionY = positionY;
-            _trackPosition = _track.CreatePositionFromDistance(positionY);
-            var pose = _track.GetPose(_trackPosition);
-            _worldPosition = pose.Position + pose.Right * _positionX;
+            _mapState = _track.CreateStateFromWorld(new Vector3(positionX, 0f, positionY), _mapState.Heading);
+            _positionX = 0f;
+            _positionY = _mapState.DistanceMeters;
+            var pose = _track.GetPose(_mapState);
+            _worldPosition = pose.Position;
         }
 
         public void FinalizeCar()
@@ -444,7 +449,7 @@ namespace TopSpeed.Vehicles
             {
                 VelLong = 0f,
                 VelLat = 0f,
-                Yaw = _track.GetPose(_trackPosition).HeadingRadians,
+                Yaw = _track.GetPose(_mapState).HeadingRadians,
                 YawRate = 0f,
                 SteerInput = 0f,
                 SteerWheelAngleRad = 0f,
@@ -486,7 +491,7 @@ namespace TopSpeed.Vehicles
             {
                 VelLong = 0f,
                 VelLat = 0f,
-                Yaw = _track.GetPose(_trackPosition).HeadingRadians,
+                Yaw = _track.GetPose(_mapState).HeadingRadians,
                 YawRate = 0f,
                 SteerInput = 0f,
                 SteerWheelAngleRad = 0f,
@@ -661,8 +666,6 @@ namespace TopSpeed.Vehicles
                     _positionX = 0f;
                 if (!IsFinite(_positionY))
                     _positionY = 0f;
-                if (!_trackPosition.IsGraphPosition && _track.HasGeometry)
-                    _trackPosition = _track.CreatePositionFromDistance(_positionY);
 
                 _currentSteering = _input.GetSteering();
                 _currentThrottle = _input.GetThrottle();
@@ -893,32 +896,21 @@ namespace TopSpeed.Vehicles
                     _soundSand.SetVolumePercent(90);
                     _soundSnow.SetVolumePercent(90);
                 }
-
-                var yawSin = (float)Math.Sin(_dynamicsState.Yaw);
-                var yawCos = (float)Math.Cos(_dynamicsState.Yaw);
-                var worldVelocity = new Vector3(
-                    (_dynamicsState.VelLong * yawSin) + (_dynamicsState.VelLat * yawCos),
-                    0f,
-                    (_dynamicsState.VelLong * yawCos) - (_dynamicsState.VelLat * yawSin));
-
-                var poseForVel = _track.GetPose(_trackPosition);
-                var deltaS = Vector3.Dot(worldVelocity, poseForVel.Tangent);
-                var deltaX = Vector3.Dot(worldVelocity, poseForVel.Right);
-                var branchHint = _currentSteering / 100f;
-                _trackPosition = _track.Advance(_trackPosition, deltaS * elapsed, branchHint);
-                _positionY = _trackPosition.DistanceMeters;
-                _positionX += deltaX * elapsed;
-                var pose = _track.GetPose(_trackPosition);
-                _worldPosition = pose.Position + pose.Right * _positionX;
-                var up = pose.Up.LengthSquared() > 0.0001f ? Vector3.Normalize(pose.Up) : Vector3.UnitY;
-                var forwardFlat = new Vector3(yawSin, 0f, yawCos);
-                var right = Vector3.Cross(up, forwardFlat);
-                if (right.LengthSquared() < 0.0001f)
-                    right = Vector3.UnitX;
-                else
-                    right = Vector3.Normalize(right);
-                _worldForward = Vector3.Normalize(Vector3.Cross(right, up));    
-                _worldUp = up;
+                var heading = MapMovement.DirectionFromYaw(_dynamicsState.Yaw);
+                var distanceMeters = (_speed / 3.6f) * elapsed;
+                var previousPosition = _worldPosition;
+                _track.TryMove(ref _mapState, distanceMeters, heading, out _, out var boundaryHit);
+                if (boundaryHit)
+                {
+                    _speed = 0f;
+                    _dynamicsState.VelLong = 0f;
+                    _dynamicsState.VelLat = 0f;
+                }
+                _worldPosition = _mapState.WorldPosition;
+                _positionY = _mapState.DistanceMeters;
+                var worldVelocity = elapsed > 0f ? (_worldPosition - previousPosition) / elapsed : Vector3.Zero;
+                _worldForward = MapMovement.DirectionVector(heading);
+                _worldUp = Vector3.UnitY;
                 _worldVelocity = worldVelocity;
                 UpdateTurnTick();
 
@@ -1143,7 +1135,7 @@ namespace TopSpeed.Vehicles
             }
         }
 
-        public void Evaluate(Track.Road road)
+        public void Evaluate(TrackRoad road)
         {
             var roadWidth = road.Right - road.Left;
             if (roadWidth > 0f)
@@ -1697,7 +1689,7 @@ namespace TopSpeed.Vehicles
                 : _audio.CreateSpatialSource(path!, streamFromDisk: true, allowHrtf: allowHrtf);
         }
 
-        private void UpdateSpatialAudio(Track.Road road)
+        private void UpdateSpatialAudio(TrackRoad road)
         {
             var elapsed = _lastAudioElapsed;
             if (elapsed <= 0f)

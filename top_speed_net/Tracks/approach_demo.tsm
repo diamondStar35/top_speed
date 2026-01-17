@@ -1,6 +1,6 @@
-# Approach demo map (grid + sectors + portals + approaches)
+# Approach demo map (1 km loop with sectors, portals, approaches, beacons, safe zone)
 [meta]
-name=Approach Demo
+name=Approach Demo 1km
 cell_size=1
 default_surface=asphalt
 default_noise=nonoise
@@ -11,90 +11,131 @@ start_x=0
 start_z=0
 start_heading=east
 
-# Loop (4x4)
-[line]
-x=0
-z=0
-dir=east
-length=4
-exits=E,W
-
-[line]
-x=3
-z=0
-dir=north
-length=4
-exits=N,S
-
-[line]
-x=3
-z=3
-dir=west
-length=4
-exits=E,W
-
-[line]
-x=0
-z=3
-dir=south
-length=4
-exits=N,S
-
-# Cross lines
+# 1 km loop perimeter (square 251x251, perimeter = 1000)
 [line]
 x=1
 z=0
+dir=east
+length=249
+exits=E,W
+
+[line]
+x=250
+z=1
 dir=north
-length=4
+length=249
 exits=N,S
+
+[line]
+x=1
+z=250
+dir=east
+length=249
+exits=E,W
 
 [line]
 x=0
 z=1
+dir=north
+length=249
+exits=N,S
+
+# Cross lines through the center
+[line]
+x=125
+z=1
+dir=north
+length=249
+exits=N,S
+
+[line]
+x=1
+z=125
 dir=east
-length=4
+length=249
 exits=E,W
 
-# Corners
+# Branch to the east
+[line]
+x=251
+z=125
+dir=east
+length=49
+exits=E,W
+width=10
+
+# Corners (curves)
 [cell]
 x=0
 z=0
 exits=NE
 
 [cell]
-x=3
+x=250
 z=0
 exits=NW
 
 [cell]
-x=3
-z=3
+x=250
+z=250
 exits=SW
 
 [cell]
 x=0
-z=3
+z=250
 exits=SE
 
 # Center intersection
 [cell]
-x=1
-z=1
+x=125
+z=125
 exits=NESW
+
+# Cross line connections on edges
+[cell]
+x=125
+z=0
+exits=NEW
+
+[cell]
+x=125
+z=250
+exits=SEW
+
+[cell]
+x=0
+z=125
+exits=NSE
+
+[cell]
+x=250
+z=125
+exits=NSWE
+
+[cell]
+x=300
+z=125
+exits=W
 
 # Shapes
 [shape: loop_shape]
 type=rectangle
 x=0
 z=0
-width=3
-height=3
+width=250
+height=250
+
+[shape: safe_zone_circle]
+type=circle
+x=125
+z=125
+radius=200
 
 [shape: beacon_zone]
 type=circle
-x=1.5
-z=1.5
-radius=1.2
+x=125
+z=125
+radius=2
 
 # Areas
 [area: loop_area]
@@ -102,6 +143,13 @@ type=zone
 shape=loop_shape
 surface=asphalt
 noise=nonoise
+
+[area: safe_zone]
+type=safezone
+shape=safe_zone_circle
+surface=gravel
+noise=trackside
+flags=safezone
 
 # Sector (track-native)
 [sector: main_loop]
@@ -114,15 +162,15 @@ area=loop_area
 sector=main_loop
 x=0
 z=0
-width=10
+width=12
 entry_heading=east
 role=entry
 
 [portal: p_loop_exit]
 sector=main_loop
-x=3
-z=3
-width=10
+x=250
+z=250
+width=12
 exit_heading=west
 role=exit
 
@@ -144,18 +192,18 @@ type=voice
 role=guidance
 name=Center guide
 shape=beacon_zone
-x=1.5
-z=1.5
+x=125
+z=125
 heading=north
 
 [marker: m_apex]
 type=apex
 name=Corner apex
-x=3
+x=250
 z=0
 heading=270
 
-# Approach definition (explicit alignment; airport-style aliases are accepted too)
+# Approach definition (explicit alignment)
 [approach: main_loop]
 name=Main loop alignment
 entry_portal=p_loop_entry
@@ -163,5 +211,5 @@ exit_portal=p_loop_exit
 entry_heading=east
 exit_heading=west
 width=12
-length=40
+length=1000
 tolerance=8

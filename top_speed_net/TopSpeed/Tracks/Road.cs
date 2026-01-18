@@ -11,5 +11,11 @@ namespace TopSpeed.Tracks
         public float Length;
         public bool IsSafeZone;
         public bool IsOutOfBounds;
+        public bool IsClosed;
+        public bool IsRestricted;
+        public bool RequiresStop;
+        public bool RequiresYield;
+        public float? MinSpeedKph;
+        public float? MaxSpeedKph;
     }
 }

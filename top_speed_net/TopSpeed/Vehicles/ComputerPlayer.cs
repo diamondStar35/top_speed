@@ -22,6 +22,7 @@ namespace TopSpeed.Vehicles
         private const float StabilitySpeedRef = 45.0f;
         private const float AutoShiftHysteresis = 0.05f;
         private const float AutoShiftCooldownSeconds = 0.15f;
+        private const float YieldSpeedKph = 10.0f;
 
         private readonly AudioManager _audio;
         private readonly MapTrack _track;
@@ -571,6 +572,10 @@ namespace TopSpeed.Vehicles
                     _dynamicsState.VelLong = 0f;
                     _dynamicsState.VelLat = 0f;
                 }
+                else
+                {
+                    ApplySectorSpeedRules(_mapState.WorldPosition, heading);
+                }
                 _worldPosition = _mapState.WorldPosition;
                 _positionY = _mapState.DistanceMeters;
                 var worldVelocity = elapsed > 0f ? (_worldPosition - previousPosition) / elapsed : Vector3.Zero;
@@ -784,6 +789,33 @@ namespace TopSpeed.Vehicles
 
             _surface = road.Surface;
             _frame++;
+        }
+
+        private void ApplySectorSpeedRules(Vector3 worldPosition, MapDirection heading)
+        {
+            if (!_track.TryGetSectorRules(worldPosition, heading, out _, out var rules, out _, out _))
+                return;
+
+            var speedCap = rules.MaxSpeedKph;
+            if (rules.RequiresYield)
+            {
+                var yieldCap = YieldSpeedKph;
+                speedCap = speedCap.HasValue ? Math.Min(speedCap.Value, yieldCap) : yieldCap;
+            }
+
+            if (rules.RequiresStop)
+                speedCap = 0f;
+
+            if (!speedCap.HasValue)
+                return;
+            if (_speed <= speedCap.Value)
+                return;
+
+            var cap = Math.Max(0f, speedCap.Value);
+            var factor = _speed > 0f ? cap / _speed : 0f;
+            _speed = cap;
+            _dynamicsState.VelLong *= factor;
+            _dynamicsState.VelLat *= factor;
         }
 
         public void Pause()

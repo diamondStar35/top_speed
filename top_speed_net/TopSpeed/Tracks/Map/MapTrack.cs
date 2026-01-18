@@ -22,9 +22,11 @@ namespace TopSpeed.Tracks.Map
         private readonly TrackMap _map;
         private readonly TrackAreaManager _areaManager;
         private readonly TrackSectorManager _sectorManager;
+        private readonly TrackSectorRuleManager _sectorRuleManager;
         private readonly TrackPortalManager _portalManager;
         private readonly TrackApproachBeacon _approachBeacon;
         private readonly TrackPathManager _pathManager;
+        private readonly TrackBranchManager _branchManager;
         private readonly string _trackName;
         private readonly bool _userDefined;
         private TrackNoise _currentNoise;
@@ -58,8 +60,10 @@ namespace TopSpeed.Tracks.Map
             _areaManager = map.BuildAreaManager();
             _portalManager = map.BuildPortalManager();
             _sectorManager = new TrackSectorManager(map.Sectors, _areaManager, _portalManager);
+            _sectorRuleManager = map.BuildSectorRuleManager();
             _approachBeacon = new TrackApproachBeacon(map);
             _pathManager = new TrackPathManager(map.Paths, map.Shapes, _portalManager, map.DefaultWidthMeters);
+            _branchManager = map.BuildBranchManager();
             InitializeSounds();
         }
 
@@ -82,6 +86,8 @@ namespace TopSpeed.Tracks.Map
         public float LaneWidth => Math.Max(0.5f, _map.DefaultWidthMeters * 0.5f);
         public TrackMap Map => _map;
         public float Length => Math.Max(0f, _map.CellCount * _map.CellSizeMeters);
+        public TrackSectorRuleManager SectorRules => _sectorRuleManager;
+        public TrackBranchManager Branches => _branchManager;
 
         public int Lap(float distanceMeters)
         {
@@ -150,6 +156,7 @@ namespace TopSpeed.Tracks.Map
                 defaultRoad.Surface = defaultSurface;
                 defaultRoad.IsSafeZone = defaultSafeZone;
                 defaultRoad.IsOutOfBounds = !IsWithinTrackInternal(state.WorldPosition, defaultSafeZone);
+                ApplySectorRuleFields(state.WorldPosition, state.Heading, ref defaultRoad);
                 return defaultRoad;
             }
 
@@ -162,7 +169,7 @@ namespace TopSpeed.Tracks.Map
             ApplyPathWidth(state.WorldPosition, ref width);
             ApplyAreaOverrides(state.WorldPosition, state.Heading, ref width, ref length, ref surface, ref noise, ref safeZone);
 
-            return new TrackRoad
+            var road = new TrackRoad
             {
                 Left = -width * 0.5f,
                 Right = width * 0.5f,
@@ -172,14 +179,56 @@ namespace TopSpeed.Tracks.Map
                 IsSafeZone = safeZone,
                 IsOutOfBounds = !IsWithinTrackInternal(state.WorldPosition, safeZone)
             };
+            ApplySectorRuleFields(state.WorldPosition, state.Heading, ref road);
+            return road;
+        }
+
+        public bool TryGetSectorRules(
+            Vector3 worldPosition,
+            MapDirection heading,
+            out TrackSectorDefinition sector,
+            out TrackSectorRules rules,
+            out PortalDefinition? portal,
+            out float? portalDeltaDegrees)
+        {
+            sector = null!;
+            rules = null!;
+            portal = null;
+            portalDeltaDegrees = null;
+
+            if (_sectorManager == null || _sectorRuleManager == null)
+                return false;
+
+            var position2D = new Vector2(worldPosition.X, worldPosition.Z);
+            if (!_sectorManager.TryLocate(position2D, HeadingDegrees(heading), out var foundSector, out var foundPortal, out var delta))
+                return false;
+
+            if (!_sectorRuleManager.TryGetRules(foundSector.Id, out var foundRules))
+                return false;
+
+            sector = foundSector;
+            rules = foundRules;
+            portal = foundPortal;
+            portalDeltaDegrees = delta;
+            return true;
         }
 
         public bool TryMove(ref MapMovementState state, float distanceMeters, MapDirection heading, out TrackRoad road, out bool boundaryHit)
         {
             boundaryHit = false;
             road = BuildDefaultRoad();
+            var previousState = state;
+            var previousPosition = state.WorldPosition;
             if (!MapMovement.TryMove(_map, ref state, distanceMeters, heading, out var cell, out boundaryHit))
             {
+                road = RoadAt(state);
+                return false;
+            }
+
+            if (!IsSectorTransitionAllowed(previousPosition, state.WorldPosition, heading))
+            {
+                state = previousState;
+                boundaryHit = true;
                 road = RoadAt(state);
                 return false;
             }
@@ -705,6 +754,8 @@ namespace TopSpeed.Tracks.Map
         private bool IsWithinTrackInternal(Vector3 worldPosition, bool isSafeZone)
         {
             var position = new Vector2(worldPosition.X, worldPosition.Z);
+            if (IsBlockedBySectorRules(position))
+                return false;
             if (_pathManager.HasPaths)
             {
                 if (_pathManager.ContainsAny(position))
@@ -743,6 +794,78 @@ namespace TopSpeed.Tracks.Map
                 MapDirection.West => 270f,
                 _ => 0f
             };
+        }
+
+        internal bool IsSectorTransitionAllowed(Vector3 fromPosition, Vector3 toPosition, MapDirection heading)
+        {
+            if (_sectorRuleManager == null || _sectorManager == null)
+                return true;
+
+            var headingDegrees = HeadingDegrees(heading);
+            var fromPos = new Vector2(fromPosition.X, fromPosition.Z);
+            var toPos = new Vector2(toPosition.X, toPosition.Z);
+
+            var hasFrom = _sectorManager.TryLocate(fromPos, headingDegrees, out var fromSector, out var fromPortal, out _);
+            var hasTo = _sectorManager.TryLocate(toPos, headingDegrees, out var toSector, out var toPortal, out _);
+
+            if (!hasTo)
+                return true;
+
+            if (!_sectorRuleManager.TryGetRules(toSector.Id, out var toRules))
+                return true;
+
+            if (toRules.IsClosed || toRules.IsRestricted)
+                return false;
+
+            if (hasFrom && !string.Equals(fromSector.Id, toSector.Id, StringComparison.OrdinalIgnoreCase))
+            {
+                var entryPortalId = toPortal?.Id;
+                var exitPortalId = fromPortal?.Id;
+                if (!_sectorRuleManager.AllowsExit(fromSector.Id, exitPortalId, heading))
+                    return false;
+                if (!_sectorRuleManager.AllowsEntry(toSector.Id, entryPortalId, heading))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void ApplySectorRuleFields(Vector3 worldPosition, MapDirection heading, ref TrackRoad road)
+        {
+            if (_sectorRuleManager == null || _sectorManager == null)
+                return;
+
+            var position = new Vector2(worldPosition.X, worldPosition.Z);
+            if (!_sectorManager.TryLocate(position, HeadingDegrees(heading), out var sector, out _, out _))
+                return;
+            if (!_sectorRuleManager.TryGetRules(sector.Id, out var rules))
+                return;
+
+            road.IsClosed = rules.IsClosed;
+            road.IsRestricted = rules.IsRestricted;
+            road.RequiresStop = rules.RequiresStop;
+            road.RequiresYield = rules.RequiresYield;
+            road.MinSpeedKph = rules.MinSpeedKph;
+            road.MaxSpeedKph = rules.MaxSpeedKph;
+        }
+
+        private bool IsBlockedBySectorRules(Vector2 position)
+        {
+            if (_sectorRuleManager == null || _sectorManager == null)
+                return false;
+
+            var sectors = _sectorManager.FindSectorsContaining(position);
+            if (sectors.Count == 0)
+                return false;
+
+            foreach (var sector in sectors)
+            {
+                if (_sectorRuleManager.TryGetRules(sector.Id, out var rules) &&
+                    (rules.IsClosed || rules.IsRestricted))
+                    return true;
+            }
+
+            return false;
         }
 
         private static void StopSound(AudioSourceHandle? sound)

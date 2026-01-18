@@ -11,6 +11,7 @@ using TopSpeed.Speech;
 using TopSpeed.Tracks.Areas;
 using TopSpeed.Tracks.Guidance;
 using TopSpeed.Tracks.Map;
+using TopSpeed.Tracks.Sectors;
 using TopSpeed.Tracks.Topology;
 using TS.Audio;
 
@@ -38,6 +39,10 @@ namespace TopSpeed.Race
         private MapMovementState _mapState;
         private MapSnapshot _mapSnapshot;
         private TrackAreaManager? _areaManager;
+        private TrackSectorManager? _sectorManager;
+        private TrackSectorRuleManager? _sectorRuleManager;
+        private TrackBranchManager? _branchManager;
+        private TrackPortalManager? _portalManager;
         private TrackApproachBeacon? _approachBeacon;
         private AudioSourceHandle? _soundBeacon;
         private string? _lastApproachPortalId;
@@ -78,6 +83,10 @@ namespace TopSpeed.Race
             _worldPosition = _mapState.WorldPosition;
             _listenerForward = Vector3.UnitZ;
             _areaManager = _map.BuildAreaManager();
+            _portalManager = _map.BuildPortalManager();
+            _sectorManager = new TrackSectorManager(_map.Sectors, _areaManager, _portalManager);
+            _sectorRuleManager = new TrackSectorRuleManager(_map.Sectors, _portalManager);
+            _branchManager = _map.BuildBranchManager();
             _pathManager = _map.BuildPathManager();
             _approachBeacon = new TrackApproachBeacon(_map, ApproachBeaconRangeMeters);
             InitializeBeacon();
@@ -175,15 +184,20 @@ namespace TopSpeed.Race
                 _speech.Speak("Track boundary.");
                 return;
             }
+            if (!AllowsSectorTransition(_worldPosition, nextWorld, direction, out var deniedReason))
+            {
+                _speech.Speak(deniedReason);
+                return;
+            }
 
             _worldPosition = nextWorld;
             _mapState.CellX = nextCellX;
             _mapState.CellZ = nextCellZ;
             _mapState.WorldPosition = nextWorld;
-            _mapHeading = MapDirection.North;
+            _mapHeading = direction;
             _mapState.Heading = _mapHeading;
-            _mapState.HeadingDegrees = 0f;
-            _listenerForward = Vector3.UnitZ;
+            _mapState.HeadingDegrees = HeadingDegrees(direction);
+            _listenerForward = MapMovement.DirectionVector(direction);
 
             var previous = _mapSnapshot;
             var current = BuildMapSnapshot(nextCellX, nextCellZ, _mapHeading);
@@ -235,7 +249,48 @@ namespace TopSpeed.Race
             var worldPosition = _map.CellToWorld(x, z);
             ApplyPathWidthSnapshot(new Vector2(worldPosition.X, worldPosition.Z), ref snapshot.WidthMeters);
             ApplyAreaSnapshotOverrides(new Vector2(worldPosition.X, worldPosition.Z), heading, ref snapshot);
+            ApplySectorSnapshotOverrides(new Vector2(worldPosition.X, worldPosition.Z), heading, ref snapshot);
             return snapshot;
+        }
+
+        private void ApplySectorSnapshotOverrides(Vector2 position, MapDirection heading, ref MapSnapshot snapshot)
+        {
+            if (_sectorManager == null)
+                return;
+
+            if (!_sectorManager.TryLocate(position, HeadingDegrees(heading), out var sector, out _, out _))
+                return;
+
+            snapshot.SectorId = sector.Id;
+            snapshot.SectorType = sector.Type;
+
+            if (_sectorRuleManager != null && _sectorRuleManager.TryGetRules(sector.Id, out var rules))
+            {
+                snapshot.IsClosed = rules.IsClosed;
+                snapshot.IsRestricted = rules.IsRestricted;
+                snapshot.RequiresStop = rules.RequiresStop;
+                snapshot.RequiresYield = rules.RequiresYield;
+                snapshot.MinSpeedKph = rules.MinSpeedKph;
+                snapshot.MaxSpeedKph = rules.MaxSpeedKph;
+            }
+
+            if (_branchManager == null)
+                return;
+
+            var branches = _branchManager.GetBranchesForSector(sector.Id);
+            if (branches.Count == 0)
+                return;
+
+            var branch = branches[0];
+            snapshot.BranchId = branch.Id;
+            snapshot.BranchRole = branch.Role;
+            snapshot.IsIntersection = branch.Role == TrackBranchRole.Intersection ||
+                                      branch.Role == TrackBranchRole.Merge ||
+                                      branch.Role == TrackBranchRole.Split ||
+                                      branch.Role == TrackBranchRole.Branch;
+
+            snapshot.BranchSummary = BuildBranchSummary(branch, position, heading);
+            snapshot.BranchSuggestion = BuildBranchSuggestion(branch, position, heading);
         }
 
         private void ApplyAreaSnapshotOverrides(Vector2 position, MapDirection heading, ref MapSnapshot snapshot)
@@ -339,6 +394,15 @@ namespace TopSpeed.Race
                     _speech.Speak("Leaving safe zone.");
             }
 
+            if (previous.IsClosed != current.IsClosed && current.IsClosed)
+                _speech.Speak("Closed sector.");
+            if (previous.IsRestricted != current.IsRestricted && current.IsRestricted)
+                _speech.Speak("Restricted sector.");
+            if (previous.RequiresStop != current.RequiresStop && current.RequiresStop)
+                _speech.Speak("Stop required.");
+            if (previous.RequiresYield != current.RequiresYield && current.RequiresYield)
+                _speech.Speak("Yield.");
+
             if (!string.Equals(previous.Zone, current.Zone, StringComparison.OrdinalIgnoreCase))
             {
                 if (!string.IsNullOrWhiteSpace(current.Zone))
@@ -352,14 +416,22 @@ namespace TopSpeed.Race
             if (!string.Equals(previousCurve, currentCurve, StringComparison.OrdinalIgnoreCase))
                 _speech.Speak(currentCurve);
 
-            var wasIntersection = IsIntersection(previous.Exits);
-            var isIntersection = IsIntersection(current.Exits);
+            var wasIntersection = previous.IsIntersection;
+            var isIntersection = current.IsIntersection;
             if (wasIntersection != isIntersection)
             {
                 if (isIntersection)
                     _speech.Speak("Intersection.");
                 else
                     _speech.Speak("Leaving intersection.");
+            }
+
+            if (!string.Equals(previous.BranchId, current.BranchId, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!string.IsNullOrWhiteSpace(current.BranchSummary))
+                    _speech.Speak(current.BranchSummary);
+                if (!string.IsNullOrWhiteSpace(current.BranchSuggestion))
+                    _speech.Speak(current.BranchSuggestion);
             }
         }
 
@@ -440,10 +512,78 @@ namespace TopSpeed.Race
             {
                 if (_pathManager.ContainsAny(position))
                     return true;
-                return safeZone;
+                return safeZone && !IsBlockedBySectorRules(position);
             }
 
-            return _map.TryGetCell(cellX, cellZ, out _);
+            if (!_map.TryGetCell(cellX, cellZ, out _))
+                return false;
+
+            return !IsBlockedBySectorRules(position);
+        }
+
+        private bool IsBlockedBySectorRules(Vector2 position)
+        {
+            if (_sectorManager == null || _sectorRuleManager == null)
+                return false;
+
+            var sectors = _sectorManager.FindSectorsContaining(position);
+            if (sectors.Count == 0)
+                return false;
+
+            foreach (var sector in sectors)
+            {
+                if (_sectorRuleManager.TryGetRules(sector.Id, out var rules) &&
+                    (rules.IsClosed || rules.IsRestricted))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private bool AllowsSectorTransition(Vector3 fromPosition, Vector3 toPosition, MapDirection heading, out string deniedReason)
+        {
+            deniedReason = "Access denied.";
+            if (_sectorManager == null || _sectorRuleManager == null)
+                return true;
+
+            var headingDegrees = HeadingDegrees(heading);
+            var fromPos = new Vector2(fromPosition.X, fromPosition.Z);
+            var toPos = new Vector2(toPosition.X, toPosition.Z);
+
+            var hasFrom = _sectorManager.TryLocate(fromPos, headingDegrees, out var fromSector, out var fromPortal, out _);
+            var hasTo = _sectorManager.TryLocate(toPos, headingDegrees, out var toSector, out var toPortal, out _);
+            if (!hasTo)
+                return true;
+
+            if (_sectorRuleManager.TryGetRules(toSector.Id, out var toRules))
+            {
+                if (toRules.IsClosed)
+                {
+                    deniedReason = "Closed sector.";
+                    return false;
+                }
+                if (toRules.IsRestricted)
+                {
+                    deniedReason = "Restricted sector.";
+                    return false;
+                }
+            }
+
+            if (hasFrom && !string.Equals(fromSector.Id, toSector.Id, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!_sectorRuleManager.AllowsExit(fromSector.Id, fromPortal?.Id, heading))
+                {
+                    deniedReason = "Exit not allowed.";
+                    return false;
+                }
+                if (!_sectorRuleManager.AllowsEntry(toSector.Id, toPortal?.Id, heading))
+                {
+                    deniedReason = "Entry not allowed.";
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool IsSafeZone(Vector2 position)
@@ -479,19 +619,183 @@ namespace TopSpeed.Race
             return "west";
         }
 
-        private static bool IsIntersection(MapExits exits)
+        private static float HeadingDegrees(MapDirection heading)
         {
-            return CountExits(exits) >= 3;
+            return heading switch
+            {
+                MapDirection.North => 0f,
+                MapDirection.East => 90f,
+                MapDirection.South => 180f,
+                MapDirection.West => 270f,
+                _ => 0f
+            };
         }
 
-        private static int CountExits(MapExits exits)
+        private string BuildBranchSummary(TrackBranchDefinition branch, Vector2 position, MapDirection heading)
         {
-            var count = 0;
-            if ((exits & MapExits.North) != 0) count++;
-            if ((exits & MapExits.East) != 0) count++;
-            if ((exits & MapExits.South) != 0) count++;
-            if ((exits & MapExits.West) != 0) count++;
-            return count;
+            if (branch.Exits.Count == 0)
+                return string.Empty;
+
+            var exitSummaries = new List<string>();
+            foreach (var exit in branch.Exits)
+            {
+                var desc = DescribeExit(exit, position, heading);
+                if (!string.IsNullOrWhiteSpace(desc))
+                    exitSummaries.Add(desc);
+            }
+
+            if (exitSummaries.Count == 0)
+                return string.Empty;
+
+            return $"Exits: {string.Join(", ", exitSummaries)}.";
+        }
+
+        private string BuildBranchSuggestion(
+            TrackBranchDefinition branch,
+            Vector2 position,
+            MapDirection heading)
+        {
+            if (branch.Exits.Count == 0)
+                return string.Empty;
+
+            var preferredPortal = GetPreferredExitPortal(branch);
+            TrackBranchExitDefinition? choice = null;
+            if (!string.IsNullOrWhiteSpace(preferredPortal))
+            {
+                foreach (var exit in branch.Exits)
+                {
+                    if (string.Equals(exit.PortalId, preferredPortal, StringComparison.OrdinalIgnoreCase))
+                    {
+                        choice = exit;
+                        break;
+                    }
+                }
+            }
+
+            if (choice == null)
+                choice = ChooseClosestExit(branch.Exits, position, heading);
+
+            if (choice == null)
+                return string.Empty;
+
+            var desc = DescribeExit(choice, position, heading);
+            if (string.IsNullOrWhiteSpace(desc))
+                return string.Empty;
+
+            return $"Suggested: {desc}.";
+        }
+
+        private string? GetPreferredExitPortal(TrackBranchDefinition branch)
+        {
+            if (branch.Metadata == null || branch.Metadata.Count == 0)
+                return null;
+
+            if (branch.Metadata.TryGetValue("preferred_exit", out var raw) && !string.IsNullOrWhiteSpace(raw))
+                return raw.Trim();
+            if (branch.Metadata.TryGetValue("preferred_exit_portal", out raw) && !string.IsNullOrWhiteSpace(raw))
+                return raw.Trim();
+            if (branch.Metadata.TryGetValue("preferred_exit_id", out raw) && !string.IsNullOrWhiteSpace(raw))
+                return raw.Trim();
+            return null;
+        }
+
+        private TrackBranchExitDefinition? ChooseClosestExit(
+            IReadOnlyList<TrackBranchExitDefinition> exits,
+            Vector2 position,
+            MapDirection heading)
+        {
+            var headingDegrees = HeadingDegrees(heading);
+            TrackBranchExitDefinition? best = null;
+            var bestDelta = float.MaxValue;
+
+            foreach (var exit in exits)
+            {
+                if (!TryResolveExitHeading(exit, position, out var exitHeading))
+                    continue;
+                var delta = Math.Abs(NormalizeDegreesDelta(exitHeading - headingDegrees));
+                if (delta < bestDelta)
+                {
+                    bestDelta = delta;
+                    best = exit;
+                }
+            }
+
+            return best;
+        }
+
+        private string DescribeExit(TrackBranchExitDefinition exit, Vector2 position, MapDirection heading)
+        {
+            if (!TryResolveExitHeading(exit, position, out var exitHeading))
+                return exit.Name ?? string.Empty;
+
+            var relative = DescribeRelativeDirection(exitHeading, heading);
+            if (string.IsNullOrWhiteSpace(exit.Name))
+                return relative;
+            return $"{relative} ({exit.Name})";
+        }
+
+        private bool TryResolveExitHeading(TrackBranchExitDefinition exit, Vector2 position, out float headingDegrees)
+        {
+            headingDegrees = 0f;
+            if (exit.HeadingDegrees.HasValue)
+            {
+                headingDegrees = exit.HeadingDegrees.Value;
+                return true;
+            }
+
+            if (_portalManager != null && _portalManager.TryGetPortal(exit.PortalId, out var portal))
+            {
+                if (portal.ExitHeadingDegrees.HasValue)
+                {
+                    headingDegrees = portal.ExitHeadingDegrees.Value;
+                    return true;
+                }
+                if (portal.EntryHeadingDegrees.HasValue)
+                {
+                    headingDegrees = portal.EntryHeadingDegrees.Value;
+                    return true;
+                }
+
+                var portalPos = new Vector2(portal.X, portal.Z);
+                headingDegrees = HeadingFromVector(portalPos - position);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static float HeadingFromVector(Vector2 delta)
+        {
+            var radians = (float)Math.Atan2(delta.X, delta.Y);
+            var degrees = radians * 180f / (float)Math.PI;
+            if (degrees < 0f)
+                degrees += 360f;
+            return degrees;
+        }
+
+        private static string DescribeRelativeDirection(float targetHeadingDegrees, MapDirection heading)
+        {
+            var current = HeadingDegrees(heading);
+            var delta = NormalizeDegreesDelta(targetHeadingDegrees - current);
+            var absDelta = Math.Abs(delta);
+
+            if (absDelta <= 30f)
+                return "straight";
+            if (absDelta >= 150f)
+                return "back";
+            if (delta > 0f)
+                return "right";
+            return "left";
+        }
+
+        private static float NormalizeDegreesDelta(float degreesDelta)
+        {
+            degreesDelta %= 360f;
+            if (degreesDelta > 180f)
+                degreesDelta -= 360f;
+            if (degreesDelta < -180f)
+                degreesDelta += 360f;
+            return degreesDelta;
         }
 
         private static string DescribeCurve(MapExits exits, MapDirection heading)
@@ -514,6 +818,16 @@ namespace TopSpeed.Race
             }
 
             return "Dead end.";
+        }
+
+        private static int CountExits(MapExits exits)
+        {
+            var count = 0;
+            if ((exits & MapExits.North) != 0) count++;
+            if ((exits & MapExits.East) != 0) count++;
+            if ((exits & MapExits.South) != 0) count++;
+            if ((exits & MapExits.West) != 0) count++;
+            return count;
         }
 
         private static bool IsRightTurn(MapExits exits, MapDirection heading)
@@ -576,6 +890,19 @@ namespace TopSpeed.Race
             public bool IsSafeZone;
             public string Zone;
             public MapExits Exits;
+            public string SectorId;
+            public TrackSectorType SectorType;
+            public bool IsIntersection;
+            public string BranchId;
+            public TrackBranchRole BranchRole;
+            public string BranchSummary;
+            public string BranchSuggestion;
+            public bool IsClosed;
+            public bool IsRestricted;
+            public bool RequiresStop;
+            public bool RequiresYield;
+            public float? MinSpeedKph;
+            public float? MaxSpeedKph;
         }
     }
 }

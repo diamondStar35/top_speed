@@ -197,6 +197,16 @@ namespace TopSpeed.Tracks.Map
             return new TrackApproachManager(_sectors, _approaches, BuildPortalManager());
         }
 
+        public TrackSectorRuleManager BuildSectorRuleManager()
+        {
+            return new TrackSectorRuleManager(_sectors, BuildPortalManager());
+        }
+
+        public TrackBranchManager BuildBranchManager()
+        {
+            return new TrackBranchManager(_sectors, _approaches, BuildPortalManager());
+        }
+
         public void MergeCell(int x, int z, MapExits exits, TrackSurface? surface, TrackNoise? noise, float? widthMeters, bool? safeZone, string? zone)
         {
             var cell = GetOrCreateCell(x, z);

@@ -24,6 +24,7 @@ namespace TopSpeed.Vehicles
         private const float BumpVibrationSeconds = 0.2f;
         private const float AutoShiftHysteresis = 0.05f;
         private const float AutoShiftCooldownSeconds = 0.15f;
+        private const float YieldSpeedKph = 10.0f;
         private static bool s_stickReleased;
 
         private readonly AudioManager _audio;
@@ -906,7 +907,11 @@ namespace TopSpeed.Vehicles
                 var velocity = (forward * _dynamicsState.VelLong) + (right * _dynamicsState.VelLat);
                 var nextPosition = _worldPosition + (velocity * elapsed);
 
-                if (_track.IsWithinTrack(nextPosition))
+                var canMove = _track.IsWithinTrack(nextPosition);
+                if (canMove && !_track.IsSectorTransitionAllowed(_worldPosition, nextPosition, heading))
+                    canMove = false;
+
+                if (canMove)
                 {
                     _worldPosition = nextPosition;
                     _mapState.WorldPosition = _worldPosition;
@@ -916,6 +921,7 @@ namespace TopSpeed.Vehicles
                     _mapState.Heading = heading;
                     _mapState.HeadingDegrees = HeadingDegrees;
                     _mapState.DistanceMeters += distanceMeters;
+                    ApplySectorSpeedRules(nextPosition, heading);
                 }
                 else
                 {
@@ -1670,6 +1676,33 @@ namespace TopSpeed.Vehicles
             _soundTurnTick.Stop();
             _soundTurnTick.SeekToStart();
             _soundTurnTick.Play(loop: false);
+        }
+
+        private void ApplySectorSpeedRules(Vector3 worldPosition, MapDirection heading)
+        {
+            if (!_track.TryGetSectorRules(worldPosition, heading, out _, out var rules, out _, out _))
+                return;
+
+            var speedCap = rules.MaxSpeedKph;
+            if (rules.RequiresYield)
+            {
+                var yieldCap = YieldSpeedKph;
+                speedCap = speedCap.HasValue ? Math.Min(speedCap.Value, yieldCap) : yieldCap;
+            }
+
+            if (rules.RequiresStop)
+                speedCap = 0f;
+
+            if (!speedCap.HasValue)
+                return;
+            if (_speed <= speedCap.Value)
+                return;
+
+            var cap = Math.Max(0f, speedCap.Value);
+            var factor = _speed > 0f ? cap / _speed : 0f;
+            _speed = cap;
+            _dynamicsState.VelLong *= factor;
+            _dynamicsState.VelLat *= factor;
         }
 
         private AudioSourceHandle CreateRequiredSound(string? path, bool looped = false, bool spatialize = true, bool allowHrtf = true)

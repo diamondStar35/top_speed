@@ -234,15 +234,37 @@ namespace TS.Audio
                 IPL.BinauralEffectApply(_binauralRight, ref binauralParams, ref dirBufferR, ref outBufferR);
 
                 const float mixScale = 0.5f;
-                for (int i = 0; i < frames; i++)
+
+                if (spatial.StereoWidening)
                 {
-                    int idx = i * (int)channels;
-                    float left = (pOutLL[i] + pOutRL[i]) * mixScale;
-                    float right = (pOutLR[i] + pOutRR[i]) * mixScale;
-                    framesOut[idx] = left;
-                    framesOut[idx + 1] = right;
-                    for (int ch = 2; ch < channels; ch++)
-                        framesOut[idx + ch] = 0f;
+                    // Apply channel-specific attenuation based on the sound's horizontal direction (X-axis).
+                    // A buffer is included to ensure complete silence is only reached at the maximum extent of the arc.
+                    float x = direction.X;
+                    float leftGain = x > 0f ? Math.Max(0f, 1.0f - (x / 0.90f)) : 1.0f;
+                    float rightGain = x < 0f ? Math.Max(0f, 1.0f + (x / 0.90f)) : 1.0f;
+
+                    for (int i = 0; i < frames; i++)
+                    {
+                        int idx = i * (int)channels;
+                        framesOut[idx] = (pOutLL[i] + pOutRL[i]) * mixScale * leftGain;
+                        framesOut[idx + 1] = (pOutLR[i] + pOutRR[i]) * mixScale * rightGain;
+                        for (int ch = 2; ch < channels; ch++)
+                            framesOut[idx + ch] = 0f;
+                    }
+                }
+                else
+                {
+                    // EXACT Vanilla Path
+                    for (int i = 0; i < frames; i++)
+                    {
+                        int idx = i * (int)channels;
+                        float left = (pOutLL[i] + pOutRL[i]) * mixScale;
+                        float right = (pOutLR[i] + pOutRR[i]) * mixScale;
+                        framesOut[idx] = left;
+                        framesOut[idx + 1] = right;
+                        for (int ch = 2; ch < channels; ch++)
+                            framesOut[idx + ch] = 0f;
+                    }
                 }
 
                 if ((simFlags & AudioSourceSpatialParams.SimReflections) != 0)
@@ -380,14 +402,36 @@ namespace TS.Audio
                 IPL.DirectEffectApply(_directLeft, ref directParams, ref inputBuffer, ref inputBuffer);
                 IPL.BinauralEffectApply(_binauralLeft, ref binauralParams, ref inputBuffer, ref outputBuffer);
 
-                for (int i = 0; i < frames; i++)
+                if (spatial.StereoWidening)
                 {
-                    int idx = i * (int)channels;
-                    framesOut[idx] = pOutL[i];
-                    if (channels > 1)
-                        framesOut[idx + 1] = pOutR[i];
-                    for (int ch = 2; ch < channels; ch++)
-                        framesOut[idx + ch] = 0f;
+                    // Apply channel-specific attenuation based on the sound's horizontal direction (X-axis).
+                    // A buffer is included to ensure complete silence is only reached at the maximum extent of the arc.
+                    float x = direction.X;
+                    float leftGain = x > 0f ? Math.Max(0f, 1.0f - (x / 0.90f)) : 1.0f;
+                    float rightGain = x < 0f ? Math.Max(0f, 1.0f + (x / 0.90f)) : 1.0f;
+
+                    for (int i = 0; i < frames; i++)
+                    {
+                        int idx = i * (int)channels;
+                        framesOut[idx] = pOutL[i] * leftGain;
+                        if (channels > 1)
+                            framesOut[idx + 1] = pOutR[i] * rightGain;
+                        for (int ch = 2; ch < channels; ch++)
+                            framesOut[idx + ch] = 0f;
+                    }
+                }
+                else
+                {
+                    // EXACT Vanilla Path
+                    for (int i = 0; i < frames; i++)
+                    {
+                        int idx = i * (int)channels;
+                        framesOut[idx] = pOutL[i];
+                        if (channels > 1)
+                            framesOut[idx + 1] = pOutR[i];
+                        for (int ch = 2; ch < channels; ch++)
+                            framesOut[idx + ch] = 0f;
+                    }
                 }
 
                 if ((simFlags & AudioSourceSpatialParams.SimReflections) != 0)

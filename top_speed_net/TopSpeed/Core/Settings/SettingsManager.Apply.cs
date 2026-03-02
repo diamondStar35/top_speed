@@ -98,6 +98,9 @@ namespace TopSpeed.Core.Settings
             if (audio.HrtfAudio.HasValue)
                 settings.HrtfAudio = audio.HrtfAudio.Value;
 
+            if (audio.StereoWidening.HasValue)
+                settings.StereoWidening = audio.StereoWidening.Value;
+
             if (audio.AutoDetectAudioDeviceFormat.HasValue)
                 settings.AutoDetectAudioDeviceFormat = audio.AutoDetectAudioDeviceFormat.Value;
 

@@ -64,6 +64,9 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "hrtfAudio")]
         public bool? HrtfAudio { get; set; }
 
+        [DataMember(Name = "stereoWidening")]
+        public bool? StereoWidening { get; set; }
+
         [DataMember(Name = "autoDetectAudioDeviceFormat")]
         public bool? AutoDetectAudioDeviceFormat { get; set; }
     }

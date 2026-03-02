@@ -70,6 +70,7 @@ namespace TopSpeed.Vehicles
             if (Math.Abs(vehicleForwardOffset) < 0.01f)
                 vehicleForwardOffset = vehicleForwardOffset >= 0f ? 0.01f : -0.01f;
 
+            // Maps the sound to a 180-degree arc relative to the listener.
             var angle = normalized * (float)(Math.PI / 2.0);
 
             var enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset);

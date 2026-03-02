@@ -27,6 +27,11 @@ namespace TopSpeed.Menu
                     value => _settingsActions.UpdateSetting(() => _settings.HrtfAudio = value),
                     hint: "When checked, Three-D audio uses HRTF spatialization for more realistic positioning. Press ENTER to toggle."),
                 new CheckBox(
+                    "Enable stereo widening for own car",
+                    () => _settings.StereoWidening,
+                    value => _settingsActions.UpdateSetting(() => _settings.StereoWidening = value),
+                    hint: "When checked, the game will widen the stereo image of your own car's sounds and quiet the opposite ear as you move. Press ENTER to toggle."),
+                new CheckBox(
                     "Automatic audio device format",
                     () => _settings.AutoDetectAudioDeviceFormat,
                     value => _settingsActions.UpdateSetting(() => _settings.AutoDetectAudioDeviceFormat = value),

@@ -64,6 +64,7 @@ namespace TopSpeed.Input
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
+        public bool StereoWidening { get; set; }
         public bool AutoDetectAudioDeviceFormat { get; set; }
         public bool RandomCustomTracks { get; set; }
         public bool RandomCustomVehicles { get; set; }
@@ -138,6 +139,7 @@ namespace TopSpeed.Input
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));
             HrtfAudio = true;
+            StereoWidening = false;
             AutoDetectAudioDeviceFormat = true;
             RandomCustomTracks = false;
             RandomCustomVehicles = false;

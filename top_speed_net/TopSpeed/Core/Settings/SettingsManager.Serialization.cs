@@ -158,6 +158,7 @@ namespace TopSpeed.Core.Settings
                     MusicPercent = audio.MusicPercent,
                     OnlineServerEventsPercent = audio.OnlineServerEventsPercent,
                     HrtfAudio = settings.HrtfAudio,
+                    StereoWidening = settings.StereoWidening,
                     AutoDetectAudioDeviceFormat = settings.AutoDetectAudioDeviceFormat
                 },
                 Input = new SettingsInputDocument

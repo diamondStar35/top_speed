@@ -79,6 +79,27 @@ namespace TopSpeed.Vehicles
             _soundMiniCrash.SetDopplerFactor(0f);
             _soundBump.SetDopplerFactor(0f);
             _soundWipers?.SetDopplerFactor(0f);
+
+            if (_settings.StereoWidening)
+            {
+                _soundEngine.SetStereoWidening(true);
+                _soundThrottle?.SetStereoWidening(true);
+                _soundHorn.SetStereoWidening(true);
+                _soundBrake.SetStereoWidening(true);
+                for (var i = 0; i < _soundCrashVariants.Length; i++) _soundCrashVariants[i].SetStereoWidening(true);
+                for (var i = 0; i < _soundBackfireVariants.Length; i++) _soundBackfireVariants[i].SetStereoWidening(true);
+                _soundStart.SetStereoWidening(true);
+                _soundMiniCrash.SetStereoWidening(true);
+                _soundBump.SetStereoWidening(true);
+                _soundBadSwitch.SetStereoWidening(true);
+                _soundWipers?.SetStereoWidening(true);
+                _soundAsphalt.SetStereoWidening(true);
+                _soundGravel.SetStereoWidening(true);
+                _soundWater.SetStereoWidening(true);
+                _soundSand.SetStereoWidening(true);
+                _soundSnow.SetStereoWidening(true);
+            }
+
             RefreshCategoryVolumes(force: true);
         }
     }

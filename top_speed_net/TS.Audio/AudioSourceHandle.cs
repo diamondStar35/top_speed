@@ -25,6 +25,7 @@ namespace TS.Audio
         public float TransLow = 0.0f;
         public float TransMid = 0.0f;
         public float TransHigh = 0.0f;
+        public bool StereoWidening = false;
         public int SimulationFlags = 0;
         public float ReverbTimeLow = 0.0f;
         public float ReverbTimeMid = 0.0f;
@@ -273,6 +274,11 @@ namespace TS.Audio
         {
             _basePitch = pitch;
             _sound.SetPitch(pitch);
+        }
+
+        public void SetStereoWidening(bool enabled)
+        {
+            _spatial.StereoWidening = enabled;
         }
 
         public float GetPitch()

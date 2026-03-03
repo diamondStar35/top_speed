@@ -73,6 +73,8 @@ namespace TopSpeed.Vehicles
             // Maps the sound to a 180-degree arc relative to the listener.
             var angle = normalized * (float)(Math.PI / 2.0);
 
+            var brakeForwardOffset = Math.Max(0.01f, engineForwardOffset * 0.6f);
+
             var enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset, engineForwardOffset);
             var brakePos = PlaceOnArc(listenerX, listenerZ, angle, 
                 _settings.StereoWidening ? engineForwardOffset : brakeForwardOffset, 

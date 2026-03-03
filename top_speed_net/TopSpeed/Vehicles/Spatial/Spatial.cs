@@ -127,10 +127,11 @@ namespace TopSpeed.Vehicles
 
         private static Vector3 PlaceOnArc(float listenerX, float listenerZ, float angle, float horizontalRadius, float forwardOffset)
         {
-            if (horizontalRadius < 0.01f)
-                horizontalRadius = 0.01f;
+            var absHorizontalRadius = Math.Abs(horizontalRadius);
+            if (absHorizontalRadius < 0.01f)
+                absHorizontalRadius = 0.01f;
 
-            var offsetX = (float)Math.Sin(angle) * horizontalRadius;
+            var offsetX = (float)Math.Sin(angle) * absHorizontalRadius;
             var offsetZ = (float)Math.Cos(angle) * Math.Abs(forwardOffset);
             if (forwardOffset < 0f)
                 offsetZ = -offsetZ;

@@ -73,17 +73,13 @@ namespace TopSpeed.Vehicles
             // Maps the sound to a 180-degree arc relative to the listener.
             var angle = normalized * (float)(Math.PI / 2.0);
 
-            // Conditional Radius Synchronization:
-            // When widening is ON, we use a consistent radius for horizontal movement to ensure terrain 
-            // sounds follow the car in unison. When OFF, we use the vanilla per-source radii.
-            var horizontalRadiusEngine = engineForwardOffset;
-            var horizontalRadiusBrake = _settings.StereoWidening ? engineForwardOffset : Math.Max(0.01f, engineForwardOffset * 0.6f);
-            var horizontalRadiusVehicle = _settings.StereoWidening ? engineForwardOffset : vehicleForwardOffset;
-
-            var enginePos = PlaceOnArc(listenerX, listenerZ, angle, horizontalRadiusEngine, engineForwardOffset);
-            var brakeForwardOffset = Math.Max(0.01f, engineForwardOffset * 0.6f);
-            var brakePos = PlaceOnArc(listenerX, listenerZ, angle, horizontalRadiusBrake, brakeForwardOffset);
-            var vehiclePos = PlaceOnArc(listenerX, listenerZ, angle, horizontalRadiusVehicle, vehicleForwardOffset);
+            var enginePos = PlaceOnArc(listenerX, listenerZ, angle, engineForwardOffset, engineForwardOffset);
+            var brakePos = PlaceOnArc(listenerX, listenerZ, angle, 
+                _settings.StereoWidening ? engineForwardOffset : brakeForwardOffset, 
+                brakeForwardOffset);
+            var vehiclePos = PlaceOnArc(listenerX, listenerZ, angle, 
+                _settings.StereoWidening ? engineForwardOffset : vehicleForwardOffset, 
+                vehicleForwardOffset);
             var crashPos = vehiclePos;
             if (_state == CarState.Crashing || _state == CarState.Crashed || _state == CarState.Starting)
             {
@@ -127,12 +123,16 @@ namespace TopSpeed.Vehicles
 
         private static Vector3 PlaceOnArc(float listenerX, float listenerZ, float angle, float horizontalRadius, float forwardOffset)
         {
-            var absHorizontalRadius = Math.Abs(horizontalRadius);
-            if (absHorizontalRadius < 0.01f)
-                absHorizontalRadius = 0.01f;
+            var hRadius = Math.Abs(horizontalRadius);
+            if (hRadius < 0.01f)
+                hRadius = 0.01f;
 
-            var offsetX = (float)Math.Sin(angle) * absHorizontalRadius;
-            var offsetZ = (float)Math.Cos(angle) * Math.Abs(forwardOffset);
+            var zRadius = Math.Abs(forwardOffset);
+            if (zRadius < 0.01f)
+                zRadius = 0.01f;
+
+            var offsetX = (float)Math.Sin(angle) * hRadius;
+            var offsetZ = (float)Math.Cos(angle) * zRadius;
             if (forwardOffset < 0f)
                 offsetZ = -offsetZ;
 

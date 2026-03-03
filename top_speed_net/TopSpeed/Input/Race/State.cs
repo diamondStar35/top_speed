@@ -1,4 +1,6 @@
 using SharpDX.DirectInput;
+using TopSpeed.Protocol;
+using System;
 
 namespace TopSpeed.Input
 {
@@ -49,12 +51,12 @@ namespace TopSpeed.Input
             _kbFlush = Key.LeftAlt;
         }
 
-        public void Run(InputState input)
+        public void Run(InputState input, float deltaSeconds)
         {
-            Run(input, null);
+            Run(input, null, deltaSeconds);
         }
 
-        public void Run(InputState input, JoystickStateSnapshot? joystick)
+        public void Run(InputState input, JoystickStateSnapshot? joystick, float deltaSeconds)
         {
             _prevState.CopyFrom(_lastState);
             _lastState.CopyFrom(input);
@@ -75,6 +77,69 @@ namespace TopSpeed.Input
             _joystickAvailable = joystick.HasValue;
             if (!joystick.HasValue)
                 _hasPrevJoystick = false;
+
+            UpdateSimulatedInputs(deltaSeconds);
+        }
+
+        private void UpdateSimulatedInputs(float deltaSeconds)
+        {
+            if (_settings.KeyboardProgressiveRate == KeyboardProgressiveRate.Off)
+            {
+                _simThrottle = _lastState.IsDown(_kbThrottle) ? 1.0f : 0.0f;
+                _simBrake = _lastState.IsDown(_kbBrake) ? 1.0f : 0.0f;
+                if (_lastState.IsDown(_kbLeft)) _simSteer = -1.0f;
+                else if (_lastState.IsDown(_kbRight)) _simSteer = 1.0f;
+                else _simSteer = 0.0f;
+                return;
+            }
+
+            float rate = _settings.KeyboardProgressiveRate switch
+            {
+                KeyboardProgressiveRate.Instant_0_25s => 0.25f,
+                KeyboardProgressiveRate.Instant_0_50s => 0.50f,
+                KeyboardProgressiveRate.Instant_0_75s => 0.75f,
+                KeyboardProgressiveRate.Instant_1_00s => 1.00f,
+                _ => 0.50f
+            };
+
+            // Throttle
+            if (_lastState.IsDown(_kbThrottle))
+            {
+                _simBrake = 0f; // Opposite kill
+                _simThrottle = Math.Min(1.0f, _simThrottle + (deltaSeconds / rate));
+            }
+            else
+            {
+                _simThrottle = Math.Max(0f, _simThrottle - (deltaSeconds / rate));
+            }
+
+            // Brake
+            if (_lastState.IsDown(_kbBrake))
+            {
+                _simThrottle = 0f; // Opposite kill
+                _simBrake = Math.Min(1.0f, _simBrake + (deltaSeconds / rate));
+            }
+            else
+            {
+                _simBrake = Math.Max(0f, _simBrake - (deltaSeconds / rate));
+            }
+
+            // Steering
+            if (_lastState.IsDown(_kbLeft))
+            {
+                if (_simSteer > 0f) _simSteer = 0f; // Opposite kill
+                _simSteer = Math.Max(-1.0f, _simSteer - (deltaSeconds / rate));
+            }
+            else if (_lastState.IsDown(_kbRight))
+            {
+                if (_simSteer < 0f) _simSteer = 0f; // Opposite kill
+                _simSteer = Math.Min(1.0f, _simSteer + (deltaSeconds / rate));
+            }
+            else
+            {
+                if (_simSteer > 0) _simSteer = Math.Max(0f, _simSteer - (deltaSeconds / rate));
+                else if (_simSteer < 0) _simSteer = Math.Min(0f, _simSteer + (deltaSeconds / rate));
+            }
         }
 
         public void SetCenter(JoystickStateSnapshot center)

@@ -140,4 +140,13 @@ namespace TopSpeed.Protocol
         ClientTooNew = 4,
         NoCommonVersion = 5
     }
+
+    public enum KeyboardProgressiveRate : byte
+    {
+        Off = 0,
+        Instant_0_25s = 1,
+        Instant_0_50s = 2,
+        Instant_0_75s = 3,
+        Instant_1_00s = 4
+    }
 }

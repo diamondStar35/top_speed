@@ -100,16 +100,25 @@ namespace TopSpeed.Core.Settings
             return fallback;
         }
 
-        private static TEnum ReadEnum<TEnum>(int? value, TEnum fallback, string field, List<SettingsIssue> issues)
+        private static TEnum ReadEnum<TEnum>(object? value, TEnum fallback, string field, List<SettingsIssue> issues)
             where TEnum : struct, Enum
         {
-            if (!value.HasValue)
+            if (value == null)
                 return fallback;
 
-            if (Enum.IsDefined(typeof(TEnum), value.Value))
-                return (TEnum)Enum.ToObject(typeof(TEnum), value.Value);
+            try
+            {
+                var underlyingType = Enum.GetUnderlyingType(typeof(TEnum));
+                var converted = Convert.ChangeType(value, underlyingType);
+                if (Enum.IsDefined(typeof(TEnum), converted))
+                    return (TEnum)Enum.ToObject(typeof(TEnum), converted);
+            }
+            catch
+            {
+                // Fall through to error
+            }
 
-            issues.Add(new SettingsIssue(SettingsIssueSeverity.Warning, field, $"The key {field} has invalid value {value.Value}, which was replaced with {(int)(object)fallback}."));
+            issues.Add(new SettingsIssue(SettingsIssueSeverity.Warning, field, $"The key {field} has invalid value {value}, which was replaced with {fallback}."));
             return fallback;
         }
     }

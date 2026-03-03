@@ -126,6 +126,7 @@ namespace TopSpeed.Core.Settings
             if (input.ForceFeedback.HasValue)
                 settings.ForceFeedback = input.ForceFeedback.Value;
 
+            settings.KeyboardProgressiveRate = ReadEnum(input.KeyboardProgressiveRate, settings.KeyboardProgressiveRate, "input.keyboardProgressiveRate", issues);
             settings.DeviceMode = ReadEnum(input.DeviceMode, settings.DeviceMode, "input.deviceMode", issues);
 
             if (input.Keyboard == null)

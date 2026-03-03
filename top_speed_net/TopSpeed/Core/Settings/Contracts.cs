@@ -74,6 +74,9 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "forceFeedback")]
         public bool? ForceFeedback { get; set; }
 
+        [DataMember(Name = "keyboardProgressiveRate")]
+        public int? KeyboardProgressiveRate { get; set; }
+
         [DataMember(Name = "deviceMode")]
         public int? DeviceMode { get; set; }
 

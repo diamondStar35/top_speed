@@ -150,9 +150,9 @@ namespace TopSpeed.Game
         {
             _input.Update();
             if (_input.TryGetJoystickState(out var joystick))
-                _raceInput.Run(_input.Current, joystick);
+                _raceInput.Run(_input.Current, joystick, deltaSeconds);
             else
-                _raceInput.Run(_input.Current);
+                _raceInput.Run(_input.Current, deltaSeconds);
 
             _raceInput.SetOverlayInputBlocked(
                 _state == AppState.MultiplayerRace &&

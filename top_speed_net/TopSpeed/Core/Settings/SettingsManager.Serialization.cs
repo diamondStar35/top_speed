@@ -163,6 +163,7 @@ namespace TopSpeed.Core.Settings
                 Input = new SettingsInputDocument
                 {
                     ForceFeedback = settings.ForceFeedback,
+                    KeyboardProgressiveRate = (int)settings.KeyboardProgressiveRate,
                     DeviceMode = (int)settings.DeviceMode,
                     Keyboard = new SettingsKeyboardDocument
                     {

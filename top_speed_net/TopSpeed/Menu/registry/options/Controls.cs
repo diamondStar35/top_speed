@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TopSpeed.Input;
+using TopSpeed.Protocol;
 
 namespace TopSpeed.Menu
 {
@@ -15,6 +16,12 @@ namespace TopSpeed.Menu
                     () => _settings.ForceFeedback,
                     value => _settingsActions.UpdateSetting(() => _settings.ForceFeedback = value),
                     hint: "Enables force feedback or vibration if your controller supports it. Press ENTER to toggle."),
+                new RadioButton(
+                    "Progressive (Pseudo-Analog) keyboard input",
+                    new[] { "off", "0.25s", "0.50s", "0.75s", "1.00s" },
+                    () => (int)_settings.KeyboardProgressiveRate,
+                    value => _settingsActions.UpdateSetting(() => _settings.KeyboardProgressiveRate = (KeyboardProgressiveRate)value),
+                    hint: "When off, car controls immediately jump to 100 percent as soon as keys are pressed. The further right this is, the slower the car's control chases the state of your keyboard, allowing to feather throttle, brakes, etc. The opposite key can be used for immediate reset, so steer left will disable a progressively releasing steer right for example."),
                 new MenuItem("Map keyboard keys", MenuAction.None, nextMenuId: "options_controls_keyboard"),
                 new MenuItem("Map joystick keys", MenuAction.None, nextMenuId: "options_controls_joystick"),
                 BackItem()

@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using TopSpeed.Runtime;
 using TopSpeed.Speech.Playback;
 using TopSpeed.Speech.Prism;
 
@@ -18,6 +22,7 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
         private bool _trySapi;
         private bool _preferSapi;
         private IPlayer? _player;
+        private static readonly ConcurrentDictionary<ulong, bool> BackendStartupProbeResults = new ConcurrentDictionary<ulong, bool>();
 
         public IReadOnlyList<SpeechBackendInfo> AvailableBackends
         {
@@ -33,6 +38,9 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
                     for (var i = 0; i < source.Count; i++)
                     {
                         var info = source[i];
+                        if (!CanInitializeBackendInProcess(info.Id))
+                            continue;
+
                         if (!TryProbeSupportedBackend(_context, info, out var backendName))
                             continue;
 
@@ -389,7 +397,9 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
         {
             if (_preferredBackendId.HasValue)
             {
-                var preferred = TryOpen(context, new BackendInfo(_preferredBackendId.Value, string.Empty, 0, true));
+                var preferred = !CanInitializeBackendInProcess(_preferredBackendId.Value)
+                    ? null
+                    : TryOpen(context, new BackendInfo(_preferredBackendId.Value, string.Empty, 0, true));
                 if (preferred != null)
                 {
                     _activeBackendId = ResolveActiveBackendId(context, preferred, _preferredBackendId.Value);
@@ -399,7 +409,7 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
             }
 
             var candidates = context.AvailableBackends
-                .Where(static backend => backend.IsSupported)
+                .Where(static backend => backend.IsSupported && CanInitializeBackendInProcess(backend.Id))
                 .OrderByDescending(static backend => backend.Priority)
                 .ToArray();
 
@@ -439,10 +449,64 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
                 }
             }
 
-            var best = context.AcquireBest();
-            _activeBackendId = ResolveActiveBackendId(context, best, null);
-            ApplyVoicePreferenceLocked();
-            return best;
+            throw new InvalidOperationException("No speech backend is available.");
+        }
+
+        private static bool CanInitializeBackendInProcess(ulong backendId)
+        {
+            if (!RequiresStartupProbe(backendId))
+                return true;
+
+            return BackendStartupProbeResults.GetOrAdd(backendId, ProbeBackendStartup);
+        }
+
+        private static bool RequiresStartupProbe(ulong backendId)
+        {
+            return backendId == Ids.Zdsr;
+        }
+
+        private static bool ProbeBackendStartup(ulong backendId)
+        {
+            var processPath = Environment.ProcessPath;
+            if (string.IsNullOrWhiteSpace(processPath))
+                return false;
+
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = processPath,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WorkingDirectory = AppContext.BaseDirectory
+                };
+                startInfo.ArgumentList.Add(StartupArguments.PrismBackendProbe);
+                startInfo.ArgumentList.Add(backendId.ToString("X16", CultureInfo.InvariantCulture));
+
+                using var process = Process.Start(startInfo);
+
+                if (process == null)
+                    return false;
+
+                if (!process.WaitForExit(5000))
+                {
+                    try
+                    {
+                        process.Kill(entireProcessTree: true);
+                    }
+                    catch
+                    {
+                    }
+
+                    return false;
+                }
+
+                return process.ExitCode == 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static Backend? TryOpen(Context context, BackendInfo info)

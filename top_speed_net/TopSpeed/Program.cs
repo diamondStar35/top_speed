@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,6 +13,7 @@ using Eto.Forms;
 using TopSpeed.Game;
 using TopSpeed.Localization;
 using TopSpeed.Runtime;
+using TopSpeed.Speech.Prism;
 #if WINDOWS
 using TopSpeed.Windowing.WinForms;
 #else
@@ -25,19 +27,26 @@ namespace TopSpeed
         private static int _exceptionHandled;
 
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
             RegisterGlobalExceptionHandlers();
 
             try
             {
+                TrySetCurrentDirectoryToBaseDirectory();
+                NativeLibraryBootstrap.Initialize();
+
+                if (TryRunPrismBackendProbe(args, out var probeExitCode))
+                {
+                    Environment.ExitCode = probeExitCode;
+                    return;
+                }
+
 #if WINDOWS
                 using var timerResolution = new WindowsTimerResolution(1);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 #endif
-
-                NativeLibraryBootstrap.Initialize();
 
 #if WINDOWS
                 var window = new WindowHost();
@@ -64,6 +73,46 @@ namespace TopSpeed
             catch (Exception ex)
             {
                 HandleException(ex);
+            }
+        }
+
+        private static bool TryRunPrismBackendProbe(string[] args, out int exitCode)
+        {
+            exitCode = 0;
+            if (args.Length != 2 || !string.Equals(args[0], StartupArguments.PrismBackendProbe, StringComparison.Ordinal))
+                return false;
+
+            if (!ulong.TryParse(args[1], NumberStyles.HexNumber, null, out var backendId))
+            {
+                exitCode = 2;
+                return true;
+            }
+
+            try
+            {
+                using var context = new Context();
+                using var backend = context.Create(backendId);
+                exitCode = backend.IsSupportedAtRuntime ? 0 : 3;
+            }
+            catch
+            {
+                exitCode = 1;
+            }
+
+            return true;
+        }
+
+        private static void TrySetCurrentDirectoryToBaseDirectory()
+        {
+            try
+            {
+                var baseDirectory = AppContext.BaseDirectory;
+                if (!string.IsNullOrWhiteSpace(baseDirectory) && Directory.Exists(baseDirectory))
+                    Directory.SetCurrentDirectory(baseDirectory);
+            }
+            catch
+            {
+                // Startup can still continue; absolute base-directory probing remains available.
             }
         }
 

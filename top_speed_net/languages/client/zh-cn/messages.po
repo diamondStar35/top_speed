@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-04 13:47+0300\n"
-"PO-Revision-Date: 2026-05-07 19:32\n"
+"PO-Revision-Date: 2026-05-07 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "此赛道的平均{0}圈时间：{1}。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:50
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:63
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
 msgid "BMW 3 Series"
@@ -1097,7 +1097,7 @@ msgstr "错误："
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:18
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:147
 msgid "Even the walls were probably tired of this by the end."
@@ -1234,7 +1234,7 @@ msgstr "法国海岸"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:66
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:165
 msgid "Game guide"
@@ -1510,7 +1510,7 @@ msgstr "操纵杆"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:51
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:64
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
 msgid "Kawasaki Ninja ZX-10R"
@@ -1738,7 +1738,7 @@ msgstr "循环模式已开启。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:52
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:65
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:42
 msgid "Main Menu. Use the view finder to move through the options. Press up or down to navigate. Press right or button 1 to select. Press left to back out of any menu."
@@ -3326,7 +3326,7 @@ msgstr "瑞士"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:22
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Controller.cs:30
 msgid "That control is already in use."
@@ -4915,7 +4915,7 @@ msgstr "{0} 已从当前房间移除。"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Feedback.cs:35
 #, csharp-format
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu.cs:188
 #, csharp-format

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-04 13:47+0300\n"
-"PO-Revision-Date: 2026-05-07 19:32\n"
+"PO-Revision-Date: 2026-05-07 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "  TopSpeed.Server [选项]"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:130
 #, csharp-format
 msgid "\"{0}\": {1}"
-msgstr ""
+msgstr "\"{0}\": {1}"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:488
 msgid "(empty)"
@@ -1610,22 +1610,22 @@ msgstr "警告"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:268
 #, csharp-format
 msgid "{0:0.00} GB"
-msgstr ""
+msgstr "{0:0.00} GB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:272
 #, csharp-format
 msgid "{0:0.00} KB"
-msgstr ""
+msgstr "{0:0.00} KB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:270
 #, csharp-format
 msgid "{0:0.00} MB"
-msgstr ""
+msgstr "{0:0.00} MB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:273
 #, csharp-format
 msgid "{0} B"
-msgstr ""
+msgstr "{0} B"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:39
 #, csharp-format

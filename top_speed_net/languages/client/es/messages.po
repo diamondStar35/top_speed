@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-04 13:47+0300\n"
-"PO-Revision-Date: 2026-05-07 19:32\n"
+"PO-Revision-Date: 2026-05-07 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -180,18 +180,18 @@ msgstr "Intentando conectarse, espere..."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:20
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:98
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:87
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:97
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:107
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:93
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:103
@@ -253,7 +253,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:50
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:63
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
 msgid "BMW 3 Series"
@@ -449,7 +449,7 @@ msgstr "Buscando actualizaciones."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:104
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Choice.cs:80
 msgid "Choice"
@@ -1089,11 +1089,11 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:22
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:100
 msgid "Error:"
-msgstr ""
+msgstr "Error:"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:18
 msgid "Escape"
@@ -1234,7 +1234,7 @@ msgstr "Costa francesa"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:66
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:165
 msgid "Game guide"
@@ -1505,12 +1505,12 @@ msgstr "Unirse a un juego existente"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:50
 msgid "Joystick"
-msgstr ""
+msgstr "Joystick"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:51
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:64
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
 msgid "Kawasaki Ninja ZX-10R"
@@ -1738,7 +1738,7 @@ msgstr "Modo bucle activado."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:52
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:65
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:42
 msgid "Main Menu. Use the view finder to move through the options. Press up or down to navigate. Press right or button 1 to select. Press left to back out of any menu."
@@ -1770,7 +1770,7 @@ msgstr "Administrar servidores guardados"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:31
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu.cs:159
 msgid "Manual transmission"
@@ -1952,7 +1952,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:60
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:88
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:143
 msgid "No changes are listed."
@@ -2079,7 +2079,7 @@ msgstr "No, permanecer en esta sala"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:98
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:108
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:97
 msgid "Not a clean run, but still recoverable."
@@ -2156,7 +2156,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:55
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:53
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:32
 msgid "Off"
@@ -2165,7 +2165,7 @@ msgstr "Desactivado"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Calibration.cs:30
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Calibration.cs:34
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:94
 msgid "One crash is still too many, but it could be worse."
@@ -2289,7 +2289,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:162
 msgid "Panel"
-msgstr ""
+msgstr "Panel"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:63
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
@@ -2362,7 +2362,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:37
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:120
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:65
 msgid "Preparing to race"
@@ -2538,7 +2538,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Core.cs:69
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:100
 #, csharp-format
@@ -4465,7 +4465,7 @@ msgstr "high_speed_steer_full_kph debe ser mayor que high_speed_steer_start_kph.
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:30
 msgid "imperial"
-msgstr ""
+msgstr "imperial"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:129
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:132
@@ -4525,7 +4525,7 @@ msgstr "ninguno"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:66
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Items\CheckBox.cs:36
 msgid "not checked"
@@ -4550,7 +4550,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:165
 msgid "panel"
-msgstr ""
+msgstr "panel"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:54
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
@@ -4772,7 +4772,7 @@ msgstr "{0} cuadro de diálogo {1}"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:181
 #, csharp-format
 msgid "{0} ({1})"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:26
 #, csharp-format
@@ -4914,7 +4914,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Feedback.cs:35
 #, csharp-format
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu.cs:188
 #, csharp-format

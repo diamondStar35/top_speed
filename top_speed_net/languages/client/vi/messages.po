@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-04 13:47+0300\n"
-"PO-Revision-Date: 2026-05-07 20:28\n"
+"PO-Revision-Date: 2026-05-07 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "Thời gian trung bình {0} vòng cho đường đua này: {1}."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:50
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:63
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
 msgid "BMW 3 Series"
@@ -265,7 +265,7 @@ msgstr "Dấu gạch chéo ngược"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:21
 msgid "Backspace"
-msgstr ""
+msgstr "Backspace"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:100
@@ -316,7 +316,7 @@ msgstr "Hướng bàn đạp phanh"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:28
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:102
 msgid "Brazil"
-msgstr ""
+msgstr "Brazil"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:37
 msgid "Brilliant result! You set a new best time."
@@ -411,7 +411,7 @@ msgstr "Hủy tạo phòng"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:37
 msgid "Caps Lock"
-msgstr ""
+msgstr "Caps Lock"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu.cs:40
 msgid "Change game options"
@@ -1010,7 +1010,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:69
 msgid "End"
-msgstr ""
+msgstr "End"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:30
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:106
@@ -1029,7 +1029,7 @@ msgstr "Đồng quê nước Anh"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:25
 msgid "Enter"
-msgstr ""
+msgstr "Enter"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:52
 msgid "Enter a room name. Leave it empty to use an automatic name."
@@ -1097,7 +1097,7 @@ msgstr "Lỗi:"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:18
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:147
 msgid "Even the walls were probably tired of this by the end."
@@ -1198,7 +1198,7 @@ msgstr "Kích thước file: {0}"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:70
 #, csharp-format
 msgid "File: {0}"
-msgstr ""
+msgstr "File: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:18
 msgid "Final results are ready."
@@ -1234,7 +1234,7 @@ msgstr "Bờ biển nước Pháp"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:66
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:165
 msgid "Game guide"
@@ -1263,7 +1263,7 @@ msgstr "Phiên bản game: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:48
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
 #, csharp-format
@@ -1320,7 +1320,7 @@ msgstr "Lịch sử"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:64
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
@@ -1352,7 +1352,7 @@ msgstr "Thông tin:"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:72
 msgid "Insert"
-msgstr ""
+msgstr "Insert"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:58
 msgid "Interrupt screen reader speech"
@@ -1487,7 +1487,7 @@ msgstr "Đảo ngược"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:34
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:114
 msgid "Ireland"
-msgstr ""
+msgstr "Ireland"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:116
@@ -1510,7 +1510,7 @@ msgstr "Cần gạt Joystick"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:51
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:64
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
 msgid "Kawasaki Ninja ZX-10R"
@@ -1738,7 +1738,7 @@ msgstr "Đã bật chế độ lặp lại."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:52
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:65
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:42
 msgid "Main Menu. Use the view finder to move through the options. Press up or down to navigate. Press right or button 1 to select. Press left to back out of any menu."
@@ -2120,7 +2120,7 @@ msgstr "Tính năng này chưa được thực hiện."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:38
 msgid "Num Lock"
-msgstr ""
+msgstr "Num Lock"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:57
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:97
@@ -2156,7 +2156,7 @@ msgstr "Dấu bằng (Numpad)"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:55
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:53
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:32
 msgid "Off"
@@ -2281,11 +2281,11 @@ msgstr "POV 2 lên"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:71
 msgid "Page Down"
-msgstr ""
+msgstr "Page Down"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
 msgid "Page Up"
-msgstr ""
+msgstr "Page Up"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:162
 msgid "Panel"
@@ -2413,7 +2413,7 @@ msgstr "Danh mục chat trước đó"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:61
 msgid "Print Screen"
-msgstr ""
+msgstr "Print Screen"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:29
 msgid "Progressive keyboard input"
@@ -2538,7 +2538,7 @@ msgstr "Vô lăng đua xe"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Core.cs:69
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:100
 #, csharp-format
@@ -2825,7 +2825,7 @@ msgstr "Hiệu chỉnh bộ đọc màn hình. Bạn sẽ thấy một đoạn v
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:39
 msgid "Scroll Lock"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:51
 #, csharp-format
@@ -3326,7 +3326,7 @@ msgstr "Thụy Sĩ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:22
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Controller.cs:30
 msgid "That control is already in use."
@@ -3646,7 +3646,7 @@ msgstr "Đua tính giờ."
 #: D:\top_speed\top_speed_net\TopSpeed\Window\GameWindow.cs:21
 #: D:\top_speed\top_speed_net\TopSpeed\Window\Sdl\WindowHost.cs:303
 msgid "Top Speed"
-msgstr ""
+msgstr "Top Speed"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Load\Sections.cs:51
 #, csharp-format
@@ -4773,12 +4773,12 @@ msgstr "hộp thoại {0} {1}"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:181
 #, csharp-format
 msgid "{0} ({1})"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:26
 #, csharp-format
 msgid "{0} ({1}, {2})"
-msgstr ""
+msgstr "{0} ({1}, {2})"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:160
 #, csharp-format
@@ -4915,7 +4915,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Feedback.cs:35
 #, csharp-format
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu.cs:188
 #, csharp-format

@@ -11,19 +11,28 @@ namespace TopSpeed.Network.Live
     internal sealed class Source : IDisposable
     {
         private static readonly Lazy<AudioEngine> DecoderEngine = new Lazy<AudioEngine>(CreateEngine);
-        private readonly SoundFlow.Interfaces.ISoundDataProvider _provider;
+        private SoundFlow.Interfaces.ISoundDataProvider _provider;
         private readonly int _channels;
         private readonly int _framesPerPacket;
         private readonly float[] _floatBuffer;
         private readonly short[] _sampleBuffer;
+        private readonly string _filePath;
+        private readonly SfAudioFormat _format;
 
-        private Source(SoundFlow.Interfaces.ISoundDataProvider provider, int channels, int framesPerPacket)
+        private Source(
+            SoundFlow.Interfaces.ISoundDataProvider provider,
+            int channels,
+            int framesPerPacket,
+            string filePath,
+            SfAudioFormat format)
         {
             _provider = provider;
             _channels = channels;
             _framesPerPacket = framesPerPacket;
             _floatBuffer = new float[_channels * _framesPerPacket];
             _sampleBuffer = new short[_channels * _framesPerPacket];
+            _filePath = filePath;
+            _format = format;
         }
 
         public static bool TryOpen(string filePath, out Source? source)
@@ -43,27 +52,11 @@ namespace TopSpeed.Network.Live
                 SampleRate = ProtocolConstants.LiveSampleRate
             };
 
-            SoundFlow.Interfaces.ISoundDataProvider provider;
-            try
-            {
-                provider = new StreamDataProvider(
-                    DecoderEngine.Value,
-                    format,
-                    new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read));
-            }
-            catch
-            {
+            if (!TryOpenProvider(filePath, format, out var provider) || provider == null)
                 return false;
-            }
-
-            if (provider.Length == 0)
-            {
-                provider.Dispose();
-                return false;
-            }
 
             var frameCount = ProtocolConstants.LiveSampleRate * ProtocolConstants.LiveFrameMs / 1000;
-            source = new Source(provider, ProtocolConstants.LiveChannelsMax, frameCount);
+            source = new Source(provider, ProtocolConstants.LiveChannelsMax, frameCount, filePath, format);
             return true;
         }
 
@@ -79,7 +72,22 @@ namespace TopSpeed.Network.Live
             {
                 var sampleOffset = (int)(writtenFrames * (ulong)_channels);
                 var samplesToRead = (int)((targetFrames - writtenFrames) * (ulong)_channels);
-                var readSamples = _provider.ReadBytes(_floatBuffer.AsSpan(sampleOffset, samplesToRead));
+
+                int readSamples;
+                try
+                {
+                    readSamples = _provider.ReadBytes(_floatBuffer.AsSpan(sampleOffset, samplesToRead));
+                }
+                catch
+                {
+                    // Some native decoders (FFmpeg in particular) can leave their internal
+                    // demuxer state in an unrecoverable condition once they reach end of
+                    // stream, which causes the next decode call to throw even though the
+                    // underlying file stream is healthy. Fall through to the rewind path
+                    // so the source is reopened from scratch instead of crashing the
+                    // multiplayer loop.
+                    readSamples = 0;
+                }
 
                 if (readSamples > 0)
                 {
@@ -88,10 +96,8 @@ namespace TopSpeed.Network.Live
                     continue;
                 }
 
-                if (!_provider.CanSeek)
+                if (!TryRewind())
                     return false;
-
-                _provider.Seek(0);
 
                 wraps++;
                 if (wraps > _framesPerPacket)
@@ -109,6 +115,53 @@ namespace TopSpeed.Network.Live
         public void Dispose()
         {
             _provider.Dispose();
+        }
+
+        private bool TryRewind()
+        {
+            try
+            {
+                _provider.Dispose();
+            }
+            catch
+            {
+                // best effort; the replacement provider below is what we depend on.
+            }
+
+            if (!TryOpenProvider(_filePath, _format, out var provider) || provider == null)
+                return false;
+
+            _provider = provider;
+            return true;
+        }
+
+        private static bool TryOpenProvider(string filePath, SfAudioFormat format, out SoundFlow.Interfaces.ISoundDataProvider? provider)
+        {
+            provider = null;
+            if (!System.IO.File.Exists(filePath))
+                return false;
+
+            SoundFlow.Interfaces.ISoundDataProvider opened;
+            try
+            {
+                opened = new StreamDataProvider(
+                    DecoderEngine.Value,
+                    format,
+                    new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read));
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (opened.Length == 0)
+            {
+                opened.Dispose();
+                return false;
+            }
+
+            provider = opened;
+            return true;
         }
 
         private static AudioEngine CreateEngine()
@@ -133,4 +186,3 @@ namespace TopSpeed.Network.Live
         }
     }
 }
-

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 21:43+0300\n"
-"PO-Revision-Date: 2026-05-12 19:54\n"
+"POT-Creation-Date: 2026-05-14 15:03+0300\n"
+"PO-Revision-Date: 2026-05-14 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -832,7 +832,7 @@ msgstr "Tùy chọn:"
 msgid "Player joined room: room={0} \"{1}\", player={2}, participants={3}/{4}."
 msgstr "Người chơi đã vào phòng: phòng={0} \"{1}\", người_chơi={2}, tham_gia={3}/{4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:106
 #, csharp-format
 msgid "Player left room: room={0} \"{1}\", player={2}, notify={3}, roomClosed={4}."
 msgstr ""
@@ -1023,7 +1023,7 @@ msgstr ""
 msgid "Room add-bot denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Từ chối thêm bot vào phòng: phòng={0}, người_chơi={1}, đã_bắt_đầu={2}, đang_chuẩn_bị={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:116
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:115
 #, csharp-format
 msgid "Room closed: room={0} \"{1}\", reason=last_participant_left."
 msgstr ""
@@ -1566,7 +1566,7 @@ msgstr "Bạn không ở trong phòng game."
 msgid "You are not in this game room."
 msgstr "Bạn không ở trong phòng game này."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:99
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:98
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:210
 msgid "You are now host of this room."
 msgstr ""
@@ -1755,7 +1755,7 @@ msgstr "{0} đã kết nối vào máy chủ."
 msgid "{0} has disconnected from the server."
 msgstr "{0} đã ngắt kết nối khỏi máy chủ."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:74
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:73
 #, csharp-format
 msgid "{0} has left the game."
 msgstr "{0} đã thoát khỏi game."

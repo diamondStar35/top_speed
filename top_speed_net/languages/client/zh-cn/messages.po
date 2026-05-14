@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 21:43+0300\n"
-"PO-Revision-Date: 2026-05-12 19:54\n"
+"POT-Creation-Date: 2026-05-14 15:03+0300\n"
+"PO-Revision-Date: 2026-05-14 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "如果失误再少点，成绩会好得多。"
 msgid "A new version of Top Speed was detected. Your current version is {0}. The new version is {1}. Would you like to download the update?"
 msgstr "检测到 Top Speed 的新版本。您当前版本为 {0}，新版本为 {1}。是否下载更新？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Network.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Network.cs:42
 msgid "A saved server entry was ignored because the host is empty."
 msgstr "保存的服务器条目已被忽略，因为主机地址为空。"
 
@@ -99,7 +99,7 @@ msgstr "所有玩家已就绪，游戏开始！"
 msgid "Alt"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:242
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:50
 msgid "Ambients and sound sources"
 msgstr "环境音和声源"
@@ -242,7 +242,7 @@ msgstr "自动变速箱"
 msgid "Automatic transmission is required for this vehicle."
 msgstr "此车辆需要自动变速箱。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:48
 msgid "Automatically focus first menu item"
 msgstr "自动聚焦第一个菜单项"
 
@@ -469,7 +469,7 @@ msgstr "聊天消息不能为空。"
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:68
 msgid "Check for updates on startup"
 msgstr "启动时检查更新"
 
@@ -510,7 +510,7 @@ msgstr ""
 msgid "Choose the difficulty level for single races."
 msgstr "选择单人比赛的难度级别。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:19
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:29
 msgid "Choose the language used for menu and spoken interface text."
 msgstr "选择菜单和语音界面文字所使用的语言。"
 
@@ -580,7 +580,7 @@ msgstr "离合器踏板方向"
 msgid "Colon"
 msgstr "冒号"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:242
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:245
 msgid "Communicator"
 msgstr ""
 
@@ -916,11 +916,11 @@ msgstr "自定义车辆错误"
 msgid "Custom vehicle file must use .tsv extension."
 msgstr "自定义车辆文件必须使用.tsv扩展名。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:48
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:58
 msgid "Cycles to the previous global volume category."
 msgstr ""
 
@@ -948,11 +948,11 @@ msgstr "小数点"
 msgid "Decrease media volume"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:65
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:66
 msgid "Decrease volume by 1"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:83
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:84
 msgid "Decrease volume by 10"
 msgstr ""
 
@@ -960,11 +960,11 @@ msgstr ""
 msgid "Decreases media volume."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:67
 msgid "Decreases the selected global volume category by one step."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:85
 msgid "Decreases the selected global volume category by ten steps."
 msgstr ""
 
@@ -1014,7 +1014,7 @@ msgstr "默认服务器端口已设置为 {0}。"
 msgid "Default server port: {0}"
 msgstr "默认服务器端口：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Core.cs:35
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Core.cs:37
 msgid "Defaults restored."
 msgstr "已恢复默认值。"
 
@@ -1069,17 +1069,17 @@ msgstr "下"
 msgid "Download failed"
 msgstr "下载失败"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:136
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:149
 #, csharp-format
 msgid "Download failed with status code {0}."
 msgstr "下载失败，状态码为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:206
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:219
 #, csharp-format
 msgid "Download failed: {0}"
 msgstr "下载失败：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:196
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:209
 msgid "Download timed out or was canceled."
 msgstr "下载超时或已取消。"
 
@@ -1139,19 +1139,27 @@ msgstr "重复的天气 ID「{0}」。"
 msgid "Edit"
 msgstr "编辑"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:85
+msgid "Edit the proxy URL used for update checks, downloads, and latest changes requests."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:13
 msgid "Enable HRTF audio"
 msgstr "启用HRTF音频"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
 msgstr "启用菜单导航平移"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:43
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:53
 msgid "Enable menu wrapping"
 msgstr "启用菜单循环"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:34
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
+msgid "Enable proxy for updates and changes first."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:44
 msgid "Enable usage hints"
 msgstr "启用使用提示"
 
@@ -1189,6 +1197,10 @@ msgstr "输入房间名称。留空则使用自动名称。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:78
 msgid "Enter a room name. Leave this field empty to use an automatic room name."
 msgstr "输入房间名称。留空则使用自动生成的房间名称。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:27
+msgid "Enter proxy URL"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:14
 msgid "Enter the IP address or domain manually"
@@ -1421,10 +1433,6 @@ msgstr "游戏规则"
 msgid "Game rules changed."
 msgstr "游戏规则已更改。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:12
-msgid "Game settings"
-msgstr "游戏设置"
-
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:34
 msgid "Game type"
 msgstr "游戏类型"
@@ -1443,6 +1451,10 @@ msgstr "游戏手柄"
 msgid "Gear {0}"
 msgstr "挡位 {0}"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:12
+msgid "General"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:112
 msgid "Germany"
@@ -1458,7 +1470,7 @@ msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The ga
 msgstr "幽灵模式已{0}。自定义赛道已{1}。所选赛道为 {2}。比赛将进行 {3}。此房间限制为 {4}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
-#: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:156
+#: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
 msgid "Global shortcuts"
 msgstr "全局快捷键"
 
@@ -1475,7 +1487,7 @@ msgstr "反撇号"
 msgid "Help"
 msgstr "帮助"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:42
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:49
 msgid "Help file not found"
 msgstr "未找到帮助文件"
 
@@ -1519,11 +1531,11 @@ msgstr "我真的没什么有趣的内容可以写在这里，甚至没有人生
 msgid "If you leave race preparation now, the current game will be canceled for everyone in this room."
 msgstr "如果您现在退出比赛准备，房间内所有人的当前游戏都将被取消。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:20
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:30
 msgid "Include custom tracks in randomization"
 msgstr "在随机赛道中包含自定义赛道"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:24
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:34
 msgid "Include custom vehicles in randomization"
 msgstr "在随机车辆中包含自定义车辆"
 
@@ -1531,11 +1543,11 @@ msgstr "在随机车辆中包含自定义车辆"
 msgid "Increase media volume"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:74
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:75
 msgid "Increase volume by 1"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:92
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:93
 msgid "Increase volume by 10"
 msgstr ""
 
@@ -1543,11 +1555,11 @@ msgstr ""
 msgid "Increases media volume."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:75
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:76
 msgid "Increases the selected global volume category by one step."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:94
 msgid "Increases the selected global volume category by ten steps."
 msgstr ""
 
@@ -1802,7 +1814,7 @@ msgstr "语言保持为 {0}。"
 msgid "Language set to {0}."
 msgstr "语言已设置为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:94
 #, csharp-format
 msgid "Language: {0}"
 msgstr "语言：{0}"
@@ -1842,12 +1854,12 @@ msgstr "正在获取最新更新日志。"
 msgid "Latest changes request failed."
 msgstr "获取最新更新日志失败"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:121
 #, csharp-format
 msgid "Latest changes request failed: {0}"
 msgstr "最新更新日志请求失败： {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:116
 msgid "Latest changes request timed out."
 msgstr "更新日志请求超时。"
 
@@ -2030,7 +2042,7 @@ msgstr "映射菜单快捷键"
 msgid "Mapping cancelled."
 msgstr "映射已取消。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:232
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:235
 msgid "Master audio"
 msgstr ""
 
@@ -2056,11 +2068,11 @@ msgstr "重新测量屏幕阅读器的朗读速度，以确保使用提示和延
 msgid "Menu sound preset was empty and was reset to default."
 msgstr "菜单声音预设为空，已重置为默认值。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:86
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:111
 msgid "Menu sounds"
 msgstr "菜单声音"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:79
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:104
 #, csharp-format
 msgid "Menu sounds: {0}"
 msgstr "菜单声音：{0}"
@@ -2185,7 +2197,7 @@ msgstr "检测到多个游戏控制器。请选择一个使用。"
 msgid "Multiply"
 msgstr "乘"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:240
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:243
 msgid "Music"
 msgstr ""
 
@@ -2218,7 +2230,7 @@ msgstr "发送直播开始时网络发送失败。"
 msgid "Network send failed while sending live stop."
 msgstr "发送直播停止时网络发送失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:44
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:63
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Systems\Sync.cs:94
 msgid "Network send failed. Please check your connection."
 msgstr "网络发送失败。请检查您的连接。"
@@ -2243,7 +2255,7 @@ msgstr ""
 msgid "Next media track"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:48
 msgid "Next volume category"
 msgstr ""
 
@@ -2496,7 +2508,7 @@ msgstr "在线玩家"
 msgid "Online server event sounds"
 msgstr "在线服务器事件声音"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:241
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:244
 msgid "Online server events"
 msgstr ""
 
@@ -2548,7 +2560,7 @@ msgstr ""
 msgid "Options"
 msgstr "选项"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:235
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:238
 msgid "Other vehicles engine"
 msgstr ""
 
@@ -2560,7 +2572,7 @@ msgstr "其他车辆引擎声音"
 msgid "Other vehicles event sounds"
 msgstr "其他车辆事件声音"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:236
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:239
 msgid "Other vehicles events"
 msgstr ""
 
@@ -2640,7 +2652,7 @@ msgstr "百分比：{0}%"
 msgid "Ping check already in progress."
 msgstr "延迟检查已在进行中。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:64
 msgid "Play logo at startup"
 msgstr "启动时播放logo"
 
@@ -2760,7 +2772,7 @@ msgstr ""
 msgid "Previous media track"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:57
 msgid "Previous volume category"
 msgstr ""
 
@@ -2790,6 +2802,27 @@ msgstr "协议版本：{0}"
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:28
 msgid "Provide tire_circumference or all of tire_width, tire_aspect, and tire_rim."
 msgstr "请提供 tire_circumference，或同时提供 tire_width、tire_aspect 和 tire_rim。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:42
+msgid "Proxy URL cannot be empty while proxy is enabled."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:50
+msgid "Proxy URL must be a valid HTTP or HTTPS URL."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:58
+msgid "Proxy URL saved."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:135
+msgid "Proxy URL, currently empty."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:137
+#, csharp-format
+msgid "Proxy URL, currently set to {0}"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:177
 msgid "Push to talk"
@@ -2899,7 +2932,7 @@ msgid "Racing wheel"
 msgstr "赛车方向盘"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Core.cs:68
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:238
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:241
 msgid "Radio"
 msgstr "收音机"
 
@@ -3305,7 +3338,7 @@ msgstr "选择设备：{0}"
 msgid "Select input device"
 msgstr "选择输入设备"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:91
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:116
 msgid "Select the menu sound preset."
 msgstr "选择菜单声音预设。"
 
@@ -3670,7 +3703,7 @@ msgstr "您本次计时赛成绩摘要："
 msgid "Surface loop sounds"
 msgstr "路面循环声音"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:237
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:240
 msgid "Surface loops"
 msgstr ""
 
@@ -3725,7 +3758,7 @@ msgstr "向上滑动以切换。"
 msgid "Switch between fixed distance and speed dependent curve announcements."
 msgstr "在固定距离和速度相关弯道通知之间切换。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:33
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:43
 msgid "Switch between metric and imperial units."
 msgstr "在公制和英制单位之间切换。"
 
@@ -3912,11 +3945,11 @@ msgstr "比赛已结束。"
 msgid "The race section is missing. Defaults were used for race settings."
 msgstr "比赛部分缺失。比赛设置已使用默认值。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:43
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:50
 msgid "The requested help file could not be found."
 msgstr "找不到请求的帮助文件。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:73
 msgid "The requested help file could not be opened."
 msgstr "无法打开请求的帮助文件。"
 
@@ -3987,12 +4020,12 @@ msgstr "无法自动安装更新。"
 msgid "The update download is complete."
 msgstr "更新下载完成。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:34
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:81
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:46
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:93
 msgid "The update info file could not be read."
 msgstr "无法读取更新信息文件。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:37
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:49
 msgid "The update info file has an invalid version format."
 msgstr "更新信息文件的版本格式无效。"
 
@@ -4245,7 +4278,7 @@ msgstr ""
 msgid "Unable to copy to clipboard."
 msgstr "无法复制到剪贴板。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:65
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:72
 msgid "Unable to open help file"
 msgstr "无法打开帮助文件"
 
@@ -4281,7 +4314,7 @@ msgstr ""
 msgid "Underline"
 msgstr "下划线"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:28
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:38
 msgid "Units"
 msgstr "单位"
 
@@ -4346,8 +4379,8 @@ msgstr "未知的音效键「{0}」。"
 msgid "Unknown torque curve preset '{0}'. Valid values: {1}."
 msgstr "未知的扭矩曲线预设 '{0}'。有效值：{1}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:269
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:278
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:309
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:318
 msgid "Unknown update error."
 msgstr "未知的更新错误。"
 
@@ -4387,7 +4420,7 @@ msgstr "更新检查失败"
 msgid "Update check failed."
 msgstr "更新检查失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:82
 #, csharp-format
 msgid "Update check failed: {0}"
 msgstr "更新检查失败：{0}"
@@ -4396,7 +4429,7 @@ msgstr "更新检查失败：{0}"
 msgid "Update check is already in progress."
 msgstr "更新检查已在进行中。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:65
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:77
 msgid "Update check timed out."
 msgstr "更新检查超时。"
 
@@ -4408,7 +4441,7 @@ msgstr "更新下载完成。"
 msgid "Update download failed."
 msgstr "更新下载失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:59
 #, csharp-format
 msgid "Update package '{0}' was not found in the latest release."
 msgstr "在最新版本中未找到更新包 '{0}'。"
@@ -4435,7 +4468,7 @@ msgstr "未找到更新程序"
 msgid "Updater unavailable"
 msgstr "更新程序不可用"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:28
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:40
 msgid "Updates are not available on this platform."
 msgstr "此平台不提供更新。"
 
@@ -4484,6 +4517,10 @@ msgstr "使用喇叭"
 msgid "Use motion sensors for steering"
 msgstr "使用运动传感器转向"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:72
+msgid "Use proxy for updates and changes"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:135
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
@@ -4496,7 +4533,7 @@ msgstr "车辆"
 msgid "Vehicle creation guide"
 msgstr "车辆创建指南"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:233
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:236
 msgid "Vehicle engine"
 msgstr ""
 
@@ -4508,7 +4545,7 @@ msgstr "车辆引擎声音"
 msgid "Vehicle event sounds"
 msgstr "车辆事件声音"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:234
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:237
 msgid "Vehicle events"
 msgstr ""
 
@@ -4557,7 +4594,7 @@ msgstr ""
 msgid "Voice: {0}"
 msgstr "语音：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:243
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:246
 msgid "Volume"
 msgstr ""
 
@@ -4610,19 +4647,19 @@ msgstr "此版本的新功能："
 msgid "When checked, Three-D audio uses HRTF spatialization for more realistic positioning."
 msgstr "启用后，3D音频使用HRTF空间化以获得更真实的定位效果。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:42
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:52
 msgid "When checked, each menu automatically focuses and announces the first item after the title."
 msgstr "启用后，每个菜单在标题之后自动聚焦并播报第一个项目。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:37
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:47
 msgid "When checked, menu items can speak usage hints after a short delay."
 msgstr "启用后，菜单项可在短暂延迟后朗读使用提示。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:63
 msgid "When checked, menu navigation sounds pan left or right based on the item position."
 msgstr "启用后，菜单导航音效会根据项目位置向左或向右平移。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:57
 msgid "When checked, menu navigation wraps from the last item to the first."
 msgstr "启用后，菜单导航从最后一项回到第一项。"
 
@@ -4630,11 +4667,11 @@ msgstr "启用后，菜单导航从最后一项回到第一项。"
 msgid "When checked, new spoken messages interrupt the current screen reader speech. Menu titles and usage hints are not affected."
 msgstr "启用后，新的语音消息会打断当前屏幕阅读器的朗读。菜单标题和使用提示不受影响。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:23
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:33
 msgid "When checked, random track selection can include custom tracks."
 msgstr "启用后，随机赛道选择可以包含自定义赛道。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:27
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:37
 msgid "When checked, random vehicle selection can include custom vehicles."
 msgstr "启用后，随机车辆选择可以包含自定义车辆。"
 
@@ -4642,7 +4679,7 @@ msgstr "启用后，随机车辆选择可以包含自定义车辆。"
 msgid "When checked, steering uses Android motion sensors instead of drag gestures."
 msgstr "启用后，转向将使用 Android 动作传感器，而不是拖动手势。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:61
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:71
 msgid "When checked, the game checks for updates automatically after the logo."
 msgstr "启用后，游戏将在徽标画面后自动检查更新。"
 
@@ -4650,9 +4687,13 @@ msgstr "启用后，游戏将在徽标画面后自动检查更新。"
 msgid "When checked, the game uses the device channel count and sample rate. Restart required."
 msgstr "启用后，游戏使用设备的声道数和采样率。需要重启。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:67
 msgid "When checked, the startup logo audio plays when the game launches."
 msgstr "启用后，游戏启动时播放启动音效。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:76
+msgid "When checked, update checks, update downloads, and latest changes requests are routed through your proxy URL."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4924,7 +4965,7 @@ msgstr "仅弯道"
 msgid "custom track list request"
 msgstr "自定义赛道列表请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:82
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:107
 msgid "default"
 msgstr "默认"
 
@@ -4993,7 +5034,7 @@ msgstr "困难"
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph 必须大于 high_speed_steer_start_kph。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:40
 msgid "imperial"
 msgstr "英制"
 
@@ -5035,7 +5076,7 @@ msgstr "大厅"
 msgid "max_rpm must be greater than or equal to idle_rpm."
 msgstr "最大转速必须大于或等于怠速转速。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:29
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:39
 msgid "metric"
 msgstr "公制"
 
@@ -5432,7 +5473,7 @@ msgstr "{0} 面板"
 msgid "{0} people are connected."
 msgstr "{0} 人已连接。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:178
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:181
 #, csharp-format
 msgid "{0} percent"
 msgstr ""
@@ -5539,7 +5580,7 @@ msgstr "{0}：用时 {2}，第 {1} 名完赛。"
 msgid "{0}: position {1}, time {2}."
 msgstr "{0}：第 {1} 名，用时 {2}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:158
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format
 msgid "{0}: {1} percent"
 msgstr ""

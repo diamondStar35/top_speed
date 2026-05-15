@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-14 12:05\n"
+"PO-Revision-Date: 2026-05-15 10:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr "调整当前语音引擎的语速。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:309
 msgid "All menu shortcuts were reset to defaults."
-msgstr ""
+msgstr "所有菜单快捷键已重置为默认设置。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\RoomTexts.cs:7
 msgid "All players are ready. Starting game."
@@ -97,7 +97,7 @@ msgstr "所有玩家已就绪，游戏开始！"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:116
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:242
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:50
@@ -111,7 +111,7 @@ msgstr "美国"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:37
 msgid "Amplifies the captured microphone signal before it is sent to other players. 100 is unity gain. Raise this if other players report you sound too quiet; lower it if your voice clips."
-msgstr ""
+msgstr "在将麦克风捕获的信号发送给其他玩家之前对其进行放大。100 表示单位增益。如果其他玩家反馈你的声音太小，请提高该值；如果有嚣叫或爆音，请降低该值。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:142
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:156
@@ -133,7 +133,7 @@ msgstr "Android 更新需要 APK 安装包。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:169
 msgid "Announce frequency"
-msgstr ""
+msgstr "广播频率"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:28
 msgid "Apostrophe"
@@ -321,15 +321,15 @@ msgstr "双向"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:65
 msgid "Both Alt keys"
-msgstr ""
+msgstr "两个Alt键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:53
 msgid "Both Control keys"
-msgstr ""
+msgstr "两个Ctrl键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:31
 msgid "Both Shift keys"
-msgstr ""
+msgstr "两个Shift键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:87
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
@@ -504,7 +504,7 @@ msgstr "选择如何继续当前游戏。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"
-msgstr ""
+msgstr "选择修饰键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:71
 msgid "Choose the difficulty level for single races."
@@ -520,7 +520,7 @@ msgstr "选择语言。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:63
 msgid "Choose the microphone used for communicator voice chat."
-msgstr ""
+msgstr "选择用于语音聊天的麦克风。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:44
 msgid "Choose the number of laps for this room."
@@ -582,19 +582,19 @@ msgstr "冒号"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:245
 msgid "Communicator"
-msgstr ""
+msgstr "通讯器"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:17
 msgid "Communicator off"
-msgstr ""
+msgstr "通讯器关闭"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:16
 msgid "Communicator on"
-msgstr ""
+msgstr "通讯器开启"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:69
 msgid "Communicator volume"
-msgstr ""
+msgstr "通讯器音量"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:186
 msgid "Compatibility warning"
@@ -614,7 +614,7 @@ msgstr "配置输入设备、力反馈、渐进键盘行为、按键映射和菜
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:23
 msgid "Configure spatial audio behavior, including HRTF processing, stereo widening, automatic device format detection, and voice input device selection."
-msgstr ""
+msgstr "配置空间音频行为，包括HRTF处理、立体声扩展、自动设备格式检测以及语音输入设备选择。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:19
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
@@ -639,7 +639,7 @@ msgstr "已连接。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\PendingOperations.cs:57
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Connect.cs:217
 msgid "Connection attempt canceled."
-msgstr ""
+msgstr "连接尝试已取消。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\PendingOperations.cs:69
 msgid "Connection attempt failed."
@@ -648,7 +648,7 @@ msgstr "连接尝试失败。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\PendingOperations.cs:65
 #, csharp-format
 msgid "Connection attempt failed: {0}"
-msgstr ""
+msgstr "连接尝试失败：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:213
 msgid "Connection canceled."
@@ -656,15 +656,15 @@ msgstr "连接已取消。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:87
 msgid "Connection changed. Reconnecting."
-msgstr ""
+msgstr "连接已更改，正在重新连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:42
 msgid "Connection closed by server."
-msgstr ""
+msgstr "连接被服务器关闭。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:52
 msgid "Connection closed due to protocol error."
-msgstr ""
+msgstr "连接因协议错误而关闭。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:235
 msgid "Connection failed"
@@ -686,7 +686,7 @@ msgstr "会话初始化前连接丢失。"
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Connect.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:97
 msgid "Connection lost."
-msgstr ""
+msgstr "连接丢失。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Reconnect.cs:27
 msgid "Connection lost. Reconnecting."
@@ -702,11 +702,11 @@ msgstr "由于协议不匹配，连接被拒绝。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:57
 msgid "Connection rejected by server."
-msgstr ""
+msgstr "连接被服务器拒绝。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:37
 msgid "Connection timed out."
-msgstr ""
+msgstr "连接超时。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:96
 msgid "Consider that your one free mistake for the session."
@@ -722,7 +722,7 @@ msgstr "继续连接"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:115
 msgid "Control"
-msgstr ""
+msgstr "控制"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\ControlPanel.cs:5
 msgid "Control panel"
@@ -764,7 +764,7 @@ msgstr "控制"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:72
 msgid "Controls communicator activation cues and remote voice chat playback. Affects how loud other players sound when they speak through the communicator."
-msgstr ""
+msgstr "控制通讯器的激活提示和远程语音聊天播放。影响其他玩家通过通讯器讲话时的声音大小。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:33
 msgid "Controls engine-related sounds for bots and other players, including engine start and stop."
@@ -812,11 +812,11 @@ msgstr "已复制到剪贴板。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\History.cs:176
 msgid "Copied."
-msgstr ""
+msgstr "已复制。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:146
 msgid "Copies the currently focused multiplayer history item to the clipboard."
-msgstr ""
+msgstr "将当前聚焦的多人游戏历史记录项复制到剪贴板。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:16
 msgid "Copilot"
@@ -828,7 +828,7 @@ msgstr "复制"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:145
 msgid "Copy focused history item"
-msgstr ""
+msgstr "复制聚焦的历史记录项"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playlist.cs:66
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:453
@@ -918,11 +918,11 @@ msgstr "自定义车辆文件必须使用.tsv扩展名。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
-msgstr ""
+msgstr "切换到下一个全局音量类别。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:58
 msgid "Cycles to the previous global volume category."
-msgstr ""
+msgstr "切换到上一个全局音量类别。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:205
 msgid "D-pad down"
@@ -946,27 +946,27 @@ msgstr "小数点"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:249
 msgid "Decrease media volume"
-msgstr ""
+msgstr "降低媒体音量"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:66
 msgid "Decrease volume by 1"
-msgstr ""
+msgstr "音量减小1"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:84
 msgid "Decrease volume by 10"
-msgstr ""
+msgstr "音量减小10"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:250
 msgid "Decreases media volume."
-msgstr ""
+msgstr "降低媒体音量。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:67
 msgid "Decreases the selected global volume category by one step."
-msgstr ""
+msgstr "将选定的全局音量类别降低1。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:85
 msgid "Decreases the selected global volume category by ten steps."
-msgstr ""
+msgstr "将选定的全局音量类别降低10。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:121
 msgid "Default (1 degree)"
@@ -1051,7 +1051,7 @@ msgstr "已断开与服务器的连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:47
 msgid "Disconnected."
-msgstr ""
+msgstr "已断开连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:62
 msgid "Divide"
@@ -1141,7 +1141,7 @@ msgstr "编辑"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:85
 msgid "Edit the proxy URL used for update checks, downloads, and latest changes requests."
-msgstr ""
+msgstr "编辑用于更新检查、下载和最新更改请求的代理URL。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:13
 msgid "Enable HRTF audio"
@@ -1157,7 +1157,7 @@ msgstr "启用菜单循环"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable proxy for updates and changes first."
-msgstr ""
+msgstr "先启用用于更新和更改的代理。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:44
 msgid "Enable usage hints"
@@ -1200,7 +1200,7 @@ msgstr "输入房间名称。留空则使用自动生成的房间名称。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:27
 msgid "Enter proxy URL"
-msgstr ""
+msgstr "输入代理URL"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:14
 msgid "Enter the IP address or domain manually"
@@ -1281,7 +1281,7 @@ msgstr "初始化网络客户端失败。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:295
 #, csharp-format
 msgid "Failed to load communicator media. {0}"
-msgstr ""
+msgstr "无法加载通信器媒体。{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:27
 #, csharp-format
@@ -1337,7 +1337,7 @@ msgstr "发送 {0} 失败。请检查您的连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:301
 msgid "Failed to stream communicator media to the server."
-msgstr ""
+msgstr "无法将通信器媒体流传输到服务器。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:38
 msgid "Fast (0.50 seconds)"
@@ -1383,7 +1383,7 @@ msgstr "芬兰"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:113
 msgid "First history item"
-msgstr ""
+msgstr "历史记录第一项"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:11
 msgid "First position achieved. Great race."
@@ -1409,12 +1409,12 @@ msgstr "法国海岸"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:51
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
-msgstr ""
+msgstr "频率必须在0.0到1000.0之间，以0.1为步长。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:57
 #, csharp-format
 msgid "Frequency set to {0} MHz."
-msgstr ""
+msgstr "频率设置为 {0} 兆赫。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:66
@@ -1453,7 +1453,7 @@ msgstr "挡位 {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:12
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:112
@@ -1505,7 +1505,7 @@ msgstr "历史"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:178
 msgid "Hold to transmit voice when voice activation is off."
-msgstr ""
+msgstr "当关闭语音激活时，按住以发送语音。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:67
 msgid "Home"
@@ -1513,7 +1513,7 @@ msgstr "行首"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:72
 msgid "Host is unreachable."
-msgstr ""
+msgstr "主机无法访问。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
@@ -1541,27 +1541,27 @@ msgstr "在随机车辆中包含自定义车辆"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:240
 msgid "Increase media volume"
-msgstr ""
+msgstr "增大媒体音量"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:75
 msgid "Increase volume by 1"
-msgstr ""
+msgstr "音量增加1"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:93
 msgid "Increase volume by 10"
-msgstr ""
+msgstr "音量增加10"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:241
 msgid "Increases media volume."
-msgstr ""
+msgstr "增大媒体音量。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:76
 msgid "Increases the selected global volume category by one step."
-msgstr ""
+msgstr "将选定的全局音量类别增加1。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:94
 msgid "Increases the selected global volume category by ten steps."
-msgstr ""
+msgstr "将选定的全局音量类别增加10。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:104
 msgid "Info:"
@@ -1839,7 +1839,7 @@ msgstr "第 {0} 圈"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:121
 msgid "Last history item"
-msgstr ""
+msgstr "历史记录最后一项"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:134
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:152
@@ -1934,7 +1934,7 @@ msgstr "左扳机"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:34
 #, csharp-format
 msgid "Left {0}"
-msgstr ""
+msgstr "向左 {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:30
 #, csharp-format
@@ -1951,11 +1951,11 @@ msgstr "直播停止，因为媒体解码失败。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:186
 msgid "Load media file"
-msgstr ""
+msgstr "加载媒体文件"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:195
 msgid "Load media folder"
-msgstr ""
+msgstr "加载媒体文件夹"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
 msgid "Loading custom tracks from server."
@@ -1963,11 +1963,11 @@ msgstr "正在从服务器加载自定义赛道。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:187
 msgid "Loads an audio file for streaming."
-msgstr ""
+msgstr "加载音频文件以进行流式传输。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:196
 msgid "Loads an audio folder for streaming."
-msgstr ""
+msgstr "加载用于流式传输的音频文件夹。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:73
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:254
@@ -2044,7 +2044,7 @@ msgstr "映射已取消。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:235
 msgid "Master audio"
-msgstr ""
+msgstr "主音频"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:15
 msgid "Master audio volume"
@@ -2083,7 +2083,7 @@ msgstr "梅赛德斯斯宾特"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:33
 msgid "Microphone input gain"
-msgstr ""
+msgstr "麦克风增益"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
 msgid "Mini Cooper S"
@@ -2138,7 +2138,7 @@ msgstr "中等（0.75秒）"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:117
 msgid "Modifier"
-msgstr ""
+msgstr "修饰键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\KeyMapManager.cs:99
 #, csharp-format
@@ -2147,35 +2147,35 @@ msgstr "移动或按控制器上的 {0} 控件。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:114
 msgid "Moves to the first item in the selected multiplayer history category."
-msgstr ""
+msgstr "移动到所选多人游戏历史类别中的第一项。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:122
 msgid "Moves to the last item in the selected multiplayer history category."
-msgstr ""
+msgstr "移动到所选多人游戏历史类别中的最后一项。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:106
 msgid "Moves to the next item in the selected multiplayer history category."
-msgstr ""
+msgstr "移动到所选多人游戏历史类别中的下一项。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:138
 msgid "Moves to the next multiplayer history category."
-msgstr ""
+msgstr "切换到下一个多人游戏历史类别。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:232
 msgid "Moves to the next track in the media playlist."
-msgstr ""
+msgstr "切换到媒体播放列表中的下一首曲目。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:98
 msgid "Moves to the previous item in the selected multiplayer history category."
-msgstr ""
+msgstr "移动到所选多人游戏历史类别中的上一项。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:130
 msgid "Moves to the previous multiplayer history category."
-msgstr ""
+msgstr "切换到上一个多人游戏历史类别。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:223
 msgid "Moves to the previous track in the media playlist."
-msgstr ""
+msgstr "切换到媒体播放列表中的上一首曲目。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:150
 msgid "MultiPlayer game"
@@ -2199,7 +2199,7 @@ msgstr "乘"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:243
 msgid "Music"
-msgstr ""
+msgstr "音乐"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:55
 msgid "Music volume"
@@ -2216,7 +2216,7 @@ msgstr "荷兰"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:67
 msgid "Network is unreachable."
-msgstr ""
+msgstr "无法连接网络。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Live\Tx.cs:159
 msgid "Network send failed while sending live frame."
@@ -2245,19 +2245,19 @@ msgstr "下一个聊天类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:137
 msgid "Next history category"
-msgstr ""
+msgstr "下一个历史类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:105
 msgid "Next history item"
-msgstr ""
+msgstr "下一个历史项目"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:231
 msgid "Next media track"
-msgstr ""
+msgstr "下一媒体曲目"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:48
 msgid "Next volume category"
-msgstr ""
+msgstr "下一个音量类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:54
 msgid "Nissan GT-R Nismo"
@@ -2277,7 +2277,7 @@ msgstr "暂无更改记录。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:193
 msgid "No communicator media loaded."
-msgstr ""
+msgstr "未加载任何通信媒体。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Controller.cs:13
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Core.cs:50
@@ -2510,7 +2510,7 @@ msgstr "在线服务器事件声音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:244
 msgid "Online server events"
-msgstr ""
+msgstr "在线服务器事件"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:59
 msgid "Only the host can cancel the current game."
@@ -2552,7 +2552,7 @@ msgstr "打开多人游戏大厅全局聊天输入框。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:162
 msgid "Opens frequency input for the channel."
-msgstr ""
+msgstr "打开频道的频率输入。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:17
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:151
@@ -2562,7 +2562,7 @@ msgstr "选项"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:238
 msgid "Other vehicles engine"
-msgstr ""
+msgstr "其他车辆引擎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:30
 msgid "Other vehicles engine sounds"
@@ -2574,7 +2574,7 @@ msgstr "其他车辆事件声音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:239
 msgid "Other vehicles events"
-msgstr ""
+msgstr "其他车辆事件"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:10
 msgid "Outstanding drive. You secured first position."
@@ -2639,7 +2639,7 @@ msgstr "暂停游戏"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:82
 msgid "Peer session was not found on server."
-msgstr ""
+msgstr "服务器上未找到对等会话。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:30
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\DownloadProgress.cs:43
@@ -2658,7 +2658,7 @@ msgstr "启动时播放logo"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:204
 msgid "Play or pause media"
-msgstr ""
+msgstr "播放或暂停媒体"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:21
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Helpers.cs:89
@@ -2754,7 +2754,7 @@ msgstr "请按下用于 {0} 的新按键。"
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Mapping.cs:63
 #, csharp-format
 msgid "Press the new shortcut for {0}."
-msgstr ""
+msgstr "按新的快捷键 {0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:125
 msgid "Previous chat category"
@@ -2762,19 +2762,19 @@ msgstr "上一个聊天类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:129
 msgid "Previous history category"
-msgstr ""
+msgstr "上一个历史类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:97
 msgid "Previous history item"
-msgstr ""
+msgstr "上一个历史项目"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:222
 msgid "Previous media track"
-msgstr ""
+msgstr "上一媒体曲目"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:57
 msgid "Previous volume category"
-msgstr ""
+msgstr "上一个音量类别"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:63
 msgid "Print Screen"
@@ -2792,7 +2792,7 @@ msgstr "属性「{0}」位于任何部分之外。"
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Connect.cs:224
 #, csharp-format
 msgid "Protocol packet version mismatch. Server uses packet version {0}, client expects {1}. Update your client or server."
-msgstr ""
+msgstr "协议数据包版本不匹配。服务器使用数据包版本 {0}，客户端期望版本 {1}。请更新您的客户端或服务器。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\About.cs:19
 #, csharp-format
@@ -2805,28 +2805,28 @@ msgstr "请提供 tire_circumference，或同时提供 tire_width、tire_aspect 
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:42
 msgid "Proxy URL cannot be empty while proxy is enabled."
-msgstr ""
+msgstr "启用代理时，代理URL不能为空。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:50
 msgid "Proxy URL must be a valid HTTP or HTTPS URL."
-msgstr ""
+msgstr "代理URL必须是有效的HTTP或HTTPS地址。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:58
 msgid "Proxy URL saved."
-msgstr ""
+msgstr "代理URL已保存。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:135
 msgid "Proxy URL, currently empty."
-msgstr ""
+msgstr "代理URL，当前为空。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:137
 #, csharp-format
 msgid "Proxy URL, currently set to {0}"
-msgstr ""
+msgstr "代理URL，当前设置为 {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:177
 msgid "Push to talk"
-msgstr ""
+msgstr "按住说话"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Question.cs:91
 msgid "Question"
@@ -2988,7 +2988,7 @@ msgstr "已重新连接到服务器。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Connection\Reconnector.cs:120
 msgid "Reconnection canceled."
-msgstr ""
+msgstr "重新连接已取消。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Connection\Reconnector.cs:95
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Connection\Reconnector.cs:132
@@ -2999,7 +2999,7 @@ msgstr "重新连接失败。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Connection\Reconnector.cs:128
 #, csharp-format
 msgid "Reconnection failed: {0}"
-msgstr ""
+msgstr "重新连接失败：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:42
 msgid "Reconnection is in progress. Disconnecting now."
@@ -3039,11 +3039,11 @@ msgstr "重置所有键盘映射"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:214
 msgid "Reset all menu shortcuts to defaults"
-msgstr ""
+msgstr "将所有菜单快捷键重置为默认值"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:283
 msgid "Reset all menu shortcuts?"
-msgstr ""
+msgstr "重置所有菜单快捷键吗？"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:72
 msgid "Reset controller mappings"
@@ -3055,11 +3055,11 @@ msgstr "重置键盘映射"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:267
 msgid "Reset shortcuts in this menu"
-msgstr ""
+msgstr "重置此菜单中的快捷键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:319
 msgid "Reset shortcuts in this menu?"
-msgstr ""
+msgstr "重置此菜单中的快捷键吗？"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:196
 msgid "Restore all controller bindings to their default values."
@@ -3076,11 +3076,11 @@ msgstr "恢复默认设置"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:217
 msgid "Restore every menu shortcut binding to its default value."
-msgstr ""
+msgstr "将每个菜单快捷键绑定恢复为默认。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:270
 msgid "Restore only the shortcuts in this menu to their default values."
-msgstr ""
+msgstr "仅将此菜单中的快捷键恢复为默认。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:238
 msgid "Resume the game"
@@ -3154,7 +3154,7 @@ msgstr "右扳机"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:35
 #, csharp-format
 msgid "Right {0}"
-msgstr ""
+msgstr "右 {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:320
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:67
@@ -3312,12 +3312,12 @@ msgstr "选择自定义车辆"
 #: D:\top_speed\top_speed_net\TopSpeed\Window\Eto\FileDialogService.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Window\WinForms\FileDialogService.cs:25
 msgid "Select a media file"
-msgstr ""
+msgstr "选择一个媒体文件"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Window\Eto\FileDialogService.cs:49
 #: D:\top_speed\top_speed_net\TopSpeed\Window\WinForms\FileDialogService.cs:50
 msgid "Select a media folder"
-msgstr ""
+msgstr "选择一个媒体文件夹"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:36
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:98
@@ -3344,7 +3344,7 @@ msgstr "选择菜单声音预设。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:31
 msgid "Select the microphone used for communicator voice chat in multiplayer."
-msgstr ""
+msgstr "选择在多人游戏中用于语音聊天的麦克风。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:53
 msgid "Select the player capacity for this room. The host can start with fewer players than the specified maximum players, so this is not a hard requirement."
@@ -3356,7 +3356,7 @@ msgstr "选择变速箱模式"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:62
 msgid "Select voice input device"
-msgstr ""
+msgstr "选择语音输入设备"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:121
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:133
@@ -3431,7 +3431,7 @@ msgstr "服务器支持的协议版本：{0} 到 {1}"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:37
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:161
 msgid "Set frequency"
-msgstr ""
+msgstr "设置频率"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:38
 msgid "Set race defaults such as copilot callouts, curve announcements, automatic information, laps, computer opponents, and difficulty."
@@ -3486,7 +3486,7 @@ msgstr "大厅聊天"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:114
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:43
 msgid "Shift gear down"
@@ -3507,7 +3507,7 @@ msgstr "快捷键映射已取消。"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:365
 #, csharp-format
 msgid "Shortcuts in {0} were reset to defaults."
-msgstr ""
+msgstr "{0} 中的快捷键已重置为默认值。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:64
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Selection.cs:88
@@ -3619,7 +3619,7 @@ msgstr "播报当前游戏房间中生效的游戏规则。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:170
 msgid "Speaks the currently selected channel frequency."
-msgstr ""
+msgstr "播报当前选定频道的频率。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:64
 msgid "Speaks your current ping while you are in multiplayer menus."
@@ -3705,7 +3705,7 @@ msgstr "路面循环声音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:240
 msgid "Surface loops"
-msgstr ""
+msgstr "表面循环"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:40
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:126
@@ -3808,7 +3808,7 @@ msgstr "撞成这样，修车账单估计不少。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Mapping.cs:86
 msgid "That shortcut is already in use in this shortcut group."
-msgstr ""
+msgstr "该快捷键已在本快捷键组中使用。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:120
 msgid "That was a suspicious amount of impact testing."
@@ -4071,7 +4071,7 @@ msgstr "此服务器不支持所需的协议协商，请更新您的服务器。
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:343
 msgid "This shortcut menu has no bindings to reset."
-msgstr ""
+msgstr "此快捷键菜单没有可重置的绑定。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
@@ -4085,11 +4085,11 @@ msgstr "这将从列表中删除已保存的服务器条目。确定要继续吗
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:321
 #, csharp-format
 msgid "This will restore all shortcuts in {0} to their default values."
-msgstr ""
+msgstr "这将把 {0} 中的所有快捷键恢复为默认值。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:284
 msgid "This will restore every menu shortcut binding to its default value."
-msgstr ""
+msgstr "这将把每个菜单快捷键绑定恢复为默认值。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:39
 msgid "Throttle"
@@ -4113,23 +4113,23 @@ msgstr "计时赛。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:213
 msgid "Toggle media loop"
-msgstr ""
+msgstr "切换媒体循环"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:258
 msgid "Toggle media shuffle"
-msgstr ""
+msgstr "切换媒体随机播放"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:153
 msgid "Toggle transmission"
-msgstr ""
+msgstr "切换传输"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:267
 msgid "Toggle voice activation"
-msgstr ""
+msgstr "切换语音激活"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:205
 msgid "Toggles play and pause for streaming media."
-msgstr ""
+msgstr "切换流媒体的播放和暂停。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:144
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:158
@@ -4251,19 +4251,19 @@ msgstr "不支持的变速箱"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:214
 msgid "Turns media loop mode on or off."
-msgstr ""
+msgstr "开启或关闭媒体循环模式。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:259
 msgid "Turns media shuffle mode on or off."
-msgstr ""
+msgstr "开启或关闭媒体随机播放模式。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:154
 msgid "Turns transmission controls on or off."
-msgstr ""
+msgstr "开启或关闭传输控制。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:268
 msgid "Turns voice activation mode on or off."
-msgstr ""
+msgstr "开启或关闭语音激活模式。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Device.cs:57
 msgid "Unable to activate the selected controller."
@@ -4272,7 +4272,7 @@ msgstr "无法激活所选控制器。"
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Mapping.cs:97
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Mapping.cs:103
 msgid "Unable to apply the new shortcut."
-msgstr ""
+msgstr "无法应用新的快捷键。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\About.cs:52
 msgid "Unable to copy to clipboard."
@@ -4288,7 +4288,7 @@ msgstr "无法准备自定义赛道上传。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:62
 msgid "Unable to reach server."
-msgstr ""
+msgstr "无法连接服务器。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:30
 msgid "Unable to resolve custom track folder path."
@@ -4308,7 +4308,7 @@ msgstr "无法解析服务器地址：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:77
 msgid "Unable to resolve server host."
-msgstr ""
+msgstr "无法解析服务器主机。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:48
 msgid "Underline"
@@ -4391,7 +4391,7 @@ msgstr "未知的天气键「{0}」。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:92
 msgid "Unsupported peer-to-peer mode."
-msgstr ""
+msgstr "不支持点对点模式。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Load.cs:100
 #, csharp-format
@@ -4507,7 +4507,7 @@ msgstr "按左或右光标键更改。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:36
 msgid "Use both modifier keys"
-msgstr ""
+msgstr "同时使用两个修饰键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:44
 msgid "Use horn"
@@ -4519,7 +4519,7 @@ msgstr "使用运动传感器转向"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:72
 msgid "Use proxy for updates and changes"
-msgstr ""
+msgstr "使用代理进行更新和更改"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:135
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
@@ -4535,7 +4535,7 @@ msgstr "车辆创建指南"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:236
 msgid "Vehicle engine"
-msgstr ""
+msgstr "车辆引擎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:20
 msgid "Vehicle engine sounds"
@@ -4547,7 +4547,7 @@ msgstr "车辆事件声音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:237
 msgid "Vehicle events"
-msgstr ""
+msgstr "车辆事件"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Load\File.cs:28
 #, csharp-format
@@ -4569,25 +4569,25 @@ msgstr "语音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:31
 msgid "Voice activation off"
-msgstr ""
+msgstr "语音激活已关闭"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:30
 msgid "Voice activation on"
-msgstr ""
+msgstr "语音激活已开启"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:27
 #, csharp-format
 msgid "Voice input device: {0}"
-msgstr ""
+msgstr "语音输入设备：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:77
 msgid "Voice input set to automatic."
-msgstr ""
+msgstr "语音输入已设置为自动。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:79
 #, csharp-format
 msgid "Voice input set to {0}."
-msgstr ""
+msgstr "语音输入已设置为 {0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:118
 #, csharp-format
@@ -4596,7 +4596,7 @@ msgstr "语音：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:246
 msgid "Volume"
-msgstr ""
+msgstr "音量"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:24
 msgid "Volume settings"
@@ -4693,7 +4693,7 @@ msgstr "启用后，游戏启动时播放启动音效。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:76
 msgid "When checked, update checks, update downloads, and latest changes requests are routed through your proxy URL."
-msgstr ""
+msgstr "勾选后，更新检查、更新下载和最新更新日志将通过您的代理URL进行中转。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4839,7 +4839,7 @@ msgstr "你跑完了，就是那个失误藏不住。"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:41
 #, csharp-format
 msgid "You pressed {0}. Choose a modifier option."
-msgstr ""
+msgstr "您按下了 {0}。请选择一个修饰键选项。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:121
 msgid "You spent a lot of time negotiating with walls and losing."
@@ -5126,7 +5126,7 @@ msgstr "面板"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:214
 msgid "paused"
-msgstr ""
+msgstr "已暂停"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:54
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
@@ -5156,7 +5156,7 @@ msgstr "玩家 {0}"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:205
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:213
 msgid "playing"
-msgstr ""
+msgstr "恢复"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:91
 msgid "race preparation withdrawal"
@@ -5224,7 +5224,7 @@ msgstr "房间列表请求"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:25
 msgid "room state refresh request"
-msgstr ""
+msgstr "房间状态刷新请求"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:102
 msgid "shift on demand"
@@ -5268,7 +5268,7 @@ msgstr "[transmission_cvt] 中的 target_rpm_high 必须大于或等于 target_r
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:373
 msgid "this menu"
-msgstr ""
+msgstr "此菜单"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:35
 msgid "tire_aspect must be between 5 and 150."
@@ -5373,7 +5373,7 @@ msgstr "{0}（{1}，{2}）"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:64
 #, csharp-format
 msgid "{0} MHz"
-msgstr ""
+msgstr "{0} 兆赫"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:160
 #, csharp-format
@@ -5384,7 +5384,7 @@ msgstr "{0} 今日消息：{1}。"
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Poll.cs:196
 #, csharp-format
 msgid "{0} Socket error: {1}."
-msgstr ""
+msgstr "{0} 套接字错误：{1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:49
 #, csharp-format
@@ -5476,12 +5476,12 @@ msgstr "{0} 人已连接。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:181
 #, csharp-format
 msgid "{0} percent"
-msgstr ""
+msgstr "{0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:270
 #, csharp-format
 msgid "{0} percent."
-msgstr ""
+msgstr "{0}%。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:44
 #, csharp-format
@@ -5583,5 +5583,5 @@ msgstr "{0}：第 {1} 名，用时 {2}。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format
 msgid "{0}: {1} percent"
-msgstr ""
+msgstr "{0}：{1}%"
 

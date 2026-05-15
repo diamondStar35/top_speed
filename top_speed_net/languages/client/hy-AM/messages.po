@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-15 08:19\n"
+"PO-Revision-Date: 2026-05-15 19:56\n"
 "Last-Translator: \n"
 "Language-Team: Armenian\n"
 "MIME-Version: 1.0\n"
@@ -19,81 +19,81 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:122
 msgid "2 degrees"
-msgstr ""
+msgstr "2 աստիճան"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:123
 msgid "3 degrees"
-msgstr ""
+msgstr "3 Աստիճան"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:124
 msgid "4 degrees"
-msgstr ""
+msgstr "4 Աստիճան"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:125
 msgid "5 degrees"
-msgstr ""
+msgstr "5 Աստիճան"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:108
 msgid "A cleaner lap would have been a much better choice."
-msgstr ""
+msgstr "Ավելի մաքուր շրջանը կլիներ շատ ավելի լավ ընտրություն»"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:178
 #, csharp-format
 msgid "A new version of Top Speed was detected. Your current version is {0}. The new version is {1}. Would you like to download the update?"
-msgstr ""
+msgstr "Հայտնաբերվել է Top Speed-ի նոր տարբերակ։ Ձեր ընթացիկ տարբերակն է {0}, նորն է {1}։ Ցանկանու՞մ եք ներբեռնել թարմացումը»"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Network.cs:42
 msgid "A saved server entry was ignored because the host is empty."
-msgstr ""
+msgstr "Պահված սերվերի տվյալը անտեսվել է, քանի որ հոսթ դաշտը դատարկ է»"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadRuntime.cs:58
 msgid "A track upload is already in progress."
-msgstr ""
+msgstr "Տրեքի վերբեռնումն արդեն ընթացքի մեջ է»"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\About.cs:24
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:154
 msgid "About"
-msgstr ""
+msgstr "Ծրագրի մասին» "
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:20
 msgid "Accessibility option for clearer left-right cues with HRTF. It attenuates the opposite ear for your own car sounds only."
-msgstr ""
+msgstr "\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Map\Actions.cs:19
 msgid "Action"
-msgstr ""
+msgstr "Գործողություն"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Items\MenuItem.cs:123
 msgid "Actions available."
-msgstr ""
+msgstr "Հասանելի գործողություններ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:42
 msgid "Add"
-msgstr ""
+msgstr "Ավելացնել"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:39
 msgid "Add a bot"
-msgstr ""
+msgstr "Ավելացնել բոտ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Menu.cs:34
 msgid "Add a new server"
-msgstr ""
+msgstr "Ավելացնել նոր սերվեր"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:30
 msgid "Adjust category-based volume balance for engine sounds, effects, ambience, radio, music, and online events."
-msgstr ""
+msgstr "Կարգավորել կատեգորիաների հիման վրա ձայնի հավասարակշռությունը՝ շարժիչի ձայների, էֆեկտների, միջավայրի, ռադիոյի, երաժշտության և առցանց իրադարձությունների համար։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:143
 msgid "Adjust the speech rate for the current backend."
-msgstr ""
+msgstr "Կարգավորել խոսքի արագությունը ընթացիկ backend-ի համար։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:309
 msgid "All menu shortcuts were reset to defaults."
-msgstr ""
+msgstr "Բոլոր մենյուի կարճ ստեղները վերակայվել են լռելյայն կարգավորումներին։"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\RoomTexts.cs:7
 msgid "All players are ready. Starting game."
-msgstr ""
+msgstr "Բոլոր խաղացողները պատրաստ են։ Խաղը սկսվում է։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:116
 msgid "Alt"
@@ -102,172 +102,173 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:242
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:50
 msgid "Ambients and sound sources"
-msgstr ""
+msgstr "Մթնոլորտային ձայներ և ձայնային աղբյուրներ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:25
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:96
 msgid "America"
-msgstr ""
+msgstr "Ամերիկա"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:37
 msgid "Amplifies the captured microphone signal before it is sent to other players. 100 is unity gain. Raise this if other players report you sound too quiet; lower it if your voice clips."
-msgstr ""
+msgstr "Մեծացնում է գրավված միկրոֆոնի ազդանշանը՝ նախքան այն մյուս խաղացողներին ուղարկվելը։ 100-ը նորմալ ուժգնությունն է։ Բարձրացրեք սա, եթե մյուս խաղացողները ասում են, որ ձեր ձայնը շատ ցածր է, և իջեցրեք, եթե ձեր ձայնը աղավաղվում է։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:142
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:156
 #, csharp-format
 msgid "An unexpected error occurred. A log file was created: {0}"
-msgstr ""
+msgstr "Անսպասելի սխալ է տեղի ունեցել։ Ստեղծվել է log ֆայլ՝ {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:34
 msgid "An update download is already in progress."
-msgstr ""
+msgstr "Թարմացման ներբեռնումն արդեն ընթացքի մեջ է։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:101
 msgid "Android package installer is not available."
-msgstr ""
+msgstr "Android-ի փաթեթների տեղադրիչը հասանելի չէ։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:86
 msgid "Android updates require an APK package."
-msgstr ""
+msgstr "Android-ի թարմացումները պահանջում են APK փաթեթ։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:169
 msgid "Announce frequency"
-msgstr ""
+msgstr "Հայտարարելու հաճախականություն\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:28
 msgid "Apostrophe"
-msgstr ""
+msgstr "Ապոստրոֆ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:79
 msgid "Applications"
-msgstr ""
+msgstr "Դիմումներ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Session.cs:24
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք անջատվել։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:22
 msgid "Are you sure you want to leave the current room?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք դուրս գալ ընթացիկ սենյակից։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:223
 msgid "Are you sure you want to quit this multiplayer race?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք դուրս գալ այս բազմախաղացող մրցավազքից։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:64
 msgid "Are you sure you would like to discard all changes?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք հրաժարվել բոլոր փոփոխություններից։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:75
 msgid "Are you sure you would like to restore all controller bindings to their default values?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք վերականգնել բոլոր կարգավորիչի ստեղնային կապերը լռելյայն արժեքներին։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:74
 msgid "Are you sure you would like to restore all keyboard bindings to their default values?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք վերականգնել բոլոր ստեղնաշարի կցումները լռելյայն արժեքներին։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:51
 msgid "Are you sure you would like to restore all settings to their default values?"
-msgstr ""
+msgstr "Համոզվա՞ծ եք, որ ցանկանում եք վերականգնել բոլոր կարգավորումները լռելյայն արժեքներին։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:46
 msgid "At"
-msgstr ""
+msgstr "Վրա\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:91
 msgid "At least it only happened once."
-msgstr ""
+msgstr "Գոնե դա տեղի է ունեցել միայն մեկ անգամ։"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:137
 msgid "At that point you were collecting crashes, not corners."
-msgstr ""
+msgstr "Այդ պահին դու հավաքում էիր վթարներ, ոչ թե շրջադարձեր։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:144
 msgid "At that point, everyone could hear the mistakes."
-msgstr ""
+msgstr "Այդ պահին բոլորը կարող էին լսել սխալները։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:123
 msgid "At this rate the crash sound is becoming your theme music."
-msgstr ""
+msgstr "Այս տեմպով վթարի ձայնը դառնում է քո թեմատիկ երաժշտությունը։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:110
 msgid "Attempting to connect, please wait..."
-msgstr ""
+msgstr "Փորձում ենք միանալ, խնդրում ենք սպասել...\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:20
 msgid "Audio"
-msgstr ""
+msgstr "Ձայն\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:98
 msgid "Austria"
-msgstr ""
+msgstr "Ավստրիա\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:91
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:101
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:111
 msgid "Auto"
-msgstr ""
+msgstr "Ավտոմատ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:97
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:107
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:117
 msgid "Auto detects wheel pedal direction from resting position."
-msgstr ""
+msgstr "Ավտոմատ հայտնաբերում է ղեկի ոտնակների ուղղությունը՝ հանգստի դիրքից։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:40
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:30
 msgid "Automatic"
-msgstr ""
+msgstr "Ավտոմատ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:21
 msgid "Automatic audio device format"
-msgstr ""
+msgstr "Ձայնային սարքի ավտոմատ ձևաչափ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:42
 msgid "Automatic race information"
-msgstr ""
+msgstr "Մրցավազքի ավտոմատ տեղեկություն\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:92
 msgid "Automatic room name selected."
-msgstr ""
+msgstr "Ընտրվել է սենյակի ավտոմատ անունը։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Loadout.cs:29
 msgid "Automatic transmission"
-msgstr ""
+msgstr "Ավտոմատ փոխանցման տուփ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:64
 msgid "Automatic transmission is required for this vehicle."
-msgstr ""
+msgstr "Այս մեքենայի համար պահանջվում է ավտոմատ փոխանցման տուփ։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:48
 msgid "Automatically focus first menu item"
-msgstr ""
+msgstr "Ավտոմատ կերպով կենտրոնանալ մենյուի առաջին տարրի վրա։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:53
 msgid "Available game rooms"
-msgstr ""
+msgstr "Հասանելի խաղային սենյակներՀասանելի խաղային սենյակներ\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:21
 msgid "Available servers"
-msgstr ""
+msgstr "Հասանելի սերվերներ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:189
 #, csharp-format
 msgid "Average lap time for this track: {0}."
-msgstr ""
+msgstr "Միջին շրջանի ժամանակը այս ուղու համար՝ {0}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:166
 #, csharp-format
 msgid "Average time for this track over {0} laps: {1}."
-msgstr ""
+msgstr "Միջին ժամանակը այս ուղու համար {0} շրջանի վրա՝ {1}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:165
 #, csharp-format
 msgid "Average {0}-lap time for this track: {1}."
-msgstr ""
+msgstr "Միջին ժամանակը այս ուղու համար {0} շրջանի վրա՝ {1}։\n"
+"Backslash"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:50
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:63
@@ -289,35 +290,36 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:100
 msgid "Belgium"
-msgstr ""
+msgstr "Բելգիա\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:183
 #, csharp-format
 msgid "Best lap for this track: {0}."
-msgstr ""
+msgstr "Այս ուղու լավագույն շրջանը՝ {0}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:177
 #, csharp-format
 msgid "Best lap this run: {0}."
-msgstr ""
+msgstr "Այս վազքի լավագույն շրջանը՝ {0}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:160
 #, csharp-format
 msgid "Best recorded run: {0}."
-msgstr ""
+msgstr "Լավագույն գրանցված վազքը՝ {0}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:159
 #, csharp-format
 msgid "Best time so far: {0}."
-msgstr ""
+msgstr "Լավագույն ժամանակը մինչ այժմ՝ {0}։\n"
+"Լավագույն ժամանակը մինչ այժմ՝ {0}։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Input.cs:114
 msgid "Binding intent is missing and was ignored."
-msgstr ""
+msgstr "Կապման գործողության նպատակը բացակայում է և անտեսվել է։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:74
 msgid "Both"
-msgstr ""
+msgstr "Երկուսն էլ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:65
 msgid "Both Alt keys"
@@ -334,24 +336,28 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:87
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
 msgid "Bots can only be managed by the host in race-with-bots rooms."
-msgstr ""
+msgstr "Բոտերը կարող են կառավարվել միայն հյուրընկալողի կողմից՝ բոտերով մրցավազքի սենյակներում։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:40
 msgid "Brake"
-msgstr ""
+msgstr "\n\n\n"
+"Արգելակ\n"
+"Արգելակ\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:98
 msgid "Brake pedal direction"
-msgstr ""
+msgstr "\n"
+"Արգելակի ոտնակի ուղղություն\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:28
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:102
 msgid "Brazil"
-msgstr ""
+msgstr "Բրազիլիա\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:37
 msgid "Brilliant result! You set a new best time."
-msgstr ""
+msgstr "\n\n"
+"Փայլուն արդյունք։ Դու սահմանեցիր նոր լավագույն ժամանակը։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:144
 msgid "Button 1"
@@ -367,7 +373,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:155
 msgid "Button 12"
-msgstr ""
+msgstr "\n\n\n\n\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:156
 msgid "Button 13"
@@ -375,7 +381,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:157
 msgid "Button 14"
-msgstr ""
+msgstr "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:158
 msgid "Button 15"
@@ -383,11 +389,11 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:159
 msgid "Button 16"
-msgstr ""
+msgstr "\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:145
 msgid "Button 2"
-msgstr ""
+msgstr "\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:146
 msgid "Button 3"
@@ -419,7 +425,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:52
 msgid "Call sign cannot be empty."
-msgstr ""
+msgstr "Կանչի նշանը չի կարող դատարկ լինել։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:39
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
@@ -430,19 +436,21 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:327
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Choice.cs:51
 msgid "Cancel"
-msgstr ""
+msgstr "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+"Չեղարկել\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:62
 msgid "Cancel and discard changes"
-msgstr ""
+msgstr "Չեղարկել և հրաժարվել փոփոխություններից։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:23
 msgid "Cancel current game?"
-msgstr ""
+msgstr "\n"
+"Չեղարկել ընթացիկ խաղը՞։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:56
 msgid "Cancel room creation"
-msgstr ""
+msgstr "Չեղարկել սենյակի ստեղծումը։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:38
 msgid "Caps Lock"
@@ -450,45 +458,45 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:37
 msgid "Change game options"
-msgstr ""
+msgstr "Փոխել խաղի կարգավորումները։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:172
 msgid "Change log file"
-msgstr ""
+msgstr "Փոփոխությունների log ֆայլ։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:35
 msgid "Change the track used during the race."
-msgstr ""
+msgstr "Փոխել մրցավազքի ընթացքում օգտագործվող ուղին։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:65
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:94
 msgid "Chat message cannot be empty."
-msgstr ""
+msgstr "Չաթի հաղորդագրությունը չի կարող դատարկ լինել։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:153
 msgid "Check for updates"
-msgstr ""
+msgstr "Ստուգել թարմացումները։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:68
 msgid "Check for updates on startup"
-msgstr ""
+msgstr "Սկսման ժամանակ ստուգել թարմացումները։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:63
 msgid "Check ping"
-msgstr ""
+msgstr "Ստուգել պինգը։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:42
 msgid "Checking for updates."
-msgstr ""
+msgstr "Թարմացումների ստուգում։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:104
 msgid "China"
-msgstr ""
+msgstr "Չինաստան\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Choice.cs:80
 msgid "Choice"
-msgstr ""
+msgstr "Ընտրություն\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Device.cs:35
 msgid "Choose controller"
@@ -566,7 +574,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:208
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:264
 msgid "Close"
-msgstr ""
+msgstr "Փակել"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:41
 msgid "Clutch"
@@ -714,7 +722,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Wizard.cs:16
 msgid "Continue"
-msgstr ""
+msgstr "Շարունակել"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:191
 msgid "Continue connection"
@@ -861,7 +869,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:48
 msgid "Current race percentage"
-msgstr ""
+msgstr "\n\n\n\n\n\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:50
 msgid "Current race time"
@@ -892,7 +900,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadBuild.cs:16
 msgid "Custom track file path is empty."
-msgstr ""
+msgstr "\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:91
 msgid "Custom tracks"
@@ -1752,7 +1760,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Bools.cs:35
 #, csharp-format
 msgid "Key '{0}' must be a boolean or 0/1 integer."
-msgstr ""
+msgstr "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:50
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:76
@@ -1844,7 +1852,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:134
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:152
 msgid "Latest changes"
-msgstr ""
+msgstr "Վերջին փոփոխություններ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:103
 msgid "Latest changes are already being fetched."
@@ -1885,19 +1893,19 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:36
 msgid "Left Alt"
-msgstr ""
+msgstr "Ձախ Alt"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:26
 msgid "Left Control"
-msgstr ""
+msgstr "Ձախ Ctrl"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:30
 msgid "Left Shift"
-msgstr ""
+msgstr "Ձախ Shift"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:77
 msgid "Left Windows"
-msgstr ""
+msgstr "Ձախ Windows"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:23
 msgid "Left bracket"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-15 13:08\n"
+"PO-Revision-Date: 2026-05-15 15:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -993,7 +993,7 @@ msgstr "比赛停止：房间={0}「{1}」，结果={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:55
 msgid "Reconnect denied because the remote IP does not match the original session."
-msgstr ""
+msgstr "重新连接被拒绝，因为远程IP与原始会话不匹配。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:57
 msgid "Reconnect denied because the resume token is invalid."

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-15 10:40\n"
+"PO-Revision-Date: 2026-05-15 13:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -926,19 +926,19 @@ msgstr "切换到上一个全局音量类别。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:205
 msgid "D-pad down"
-msgstr "方向键下"
+msgstr "下方向键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:206
 msgid "D-pad left"
-msgstr "方向键左"
+msgstr "左方向键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:204
 msgid "D-pad right"
-msgstr "方向键右"
+msgstr "右方向键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:203
 msgid "D-pad up"
-msgstr "方向键上"
+msgstr "上方向键"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:43
 msgid "Decimal"
@@ -1897,7 +1897,7 @@ msgstr "左 Shift"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:77
 msgid "Left Windows"
-msgstr "左Windows键"
+msgstr "左Windows"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:23
 msgid "Left bracket"
@@ -3117,7 +3117,7 @@ msgstr "右 Shift"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:78
 msgid "Right Windows"
-msgstr "右Windows键"
+msgstr "右Windows"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:24
 msgid "Right bracket"

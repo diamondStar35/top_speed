@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-15 19:56\n"
+"PO-Revision-Date: 2026-05-16 12:08\n"
 "Last-Translator: \n"
 "Language-Team: Armenian\n"
 "MIME-Version: 1.0\n"
@@ -1448,11 +1448,11 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\About.cs:16
 #, csharp-format
 msgid "Game version: {0}"
-msgstr ""
+msgstr "Խաղի տարբերակ՝ {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:48
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
 #, csharp-format
@@ -1461,12 +1461,12 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:12
 msgid "General"
-msgstr ""
+msgstr "Ընդհանուր"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:112
 msgid "Germany"
-msgstr ""
+msgstr "Գերմանիա"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:85
 msgid "Ghost mode"
@@ -1480,12 +1480,12 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
 msgid "Global shortcuts"
-msgstr ""
+msgstr "Գլոբալ կարճ ստեղներ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:253
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:259
 msgid "Go back"
-msgstr ""
+msgstr "Վերադառնալ"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:29
 msgid "Grave"
@@ -1497,11 +1497,11 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Help.cs:49
 msgid "Help file not found"
-msgstr ""
+msgstr "Օգնության ֆայլը չի գտնվել։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:24
 msgid "Here are the final standings for everyone."
-msgstr ""
+msgstr "Ահա բոլորի վերջնական արդյունքները։\n"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:29
 msgid "Here are the final standings."
@@ -1712,7 +1712,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:34
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:114
 msgid "Ireland"
-msgstr ""
+msgstr "Իռլանդիա"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:116

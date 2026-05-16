@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-15 15:32\n"
+"PO-Revision-Date: 2026-05-16 03:53\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -722,7 +722,7 @@ msgstr "继续连接"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:115
 msgid "Control"
-msgstr "控制"
+msgstr "Ctrl"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\ControlPanel.cs:5
 msgid "Control panel"
@@ -1934,7 +1934,7 @@ msgstr "左扳机"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:34
 #, csharp-format
 msgid "Left {0}"
-msgstr "向左 {0}"
+msgstr "左 {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:30
 #, csharp-format

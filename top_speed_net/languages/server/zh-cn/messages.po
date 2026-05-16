@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-16 04:05\n"
+"PO-Revision-Date: 2026-05-16 06:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1748,7 +1748,7 @@ msgstr "{0} 创建了房间 {1}。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:14
 #, csharp-format
 msgid "{0} has connected to the server."
-msgstr "{0} 加入了。"
+msgstr "{0} 已连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:32
 #, csharp-format
@@ -1758,7 +1758,7 @@ msgstr "{0} 已断开连接。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:73
 #, csharp-format
 msgid "{0} has left the game."
-msgstr "{0} 退出了。"
+msgstr "{0} 已退出游戏。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:31
 #, csharp-format

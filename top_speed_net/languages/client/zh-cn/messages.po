@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-16 03:53\n"
+"PO-Revision-Date: 2026-05-16 06:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3705,7 +3705,7 @@ msgstr "路面循环声音"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:240
 msgid "Surface loops"
-msgstr "表面循环"
+msgstr "路面循环"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:40
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:126

@@ -1,3 +1,5 @@
+using TopSpeed.Input;
+
 namespace TopSpeed.Menu
 {
     internal sealed partial class MenuScreen

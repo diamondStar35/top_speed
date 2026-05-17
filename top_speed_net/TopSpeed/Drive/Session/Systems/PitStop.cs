@@ -18,13 +18,16 @@ namespace TopSpeed.Drive.Session.Systems
         private const float ExitingLaneDurationSeconds = 15f;
         private const float RefuelDurationSeconds = 8f;
         private const float TiresDurationSeconds = 12f;
-        private const float BothDurationSeconds = 15f;
+        private const float BothDurationSeconds = 16f;
         private const int RefuelChoiceId = 1;
         private const int TiresChoiceId = 2;
         private const int BothChoiceId = 3;
+        private const float FuelSoundLeadSeconds = 0.5f;
         private const float FuelStopTimeSeconds = 7f;
-        private const float SecondCanTimeSeconds = 8f;
+        private const float SecondCanTimeSeconds = 8.5f;
         private const float LeftTiresTimeSeconds = 8f;
+        private const float CanLiters = 12f * 3.78541178f;
+        private const float FillRateLitersPerSecond = CanLiters / FuelStopTimeSeconds;
         private const float ListenerLerpRate = 4.0f;
         private const float OffTrackMoveSeconds = 3.0f;
         private const float ExitStartMoveSeconds = 14.0f;
@@ -63,9 +66,12 @@ namespace TopSpeed.Drive.Session.Systems
         private float _pitEntryX;
         private float _pitEntryY;
         private bool _audioPhase0;
+        private bool _audioPhase1;
         private bool _audioPhase7;
         private bool _audioPhase8;
         private bool _audioPhase9;
+        private float _canFuelRemainingLiters;
+        private bool _carFilledInCan1;
         private float _pitRoadCenterX;
         private Track.Road _pitEntryRoad;
 
@@ -153,6 +159,8 @@ namespace TopSpeed.Drive.Session.Systems
             _pitController.SteerTargetX = null;
             ListenerXOverride = null;
             _offTrackReached = false;
+            _canFuelRemainingLiters = 0f;
+            _carFilledInCan1 = false;
         }
 
         public override void Update(SessionContext context, float elapsed)
@@ -230,9 +238,12 @@ namespace TopSpeed.Drive.Session.Systems
             NeedsChoice = true;
 
             _audioPhase0 = false;
+            _audioPhase1 = false;
             _audioPhase7 = false;
             _audioPhase8 = false;
             _audioPhase9 = false;
+            _canFuelRemainingLiters = 0f;
+            _carFilledInCan1 = false;
 
             _pitEntryX = _car.PositionX;
             _pitEntryY = _car.PositionY;
@@ -325,7 +336,7 @@ namespace TopSpeed.Drive.Session.Systems
             if (_workStarted)
             {
                 _workTimer += elapsed;
-                UpdateWorkAudio();
+                UpdateWorkAudio(elapsed);
                 if (_workTimer >= _workDuration)
                     BeginExitingLane();
                 return;
@@ -339,32 +350,86 @@ namespace TopSpeed.Drive.Session.Systems
             _workDuration = GetWorkDuration(_choiceId);
         }
 
-        private void UpdateWorkAudio()
+        private void UpdateWorkAudio(float elapsed)
         {
+            // Right tires start immediately
             if (!_audioPhase0)
             {
                 _audioPhase0 = true;
                 if (_choiceId == TiresChoiceId || _choiceId == BothChoiceId)
                     _soundRightTires?.Play(loop: false);
-                if (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId)
-                    _soundFuelingUp?.Play(loop: true);
             }
-            if (!_audioPhase7 && _workTimer >= FuelStopTimeSeconds && _choiceId == RefuelChoiceId)
+
+            // Can 1: fueling sound starts after 0.5s lead
+            if (!_audioPhase1 && _workTimer >= FuelSoundLeadSeconds
+                && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))
+            {
+                _audioPhase1 = true;
+                _canFuelRemainingLiters = CanLiters;
+                _soundFuelingUp?.Play(loop: true);
+            }
+
+            // Can 1: add fuel during dump window
+            if (_audioPhase1 && !_audioPhase7
+                && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))
+                AddFuelFromCan(elapsed);
+
+            // Can 1: sound stops after 7s dump (0.5s trail before next event)
+            if (!_audioPhase7 && _workTimer >= FuelSoundLeadSeconds + FuelStopTimeSeconds
+                && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))
             {
                 _audioPhase7 = true;
                 _soundFuelingUp?.Stop();
+                if (_choiceId == BothChoiceId
+                    && _car.FuelLitersRemaining >= _car.FuelTankCapacityLiters - 0.01f)
+                {
+                    _carFilledInCan1 = true;
+                    _workDuration = TiresDurationSeconds;
+                }
             }
-            if (!_audioPhase8 && _workTimer >= SecondCanTimeSeconds && _choiceId == BothChoiceId)
-            {
-                _audioPhase8 = true;
-                _soundFuelingUp?.Stop();
-                _soundFuelingUp?.Play(loop: true);
-            }
-            if (!_audioPhase9 && _workTimer >= LeftTiresTimeSeconds && (_choiceId == TiresChoiceId || _choiceId == BothChoiceId))
+
+            // Left tires start at 8s
+            if (!_audioPhase9 && _workTimer >= LeftTiresTimeSeconds
+                && (_choiceId == TiresChoiceId || _choiceId == BothChoiceId))
             {
                 _audioPhase9 = true;
                 _soundLeftTires?.Play(loop: false);
             }
+
+            // Can 2: fueling sound starts at 8.5s (skip if car was filled by can 1)
+            if (!_audioPhase8 && !_carFilledInCan1 && _workTimer >= SecondCanTimeSeconds
+                && _choiceId == BothChoiceId)
+            {
+                _audioPhase8 = true;
+                _canFuelRemainingLiters = CanLiters;
+                _soundFuelingUp?.Play(loop: true);
+            }
+
+            // Can 2: add fuel during dump window
+            if (_audioPhase8 && _workTimer < SecondCanTimeSeconds + FuelStopTimeSeconds
+                && _choiceId == BothChoiceId)
+                AddFuelFromCan(elapsed);
+
+            // Can 2: sound stops after 7s dump (0.5s trail before service ends)
+            if (_audioPhase8 && _workTimer >= SecondCanTimeSeconds + FuelStopTimeSeconds
+                && _choiceId == BothChoiceId)
+                _soundFuelingUp?.Stop();
+        }
+
+        private void AddFuelFromCan(float elapsed)
+        {
+            if (_canFuelRemainingLiters <= 0f)
+                return;
+            var spaceInTank = _car.FuelTankCapacityLiters - _car.FuelLitersRemaining;
+            if (spaceInTank <= 0f)
+            {
+                _canFuelRemainingLiters = 0f;
+                return;
+            }
+            var toAdd = Math.Min(FillRateLitersPerSecond * elapsed,
+                        Math.Min(_canFuelRemainingLiters, spaceInTank));
+            _car.AddFuelLiters(toAdd);
+            _canFuelRemainingLiters -= toAdd;
         }
 
         private void BeginExitingLane()

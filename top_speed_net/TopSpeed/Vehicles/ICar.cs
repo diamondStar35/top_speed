@@ -46,6 +46,7 @@ namespace TopSpeed.Vehicles
         float FuelEfficiencyMpg { get; }
         bool FuelLow { get; }
         bool FuelEmpty { get; }
+        void AddFuelLiters(float liters);
 
         void Initialize(float positionX = 0, float positionY = 0);
         void SetPosition(float positionX, float positionY);

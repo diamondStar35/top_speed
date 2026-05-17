@@ -445,6 +445,11 @@ namespace TopSpeed.Drive.Session.Systems
                         Math.Min(_canFuelRemainingLiters, spaceInTank));
             _car.AddFuelLiters(toAdd);
             _canFuelRemainingLiters -= toAdd;
+            // If tank is now full, mark can done so the early-exit check fires.
+            // Without this, the idle engine burns a tiny amount each frame, keeping
+            // a small spaceInTank that we top up forever, never draining the can.
+            if (_car.FuelLitersRemaining >= _car.FuelTankCapacityLiters - 0.01f)
+                _canFuelRemainingLiters = 0f;
         }
 
         private void BeginExitingLane()

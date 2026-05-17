@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-16 06:37\n"
+"PO-Revision-Date: 2026-05-17 04:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "  --max-players <数字>    最大连接玩家数 (1-255)。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:68
 msgid "  --motd <text>           Message of the day."
-msgstr "  --motd <文本>           每日公告。"
+msgstr "  --motd <文本>           当天的消息。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:66
 msgid "  --port <number>         Server port (1-65535)."
@@ -1172,7 +1172,7 @@ msgstr "服务器版本：{0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:104
 msgid "Server started. Press Ctrl+C to stop."
-msgstr "服务器已启动，按 Ctrl+C 可以停止。"
+msgstr "服务器已启动，按 Ctrl+C 可停止。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:111
 msgid "Server stopped."

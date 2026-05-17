@@ -159,7 +159,7 @@ namespace TopSpeed.Game
             var percent = GetVolumePercent(category);
             _speech.Speak(LocalizationService.Format(
                 LocalizationService.Mark("{0}: {1} percent"),
-                GetVolumeCategoryName(category),
+                LocalizationService.Translate(GetVolumeCategoryName(category)),
                 percent));
         }
 

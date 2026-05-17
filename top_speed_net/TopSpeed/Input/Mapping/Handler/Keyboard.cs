@@ -86,7 +86,7 @@ namespace TopSpeed.Input
             var label = _driveInput.KeyMap.GetLabel(_mappingAction);
             _speech.Speak(LocalizationService.Format(
                 LocalizationService.Mark("{0} set to {1}."),
-                label,
+                LocalizationService.Translate(label),
                 KeyMapManager.FormatKey(key)));
             return true;
         }

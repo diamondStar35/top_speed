@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-14 12:05\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "Thời gian trung bình {0} vòng cho đường đua này: {1}."
 msgid "B"
 msgstr "B"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr ""
 
@@ -1101,7 +1101,7 @@ msgstr ""
 msgid "Downloading update..."
 msgstr "Đang tải bản cập nhật..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr ""
 
@@ -1356,7 +1356,7 @@ msgstr "Vòng đua nhanh nhất được ghi nhận trên đường đua này: {
 msgid "Fetching latest changes."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr ""
 
@@ -1393,7 +1393,7 @@ msgstr "Giành được vị trí đầu tiên. Trận đua tuyệt vời."
 msgid "Force feedback"
 msgstr "Phản hồi lực"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr ""
 
@@ -1411,7 +1411,7 @@ msgstr "Bờ biển nước Pháp"
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:58
 #, csharp-format
 msgid "Frequency set to {0} MHz."
 msgstr ""
@@ -1446,7 +1446,7 @@ msgstr "Phiên bản game: {0}"
 msgid "Gamepad"
 msgstr "Gamepad"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
 #, csharp-format
 msgid "Gear {0}"
 msgstr "Số {0}"
@@ -1729,7 +1729,7 @@ msgstr "Cần gạt Joystick"
 msgid "KB"
 msgstr "KB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr ""
 
@@ -1800,7 +1800,7 @@ msgstr "Thiếu phần cài đặt phím gán bàn phím. Đã sử dụng mặc
 msgid "Keyboard mappings restored to defaults."
 msgstr "Phím gán bàn phím đã được khôi phục về mặc định."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgstr "Thống kê vòng đua:"
 msgid "Lap summary:"
 msgstr "Tóm tắt vòng đua:"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:115
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
 #, csharp-format
 msgid "Lap {0}"
 msgstr "Vòng {0}"
@@ -2077,7 +2077,7 @@ msgstr "Âm thanh menu"
 msgid "Menu sounds: {0}"
 msgstr "Âm thanh menu: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr ""
 
@@ -2085,7 +2085,7 @@ msgstr ""
 msgid "Microphone input gain"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr ""
 
@@ -2629,7 +2629,7 @@ msgid "Panel"
 msgstr "Bảng điều khiển"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Pause"
 msgstr "Tạm dừng"
 
@@ -2700,7 +2700,7 @@ msgstr "Vui lòng đợi. Đang quét các máy chủ trên mạng LAN."
 msgid "Polar escape"
 msgstr "Cuộc tẩu thoát vùng cực"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr ""
 
@@ -2909,7 +2909,7 @@ msgstr "Cài đặt cuộc đua"
 msgid "Race started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:155
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
 #, csharp-format
 msgid "Race time {0}"
 msgstr "Thời gian đua {0}"
@@ -3013,11 +3013,15 @@ msgstr "Xóa bot"
 msgid "Report distance"
 msgstr "Báo khoảng cách"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+msgid "Report fuel"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:53
 msgid "Report speed"
 msgstr "Báo tốc độ"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report track name"
 msgstr "Báo tên đường đua"
 
@@ -4154,7 +4158,7 @@ msgstr "Số vòng tua máy RPM '{0:F0}' của đường cong mô-men xoắn ph�
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr "Lực mô-men xoắn '{0:F1}' phải từ 0 đến 5000 Nm."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr ""
 
@@ -4525,7 +4529,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
 msgid "Vehicle"
 msgstr "Xe"
 
@@ -4731,7 +4735,7 @@ msgstr "Trục Y trừ"
 msgid "Y plus"
 msgstr "Trục Y cộng"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr ""
 
@@ -4922,7 +4926,7 @@ msgstr "auto_shift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limi
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_upshift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4992,9 +4996,39 @@ msgstr ""
 msgid "end_area cannot be empty."
 msgstr "end_area không được để trống."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:43
+#, csharp-format
+msgid "engine_displacement_l must be between {0} and {1} liters."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:28
 msgid "fixed distance"
 msgstr "khoảng cách cố định"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
+#, csharp-format
+msgid "fuel must be between {0} and {1} liters."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:63
 msgid "game cancel request"
@@ -5080,7 +5114,7 @@ msgstr "max_rpm phải lớn hơn hoặc bằng idle_rpm."
 msgid "metric"
 msgstr "hệ mét"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:83
 msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
 msgstr "min_coupled_rise_full_rpm_per_s phải lớn hơn hoặc bằng min_coupled_rise_idle_rpm_per_s."
 
@@ -5226,7 +5260,7 @@ msgstr ""
 msgid "room state refresh request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:102
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
 msgid "shift on demand"
 msgstr "sang số chủ động"
 
@@ -5319,32 +5353,32 @@ msgstr ""
 msgid "unknown"
 msgstr "không rõ"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:202
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "đã đi được {0:F0} feet"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:183
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} km/h, {1:F0} vòng/phút, {2:F0} mã lực"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "đã đi được {0:F0} mét"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:175
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} dặm/giờ, {1:F0} vòng/phút, {2:F0} mã lực"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "đã đi được {0:F1} kilomet"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:200
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "đã đi được {0:F1} dặm"
@@ -5370,7 +5404,7 @@ msgstr "{0} ({1})"
 msgid "{0} ({1}, {2})"
 msgstr "{0} ({1}, {2})"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:65
 #, csharp-format
 msgid "{0} MHz"
 msgstr ""

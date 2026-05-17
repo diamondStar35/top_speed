@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-17 04:35\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "此赛道的平均{0}圈时间：{1}。"
 msgid "B"
 msgstr "B"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr "宝马 3 系"
 
@@ -1101,7 +1101,7 @@ msgstr "正在下载赛道..."
 msgid "Downloading update..."
 msgstr "正在下载更新..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr "杜卡迪 Panigale V4"
 
@@ -1356,7 +1356,7 @@ msgstr "此赛道的最快记录单圈：{0}。"
 msgid "Fetching latest changes."
 msgstr "正在获取最新更新日志。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr "菲亚特500"
 
@@ -1393,7 +1393,7 @@ msgstr "拿下第一！漂亮的比赛。"
 msgid "Force feedback"
 msgstr "力反馈"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr "福特野马1969"
 
@@ -1411,7 +1411,7 @@ msgstr "法国海岸"
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
 msgstr "频率必须在0.0到1000.0之间，以0.1为步长。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:58
 #, csharp-format
 msgid "Frequency set to {0} MHz."
 msgstr "频率设置为 {0} 兆赫。"
@@ -1446,7 +1446,7 @@ msgstr "游戏版本：{0}"
 msgid "Gamepad"
 msgstr "游戏手柄"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
 #, csharp-format
 msgid "Gear {0}"
 msgstr "挡位 {0}"
@@ -1729,7 +1729,7 @@ msgstr "操纵杆"
 msgid "KB"
 msgstr "KB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "川崎 Ninja ZX-10R"
 
@@ -1800,7 +1800,7 @@ msgstr "键盘绑定部分缺失，已使用默认键盘绑定。"
 msgid "Keyboard mappings restored to defaults."
 msgstr "键盘映射已恢复为默认值。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr "兰博基尼 埃文塔多"
 
@@ -1832,7 +1832,7 @@ msgstr "单圈统计："
 msgid "Lap summary:"
 msgstr "单圈摘要："
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:115
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
 #, csharp-format
 msgid "Lap {0}"
 msgstr "第 {0} 圈"
@@ -2077,7 +2077,7 @@ msgstr "菜单声音"
 msgid "Menu sounds: {0}"
 msgstr "菜单声音：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr "梅赛德斯斯宾特"
 
@@ -2085,7 +2085,7 @@ msgstr "梅赛德斯斯宾特"
 msgid "Microphone input gain"
 msgstr "麦克风增益"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr "迷你库珀 S"
 
@@ -2629,7 +2629,7 @@ msgid "Panel"
 msgstr "面板"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Pause"
 msgstr "暂停"
 
@@ -2700,7 +2700,7 @@ msgstr "请稍候。正在扫描局域网中的服务器。"
 msgid "Polar escape"
 msgstr "极地逃亡"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr "保时捷 911 GT3 RS"
 
@@ -2909,7 +2909,7 @@ msgstr "比赛设置"
 msgid "Race started."
 msgstr "比赛已开始。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:155
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
 #, csharp-format
 msgid "Race time {0}"
 msgstr "比赛时间 {0}"
@@ -3013,11 +3013,15 @@ msgstr "移除机器人"
 msgid "Report distance"
 msgstr "报告距离"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+msgid "Report fuel"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:53
 msgid "Report speed"
 msgstr "报告速度"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report track name"
 msgstr "报告赛道名称"
 
@@ -4154,7 +4158,7 @@ msgstr "扭矩曲线RPM '{0:F0}' 必须在300到25000之间。"
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr "扭矩值 '{0:F1}' 必须在0到5000牛米之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr "丰田凯美瑞"
 
@@ -4525,7 +4529,7 @@ msgstr "使用代理进行更新和更改"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
 msgid "Vehicle"
 msgstr "车辆"
 
@@ -4731,7 +4735,7 @@ msgstr "Y轴负"
 msgid "Y plus"
 msgstr "Y轴正"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr "雅马哈 YZF-R1"
 
@@ -4922,7 +4926,7 @@ msgstr "自动换挡转速必须为0或在怠速转速和转速限制器之间�
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动升挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4992,9 +4996,39 @@ msgstr "启用"
 msgid "end_area cannot be empty."
 msgstr "end_area 不能为空。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:43
+#, csharp-format
+msgid "engine_displacement_l must be between {0} and {1} liters."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:28
 msgid "fixed distance"
 msgstr "固定距离"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
+#, csharp-format
+msgid "fuel must be between {0} and {1} liters."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:63
 msgid "game cancel request"
@@ -5080,7 +5114,7 @@ msgstr "最大转速必须大于或等于怠速转速。"
 msgid "metric"
 msgstr "公制"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:83
 msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
 msgstr "min_coupled_rise_full_rpm_per_s 必须大于或等于 min_coupled_rise_idle_rpm_per_s。"
 
@@ -5226,7 +5260,7 @@ msgstr "房间列表请求"
 msgid "room state refresh request"
 msgstr "房间状态刷新请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:102
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
 msgid "shift on demand"
 msgstr "按需换挡。"
 
@@ -5319,32 +5353,32 @@ msgstr "开始赛道上传"
 msgid "unknown"
 msgstr "未知"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:202
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "已行驶 {0:F0} 英尺"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:183
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} km/h，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "已行驶 {0:F0} 米"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:175
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} mph，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "已行驶 {0:F1} 公里"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:200
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "已行驶 {0:F1} 英里"
@@ -5370,7 +5404,7 @@ msgstr "{0}（{1}）"
 msgid "{0} ({1}, {2})"
 msgstr "{0}（{1}，{2}）"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:65
 #, csharp-format
 msgid "{0} MHz"
 msgstr "{0} 兆赫"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-14 12:05\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Available commands:"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr ""
 msgid "Connection refused due to invalid protocol negotiation."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:174
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:196
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:61
 msgid "Connection refused due to protocol mismatch."
 msgstr ""
@@ -381,7 +381,7 @@ msgstr ""
 msgid "Dropped stale packet from prior epoch: endpoint={0}, command={1}, sequence={2}, activeEpoch={3}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr ""
 
@@ -472,7 +472,7 @@ msgstr ""
 msgid "Features"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr ""
 
@@ -486,7 +486,7 @@ msgstr ""
 msgid "Finish recorded: room={0}, player={1}, number={2}, place={3}, timeMs={4}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr ""
 
@@ -675,7 +675,7 @@ msgstr ""
 msgid "Join denied: player={0}, room={1}, raceStarted={2}, preparing={3}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr ""
 
@@ -684,7 +684,7 @@ msgstr ""
 msgid "Key '{0}' is missing a value."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr ""
 
@@ -765,7 +765,7 @@ msgstr ""
 msgid "Maximum call sign length updated to {0}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr ""
 
@@ -777,7 +777,7 @@ msgstr ""
 msgid "Message of the day updated."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr ""
 
@@ -869,7 +869,7 @@ msgstr ""
 msgid "Player {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr ""
 
@@ -878,7 +878,7 @@ msgstr ""
 msgid "Property '{0}' is outside any section."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:189
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:211
 msgid "Protocol compatibility verified."
 msgstr ""
 
@@ -887,16 +887,16 @@ msgstr ""
 msgid "Protocol current: {0}. Supported: {1}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:183
 msgid "Protocol negotiation failed."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:165
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:187
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, reason={5}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:113
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:111
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
 msgstr ""
@@ -1348,7 +1348,7 @@ msgstr ""
 msgid "TopSpeed.Server usage:"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr ""
 
@@ -1548,7 +1548,7 @@ msgstr ""
 msgid "Would you like to download the update? (y/n)"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr ""
 
@@ -1593,29 +1593,29 @@ msgstr ""
 msgid "Your call sign was rejected by moderation policy."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:193
-#, csharp-format
-msgid "Your client protocol version is newer than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:198
-#, csharp-format
-msgid "Your client protocol version is older than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:203
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:227
 #, csharp-format
 msgid "Your client protocol version is out-of-date: {0}. This server supports protocol versions {1}. Please update your client."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:232
 #, csharp-format
 msgid "Your client protocol version is too new: {0} and does not match this server protocol. This server supports protocol versions {1}. The server needs an update."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:237
 #, csharp-format
 msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:215
+#, csharp-format
+msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:221
+#, csharp-format
+msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:58
@@ -1707,7 +1707,7 @@ msgstr ""
 msgid "start_area cannot be empty."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:154
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:176
 msgid "unknown"
 msgstr ""
 

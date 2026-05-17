@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-17 04:35\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "允许重复昵称"
 msgid "Available commands:"
 msgstr "可用命令："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr "宝马 3 系"
 
@@ -249,7 +249,7 @@ msgstr "连接等待协议协商：玩家ID={0}，端点={1}。"
 msgid "Connection refused due to invalid protocol negotiation."
 msgstr "因无效的协议协商而拒绝连接。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:174
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:196
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:61
 msgid "Connection refused due to protocol mismatch."
 msgstr "由于协议不匹配，连接被拒绝。"
@@ -381,7 +381,7 @@ msgstr "已丢弃来自 {0} 的过期时间戳数据包：命令={1}，序列号
 msgid "Dropped stale packet from prior epoch: endpoint={0}, command={1}, sequence={2}, activeEpoch={3}."
 msgstr "已丢弃来自先前时间戳的数据包：端点={0}，命令={1}，序列号={2}，当前活跃时间戳={3}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr "杜卡迪 Panigale V4"
 
@@ -472,7 +472,7 @@ msgstr "功能选项："
 msgid "Features"
 msgstr "功能"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr "菲亚特500"
 
@@ -486,7 +486,7 @@ msgstr "已忽略完赛记录：房间={0}，玩家={1}，编号={2}。"
 msgid "Finish recorded: room={0}, player={1}, number={2}, place={3}, timeMs={4}."
 msgstr "完成记录已保存：房间={0}，玩家={1}，编号={2}，名次={3}，时间={4}毫秒。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr "福特野马1969"
 
@@ -675,7 +675,7 @@ msgstr "键「{1}」的天气值「{0}」无效。"
 msgid "Join denied: player={0}, room={1}, raceStarted={2}, preparing={3}."
 msgstr "加入被拒：玩家={0}，房间={1}，比赛已开始={2}，准备中={3}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "川崎 Ninja ZX-10R"
 
@@ -684,7 +684,7 @@ msgstr "川崎 Ninja ZX-10R"
 msgid "Key '{0}' is missing a value."
 msgstr "键「{0}」缺少值。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr "兰博基尼 埃文塔多"
 
@@ -765,7 +765,7 @@ msgstr "最大昵称长度"
 msgid "Maximum call sign length updated to {0}."
 msgstr "最大昵称长度已更新为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr "梅赛德斯斯宾特"
 
@@ -777,7 +777,7 @@ msgstr "每日消息"
 msgid "Message of the day updated."
 msgstr "每日消息已修改。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr "迷你库珀 S"
 
@@ -869,7 +869,7 @@ msgstr "玩家状态转换：房间={0}，玩家={1}，{2} -> {3}（数据包={4
 msgid "Player {0}"
 msgstr "玩家 {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr "保时捷 911 GT3 RS"
 
@@ -878,7 +878,7 @@ msgstr "保时捷 911 GT3 RS"
 msgid "Property '{0}' is outside any section."
 msgstr "属性「{0}」位于任何部分之外。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:189
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:211
 msgid "Protocol compatibility verified."
 msgstr "协议兼容性验证通过。"
 
@@ -887,16 +887,16 @@ msgstr "协议兼容性验证通过。"
 msgid "Protocol current: {0}. Supported: {1}."
 msgstr "当前协议：{0}。支持的协议：{1}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:183
 msgid "Protocol negotiation failed."
 msgstr "协议协商失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:165
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:187
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, reason={5}"
 msgstr "协议被拒绝：玩家={0}，端点={1}，报告的协议版本={2}，客户端支持范围={3}，服务器支持范围={4}，原因={5}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:113
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:111
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
 msgstr "协议被拒绝：玩家={0}，端点={1}，报告的协议版本={2}，客户端支持范围={3}，服务器支持范围={4}，状态={5}"
@@ -1348,7 +1348,7 @@ msgstr "TopSpeed 服务器已停止。"
 msgid "TopSpeed.Server usage:"
 msgstr "TopSpeed.Server 用法："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr "丰田凯美瑞"
 
@@ -1548,7 +1548,7 @@ msgstr "天气过渡秒数必须是有限且非负的。"
 msgid "Would you like to download the update? (y/n)"
 msgstr "是否下载更新？(y/n)"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr "雅马哈 YZF-R1"
 
@@ -1593,30 +1593,30 @@ msgstr "您的昵称被拒绝，因为其中包含过多连续重复的字母。
 msgid "Your call sign was rejected by moderation policy."
 msgstr "您的名称被审核策略拒绝。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:193
-#, csharp-format
-msgid "Your client protocol version is newer than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr "您的客户端协议版本 ({0}) 比此服务器新。此服务器支持的协议版本为 {1}。您可以继续，但某些功能可能表现异常或完全无法工作。"
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:198
-#, csharp-format
-msgid "Your client protocol version is older than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr "您的客户端协议版本 ({0}) 比此服务器旧。此服务器支持的协议版本为 {1}。您可以继续，但某些功能可能表现异常或完全无法工作。"
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:203
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:227
 #, csharp-format
 msgid "Your client protocol version is out-of-date: {0}. This server supports protocol versions {1}. Please update your client."
 msgstr "您的客户端协议版本 ({0}) 已过时。此服务器支持的协议版本为 {1}。请更新您的客户端。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:232
 #, csharp-format
 msgid "Your client protocol version is too new: {0} and does not match this server protocol. This server supports protocol versions {1}. The server needs an update."
 msgstr "您的客户端协议版本 ({0}) 太新，与此服务器协议不匹配。此服务器支持的协议版本为 {1}。服务器需要更新。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:237
 #, csharp-format
 msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
 msgstr "您的客户端协议版本是 {0}。此服务器支持的协议版本为 {1}。"
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:215
+#, csharp-format
+msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:221
+#, csharp-format
+msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:58
 #, csharp-format
@@ -1707,7 +1707,7 @@ msgstr "正在关闭..."
 msgid "start_area cannot be empty."
 msgstr "start_area 不能为空。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:154
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:176
 msgid "unknown"
 msgstr "未知"
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-14 12:05\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr ""
 
@@ -1101,7 +1101,7 @@ msgstr ""
 msgid "Downloading update..."
 msgstr "Descargando actualización..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr ""
 
@@ -1356,7 +1356,7 @@ msgstr ""
 msgid "Fetching latest changes."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr ""
 
@@ -1393,7 +1393,7 @@ msgstr "Primera posición conseguida. Gran carrera."
 msgid "Force feedback"
 msgstr "Forzar retroalimentación"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr ""
 
@@ -1411,7 +1411,7 @@ msgstr "Costa francesa"
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:58
 #, csharp-format
 msgid "Frequency set to {0} MHz."
 msgstr ""
@@ -1446,7 +1446,7 @@ msgstr ""
 msgid "Gamepad"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
 #, csharp-format
 msgid "Gear {0}"
 msgstr "Marcha {0}"
@@ -1729,7 +1729,7 @@ msgstr "Joystick"
 msgid "KB"
 msgstr "KB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr ""
 
@@ -1800,7 +1800,7 @@ msgstr "Falta la sección de enlaces de teclado. Los valores predeterminados se 
 msgid "Keyboard mappings restored to defaults."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgstr ""
 msgid "Lap summary:"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:115
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
 #, csharp-format
 msgid "Lap {0}"
 msgstr "Vuelta {0}"
@@ -2077,7 +2077,7 @@ msgstr "Sonidos del menú"
 msgid "Menu sounds: {0}"
 msgstr "Sonidos del menú: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr ""
 
@@ -2085,7 +2085,7 @@ msgstr ""
 msgid "Microphone input gain"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr ""
 
@@ -2629,7 +2629,7 @@ msgid "Panel"
 msgstr "Panel"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Pause"
 msgstr "Pausa"
 
@@ -2700,7 +2700,7 @@ msgstr "Espere por favor. Buscando servidores en la red local."
 msgid "Polar escape"
 msgstr "Escape polar"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr ""
 
@@ -2909,7 +2909,7 @@ msgstr "Configuraciones de carrera"
 msgid "Race started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:155
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
 #, csharp-format
 msgid "Race time {0}"
 msgstr "Tiempo de carrera {0}"
@@ -3013,11 +3013,15 @@ msgstr ""
 msgid "Report distance"
 msgstr "Informe de distancia"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+msgid "Report fuel"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:53
 msgid "Report speed"
 msgstr "Informe de velocidad"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report track name"
 msgstr "Informe del nombre de la pista"
 
@@ -4153,7 +4157,7 @@ msgstr "Las RPM de la curva de par '{0:F0}' deben estar entre 300 y 25000."
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr "El valor de par '{0:F1}' debe estar entre 0 y 5000 Nm."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr ""
 
@@ -4524,7 +4528,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
 msgid "Vehicle"
 msgstr "Vehículo"
 
@@ -4730,7 +4734,7 @@ msgstr ""
 msgid "Y plus"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr ""
 
@@ -4921,7 +4925,7 @@ msgstr "auto_shift_rpm debe ser 0 o estar entre idle_rpm y rev_limiter."
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_upshift_rpm debe ser 0 o estar entre idle_rpm y rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4991,9 +4995,39 @@ msgstr ""
 msgid "end_area cannot be empty."
 msgstr "end_area no puede estar vacío."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:43
+#, csharp-format
+msgid "engine_displacement_l must be between {0} and {1} liters."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:28
 msgid "fixed distance"
 msgstr "distancia fija"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
+#, csharp-format
+msgid "fuel must be between {0} and {1} liters."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:63
 msgid "game cancel request"
@@ -5079,7 +5113,7 @@ msgstr "max_rpm debe ser mayor o igual que idle_rpm."
 msgid "metric"
 msgstr "métrico"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:83
 msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
 msgstr ""
 
@@ -5225,7 +5259,7 @@ msgstr ""
 msgid "room state refresh request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:102
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
 msgid "shift on demand"
 msgstr ""
 
@@ -5318,32 +5352,32 @@ msgstr ""
 msgid "unknown"
 msgstr "desconocido"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:202
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "{0:F0} pies recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:183
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} kilómetros por hora, {1:F0} RPM, {2:F0} caballos de fuerza"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "{0:F0} metros recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:175
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} millas por hora, {1:F0} RPM, {2:F0} caballos de fuerza"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "{0:F1} kilómetros recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:200
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "{0:F1} millas recorridas"
@@ -5369,7 +5403,7 @@ msgstr "{0} ({1})"
 msgid "{0} ({1}, {2})"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:65
 #, csharp-format
 msgid "{0} MHz"
 msgstr ""

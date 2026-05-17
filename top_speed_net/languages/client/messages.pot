@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -287,7 +287,7 @@ msgstr ""
 msgid "B"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr ""
 
@@ -787,7 +787,7 @@ msgstr ""
 msgid "Controller selected. {0}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:34
 #, csharp-format
 msgid "Controller {0}"
 msgstr ""
@@ -1156,7 +1156,7 @@ msgstr ""
 msgid "Downloading update..."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr ""
 
@@ -1195,9 +1195,7 @@ msgid "Edit"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:85
-msgid ""
-"Edit the proxy URL used for update checks, downloads, and latest changes "
-"requests."
+msgid "Edit the proxy URL used for update package downloads."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:13
@@ -1213,7 +1211,7 @@ msgid "Enable menu wrapping"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
-msgid "Enable proxy for updates and changes first."
+msgid "Enable update download proxy first."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:44
@@ -1234,7 +1232,7 @@ msgid "England"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Localization\ClientLanguages.cs:27
-#: D:\top_speed\top_speed_net\TopSpeed\Localization\ClientLanguages.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Localization\ClientLanguages.cs:35
 msgid "English (Original)"
 msgstr ""
 
@@ -1418,7 +1416,7 @@ msgstr ""
 msgid "Fetching latest changes."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr ""
 
@@ -1455,7 +1453,7 @@ msgstr ""
 msgid "Force feedback"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr ""
 
@@ -1473,7 +1471,7 @@ msgstr ""
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:57
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:58
 #, csharp-format
 msgid "Frequency set to {0} MHz."
 msgstr ""
@@ -1491,7 +1489,7 @@ msgstr ""
 msgid "Game rules"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:115
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:113
 msgid "Game rules changed."
 msgstr ""
 
@@ -1504,11 +1502,11 @@ msgstr ""
 msgid "Game version: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:48
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:44
 msgid "Gamepad"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
 #, csharp-format
 msgid "Gear {0}"
 msgstr ""
@@ -1792,7 +1790,7 @@ msgstr ""
 msgid "Join an existing game"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:50
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:46
 msgid "Joystick"
 msgstr ""
 
@@ -1801,7 +1799,7 @@ msgstr ""
 msgid "KB"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr ""
 
@@ -1874,7 +1872,7 @@ msgstr ""
 msgid "Keyboard mappings restored to defaults."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr ""
 
@@ -1906,7 +1904,7 @@ msgstr ""
 msgid "Lap summary:"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:115
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
 #, csharp-format
 msgid "Lap {0}"
 msgstr ""
@@ -2143,7 +2141,7 @@ msgstr ""
 msgid "Maximum players allowed in this room"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:82
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:80
 #, csharp-format
 msgid "Maximum players changed to {0}."
 msgstr ""
@@ -2167,7 +2165,7 @@ msgstr ""
 msgid "Menu sounds: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr ""
 
@@ -2175,7 +2173,7 @@ msgstr ""
 msgid "Microphone input gain"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr ""
 
@@ -2230,7 +2228,7 @@ msgstr ""
 msgid "Modifier"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\KeyMapManager.cs:99
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\KeyMapManager.cs:97
 #, csharp-format
 msgid "Move or press the controller control for {0}."
 msgstr ""
@@ -2548,7 +2546,7 @@ msgstr ""
 msgid "Number of laps"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:77
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:75
 #, csharp-format
 msgid "Number of laps changed to {0}."
 msgstr ""
@@ -2724,7 +2722,7 @@ msgid "Panel"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Pause"
 msgstr ""
 
@@ -2765,11 +2763,15 @@ msgstr ""
 msgid "Player "
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:133
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:131
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Store.cs:114
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:30
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:132
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Results.cs:31
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:172
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:41
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\TimeTrial\Session\Format.cs:19
 #, csharp-format
 msgid "Player {0}"
 msgstr ""
@@ -2795,7 +2797,7 @@ msgstr ""
 msgid "Polar escape"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr ""
 
@@ -2841,7 +2843,7 @@ msgstr ""
 msgid "Press right arrow to view."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\KeyMapManager.cs:98
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\KeyMapManager.cs:96
 #, csharp-format
 msgid "Press the new key for {0}."
 msgstr ""
@@ -2978,7 +2980,7 @@ msgstr ""
 msgid "Race complete."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:118
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:116
 msgid "Race paused."
 msgstr ""
 
@@ -2987,15 +2989,15 @@ msgstr ""
 msgid "Race percentage {0} percent"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:101
 msgid "Race preparation started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:106
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:104
 msgid "Race preparation was cancelled."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:121
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:119
 msgid "Race resumed."
 msgstr ""
 
@@ -3003,11 +3005,11 @@ msgstr ""
 msgid "Race settings"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:107
 msgid "Race started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:155
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
 #, csharp-format
 msgid "Race time {0}"
 msgstr ""
@@ -3025,7 +3027,7 @@ msgstr ""
 msgid "Race without bots"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:45
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:41
 msgid "Racing wheel"
 msgstr ""
 
@@ -3111,11 +3113,15 @@ msgstr ""
 msgid "Report distance"
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+msgid "Report fuel"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:53
 msgid "Report speed"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report track name"
 msgstr ""
 
@@ -3259,12 +3265,7 @@ msgstr ""
 msgid "Room controls"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:59
-#, csharp-format
-msgid "Room created: {0}."
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:68
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:66
 msgid "Room host changed."
 msgstr ""
 
@@ -3286,7 +3287,7 @@ msgstr ""
 msgid "Room options updated."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:62
 #, csharp-format
 msgid "Room removed: {0}."
 msgstr ""
@@ -4027,7 +4028,7 @@ msgstr ""
 msgid "The connection attempt failed for an unknown reason."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:112
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:110
 msgid "The current race was stopped."
 msgstr ""
 
@@ -4308,7 +4309,7 @@ msgstr ""
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr ""
 
@@ -4323,7 +4324,7 @@ msgid ""
 "default'."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:72
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:70
 #, csharp-format
 msgid "Track changed to {0}."
 msgstr ""
@@ -4475,7 +4476,7 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:148
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:146
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:60
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:13
@@ -4683,14 +4684,14 @@ msgid "Use motion sensors for steering"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:72
-msgid "Use proxy for updates and changes"
+msgid "Use proxy for update downloads"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:135
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:149
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
 msgid "Vehicle"
 msgstr ""
 
@@ -4871,8 +4872,7 @@ msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:76
 msgid ""
-"When checked, update checks, update downloads, and latest changes requests "
-"are routed through your proxy URL."
+"When checked, update package downloads are routed through your proxy URL."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
@@ -4917,7 +4917,7 @@ msgstr ""
 msgid "Y plus"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr ""
 
@@ -5110,7 +5110,7 @@ msgstr ""
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -5180,15 +5180,45 @@ msgstr ""
 msgid "end_area cannot be empty."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:43
+#, csharp-format
+msgid "engine_displacement_l must be between {0} and {1} liters."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:28
 msgid "fixed distance"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
+#, csharp-format
+msgid "fuel must be between {0} and {1} liters."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#, csharp-format
+msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#, csharp-format
+msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:63
 msgid "game cancel request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:141
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:139
 msgid "game room"
 msgstr ""
 
@@ -5275,7 +5305,7 @@ msgstr ""
 msgid "metric"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:83
 msgid ""
 "min_coupled_rise_full_rpm_per_s must be greater than or equal to "
 "min_coupled_rise_idle_rpm_per_s."
@@ -5342,7 +5372,6 @@ msgstr ""
 msgid "player count change request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:148
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Results.cs:50
 #, csharp-format
 msgid "player {0}"
@@ -5424,7 +5453,7 @@ msgstr ""
 msgid "room state refresh request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:102
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
 msgid "shift on demand"
 msgstr ""
 
@@ -5521,32 +5550,32 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:202
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:183
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:175
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:200
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr ""
@@ -5561,18 +5590,7 @@ msgstr ""
 msgid "{0}  dialog  {1}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Localization\ClientLanguages.cs:31
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:181
-#, csharp-format
-msgid "{0} ({1})"
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Backends\Sdl\Discovery\Display.cs:26
-#, csharp-format
-msgid "{0} ({1}, {2})"
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:65
 #, csharp-format
 msgid "{0} MHz"
 msgstr ""
@@ -5593,7 +5611,7 @@ msgstr ""
 msgid "{0} and {1}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:91
 #, csharp-format
 msgid "{0} changed ready state."
 msgstr ""
@@ -5725,11 +5743,6 @@ msgstr ""
 msgid "{0} was removed from the current room."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Feedback.cs:35
-#, csharp-format
-msgid "{0}%"
-msgstr ""
-
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:33
 #, csharp-format
 msgid "{0}, host"
@@ -5748,16 +5761,6 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:76
 #, csharp-format
 msgid "{0}, {1} game with {2} people, maximum {3} players"
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:161
-#, csharp-format
-msgid "{0}, {1}, {2}."
-msgstr ""
-
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:153
-#, csharp-format
-msgid "{0}, {1}."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:74
@@ -5785,4 +5788,14 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format
 msgid "{0}: {1} percent"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:156
+#, csharp-format
+msgid "{0}: {1}, using {2}."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:147
+#, csharp-format
+msgid "{0}: {1}, {2}, using {3}."
 msgstr ""

@@ -25,6 +25,10 @@
     <AssemblyName>TopSpeed</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SkipTranslationCompilation Condition="'$(SkipTranslationCompilation)' == ''">false</SkipTranslationCompilation>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(MobileHostBuild)' == 'true'">
     <OutputType>Library</OutputType>
     <TargetFramework>net10.0</TargetFramework>
@@ -266,6 +270,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ClientTranslationPo Include="$(MSBuildThisFileDirectory)..\languages\client\**\messages.po" />
     <Content Include="..\Sounds\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -297,6 +302,42 @@
       <TargetPath>docs\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
     </Content>
   </ItemGroup>
+
+  <Target
+    Name="CompileClientTranslations"
+    BeforeTargets="Build;Publish"
+    Condition="'@(ClientTranslationPo)' != '' and '$(SkipTranslationCompilation)' != 'true'"
+    Inputs="@(ClientTranslationPo)"
+    Outputs="@(ClientTranslationPo->'%(RootDir)%(Directory)messages.mo')">
+    <Message Importance="high" Text="Compiling client translations (.po -> .mo)." />
+    <Exec
+      Command="msgfmt --output-file &quot;%(ClientTranslationPo.RootDir)%(ClientTranslationPo.Directory)messages.mo&quot; &quot;%(ClientTranslationPo.FullPath)&quot;"
+      ContinueOnError="WarnAndContinue" />
+  </Target>
+
+  <Target Name="CopyClientCompiledTranslationsToOutput" BeforeTargets="Build" DependsOnTargets="CompileClientTranslations" Condition="'$(SkipTranslationCompilation)' != 'true'">
+    <ItemGroup>
+      <_CompiledClientMo Include="$(MSBuildThisFileDirectory)..\languages\client\**\messages.mo" />
+    </ItemGroup>
+    <MakeDir Directories="$(OutDir)languages\client" Condition="'@(_CompiledClientMo)' != ''" />
+    <Copy
+      SourceFiles="@(_CompiledClientMo)"
+      DestinationFiles="@(_CompiledClientMo->'$(OutDir)languages\client\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true"
+      Condition="'@(_CompiledClientMo)' != ''" />
+  </Target>
+
+  <Target Name="CopyClientCompiledTranslationsToPublish" AfterTargets="Publish" Condition="'$(SkipTranslationCompilation)' != 'true' and '$(PublishDir)' != ''">
+    <ItemGroup>
+      <_CompiledPublishClientMo Include="$(MSBuildThisFileDirectory)..\languages\client\**\messages.mo" />
+    </ItemGroup>
+    <MakeDir Directories="$(PublishDir)languages\client" Condition="'@(_CompiledPublishClientMo)' != ''" />
+    <Copy
+      SourceFiles="@(_CompiledPublishClientMo)"
+      DestinationFiles="@(_CompiledPublishClientMo->'$(PublishDir)languages\client\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true"
+      Condition="'@(_CompiledPublishClientMo)' != ''" />
+  </Target>
 
   <Target Name="RenderDocsHtml" BeforeTargets="Build" Condition="Exists('$(MSBuildThisFileDirectory)..\..\docs\render_docs.py')">
     <Exec Command="python &quot;$(MSBuildThisFileDirectory)..\..\docs\render_docs.py&quot; --all" ContinueOnError="WarnAndContinue" />

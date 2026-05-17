@@ -95,6 +95,7 @@ namespace TopSpeed.Vehicles
                 _soundThrottle,
                 _soundBrake,
                 _soundHorn,
+                _soundFuelWarning,
                 _soundWipers,
                 _soundAsphalt,
                 _soundGravel,

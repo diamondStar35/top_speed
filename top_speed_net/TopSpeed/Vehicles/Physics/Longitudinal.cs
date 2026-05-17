@@ -58,8 +58,9 @@ namespace TopSpeed.Vehicles
                     applyEngineBraking: false,
                     resistanceEnvironment: _track.GetResistanceEnvironment(),
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
-                    driveAccelerationScale: _factor1 / 100f,
-                    gearPathEngaged: HasSelectedGearPath()));
+                    driveAccelerationScale: (_factor1 / 100f) * _fuelPowerScale,
+                    gearPathEngaged: HasSelectedGearPath(),
+                    effectiveMassKg: _massKg));
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = result.CoupledDriveRpm;
             if (_backfirePlayed)
@@ -107,7 +108,8 @@ namespace TopSpeed.Vehicles
                     applyEngineBraking: true,
                     resistanceEnvironment: _track.GetResistanceEnvironment(),
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
-                    gearPathEngaged: HasSelectedGearPath()));
+                    gearPathEngaged: HasSelectedGearPath(),
+                    effectiveMassKg: _massKg));
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = 0f;
         }
@@ -138,7 +140,8 @@ namespace TopSpeed.Vehicles
                     applyEngineBraking: !IsNeutralGear(),
                     resistanceEnvironment: _track.GetResistanceEnvironment(),
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
-                    gearPathEngaged: HasSelectedGearPath()));
+                    gearPathEngaged: HasSelectedGearPath(),
+                    effectiveMassKg: _massKg));
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = 0f;
         }

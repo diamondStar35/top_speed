@@ -8,26 +8,6 @@ namespace TopSpeed.Input
     {
         public bool GetToggleShiftOnDemand() => _allowAuxiliaryInput && WasPressed(Key.M);
 
-        public bool TryGetPlayerInfo(out int player)
-        {
-            if (!_allowAuxiliaryInput)
-            {
-                player = 0;
-                return false;
-            }
-
-            if (WasPressed(_kbPlayer1)) { player = 0; return true; }
-            if (WasPressed(_kbPlayer2)) { player = 1; return true; }
-            if (WasPressed(_kbPlayer3)) { player = 2; return true; }
-            if (WasPressed(_kbPlayer4)) { player = 3; return true; }
-            if (WasPressed(_kbPlayer5)) { player = 4; return true; }
-            if (WasPressed(_kbPlayer6)) { player = 5; return true; }
-            if (WasPressed(_kbPlayer7)) { player = 6; return true; }
-            if (WasPressed(_kbPlayer8)) { player = 7; return true; }
-            player = 0;
-            return false;
-        }
-
         public bool TryGetPlayerPosition(out int player)
         {
             if (!_allowAuxiliaryInput)
@@ -44,6 +24,8 @@ namespace TopSpeed.Input
             if (WasPressed(_kbPlayerPos6)) { player = 5; return true; }
             if (WasPressed(_kbPlayerPos7)) { player = 6; return true; }
             if (WasPressed(_kbPlayerPos8)) { player = 7; return true; }
+            if (WasPressed(_kbPlayerPos9)) { player = 8; return true; }
+            if (WasPressed(_kbPlayerPos0)) { player = 9; return true; }
             player = 0;
             return false;
         }
@@ -213,6 +195,8 @@ namespace TopSpeed.Input
                     return _touchReportDistance;
                 case DriveIntent.ReportSpeed:
                     return _touchReportSpeed;
+                case DriveIntent.ReportFuel:
+                    return _touchReportFuel;
                 case DriveIntent.CurrentGear:
                     return _touchCurrentGear;
                 case DriveIntent.CurrentLapNr:

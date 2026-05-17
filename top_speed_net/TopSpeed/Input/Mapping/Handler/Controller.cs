@@ -40,7 +40,7 @@ namespace TopSpeed.Input
                 : KeyMapManager.FormatAxis(axis);
             _speech.Speak(LocalizationService.Format(
                 LocalizationService.Mark("{0} set to {1}."),
-                label,
+                LocalizationService.Translate(label),
                 control));
         }
 

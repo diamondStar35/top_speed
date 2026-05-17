@@ -51,6 +51,7 @@ namespace TopSpeed.Vehicles
             var definition = LoadDefinition(vehicleIndex, vehicleFile, track.Weather);
             ApplyDefinition(definition);
             InitializeDriveSystems(definition);
+            ConfigureFuelModel(definition);
             _raceAudio = raceAudio.CreatePlayer(definition);
             BindAudio(_raceAudio);
             _vibration = InitializeVibration(vibrationDevice);

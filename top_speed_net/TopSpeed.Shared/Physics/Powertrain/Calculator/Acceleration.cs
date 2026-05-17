@@ -13,7 +13,8 @@ namespace TopSpeed.Physics.Powertrain
             float longitudinalGripFactor,
             float rollingResistanceModifier,
             ResistanceEnvironment resistanceEnvironment,
-            float? driveRatioOverride = null)
+            float? driveRatioOverride = null,
+            float? massKgOverride = null)
         {
             return DriveAccelCore(
                 config,
@@ -25,7 +26,8 @@ namespace TopSpeed.Physics.Powertrain
                 longitudinalGripFactor,
                 rollingResistanceModifier,
                 resistanceEnvironment,
-                driveRatioOverride);
+                driveRatioOverride,
+                massKgOverride);
         }
 
         public static float ReverseAccel(
@@ -35,7 +37,8 @@ namespace TopSpeed.Physics.Powertrain
             float surfaceTractionModifier,
             float longitudinalGripFactor,
             float rollingResistanceModifier,
-            ResistanceEnvironment resistanceEnvironment)
+            ResistanceEnvironment resistanceEnvironment,
+            float? massKgOverride = null)
         {
             return DriveAccelCore(
                 config,
@@ -46,7 +49,8 @@ namespace TopSpeed.Physics.Powertrain
                 surfaceTractionModifier,
                 longitudinalGripFactor,
                 rollingResistanceModifier,
-                resistanceEnvironment);
+                resistanceEnvironment,
+                massKgOverride: massKgOverride);
         }
 
         private static float DriveAccelCore(
@@ -59,7 +63,8 @@ namespace TopSpeed.Physics.Powertrain
             float longitudinalGripFactor,
             float rollingResistanceModifier,
             ResistanceEnvironment resistanceEnvironment,
-            float? driveRatioOverride = null)
+            float? driveRatioOverride = null,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
@@ -77,7 +82,8 @@ namespace TopSpeed.Physics.Powertrain
                     : config.GetGearRatio(gear));
             var wheelTorque = engineTorque * ratio * config.FinalDriveRatio * config.DrivetrainEfficiency;
             var wheelForce = wheelTorque / config.WheelRadiusM;
-            var tractionLimit = config.TireGripCoefficient * surfaceTractionModifier * config.MassKg * Gravity;
+            var massKg = Math.Max(1f, massKgOverride.GetValueOrDefault(config.MassKg));
+            var tractionLimit = config.TireGripCoefficient * surfaceTractionModifier * massKg * Gravity;
             if (wheelForce > tractionLimit)
                 wheelForce = tractionLimit;
             wheelForce *= Clamp(longitudinalGripFactor, 0f, 1f);
@@ -94,12 +100,13 @@ namespace TopSpeed.Physics.Powertrain
                 inReverse,
                 isNeutral: false,
                 resistanceEnvironment,
-                driveRatioOverride);
+                driveRatioOverride,
+                massKgOverride: massKg);
             var netForce = wheelForce
                 - passiveResistance.AerodynamicForceN
                 - passiveResistance.RollingResistanceForceN
                 - passiveResistance.WheelSideDragForceN;
-            return netForce / config.MassKg;
+            return netForce / massKg;
         }
     }
 }

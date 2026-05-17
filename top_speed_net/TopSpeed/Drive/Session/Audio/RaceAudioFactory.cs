@@ -45,6 +45,12 @@ namespace TopSpeed.Drive.Session.Audio
                     : null,
                 CreateLegacyVehicleEvent("bump.wav", allowHrtf: false),
                 CreateLegacyVehicleEvent("badswitch.wav", allowHrtf: false),
+                CreateVehicleSoundRequired(
+                    Path.Combine(AssetPaths.SoundsRoot, "Vehicles", "fuel_warning.wav"),
+                    AudioEngineOptions.VehiclesBusName,
+                    looped: false,
+                    spatialize: true,
+                    allowHrtf: false),
                 CreateOptionalVariants(definition.GetSoundPaths(VehicleAction.Backfire), definition.GetSoundPath(VehicleAction.Backfire), AudioEngineOptions.VehiclesBusName, spatialize: true, allowHrtf: true));
             return audio;
         }

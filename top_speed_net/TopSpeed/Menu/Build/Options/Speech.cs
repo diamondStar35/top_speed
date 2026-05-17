@@ -177,10 +177,7 @@ namespace TopSpeed.Menu
             if (string.IsNullOrWhiteSpace(voice.Language))
                 return voice.Name;
 
-            return LocalizationService.Format(
-                LocalizationService.Mark("{0} ({1})"),
-                voice.Name,
-                voice.Language);
+            return $"{voice.Name} ({voice.Language})";
         }
 
         private int GetSpeechBackendIndex(IReadOnlyList<SpeechBackendInfo> backends)

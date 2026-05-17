@@ -38,6 +38,14 @@ namespace TopSpeed.Vehicles
         float EngineGrossHorsepower { get; }
         float EngineNetHorsepower { get; }
         float DistanceMeters { get; }
+        float FuelLitersRemaining { get; }
+        float FuelTankCapacityLiters { get; }
+        float FuelBurnLitersPerHour { get; }
+        float FuelEstimatedRangeMeters { get; }
+        float FuelEfficiencyLitersPer100Km { get; }
+        float FuelEfficiencyMpg { get; }
+        bool FuelLow { get; }
+        bool FuelEmpty { get; }
 
         void Initialize(float positionX = 0, float positionY = 0);
         void SetPosition(float positionX, float positionY);

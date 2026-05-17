@@ -78,7 +78,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 17.0f,
                 coupledDrivelineViscousDragNmPerKrpm: 6.0f,
                 engineOverrunIdleLossFraction: 0.31f,
-                engineBrakeTransferEfficiency: 0.66f),
+                engineBrakeTransferEfficiency: 0.66f,
+                fuelTankCapacityLiters: 74f,
+                engineDisplacementLiters: 3.8f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle2, LocalizationService.Mark("Porsche 911 GT3 RS"),
@@ -108,7 +110,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 15.2f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.35f,
                 engineOverrunIdleLossFraction: 0.25f,
-                engineBrakeTransferEfficiency: 0.61f),
+                engineBrakeTransferEfficiency: 0.61f,
+                fuelTankCapacityLiters: 64f,
+                engineDisplacementLiters: 4.0f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle3, LocalizationService.Mark("Fiat 500"),
@@ -136,7 +140,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 14.05f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.05f,
                 engineOverrunIdleLossFraction: 0.32f,
-                engineBrakeTransferEfficiency: 0.60f),
+                engineBrakeTransferEfficiency: 0.60f,
+                fuelTankCapacityLiters: 35f,
+                engineDisplacementLiters: 1.4f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle4, LocalizationService.Mark("Mini Cooper S"),
@@ -164,7 +170,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 15.1f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.4f,
                 engineOverrunIdleLossFraction: 0.34f,
-                engineBrakeTransferEfficiency: 0.66f),
+                engineBrakeTransferEfficiency: 0.66f,
+                fuelTankCapacityLiters: 44f,
+                engineDisplacementLiters: 2.0f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle5, LocalizationService.Mark("Ford Mustang 1969"),
@@ -192,7 +200,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 16.5f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.8f,
                 engineOverrunIdleLossFraction: 0.41f,
-                engineBrakeTransferEfficiency: 0.73f),
+                engineBrakeTransferEfficiency: 0.73f,
+                fuelTankCapacityLiters: 61f,
+                engineDisplacementLiters: 7.0f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle6, LocalizationService.Mark("Toyota Camry"),
@@ -222,7 +232,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 15.7f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.7f,
                 engineOverrunIdleLossFraction: 0.34f,
-                engineBrakeTransferEfficiency: 0.67f),
+                engineBrakeTransferEfficiency: 0.67f,
+                fuelTankCapacityLiters: 60f,
+                engineDisplacementLiters: 2.5f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle7, LocalizationService.Mark("Lamborghini Aventador"),
@@ -252,7 +264,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 17.3f,
                 coupledDrivelineViscousDragNmPerKrpm: 6.1f,
                 engineOverrunIdleLossFraction: 0.28f,
-                engineBrakeTransferEfficiency: 0.64f),
+                engineBrakeTransferEfficiency: 0.64f,
+                fuelTankCapacityLiters: 90f,
+                engineDisplacementLiters: 6.5f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle8, LocalizationService.Mark("BMW 3 Series"),
@@ -282,7 +296,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 15.2f,
                 coupledDrivelineViscousDragNmPerKrpm: 5.5f,
                 engineOverrunIdleLossFraction: 0.31f,
-                engineBrakeTransferEfficiency: 0.66f),
+                engineBrakeTransferEfficiency: 0.66f,
+                fuelTankCapacityLiters: 59f,
+                engineDisplacementLiters: 3.0f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle9, LocalizationService.Mark("Mercedes Sprinter"),
@@ -312,7 +328,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 22.0f,
                 coupledDrivelineViscousDragNmPerKrpm: 8.0f,
                 engineOverrunIdleLossFraction: 0.40f,
-                engineBrakeTransferEfficiency: 0.72f),
+                engineBrakeTransferEfficiency: 0.72f,
+                fuelTankCapacityLiters: 75f,
+                engineDisplacementLiters: 2.1f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle10, LocalizationService.Mark("Kawasaki Ninja ZX-10R"),
@@ -340,7 +358,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 3.2f,
                 coupledDrivelineViscousDragNmPerKrpm: 2.4f,
                 engineOverrunIdleLossFraction: 0.22f,
-                engineBrakeTransferEfficiency: 0.14f),
+                engineBrakeTransferEfficiency: 0.14f,
+                fuelTankCapacityLiters: 17f,
+                engineDisplacementLiters: 1.0f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle11, LocalizationService.Mark("Ducati Panigale V4"),
@@ -368,7 +388,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 3.1f,
                 coupledDrivelineViscousDragNmPerKrpm: 2.4f,
                 engineOverrunIdleLossFraction: 0.27f,
-                engineBrakeTransferEfficiency: 0.18f),
+                engineBrakeTransferEfficiency: 0.18f,
+                fuelTankCapacityLiters: 16f,
+                engineDisplacementLiters: 1.1f),
 
             new OfficialVehicleSpec(
                 CarType.Vehicle12, LocalizationService.Mark("Yamaha YZF-R1"),
@@ -396,7 +418,9 @@ namespace TopSpeed.Vehicles
                 coupledDrivelineDragNm: 3.1f,
                 coupledDrivelineViscousDragNmPerKrpm: 2.35f,
                 engineOverrunIdleLossFraction: 0.22f,
-                engineBrakeTransferEfficiency: 0.15f)
+                engineBrakeTransferEfficiency: 0.15f,
+                fuelTankCapacityLiters: 17f,
+                engineDisplacementLiters: 1.0f)
         };
 
     }

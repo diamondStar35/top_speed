@@ -48,6 +48,8 @@ namespace TopSpeed.Vehicles.Parsing
                 RevLimiter = values.RevLimiter,
                 AutoShiftRpm = values.AutoShiftRpm,
                 EngineBraking = values.EngineBraking,
+                FuelTankCapacityLiters = values.FuelTankCapacityLiters,
+                EngineDisplacementLiters = values.EngineDisplacementLiters,
                 MassKg = values.MassKg,
                 DrivetrainEfficiency = values.DrivetrainEfficiency,
                 EngineBrakingTorqueNm = values.EngineBrakingTorque,

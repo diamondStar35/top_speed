@@ -46,6 +46,14 @@ namespace TopSpeed.Vehicles
         public float EngineGrossHorsepower => _engine.GrossHorsepower;
         public float EngineNetHorsepower => _engine.NetHorsepower;
         public float DistanceMeters => _engine.DistanceMeters;
+        public float FuelLitersRemaining => _fuelState.RemainingLiters;
+        public float FuelTankCapacityLiters => _fuelTankCapacityLiters;
+        public float FuelBurnLitersPerHour => _fuelBurnLitersPerHour;
+        public float FuelEstimatedRangeMeters => _fuelEstimatedRangeMeters;
+        public float FuelEfficiencyLitersPer100Km => _fuelEfficiencyLitersPer100Km;
+        public float FuelEfficiencyMpg => _fuelEfficiencyMpg;
+        public bool FuelLow => _fuelLow;
+        public bool FuelEmpty => _fuelEmpty;
 
         public void SetPhysicsModel(IModel model)
         {

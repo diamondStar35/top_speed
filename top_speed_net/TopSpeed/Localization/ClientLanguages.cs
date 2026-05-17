@@ -27,10 +27,7 @@ namespace TopSpeed.Localization
                     return LocalizationService.Translate(LocalizationService.Mark("English (Original)"));
                 if (string.Equals(EnglishName, NativeName, StringComparison.CurrentCultureIgnoreCase))
                     return EnglishName;
-                return LocalizationService.Format(
-                    LocalizationService.Mark("{0} ({1})"),
-                    EnglishName,
-                    NativeName);
+                return $"{EnglishName} ({NativeName})";
             }
         }
 

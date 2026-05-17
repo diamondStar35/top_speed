@@ -191,6 +191,7 @@ namespace TopSpeed.Vehicles
                 _soundMiniCrash,
                 _soundBump,
                 _soundBadSwitch,
+                _soundFuelWarning,
                 _soundWipers,
                 _soundCrash,
                 _soundBackfire,

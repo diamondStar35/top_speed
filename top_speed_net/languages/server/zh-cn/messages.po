@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 15:03+0300\n"
-"PO-Revision-Date: 2026-05-14 12:05\n"
+"POT-Creation-Date: 2026-05-15 10:21+0300\n"
+"PO-Revision-Date: 2026-05-17 13:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "  --max-players <数字>    最大连接玩家数 (1-255)。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:68
 msgid "  --motd <text>           Message of the day."
-msgstr "  --motd <文本>           每日公告。"
+msgstr "  --motd <文本>           当天的消息。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:66
 msgid "  --port <number>         Server port (1-65535)."
@@ -49,12 +49,7 @@ msgstr "  -h, --help              显示此帮助信息。"
 msgid "  TopSpeed.Server [options]"
 msgstr "  TopSpeed.Server [选项]"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:130
-#, csharp-format
-msgid "\"{0}\": {1}"
-msgstr "\"{0}\": {1}"
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:496
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:494
 msgid "(empty)"
 msgstr "（空）"
 
@@ -87,8 +82,8 @@ msgstr "所有配置已就绪：房间={0}「{1}」，开始比赛。"
 msgid "All players are ready. Starting game."
 msgstr "所有玩家已就绪，游戏开始！"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:213
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:444
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:211
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:442
 msgid "Allow duplicate call signs"
 msgstr "允许重复昵称"
 
@@ -96,18 +91,18 @@ msgstr "允许重复昵称"
 msgid "Available commands:"
 msgstr "可用命令："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
 msgid "BMW 3 Series"
 msgstr "宝马 3 系"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:255
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:282
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:315
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:253
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:280
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:313
 msgid "Back"
 msgstr "返回"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:211
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:420
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:209
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:418
 msgid "Block repeated letters in call signs"
 msgstr "昵称中不允许出现连续重复字母"
 
@@ -191,8 +186,8 @@ msgstr "不能比房间里的玩家数还少。"
 msgid "Changes:"
 msgstr "更新内容："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:188
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:413
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:186
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:411
 msgid "Check for updates on startup"
 msgstr "启动时检查更新"
 
@@ -200,11 +195,11 @@ msgstr "启动时检查更新"
 msgid "Checking for update..."
 msgstr "检查更新中..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:317
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:315
 msgid "Choose server architecture:"
 msgstr "选择服务器架构："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:284
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:282
 msgid "Choose server language:"
 msgstr "选择服务器语言："
 
@@ -224,7 +219,7 @@ msgstr "服务器断开了您的连接。原因：{0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:65
 msgid "Connection closed due to protocol error."
-msgstr ""
+msgstr "由于协议错误，连接已关闭。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:77
 msgid "Connection closed."
@@ -238,7 +233,7 @@ msgstr "连接已建立：玩家ID={0}，端点={1}，协议={2}。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:84
 msgid "Connection lost. Reconnect is available for a short time."
-msgstr ""
+msgstr "连接已断开。可在短时间内重新连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:108
 #, csharp-format
@@ -249,28 +244,28 @@ msgstr "连接等待协议协商：玩家ID={0}，端点={1}。"
 msgid "Connection refused due to invalid protocol negotiation."
 msgstr "因无效的协议协商而拒绝连接。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:174
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:196
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:61
 msgid "Connection refused due to protocol mismatch."
 msgstr "由于协议不匹配，连接被拒绝。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:87
 msgid "Connection rejected by transport policy."
-msgstr ""
+msgstr "连接被传输策略拒绝。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:250
 #, csharp-format
 msgid "Connection removed: player={0}, endpoint={1}, room={2}, reason={3}, mappedReason={4}, mappedState={5}."
-msgstr ""
+msgstr "连接已移除：玩家={0}，端点={1}，房间={2}，原因={3}，映射原因={4}，映射状态={5}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:86
 #, csharp-format
 msgid "Connection resumed: playerId={0}, endpoint={1}, epoch={2}."
-msgstr ""
+msgstr "连接已恢复：玩家ID={0}，端点={1}，时间戳={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:51
 msgid "Connection setup timed out before authentication."
-msgstr ""
+msgstr "连接建立在认证前超时。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:190
 #, csharp-format
@@ -292,8 +287,8 @@ msgstr "自定义赛道"
 msgid "Custom track package is not available on server."
 msgstr "服务器上无法使用自定义赛道资源包。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:199
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:406
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:197
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:404
 msgid "Custom tracks"
 msgstr "自定义赛道"
 
@@ -307,11 +302,11 @@ msgstr "此服务器已禁用自定义赛道。"
 msgid "Custom tracks are not enabled for this room."
 msgstr "此房间未启用自定义赛道。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:184
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:182
 msgid "Discovery port"
 msgstr "发现端口"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:385
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:383
 #, csharp-format
 msgid "Discovery port updated to {0}. Restart required for this change."
 msgstr "发现端口已更新为 {0}。需要重启才能使此更改生效。"
@@ -369,19 +364,19 @@ msgstr "丢弃来自 {0} 的协议版本不匹配的数据包：收到={1}，预
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:75
 #, csharp-format
 msgid "Dropped pre-auth packet from unknown endpoint {0}: command={1}, sequence={2}."
-msgstr ""
+msgstr "已丢弃来自未知端点 {0} 的预认证数据包：命令={1}，序列号={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:47
 #, csharp-format
 msgid "Dropped stale packet epoch from {0}: command={1}, sequence={2}, expectedEpoch={3}, commandEpoch={4}."
-msgstr ""
+msgstr "已丢弃来自 {0} 的过期时间戳数据包：命令={1}，序列号={2}，期望时间戳={3}，命令时间戳={4}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:61
 #, csharp-format
 msgid "Dropped stale packet from prior epoch: endpoint={0}, command={1}, sequence={2}, activeEpoch={3}."
-msgstr ""
+msgstr "已丢弃来自先前时间戳的数据包：端点={0}，命令={1}，序列号={2}，当前活跃时间戳={3}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:346
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
 msgid "Ducati Panigale V4"
 msgstr "杜卡迪 Panigale V4"
 
@@ -414,20 +409,20 @@ msgstr "重复的天气 ID「{0}」。"
 msgid "English (Original)"
 msgstr "英语（原文）"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:377
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:375
 msgid "Enter discovery port (1-65535):"
 msgstr "输入发现端口 (1-65535)："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:426
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:424
 #, csharp-format
 msgid "Enter max call sign length (1-{0}):"
 msgstr "输入昵称最大长度（1-{0}）："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:390
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:388
 msgid "Enter max players (1-255):"
 msgstr "输入最大玩家数 (1-255)："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:348
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:346
 #, csharp-format
 msgid "Enter message of the day (max {0} chars, empty clears value):"
 msgstr "输入每日消息（最多 {0} 个字符，留空则清除）："
@@ -436,7 +431,7 @@ msgstr "输入每日消息（最多 {0} 个字符，留空则清除）："
 msgid "Enter option number:"
 msgstr "输入选项："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:364
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:362
 msgid "Enter server port (1-65535):"
 msgstr "输入服务器端口 (1-65535)："
 
@@ -464,15 +459,15 @@ msgstr "保存服务器设置失败：{0}"
 msgid "Failed to start transport on port {0}."
 msgstr "端口 {0} 启动传输失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:196
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:194
 msgid "Feature options:"
 msgstr "功能选项："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:186
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:184
 msgid "Features"
 msgstr "功能"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
 msgid "Fiat 500"
 msgstr "菲亚特500"
 
@@ -486,7 +481,7 @@ msgstr "已忽略完赛记录：房间={0}，玩家={1}，编号={2}。"
 msgid "Finish recorded: room={0}, player={1}, number={2}, place={3}, timeMs={4}."
 msgstr "完成记录已保存：房间={0}，玩家={1}，编号={2}，名次={3}，时间={4}毫秒。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:170
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
 msgid "Ford Mustang 1969"
 msgstr "福特野马1969"
 
@@ -506,22 +501,22 @@ msgstr "湿度必须在 0 到 1 之间。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:34
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched player id from {0}: expected={1}, received={2}."
-msgstr ""
+msgstr "忽略来自 {0} 的客户端心跳，玩家ID不匹配：应为={1}，实位={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:44
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched session id from {0}: expected={1}, received={2}."
-msgstr ""
+msgstr "忽略来自 {0} 的客户端心跳，会话ID不匹配：应为={1}，实为={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:29
 #, csharp-format
 msgid "Ignoring pre-identification command from {0}: {1}."
-msgstr ""
+msgstr "忽略来自 {0} 的预识别命令：{1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:50
 #, csharp-format
 msgid "Ignoring pre-protocol command from {0}: {1}."
-msgstr ""
+msgstr "忽略来自 {0} 的预协议命令：{1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:97
 #, csharp-format
@@ -580,7 +575,7 @@ msgstr "协议握手包无效。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:88
 #, csharp-format
 msgid "Invalid protocol handshake. Reported protocol version {0} is outside declared supported range {1}."
-msgstr ""
+msgstr "协议握手无效。报告的协议版本 {0} 超出声明的支持范围 {1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:77
 msgid "Invalid protocol range in handshake packet."
@@ -647,7 +642,7 @@ msgstr "无效的赛道资源包上传请求。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:30
 msgid "Invalid track selection."
-msgstr ""
+msgstr "赛道选择无效。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:278
 #, csharp-format
@@ -675,7 +670,7 @@ msgstr "键「{1}」的天气值「{0}」无效。"
 msgid "Join denied: player={0}, room={1}, raceStarted={2}, preparing={3}."
 msgstr "加入被拒：玩家={0}，房间={1}，比赛已开始={2}，准备中={3}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "川崎 Ninja ZX-10R"
 
@@ -684,11 +679,11 @@ msgstr "川崎 Ninja ZX-10R"
 msgid "Key '{0}' is missing a value."
 msgstr "键「{0}」缺少值。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
 msgid "Lamborghini Aventador"
 msgstr "兰博基尼 埃文塔多"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:181
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:179
 msgid "Language"
 msgstr "语言"
 
@@ -703,12 +698,12 @@ msgstr "显示已连接的玩家。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:72
 #, csharp-format
 msgid "LiteNetLib network error: endpoint={0}, socketError={1}."
-msgstr ""
+msgstr "LiteNetLib 网络错误：端点={0}，套接字错误={1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:120
 #, csharp-format
 msgid "LiteNetLib peer address changed: old={0}, new={1}."
-msgstr ""
+msgstr "LiteNetLib 对端地址已更改：旧地址={0}，新地址={1}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:136
 #, csharp-format
@@ -723,7 +718,7 @@ msgstr "LiteNetLib 发送失败：{0}"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:152
 #, csharp-format
 msgid "LiteNetLib stop failed: {0}"
-msgstr ""
+msgstr "LiteNetLib 停止失败：{0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:124
 #, csharp-format
@@ -747,37 +742,37 @@ msgstr "格式错误的行。应为 '[section]' 或 'key = value'。"
 msgid "Manually check for server updates."
 msgstr "手动检查更新。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:185
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:183
 msgid "Max players"
 msgstr "最大玩家数"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:399
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:397
 #, csharp-format
 msgid "Max players updated to {0}."
 msgstr "最大玩家数已改为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:212
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:210
 msgid "Maximum call sign length"
 msgstr "最大昵称长度"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:437
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:435
 #, csharp-format
 msgid "Maximum call sign length updated to {0}."
 msgstr "最大昵称长度已更新为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:288
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
 msgid "Mercedes Sprinter"
 msgstr "梅赛德斯斯宾特"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:182
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:180
 msgid "Message of the day"
 msgstr "每日消息"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:359
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:357
 msgid "Message of the day updated."
 msgstr "每日消息已修改。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
 msgid "Mini Cooper S"
 msgstr "迷你库珀 S"
 
@@ -786,11 +781,11 @@ msgstr "迷你库珀 S"
 msgid "Missing sound asset file: {0}"
 msgstr "缺少声音资源文件：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:189
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:187
 msgid "Moderation"
 msgstr "管理"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:206
 msgid "Moderation options:"
 msgstr "审核选项："
 
@@ -802,7 +797,7 @@ msgstr "日产 GT-R Nismo"
 msgid "No changes were listed for this update."
 msgstr "这个更新没有列出改动内容。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:275
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:273
 msgid "No languages are available."
 msgstr "没有可用的语言选项。"
 
@@ -835,7 +830,7 @@ msgstr "玩家加入房间：房间={0}「{1}」，玩家={2}，参与者={3}/{4
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:106
 #, csharp-format
 msgid "Player left room: room={0} \"{1}\", player={2}, notify={3}, roomClosed={4}."
-msgstr ""
+msgstr "玩家离开房间：房间={0} \"{1}\"，玩家={2}，通知={3}，房间已关闭={4}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:31
 msgid "Player limit must be between 2 and 10."
@@ -869,7 +864,7 @@ msgstr "玩家状态转换：房间={0}，玩家={1}，{2} -> {3}（数据包={4
 msgid "Player {0}"
 msgstr "玩家 {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
 msgid "Porsche 911 GT3 RS"
 msgstr "保时捷 911 GT3 RS"
 
@@ -878,7 +873,7 @@ msgstr "保时捷 911 GT3 RS"
 msgid "Property '{0}' is outside any section."
 msgstr "属性「{0}」位于任何部分之外。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:189
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:211
 msgid "Protocol compatibility verified."
 msgstr "协议兼容性验证通过。"
 
@@ -887,26 +882,26 @@ msgstr "协议兼容性验证通过。"
 msgid "Protocol current: {0}. Supported: {1}."
 msgstr "当前协议：{0}。支持的协议：{1}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:183
 msgid "Protocol negotiation failed."
 msgstr "协议协商失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:165
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:187
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, reason={5}"
-msgstr ""
+msgstr "协议被拒绝：玩家={0}，端点={1}，报告的协议版本={2}，客户端支持范围={3}，服务器支持范围={4}，原因={5}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:113
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:111
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
-msgstr ""
+msgstr "协议被拒绝：玩家={0}，端点={1}，报告的协议版本={2}，客户端支持范围={3}，服务器支持范围={4}，状态={5}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:159
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:157
 #, csharp-format
 msgid "Protocol supported range: {0} to {1}"
 msgstr "协议支持范围：{0} 至 {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:158
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:156
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:55
 #, csharp-format
 msgid "Protocol version: {0}"
@@ -993,15 +988,15 @@ msgstr "比赛停止：房间={0}「{1}」，结果={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:55
 msgid "Reconnect denied because the remote IP does not match the original session."
-msgstr ""
+msgstr "重新连接被拒绝，因为远程IP与原始会话不匹配。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:57
 msgid "Reconnect denied because the resume token is invalid."
-msgstr ""
+msgstr "重新连接被拒绝，因为恢复令牌无效。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:59
 msgid "Reconnect window expired."
-msgstr ""
+msgstr "重新连接窗口已过期。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:96
 #, csharp-format
@@ -1016,7 +1011,7 @@ msgstr "已移除机器人 {0}。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:168
 #, csharp-format
 msgid "Resume fallback accepted as new session: pendingPlayerId={0}, endpoint={1}, reason={2}."
-msgstr ""
+msgstr "恢复回退已作为新会话接受：待处理玩家ID={0}，端点={1}，原因={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:20
 #, csharp-format
@@ -1026,7 +1021,7 @@ msgstr "房间添加机器人被拒：房间={0}，玩家={1}，比赛已开始=
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:115
 #, csharp-format
 msgid "Room closed: room={0} \"{1}\", reason=last_participant_left."
-msgstr ""
+msgstr "房间已关闭：房间={0} \"{1}\"，原因=最后一名参与者离开。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:34
 #, csharp-format
@@ -1041,7 +1036,7 @@ msgstr "房间游戏规则更改被拒：房间={0}，玩家={1}，比赛已开�
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Numbering.cs:91
 #, csharp-format
 msgid "Room game-start numbers shuffled: room={0}, players={1}, bots={2}."
-msgstr ""
+msgstr "房间游戏开始编号已打乱：房间={0}，玩家={1}，机器人={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:73
 #, csharp-format
@@ -1105,16 +1100,16 @@ msgstr "赛道段声源列表不能为空。"
 msgid "Segment weather profile id cannot be empty."
 msgstr "赛道段天气配置 ID 不能为空。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:187
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:185
 msgid "Server architecture"
 msgstr "服务器架构"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:341
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:339
 #, csharp-format
 msgid "Server architecture remains {0}."
 msgstr "服务器体系结构人为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:335
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:333
 #, csharp-format
 msgid "Server architecture set to {0}."
 msgstr "服务器体系结构设置为{0}。"
@@ -1122,7 +1117,7 @@ msgstr "服务器体系结构设置为{0}。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:193
 #, csharp-format
 msgid "Server command failed: kind={0}, sequence={1}, reason={2}."
-msgstr ""
+msgstr "服务器命令执行失败：类型={0}，序列号={1}，原因={2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:71
 msgid "Server command interface ready. Type \"help\" to get the list of commands."
@@ -1131,31 +1126,31 @@ msgstr "服务器命令接口已就绪。输入「help」获取命令列表。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:79
 #, csharp-format
 msgid "Server configuration: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.text_chat={4}, features.voice_chat={5}, moderation.maxNameLength={6}, moderation.blockRepeatedLettersInName={7}, moderation.allowDuplicateNames={8}."
-msgstr ""
+msgstr "服务器配置：端口={0}，发现端口={1}，最大玩家数={2}，功能.自定义赛道={3}，功能.文字聊天={4}，功能.语音聊天={5}，审核.最大名称长度={6}，审核.阻止名称中重复字母={7}，审核.允许重复名称={8}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:50
 msgid "Server is up-to-date."
 msgstr "服务器已是最新版，无需更新。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:306
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:304
 #, csharp-format
 msgid "Server language remains {0}."
 msgstr "服务器语言保持为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:302
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:300
 #, csharp-format
 msgid "Server language set to {0}."
 msgstr "服务器语言已改为 {0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:178
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:176
 msgid "Server options:"
 msgstr "服务器选项："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:183
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:181
 msgid "Server port"
 msgstr "服务器端口"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:372
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:370
 #, csharp-format
 msgid "Server port updated to {0}. Restart required for this change."
 msgstr "服务器端口已更新为 {0}。需要重启才能使此更改生效。"
@@ -1172,7 +1167,7 @@ msgstr "服务器版本：{0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:104
 msgid "Server started. Press Ctrl+C to stop."
-msgstr "服务器已启动，按 Ctrl+C 可以停止。"
+msgstr "服务器已启动，按 Ctrl+C 可停止。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:111
 msgid "Server stopped."
@@ -1188,7 +1183,7 @@ msgstr "服务器更新检查失败：{0}"
 msgid "Server update download failed: {0}"
 msgstr "服务器更新下载失败：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:155
 #, csharp-format
 msgid "Server version: {0}"
 msgstr "服务器版本：{0}"
@@ -1238,14 +1233,14 @@ msgid "Sound list for '{0}' cannot be empty."
 msgstr "「{0}」的音效列表不能为空。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:92
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:228
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:286
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:319
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:352
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:366
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:379
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:392
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:431
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:226
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:284
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:317
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:350
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:364
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:377
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:390
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:429
 msgid "Standard input is no longer available. Server commands are disabled."
 msgstr "无法读取输入，服务器命令已禁用。"
 
@@ -1262,8 +1257,8 @@ msgstr "标准输入不可用。更新下载已跳过。"
 msgid "Stopping race: room={0}, active={1}, trackedResults={2}."
 msgstr "正在停止比赛：房间={0}，活跃={1}，已记录结果={2}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:200
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:451
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:449
 msgid "Text chat"
 msgstr "文本聊天"
 
@@ -1288,7 +1283,7 @@ msgstr "所选的自定义赛道无效。"
 msgid "The server closed the connection."
 msgstr "服务器断开了连接。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:150
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:148
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Admin.cs:61
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:75
 msgid "The server will be shut down immediately by the host."
@@ -1308,7 +1303,7 @@ msgstr "没有机器人可以移除。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:73
 msgid "This call sign is already in use on this server."
-msgstr ""
+msgstr "此名称在该服务器上已被使用。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\Names.cs:83
 msgid "This call sign is already in use on this server. Please choose a different name."
@@ -1348,7 +1343,7 @@ msgstr "TopSpeed 服务器已停止。"
 msgid "TopSpeed.Server usage:"
 msgstr "TopSpeed.Server 用法："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:198
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
 msgid "Toyota Camry"
 msgstr "丰田凯美瑞"
 
@@ -1415,7 +1410,7 @@ msgstr "缺少赛道源文件路径，因此无法解析声音资源。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:130
 #, csharp-format
 msgid "Transport disconnect observed: player={0}, endpoint={1}, transportReason={2}, socketError={3}, mappedReason={4}, mappedState={5}."
-msgstr ""
+msgstr "检测到传输断开：玩家={0}，端点={1}，传输原因={2}，套接字错误={3}，映射原因={4}，映射状态={5}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:30
 msgid "Unable to resolve custom track folder path."
@@ -1423,7 +1418,7 @@ msgstr "无法解析自定义赛道文件夹路径。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:89
 msgid "Unable to resolve server host."
-msgstr ""
+msgstr "无法解析服务器主机。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:147
 msgid "Unable to resume the previous multiplayer session."
@@ -1508,10 +1503,10 @@ msgstr "输入值过长，最多 {0} 个字符。"
 msgid "Value must be between {0} and {1}."
 msgstr "数值需要在 {0} 到 {1} 之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:201
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:458
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:199
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:456
 msgid "Voice chat"
-msgstr ""
+msgstr "语音聊天"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:79
 #, csharp-format
@@ -1548,7 +1543,7 @@ msgstr "天气过渡秒数必须是有限且非负的。"
 msgid "Would you like to download the update? (y/n)"
 msgstr "是否下载更新？(y/n)"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:374
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
 msgid "Yamaha YZF-R1"
 msgstr "雅马哈 YZF-R1"
 
@@ -1574,11 +1569,11 @@ msgstr "您现在是这个房间的房主。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:32
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:78
 msgid "You are temporarily disconnected from this game room."
-msgstr ""
+msgstr "您已暂时断开与该游戏房间的连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:69
 msgid "Your call sign is too long for this server."
-msgstr ""
+msgstr "您的名称对于该服务器来说过长。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\Names.cs:66
 #, csharp-format
@@ -1591,32 +1586,32 @@ msgstr "您的昵称被拒绝，因为其中包含过多连续重复的字母。
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:71
 msgid "Your call sign was rejected by moderation policy."
-msgstr ""
+msgstr "您的名称被审核策略拒绝。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:193
-#, csharp-format
-msgid "Your client protocol version is newer than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr "您的客户端协议版本 ({0}) 比此服务器新。此服务器支持的协议版本为 {1}。您可以继续，但某些功能可能表现异常或完全无法工作。"
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:198
-#, csharp-format
-msgid "Your client protocol version is older than this server: {0}. This server supports protocol versions {1}. You can continue, but some features may behave differently or may not work at all."
-msgstr "您的客户端协议版本 ({0}) 比此服务器旧。此服务器支持的协议版本为 {1}。您可以继续，但某些功能可能表现异常或完全无法工作。"
-
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:203
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:227
 #, csharp-format
 msgid "Your client protocol version is out-of-date: {0}. This server supports protocol versions {1}. Please update your client."
 msgstr "您的客户端协议版本 ({0}) 已过时。此服务器支持的协议版本为 {1}。请更新您的客户端。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:208
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:232
 #, csharp-format
 msgid "Your client protocol version is too new: {0} and does not match this server protocol. This server supports protocol versions {1}. The server needs an update."
 msgstr "您的客户端协议版本 ({0}) 太新，与此服务器协议不匹配。此服务器支持的协议版本为 {1}。服务器需要更新。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:237
 #, csharp-format
 msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
 msgstr "您的客户端协议版本是 {0}。此服务器支持的协议版本为 {1}。"
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:215
+#, csharp-format
+msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:221
+#, csharp-format
+msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:58
 #, csharp-format
@@ -1640,7 +1635,7 @@ msgstr "全部"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Admin.cs:102
 #, csharp-format
 msgid "authoritative players={0}, rooms={1}, stale_epoch_drops={2}, replay_gaps={3}, epoch_rejects={4}, heartbeat_suspicions={5}, start_blocked_insufficient_active={6}, start_blocked_missing_ready={7}, start_blocked_track_not_ready={8}, transport_network_errors={9}, transport_latency_last_ms={10}, transport_latency_avg_ms={11}, transport_latency_max_ms={12}, transport_peer_address_changes={13}"
-msgstr ""
+msgstr "权威玩家={0}，房间={1}，过期周期丢弃={2}，回放间隙={3}，周期拒绝={4}，心跳可疑={5}，开始被阻塞-活跃不足={6}，开始被阻塞-缺少准备就绪={7}，开始被阻塞-赛道未就绪={8}，传输网络错误={9}，传输延迟最后毫秒={10}，传输延迟平均毫秒={11}，传输延迟最大毫秒={12}，传输对等地址变更={13}"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:90
 msgid "debug"
@@ -1699,7 +1694,7 @@ msgstr "开"
 msgid "room {0}"
 msgstr "房间 {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:147
 msgid "shutting down..."
 msgstr "正在关闭..."
 
@@ -1707,7 +1702,7 @@ msgstr "正在关闭..."
 msgid "start_area cannot be empty."
 msgstr "start_area 不能为空。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:154
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:176
 msgid "unknown"
 msgstr "未知"
 
@@ -1748,7 +1743,7 @@ msgstr "{0} 创建了房间 {1}。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:14
 #, csharp-format
 msgid "{0} has connected to the server."
-msgstr "{0} 加入了。"
+msgstr "{0} 已连接。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:32
 #, csharp-format
@@ -1758,7 +1753,7 @@ msgstr "{0} 已断开连接。"
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:73
 #, csharp-format
 msgid "{0} has left the game."
-msgstr "{0} 退出了。"
+msgstr "{0} 已退出游戏。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:31
 #, csharp-format
@@ -1796,7 +1791,7 @@ msgstr "{0} 暂停了比赛。"
 msgid "{0} payload mismatch: room={1}, connectionPlayer={2}/{3}, payload={4}/{5}."
 msgstr "{0} 载荷不匹配：房间={1}，连接玩家={2}/{3}，载荷={4}/{5}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:139
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:137
 #, csharp-format
 msgid "{0} players are connected:"
 msgstr "已连接 {0} 名玩家："
@@ -1821,7 +1816,7 @@ msgstr "{0} 说：{1}"
 msgid "{0} stopped the current game."
 msgstr "{0} 停止了比赛。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:143
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:141
 #, csharp-format
 msgid "{0}, using protocol version {1}"
 msgstr "{0}，使用协议版本 {1}"

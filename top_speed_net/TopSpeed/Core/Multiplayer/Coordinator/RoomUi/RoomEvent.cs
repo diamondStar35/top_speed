@@ -18,9 +18,6 @@ namespace TopSpeed.Core.Multiplayer
                 if (eventInfo.Kind == RoomEventKind.RoomCreated)
                 {
                     effects.Add(PacketEffect.PlaySound("room_created.ogg"));
-                    var createdText = HistoryText.FromRoomEvent(eventInfo);
-                    if (!string.IsNullOrWhiteSpace(createdText))
-                        effects.Add(PacketEffect.AddRoomEventHistory(createdText));
                     _owner.DispatchPacketEffects(effects);
                     return;
                 }

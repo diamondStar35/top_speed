@@ -72,6 +72,7 @@ namespace TopSpeed.Vehicles
                 UpdateStallState(elapsed, _speed / 3.6f, throttle, clutchInput);
                 UpdateBackfireStateAfterDrive();
             }
+            UpdateFuelModel(elapsed);
             UpdateBrakeAndSteeringOutput();
             IntegrateVehiclePosition(elapsed, currentLapStart);
             UpdateFrameAudioAndFeedback();
@@ -112,7 +113,8 @@ namespace TopSpeed.Vehicles
                     applyEngineBraking: false,
                     resistanceEnvironment: _track.GetResistanceEnvironment(),
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
-                    gearPathEngaged: HasSelectedGearPath()));
+                    gearPathEngaged: HasSelectedGearPath(),
+                    effectiveMassKg: _massKg));
             _speed = Math.Max(0f, _speed + result.SpeedDeltaKph);
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = 0f;

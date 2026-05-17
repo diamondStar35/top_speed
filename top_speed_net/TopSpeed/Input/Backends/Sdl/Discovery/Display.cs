@@ -22,11 +22,7 @@ namespace TopSpeed.Input.Backends.Sdl
             var name = BuildName(metadata);
             var type = BuildTypeLabel(metadata, isRacingWheel);
             var disambiguator = BuildDisambiguator(metadata);
-            return LocalizationService.Format(
-                LocalizationService.Mark("{0} ({1}, {2})"),
-                name,
-                type,
-                disambiguator);
+            return $"{name} ({type}, {disambiguator})";
         }
 
         public static string BuildName(DeviceMetadata metadata)

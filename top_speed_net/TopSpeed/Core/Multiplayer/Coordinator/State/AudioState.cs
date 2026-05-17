@@ -18,6 +18,7 @@ namespace TopSpeed.Core.Multiplayer
         public SoundAsset? ChatSound;
         public SoundAsset? RoomChatSound;
         public SoundAsset? BufferSwitchSound;
+        public SoundAsset? CommunicatorFrequencyAdjustSound;
     }
 }
 

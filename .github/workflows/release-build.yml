@@ -119,9 +119,66 @@ jobs:
           $serverChanges | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "EOF" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
+  translations:
+    name: Compile Translations
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: top_speed_net
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install gettext
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y gettext
+
+      - name: Compile .po catalogs into .mo files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          failed_catalogs=0
+          while IFS= read -r -d '' po_file; do
+            mo_file="${po_file%.po}.mo"
+            if ! msgfmt --output-file "$mo_file" "$po_file"; then
+              echo "::warning::Failed to compile translation catalog '$po_file'."
+              failed_catalogs=$((failed_catalogs + 1))
+            fi
+          done < <(find languages -type f -name 'messages.po' -print0 | sort -z)
+
+          rm -rf artifacts/translations
+          mkdir -p artifacts/translations
+          while IFS= read -r -d '' mo_file; do
+            relative_path="${mo_file#languages/}"
+            destination="artifacts/translations/$relative_path"
+            mkdir -p "$(dirname "$destination")"
+            cp "$mo_file" "$destination"
+          done < <(find languages -type f -name 'messages.mo' -print0 | sort -z)
+
+          find artifacts/translations -type f -name 'messages.mo' | sort
+          if [[ "$failed_catalogs" -gt 0 ]]; then
+            echo "::warning::Translation compile completed with $failed_catalogs failed catalog(s)."
+          fi
+
+      - name: Upload compiled translations
+        uses: actions/upload-artifact@v6
+        with:
+          name: compiled-translations
+          if-no-files-found: error
+          path: |
+            top_speed_net/artifacts/translations/client
+            top_speed_net/artifacts/translations/server
+
   build_windows:
     name: Build Windows ${{ matrix.target_name }}
-    needs: metadata
+    needs:
+      - metadata
+      - translations
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -143,6 +200,12 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+
+      - name: Download compiled translations
+        uses: actions/download-artifact@v7
+        with:
+          name: compiled-translations
+          path: top_speed_net/languages
 
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
@@ -166,9 +229,9 @@ jobs:
           if ($kind -eq "game") {
             dotnet restore TopSpeed/TopSpeed.csproj -p:RuntimeIdentifier=win-x64
             dotnet restore TopSpeed.Tests/TopSpeed.Tests.csproj
-            dotnet build TopSpeed.Tests/TopSpeed.Tests.csproj --configuration Release --framework net10.0-windows --no-restore
+            dotnet build TopSpeed.Tests/TopSpeed.Tests.csproj --configuration Release --framework net10.0-windows --no-restore -p:SkipTranslationCompilation=true
             dotnet test TopSpeed.Tests/TopSpeed.Tests.csproj --configuration Release --framework net10.0-windows --no-build --verbosity normal
-            dotnet build TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0-windows --runtime win-x64 --no-restore
+            dotnet build TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0-windows --runtime win-x64 --no-restore -p:SkipTranslationCompilation=true
 
             $zipName = "TopSpeed-windows-x64-Release-v-$env:VERSION.zip"
             if (Test-Path $zipName) { Remove-Item $zipName -Force }
@@ -176,7 +239,7 @@ jobs:
             python scripts/build/verify_docs.py --archive $zipName --prefix docs
           } elseif ($kind -eq "server") {
             dotnet restore TopSpeed.Server/TopSpeed.Server.csproj
-            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile=${{ matrix.publish_profile }} -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=false
+            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile=${{ matrix.publish_profile }} -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=false -p:SkipTranslationCompilation=true
 
             $zipName = "TopSpeed.Server-${{ matrix.server_tag }}-Release-v-$env:SERVER_VERSION.zip"
             if (Test-Path $zipName) { Remove-Item $zipName -Force }
@@ -198,7 +261,9 @@ jobs:
 
   build_mac:
     name: Build macOS ${{ matrix.target_name }}
-    needs: metadata
+    needs:
+      - metadata
+      - translations
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -234,6 +299,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Download compiled translations
+        uses: actions/download-artifact@v7
+        with:
+          name: compiled-translations
+          path: top_speed_net/languages
+
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
         with:
@@ -259,7 +330,7 @@ jobs:
             zip_name="TopSpeed-mac-${{ matrix.game_arch_tag }}-Release-v-$VERSION.zip"
 
             dotnet restore TopSpeed/TopSpeed.csproj -p:RuntimeIdentifier="$rid"
-            dotnet publish TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0 --runtime "$rid" -p:UseNativeAotUpdater=true -p:UseTrimmedUpdater=false --no-restore
+            dotnet publish TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0 --runtime "$rid" -p:UseNativeAotUpdater=true -p:UseTrimmedUpdater=false -p:SkipTranslationCompilation=true --no-restore
 
             rm -f "$zip_name"
             (
@@ -273,7 +344,7 @@ jobs:
             zip_name="TopSpeed.Server-${{ matrix.server_tag }}-Release-v-$SERVER_VERSION.zip"
 
             dotnet restore TopSpeed.Server/TopSpeed.Server.csproj
-            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile="$profile" -p:UseNativeAotUpdater=true -p:UseTrimmedUpdater=false
+            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile="$profile" -p:UseNativeAotUpdater=true -p:UseTrimmedUpdater=false -p:SkipTranslationCompilation=true
 
             rm -f "$zip_name"
             (
@@ -300,7 +371,9 @@ jobs:
 
   build_linux:
     name: Build Linux ${{ matrix.target_name }}
-    needs: metadata
+    needs:
+      - metadata
+      - translations
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -353,6 +426,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Download compiled translations
+        uses: actions/download-artifact@v7
+        with:
+          name: compiled-translations
+          path: top_speed_net/languages
+
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
         with:
@@ -377,7 +456,7 @@ jobs:
             zip_name="TopSpeed-linux-x64-Release-v-$VERSION.zip"
 
             dotnet restore TopSpeed/TopSpeed.csproj -p:RuntimeIdentifier=linux-x64
-            dotnet build TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0 --runtime linux-x64 -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=true --no-restore
+            dotnet build TopSpeed/TopSpeed.csproj --configuration Release --framework net10.0 --runtime linux-x64 -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=true -p:SkipTranslationCompilation=true --no-restore
 
             rm -f "$zip_name"
             (
@@ -391,7 +470,7 @@ jobs:
             zip_name="TopSpeed.Server-${{ matrix.server_tag }}-Release-v-$SERVER_VERSION.zip"
 
             dotnet restore TopSpeed.Server/TopSpeed.Server.csproj
-            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile="$profile" -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=true
+            dotnet publish TopSpeed.Server/TopSpeed.Server.csproj --configuration Release -p:ServerPublishProfile="$profile" -p:UseNativeAotUpdater=false -p:UseTrimmedUpdater=true -p:SkipTranslationCompilation=true
 
             rm -f "$zip_name"
             (
@@ -418,7 +497,9 @@ jobs:
 
   build_android:
     name: Build Android ${{ matrix.target_name }}
-    needs: metadata
+    needs:
+      - metadata
+      - translations
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -437,6 +518,12 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+
+      - name: Download compiled translations
+        uses: actions/download-artifact@v7
+        with:
+          name: compiled-translations
+          path: top_speed_net/languages
 
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
@@ -486,7 +573,8 @@ jobs:
             --runtime "$rid" \
             -p:AndroidPackageFormat=apk \
             -p:ApplicationDisplayVersion="$VERSION" \
-            -p:ApplicationVersion="$ANDROID_VERSION_CODE"
+            -p:ApplicationVersion="$ANDROID_VERSION_CODE" \
+            -p:SkipTranslationCompilation=true
 
           if [[ "$rid" == "android-arm64" ]]; then
             apk_name="TopSpeed-android-arm64-Release-v-$VERSION.apk"
@@ -522,7 +610,9 @@ jobs:
 
   build_ios:
     name: Build iOS ${{ matrix.target_name }}
-    needs: metadata
+    needs:
+      - metadata
+      - translations
     runs-on: macos-15
     strategy:
       fail-fast: false
@@ -540,6 +630,12 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+
+      - name: Download compiled translations
+        uses: actions/download-artifact@v7
+        with:
+          name: compiled-translations
+          path: top_speed_net/languages
 
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
@@ -686,6 +782,7 @@ jobs:
             -p:ArchiveOnBuild=false \
             -p:BuildIpa=false \
             -p:EnableCodeSigning=false \
+            -p:SkipTranslationCompilation=true \
             -bl:artifacts/ios/ios-publish.binlog
 
           ipa_name="TopSpeed-ios-arm64-Release-v-$VERSION.ipa"

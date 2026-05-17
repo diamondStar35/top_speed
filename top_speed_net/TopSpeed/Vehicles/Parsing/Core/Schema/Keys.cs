@@ -16,7 +16,7 @@ namespace TopSpeed.Vehicles.Parsing
                 ["general"] = Set("surface_traction_factor", "max_speed", "has_wipers"),
                 ["engine"] = Set(
                     "idle_rpm", "max_rpm", "rev_limiter", "auto_shift_rpm", "engine_braking", "mass_kg", "drivetrain_efficiency",
-                    "launch_rpm"),
+                    "launch_rpm", "fuel", "engine_displacement_l"),
                 ["torque"] = Set(
                     "engine_braking_torque", "peak_torque", "peak_torque_rpm", "idle_torque", "redline_torque",
                     "power_factor"),

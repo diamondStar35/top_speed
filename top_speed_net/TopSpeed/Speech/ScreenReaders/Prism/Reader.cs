@@ -398,6 +398,17 @@ namespace TopSpeed.Speech.ScreenReaders.Prism
                 }
             }
 
+            if (!_preferredBackendId.HasValue && OperatingSystem.IsAndroid())
+            {
+                var androidTts = TryOpen(context, new BackendInfo(Ids.AndroidTts, string.Empty, 0, true));
+                if (androidTts != null)
+                {
+                    _activeBackendId = ResolveActiveBackendId(context, androidTts, Ids.AndroidTts);
+                    ApplyVoicePreferenceLocked();
+                    return androidTts;
+                }
+            }
+
             var candidates = context.AvailableBackends
                 .Where(static backend => backend.IsSupported)
                 .OrderByDescending(static backend => backend.Priority)

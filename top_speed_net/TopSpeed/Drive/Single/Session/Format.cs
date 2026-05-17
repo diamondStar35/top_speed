@@ -35,6 +35,13 @@ namespace TopSpeed.Drive.Single
             return LocalizationService.Mark("Vehicle");
         }
 
+        private string GetPlayerNameForPlayer(int playerIndex)
+        {
+            return LocalizationService.Format(
+                LocalizationService.Mark("Player {0}"),
+                playerIndex + 1);
+        }
+
         private int CalculatePlayerPerc(int player)
         {
             if (player == _playerNumber)

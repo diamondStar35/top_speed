@@ -136,6 +136,15 @@ pwsh -NoLogo -NoProfile -File top_speed_net/languages/Generate-Templates.ps1
 
 The script requires GNU gettext (`xgettext`) on `PATH`. It walks every `*.cs` in the client and server trees (excluding `bin/` and `obj/`).
 
+### Localization catalogs (`.po` -> `.mo`)
+
+- Runtime translation loading uses compiled gettext catalogs (`messages.mo`) under `top_speed_net/languages/{client,server}/<locale>/`.
+- Source-of-truth translations are `.po` files; do not commit generated `.mo` binaries.
+- `TopSpeed.csproj` and `TopSpeed.Server.csproj` compile `.po` into `.mo` automatically before `Build`/`Publish` using GNU gettext `msgfmt`.
+- Project targets also copy generated `.mo` catalogs explicitly into `OutDir` / `PublishDir` so first-build outputs include translations even when no `.mo` exists in source.
+- If `msgfmt` is missing or a `.po` file is invalid, the build logs warnings and continues; affected locales fall back to source language at runtime.
+- CI release flow compiles translations in a dedicated job and shares them as an artifact; release build jobs consume that artifact and pass `-p:SkipTranslationCompilation=true`.
+
 ## Coding style & naming
 
 - Language: C#, 4-space indentation, `Nullable=enable`, `LangVersion=latest`. Match the surrounding file's style — do not reformat unrelated code.

@@ -22,6 +22,8 @@ namespace TopSpeed.Vehicles.Loader
             public float RevLimiter { get; set; }
             public float AutoShiftRpm { get; set; }
             public float EngineBraking { get; set; }
+            public float FuelTankCapacityLiters { get; set; }
+            public float EngineDisplacementLiters { get; set; }
             public float MassKg { get; set; }
             public float DrivetrainEfficiency { get; set; }
             public float EngineBrakingTorqueNm { get; set; }

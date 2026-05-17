@@ -163,6 +163,14 @@ public sealed class FinishVehicleBehaviorTests
         public float EngineGrossHorsepower => 0f;
         public float EngineNetHorsepower => 0f;
         public float DistanceMeters => 0f;
+        public float FuelLitersRemaining => 0f;
+        public float FuelTankCapacityLiters => 0f;
+        public float FuelBurnLitersPerHour => 0f;
+        public float FuelEstimatedRangeMeters => 0f;
+        public float FuelEfficiencyLitersPer100Km => 0f;
+        public float FuelEfficiencyMpg => 0f;
+        public bool FuelLow => false;
+        public bool FuelEmpty => false;
 
         public void Initialize(float positionX = 0, float positionY = 0) { }
         public void SetPosition(float positionX, float positionY) { }

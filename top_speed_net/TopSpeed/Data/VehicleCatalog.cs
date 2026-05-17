@@ -1,4 +1,5 @@
 using System;
+using TopSpeed.Physics.Fuel;
 using TopSpeed.Physics.Powertrain;
 using TopSpeed.Protocol;
 using TopSpeed.Vehicles;
@@ -31,6 +32,8 @@ namespace TopSpeed.Data
         public float RevLimiter { get; }
         public float AutoShiftRpm { get; }
         public float EngineBraking { get; }
+        public float FuelTankCapacityLiters { get; }
+        public float EngineDisplacementLiters { get; }
         public float MassKg { get; }
         public float DrivetrainEfficiency { get; }
         public float EngineBrakingTorqueNm { get; }
@@ -121,6 +124,8 @@ namespace TopSpeed.Data
             float revLimiter = 6500f,
             float autoShiftRpm = 0f,
             float engineBraking = 0.3f,
+            float fuelTankCapacityLiters = VehicleDefinition.FuelTankCapacityDefaultLiters,
+            float engineDisplacementLiters = VehicleDefinition.EngineDisplacementDefaultLiters,
             float massKg = 1500f,
             float drivetrainEfficiency = 0.85f,
             float engineBrakingTorqueNm = 150f,
@@ -216,6 +221,8 @@ namespace TopSpeed.Data
             RevLimiter = revLimiter;
             AutoShiftRpm = autoShiftRpm;
             EngineBraking = engineBraking;
+            FuelTankCapacityLiters = Math.Max(FuelDefaults.MinTankCapacityLiters, Math.Min(FuelDefaults.MaxTankCapacityLiters, fuelTankCapacityLiters));
+            EngineDisplacementLiters = Math.Max(FuelDefaults.MinEngineDisplacementLiters, Math.Min(FuelDefaults.MaxEngineDisplacementLiters, engineDisplacementLiters));
             MassKg = massKg;
             DrivetrainEfficiency = drivetrainEfficiency;
             EngineBrakingTorqueNm = engineBrakingTorqueNm;
@@ -317,6 +324,8 @@ namespace TopSpeed.Data
                 spec.RevLimiter,
                 spec.AutoShiftRpm,
                 spec.EngineBraking,
+                spec.FuelTankCapacityLiters,
+                spec.EngineDisplacementLiters,
                 spec.MassKg,
                 spec.DrivetrainEfficiency,
                 spec.EngineBrakingTorqueNm,

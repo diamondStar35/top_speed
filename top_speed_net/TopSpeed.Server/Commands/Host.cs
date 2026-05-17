@@ -126,10 +126,8 @@ namespace TopSpeed.Server.Commands
             for (var i = 0; i < commands.Count; i++)
             {
                 var command = commands[i];
-                ConsoleSink.WriteLine(LocalizationService.Format(
-                    LocalizationService.Mark("\"{0}\": {1}"),
-                    command.Name,
-                    LocalizationService.Translate(command.Description)));
+                ConsoleSink.WriteLine(
+                    "\"" + command.Name + "\": " + LocalizationService.Translate(command.Description));
             }
         }
 

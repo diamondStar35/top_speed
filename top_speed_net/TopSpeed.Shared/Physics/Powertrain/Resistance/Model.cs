@@ -17,13 +17,15 @@ namespace TopSpeed.Physics.Powertrain
             bool inReverse,
             bool isNeutral,
             in ResistanceEnvironment environment,
-            float? driveRatioOverride = null)
+            float? driveRatioOverride = null,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
 
+            var massKg = ResolveMassKg(config, massKgOverride);
             var aeroForce = AerodynamicForce(config, speedMps, in environment);
-            var rollingForce = RollingResistanceForce(config, speedMps, rollingResistanceModifier);
+            var rollingForce = RollingResistanceForce(config, speedMps, rollingResistanceModifier, massKg);
             var wheelSideForce = WheelSideDragForce(config, speedMps);
             var coupledDrivelineForce = applyDrivelineDrag
                 ? CoupledDrivelineDragForce(
@@ -63,11 +65,12 @@ namespace TopSpeed.Physics.Powertrain
             return dragMagnitudeN * (relativeLongitudinalMps / relativeAirSpeedMps);
         }
 
-        public static float RollingResistanceForce(Config config, float speedMps, float rollingResistanceModifier)
+        public static float RollingResistanceForce(Config config, float speedMps, float rollingResistanceModifier, float? massKgOverride = null)
         {
+            var massKg = ResolveMassKg(config, massKgOverride);
             var speedFactor = 1f + (Math.Max(0f, config.RollingResistanceSpeedFactor) * Math.Max(0f, speedMps));
             return config.RollingResistanceCoefficient
-                * config.MassKg
+                * massKg
                 * Gravity
                 * speedFactor
                 * Math.Max(0f, rollingResistanceModifier);
@@ -113,6 +116,12 @@ namespace TopSpeed.Physics.Powertrain
 
             var wheelTorqueNm = engineLossTorqueNm * ratio * config.FinalDriveRatio * config.DrivetrainEfficiency;
             return Math.Max(0f, wheelTorqueNm / config.WheelRadiusM) * Math.Max(0f, drivelineDragParticipation);
+        }
+
+        private static float ResolveMassKg(Config config, float? massKgOverride)
+        {
+            var massKg = massKgOverride.GetValueOrDefault(config.MassKg);
+            return Math.Max(1f, massKg);
         }
     }
 }

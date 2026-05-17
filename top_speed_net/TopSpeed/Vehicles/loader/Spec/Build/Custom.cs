@@ -28,6 +28,8 @@ namespace TopSpeed.Vehicles.Loader
                 RevLimiter = parsed.RevLimiter,
                 AutoShiftRpm = ResolveAutoShiftRpm(parsed.AutoShiftRpm, parsed.RevLimiter),
                 EngineBraking = parsed.EngineBraking,
+                FuelTankCapacityLiters = parsed.FuelTankCapacityLiters,
+                EngineDisplacementLiters = parsed.EngineDisplacementLiters,
                 MassKg = parsed.MassKg,
                 DrivetrainEfficiency = parsed.DrivetrainEfficiency,
                 EngineBrakingTorqueNm = parsed.EngineBrakingTorqueNm,

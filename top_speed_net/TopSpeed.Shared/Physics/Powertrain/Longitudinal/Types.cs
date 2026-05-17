@@ -28,7 +28,8 @@ namespace TopSpeed.Physics.Powertrain
             ResistanceEnvironment resistanceEnvironment,
             float? driveRatioOverride = null,
             float driveAccelerationScale = 1f,
-            bool? gearPathEngaged = null)
+            bool? gearPathEngaged = null,
+            float? effectiveMassKg = null)
         {
             Config = config ?? throw new ArgumentNullException(nameof(config));
             ElapsedSeconds = elapsedSeconds;
@@ -53,6 +54,7 @@ namespace TopSpeed.Physics.Powertrain
             DriveRatioOverride = driveRatioOverride;
             DriveAccelerationScale = driveAccelerationScale;
             GearPathEngaged = gearPathEngaged ?? !isNeutral;
+            EffectiveMassKg = effectiveMassKg;
         }
 
         public Config Config { get; }
@@ -78,6 +80,7 @@ namespace TopSpeed.Physics.Powertrain
         public float? DriveRatioOverride { get; }
         public float DriveAccelerationScale { get; }
         public bool GearPathEngaged { get; }
+        public float? EffectiveMassKg { get; }
     }
 
     public readonly struct LongitudinalStepResult

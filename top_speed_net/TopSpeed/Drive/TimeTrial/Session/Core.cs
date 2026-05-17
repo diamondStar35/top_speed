@@ -204,9 +204,11 @@ namespace TopSpeed.Drive.TimeTrial
                 _input,
                 () => 0,
                 player => player == 0,
+                GetPlayerNameForPlayer,
                 _ => GetVehicleName(),
                 () => _started,
-                SpeakText);
+                SpeakText,
+                CalculatePlayerPerc);
             _exit = new ExitSubsystem(
                 "exit",
                 300,

@@ -103,6 +103,7 @@ namespace TopSpeed.Game
             _shortcutMapping = new ShortcutMappingHandler(input, _menu, _settings, speech, SaveSettings);
             _updateConfig = UpdateConfig.Default;
             _updateService = new UpdateService(_updateConfig);
+            CleanupAndroidUpdatePackages();
             ApplyUpdateProxySettings();
             _multiplayerConnector = new MultiplayerConnector();
             _sessionReconnector = new SessionReconnector(_multiplayerConnector);

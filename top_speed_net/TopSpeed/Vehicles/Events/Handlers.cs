@@ -11,6 +11,14 @@ namespace TopSpeed.Vehicles
         {
             if (_combustionState != EngineCombustionState.Starting)
                 return;
+            if (!CanStartEngineWithFuel())
+            {
+                _combustionState = EngineCombustionState.Off;
+                SetEngineRotationState(EngineRotationState.Stopped);
+                SetState(CarState.Stopped);
+                PlayFuelStartBlockedCue();
+                return;
+            }
 
             _soundEngine.SetFrequency(_idleFreq);
             _soundThrottle?.SetFrequency(_idleFreq);

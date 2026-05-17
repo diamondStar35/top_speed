@@ -54,3 +54,4 @@ nunit-*.xml
 top_speed_net/SteamAudio.NET/Natives/steamaudio/**
 top_speed_net/TopSpeed.Android/top_speed.p12
 top_speed_net/TopSpeed.Android/signpass.txt
+top_speed_net/languages/**/messages.mo

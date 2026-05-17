@@ -55,9 +55,7 @@ namespace TopSpeed.Core.Multiplayer.Chat
             switch (roomEvent.Kind)
             {
                 case RoomEventKind.RoomCreated:
-                    return LocalizationService.Format(
-                        LocalizationService.Mark("Room created: {0}."),
-                        NormalizeRoomName(roomEvent.RoomName));
+                    return string.Empty;
 
                 case RoomEventKind.RoomRemoved:
                     return LocalizationService.Format(

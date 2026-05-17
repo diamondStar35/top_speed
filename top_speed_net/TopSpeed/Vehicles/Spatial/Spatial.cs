@@ -96,6 +96,7 @@ namespace TopSpeed.Vehicles
             SetSpatial("player.miniCrash", _soundMiniCrash, vehiclePos, velocity);
             SetSpatial("player.bump", _soundBump, vehiclePos, velocity);
             SetSpatial("player.badSwitch", _soundBadSwitch, enginePos, velocity);
+            SetSpatial("player.fuelWarning", _soundFuelWarning, enginePos, velocity);
             SetSpatial("player.wipers", _soundWipers, vehiclePos, velocity);
 
             switch (_surface)

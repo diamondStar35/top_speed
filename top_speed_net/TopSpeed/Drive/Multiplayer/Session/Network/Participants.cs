@@ -119,6 +119,20 @@ namespace TopSpeed.Drive.Multiplayer
             return _remotePlayers.ContainsKey((byte)playerIndex);
         }
 
+        private string GetPlayerNameForPlayer(int playerIndex)
+        {
+            if (playerIndex >= 0 && playerIndex < MaxPlayers)
+            {
+                var resolved = _resolvePlayerName((byte)playerIndex);
+                if (!string.IsNullOrWhiteSpace(resolved))
+                    return resolved.Trim();
+            }
+
+            return LocalizationService.Format(
+                LocalizationService.Mark("Player {0}"),
+                playerIndex + 1);
+        }
+
         private string GetVehicleNameForPlayer(int playerIndex)
         {
             if (playerIndex == LocalPlayerNumber)

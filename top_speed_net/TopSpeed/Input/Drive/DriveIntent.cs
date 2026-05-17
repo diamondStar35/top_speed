@@ -20,6 +20,7 @@ namespace TopSpeed.Input
         StartEngine,
         ReportDistance,
         ReportSpeed,
+        ReportFuel,
         TrackName,
         Pause,
         Pit

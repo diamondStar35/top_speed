@@ -1,5 +1,5 @@
 {
-  "version": "2026.5.14.2",
+  "version": "2026.5.15.1",
   "serverVersion": "2026.5.14.2",
   "changes": [
     "Added a full voice chat system to the game. Any player who is connected to a server can enable their communicator by pressing ctrl+shift+c to listen to other players, and either holding v or ctrl+shift+v to talk.",

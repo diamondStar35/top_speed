@@ -1,0 +1,4232 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: top_speed\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-14 15:03+0300\n"
+"PO-Revision-Date: 2026-05-16 21:35+0330\n"
+"Last-Translator: \n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: top_speed\n"
+"X-Crowdin-Project-ID: 895444\n"
+"X-Crowdin-Language: fa-IR\n"
+"X-Crowdin-File: /main/top_speed_net/languages/client/messages.pot\n"
+"X-Crowdin-File-ID: 11\n"
+"X-Generator: Poedit 3.9\n"
+
+msgid "2 degrees"
+msgstr "۲ درجه"
+
+msgid "3 degrees"
+msgstr "۳ درجه"
+
+msgid "4 degrees"
+msgstr "۴ درجه"
+
+msgid "5 degrees"
+msgstr "۵ درجه"
+
+msgid "A cleaner lap would have been a much better choice."
+msgstr "یک دور تمیزتر انتخاب بسیار بهتری می‌بود."
+
+#, csharp-format
+msgid "A new version of Top Speed was detected. Your current version is {0}. The new version is {1}. Would you like to download the update?"
+msgstr "یک نسخه جدید از تاپ اسپید شناسایی شد. نسخه فعلی شما {0} است. نسخه جدید {1} است. آیا می‌خواهید بروزرسانی را دانلود کنید؟"
+
+msgid "A saved server entry was ignored because the host is empty."
+msgstr "یک ورودی ذخیره‌شده سرور نادیده گرفته شد زیرا میزبان خالی است."
+
+msgid "A track upload is already in progress."
+msgstr "بارگذاری یک پیست در حال انجام است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:154
+msgid "About"
+msgstr "درباره"
+
+msgid "Accessibility option for clearer left-right cues with HRTF. It attenuates the opposite ear for your own car sounds only."
+msgstr "گزینه دسترسی‌پذیری برای نشانه‌های واضح‌تر چپ-راست با HRTF. این گزینه صدای گوش مقابل را فقط برای صدای خودروی شما کاهش می‌دهد."
+
+msgid "Action"
+msgstr "عملیات"
+
+msgid "Actions available."
+msgstr "عملیات‌های موجود."
+
+msgid "Add"
+msgstr "افزودن"
+
+msgid "Add a bot"
+msgstr "افزودن یک ربات"
+
+msgid "Add a new server"
+msgstr "افزودن یک سرور جدید"
+
+msgid "Adjust category-based volume balance for engine sounds, effects, ambience, radio, music, and online events."
+msgstr "تنظیم توازن حجم صدا بر اساس دسته‌بندی برای صدای موتور، افکت‌ها، محیط، رادیو، موسیقی و رویدادهای آنلاین."
+
+msgid "Adjust the speech rate for the current backend."
+msgstr "تنظیم سرعت گفتار برای موتور گفتار فعلی."
+
+msgid "All menu shortcuts were reset to defaults."
+msgstr "تمام میانبرهای منو به پیش‌فرض بازنشانی شدند."
+
+msgid "All players are ready. Starting game."
+msgstr "همه بازیکنان آماده هستند. شروع بازی."
+
+msgid "Alt"
+msgstr "آلت"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:50
+msgid "Ambients and sound sources"
+msgstr "محیط‌ها و منابع صدا"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:96
+msgid "America"
+msgstr "آمریکا"
+
+msgid "Amplifies the captured microphone signal before it is sent to other players. 100 is unity gain. Raise this if other players report you sound too quiet; lower it if your voice clips."
+msgstr "سیگنال میکروفون دریافتی را قبل از ارسال به سایر بازیکنان تقویت می‌کند. ۱۰۰ بهره واحد است. اگر بازیکنان دیگر گزارش می‌دهند که صدای شما خیلی آهسته است، این مقدار را افزایش دهید و اگر صدایتان تقه می‌زند، آن را کاهش دهید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Program.cs:156
+msgid "An unexpected error occurred. A log file was created: {0}"
+msgstr "یک خطای غیرمنتظره رخ داد. یک فایل گزارش ایجاد شد: {0}"
+
+msgid "An update download is already in progress."
+msgstr "یک دانلود بروزرسانی در حال انجام است."
+
+msgid "Android package installer is not available."
+msgstr "نصب‌کننده بسته اندروید در دسترس نیست."
+
+msgid "Android updates require an APK package."
+msgstr "بروزرسانی‌های اندروید به یک بسته APK نیاز دارند."
+
+msgid "Announce frequency"
+msgstr "اعلام فرکانس"
+
+msgid "Apostrophe"
+msgstr "آپاستروف"
+
+msgid "Applications"
+msgstr "برنامه‌ها"
+
+msgid "Are you sure you want to disconnect?"
+msgstr "آیا مطمئن هستید که می‌خواهید قطع ارتباط کنید؟"
+
+msgid "Are you sure you want to leave the current room?"
+msgstr "آیا مطمئن هستید که می‌خواهید اتاق فعلی را ترک کنید؟"
+
+msgid "Are you sure you want to quit this multiplayer race?"
+msgstr "آیا مطمئن هستید که می‌خواهید این مسابقه چندنفره را ترک کنید؟"
+
+msgid "Are you sure you would like to discard all changes?"
+msgstr "آیا مطمئن هستید که می‌خواهید همه تغییرات را لغو کنید؟"
+
+msgid "Are you sure you would like to restore all controller bindings to their default values?"
+msgstr "آیا مطمئن هستید که می‌خواهید همه تنظیمات دسته بازی را به مقادیر پیش‌فرض بازگردانید؟"
+
+msgid "Are you sure you would like to restore all keyboard bindings to their default values?"
+msgstr "آیا مطمئن هستید که می‌خواهید همه تنظیمات صفحه‌کلید را به مقادیر پیش‌فرض بازگردانید؟"
+
+msgid "Are you sure you would like to restore all settings to their default values?"
+msgstr "آیا مطمئن هستید که می‌خواهید همه تنظیمات را به مقادیر پیش‌فرض بازگردانید؟"
+
+msgid "At"
+msgstr "@"
+
+msgid "At least it only happened once."
+msgstr "حداقل فقط یک بار اتفاق افتاد."
+
+msgid "At that point you were collecting crashes, not corners."
+msgstr "در آن مرحله شما داشتید تصادف جمع می‌کردید، نه پیچ‌ها را."
+
+msgid "At that point, everyone could hear the mistakes."
+msgstr "در آن مرحله، همه می‌توانستند اشتباهات را بشنوند."
+
+msgid "At this rate the crash sound is becoming your theme music."
+msgstr "با این روند، صدای تصادف دارد به موسیقی تم شما تبدیل می‌شود."
+
+msgid "Attempting to connect, please wait..."
+msgstr "در حال تلاش برای اتصال، لطفاً صبر کنید..."
+
+msgid "Audio"
+msgstr "صدا"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:98
+msgid "Austria"
+msgstr "اتریش"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:101
+msgid "Auto"
+msgstr "خودکار"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:107
+msgid "Auto detects wheel pedal direction from resting position."
+msgstr "جهت پدال فرمان را به‌طور خودکار از وضعیت استراحت تشخیص می‌دهد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:40
+msgid "Automatic"
+msgstr "خودکار"
+
+msgid "Automatic audio device format"
+msgstr "فرمت خودکار دستگاه صوتی"
+
+msgid "Automatic race information"
+msgstr "اطلاعات خودکار مسابقه"
+
+msgid "Automatic room name selected."
+msgstr "نام اتاق خودکار انتخاب شد."
+
+msgid "Automatic transmission"
+msgstr "دنده اتوماتیک"
+
+msgid "Automatic transmission is required for this vehicle."
+msgstr "دنده اتوماتیک برای این خودرو الزامی است."
+
+msgid "Automatically focus first menu item"
+msgstr "فوکوس خودکار روی اولین آیتم منو"
+
+msgid "Available game rooms"
+msgstr "اتاق‌های بازی موجود"
+
+msgid "Available servers"
+msgstr "سرورهای موجود"
+
+#, csharp-format
+msgid "Average lap time for this track: {0}."
+msgstr "میانگین زمان دور برای این پیست: {0}."
+
+#, csharp-format
+msgid "Average time for this track over {0} laps: {1}."
+msgstr "میانگین زمان برای این پیست در {0} دور: {1}."
+
+#, csharp-format
+msgid "Average {0}-lap time for this track: {1}."
+msgstr "میانگین زمان {0} دور برای این پیست: {1}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:63
+msgid "B"
+msgstr "بایت"
+
+msgid "BMW 3 Series"
+msgstr "بی‌ام‌و سری ۳"
+
+msgid "Backslash"
+msgstr "بک‌اسلش"
+
+msgid "Backspace"
+msgstr "بک‌اسپیس"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:100
+msgid "Belgium"
+msgstr "بلژیک"
+
+#, csharp-format
+msgid "Best lap for this track: {0}."
+msgstr "بهترین دور برای این پیست: {0}."
+
+#, csharp-format
+msgid "Best lap this run: {0}."
+msgstr "بهترین دور این اجرا: {0}."
+
+#, csharp-format
+msgid "Best recorded run: {0}."
+msgstr "بهترین اجرای ثبت‌شده: {0}."
+
+#, csharp-format
+msgid "Best time so far: {0}."
+msgstr "بهترین زمان تا اینجا: {0}."
+
+msgid "Binding intent is missing and was ignored."
+msgstr "مقصد کلید میانبر موجود نیست و نادیده گرفته شد."
+
+msgid "Both"
+msgstr "هر دو"
+
+msgid "Both Alt keys"
+msgstr "هر دو کلید آلت"
+
+msgid "Both Control keys"
+msgstr "هر دو کلید کنترل"
+
+msgid "Both Shift keys"
+msgstr "هر دو کلید شیفت"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
+msgid "Bots can only be managed by the host in race-with-bots rooms."
+msgstr "ربات‌ها فقط توسط میزبان در اتاق‌های مسابقه با ربات قابل مدیریت هستند."
+
+msgid "Brake"
+msgstr "ترمز"
+
+msgid "Brake pedal direction"
+msgstr "جهت پدال ترمز"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:102
+msgid "Brazil"
+msgstr "برزیل"
+
+msgid "Brilliant result! You set a new best time."
+msgstr "نتیجه درخشان! شما یک بهترین زمان جدید ثبت کردید."
+
+msgid "Button 1"
+msgstr "دکمه ۱"
+
+msgid "Button 10"
+msgstr "دکمه ۱۰"
+
+msgid "Button 11"
+msgstr "دکمه ۱۱"
+
+msgid "Button 12"
+msgstr "دکمه ۱۲"
+
+msgid "Button 13"
+msgstr "دکمه ۱۳"
+
+msgid "Button 14"
+msgstr "دکمه ۱۴"
+
+msgid "Button 15"
+msgstr "دکمه ۱۵"
+
+msgid "Button 16"
+msgstr "دکمه ۱۶"
+
+msgid "Button 2"
+msgstr "دکمه ۲"
+
+msgid "Button 3"
+msgstr "دکمه ۳"
+
+msgid "Button 4"
+msgstr "دکمه ۴"
+
+msgid "Button 5"
+msgstr "دکمه ۵"
+
+msgid "Button 6"
+msgstr "دکمه ۶"
+
+msgid "Button 7"
+msgstr "دکمه ۷"
+
+msgid "Button 8"
+msgstr "دکمه ۸"
+
+msgid "Button 9"
+msgstr "دکمه ۹"
+
+msgid "Call sign cannot be empty."
+msgstr "علامت تماس نمی‌تواند خالی باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:27
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:289
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Choice.cs:51
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Cancel and discard changes"
+msgstr "لغو و دور ریختن تغییرات"
+
+msgid "Cancel current game?"
+msgstr "بازی فعلی لغو شود؟"
+
+msgid "Cancel room creation"
+msgstr "لغو ایجاد اتاق"
+
+msgid "Caps Lock"
+msgstr "کیپ لاک"
+
+msgid "Change game options"
+msgstr "تغییر گزینه‌های بازی"
+
+msgid "Change log file"
+msgstr "تغییر فایل گزارش"
+
+msgid "Change the track used during the race."
+msgstr "پیست مورد استفاده در طول مسابقه را تغییر دهید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:94
+msgid "Chat message cannot be empty."
+msgstr "پیام چت نمی‌تواند خالی باشد."
+
+msgid "Check for updates"
+msgstr "بررسی برای بروزرسانی"
+
+msgid "Check for updates on startup"
+msgstr "بررسی برای بروزرسانی هنگام شروع"
+
+msgid "Check ping"
+msgstr "بررسی پینگ"
+
+msgid "Checking for updates."
+msgstr "در حال بررسی برای بروزرسانی."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:104
+msgid "China"
+msgstr "چین"
+
+msgid "Choice"
+msgstr "انتخاب"
+
+msgid "Choose controller"
+msgstr "انتخاب دسته بازی"
+
+msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
+msgstr "میزان اطلاعات خودکار مسابقه که اعلام می‌شود را انتخاب کنید، مانند شماره دورها و موقعیت بازیکنان."
+
+msgid "Choose how to proceed with the current game."
+msgstr "نحوه ادامه بازی فعلی را انتخاب کنید."
+
+msgid "Choose modifier key"
+msgstr "انتخاب کلید ترکیبی"
+
+msgid "Choose the difficulty level for single races."
+msgstr "سطح دشواری را برای مسابقات تکنفره انتخاب کنید."
+
+msgid "Choose the language used for menu and spoken interface text."
+msgstr "زبان مورد استفاده برای منو و متن گفتاری رابط را انتخاب کنید."
+
+msgid "Choose the language."
+msgstr "زبان را انتخاب کنید."
+
+msgid "Choose the microphone used for communicator voice chat."
+msgstr "میکروفون مورد استفاده برای چت صوتی ارتباطی را انتخاب کنید."
+
+msgid "Choose the number of laps for this room."
+msgstr "تعداد دورهای این اتاق را انتخاب کنید."
+
+msgid "Choose the player capacity from 2 to 10."
+msgstr "ظرفیت بازیکن را از ۲ تا ۱۰ انتخاب کنید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:93
+msgid "Choose track type"
+msgstr "نوع پیست را انتخاب کنید"
+
+msgid "Choose what information the copilot reports during a race."
+msgstr "انتخاب کنید که کمک‌راننده چه اطلاعاتی را در طول مسابقه گزارش دهد."
+
+msgid "Choose whether spoken messages use speech only, braille only, or speech with braille."
+msgstr "انتخاب کنید که پیام‌های گفتاری فقط به صورت گفتار، فقط بریل، یا گفتار همراه با بریل باشند."
+
+msgid "Choose whether this room is a race with bots, a multiplayer race without bots, or a one-on-one game."
+msgstr "انتخاب کنید که این اتاق یک مسابقه با ربات، یک مسابقه چندنفره بدون ربات، یا یک بازی یک به یک باشد."
+
+msgid "Choose which speech backend to prefer. Automatic lets Prism pick the best available backend."
+msgstr "موتور گفتار مورد نظر را انتخاب کنید. حالت خودکار به Prism اجازه می‌دهد بهترین موتور موجود را انتخاب کند."
+
+msgid "Choose your transmission mode"
+msgstr "حالت دنده خود را انتخاب کنید"
+
+msgid "Choose your vehicle"
+msgstr "خودروی خود را انتخاب کنید"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultDialogs.cs:75
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:264
+msgid "Close"
+msgstr "بستن"
+
+msgid "Clutch"
+msgstr "کلاچ"
+
+msgid "Clutch pedal direction"
+msgstr "جهت پدال کلاچ"
+
+msgid "Colon"
+msgstr "دونقطه"
+
+msgid "Communicator"
+msgstr "ارتباط‌دهنده"
+
+msgid "Communicator off"
+msgstr "ارتباط‌دهنده خاموش"
+
+msgid "Communicator on"
+msgstr "ارتباط‌دهنده روشن"
+
+msgid "Communicator volume"
+msgstr "حجم صدای ارتباط‌دهنده"
+
+msgid "Compatibility warning"
+msgstr "هشدار سازگاری"
+
+msgid "Configure default multiplayer hosting settings, including the server port used by the game."
+msgstr "تنظیمات پیش‌فرض میزبانی چندنفره، از جمله پورت سرور استفاده‌شده توسط بازی را پیکربندی کنید."
+
+msgid "Configure general gameplay and interface behavior, including units, usage hints, menu behavior, and update checking."
+msgstr "رفتار کلی بازی و رابط کاربری، شامل واحدها، نکات استفاده، رفتار منو و بررسی بروزرسانی را پیکربندی کنید."
+
+msgid "Configure input devices, force feedback, progressive keyboard behavior, key mappings, and menu shortcut mappings."
+msgstr "دستگاه‌های ورودی، فورس فیدبک، رفتار صفحه‌کلید پیشرونده، نگاشت کلیدها و نگاشت میانبرهای منو را پیکربندی کنید."
+
+msgid "Configure spatial audio behavior, including HRTF processing, stereo widening, automatic device format detection, and voice input device selection."
+msgstr "رفتار صدای فضایی، شامل پردازش HRTF، گسترش استریو، تشخیص خودکار فرمت دستگاه و انتخاب دستگاه ورودی صدا را پیکربندی کنید."
+
+msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
+msgstr "رفتار گفتار، شامل انتخاب موتور صفحه‌خوان و کالیبراسیون صفحه‌خوان را پیکربندی کنید."
+
+msgid "Confirm game options"
+msgstr "تأیید گزینه‌های بازی"
+
+msgid "Congratulations! You have made it to the first position."
+msgstr "تبریک! شما به جایگاه اول رسیدید."
+
+msgid "Connected to server."
+msgstr "به سرور متصل شدید."
+
+msgid "Connected."
+msgstr "متصل شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Connect.cs:217
+msgid "Connection attempt canceled."
+msgstr "تلاش برای اتصال لغو شد."
+
+msgid "Connection attempt failed."
+msgstr "تلاش برای اتصال ناموفق بود."
+
+#, csharp-format
+msgid "Connection attempt failed: {0}"
+msgstr "تلاش برای اتصال ناموفق بود: {0}"
+
+msgid "Connection canceled."
+msgstr "اتصال لغو شد."
+
+msgid "Connection changed. Reconnecting."
+msgstr "اتصال تغییر کرد. در حال اتصال مجدد."
+
+msgid "Connection closed by server."
+msgstr "اتصال توسط سرور بسته شد."
+
+msgid "Connection closed due to protocol error."
+msgstr "اتصال به دلیل خطای پروتکل بسته شد."
+
+msgid "Connection failed"
+msgstr "اتصال ناموفق بود"
+
+msgid "Connection failed."
+msgstr "اتصال ناموفق بود."
+
+#, csharp-format
+msgid "Connection failed: {0}"
+msgstr "اتصال ناموفق بود: {0}"
+
+msgid "Connection lost before session initialization."
+msgstr "اتصال قبل از آغاز نشست قطع شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\DisconnectMapping.cs:97
+msgid "Connection lost."
+msgstr "اتصال قطع شد."
+
+msgid "Connection lost. Reconnecting."
+msgstr "اتصال قطع شد. در حال اتصال مجدد."
+
+msgid "Connection refused by server."
+msgstr "اتصال توسط سرور رد شد."
+
+msgid "Connection refused due to protocol mismatch."
+msgstr "اتصال به دلیل عدم تطابق پروتکل رد شد."
+
+msgid "Connection rejected by server."
+msgstr "اتصال توسط سرور رد شد."
+
+msgid "Connection timed out."
+msgstr "اتصال به پایان رسید."
+
+msgid "Consider that your one free mistake for the session."
+msgstr "این را اشتباه رایگان خود برای این جلسه در نظر بگیرید."
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Continue connection"
+msgstr "ادامه اتصال"
+
+msgid "Control"
+msgstr "کنترل"
+
+msgid "Control panel"
+msgstr "پنل کنترل"
+
+msgid "Controller"
+msgstr "دسته بازی"
+
+msgid "Controller backend unavailable"
+msgstr "موتور دسته بازی در دسترس نیست"
+
+msgid "Controller bindings section is missing. Defaults were used for controller bindings."
+msgstr "بخش تنظیمات دسته بازی وجود ندارد. از پیش‌فرض‌ها برای تنظیمات دسته بازی استفاده شد."
+
+msgid "Controller mappings restored to defaults."
+msgstr "نگاشت‌های دسته بازی به پیش‌فرض بازنشانی شد."
+
+msgid "Controller selected."
+msgstr "دسته بازی انتخاب شد."
+
+#, csharp-format
+msgid "Controller selected. {0}."
+msgstr "دسته بازی انتخاب شد. {0}."
+
+#, csharp-format
+msgid "Controller {0}"
+msgstr "دسته بازی {0}"
+
+msgid "Controls"
+msgstr "کنترل‌ها"
+
+msgid "Controls communicator activation cues and remote voice chat playback. Affects how loud other players sound when they speak through the communicator."
+msgstr "نشانه‌های فعال‌سازی ارتباط‌دهنده و پخش چت صوتی از راه دور را کنترل می‌کند. بر بلندی صدای سایر بازیکنان هنگام صحبت از طریق ارتباط‌دهنده تأثیر می‌گذارد."
+
+msgid "Controls engine-related sounds for bots and other players, including engine start and stop."
+msgstr "صداهای مربوط به موتور را برای ربات‌ها و سایر بازیکنان، از جمله روشن و خاموش شدن موتور کنترل می‌کند."
+
+msgid "Controls events related to your own vehicle, such as horn, back-fire, and other vehicle events."
+msgstr "رویدادهای مربوط به خودروی خودتان مانند بوق، صدای اگزوز و سایر رویدادهای خودرو را کنترل می‌کند."
+
+msgid "Controls horns, crashes, bumps, brakes, and similar event sounds for bots and other players."
+msgstr "صداهای بوق، تصادف، ضربه، ترمز و رویدادهای مشابه را برای ربات‌ها و سایر بازیکنان کنترل می‌کند."
+
+msgid "Controls menu and race music volume. This stays synchronized with the menu music volume setting."
+msgstr "حجم صدای موسیقی منو و مسابقه را کنترل می‌کند. این گزینه با تنظیم حجم صدای موسیقی منو همگام می‌ماند."
+
+msgid "Controls radio playback volume from other players only. Your own radio playback is not affected."
+msgstr "حجم پخش رادیو را فقط از سایر بازیکنان کنترل می‌کند. پخش رادیوی خودتان تحت تأثیر قرار نمی‌گیرد."
+
+msgid "Controls road and surface loops like asphalt, gravel, etc."
+msgstr "حلقه‌های صوتی جاده و سطح مانند آسفالت، شن و غیره را کنترل می‌کند."
+
+msgid "Controls server and multiplayer event sounds such as connection and other events."
+msgstr "صداهای رویدادهای سرور و چندنفره مانند اتصال و سایر رویدادها را کنترل می‌کند."
+
+msgid "Controls the overall audio volume for the game. Set lower to reduce every sound category."
+msgstr "حجم کلی صدای بازی را کنترل می‌کند. برای کاهش همه دسته‌های صدا، آن را کمتر تنظیم کنید."
+
+msgid "Controls track ambients, weather loops, noise sounds, and custom track sound sources."
+msgstr "محیط‌های پیست، حلقه‌های آب‌وهوا، صداهای نویز و منابع صدای پیست سفارشی را کنترل می‌کند."
+
+msgid "Controls your own engine and throttle sounds, including engine start and stop."
+msgstr "صدای موتور و گاز خودروی خودتان، از جمله روشن و خاموش شدن موتور را کنترل می‌کند."
+
+msgid "Copied to clipboard."
+msgstr "در کلیپ‌بورد کپی شد."
+
+msgid "Copied."
+msgstr "کپی شد."
+
+msgid "Copies the currently focused multiplayer history item to the clipboard."
+msgstr "آیتم فعلی تاریخچه چندنفره را در کلیپ‌بورد کپی می‌کند."
+
+msgid "Copilot"
+msgstr "کمک‌راننده"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Copy focused history item"
+msgstr "کپی آیتم تاریخچه فوکوس‌شده"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:453
+msgid "Could not read files from the selected folder."
+msgstr "نمی‌توان فایل‌ها را از پوشه انتخاب‌شده خواند."
+
+msgid "Create a new game"
+msgstr "ایجاد یک بازی جدید"
+
+msgid "Create a new game room"
+msgstr "ایجاد یک اتاق بازی جدید"
+
+msgid "Create this game room"
+msgstr "این اتاق بازی را ایجاد کنید"
+
+msgid "Current gear"
+msgstr "دنده فعلی"
+
+msgid "Current lap number"
+msgstr "شماره دور فعلی"
+
+msgid "Current lap percentage"
+msgstr "درصد دور فعلی"
+
+msgid "Current race percentage"
+msgstr "درصد مسابقه فعلی"
+
+msgid "Current race time"
+msgstr "زمان مسابقه فعلی"
+
+msgid "Curve announcements"
+msgstr "اعلام پیچ‌ها"
+
+msgid "Custom"
+msgstr "سفارشی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:61
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\State.cs:57
+msgid "Custom track"
+msgstr "پیست سفارشی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
+msgid "Custom track errors"
+msgstr "خطاهای پیست سفارشی"
+
+msgid "Custom track file path is empty."
+msgstr "مسیر فایل پیست سفارشی خالی است."
+
+msgid "Custom tracks"
+msgstr "پیست‌های سفارشی"
+
+msgid "Custom tracks are disabled for this room."
+msgstr "پیست‌های سفارشی برای این اتاق غیرفعال هستند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:48
+msgid "Custom vehicle"
+msgstr "خودروی سفارشی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
+msgid "Custom vehicle errors"
+msgstr "خطاهای خودروی سفارشی"
+
+msgid "Custom vehicle file must use .tsv extension."
+msgstr "فایل خودروی سفارشی باید از پسوند .tsv استفاده کند."
+
+msgid "Cycles to the next global volume category."
+msgstr "به دسته بعدی حجم کلی صدا می‌رود."
+
+msgid "Cycles to the previous global volume category."
+msgstr "به دسته قبلی حجم کلی صدا می‌رود."
+
+msgid "D-pad down"
+msgstr "جهت‌نما پایین"
+
+msgid "D-pad left"
+msgstr "جهت‌نما چپ"
+
+msgid "D-pad right"
+msgstr "جهت‌نما راست"
+
+msgid "D-pad up"
+msgstr "جهت‌نما بالا"
+
+msgid "Decimal"
+msgstr "اعشار"
+
+msgid "Decrease media volume"
+msgstr "کاهش حجم صدای رسانه"
+
+msgid "Decrease volume by 1"
+msgstr "کاهش حجم صدا به اندازه ۱ واحد"
+
+msgid "Decrease volume by 10"
+msgstr "کاهش حجم صدا به اندازه ۱۰ واحد"
+
+msgid "Decreases media volume."
+msgstr "حجم صدای رسانه را کاهش می‌دهد."
+
+msgid "Decreases the selected global volume category by one step."
+msgstr "دسته انتخاب‌شده حجم کلی صدا را یک پله کاهش می‌دهد."
+
+msgid "Decreases the selected global volume category by ten steps."
+msgstr "دسته انتخاب‌شده حجم کلی صدا را ده پله کاهش می‌دهد."
+
+msgid "Default (1 degree)"
+msgstr "پیش‌فرض (۱ درجه)"
+
+msgid "Default call sign cleared."
+msgstr "علامت تماس پیش‌فرض پاک شد."
+
+#, csharp-format
+msgid "Default call sign set to {0}."
+msgstr "علامت تماس پیش‌فرض روی {0} تنظیم شد."
+
+msgid "Default call sign, currently empty."
+msgstr "علامت تماس پیش‌فرض، در حال حاضر خالی است."
+
+#, csharp-format
+msgid "Default call sign, currently set to {0}"
+msgstr "علامت تماس پیش‌فرض، در حال حاضر روی {0} تنظیم شده است"
+
+msgid "Default call sign: not set"
+msgstr "علامت تماس پیش‌فرض: تنظیم نشده"
+
+#, csharp-format
+msgid "Default call sign: {0}"
+msgstr "علامت تماس پیش‌فرض: {0}"
+
+#, csharp-format
+msgid "Default server port reset to {0}."
+msgstr "پورت پیش‌فرض سرور به {0} بازنشانی شد."
+
+#, csharp-format
+msgid "Default server port set to {0}."
+msgstr "پورت پیش‌فرض سرور روی {0} تنظیم شد."
+
+#, csharp-format
+msgid "Default server port: {0}"
+msgstr "پورت پیش‌فرض سرور: {0}"
+
+msgid "Defaults restored."
+msgstr "پیش‌فرض‌ها بازنشانی شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:76
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete this server?"
+msgstr "این سرور حذف شود؟"
+
+msgid "Dialog"
+msgstr "گفتگو"
+
+msgid "Discard changes"
+msgstr "دور ریختن تغییرات"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:31
+msgid "Disconnect"
+msgstr "قطع ارتباط"
+
+msgid "Disconnect from server"
+msgstr "قطع ارتباط از سرور"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Dispatch\Control.cs:23
+msgid "Disconnected from server."
+msgstr "از سرور قطع ارتباط شد."
+
+msgid "Disconnected."
+msgstr "قطع ارتباط شد."
+
+msgid "Divide"
+msgstr "تقسیم"
+
+msgid "Do you want to quit race preparation and stay in this game room?"
+msgstr "آیا می‌خواهید آماده‌سازی مسابقه را ترک کنید و در این اتاق بازی بمانید؟"
+
+msgid "Down"
+msgstr "پایین"
+
+msgid "Download failed"
+msgstr "دانلود ناموفق بود"
+
+#, csharp-format
+msgid "Download failed with status code {0}."
+msgstr "دانلود با کد وضعیت {0} ناموفق بود."
+
+#, csharp-format
+msgid "Download failed: {0}"
+msgstr "دانلود ناموفق بود: {0}"
+
+msgid "Download timed out or was canceled."
+msgstr "دانلود به پایان رسید یا لغو شد."
+
+msgid "Download update"
+msgstr "دانلود بروزرسانی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:18
+msgid "Downloaded size: {0}"
+msgstr "حجم دانلود شده: {0}"
+
+msgid "Downloading track..."
+msgstr "در حال دانلود پیست..."
+
+msgid "Downloading update..."
+msgstr "در حال دانلود بروزرسانی..."
+
+msgid "Ducati Panigale V4"
+msgstr "دوکاتی پانیگاله V4"
+
+#, csharp-format
+msgid "Duplicate key '{0}' in section [{1}] is not allowed."
+msgstr "کلید تکراری '{0}' در بخش [{1}] مجاز نیست."
+
+#, csharp-format
+msgid "Duplicate room id '{0}'."
+msgstr "شناسه اتاق تکراری '{0}'."
+
+#, csharp-format
+msgid "Duplicate section [{0}] is not allowed."
+msgstr "بخش تکراری [{0}] مجاز نیست."
+
+#, csharp-format
+msgid "Duplicate segment id '{0}'."
+msgstr "شناسه قطعه تکراری '{0}'."
+
+#, csharp-format
+msgid "Duplicate sound id '{0}'."
+msgstr "شناسه صدا تکراری '{0}'."
+
+#, csharp-format
+msgid "Duplicate weather id '{0}'."
+msgstr "شناسه آب‌وهوا تکراری '{0}'."
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Edit the proxy URL used for update checks, downloads, and latest changes requests."
+msgstr "آدرس پروکسی مورد استفاده برای بررسی بروزرسانی، دانلودها و درخواست‌های آخرین تغییرات را ویرایش کنید."
+
+msgid "Enable HRTF audio"
+msgstr "فعال کردن صدای HRTF"
+
+msgid "Enable menu navigation panning"
+msgstr "فعال کردن پانینگ ناوبری منو"
+
+msgid "Enable menu wrapping"
+msgstr "فعال کردن چرخش منو"
+
+msgid "Enable proxy for updates and changes first."
+msgstr "ابتدا پروکسی را برای بروزرسانی‌ها و تغییرات فعال کنید."
+
+msgid "Enable usage hints"
+msgstr "فعال کردن نکات استفاده"
+
+msgid "Enables force feedback or vibration if your controller supports it."
+msgstr "در صورت پشتیبانی دسته بازی، فورس فیدبک یا لرزش را فعال می‌کند."
+
+msgid "End"
+msgstr "پایان"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:106
+msgid "England"
+msgstr "انگلستان"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Localization\ClientLanguages.cs:38
+msgid "English (Original)"
+msgstr "انگلیسی (اصلی)"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:134
+msgid "English country"
+msgstr "جاده‌های انگلیسی"
+
+msgid "Enter"
+msgstr "اینتر"
+
+msgid "Enter a room name. Leave it empty to use an automatic name."
+msgstr "یک نام برای اتاق وارد کنید. برای استفاده از نام خودکار، آن را خالی بگذارید."
+
+msgid "Enter a room name. Leave this field empty to use an automatic room name."
+msgstr "یک نام برای اتاق وارد کنید. برای استفاده از نام خودکار اتاق، این فیلد را خالی بگذارید."
+
+msgid "Enter proxy URL"
+msgstr "آدرس پروکسی را وارد کنید"
+
+msgid "Enter the IP address or domain manually"
+msgstr "آدرس IP یا دامنه را به‌صورت دستی وارد کنید"
+
+msgid "Enter the default call sign for this server. Leave empty to use the global default call sign."
+msgstr "علامت تماس پیش‌فرض برای این سرور را وارد کنید. برای استفاده از علامت تماس پیش‌فرض کلی، خالی بگذارید."
+
+msgid "Enter the default call sign used when connecting to servers. Leave empty to clear it."
+msgstr "علامت تماس پیش‌فرضی که هنگام اتصال به سرورها استفاده می‌شود را وارد کنید. برای پاک کردن، خالی بگذارید."
+
+msgid "Enter the default server port used for manual connections."
+msgstr "پورت پیش‌فرض سرور مورد استفاده برای اتصالات دستی را وارد کنید."
+
+msgid "Enter the server IP address or domain."
+msgstr "آدرس IP یا دامنه سرور را وارد کنید."
+
+msgid "Enter the server IP address or host name."
+msgstr "آدرس IP یا نام میزبان سرور را وارد کنید."
+
+msgid "Enter the server name."
+msgstr "نام سرور را وارد کنید."
+
+msgid "Enter the server port, or leave empty for default."
+msgstr "پورت سرور را وارد کنید، یا برای پیش‌فرض خالی بگذارید."
+
+msgid "Enter your call sign."
+msgstr "علامت تماس خود را وارد کنید."
+
+msgid "Enter your global chat message."
+msgstr "پیام چت عمومی خود را وارد کنید."
+
+msgid "Enter your room chat message."
+msgstr "پیام چت اتاق خود را وارد کنید."
+
+msgid "Equals"
+msgstr "مساوی"
+
+msgid "Error"
+msgstr "خطا"
+
+msgid "Error:"
+msgstr "خطا:"
+
+msgid "Escape"
+msgstr "اسکیپ"
+
+msgid "Even the walls were probably tired of this by the end."
+msgstr "حتی دیوارها هم احتمالاً تا آخر از این کار خسته شده بودند."
+
+msgid "Excellent driving. You beat your previous best time."
+msgstr "رانندگی عالی. بهترین زمان قبلی خود را شکستید."
+
+msgid "Exit Game"
+msgstr "خروج از بازی"
+
+msgid "Failed to initialize network client."
+msgstr "راه‌اندازی کلاینت شبکه ناموفق بود."
+
+#, csharp-format
+msgid "Failed to load communicator media. {0}"
+msgstr "بارگذاری رسانه ارتباط‌دهنده ناموفق بود. {0}"
+
+#, csharp-format
+msgid "Failed to load custom vehicle '{0}'. {1}"
+msgstr "بارگذاری خودروی سفارشی '{0}' ناموفق بود. {1}"
+
+#, csharp-format
+msgid "Failed to load radio media. {0}"
+msgstr "بارگذاری رسانه رادیو ناموفق بود. {0}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Tracks\TrackLoadException.cs:40
+msgid "Failed to load this track file."
+msgstr "بارگذاری این فایل پیست ناموفق بود."
+
+msgid "Failed to load this vehicle file."
+msgstr "بارگذاری این فایل خودرو ناموفق بود."
+
+#, csharp-format
+msgid "Failed to load track '{0}'."
+msgstr "بارگذاری پیست '{0}' ناموفق بود."
+
+msgid "Failed to open local radio media for live streaming."
+msgstr "باز کردن رسانه رادیوی محلی برای پخش زنده ناموفق بود."
+
+msgid "Failed to send chat message."
+msgstr "ارسال پیام چت ناموفق بود."
+
+msgid "Failed to send handshake."
+msgstr "ارسال دست‌دهی ناموفق بود."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Helpers.cs:64
+msgid "Failed to send handshake: {0}"
+msgstr "ارسال دست‌دهی ناموفق بود: {0}"
+
+msgid "Failed to send room chat message."
+msgstr "ارسال پیام چت اتاق ناموفق بود."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Quit.cs:35
+msgid "Failed to send {0}. Please check your connection."
+msgstr "ارسال {0} ناموفق بود. لطفاً اتصال خود را بررسی کنید."
+
+msgid "Failed to stream communicator media to the server."
+msgstr "پخش زنده رسانه ارتباط‌دهنده به سرور ناموفق بود."
+
+msgid "Fast (0.50 seconds)"
+msgstr "سریع (۰.۵۰ ثانیه)"
+
+msgid "Fastest (0.25 seconds)"
+msgstr "سریع‌ترین (۰.۲۵ ثانیه)"
+
+#, csharp-format
+msgid "Fastest recorded lap on this track: {0}."
+msgstr "سریع‌ترین دور ثبت‌شده در این پیست: {0}."
+
+msgid "Fetching latest changes."
+msgstr "دریافت آخرین تغییرات."
+
+msgid "Fiat 500"
+msgstr "فیات ۵۰۰"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\DownloadProgress.cs:41
+#, csharp-format
+msgid "File size: {0}"
+msgstr "حجم فایل: {0}"
+
+#, csharp-format
+msgid "File: {0}"
+msgstr "فایل: {0}"
+
+msgid "Final results are ready."
+msgstr "نتایج نهایی آماده است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:108
+msgid "Finland"
+msgstr "فنلاند"
+
+msgid "First history item"
+msgstr "اولین آیتم تاریخچه"
+
+msgid "First position achieved. Great race."
+msgstr "جایگاه اول کسب شد. مسابقه عالی."
+
+msgid "Force feedback"
+msgstr "فورس فیدبک"
+
+msgid "Ford Mustang 1969"
+msgstr "فورد موستانگ ۱۹۶۹"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:110
+msgid "France"
+msgstr "فرانسه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:132
+msgid "French coast"
+msgstr "ساحل فرانسه"
+
+msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
+msgstr "فرکانس باید بین ۰.۰ و ۱۰۰۰.۰ با گام‌های ۰.۱ باشد."
+
+#, csharp-format
+msgid "Frequency set to {0} MHz."
+msgstr "فرکانس روی {0} مگاهرتز تنظیم شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:66
+msgid "GB"
+msgstr "گیگابایت"
+
+msgid "Game guide"
+msgstr "راهنمای بازی"
+
+msgid "Game rules"
+msgstr "قوانین بازی"
+
+msgid "Game rules changed."
+msgstr "قوانین بازی تغییر کرد."
+
+msgid "Game type"
+msgstr "نوع بازی"
+
+#, csharp-format
+msgid "Game version: {0}"
+msgstr "نسخه بازی: {0}"
+
+msgid "Gamepad"
+msgstr "دسته بازی"
+
+#, csharp-format
+msgid "Gear {0}"
+msgstr "دنده {0}"
+
+msgid "General"
+msgstr "عمومی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:112
+msgid "Germany"
+msgstr "آلمان"
+
+msgid "Ghost mode"
+msgstr "حالت روح"
+
+#, csharp-format
+msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."
+msgstr "حالت روح {0} است. پیست‌های سفارشی {1} هستند. پیست انتخاب‌شده {2} است. بازی برای {3} اجرا خواهد شد. این اتاق به {4} محدود است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
+msgid "Global shortcuts"
+msgstr "میانبرهای کلی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:259
+msgid "Go back"
+msgstr "بازگشت"
+
+msgid "Grave"
+msgstr "خطرناک"
+
+msgid "Help"
+msgstr "راهنما"
+
+msgid "Help file not found"
+msgstr "فایل راهنما پیدا نشد"
+
+msgid "Here are the final standings for everyone."
+msgstr "رتبه‌بندی نهایی برای همه بازیکنان به شرح زیر است."
+
+msgid "Here are the final standings."
+msgstr "رتبه‌بندی نهایی به شرح زیر است."
+
+msgid "History"
+msgstr "تاریخچه"
+
+msgid "Hold to transmit voice when voice activation is off."
+msgstr "برای ارسال صدا هنگامی که فعال‌سازی صوتی خاموش است، نگه دارید."
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Host is unreachable."
+msgstr "میزبان در دسترس نیست."
+
+msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
+msgstr "مسابقه باید چند دور باشد؟ این گزینه برای مسابقه تکنفره، تایم تریل و حالت‌های چندنفره اعمال می‌شود."
+
+msgid "Humidity must be between 0 and 1."
+msgstr "رطوبت باید بین ۰ و ۱ باشد."
+
+msgid "I really have nothing interesting to put here not even the secret to life except this really long run on sentence that is probably the most boring thing you have ever read but that will help me get an idea of how fast your screen reader is speaking."
+msgstr "من واقعاً چیز جالبی برای اینجا ندارم، حتی راز زندگی، به جز این جمله طولانی که احتمالاً خسته‌کننده‌ترین چیزی است که تا به حال خوانده‌اید، اما به من کمک می‌کند تا بفهمم صفحه‌خوان شما با چه سرعتی صحبت می‌کند."
+
+msgid "If you leave race preparation now, the current game will be canceled for everyone in this room."
+msgstr "اگر اکنون آماده‌سازی مسابقه را ترک کنید، بازی فعلی برای همه افراد این اتاق لغو خواهد شد."
+
+msgid "Include custom tracks in randomization"
+msgstr "گنجاندن پیست‌های سفارشی در تصادفی‌سازی"
+
+msgid "Include custom vehicles in randomization"
+msgstr "گنجاندن خودروهای سفارشی در تصادفی‌سازی"
+
+msgid "Increase media volume"
+msgstr "افزایش حجم صدای رسانه"
+
+msgid "Increase volume by 1"
+msgstr "افزایش حجم صدا به اندازه ۱ واحد"
+
+msgid "Increase volume by 10"
+msgstr "افزایش حجم صدا به اندازه ۱۰ واحد"
+
+msgid "Increases media volume."
+msgstr "حجم صدای رسانه را افزایش می‌دهد."
+
+msgid "Increases the selected global volume category by one step."
+msgstr "دسته انتخاب‌شده حجم کلی صدا را یک پله افزایش می‌دهد."
+
+msgid "Increases the selected global volume category by ten steps."
+msgstr "دسته انتخاب‌شده حجم کلی صدا را ده پله افزایش می‌دهد."
+
+msgid "Info:"
+msgstr "اطلاعات:"
+
+msgid "Insert"
+msgstr "اینزرت"
+
+msgid "Interrupt screen reader speech"
+msgstr "قطع گفتار صفحه‌خوان"
+
+#, csharp-format
+msgid "Invalid ambience value '{0}'."
+msgstr "مقدار محیط نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid boolean '{0}' for key '{1}'."
+msgstr "مقدار بولی نامعتبر '{0}' برای کلید '{1}'."
+
+#, csharp-format
+msgid "Invalid key '{0}'. Source gear must be within 1..{1}."
+msgstr "کلید نامعتبر '{0}'. دنده مبدأ باید در محدوده ۱..{1} باشد."
+
+#, csharp-format
+msgid "Invalid key '{0}'. Use upshift_delay_X_Y for adjacent gears."
+msgstr "کلید نامعتبر '{0}'. برای دنده‌های مجاور از upshift_delay_X_Y استفاده کنید."
+
+msgid "Invalid line. Expected [section] or key=value."
+msgstr "خط نامعتبر. [بخش] یا کلید=مقدار مورد انتظار است."
+
+#, csharp-format
+msgid "Invalid numeric value '{0}' for key '{1}'."
+msgstr "مقدار عددی نامعتبر '{0}' برای کلید '{1}'."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:66
+msgid "Invalid port. Enter a number between 1 and 65535."
+msgstr "پورت نامعتبر. یک عدد بین ۱ و ۶۵۵۳۵ وارد کنید."
+
+#, csharp-format
+msgid "Invalid room override value '{0}' for key '{1}'."
+msgstr "مقدار بازنویسی اتاق نامعتبر '{0}' برای کلید '{1}'."
+
+#, csharp-format
+msgid "Invalid room value '{0}' for key '{1}'."
+msgstr "مقدار اتاق نامعتبر '{0}' برای کلید '{1}'."
+
+#, csharp-format
+msgid "Invalid segment height '{0}'."
+msgstr "ارتفاع قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid segment length '{0}'."
+msgstr "طول قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid segment noise '{0}'."
+msgstr "نویز قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid segment surface '{0}'."
+msgstr "سطح قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid segment type '{0}'."
+msgstr "نوع قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid segment width '{0}'."
+msgstr "عرض قطعه نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid sound asset path: {0}"
+msgstr "مسیر دارایی صوتی نامعتبر: {0}"
+
+#, csharp-format
+msgid "Invalid sound random mode '{0}'."
+msgstr "حالت تصادفی صدای نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid sound type '{0}'."
+msgstr "نوع صدای نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid torque curve key '{0}'. Use format like 2000rpm=200."
+msgstr "کلید منحنی گشتاور نامعتبر '{0}'. از قالبی مانند 2000rpm=200 استفاده کنید."
+
+#, csharp-format
+msgid "Invalid torque value '{0}' for '{1}'."
+msgstr "مقدار گشتاور نامعتبر '{0}' برای '{1}'."
+
+#, csharp-format
+msgid "Invalid vector '{0}' for key '{1}'."
+msgstr "بردار نامعتبر '{0}' برای کلید '{1}'."
+
+#, csharp-format
+msgid "Invalid weather kind '{0}'."
+msgstr "نوع آب‌وهوای نامعتبر '{0}'."
+
+#, csharp-format
+msgid "Invalid weather transition seconds '{0}'."
+msgstr "ثانیه‌های انتقال آب‌وهوا نامعتبر '{0}'."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:133
+msgid "Invalid weather value '{0}' for key '{1}'."
+msgstr "مقدار آب‌وهوای نامعتبر '{0}' برای کلید '{1}'."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:103
+msgid "Inverted"
+msgstr "معکوس"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:114
+msgid "Ireland"
+msgstr "ایرلند"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:116
+msgid "Italy"
+msgstr "ایتالیا"
+
+msgid "Join a game on the local network"
+msgstr "پیوستن به یک بازی در شبکه محلی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:29
+msgid "Join an existing game"
+msgstr "پیوستن به یک بازی موجود"
+
+msgid "Joystick"
+msgstr "جوی‌استیک"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:64
+msgid "KB"
+msgstr "کیلوبایت"
+
+msgid "Kawasaki Ninja ZX-10R"
+msgstr "کاوازاکی نینجا ZX-10R"
+
+#, csharp-format
+msgid "Key '{0}' contains a non-float value '{1}'."
+msgstr "کلید '{0}' حاوی یک مقدار غیر اعشاری '{1}' است."
+
+#, csharp-format
+msgid "Key '{0}' in section [{1}] must not be empty."
+msgstr "کلید '{0}' در بخش [{1}] نباید خالی باشد."
+
+#, csharp-format
+msgid "Key '{0}' is missing a value."
+msgstr "کلید '{0}' فاقد مقدار است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Bools.cs:35
+msgid "Key '{0}' must be a boolean or 0/1 integer."
+msgstr "کلید '{0}' باید یک مقدار بولی یا عدد صحیح ۰/۱ باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:76
+msgid "Key '{0}' must be a float."
+msgstr "کلید '{0}' باید یک عدد اعشاری باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:33
+msgid "Key '{0}' must be an integer."
+msgstr "کلید '{0}' باید یک عدد صحیح باشد."
+
+#, csharp-format
+msgid "Key '{0}' must contain at least one float value."
+msgstr "کلید '{0}' باید حداقل یک مقدار اعشاری داشته باشد."
+
+#, csharp-format
+msgid "Key '{0}' must contain at least one path."
+msgstr "کلید '{0}' باید حداقل یک مسیر داشته باشد."
+
+#, csharp-format
+msgid "Key '{0}' must contain at least one transmission type."
+msgstr "کلید '{0}' باید حداقل یک نوع دنده داشته باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:60
+#, csharp-format
+msgid "Key '{0}' value {1} is outside allowed range {2} to {3}."
+msgstr "مقدار {1} کلید '{0}' خارج از محدوده مجاز {2} تا {3} است."
+
+msgid "Keyboard"
+msgstr "صفحه‌کلید"
+
+msgid "Keyboard bindings section is missing. Defaults were used for keyboard bindings."
+msgstr "بخش تنظیمات صفحه‌کلید وجود ندارد. از پیش‌فرض‌ها برای تنظیمات صفحه‌کلید استفاده شد."
+
+msgid "Keyboard mappings restored to defaults."
+msgstr "نگاشت‌های صفحه‌کلید به پیش‌فرض بازنشانی شد."
+
+msgid "Lamborghini Aventador"
+msgstr "لامبورگینی اونتادور"
+
+#, csharp-format
+msgid "Language remains {0}."
+msgstr "زبان همچنان {0} است."
+
+#, csharp-format
+msgid "Language set to {0}."
+msgstr "زبان روی {0} تنظیم شد."
+
+#, csharp-format
+msgid "Language: {0}"
+msgstr "زبان: {0}"
+
+#, csharp-format
+msgid "Lap percentage {0} percent"
+msgstr "درصد دور {0} درصد"
+
+msgid "Lap statistics:"
+msgstr "آمار دور:"
+
+msgid "Lap summary:"
+msgstr "خلاصه دور:"
+
+#, csharp-format
+msgid "Lap {0}"
+msgstr "دور {0}"
+
+msgid "Last history item"
+msgstr "آخرین آیتم تاریخچه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:152
+msgid "Latest changes"
+msgstr "آخرین تغییرات"
+
+msgid "Latest changes are already being fetched."
+msgstr "آخرین تغییرات در حال دریافت هستند."
+
+msgid "Latest changes request failed."
+msgstr "درخواست آخرین تغییرات ناموفق بود."
+
+#, csharp-format
+msgid "Latest changes request failed: {0}"
+msgstr "درخواست آخرین تغییرات ناموفق بود: {0}"
+
+msgid "Latest changes request timed out."
+msgstr "درخواست آخرین تغییرات به پایان رسید."
+
+msgid "Leave server?"
+msgstr "سرور ترک شود؟"
+
+msgid "Leave this game room"
+msgstr "ترک این اتاق بازی"
+
+msgid "Leave this game room?"
+msgstr "این اتاق بازی ترک شود؟"
+
+msgid "Leaving game room."
+msgstr "در حال ترک اتاق بازی."
+
+msgid "Left"
+msgstr "چپ"
+
+msgid "Left Alt"
+msgstr "آلت چپ"
+
+msgid "Left Control"
+msgstr "کنترل چپ"
+
+msgid "Left Shift"
+msgstr "شیفت چپ"
+
+msgid "Left Windows"
+msgstr "ویندوز چپ"
+
+msgid "Left bracket"
+msgstr "براکت چپ"
+
+msgid "Left paddle 1"
+msgstr "پدال چپ ۱"
+
+msgid "Left paddle 2"
+msgstr "پدال چپ ۲"
+
+msgid "Left stick down"
+msgstr "استیک چپ پایین"
+
+msgid "Left stick left"
+msgstr "استیک چپ چپ"
+
+msgid "Left stick right"
+msgstr "استیک چپ راست"
+
+msgid "Left stick up"
+msgstr "استیک چپ بالا"
+
+msgid "Left trigger"
+msgstr "تریگر چپ"
+
+#, csharp-format
+msgid "Left {0}"
+msgstr "چپ {0}"
+
+#, csharp-format
+msgid "Line {0}: {1}"
+msgstr "خط {0}: {1}"
+
+msgid "Live streaming stopped because Opus encoding failed."
+msgstr "پخش زنده به دلیل شکست کدگذاری Opus متوقف شد."
+
+msgid "Live streaming stopped because media decoding failed."
+msgstr "پخش زنده به دلیل شکست رمزگشایی رسانه متوقف شد."
+
+msgid "Load media file"
+msgstr "بارگذاری فایل رسانه"
+
+msgid "Load media folder"
+msgstr "بارگذاری پوشه رسانه"
+
+msgid "Loading custom tracks from server."
+msgstr "در حال بارگذاری پیست‌های سفارشی از سرور."
+
+msgid "Loads an audio file for streaming."
+msgstr "یک فایل صوتی را برای پخش زنده بارگذاری می‌کند."
+
+msgid "Loads an audio folder for streaming."
+msgstr "یک پوشه صوتی را برای پخش زنده بارگذاری می‌کند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:254
+msgid "Loop mode off."
+msgstr "حالت حلقه خاموش."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:253
+msgid "Loop mode on."
+msgstr "حالت حلقه روشن."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:65
+msgid "MB"
+msgstr "مگابایت"
+
+msgid "Main Menu. Use the view finder to move through the options. Press up or down to navigate. Press right or button 1 to select. Press left to back out of any menu."
+msgstr "منوی اصلی. برای حرکت بین گزینه‌ها از یابنده دید استفاده کنید. بالا یا پایین را برای پیمایش فشار دهید. راست یا دکمه ۱ را برای انتخاب فشار دهید. برای بازگشت از هر منو، چپ را فشار دهید."
+
+msgid "Main Menu. Use your arrow keys or the view finder to move through the options. Press ENTER or right or button 1 to select. Press ESCAPE or left to back out of any menu. Pressing HOME or END will move you to the top or bottom of a menu."
+msgstr "منوی اصلی. برای حرکت بین گزینه‌ها از کلیدهای جهت‌نما یا یابنده دید استفاده کنید. اینتر یا راست یا دکمه ۱ را برای انتخاب فشار دهید. اسکیپ یا چپ را برای بازگشت از هر منو فشار دهید. با فشار دادن Home یا End به بالا یا پایین منو می‌روید."
+
+msgid "Main Menu. Use your arrow keys to navigate the options. Press ENTER to select. Press ESCAPE to back out of any menu. Pressing HOME or END will move you to the top or bottom of a menu."
+msgstr "منوی اصلی. برای پیمایش گزینه‌ها از کلیدهای جهت‌نما استفاده کنید. اینتر را برای انتخاب فشار دهید. اسکیپ را برای بازگشت از هر منو فشار دهید. با فشار دادن Home یا End به بالا یا پایین منو می‌روید."
+
+msgid "Main menu"
+msgstr "منوی اصلی"
+
+msgid "Main menu. Swipe left or right to navigate the options. Swipe up to activate. Swipe down to go back. Swipe up with two fingers to move to the first item and swipe down with two fingers to move to the last item. Long press repeats the current usage hint."
+msgstr "منوی اصلی. برای پیمایش گزینه‌ها به چپ یا راست بکشید. برای فعال‌سازی به بالا بکشید. برای بازگشت به پایین بکشید. با دو انگشت به بالا بکشید تا به اولین آیتم بروید و با دو انگشت به پایین بکشید تا به آخرین آیتم بروید. فشار طولانی نکته استفاده فعلی را تکرار می‌کند."
+
+msgid "Malformed line. Expected '[section]' or 'key = value'."
+msgstr "خط بدشکل. '[بخش]' یا 'کلید = مقدار' مورد انتظار است."
+
+msgid "Manage saved servers"
+msgstr "مدیریت سرورهای ذخیره‌شده"
+
+msgid "Manual"
+msgstr "دستی"
+
+msgid "Manual transmission"
+msgstr "دنده دستی"
+
+msgid "Manual transmission is required for this vehicle."
+msgstr "دنده دستی برای این خودرو الزامی است."
+
+msgid "Map controller keys"
+msgstr "نگاشت کلیدهای دسته بازی"
+
+msgid "Map keyboard keys"
+msgstr "نگاشت کلیدهای صفحه‌کلید"
+
+msgid "Map menu shortcuts"
+msgstr "نگاشت میانبرهای منو"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:52
+msgid "Mapping cancelled."
+msgstr "نگاشت لغو شد."
+
+msgid "Master audio"
+msgstr "صدای اصلی"
+
+msgid "Master audio volume"
+msgstr "حجم صدای اصلی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:48
+msgid "Maximum players allowed in this room"
+msgstr "حداکثر بازیکنان مجاز در این اتاق"
+
+#, csharp-format
+msgid "Maximum players changed to {0}."
+msgstr "حداکثر بازیکنان به {0} تغییر کرد."
+
+msgid "Measure your screen-reader speaking speed again so usage hints and delayed speech timings stay accurate."
+msgstr "سرعت گفتار صفحه‌خوان خود را دوباره اندازه‌گیری کنید تا نکات استفاده و زمان‌بندی‌های گفتار تأخیری دقیق بمانند."
+
+msgid "Menu sound preset was empty and was reset to default."
+msgstr "پیش‌تنظیم صدای منو خالی بود و به پیش‌فرض بازنشانی شد."
+
+msgid "Menu sounds"
+msgstr "صداهای منو"
+
+#, csharp-format
+msgid "Menu sounds: {0}"
+msgstr "صداهای منو: {0}"
+
+msgid "Mercedes Sprinter"
+msgstr "مرسدس اسپرینتر"
+
+msgid "Microphone input gain"
+msgstr "بهره ورودی میکروفون"
+
+msgid "Mini Cooper S"
+msgstr "مینی کوپر S"
+
+msgid "Minus"
+msgstr "منفی"
+
+#, csharp-format
+msgid "Missing file: {0}"
+msgstr "فایل موجود نیست: {0}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Transmission\Types.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\FloatCsv.cs:11
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Numbers.cs:44
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Readers\Text.cs:34
+msgid "Missing required key '{0}' in section [{1}]."
+msgstr "کلید الزامی '{0}' در بخش [{1}] وجود ندارد."
+
+msgid "Missing required section [transmission_atc] for supported type 'atc'."
+msgstr "بخش الزامی [transmission_atc] برای نوع پشتیبانی‌شده 'atc' وجود ندارد."
+
+msgid "Missing required section [transmission_cvt] for supported type 'cvt'."
+msgstr "بخش الزامی [transmission_cvt] برای نوع پشتیبانی‌شده 'cvt' وجود ندارد."
+
+msgid "Missing required section [transmission_dct] for supported type 'dct'."
+msgstr "بخش الزامی [transmission_dct] برای نوع پشتیبانی‌شده 'dct' وجود ندارد."
+
+#, csharp-format
+msgid "Missing required section [{0}]."
+msgstr "بخش الزامی [{0}] وجود ندارد."
+
+#, csharp-format
+msgid "Missing sound asset file: {0}"
+msgstr "فایل دارایی صوتی موجود نیست: {0}"
+
+msgid "Moderate (0.75 seconds)"
+msgstr "متوسط (۰.۷۵ ثانیه)"
+
+msgid "Modifier"
+msgstr "کلید ترکیبی"
+
+#, csharp-format
+msgid "Move or press the controller control for {0}."
+msgstr "کنترل دسته بازی را برای {0} حرکت دهید یا فشار دهید."
+
+msgid "Moves to the first item in the selected multiplayer history category."
+msgstr "به اولین آیتم در دسته تاریخچه چندنفره انتخاب‌شده می‌رود."
+
+msgid "Moves to the last item in the selected multiplayer history category."
+msgstr "به آخرین آیتم در دسته تاریخچه چندنفره انتخاب‌شده می‌رود."
+
+msgid "Moves to the next item in the selected multiplayer history category."
+msgstr "به آیتم بعدی در دسته تاریخچه چندنفره انتخاب‌شده می‌رود."
+
+msgid "Moves to the next multiplayer history category."
+msgstr "به دسته بعدی تاریخچه چندنفره می‌رود."
+
+msgid "Moves to the next track in the media playlist."
+msgstr "به قطعه بعدی در لیست پخش رسانه می‌رود."
+
+msgid "Moves to the previous item in the selected multiplayer history category."
+msgstr "به آیتم قبلی در دسته تاریخچه چندنفره انتخاب‌شده می‌رود."
+
+msgid "Moves to the previous multiplayer history category."
+msgstr "به دسته قبلی تاریخچه چندنفره می‌رود."
+
+msgid "Moves to the previous track in the media playlist."
+msgstr "به قطعه قبلی در لیست پخش رسانه می‌رود."
+
+msgid "MultiPlayer game"
+msgstr "بازی چندنفره"
+
+msgid "Multiplayer lobby"
+msgstr "لابی چندنفره"
+
+msgid "Multiplayer shortcuts"
+msgstr "میانبرهای چندنفره"
+
+msgid "Multiple game controllers were detected. Select one controller to use."
+msgstr "چندین دسته بازی شناسایی شد. یک دسته را برای استفاده انتخاب کنید."
+
+msgid "Multiply"
+msgstr "ضرب"
+
+msgid "Music"
+msgstr "موسیقی"
+
+msgid "Music volume"
+msgstr "حجم صدای موسیقی"
+
+msgid "Music volume is not a valid number and was reset to default."
+msgstr "حجم صدای موسیقی یک عدد معتبر نیست و به پیش‌فرض بازنشانی شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:118
+msgid "Netherlands"
+msgstr "هلند"
+
+msgid "Network is unreachable."
+msgstr "شبکه در دسترس نیست."
+
+msgid "Network send failed while sending live frame."
+msgstr "ارسال شبکه هنگام ارسال فریم زنده ناموفق بود."
+
+msgid "Network send failed while sending live start."
+msgstr "ارسال شبکه هنگام ارسال شروع زنده ناموفق بود."
+
+msgid "Network send failed while sending live stop."
+msgstr "ارسال شبکه هنگام ارسال توقف زنده ناموفق بود."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Systems\Sync.cs:94
+msgid "Network send failed. Please check your connection."
+msgstr "ارسال شبکه ناموفق بود. لطفاً اتصال خود را بررسی کنید."
+
+msgid "New version detected."
+msgstr "نسخه جدید شناسایی شد."
+
+msgid "Next chat category"
+msgstr "دسته بعدی چت"
+
+msgid "Next history category"
+msgstr "دسته بعدی تاریخچه"
+
+msgid "Next history item"
+msgstr "آیتم بعدی تاریخچه"
+
+msgid "Next media track"
+msgstr "قطعه بعدی رسانه"
+
+msgid "Next volume category"
+msgstr "دسته بعدی حجم صدا"
+
+msgid "Nissan GT-R Nismo"
+msgstr "نیسان GT-R نیسمو"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:60
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:287
+msgid "No"
+msgstr "خیر"
+
+msgid "No changes are listed."
+msgstr "هیچ تغییری لیست نشده است."
+
+msgid "No communicator media loaded."
+msgstr "هیچ رسانه ارتباط‌دهنده‌ای بارگذاری نشده است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Core.cs:50
+msgid "No controller detected."
+msgstr "هیچ دسته بازی‌ای شناسایی نشد."
+
+msgid "No controllers found"
+msgstr "هیچ دسته بازی‌ای پیدا نشد"
+
+msgid "No controllers were found. The game has reverted to keyboard input."
+msgstr "هیچ دسته بازی‌ای پیدا نشد. بازی به ورودی صفحه‌کلید بازگشت."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:100
+msgid "No custom tracks found."
+msgstr "هیچ پیست سفارشی پیدا نشد."
+
+msgid "No custom vehicles found."
+msgstr "هیچ خودروی سفارشی پیدا نشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:222
+msgid "No folder playlist loaded."
+msgstr "هیچ لیست پخش پوشه‌ای بارگذاری نشده است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:444
+msgid "No folder was selected."
+msgstr "هیچ پوشه‌ای انتخاب نشد."
+
+msgid "No game rooms are currently available."
+msgstr "در حال حاضر هیچ اتاق بازی در دسترس نیست."
+
+msgid "No game rooms found"
+msgstr "هیچ اتاق بازی پیدا نشد"
+
+msgid "No languages are available."
+msgstr "هیچ زبانی در دسترس نیست."
+
+msgid "No media file selected."
+msgstr "هیچ فایل رسانه‌ای انتخاب نشده است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Screens.cs:40
+msgid "No messages yet."
+msgstr "هنوز پیامی وجود ندارد."
+
+msgid "No option changes to apply."
+msgstr "هیچ تغییر گزینه‌ای برای اعمال وجود ندارد."
+
+msgid "No players are currently in this game room."
+msgstr "در حال حاضر هیچ بازیکنی در این اتاق بازی نیست."
+
+msgid "No protocol negotiation response from server. The server may be outdated or incompatible."
+msgstr "هیچ پاسخی برای مذاکره پروتکل از سرور دریافت نشد. ممکن است سرور قدیمی یا ناسازگار باشد."
+
+msgid "No radio media loaded."
+msgstr "هیچ رسانه رادیویی بارگذاری نشده است."
+
+msgid "No response from server. The server may be offline or unreachable."
+msgstr "هیچ پاسخی از سرور دریافت نشد. ممکن است سرور آفلاین یا غیرقابل دسترس باشد."
+
+msgid "No server address was provided."
+msgstr "هیچ آدرس سروری ارائه نشده است."
+
+msgid "No servers were found on the local network. You can enter an address manually."
+msgstr "هیچ سروری در شبکه محلی پیدا نشد. می‌توانید یک آدرس را به‌صورت دستی وارد کنید."
+
+msgid "No shortcut group selected."
+msgstr "هیچ گروه میانبری انتخاب نشده است."
+
+msgid "No shortcuts in this group."
+msgstr "هیچ میانبری در این گروه وجود ندارد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:456
+msgid "No supported audio files were found in the selected folder."
+msgstr "هیچ فایل صوتی پشتیبانی‌شده‌ای در پوشه انتخاب‌شده پیدا نشد."
+
+msgid "No updates found"
+msgstr "هیچ بروزرسانی‌ای پیدا نشد"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:37
+msgid "No, continue preparing"
+msgstr "خیر، ادامه آماده‌سازی"
+
+msgid "No, continue racing"
+msgstr "خیر، ادامه مسابقه"
+
+msgid "No, keep this server"
+msgstr "خیر، این سرور را نگه دار"
+
+msgid "No, stay in this game room"
+msgstr "خیر، در این اتاق بازی بمان"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:102
+msgid "Normal"
+msgstr "عادی"
+
+msgid "Not a clean run, but still recoverable."
+msgstr "یک اجرای تمیز نبود، اما همچنان قابل جبران است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:15
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:17
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:79
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:81
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:16
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:19
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:134
+msgid "Not connected to a server."
+msgstr "به یک سرور متصل نیستید."
+
+msgid "Not connected to a server. Returning to main menu."
+msgstr "به یک سرور متصل نیستید. بازگشت به منوی اصلی."
+
+msgid "Not ideal, but still salvageable."
+msgstr "ایده‌آل نیست، اما همچنان قابل نجات است."
+
+msgid "Not implemented yet."
+msgstr "هنوز پیاده‌سازی نشده است."
+
+msgid "Num Lock"
+msgstr "نام لاک"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:97
+msgid "Number of computer players"
+msgstr "تعداد بازیکنان کامپیوتری"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:52
+msgid "Number of laps"
+msgstr "تعداد دورها"
+
+#, csharp-format
+msgid "Number of laps changed to {0}."
+msgstr "تعداد دورها به {0} تغییر کرد."
+
+msgid "Numpad Comma"
+msgstr "ویرگول صفحه‌کلید عددی"
+
+msgid "Numpad Enter"
+msgstr "اینتر صفحه‌کلید عددی"
+
+msgid "Numpad Equals"
+msgstr "مساوی صفحه‌کلید عددی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Dialogs.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:53
+msgid "OK"
+msgstr "تأیید"
+
+msgid "Off"
+msgstr "خاموش"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Calibration.cs:34
+msgid "Ok"
+msgstr "تأیید"
+
+msgid "One crash is still too many, but it could be worse."
+msgstr "یک تصادف هم زیاد است، اما می‌توانست بدتر باشد."
+
+msgid "One crash."
+msgstr "یک تصادف."
+
+msgid "One-on-one without bots"
+msgstr "یک به یک بدون ربات"
+
+msgid "Online players"
+msgstr "بازیکنان آنلاین"
+
+msgid "Online server event sounds"
+msgstr "صداهای رویدادهای سرور آنلاین"
+
+msgid "Online server events"
+msgstr "رویدادهای سرور آنلاین"
+
+msgid "Only the host can cancel the current game."
+msgstr "فقط میزبان می‌تواند بازی فعلی را لغو کند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:76
+msgid "Only the host can change game options."
+msgstr "فقط میزبان می‌تواند گزینه‌های بازی را تغییر دهد."
+
+msgid "Only the host can change game rules."
+msgstr "فقط میزبان می‌تواند قوانین بازی را تغییر دهد."
+
+msgid "Only the host can start the game."
+msgstr "فقط میزبان می‌تواند بازی را شروع کند."
+
+msgid "Only you are connected right now."
+msgstr "در حال حاضر فقط شما متصل هستید."
+
+msgid "Open global chat"
+msgstr "باز کردن چت عمومی"
+
+msgid "Open room chat"
+msgstr "باز کردن چت اتاق"
+
+msgid "Opens chat input for the current room chat when you are inside a room."
+msgstr "وقتی در یک اتاق هستید، ورودی چت را برای چت اتاق فعلی باز می‌کند."
+
+msgid "Opens chat input for the global multiplayer lobby chat."
+msgstr "ورودی چت را برای چت عمومی لابی چندنفره باز می‌کند."
+
+msgid "Opens frequency input for the channel."
+msgstr "ورودی فرکانس را برای کانال باز می‌کند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:151
+msgid "Options"
+msgstr "گزینه‌ها"
+
+msgid "Other vehicles engine"
+msgstr "موتور سایر خودروها"
+
+msgid "Other vehicles engine sounds"
+msgstr "صداهای موتور سایر خودروها"
+
+msgid "Other vehicles event sounds"
+msgstr "صداهای رویدادهای سایر خودروها"
+
+msgid "Other vehicles events"
+msgstr "رویدادهای سایر خودروها"
+
+msgid "Outstanding drive. You secured first position."
+msgstr "رانندگی فوق‌العاده. شما جایگاه اول را تضمین کردید."
+
+msgid "Outstanding run! New personal record."
+msgstr "اجرای فوق‌العاده! رکورد شخصی جدید."
+
+msgid "POV 1 down"
+msgstr "POV 1 پایین"
+
+msgid "POV 1 left"
+msgstr "POV 1 چپ"
+
+msgid "POV 1 right"
+msgstr "POV 1 راست"
+
+msgid "POV 1 up"
+msgstr "POV 1 بالا"
+
+msgid "POV 2 down"
+msgstr "POV 2 پایین"
+
+msgid "POV 2 left"
+msgstr "POV 2 چپ"
+
+msgid "POV 2 right"
+msgstr "POV 2 راست"
+
+msgid "POV 2 up"
+msgstr "POV 2 بالا"
+
+msgid "Page Down"
+msgstr "پیج داون"
+
+msgid "Page Up"
+msgstr "پیج آپ"
+
+msgid "Panel"
+msgstr "پنل"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+msgid "Pause"
+msgstr "توقف موقت"
+
+msgid "Pause the game"
+msgstr "توقف موقت بازی"
+
+msgid "Peer session was not found on server."
+msgstr "نشست همتا در سرور پیدا نشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\DownloadProgress.cs:43
+#, csharp-format
+msgid "Percentage: {0}%"
+msgstr "درصد: {0}%"
+
+msgid "Ping check already in progress."
+msgstr "بررسی پینگ در حال انجام است."
+
+msgid "Play logo at startup"
+msgstr "پخش لوگو هنگام شروع"
+
+msgid "Play or pause media"
+msgstr "پخش یا توقف موقت رسانه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Helpers.cs:89
+msgid "Player"
+msgstr "بازیکن"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:49
+msgid "Player "
+msgstr "بازیکن "
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Store.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:58
+#, csharp-format
+msgid "Player {0}"
+msgstr "بازیکن {0}"
+
+msgid "Players in room"
+msgstr "بازیکنان در اتاق"
+
+msgid "Please enter a server address."
+msgstr "لطفاً یک آدرس سرور وارد کنید."
+
+msgid "Please restart the game and try again."
+msgstr "لطفاً بازی را مجدداً راه‌اندازی کنید و دوباره تلاش کنید."
+
+msgid "Please wait. Scanning for servers on the local network."
+msgstr "لطفاً صبر کنید. در حال جستجوی سرورها در شبکه محلی."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:142
+msgid "Polar escape"
+msgstr "فرار قطبی"
+
+msgid "Porsche 911 GT3 RS"
+msgstr "پورشه 911 GT3 RS"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:120
+msgid "Portugal"
+msgstr "پرتغال"
+
+msgid "Preparing to race"
+msgstr "در حال آماده‌سازی برای مسابقه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:97
+msgid "Press ENTER to change."
+msgstr "برای تغییر، اینتر را فشار دهید."
+
+msgid "Press ENTER to enter a room name."
+msgstr "برای وارد کردن نام اتاق، اینتر را فشار دهید."
+
+msgid "Press ENTER to select."
+msgstr "برای انتخاب، اینتر را فشار دهید."
+
+msgid "Press ENTER to start."
+msgstr "برای شروع، اینتر را فشار دهید."
+
+msgid "Press ENTER to toggle."
+msgstr "برای تغییر وضعیت، اینتر را فشار دهید."
+
+msgid "Press LEFT or RIGHT to change."
+msgstr "برای تغییر، چپ یا راست را فشار دهید."
+
+msgid "Press OK to close the game and install the update."
+msgstr "تأیید را فشار دهید تا بازی بسته شود و بروزرسانی نصب گردد."
+
+msgid "Press right arrow to view."
+msgstr "برای مشاهده، جهت‌نمای راست را فشار دهید."
+
+#, csharp-format
+msgid "Press the new key for {0}."
+msgstr "کلید جدید را برای {0} فشار دهید."
+
+#, csharp-format
+msgid "Press the new shortcut for {0}."
+msgstr "میانبر جدید را برای {0} فشار دهید."
+
+msgid "Previous chat category"
+msgstr "دسته قبلی چت"
+
+msgid "Previous history category"
+msgstr "دسته قبلی تاریخچه"
+
+msgid "Previous history item"
+msgstr "آیتم قبلی تاریخچه"
+
+msgid "Previous media track"
+msgstr "قطعه قبلی رسانه"
+
+msgid "Previous volume category"
+msgstr "دسته قبلی حجم صدا"
+
+msgid "Print Screen"
+msgstr "پرینت اسکرین"
+
+msgid "Progressive keyboard input"
+msgstr "ورودی پیشرونده صفحه‌کلید"
+
+#, csharp-format
+msgid "Property '{0}' is outside any section."
+msgstr "ویژگی '{0}' خارج از هر بخشی است."
+
+#, csharp-format
+msgid "Protocol packet version mismatch. Server uses packet version {0}, client expects {1}. Update your client or server."
+msgstr "عدم تطابق نسخه بسته پروتکل. سرور از نسخه بسته {0} استفاده می‌کند، کلاینت انتظار {1} را دارد. کلاینت یا سرور خود را بروزرسانی کنید."
+
+#, csharp-format
+msgid "Protocol version: {0}"
+msgstr "نسخه پروتکل: {0}"
+
+msgid "Provide tire_circumference or all of tire_width, tire_aspect, and tire_rim."
+msgstr "tire_circumference یا همه مقادیر tire_width، tire_aspect و tire_rim را ارائه دهید."
+
+msgid "Proxy URL cannot be empty while proxy is enabled."
+msgstr "وقتی پروکسی فعال است، آدرس پروکسی نمی‌تواند خالی باشد."
+
+msgid "Proxy URL must be a valid HTTP or HTTPS URL."
+msgstr "آدرس پروکسی باید یک URL معتبر HTTP یا HTTPS باشد."
+
+msgid "Proxy URL saved."
+msgstr "آدرس پروکسی ذخیره شد."
+
+msgid "Proxy URL, currently empty."
+msgstr "آدرس پروکسی، در حال حاضر خالی است."
+
+#, csharp-format
+msgid "Proxy URL, currently set to {0}"
+msgstr "آدرس پروکسی، در حال حاضر روی {0} تنظیم شده است"
+
+msgid "Push to talk"
+msgstr "فشار برای صحبت"
+
+msgid "Question"
+msgstr "سؤال"
+
+msgid "Quick start"
+msgstr "شروع سریع"
+
+msgid "Quick start."
+msgstr "شروع سریع."
+
+msgid "Quit race preparation?"
+msgstr "آماده‌سازی مسابقه ترک شود؟"
+
+msgid "Quit race?"
+msgstr "مسابقه ترک شود؟"
+
+msgid "Quit the race"
+msgstr "ترک مسابقه"
+
+msgid "RX minus"
+msgstr "RX منفی"
+
+msgid "RX plus"
+msgstr "RX مثبت"
+
+msgid "RY minus"
+msgstr "RY منفی"
+
+msgid "RY plus"
+msgstr "RY مثبت"
+
+msgid "RZ minus"
+msgstr "RZ منفی"
+
+msgid "RZ plus"
+msgstr "RZ مثبت"
+
+msgid "Race complete."
+msgstr "مسابقه کامل شد."
+
+msgid "Race paused."
+msgstr "مسابقه متوقف شد."
+
+#, csharp-format
+msgid "Race percentage {0} percent"
+msgstr "درصد مسابقه {0} درصد"
+
+msgid "Race preparation started."
+msgstr "آماده‌سازی مسابقه شروع شد."
+
+msgid "Race preparation was cancelled."
+msgstr "آماده‌سازی مسابقه لغو شد."
+
+msgid "Race resumed."
+msgstr "مسابقه از سر گرفته شد."
+
+msgid "Race settings"
+msgstr "تنظیمات مسابقه"
+
+msgid "Race started."
+msgstr "مسابقه شروع شد."
+
+#, csharp-format
+msgid "Race time {0}"
+msgstr "زمان مسابقه {0}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:15
+msgid "Race track"
+msgstr "پیست مسابقه"
+
+msgid "Race with bots"
+msgstr "مسابقه با ربات"
+
+msgid "Race without bots"
+msgstr "مسابقه بدون ربات"
+
+msgid "Racing wheel"
+msgstr "فرمان مسابقه‌ای"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:241
+msgid "Radio"
+msgstr "رادیو"
+
+msgid "Radio volume"
+msgstr "حجم صدای رادیو"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:138
+msgid "Rally desert"
+msgstr "بیابان رالی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:130
+msgid "Rally hills"
+msgstr "تپه‌های رالی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:71
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:18
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:23
+msgid "Random"
+msgstr "تصادفی"
+
+msgid "Random transmission mode"
+msgstr "حالت دنده تصادفی"
+
+msgid "Random vehicle"
+msgstr "خودروی تصادفی"
+
+msgid "Ready. Waiting for other players."
+msgstr "آماده. در انتظار سایر بازیکنان."
+
+msgid "Recalibrate screen reader rate"
+msgstr "کالیبراسیون مجدد سرعت صفحه‌خوان"
+
+msgid "Received media is empty."
+msgstr "رسانه دریافتی خالی است."
+
+msgid "Reconnected to server."
+msgstr "اتصال مجدد به سرور برقرار شد."
+
+msgid "Reconnection canceled."
+msgstr "اتصال مجدد لغو شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Connection\Reconnector.cs:132
+msgid "Reconnection failed."
+msgstr "اتصال مجدد ناموفق بود."
+
+#, csharp-format
+msgid "Reconnection failed: {0}"
+msgstr "اتصال مجدد ناموفق بود: {0}"
+
+msgid "Reconnection is in progress. Disconnecting now."
+msgstr "اتصال مجدد در حال انجام است. اکنون قطع ارتباط می‌شود."
+
+msgid "Remove a bot"
+msgstr "حذف یک ربات"
+
+msgid "Report distance"
+msgstr "گزارش مسافت"
+
+msgid "Report speed"
+msgstr "گزارش سرعت"
+
+msgid "Report track name"
+msgstr "گزارش نام پیست"
+
+msgid "Request position information"
+msgstr "درخواست اطلاعات موقعیت"
+
+msgid "Reset all configurable settings back to their default values."
+msgstr "بازنشانی همه تنظیمات قابل پیکربندی به مقادیر پیش‌فرض."
+
+msgid "Reset all controller mappings"
+msgstr "بازنشانی همه نگاشت‌های دسته بازی"
+
+msgid "Reset all keyboard mappings"
+msgstr "بازنشانی همه نگاشت‌های صفحه‌کلید"
+
+msgid "Reset all menu shortcuts to defaults"
+msgstr "بازنشانی همه میانبرهای منو به پیش‌فرض"
+
+msgid "Reset all menu shortcuts?"
+msgstr "همه میانبرهای منو بازنشانی شوند؟"
+
+msgid "Reset controller mappings"
+msgstr "بازنشانی نگاشت‌های دسته بازی"
+
+msgid "Reset keyboard mappings"
+msgstr "بازنشانی نگاشت‌های صفحه‌کلید"
+
+msgid "Reset shortcuts in this menu"
+msgstr "بازنشانی میانبرهای این منو"
+
+msgid "Reset shortcuts in this menu?"
+msgstr "میانبرهای این منو بازنشانی شوند؟"
+
+msgid "Restore all controller bindings to their default values."
+msgstr "بازگردانی همه تنظیمات دسته بازی به مقادیر پیش‌فرض."
+
+msgid "Restore all keyboard bindings to their default values."
+msgstr "بازگردانی همه تنظیمات صفحه‌کلید به مقادیر پیش‌فرض."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:43
+msgid "Restore default settings"
+msgstr "بازگردانی تنظیمات پیش‌فرض"
+
+msgid "Restore every menu shortcut binding to its default value."
+msgstr "بازگردانی هر میانبر منو به مقدار پیش‌فرض خود."
+
+msgid "Restore only the shortcuts in this menu to their default values."
+msgstr "فقط میانبرهای این منو را به مقادیر پیش‌فرض بازگردان."
+
+msgid "Resume the game"
+msgstr "ادامه بازی"
+
+msgid "Returned to room controls."
+msgstr "به کنترل‌های اتاق بازگشت."
+
+msgid "Review these details before connecting."
+msgstr "این جزئیات را قبل از اتصال مرور کنید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:136
+msgid "Ride airport"
+msgstr "مسیر فرودگاه"
+
+msgid "Right"
+msgstr "راست"
+
+msgid "Right Alt"
+msgstr "آلت راست"
+
+msgid "Right Control"
+msgstr "کنترل راست"
+
+msgid "Right Shift"
+msgstr "شیفت راست"
+
+msgid "Right Windows"
+msgstr "ویندوز راست"
+
+msgid "Right bracket"
+msgstr "براکت راست"
+
+msgid "Right paddle 1"
+msgstr "پدال راست ۱"
+
+msgid "Right paddle 2"
+msgstr "پدال راست ۲"
+
+msgid "Right stick down"
+msgstr "استیک راست پایین"
+
+msgid "Right stick left"
+msgstr "استیک راست چپ"
+
+msgid "Right stick right"
+msgstr "استیک راست راست"
+
+msgid "Right stick up"
+msgstr "استیک راست بالا"
+
+msgid "Right trigger"
+msgstr "تریگر راست"
+
+#, csharp-format
+msgid "Right {0}"
+msgstr "راست {0}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:67
+msgid "Room controls"
+msgstr "کنترل‌های اتاق"
+
+#, csharp-format
+msgid "Room created: {0}."
+msgstr "اتاق ایجاد شد: {0}."
+
+msgid "Room host changed."
+msgstr "میزبان اتاق تغییر کرد."
+
+#, csharp-format
+msgid "Room name set to {0}."
+msgstr "نام اتاق روی {0} تنظیم شد."
+
+msgid "Room name, currently automatic"
+msgstr "نام اتاق، در حال حاضر خودکار"
+
+#, csharp-format
+msgid "Room name, currently {0}"
+msgstr "نام اتاق، در حال حاضر {0}"
+
+msgid "Room options updated."
+msgstr "گزینه‌های اتاق بروزرسانی شد."
+
+#, csharp-format
+msgid "Room removed: {0}."
+msgstr "اتاق حذف شد: {0}."
+
+msgid "Run complete. Better luck on the next attempt."
+msgstr "اجرا کامل شد. در تلاش بعدی موفق باشید."
+
+msgid "Run finished. Previous best remains unbeaten."
+msgstr "اجرا به پایان رسید. بهترین قبلی همچنان شکست‌ناپذیر باقی ماند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:140
+msgid "Rush hour"
+msgstr "ساعت شلوغی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:122
+msgid "Russia"
+msgstr "روسیه"
+
+msgid "Save changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Save changes before closing?"
+msgstr "تغییرات قبل از بستن ذخیره شوند؟"
+
+msgid "Save server"
+msgstr "ذخیره سرور"
+
+msgid "Save server changes"
+msgstr "ذخیره تغییرات سرور"
+
+msgid "Saved server host is empty."
+msgstr "میزبان سرور ذخیره‌شده خالی است."
+
+msgid "Screen reader rate is not a valid number and was reset to default."
+msgstr "سرعت صفحه‌خوان یک عدد معتبر نیست و به پیش‌فرض بازنشانی شد."
+
+msgid "Screen-reader calibration. You'll be presented with a short piece of text on the next screen. Press ENTER when your screen-reader finishes speaking it."
+msgstr "کالیبراسیون صفحه‌خوان. یک متن کوتاه در صفحه بعدی نمایش داده می‌شود. وقتی صفحه‌خوان خواندن آن را تمام کرد، اینتر را فشار دهید."
+
+msgid "Screen-reader calibration. You'll be presented with a short piece of text on the next screen. Swipe up when your screen-reader finishes speaking it."
+msgstr "کالیبراسیون صفحه‌خوان. یک متن کوتاه در صفحه بعدی نمایش داده می‌شود. وقتی صفحه‌خوان خواندن آن را تمام کرد، به بالا بکشید."
+
+msgid "Scroll Lock"
+msgstr "اسکرول لاک"
+
+#, csharp-format
+msgid "Section '{0}' requires an id."
+msgstr "بخش '{0}' به یک شناسه نیاز دارد."
+
+msgid "Section [torque_curve] must define at least two RPM points, or a preset with enough points."
+msgstr "بخش [torque_curve] باید حداقل دو نقطه RPM تعریف کند، یا یک پیش‌تنظیم با تعداد نقاط کافی."
+
+msgid "Section [transmission_atc] is unused because supported_types does not include 'atc'."
+msgstr "بخش [transmission_atc] استفاده نشده است زیرا supported_types شامل 'atc' نمی‌شود."
+
+msgid "Section [transmission_cvt] is unused because supported_types does not include 'cvt'."
+msgstr "بخش [transmission_cvt] استفاده نشده است زیرا supported_types شامل 'cvt' نمی‌شود."
+
+msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
+msgstr "بخش [transmission_dct] استفاده نشده است زیرا supported_types شامل 'dct' نمی‌شود."
+
+#, csharp-format
+msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
+msgstr "قطعه '{0}' به اتاق '{1}' ارجاع می‌دهد، اما هیچ بخش یا پیش‌تنظیم [room:{1}] مطابقی وجود ندارد."
+
+#, csharp-format
+msgid "Segment '{0}' references sound source '{1}', but no matching [sound:{1}] section exists."
+msgstr "قطعه '{0}' به منبع صدا '{1}' ارجاع می‌دهد، اما هیچ بخش [sound:{1}] مطابقی وجود ندارد."
+
+#, csharp-format
+msgid "Segment '{0}' references weather profile '{1}', but no matching [weather:{1}] section exists."
+msgstr "قطعه '{0}' به پروفایل آب‌وهوا '{1}' ارجاع می‌دهد، اما هیچ بخش [weather:{1}] مطابقی وجود ندارد."
+
+#, csharp-format
+msgid "Segment length '{0}' is below minimum {1} and will be clamped."
+msgstr "طول قطعه '{0}' کمتر از حداقل {1} است و محدود خواهد شد."
+
+msgid "Segment room id cannot be empty."
+msgstr "شناسه اتاق قطعه نمی‌تواند خالی باشد."
+
+msgid "Segment sound source list cannot be empty."
+msgstr "لیست منبع صدای قطعه نمی‌تواند خالی باشد."
+
+msgid "Segment weather profile id cannot be empty."
+msgstr "شناسه پروفایل آب‌وهوای قطعه نمی‌تواند خالی باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:108
+msgid "Select a custom track"
+msgstr "یک پیست سفارشی انتخاب کنید"
+
+msgid "Select a custom vehicle"
+msgstr "یک خودروی سفارشی انتخاب کنید"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Window\WinForms\FileDialogService.cs:25
+msgid "Select a media file"
+msgstr "یک فایل رسانه انتخاب کنید"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Window\WinForms\FileDialogService.cs:50
+msgid "Select a media folder"
+msgstr "یک پوشه رسانه انتخاب کنید"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:98
+msgid "Select a track"
+msgstr "یک پیست انتخاب کنید"
+
+msgid "Select a vehicle"
+msgstr "یک خودرو انتخاب کنید"
+
+#, csharp-format
+msgid "Select device: {0}"
+msgstr "انتخاب دستگاه: {0}"
+
+msgid "Select input device"
+msgstr "انتخاب دستگاه ورودی"
+
+msgid "Select the menu sound preset."
+msgstr "پیش‌تنظیم صدای منو را انتخاب کنید."
+
+msgid "Select the microphone used for communicator voice chat in multiplayer."
+msgstr "میکروفون مورد استفاده برای چت صوتی ارتباط‌دهنده در حالت چندنفره را انتخاب کنید."
+
+msgid "Select the player capacity for this room. The host can start with fewer players than the specified maximum players, so this is not a hard requirement."
+msgstr "ظرفیت بازیکن را برای این اتاق انتخاب کنید. میزبان می‌تواند با تعداد بازیکنان کمتری نسبت به حداکثر تعیین‌شده شروع کند، بنابراین این یک الزام قطعی نیست."
+
+msgid "Select transmission mode"
+msgstr "حالت دنده را انتخاب کنید"
+
+msgid "Select voice input device"
+msgstr "دستگاه ورودی صدا را انتخاب کنید"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:133
+msgid "Select which voice the current speech backend should use."
+msgstr "انتخاب کنید که موتور گفتار فعلی از کدام صدا استفاده کند."
+
+#, csharp-format
+msgid "Selected file: {0}"
+msgstr "فایل انتخاب‌شده: {0}"
+
+msgid "Semicolon"
+msgstr "سمی‌کولن"
+
+msgid "Seriously? You could have done much better than that."
+msgstr "جدی؟ می‌توانستید خیلی بهتر از این عمل کنید."
+
+msgid "Server IP or host cannot be empty."
+msgstr "IP یا میزبان سرور نمی‌تواند خالی باشد."
+
+msgid "Server IP or host, currently empty."
+msgstr "IP یا میزبان سرور، در حال حاضر خالی است."
+
+#, csharp-format
+msgid "Server IP or host, currently set to {0}"
+msgstr "IP یا میزبان سرور، در حال حاضر روی {0} تنظیم شده است"
+
+msgid "Server deleted."
+msgstr "سرور حذف شد."
+
+msgid "Server details"
+msgstr "جزئیات سرور"
+
+msgid "Server name, currently empty."
+msgstr "نام سرور، در حال حاضر خالی است."
+
+#, csharp-format
+msgid "Server name, currently set to {0}"
+msgstr "نام سرور، در حال حاضر روی {0} تنظیم شده است"
+
+msgid "Server port, currently empty."
+msgstr "پورت سرور، در حال حاضر خالی است."
+
+#, csharp-format
+msgid "Server port, currently set to {0}"
+msgstr "پورت سرور، در حال حاضر روی {0} تنظیم شده است"
+
+msgid "Server saved."
+msgstr "سرور ذخیره شد."
+
+msgid "Server settings"
+msgstr "تنظیمات سرور"
+
+#, csharp-format
+msgid "Server supported protocol versions: {0} to {1}"
+msgstr "نسخه‌های پروتکل پشتیبانی‌شده سرور: {0} تا {1}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:161
+msgid "Set frequency"
+msgstr "تنظیم فرکانس"
+
+msgid "Set race defaults such as copilot callouts, curve announcements, automatic information, laps, computer opponents, and difficulty."
+msgstr "تنظیم پیش‌فرض‌های مسابقه مانند اعلام‌های کمک‌راننده، اعلام پیچ‌ها، اطلاعات خودکار، دورها، حریفان کامپیوتری و سطح دشواری."
+
+msgid "Sets how early speed dependent curve announcements are spoken."
+msgstr "تعیین می‌کند که اعلام پیچ‌های وابسته به سرعت چقدر زودتر گفته شوند."
+
+msgid "Sets how many computer-controlled cars will race against you."
+msgstr "تعیین می‌کند که چند خودروی کنترل‌شونده توسط کامپیوتر با شما مسابقه دهند."
+
+msgid "Sets how many laps the race will be for single race, time trial, and multiplayer."
+msgstr "تعیین می‌کند که مسابقه برای حالت تکنفره، تایم تریل و چندنفره چند دور باشد."
+
+msgid "Sets how much small steering movement is ignored around center. Default is 1 degree."
+msgstr "تعیین می‌کند که چه مقدار از حرکات کوچک فرمان در اطراف مرکز نادیده گرفته شود. پیش‌فرض ۱ درجه است."
+
+#, csharp-format
+msgid "Settings file '{0}' could not be read as valid JSON. Defaults were used. Details: {1}"
+msgstr "فایل تنظیمات '{0}' به عنوان JSON معتبر خوانده نشد. از پیش‌فرض‌ها استفاده شد. جزئیات: {1}"
+
+#, csharp-format
+msgid "Settings file '{0}' is empty or invalid. Defaults were used."
+msgstr "فایل تنظیمات '{0}' خالی یا نامعتبر است. از پیش‌فرض‌ها استفاده شد."
+
+#, csharp-format
+msgid "Settings file '{0}' was not found. Default settings were created."
+msgstr "فایل تنظیمات '{0}' پیدا نشد. تنظیمات پیش‌فرض ایجاد شد."
+
+msgid "Settings file parse error"
+msgstr "خطای تجزیه فایل تنظیمات"
+
+msgid "Settings notice"
+msgstr "توجه تنظیمات"
+
+msgid "Setup wizard."
+msgstr "جادوگر راه‌اندازی."
+
+msgid "Shared lobby chat"
+msgstr "چت عمومی لابی"
+
+msgid "Shift"
+msgstr "شیفت"
+
+msgid "Shift gear down"
+msgstr "دنده پایین"
+
+msgid "Shift gear up"
+msgstr "دنده بالا"
+
+msgid "Shortcut binding id is missing and was ignored."
+msgstr "شناسه اتصال میانبر موجود نیست و نادیده گرفته شد."
+
+msgid "Shortcut mapping cancelled."
+msgstr "نگاشت میانبر لغو شد."
+
+#, csharp-format
+msgid "Shortcuts in {0} were reset to defaults."
+msgstr "میانبرهای {0} به پیش‌فرض بازنشانی شدند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Selection.cs:88
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:245
+msgid "Shuffle mode off."
+msgstr "حالت تصادفی خاموش."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Selection.cs:87
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:244
+msgid "Shuffle mode on."
+msgstr "حالت تصادفی روشن."
+
+msgid "Single race"
+msgstr "مسابقه تکنفره"
+
+msgid "Single race difficulty"
+msgstr "دشواری مسابقه تکنفره"
+
+msgid "Single race."
+msgstr "مسابقه تکنفره."
+
+msgid "Slash"
+msgstr "اسلش"
+
+msgid "Slider 1 minus"
+msgstr "اسلایدر ۱ منفی"
+
+msgid "Slider 1 plus"
+msgstr "اسلایدر ۱ مثبت"
+
+msgid "Slider 2 minus"
+msgstr "اسلایدر ۲ منفی"
+
+msgid "Slider 2 plus"
+msgstr "اسلایدر ۲ مثبت"
+
+msgid "Slowest (1.00 second)"
+msgstr "کندترین (۱.۰۰ ثانیه)"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
+msgid "Some custom track files are invalid and were skipped."
+msgstr "برخی از فایل‌های پیست سفارشی نامعتبر هستند و رد شدند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
+msgid "Some custom vehicle files are invalid and were skipped."
+msgstr "برخی از فایل‌های خودروی سفارشی نامعتبر هستند و رد شدند."
+
+msgid "Some settings were missing or invalid. Review these details."
+msgstr "برخی از تنظیمات وجود نداشت یا نامعتبر بود. این جزئیات را مرور کنید."
+
+#, csharp-format
+msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
+msgstr "صدا '{0}' به end_area '{1}' ارجاع می‌دهد، اما هیچ شناسه قطعه مطابقی وجود ندارد."
+
+#, csharp-format
+msgid "Sound '{0}' references start_area '{1}', but no matching segment id exists."
+msgstr "صدا '{0}' به start_area '{1}' ارجاع می‌دهد، اما هیچ شناسه قطعه مطابقی وجود ندارد."
+
+#, csharp-format
+msgid "Sound asset path escapes the track folder: {0}"
+msgstr "مسیر دارایی صوتی از پوشه پیست خارج می‌شود: {0}"
+
+#, csharp-format
+msgid "Sound key '{0}' contains invalid path '{1}'. Paths must be track-relative."
+msgstr "کلید صدا '{0}' حاوی مسیر نامعتبر '{1}' است. مسیرها باید نسبت به پیست باشند."
+
+#, csharp-format
+msgid "Sound key '{0}' must be a track-relative path and cannot escape the track folder."
+msgstr "کلید صدا '{0}' باید یک مسیر نسبی به پیست باشد و نمی‌تواند از پوشه پیست خارج شود."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:237
+msgid "Sound list for '{0}' cannot be empty."
+msgstr "لیست صدا برای '{0}' نمی‌تواند خالی باشد."
+
+msgid "Space"
+msgstr "فاصله"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:124
+msgid "Spain"
+msgstr "اسپانیا"
+
+msgid "Speaks currently active game rules for the current game room."
+msgstr "قوانین بازی فعال فعلی را برای اتاق بازی جاری اعلام می‌کند."
+
+msgid "Speaks the currently selected channel frequency."
+msgstr "فرکانس کانال انتخاب‌شده فعلی را اعلام می‌کند."
+
+msgid "Speaks your current ping while you are in multiplayer menus."
+msgstr "در حالی که در منوهای چندنفره هستید، پینگ فعلی شما را اعلام می‌کند."
+
+msgid "Speech"
+msgstr "گفتار"
+
+msgid "Speech backend"
+msgstr "موتور گفتار"
+
+#, csharp-format
+msgid "Speech backend: {0}"
+msgstr "موتور گفتار: {0}"
+
+msgid "Speech mode"
+msgstr "حالت گفتار"
+
+msgid "Speech rate"
+msgstr "سرعت گفتار"
+
+msgid "Speed dependent curve announcement lead time"
+msgstr "زمان پیش‌هشدار اعلام پیچ وابسته به سرعت"
+
+msgid "Start the engine"
+msgstr "روشن کردن موتور"
+
+msgid "Start the game"
+msgstr "شروع بازی"
+
+msgid "Steer left"
+msgstr "فرمان به چپ"
+
+msgid "Steer right"
+msgstr "فرمان به راست"
+
+msgid "Steering dead zone"
+msgstr "منطقه مرده فرمان"
+
+msgid "Stereo widening for own car"
+msgstr "گسترش استریو برای خودروی شخصی"
+
+msgid "Stop"
+msgstr "توقف"
+
+msgid "Stop the game"
+msgstr "توقف بازی"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:16
+msgid "Street adventure"
+msgstr "ماجراجویی خیابانی"
+
+msgid "Subtract"
+msgstr "تفریق"
+
+msgid "Summary of this run and your previous best:"
+msgstr "خلاصه این اجرا و بهترین قبلی شما:"
+
+msgid "Summary of your latest time trial run:"
+msgstr "خلاصه آخرین اجرای تایم تریل شما:"
+
+msgid "Surface loop sounds"
+msgstr "صداهای حلقه سطح"
+
+msgid "Surface loops"
+msgstr "حلقه‌های سطح"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:126
+msgid "Sweden"
+msgstr "سوئد"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:41
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:47
+msgid "Swipe left or right with two fingers to change."
+msgstr "برای تغییر با دو انگشت به چپ یا راست بکشید."
+
+msgid "Swipe left or right with two fingers to view."
+msgstr "برای مشاهده با دو انگشت به چپ یا راست بکشید."
+
+msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
+msgstr "با دو انگشت به بالا یا پایین بکشید تا ۱.۰ ثانیه تغییر کند، با دو انگشت به چپ یا راست بکشید تا ۰.۱ ثانیه تغییر کند و با سه انگشت به بالا یا پایین بکشید برای حداکثر یا حداقل."
+
+msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
+msgstr "با دو انگشت به بالا یا پایین بکشید تا ۱۰ واحد تغییر کند، با دو انگشت به چپ یا راست بکشید تا ۱ واحد تغییر کند و با سه انگشت به بالا یا پایین بکشید برای حداکثر یا حداقل."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:98
+msgid "Swipe up to change."
+msgstr "برای تغییر به بالا بکشید."
+
+msgid "Swipe up to enter a room name."
+msgstr "برای وارد کردن نام اتاق به بالا بکشید."
+
+msgid "Swipe up to select."
+msgstr "برای انتخاب به بالا بکشید."
+
+msgid "Swipe up to start."
+msgstr "برای شروع به بالا بکشید."
+
+msgid "Swipe up to toggle."
+msgstr "برای تغییر وضعیت به بالا بکشید."
+
+msgid "Switch between fixed distance and speed dependent curve announcements."
+msgstr "جابجایی بین اعلام پیچ بر اساس فاصله ثابت و وابسته به سرعت."
+
+msgid "Switch between metric and imperial units."
+msgstr "جابجایی بین واحدهای متریک و امپریال."
+
+msgid "Switches chat history to the next category in the shared lobby chat view."
+msgstr "تاریخچه چت را در نمای چت عمومی لابی به دسته بعدی می‌برد."
+
+msgid "Switches chat history to the previous category in the shared lobby chat view."
+msgstr "تاریخچه چت را در نمای چت عمومی لابی به دسته قبلی می‌برد."
+
+msgid "Switserland"
+msgstr "سوئیس"
+
+msgid "Switzerland"
+msgstr "سوئیس"
+
+msgid "Tab"
+msgstr "تب"
+
+msgid "That control is already in use."
+msgstr "آن کنترل در حال استفاده است."
+
+msgid "That crash count takes real effort, and not the good kind."
+msgstr "این تعداد تصادف واقعاً تلاش می‌طلبد، و نه از نوع خوبش."
+
+msgid "That key is already in use."
+msgstr "آن کلید در حال استفاده است."
+
+msgid "That key is reserved."
+msgstr "آن کلید رزرو شده است."
+
+msgid "That many hits should have taught you something by now."
+msgstr "این همه برخورد باید تا حالا چیزی به شما یاد می‌داد."
+
+msgid "That much contact should come with a repair bill."
+msgstr "این همه برخورد باید با یک قبض تعمیر همراه باشد."
+
+msgid "That shortcut is already in use in this shortcut group."
+msgstr "آن میانبر در این گروه میانبر در حال استفاده است."
+
+msgid "That was a suspicious amount of impact testing."
+msgstr "این مقدار مشکوکی از تست ضربه بود."
+
+msgid "That was already more wall than race."
+msgstr "این بیشتر دیوار بود تا مسابقه."
+
+msgid "That was enough crashing to make the suspension nervous."
+msgstr "اینقدر تصادف کافی بود تا سیستم تعلیق را عصبی کند."
+
+msgid "That was less racing and more recurring demolition."
+msgstr "این کمتر مسابقه بود و بیشتر تخریب مکرر."
+
+msgid "That was not a clean race. That was one long damage report."
+msgstr "این یک مسابقه تمیز نبود. این یک گزارش خسارت طولانی بود."
+
+msgid "That was not elegant, but it was only one mistake."
+msgstr "زیبا نبود، اما فقط یک اشتباه بود."
+
+msgid "That was one hit too many for a good lap."
+msgstr "برای یک دور خوب، یک برخورد زیاد بود."
+
+msgid "That was too much crashing for anyone to call it bad luck."
+msgstr "اینقدر تصادف زیاد بود که کسی نمی‌تواند اسمش را بدشانسی بگذارد."
+
+msgid "That was well past a small mistake and into a pattern."
+msgstr "این خیلی فراتر از یک اشتباه کوچک بود و به یک الگو تبدیل شده بود."
+
+#, csharp-format
+msgid ""
+"The SDL controller backend could not be initialized. The game has reverted to keyboard input.\n"
+"\n"
+"Reason: {0}"
+msgstr ""
+"موتور SDL برای دسته بازی راه‌اندازی نشد. بازی به ورودی صفحه‌کلید بازگشت.\n"
+"\n"
+"دلیل: {0}"
+
+msgid "The audio section is missing. Defaults were used for audio settings."
+msgstr "بخش صدا وجود ندارد. از پیش‌فرض‌ها برای تنظیمات صدا استفاده شد."
+
+msgid "The barriers are starting to recognize you."
+msgstr "گاردریل‌ها دارند شما را می‌شناسند."
+
+msgid "The barriers noticed you early."
+msgstr "گاردریل‌ها از همان اول متوجه شما شدند."
+
+msgid "The car deserved a calmer driver than that."
+msgstr "این ماشین لیاقت راننده آرام‌تری داشت."
+
+msgid "The car finished the race despite your repeated attempts to stop it."
+msgstr "ماشین با وجود تلاش‌های مکرر شما برای متوقف کردنش، مسابقه را تمام کرد."
+
+msgid "The car flinched, and so should you."
+msgstr "ماشین به خودش لرزید، شما هم باید همینطور باشید."
+
+msgid "The car was trying to race. You were trying something else."
+msgstr "ماشین سعی داشت مسابقه دهد. شما داشتید چیز دیگری را امتحان می‌کردید."
+
+msgid "The connection attempt failed for an unknown reason."
+msgstr "تلاش برای اتصال به دلیل نامعلومی ناموفق بود."
+
+msgid "The current race was stopped."
+msgstr "مسابقه فعلی متوقف شد."
+
+msgid "The entire settings file could not be parsed. Defaults were loaded. Review this error before continuing."
+msgstr "کل فایل تنظیمات تجزیه نشد. پیش‌فرض‌ها بارگذاری شد. قبل از ادامه این خطا را بررسی کنید."
+
+msgid "The following are the details of all players."
+msgstr "جزئیات همه بازیکنان به شرح زیر است."
+
+msgid "The following are the race details for all players."
+msgstr "جزئیات مسابقه برای همه بازیکنان به شرح زیر است."
+
+msgid "The game could not check for updates."
+msgstr "بازی نتوانست بروزرسانی را بررسی کند."
+
+msgid "The input section is missing. Defaults were used for input settings."
+msgstr "بخش ورودی وجود ندارد. از پیش‌فرض‌ها برای تنظیمات ورودی استفاده شد."
+
+#, csharp-format
+msgid "The key input.menuShortcuts.bindings[{0}].key has invalid value {1} and was ignored."
+msgstr "کلید input.menuShortcuts.bindings[{0}].key دارای مقدار نامعتبر {1} است و نادیده گرفته شد."
+
+#, csharp-format
+msgid "The key {0} has invalid value {1} and was ignored."
+msgstr "کلید {0} دارای مقدار نامعتبر {1} است و نادیده گرفته شد."
+
+#, csharp-format
+msgid "The key {0} has invalid value {1}, which was replaced with {2}."
+msgstr "کلید {0} دارای مقدار نامعتبر {1} است که با {2} جایگزین شد."
+
+msgid "The mechanics are going to need a very long evening."
+msgstr "مکانیک‌ها یک شب خیلی طولانی در پیش خواهند داشت."
+
+msgid "The network section is missing. Defaults were used for network settings."
+msgstr "بخش شبکه وجود ندارد. از پیش‌فرض‌ها برای تنظیمات شبکه استفاده شد."
+
+#, csharp-format
+msgid "The ping took {0} milliseconds."
+msgstr "پینگ {0} میلی‌ثانیه طول کشید."
+
+msgid "The race has finished."
+msgstr "مسابقه به پایان رسید."
+
+msgid "The race section is missing. Defaults were used for race settings."
+msgstr "بخش مسابقه وجود ندارد. از پیش‌فرض‌ها برای تنظیمات مسابقه استفاده شد."
+
+msgid "The requested help file could not be found."
+msgstr "فایل راهنمای درخواستی پیدا نشد."
+
+msgid "The requested help file could not be opened."
+msgstr "فایل راهنمای درخواستی باز نشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Errors.cs:19
+msgid "The selected custom track is invalid."
+msgstr "پیست سفارشی انتخاب‌شده نامعتبر است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:450
+msgid "The selected folder does not exist."
+msgstr "پوشه انتخاب‌شده وجود ندارد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:447
+msgid "The selected folder path is invalid."
+msgstr "مسیر پوشه انتخاب‌شده نامعتبر است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\RadioController\Load.cs:27
+msgid "The selected media file does not exist."
+msgstr "فایل رسانه انتخاب‌شده وجود ندارد."
+
+msgid "The selected track could not be loaded. The drive session was not started."
+msgstr "پیست انتخاب‌شده بارگذاری نشد. جلسه رانندگی شروع نشد."
+
+msgid "The selected vehicle does not support the selected transmission mode."
+msgstr "خودروی انتخاب‌شده از حالت دنده انتخاب‌شده پشتیبانی نمی‌کند."
+
+msgid "The server and client are compatible, but not an exact match."
+msgstr "سرور و کلاینت سازگار هستند، اما تطابق دقیق ندارند."
+
+msgid "The server refused the connection."
+msgstr "سرور اتصال را رد کرد."
+
+#, csharp-format
+msgid "The server refused the connection. Details: {0}."
+msgstr "سرور اتصال را رد کرد. جزئیات: {0}."
+
+msgid "The server supports an older protocol range. You can continue, but some features may behave differently."
+msgstr "سرور از یک محدوده پروتکل قدیمی‌تر پشتیبانی می‌کند. می‌توانید ادامه دهید، اما برخی ویژگی‌ها ممکن است متفاوت عمل کنند."
+
+msgid "The speech section is missing. Defaults were used for speech settings."
+msgstr "بخش گفتار وجود ندارد. از پیش‌فرض‌ها برای تنظیمات گفتار استفاده شد."
+
+msgid "The track gave you several chances, and you used them creatively."
+msgstr "پیست چندین شانس به شما داد و شما خلاقانه از آنها استفاده کردید."
+
+msgid "The ui section is missing. Defaults were used for menu settings."
+msgstr "بخش ui وجود ندارد. از پیش‌فرض‌ها برای تنظیمات منو استفاده شد."
+
+msgid "The update could not be installed automatically."
+msgstr "بروزرسانی به‌طور خودکار نصب نشد."
+
+msgid "The update download is complete."
+msgstr "دانلود بروزرسانی کامل شد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:93
+msgid "The update info file could not be read."
+msgstr "فایل اطلاعات بروزرسانی خوانده نشد."
+
+msgid "The update info file has an invalid version format."
+msgstr "فایل اطلاعات بروزرسانی دارای فرمت نسخه نامعتبر است."
+
+msgid "The update package could not be downloaded."
+msgstr "بسته بروزرسانی دانلود نشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:77
+msgid "The update package file was not found."
+msgstr "فایل بسته بروزرسانی پیدا نشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:110
+msgid "The updater could not be started."
+msgstr "بروزرسان شروع نشد."
+
+#, csharp-format
+msgid "The value '{0}' for the key '{1}' could not be parsed as Boolean. {2}"
+msgstr "مقدار '{0}' برای کلید '{1}' به عنوان بولی تجزیه نشد. {2}"
+
+msgid "There are no bots to remove."
+msgstr "هیچ رباتی برای حذف وجود ندارد."
+
+msgid "There was commitment, just not to staying on the road."
+msgstr "تعهد وجود داشت، فقط نه برای ماندن در جاده."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Dialogs\Dialog.cs:72
+msgid "This dialog is not cancelable. You need to choose an option."
+msgstr "این گفتگو قابل لغو نیست. باید یک گزینه را انتخاب کنید."
+
+msgid "This game room is unavailable because it is full."
+msgstr "این اتاق بازی به دلیل پر بودن در دسترس نیست."
+
+msgid "This server does not support required protocol negotiation. Please update your server."
+msgstr "این سرور از مذاکره پروتکل مورد نیاز پشتیبانی نمی‌کند. لطفاً سرور خود را بروزرسانی کنید."
+
+msgid "This shortcut menu has no bindings to reset."
+msgstr "این منوی میانبر هیچ اتصالی برای بازنشانی ندارد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
+msgid "This vehicle does not support the selected transmission mode."
+msgstr "این خودرو از حالت دنده انتخاب‌شده پشتیبانی نمی‌کند."
+
+msgid "This will remove the saved server entry from the list. Are you sure you would like to continue?"
+msgstr "با این کار ورودی سرور ذخیره‌شده از لیست حذف خواهد شد. آیا مطمئن هستید که می‌خواهید ادامه دهید؟"
+
+#, csharp-format
+msgid "This will restore all shortcuts in {0} to their default values."
+msgstr "این کار همه میانبرهای {0} را به مقادیر پیش‌فرض بازخواهد گرداند."
+
+msgid "This will restore every menu shortcut binding to its default value."
+msgstr "این کار هر اتصال میانبر منو را به مقدار پیش‌فرض خود بازخواهد گرداند."
+
+msgid "Throttle"
+msgstr "گاز"
+
+msgid "Throttle pedal direction"
+msgstr "جهت پدال گاز"
+
+msgid "Time trial"
+msgstr "تایم تریل"
+
+msgid "Time trial complete."
+msgstr "تایم تریل کامل شد."
+
+msgid "Time trial."
+msgstr "تایم تریل."
+
+msgid "Toggle media loop"
+msgstr "تغییر وضعیت حلقه رسانه"
+
+msgid "Toggle media shuffle"
+msgstr "تغییر وضعیت تصادفی رسانه"
+
+msgid "Toggle transmission"
+msgstr "تغییر وضعیت دنده"
+
+msgid "Toggle voice activation"
+msgstr "تغییر وضعیت فعال‌سازی صوتی"
+
+msgid "Toggles play and pause for streaming media."
+msgstr "پخش و توقف موقت را برای رسانه در حال پخش تغییر می‌دهد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Program.cs:158
+#: D:\top_speed\top_speed_net\TopSpeed\Window\GameWindow.cs:22
+msgid "Top Speed"
+msgstr "تاپ اسپید"
+
+#, csharp-format
+msgid "Top-level key '{0}' is not supported."
+msgstr "کلید سطح بالا '{0}' پشتیبانی نمی‌شود."
+
+#, csharp-format
+msgid "Torque curve RPM '{0:F0}' must be between 300 and 25000."
+msgstr "دور موتور منحنی گشتاور '{0:F0}' باید بین ۳۰۰ و ۲۵۰۰۰ باشد."
+
+#, csharp-format
+msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
+msgstr "مقدار گشتاور '{0:F1}' باید بین ۰ و ۵۰۰۰ نیوتن‌متر باشد."
+
+msgid "Toyota Camry"
+msgstr "تویوتا کمری"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Tracks\TrackLoadException.cs:27
+msgid "Track"
+msgstr "پیست"
+
+msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
+msgstr "بخش [meta] پیست باید یک ارجاع پروفایل آب‌وهوا تعریف کند، به عنوان مثال 'weather = default'."
+
+#, csharp-format
+msgid "Track changed to {0}."
+msgstr "پیست به {0} تغییر کرد."
+
+msgid "Track creation guide"
+msgstr "راهنمای ایجاد پیست"
+
+msgid "Track data is missing."
+msgstr "داده‌های پیست وجود ندارد."
+
+#, csharp-format
+msgid "Track default weather profile '{0}' does not match any [weather:{0}] section."
+msgstr "پروفایل آب‌وهوای پیش‌فرض پیست '{0}' با هیچ بخش [weather:{0}] مطابقت ندارد."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Parser.cs:55
+msgid "Track file not found: {0}"
+msgstr "فایل پیست پیدا نشد: {0}"
+
+#, csharp-format
+msgid "Track lap average: {0}."
+msgstr "میانگین دور پیست: {0}."
+
+msgid "Track load error"
+msgstr "خطای بارگذاری پیست"
+
+msgid "Track must include at least one [segment:<id>] section."
+msgstr "پیست باید حداقل یک بخش [segment:<id>] داشته باشد."
+
+msgid "Track package upload failed."
+msgstr "بارگذاری بسته پیست ناموفق بود."
+
+msgid "Track package uploaded successfully."
+msgstr "بسته پیست با موفقیت بارگذاری شد."
+
+#, csharp-format
+msgid "Track path must point to a .tsm file inside a track folder: {0}"
+msgstr "مسیر پیست باید به یک فایل .tsm درون یک پوشه پیست اشاره کند: {0}"
+
+msgid "Track source path is missing, so sound assets cannot be resolved."
+msgstr "مسیر منبع پیست وجود ندارد، بنابراین دارایی‌های صوتی قابل حل نیستند."
+
+msgid "Track upload canceled because the connection was lost."
+msgstr "بارگذاری پیست به دلیل قطع اتصال لغو شد."
+
+msgid "Track upload canceled."
+msgstr "بارگذاری پیست لغو شد."
+
+msgid "Track, currently random chosen."
+msgstr "پیست، در حال حاضر به‌طور تصادفی انتخاب می‌شود."
+
+#, csharp-format
+msgid "Track, currently {0}."
+msgstr "پیست، در حال حاضر {0}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\DownloadProgress.cs:40
+#, csharp-format
+msgid "Track: {0}"
+msgstr "پیست: {0}"
+
+msgid "Transmission not supported"
+msgstr "دنده پشتیبانی نمی‌شود"
+
+msgid "Turns media loop mode on or off."
+msgstr "حالت حلقه رسانه را روشن یا خاموش می‌کند."
+
+msgid "Turns media shuffle mode on or off."
+msgstr "حالت تصادفی رسانه را روشن یا خاموش می‌کند."
+
+msgid "Turns transmission controls on or off."
+msgstr "کنترل‌های دنده را روشن یا خاموش می‌کند."
+
+msgid "Turns voice activation mode on or off."
+msgstr "حالت فعال‌سازی صوتی را روشن یا خاموش می‌کند."
+
+msgid "Unable to activate the selected controller."
+msgstr "فعال‌سازی دسته بازی انتخاب‌شده ممکن نیست."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Mapping.cs:103
+msgid "Unable to apply the new shortcut."
+msgstr "اعمال میانبر جدید ممکن نیست."
+
+msgid "Unable to copy to clipboard."
+msgstr "کپی در کلیپ‌بورد ممکن نیست."
+
+msgid "Unable to open help file"
+msgstr "باز کردن فایل راهنما ممکن نیست"
+
+msgid "Unable to prepare custom track upload."
+msgstr "آماده‌سازی بارگذاری پیست سفارشی ممکن نیست."
+
+msgid "Unable to reach server."
+msgstr "دسترسی به سرور ممکن نیست."
+
+msgid "Unable to resolve custom track folder path."
+msgstr "حل مسیر پوشه پیست سفارشی ممکن نیست."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Helpers.cs:154
+msgid "Unable to resolve server address."
+msgstr "حل آدرس سرور ممکن نیست."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Helpers.cs:37
+#, csharp-format
+msgid "Unable to resolve server address: {0}"
+msgstr "حل آدرس سرور ممکن نیست: {0}"
+
+msgid "Unable to resolve server host."
+msgstr "حل میزبان سرور ممکن نیست."
+
+msgid "Underline"
+msgstr "زیرخط"
+
+msgid "Units"
+msgstr "واحدها"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:20
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:13
+msgid "Unknown"
+msgstr "ناشناخته"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:111
+msgid "Unknown error."
+msgstr "خطای ناشناخته."
+
+msgid "Unknown exception."
+msgstr "استثنای ناشناخته."
+
+#, csharp-format
+msgid "Unknown key '{0}' in section [{1}]."
+msgstr "کلید ناشناخته '{0}' در بخش [{1}]."
+
+msgid "Unknown parse error."
+msgstr "خطای تجزیه ناشناخته."
+
+#, csharp-format
+msgid "Unknown room key '{0}'."
+msgstr "کلید اتاق ناشناخته '{0}'."
+
+#, csharp-format
+msgid "Unknown room preset '{0}'."
+msgstr "پیش‌تنظیم اتاق ناشناخته '{0}'."
+
+#, csharp-format
+msgid "Unknown section '{0}'."
+msgstr "بخش ناشناخته '{0}'."
+
+#, csharp-format
+msgid "Unknown section [{0}]."
+msgstr "بخش ناشناخته [{0}]."
+
+#, csharp-format
+msgid "Unknown segment key '{0}'."
+msgstr "کلید قطعه ناشناخته '{0}'."
+
+#, csharp-format
+msgid "Unknown sound key '{0}'."
+msgstr "کلید صدای ناشناخته '{0}'."
+
+#, csharp-format
+msgid "Unknown torque curve preset '{0}'. Valid values: {1}."
+msgstr "پیش‌تنظیم منحنی گشتاور ناشناخته '{0}'. مقادیر معتبر: {1}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Updates\Service.cs:318
+msgid "Unknown update error."
+msgstr "خطای بروزرسانی ناشناخته."
+
+#, csharp-format
+msgid "Unknown weather key '{0}'."
+msgstr "کلید آب‌وهوای ناشناخته '{0}'."
+
+msgid "Unsupported peer-to-peer mode."
+msgstr "حالت همتا-به-همتا پشتیبانی نمی‌شود."
+
+#, csharp-format
+msgid "Unsupported settings schema version '{0}'. Expected {1}. Defaults were used."
+msgstr "نسخه طرحواره تنظیمات '{0}' پشتیبانی نمی‌شود. {1} مورد انتظار بود. از پیش‌فرض‌ها استفاده شد."
+
+#, csharp-format
+msgid "Unsupported transmission type '{0}' in supported_types. Valid values: atc, cvt, dct, manual."
+msgstr "نوع دنده پشتیبانی‌نشده '{0}' در supported_types. مقادیر معتبر: atc, cvt, dct, manual."
+
+#, csharp-format
+msgid "Unsupported transmission type '{0}'. Valid values: atc, cvt, dct, manual."
+msgstr "نوع دنده پشتیبانی‌نشده '{0}'. مقادیر معتبر: atc, cvt, dct, manual."
+
+msgid "Up"
+msgstr "بالا"
+
+msgid "Update check failed"
+msgstr "بررسی بروزرسانی ناموفق بود"
+
+msgid "Update check failed."
+msgstr "بررسی بروزرسانی ناموفق بود."
+
+#, csharp-format
+msgid "Update check failed: {0}"
+msgstr "بررسی بروزرسانی ناموفق بود: {0}"
+
+msgid "Update check is already in progress."
+msgstr "بررسی بروزرسانی در حال انجام است."
+
+msgid "Update check timed out."
+msgstr "بررسی بروزرسانی به پایان رسید."
+
+msgid "Update download complete."
+msgstr "دانلود بروزرسانی کامل شد."
+
+msgid "Update download failed."
+msgstr "دانلود بروزرسانی ناموفق بود."
+
+#, csharp-format
+msgid "Update package '{0}' was not found in the latest release."
+msgstr "بسته بروزرسانی '{0}' در آخرین انتشار پیدا نشد."
+
+msgid "Update package invalid"
+msgstr "بسته بروزرسانی نامعتبر است"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:76
+msgid "Update package missing"
+msgstr "بسته بروزرسانی موجود نیست"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:109
+msgid "Updater launch failed"
+msgstr "راه‌اندازی بروزرسان ناموفق بود"
+
+msgid "Updater not found"
+msgstr "بروزرسان پیدا نشد"
+
+msgid "Updater unavailable"
+msgstr "بروزرسان در دسترس نیست"
+
+msgid "Updates are not available on this platform."
+msgstr "بروزرسانی‌ها در این پلتفرم در دسترس نیست."
+
+msgid "Upload a local custom track"
+msgstr "بارگذاری یک پیست سفارشی محلی"
+
+msgid "Upload a local track"
+msgstr "بارگذاری یک پیست محلی"
+
+#, csharp-format
+msgid "Uploaded size: {0}"
+msgstr "حجم بارگذاری‌شده: {0}"
+
+msgid "Uploading track..."
+msgstr "در حال بارگذاری پیست..."
+
+msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
+msgstr "برای تغییر ۰.۱ ثانیه‌ای از چپ یا راست، برای تغییر ۱.۰ ثانیه‌ای از PAGE UP یا PAGE DOWN، برای حداکثر از HOME و برای حداقل از END استفاده کنید."
+
+msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
+msgstr "برای تغییر ۱ واحدی از چپ یا راست، برای تغییر ۱۰ واحدی از PAGE UP یا PAGE DOWN، برای حداکثر از HOME و برای حداقل از END استفاده کنید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:40
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:54
+msgid "Use LEFT or RIGHT to change."
+msgstr "برای تغییر از چپ یا راست استفاده کنید."
+
+msgid "Use both modifier keys"
+msgstr "استفاده از هر دو کلید ترکیبی"
+
+msgid "Use horn"
+msgstr "استفاده از بوق"
+
+msgid "Use motion sensors for steering"
+msgstr "استفاده از حسگرهای حرکتی برای فرمان"
+
+msgid "Use proxy for updates and changes"
+msgstr "استفاده از پروکسی برای بروزرسانی‌ها و تغییرات"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
+msgid "Vehicle"
+msgstr "خودرو"
+
+msgid "Vehicle creation guide"
+msgstr "راهنمای ایجاد خودرو"
+
+msgid "Vehicle engine"
+msgstr "موتور خودرو"
+
+msgid "Vehicle engine sounds"
+msgstr "صداهای موتور خودرو"
+
+msgid "Vehicle event sounds"
+msgstr "صداهای رویدادهای خودرو"
+
+msgid "Vehicle events"
+msgstr "رویدادهای خودرو"
+
+#, csharp-format
+msgid "Vehicle file not found: {0}"
+msgstr "فایل خودرو پیدا نشد: {0}"
+
+msgid "Vehicle file path is empty."
+msgstr "مسیر فایل خودرو خالی است."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:42
+msgid "View game rules"
+msgstr "مشاهده قوانین بازی"
+
+msgid "Voice"
+msgstr "صدا"
+
+msgid "Voice activation off"
+msgstr "فعال‌سازی صوتی خاموش"
+
+msgid "Voice activation on"
+msgstr "فعال‌سازی صوتی روشن"
+
+#, csharp-format
+msgid "Voice input device: {0}"
+msgstr "دستگاه ورودی صدا: {0}"
+
+msgid "Voice input set to automatic."
+msgstr "ورودی صدا روی خودکار تنظیم شد."
+
+#, csharp-format
+msgid "Voice input set to {0}."
+msgstr "ورودی صدا روی {0} تنظیم شد."
+
+#, csharp-format
+msgid "Voice: {0}"
+msgstr "صدا: {0}"
+
+msgid "Volume"
+msgstr "حجم صدا"
+
+msgid "Volume settings"
+msgstr "تنظیمات حجم صدا"
+
+msgid "Warning"
+msgstr "هشدار"
+
+msgid "Warning:"
+msgstr "هشدار:"
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:145
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:157
+msgid "Weather key '{0}' must be greater than zero."
+msgstr "کلید آب‌وهوا '{0}' باید بزرگتر از صفر باشد."
+
+#, csharp-format
+msgid "Weather key '{0}' must be non-negative."
+msgstr "کلید آب‌وهوا '{0}' نباید منفی باشد."
+
+msgid "Weather transition seconds must be finite and non-negative."
+msgstr "ثانیه‌های انتقال آب‌وهوا باید محدود و غیرمنفی باشند."
+
+msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
+msgstr "به راه‌اندازی تاپ اسپید خوش آمدید. در صفحه‌های بعدی زبان خود را انتخاب کرده و سپس سرعت گفتار صفحه‌خوان را کالیبره خواهید کرد."
+
+msgid "What would you like to do?"
+msgstr "چه کاری می‌خواهید انجام دهید؟"
+
+msgid "What's new"
+msgstr "چیزهای جدید"
+
+msgid "What's new in this version:"
+msgstr "چیزهای جدید در این نسخه:"
+
+msgid "When checked, Three-D audio uses HRTF spatialization for more realistic positioning."
+msgstr "وقتی علامت زده شود، صدای سه‌بعدی از فضایی‌سازی HRTF برای موقعیت‌دهی واقعی‌تر استفاده می‌کند."
+
+msgid "When checked, each menu automatically focuses and announces the first item after the title."
+msgstr "وقتی علامت زده شود، هر منو به‌طور خودکار روی اولین آیتم بعد از عنوان فوکوس کرده و آن را اعلام می‌کند."
+
+msgid "When checked, menu items can speak usage hints after a short delay."
+msgstr "وقتی علامت زده شود، آیتم‌های منو می‌توانند پس از یک تأخیر کوتاه نکات استفاده را بگویند."
+
+msgid "When checked, menu navigation sounds pan left or right based on the item position."
+msgstr "وقتی علامت زده شود، صداهای ناوبری منو بر اساس موقعیت آیتم به چپ یا راست پان می‌شوند."
+
+msgid "When checked, menu navigation wraps from the last item to the first."
+msgstr "وقتی علامت زده شود، ناوبری منو از آخرین آیتم به اولین آیتم چرخش می‌کند."
+
+msgid "When checked, new spoken messages interrupt the current screen reader speech. Menu titles and usage hints are not affected."
+msgstr "وقتی علامت زده شود، پیام‌های گفتاری جدید گفتار فعلی صفحه‌خوان را قطع می‌کنند. عناوین منو و نکات استفاده تحت تأثیر قرار نمی‌گیرند."
+
+msgid "When checked, random track selection can include custom tracks."
+msgstr "وقتی علامت زده شود، انتخاب تصادفی پیست می‌تواند شامل پیست‌های سفارشی شود."
+
+msgid "When checked, random vehicle selection can include custom vehicles."
+msgstr "وقتی علامت زده شود، انتخاب تصادفی خودرو می‌تواند شامل خودروهای سفارشی شود."
+
+msgid "When checked, steering uses Android motion sensors instead of drag gestures."
+msgstr "وقتی علامت زده شود، فرمان از حسگرهای حرکتی اندروید به جای ژست‌های کشیدنی استفاده می‌کند."
+
+msgid "When checked, the game checks for updates automatically after the logo."
+msgstr "وقتی علامت زده شود، بازی به‌طور خودکار پس از لوگو بروزرسانی را بررسی می‌کند."
+
+msgid "When checked, the game uses the device channel count and sample rate. Restart required."
+msgstr "وقتی علامت زده شود، بازی از تعداد کانال و نرخ نمونه دستگاه استفاده می‌کند. نیاز به راه‌اندازی مجدد است."
+
+msgid "When checked, the startup logo audio plays when the game launches."
+msgstr "وقتی علامت زده شود، صدای لوگوی شروع هنگام راه‌اندازی بازی پخش می‌شود."
+
+msgid "When checked, update checks, update downloads, and latest changes requests are routed through your proxy URL."
+msgstr "وقتی علامت زده شود، بررسی‌های بروزرسانی، دانلودهای بروزرسانی و درخواست‌های آخرین تغییرات از طریق آدرس پروکسی شما هدایت می‌شوند."
+
+msgid "When enabled, room hosts can upload and select custom tracks from this server."
+msgstr "وقتی فعال باشد، میزبانان اتاق می‌توانند پیست‌های سفارشی را از این سرور بارگذاری و انتخاب کنند."
+
+msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
+msgstr "وقتی فعال باشد، گاز، ترمز و فرمان به تدریج افزایش می‌یابند به جای اینکه فوراً به حداکثر مقدار برسند."
+
+msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
+msgstr "وقتی فعال باشد، برخورد خودروها غیرفعال می‌شود و خودروها می‌توانند از میان یکدیگر عبور کنند."
+
+msgid "Who is currently present in this game room"
+msgstr "چه کسانی در حال حاضر در این اتاق بازی حضور دارند"
+
+msgid "Who is online"
+msgstr "چه کسانی آنلاین هستند"
+
+msgid "X minus"
+msgstr "X منفی"
+
+msgid "X plus"
+msgstr "X مثبت"
+
+msgid "Y minus"
+msgstr "Y منفی"
+
+msgid "Y plus"
+msgstr "Y مثبت"
+
+msgid "Yamaha YZF-R1"
+msgstr "یاماها YZF-R1"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:286
+msgid "Yes"
+msgstr "بله"
+
+msgid "Yes, cancel the current game"
+msgstr "بله، بازی فعلی را لغو کن"
+
+msgid "Yes, delete this server"
+msgstr "بله، این سرور را حذف کن"
+
+msgid "Yes, leave this game room"
+msgstr "بله، این اتاق بازی را ترک کن"
+
+msgid "Yes, quit race preparation"
+msgstr "بله، آماده‌سازی مسابقه را ترک کن"
+
+msgid "Yes, quit the race"
+msgstr "بله، مسابقه را ترک کن"
+
+msgid "You are already using the latest version."
+msgstr "شما در حال حاضر از آخرین نسخه استفاده می‌کنید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:29
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:13
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:72
+msgid "You are not currently inside a game room."
+msgstr "شما در حال حاضر در یک اتاق بازی نیستید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:87
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:85
+msgid "You are not in a game room."
+msgstr "شما در یک اتاق بازی نیستید."
+
+msgid "You are now host of this room."
+msgstr "اکنون شما میزبان این اتاق هستید."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Install.cs:78
+msgid "You can download the update again or install manually."
+msgstr "می‌توانید بروزرسانی را دوباره دانلود کنید یا به‌صورت دستی نصب کنید."
+
+msgid "You crashed once."
+msgstr "یک بار تصادف کردید."
+
+#, csharp-format
+msgid "You crashed {0} times."
+msgstr "{0} بار تصادف کردید."
+
+#, csharp-format
+msgid "You finished in {0}."
+msgstr "شما در {0} به پایان رسیدید."
+
+msgid "You fought the course all the way through and still lost."
+msgstr "تمام مسیر با پیست جنگیدید و باز هم باختید."
+
+msgid "You gave the wall a quick hello and moved on."
+msgstr "یک سلام سریع به دیوار کردید و ادامه دادید."
+
+#, csharp-format
+msgid "You joined {0}."
+msgstr "شما به {0} پیوستید."
+
+msgid "You kept finding the wrong line and proving it."
+msgstr "مدام خط اشتباه را پیدا می‌کردید و آن را ثابت می‌کردید."
+
+msgid "You left race preparation and returned to room controls."
+msgstr "آماده‌سازی مسابقه را ترک کردید و به کنترل‌های اتاق بازگشتید."
+
+msgid "You left the game room."
+msgstr "اتاق بازی را ترک کردید."
+
+msgid "You made it through with one clear mistake and no excuse."
+msgstr "با یک اشتباه واضح و بدون بهانه از پس آن برآمدید."
+
+#, csharp-format
+msgid "You pressed {0}. Choose a modifier option."
+msgstr "شما {0} را فشار دادید. یک گزینه ترکیبی انتخاب کنید."
+
+msgid "You spent a lot of time negotiating with walls and losing."
+msgstr "زمان زیادی را صرف مذاکره با دیوارها کردید و باختید."
+
+msgid "You spent more time recovering than driving cleanly."
+msgstr "زمان بیشتری را صرف بازیابی کردید تا رانندگی تمیز."
+
+msgid "You treated the entire event like an extended crash montage."
+msgstr "با کل رویداد مثل یک مونتاژ تصادف طولانی برخورد کردید."
+
+msgid "You were driving like the brakes were optional."
+msgstr "جوری رانندگی می‌کردید که انگار ترمز اختیاری است."
+
+msgid "You were driving like the corners had something against you."
+msgstr "جوری رانندگی می‌کردید که انگار پیچ‌ها با شما مشکل دارند."
+
+msgid "You were supposed to follow the road, not sample it repeatedly."
+msgstr "قرار بود جاده را دنبال کنید، نه اینکه مرتباً از آن نمونه‌برداری کنید."
+
+#, csharp-format
+msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
+msgstr "نسخه پروتکل کلاینت شما {0} است. این سرور از نسخه‌های پروتکل {1} پشتیبانی می‌کند."
+
+#, csharp-format
+msgid "Your client protocol version: {0}"
+msgstr "نسخه پروتکل کلاینت شما: {0}"
+
+msgid "Your latest run did not beat the best record. Details:"
+msgstr "آخرین اجرای شما بهترین رکورد را نشکست. جزئیات:"
+
+msgid "Your new result details:"
+msgstr "جزئیات نتیجه جدید شما:"
+
+#, csharp-format
+msgid "Your quickest lap this run: {0}."
+msgstr "سریع‌ترین دور شما در این اجرا: {0}."
+
+#, csharp-format
+msgid "Your time: {0}."
+msgstr "زمان شما: {0}."
+
+msgid "Z minus"
+msgstr "Z منفی"
+
+msgid "Z plus"
+msgstr "Z مثبت"
+
+msgid "add bot request"
+msgstr "درخواست افزودن ربات"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:21
+msgid "all"
+msgstr "همه"
+
+msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr "auto_downshift_rpm باید ۰ یا بین idle_rpm و rev_limiter باشد."
+
+msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr "auto_shift_rpm باید ۰ یا بین idle_rpm و rev_limiter باشد."
+
+msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr "auto_upshift_rpm باید ۰ یا بین idle_rpm و rev_limiter باشد."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
+msgid "automatic"
+msgstr "خودکار"
+
+msgid "available"
+msgstr "در دسترس"
+
+msgid "both"
+msgstr "هر دو"
+
+msgid "braille"
+msgstr "بریل"
+
+msgid "check box"
+msgstr "کادر انتخاب"
+
+msgid "checked"
+msgstr "علامت‌دار"
+
+msgid "connections"
+msgstr "اتصالات"
+
+msgid "controller"
+msgstr "دسته بازی"
+
+msgid "curves only"
+msgstr "فقط پیچ‌ها"
+
+msgid "custom track list request"
+msgstr "درخواست لیست پیست سفارشی"
+
+msgid "default"
+msgstr "پیش‌فرض"
+
+#, csharp-format
+msgid "default ({0})"
+msgstr "پیش‌فرض ({0})"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:54
+msgid "disabled"
+msgstr "غیرفعال"
+
+msgid "easy"
+msgstr "آسان"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+msgid "enabled"
+msgstr "فعال"
+
+msgid "end_area cannot be empty."
+msgstr "end_area نمی‌تواند خالی باشد."
+
+msgid "fixed distance"
+msgstr "فاصله ثابت"
+
+msgid "game cancel request"
+msgstr "درخواست لغو بازی"
+
+msgid "game room"
+msgstr "اتاق بازی"
+
+msgid "game rules change request"
+msgstr "درخواست تغییر قوانین بازی"
+
+#, csharp-format
+msgid "gear_ratios count ({0}) must match number_of_gears ({1})."
+msgstr "تعداد gear_ratios ({0}) باید با number_of_gears ({1}) مطابقت داشته باشد."
+
+msgid "gear_ratios must be non-increasing from gear 1 to last gear."
+msgstr "gear_ratios باید از دنده ۱ تا دنده آخر غیرصعودی باشد."
+
+#, csharp-format
+msgid "gear_ratios[{0}] is outside allowed range 0.20 to 8.00."
+msgstr "gear_ratios[{0}] خارج از محدوده مجاز ۰.۲۰ تا ۸.۰۰ است."
+
+msgid "global chat"
+msgstr "چت عمومی"
+
+msgid "hard"
+msgstr "سخت"
+
+msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
+msgstr "high_speed_steer_full_kph باید بزرگتر از high_speed_steer_start_kph باشد."
+
+msgid "imperial"
+msgstr "امپریال"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:172
+msgid "keyboard"
+msgstr "صفحه‌کلید"
+
+msgid "lap count change request"
+msgstr "درخواست تغییر تعداد دور"
+
+msgid "laps only"
+msgstr "فقط دورها"
+
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_atc]."
+msgstr "launch_coupling_max باید بزرگتر یا مساوی launch_coupling_min در [transmission_atc] باشد."
+
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_cvt]."
+msgstr "launch_coupling_max باید بزرگتر یا مساوی launch_coupling_min در [transmission_cvt] باشد."
+
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
+msgstr "launch_coupling_max باید بزرگتر یا مساوی launch_coupling_min در [transmission_dct] باشد."
+
+msgid "launch_rpm must not exceed rev_limiter."
+msgstr "launch_rpm نباید از rev_limiter تجاوز کند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:12
+msgid "main room"
+msgstr "اتاق اصلی"
+
+msgid "max_rpm must be greater than or equal to idle_rpm."
+msgstr "max_rpm باید بزرگتر یا مساوی idle_rpm باشد."
+
+msgid "metric"
+msgstr "متریک"
+
+msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
+msgstr "min_coupled_rise_full_rpm_per_s باید بزرگتر یا مساوی min_coupled_rise_idle_rpm_per_s باشد."
+
+msgid "missing"
+msgstr "موجود نیست"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:127
+msgid "none"
+msgstr "هیچ"
+
+msgid "normal"
+msgstr "عادی"
+
+msgid "not checked"
+msgstr "علامت‌دار نشده"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:45
+msgid "off"
+msgstr "خاموش"
+
+msgid "on"
+msgstr "روشن"
+
+msgid "one-on-one"
+msgstr "یک به یک"
+
+msgid "online players request"
+msgstr "درخواست بازیکنان آنلاین"
+
+msgid "panel"
+msgstr "پنل"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:214
+msgid "paused"
+msgstr "متوقف شده"
+
+msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
+msgstr "peak_torque_rpm باید بین idle_rpm و rev_limiter باشد."
+
+msgid "percent"
+msgstr "درصد"
+
+#, csharp-format
+msgid "pitch_curve_exponent must be between {0} and {1}."
+msgstr "pitch_curve_exponent باید بین {0} و {1} باشد."
+
+msgid "player count change request"
+msgstr "درخواست تغییر تعداد بازیکنان"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Results.cs:50
+msgid "player {0}"
+msgstr "بازیکن {0}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playback.cs:32
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:213
+msgid "playing"
+msgstr "در حال پخش"
+
+msgid "race preparation withdrawal"
+msgstr "خروج از آماده‌سازی مسابقه"
+
+msgid "race start request"
+msgstr "درخواست شروع مسابقه"
+
+msgid "race with bots"
+msgstr "مسابقه با ربات"
+
+msgid "race without bots"
+msgstr "مسابقه بدون ربات"
+
+msgid "racing"
+msgstr "مسابقه دادن"
+
+msgid "radio button"
+msgstr "دکمه رادیویی"
+
+msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
+msgstr "ratio_max باید بزرگتر یا مساوی ratio_min در [transmission_cvt] باشد."
+
+msgid "ready state"
+msgstr "وضعیت آمادگی"
+
+msgid "remove bot request"
+msgstr "درخواست حذف ربات"
+
+msgid "rev_limiter must be between idle_rpm and max_rpm."
+msgstr "rev_limiter باید بین idle_rpm و max_rpm باشد."
+
+msgid "room chat"
+msgstr "چت اتاق"
+
+msgid "room create request"
+msgstr "درخواست ایجاد اتاق"
+
+msgid "room events"
+msgstr "رویدادهای اتاق"
+
+msgid "room join request"
+msgstr "درخواست پیوستن به اتاق"
+
+msgid "room leave request"
+msgstr "درخواست ترک اتاق"
+
+msgid "room list request"
+msgstr "درخواست لیست اتاق‌ها"
+
+msgid "room state refresh request"
+msgstr "درخواست بازخوانی وضعیت اتاق"
+
+msgid "shift on demand"
+msgstr "شیفت بر اساس تقاضا"
+
+msgid "shift_freq must be between idle_freq and top_freq."
+msgstr "shift_freq باید بین idle_freq و top_freq باشد."
+
+msgid "shift_on_demand is ignored because supported_types does not include an automatic transmission type."
+msgstr "shift_on_demand نادیده گرفته می‌شود زیرا supported_types شامل نوع دنده اتوماتیک نیست."
+
+msgid "slider"
+msgstr "اسلایدر"
+
+msgid "speech only"
+msgstr "فقط گفتار"
+
+msgid "speech with braille"
+msgstr "گفتار با بریل"
+
+msgid "speed dependent"
+msgstr "وابسته به سرعت"
+
+msgid "start_area cannot be empty."
+msgstr "start_area نمی‌تواند خالی باشد."
+
+msgid "switch"
+msgstr "سوئیچ"
+
+msgid "target_rpm_high must be greater than or equal to target_rpm_low in [transmission_cvt]."
+msgstr "target_rpm_high باید بزرگتر یا مساوی target_rpm_low در [transmission_cvt] باشد."
+
+msgid "this menu"
+msgstr "این منو"
+
+msgid "tire_aspect must be between 5 and 150."
+msgstr "tire_aspect باید بین ۵ و ۱۵۰ باشد."
+
+msgid "tire_circumference must be between 0.2 and 5.0 meters."
+msgstr "tire_circumference باید بین ۰.۲ و ۵.۰ متر باشد."
+
+msgid "tire_rim must be between 4 and 30 inches."
+msgstr "tire_rim باید بین ۴ و ۳۰ اینچ باشد."
+
+msgid "tire_width must be between 20 and 450 mm."
+msgstr "tire_width باید بین ۲۰ و ۴۵۰ میلی‌متر باشد."
+
+msgid "top_freq must be greater than or equal to idle_freq."
+msgstr "top_freq باید بزرگتر یا مساوی idle_freq باشد."
+
+#, csharp-format
+msgid "top_speed_gear must be within 1..{0}."
+msgstr "top_speed_gear باید در محدوده ۱..{0} باشد."
+
+msgid "track change request"
+msgstr "درخواست تغییر پیست"
+
+msgid "track upload cancel"
+msgstr "لغو بارگذاری پیست"
+
+msgid "track upload chunk"
+msgstr "قطعه بارگذاری پیست"
+
+msgid "track upload completion"
+msgstr "تکمیل بارگذاری پیست"
+
+msgid "track upload start"
+msgstr "شروع بارگذاری پیست"
+
+msgid "unknown"
+msgstr "ناشناخته"
+
+#, csharp-format
+msgid "{0:F0} feet traveled"
+msgstr "{0:F0} فوت طی شده"
+
+#, csharp-format
+msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
+msgstr "{0:F0} کیلومتر بر ساعت، {1:F0} دور در دقیقه، {2:F0} اسب بخار"
+
+#, csharp-format
+msgid "{0:F0} meters traveled"
+msgstr "{0:F0} متر طی شده"
+
+#, csharp-format
+msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
+msgstr "{0:F0} مایل بر ساعت، {1:F0} دور در دقیقه، {2:F0} اسب بخار"
+
+#, csharp-format
+msgid "{0:F1} kilometers traveled"
+msgstr "{0:F1} کیلومتر طی شده"
+
+#, csharp-format
+msgid "{0:F1} miles traveled"
+msgstr "{0:F1} مایل طی شده"
+
+#, csharp-format
+msgid "{0} dialog"
+msgstr "گفتگوی {0}"
+
+#, csharp-format
+msgid "{0} dialog {1}"
+msgstr "گفتگوی {0} {1}"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:181
+msgid "{0} ({1})"
+msgstr "{0} ({1})"
+
+#, csharp-format
+msgid "{0} ({1}, {2})"
+msgstr "{0} ({1}, {2})"
+
+#, csharp-format
+msgid "{0} MHz"
+msgstr "{0} مگاهرتز"
+
+#, csharp-format
+msgid "{0} Message of the day: {1}."
+msgstr "{0} پیام روز: {1}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Poll.cs:196
+msgid "{0} Socket error: {1}."
+msgstr "{0} خطای سوکت: {1}."
+
+#, csharp-format
+msgid "{0} and {1}"
+msgstr "{0} و {1}"
+
+#, csharp-format
+msgid "{0} changed ready state."
+msgstr "{0} وضعیت آمادگی را تغییر داد."
+
+#, csharp-format
+msgid "{0} crashes."
+msgstr "{0} تصادف."
+
+#, csharp-format
+msgid "{0} game with {1} people, maximum {2} players"
+msgstr "بازی {0} با {1} نفر، حداکثر {2} بازیکن"
+
+#, csharp-format
+msgid "{0} has no shortcuts."
+msgstr "{0} میانبری ندارد."
+
+#, csharp-format
+msgid "{0} joined the current room."
+msgstr "{0} به اتاق فعلی پیوست."
+
+#, csharp-format
+msgid "{0} key '{1}': {2}"
+msgstr "{0} کلید '{1}': {2}"
+
+#, csharp-format
+msgid "{0} lap"
+msgstr "{0} دور"
+
+#, csharp-format
+msgid "{0} laps"
+msgstr "{0} دور"
+
+#, csharp-format
+msgid "{0} left the current room."
+msgstr "{0} اتاق فعلی را ترک کرد."
+
+#, csharp-format
+msgid "{0} milliseconds"
+msgstr "{0} میلی‌ثانیه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:37
+msgid "{0} minute"
+msgstr "{0} دقیقه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:38
+msgid "{0} minutes"
+msgstr "{0} دقیقه"
+
+#, csharp-format
+msgid "{0} must be a float between 0 and 2 seconds."
+msgstr "{0} باید یک عدد اعشاری بین ۰ و ۲ ثانیه باشد."
+
+#, csharp-format
+msgid "{0} must be between {1} and {2}."
+msgstr "{0} باید بین {1} و {2} باشد."
+
+#, csharp-format
+msgid "{0} panel"
+msgstr "پنل {0}"
+
+#, csharp-format
+msgid "{0} people are connected."
+msgstr "{0} نفر متصل هستند."
+
+#, csharp-format
+msgid "{0} percent"
+msgstr "{0} درصد"
+
+#, csharp-format
+msgid "{0} percent."
+msgstr "{0} درصد."
+
+#, csharp-format
+msgid "{0} player"
+msgstr "{0} بازیکن"
+
+#, csharp-format
+msgid "{0} players"
+msgstr "{0} بازیکن"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:42
+msgid "{0} second"
+msgstr "{0} ثانیه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:43
+#, csharp-format
+msgid "{0} seconds"
+msgstr "{0} ثانیه"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:88
+#, csharp-format
+msgid "{0} set to {1}."
+msgstr "{0} روی {1} تنظیم شد."
+
+#, csharp-format
+msgid "{0} was added to the current room."
+msgstr "{0} به اتاق فعلی اضافه شد."
+
+#, csharp-format
+msgid "{0} was removed from the current room."
+msgstr "{0} از اتاق فعلی حذف شد."
+
+#, csharp-format
+msgid "{0}%"
+msgstr "{0}%"
+
+#, csharp-format
+msgid "{0}, host"
+msgstr "{0}، میزبان"
+
+#, csharp-format
+msgid "{0}, in progress"
+msgstr "{0}، در حال انجام"
+
+#, csharp-format
+msgid "{0}, room is full"
+msgstr "{0}، اتاق پر است"
+
+#, csharp-format
+msgid "{0}, {1} game with {2} people, maximum {3} players"
+msgstr "{0}، بازی {1} با {2} نفر، حداکثر {3} بازیکن"
+
+#, csharp-format
+msgid "{0}, {1}, {2}."
+msgstr "{0}، {1}، {2}."
+
+#, csharp-format
+msgid "{0}, {1}."
+msgstr "{0}، {1}."
+
+#, csharp-format
+msgid "{0}: completed in position {1} with a time of {2}."
+msgstr "{0}: در جایگاه {1} با زمان {2} به پایان رساند."
+
+#, csharp-format
+msgid "{0}: crossed in position {1} after {2}."
+msgstr "{0}: در جایگاه {1} پس از {2} عبور کرد."
+
+#, csharp-format
+msgid "{0}: finished in position {1} with {2}."
+msgstr "{0}: در جایگاه {1} با {2} به پایان رساند."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:67
+#, csharp-format
+msgid "{0}: position {1}, time {2}."
+msgstr "{0}: جایگاه {1}، زمان {2}."

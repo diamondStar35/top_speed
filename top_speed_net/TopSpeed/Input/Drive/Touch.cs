@@ -25,6 +25,7 @@ namespace TopSpeed.Input
             bool previousPlayerInfo = false,
             bool nextPlayerInfo = false,
             bool repeatPlayerInfo = false,
+            bool reportFuel = false,
             bool pitThisTime = false)
         {
             _touchSteering = ClampRange(steering, -100, 100);
@@ -37,6 +38,7 @@ namespace TopSpeed.Input
             _touchStartEngine = startEngine;
             _touchReportDistance = reportDistance;
             _touchReportSpeed = reportSpeed;
+            _touchReportFuel = reportFuel;
             _touchCurrentGear = currentGear;
             _touchCurrentLapNr = currentLapNr;
             _touchCurrentRacePerc = currentRacePerc;
@@ -62,6 +64,7 @@ namespace TopSpeed.Input
             _touchStartEngine = false;
             _touchReportDistance = false;
             _touchReportSpeed = false;
+            _touchReportFuel = false;
             _touchCurrentGear = false;
             _touchCurrentLapNr = false;
             _touchCurrentRacePerc = false;

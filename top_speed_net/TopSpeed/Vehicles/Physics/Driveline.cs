@@ -137,7 +137,7 @@ namespace TopSpeed.Vehicles
             return (speedMps / wheelCircumference) * 60f * gearRatio * _finalDriveRatio;
         }
 
-        private void StallEngine()
+        private void StallEngine(bool playFailureCue = true)
         {
             _engineStalled = true;
             _stallTimer = 0f;
@@ -150,7 +150,8 @@ namespace TopSpeed.Vehicles
                 _soundThrottle.Stop();
 
             _vibration?.StopEffect(VibrationEffectType.Engine);
-            _soundBadSwitch.Play(loop: false);
+            if (playFailureCue)
+                _soundBadSwitch.Play(loop: false);
         }
 
         private void ClearStallState()
@@ -177,7 +178,8 @@ namespace TopSpeed.Vehicles
                 gear: GetDriveGear(),
                 inReverse: _gear == ReverseGear,
                 isNeutral: true,
-                _track.GetResistanceEnvironment());
+                _track.GetResistanceEnvironment(),
+                massKgOverride: _massKg);
             var passiveDecel = ((resistance.AerodynamicForceN + resistance.RollingResistanceForceN + resistance.WheelSideDragForceN) / Math.Max(1f, _massKg)) * 3.6f;
             _speedDiff = -(brakeDecel + passiveDecel) * elapsed;
             _lastDriveRpm = 0f;

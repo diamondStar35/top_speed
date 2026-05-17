@@ -11,6 +11,40 @@ namespace TopSpeed.Vehicles.Parsing
             values.RevLimiter = RequireFloatRange(section, "rev_limiter", 800f, 18000f, issues);
             values.AutoShiftRpm = RequireFloatRange(section, "auto_shift_rpm", 0f, 18000f, issues);
             values.EngineBraking = RequireFloatRange(section, "engine_braking", 0f, 1.5f, issues);
+            values.FuelTankCapacityLiters = OptionalFloat(section, "fuel", issues)
+                ?? VehicleDefinition.FuelTankCapacityDefaultLiters;
+            values.EngineDisplacementLiters = OptionalFloat(section, "engine_displacement_l", issues)
+                ?? VehicleDefinition.EngineDisplacementDefaultLiters;
+            if (values.FuelTankCapacityLiters < TopSpeed.Physics.Fuel.FuelDefaults.MinTankCapacityLiters
+                || values.FuelTankCapacityLiters > TopSpeed.Physics.Fuel.FuelDefaults.MaxTankCapacityLiters)
+            {
+                var entry = section.Entries.TryGetValue("fuel", out var fuelEntry)
+                    ? fuelEntry
+                    : section.Entries["engine_braking"];
+                issues.Add(new VehicleTsvIssue(
+                    VehicleTsvIssueSeverity.Error,
+                    entry.Line,
+                    Localized(
+                        "fuel must be between {0} and {1} liters.",
+                        TopSpeed.Physics.Fuel.FuelDefaults.MinTankCapacityLiters,
+                        TopSpeed.Physics.Fuel.FuelDefaults.MaxTankCapacityLiters)));
+            }
+
+            if (values.EngineDisplacementLiters < TopSpeed.Physics.Fuel.FuelDefaults.MinEngineDisplacementLiters
+                || values.EngineDisplacementLiters > TopSpeed.Physics.Fuel.FuelDefaults.MaxEngineDisplacementLiters)
+            {
+                var entry = section.Entries.TryGetValue("engine_displacement_l", out var displacementEntry)
+                    ? displacementEntry
+                    : section.Entries["engine_braking"];
+                issues.Add(new VehicleTsvIssue(
+                    VehicleTsvIssueSeverity.Error,
+                    entry.Line,
+                    Localized(
+                        "engine_displacement_l must be between {0} and {1} liters.",
+                        TopSpeed.Physics.Fuel.FuelDefaults.MinEngineDisplacementLiters,
+                        TopSpeed.Physics.Fuel.FuelDefaults.MaxEngineDisplacementLiters)));
+            }
+
             values.MassKg = RequireFloatRange(section, "mass_kg", 20f, 10000f, issues);
             values.DrivetrainEfficiency = RequireFloatRange(section, "drivetrain_efficiency", 0.1f, 1.0f, issues);
             values.LaunchRpm = RequireFloatRange(section, "launch_rpm", 0f, 18000f, issues);

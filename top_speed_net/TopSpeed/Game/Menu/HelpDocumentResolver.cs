@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using TopSpeed.Localization;
 
 namespace TopSpeed.Game
@@ -53,22 +52,11 @@ namespace TopSpeed.Game
             if (string.IsNullOrWhiteSpace(localeFolder))
                 return string.Empty;
 
-            try
-            {
-                var culture = CultureInfo.GetCultureInfo(localeFolder);
-                if (!string.IsNullOrWhiteSpace(culture.Parent?.Name)
-                    && !string.Equals(culture.Parent.Name, culture.Name, System.StringComparison.OrdinalIgnoreCase)
-                    && !string.Equals(culture.Parent.Name, "iv", System.StringComparison.OrdinalIgnoreCase))
-                {
-                    return culture.Parent.Name;
-                }
-            }
-            catch (CultureNotFoundException)
-            {
-            }
-
             var normalized = LanguageCode.Normalize(localeFolder);
-            return LanguageCode.ParentOf(normalized);
+            var parent = LanguageCode.ParentOf(normalized);
+            return string.IsNullOrWhiteSpace(parent)
+                ? string.Empty
+                : CanonicalizeLocaleName(parent);
         }
 
         private static string CanonicalizeLocaleName(string normalizedLanguageCode)

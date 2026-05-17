@@ -37,6 +37,7 @@ namespace TopSpeed.Vehicles
             _soundEngine.Stop();
             _soundThrottle?.Stop();
             _soundStop?.Stop();
+            _soundFuelWarning.Stop();
             _vibration?.StopEffect(VibrationEffectType.Spring);
         }
 
@@ -44,6 +45,11 @@ namespace TopSpeed.Vehicles
         {
             if (_combustionState == EngineCombustionState.Starting)
                 return;
+            if (!CanStartEngineWithFuel())
+            {
+                PlayFuelStartBlockedCue();
+                return;
+            }
             if (_engineRotationState != EngineRotationState.Stopped)
             {
                 ResumeCombustion();
@@ -86,6 +92,11 @@ namespace TopSpeed.Vehicles
         {
             if (_combustionState == EngineCombustionState.Starting)
                 return;
+            if (!CanStartEngineWithFuel())
+            {
+                PlayFuelStartBlockedCue();
+                return;
+            }
             if (_engineRotationState != EngineRotationState.Stopped)
             {
                 ResumeCombustion();
@@ -113,6 +124,11 @@ namespace TopSpeed.Vehicles
         {
             if (_combustionState == EngineCombustionState.Starting)
                 return;
+            if (!CanStartEngineWithFuel())
+            {
+                PlayFuelStartBlockedCue();
+                return;
+            }
 
             var delay = Math.Max(0f, _soundStart.LengthSeconds - 0.1f);
             PushEvent(EventType.CarStart, delay);
@@ -162,6 +178,7 @@ namespace TopSpeed.Vehicles
             _soundStart.Stop();
             _soundStop?.Restart(loop: false);
             _soundThrottle?.Stop();
+            _soundFuelWarning.Stop();
             _vibration?.StopEffect(VibrationEffectType.Engine);
         }
 
@@ -233,6 +250,8 @@ namespace TopSpeed.Vehicles
             _soundBrake.Stop();
             _soundBrake.SeekToStart();
             _soundBrake.SetPanPercent(0);
+            _soundFuelWarning.Stop();
+            _soundFuelWarning.SeekToStart();
             if (_hasWipers == 1 && _soundWipers != null)
             {
                 _soundWipers.Stop();
@@ -311,6 +330,7 @@ namespace TopSpeed.Vehicles
         public virtual void Stop()
         {
             _soundBrake.Stop();
+            _soundFuelWarning.Stop();
             _soundWipers?.Stop();
             StopSurfaceLoops();
             _vibration?.StopEffect(VibrationEffectType.CurbLeft);
@@ -332,6 +352,7 @@ namespace TopSpeed.Vehicles
         public virtual void Quiet()
         {
             _soundBrake.Stop();
+            _soundFuelWarning.Stop();
             SetPlayerEngineVolumePercent(_soundEngine, 90);
             _soundThrottle?.Stop();
             for (var i = 0; i < _soundBackfireVariants.Length; i++)
@@ -366,12 +387,19 @@ namespace TopSpeed.Vehicles
             _speedDiff = 0f;
             _engine.StopEngine();
             SetEngineRotationState(EngineRotationState.Stopped);
+            _soundFuelWarning.Stop();
             StopSurfaceLoops();
             SetState(CarState.Stopped);
         }
 
         private void ResumeCombustion()
         {
+            if (!CanStartEngineWithFuel())
+            {
+                PlayFuelStartBlockedCue();
+                return;
+            }
+
             _soundStop?.Stop();
             _soundStart.Stop();
             _switchingGear = 0;

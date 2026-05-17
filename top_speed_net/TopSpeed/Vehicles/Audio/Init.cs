@@ -26,6 +26,7 @@ namespace TopSpeed.Vehicles
             _soundWipers = audio.Wipers;
             _soundBump = audio.Bump;
             _soundBadSwitch = audio.BadSwitch;
+            _soundFuelWarning = audio.FuelWarning;
             _soundBackfireVariants = audio.BackfireVariants;
             _soundBackfire = _soundBackfireVariants.Length > 0 ? _soundBackfireVariants[0] : null;
             _hasWipers = audio.HasWipers ? 1 : 0;
@@ -72,6 +73,7 @@ namespace TopSpeed.Vehicles
             _soundSnow.SetDopplerFactor(0f);
             _soundMiniCrash.SetDopplerFactor(0f);
             _soundBump.SetDopplerFactor(0f);
+            _soundFuelWarning.SetDopplerFactor(0f);
             _soundWipers?.SetDopplerFactor(0f);
             _soundStop?.SetDopplerFactor(0f);
 
@@ -85,6 +87,7 @@ namespace TopSpeed.Vehicles
             _soundMiniCrash.SetStereoWidening(enableStereoWidening);
             _soundBump.SetStereoWidening(enableStereoWidening);
             _soundBadSwitch.SetStereoWidening(enableStereoWidening);
+            _soundFuelWarning.SetStereoWidening(enableStereoWidening);
             _soundWipers?.SetStereoWidening(enableStereoWidening);
             _soundStop?.SetStereoWidening(enableStereoWidening);
             _soundAsphalt.SetStereoWidening(enableStereoWidening);

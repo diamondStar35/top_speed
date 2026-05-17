@@ -2,6 +2,7 @@ using System;
 using TopSpeed.Data;
 using TopSpeed.Drive.Session.Audio;
 using TopSpeed.Input;
+using TopSpeed.Physics.Fuel;
 using TopSpeed.Physics.Powertrain;
 using TopSpeed.Protocol;
 using TopSpeed.Tracks;
@@ -60,6 +61,7 @@ namespace TopSpeed.Vehicles
         private float _surfaceTractionFactor;
         private float _topSpeed;
         private float _massKg;
+        private float _baseMassKgAtFullTank;
         private float _drivetrainEfficiency;
         private float _engineBrakingTorqueNm;
         private float _tireGripCoefficient;
@@ -150,6 +152,16 @@ namespace TopSpeed.Vehicles
         private float _lastAudioElapsed;
         private float _lateralVelocityMps;
         private float _yawRateRad;
+        private float _fuelTankCapacityLiters;
+        private float _fuelEngineDisplacementLiters;
+        private float _fuelBurnLitersPerHour;
+        private float _fuelEstimatedRangeMeters;
+        private float _fuelEfficiencyLitersPer100Km;
+        private float _fuelEfficiencyMpg;
+        private bool _fuelLow;
+        private bool _fuelEmpty;
+        private float _fuelPowerScale = 1f;
+        private float _fuelWarningPulseTimerSeconds;
 
         private Source _soundEngine = default!;
         private Source? _soundThrottle;
@@ -168,6 +180,7 @@ namespace TopSpeed.Vehicles
         private Source? _soundWipers;
         private Source _soundBump = default!;
         private Source _soundBadSwitch = default!;
+        private Source _soundFuelWarning = default!;
         private Source? _soundBackfire;
         private Source[] _soundBackfireVariants = Array.Empty<Source>();
         private int _lastPlayerEngineVolumePercent = -1;
@@ -176,6 +189,8 @@ namespace TopSpeed.Vehicles
 
         private EngineModel _engine = default!;
         private Config _powertrainConfiguration = default!;
+        private FuelConfig _fuelConfiguration = new FuelConfig(FuelDefaults.DefaultTankCapacityLiters, FuelDefaults.DefaultEngineDisplacementLiters);
+        private FuelRuntimeState _fuelState = new FuelRuntimeState(FuelDefaults.DefaultTankCapacityLiters, 0f);
         private TransmissionPolicy _transmissionPolicy = TransmissionPolicy.Default;
         private AutomaticDrivelineTuning _automaticTuning = AutomaticDrivelineTuning.Default;
         private TransmissionType _primaryTransmissionType = TransmissionType.Atc;

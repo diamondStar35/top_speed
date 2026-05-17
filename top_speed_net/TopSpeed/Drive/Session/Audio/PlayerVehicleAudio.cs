@@ -22,6 +22,7 @@ namespace TopSpeed.Drive.Session.Audio
             Source? wipers,
             Source bump,
             Source badSwitch,
+            Source fuelWarning,
             Source[] backfireVariants)
         {
             Engine = engine ?? throw new ArgumentNullException(nameof(engine));
@@ -40,6 +41,7 @@ namespace TopSpeed.Drive.Session.Audio
             Wipers = wipers;
             Bump = bump ?? throw new ArgumentNullException(nameof(bump));
             BadSwitch = badSwitch ?? throw new ArgumentNullException(nameof(badSwitch));
+            FuelWarning = fuelWarning ?? throw new ArgumentNullException(nameof(fuelWarning));
             BackfireVariants = backfireVariants ?? throw new ArgumentNullException(nameof(backfireVariants));
         }
 
@@ -59,6 +61,7 @@ namespace TopSpeed.Drive.Session.Audio
         public Source? Wipers { get; }
         public Source Bump { get; }
         public Source BadSwitch { get; }
+        public Source FuelWarning { get; }
         public Source[] BackfireVariants { get; }
         public bool HasWipers => Wipers != null;
 
@@ -80,6 +83,7 @@ namespace TopSpeed.Drive.Session.Audio
             DisposeSound(Wipers);
             DisposeSound(Bump);
             DisposeSound(BadSwitch);
+            DisposeSound(FuelWarning);
             DisposeSounds(BackfireVariants);
         }
 

@@ -45,7 +45,7 @@ public class SdlActivityBase : Activity
     Theme = "@style/TopSpeed.Fullscreen",
     MainLauncher = true,
     Exported = true,
-    ScreenOrientation = ScreenOrientation.SensorLandscape,
+    ScreenOrientation = ScreenOrientation.Landscape,
     ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.KeyboardHidden)]
 public class MainActivity : SdlActivityBase
 {
@@ -70,6 +70,7 @@ public class MainActivity : SdlActivityBase
         RequestWindowFeature(WindowFeatures.NoTitle);
         Window?.AddFlags(WindowManagerFlags.Fullscreen);
         Window?.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+        EnforceLandscapeOrientation();
         _assetRoot = EnsureRuntimeAssets();
         _motionSteering = new AndroidMotionSteeringSource(this);
         _speechDispatcher = new AndroidSpeechThreadDispatcher();
@@ -82,6 +83,7 @@ public class MainActivity : SdlActivityBase
         global::TopSpeed.Runtime.DocumentOpenRuntime.SetOpener(_documentOpener);
         global::TopSpeed.Runtime.MicrophonePermissionRuntime.SetService(_microphonePermission);
         base.OnCreate(savedInstanceState);
+        EnforceLandscapeOrientation();
         ApplyImmersiveMode();
     }
 
@@ -95,6 +97,7 @@ public class MainActivity : SdlActivityBase
     protected override void OnResume()
     {
         base.OnResume();
+        EnforceLandscapeOrientation();
     }
 
     protected override void OnPause()
@@ -325,6 +328,18 @@ public class MainActivity : SdlActivityBase
         catch
         {
             // Window insets controller may not be available during early activity creation.
+        }
+    }
+
+    private void EnforceLandscapeOrientation()
+    {
+        try
+        {
+            RequestedOrientation = ScreenOrientation.Landscape;
+        }
+        catch
+        {
+            // Ignore orientation assignment failures during activity startup.
         }
     }
 

@@ -22,30 +22,36 @@ namespace TopSpeed.Physics.Powertrain
         public static float AerodynamicDecelKph(
             Config config,
             float speedMps,
-            in ResistanceEnvironment environment)
+            in ResistanceEnvironment environment,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
-            return (ResistanceModel.AerodynamicForce(config, speedMps, in environment) / Math.Max(1f, config.MassKg)) * 3.6f;
+            var massKg = Math.Max(1f, massKgOverride.GetValueOrDefault(config.MassKg));
+            return (ResistanceModel.AerodynamicForce(config, speedMps, in environment) / massKg) * 3.6f;
         }
 
         public static float RollingResistanceDecelKph(
             Config config,
             float speedMps,
-            float rollingResistanceModifier)
+            float rollingResistanceModifier,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
-            return (ResistanceModel.RollingResistanceForce(config, speedMps, rollingResistanceModifier) / Math.Max(1f, config.MassKg)) * 3.6f;
+            var massKg = Math.Max(1f, massKgOverride.GetValueOrDefault(config.MassKg));
+            return (ResistanceModel.RollingResistanceForce(config, speedMps, rollingResistanceModifier, massKg) / massKg) * 3.6f;
         }
 
         public static float WheelSideDragDecelKph(
             Config config,
-            float speedMps)
+            float speedMps,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
-            return (ResistanceModel.WheelSideDragForce(config, speedMps) / Math.Max(1f, config.MassKg)) * 3.6f;
+            var massKg = Math.Max(1f, massKgOverride.GetValueOrDefault(config.MassKg));
+            return (ResistanceModel.WheelSideDragForce(config, speedMps) / massKg) * 3.6f;
         }
 
         public static float EngineBrakeDecelKph(
@@ -55,11 +61,13 @@ namespace TopSpeed.Physics.Powertrain
             float speedMps,
             float surfaceBrakeModifier,
             float currentEngineRpm,
-            float? driveRatioOverride = null)
+            float? driveRatioOverride = null,
+            float? massKgOverride = null)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
-            if (config.EngineBrakingTorqueNm <= 0f || config.MassKg <= 0f || config.WheelRadiusM <= 0f)
+            var massKg = Math.Max(1f, massKgOverride.GetValueOrDefault(config.MassKg));
+            if (config.EngineBrakingTorqueNm <= 0f || massKg <= 0f || config.WheelRadiusM <= 0f)
                 return 0f;
 
             var rpmRange = config.RevLimiter - config.IdleRpm;
@@ -83,7 +91,7 @@ namespace TopSpeed.Physics.Powertrain
             var totalDriveRatio = ratio * config.FinalDriveRatio;
             var reflectedEngineInertia = config.EngineInertiaKgm2 * totalDriveRatio * totalDriveRatio;
             var equivalentMassFromEngineInertia = reflectedEngineInertia / Math.Max(0.0001f, config.WheelRadiusM * config.WheelRadiusM);
-            var effectiveMass = config.MassKg + Math.Max(0f, equivalentMassFromEngineInertia);
+            var effectiveMass = massKg + Math.Max(0f, equivalentMassFromEngineInertia);
             var decelMps2 = (wheelForce / effectiveMass) * surfaceBrakeModifier;
             return Math.Max(0f, decelMps2 * 3.6f);
         }

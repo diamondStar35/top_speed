@@ -104,6 +104,24 @@ namespace TopSpeed.Core.Multiplayer
             }
         }
 
+        private void PlayCommunicatorFrequencyAdjustSound()
+        {
+            var sound = GetNetworkSound(ref _state.Audio.CommunicatorFrequencyAdjustSound, "comm/freq_adjust.wav");
+            if (sound == null)
+                return;
+
+            try
+            {
+                _audio.PlayOneShot(sound, AudioEngineOptions.UiBusName, configure: handle =>
+                {
+                    handle.SetVolumePercent(_settings, AudioVolumeCategory.Communicator, 100);
+                });
+            }
+            catch
+            {
+            }
+        }
+
         private SoundAsset? GetNetworkSound(ref SoundAsset? cache, string fileName)
         {
             if (cache != null)

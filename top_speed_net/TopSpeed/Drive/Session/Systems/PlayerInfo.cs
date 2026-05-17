@@ -9,6 +9,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly DriveInput _input;
         private readonly Func<int> _getMaxPlayerIndex;
         private readonly Func<int, bool> _hasPlayer;
+        private readonly Func<int, string>? _getPlayerName;
         private readonly Func<int, string> _getVehicleName;
         private readonly Func<bool> _isStarted;
         private readonly Func<int, int>? _getPlayerPercent;
@@ -22,6 +23,7 @@ namespace TopSpeed.Drive.Session.Systems
             DriveInput input,
             Func<int> getMaxPlayerIndex,
             Func<int, bool> hasPlayer,
+            Func<int, string>? getPlayerName,
             Func<int, string> getVehicleName,
             Func<bool> isStarted,
             Action<string> speakText,
@@ -32,6 +34,7 @@ namespace TopSpeed.Drive.Session.Systems
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _getMaxPlayerIndex = getMaxPlayerIndex ?? throw new ArgumentNullException(nameof(getMaxPlayerIndex));
             _hasPlayer = hasPlayer ?? throw new ArgumentNullException(nameof(hasPlayer));
+            _getPlayerName = getPlayerName;
             _getVehicleName = getVehicleName ?? throw new ArgumentNullException(nameof(getVehicleName));
             _isStarted = isStarted ?? throw new ArgumentNullException(nameof(isStarted));
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
@@ -44,15 +47,7 @@ namespace TopSpeed.Drive.Session.Systems
             _updateExtra?.Invoke();
 
             var maxPlayerIndex = _getMaxPlayerIndex();
-            if (_input.TryGetPlayerInfo(out var infoPlayer)
-                && infoPlayer >= 0
-                && infoPlayer <= maxPlayerIndex
-                && _hasPlayer(infoPlayer))
-            {
-                _speakText(_getVehicleName(infoPlayer));
-            }
-
-            if (_getPlayerPercent == null || !_isStarted())
+            if (!_isStarted())
                 return;
 
             if (_input.TryGetPlayerPosition(out var positionPlayer)
@@ -60,11 +55,8 @@ namespace TopSpeed.Drive.Session.Systems
                 && positionPlayer <= maxPlayerIndex
                 && _hasPlayer(positionPlayer))
             {
-                _speakText(SessionText.FormatPlayerPercentage(_getPlayerPercent(positionPlayer)));
+                SpeakPlayerDetails(positionPlayer);
             }
-
-            if (!_isStarted())
-                return;
 
             if (_input.GetPreviousPlayerInfoRequest())
                 SelectAndSpeakPlayer(maxPlayerIndex, -1);
@@ -145,23 +137,40 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void SpeakPlayerDetails(int playerIndex)
         {
-            var playerLabel = LocalizationService.Format(LocalizationService.Mark("player {0}"), playerIndex + 1);
+            var playerName = ResolvePlayerName(playerIndex);
+            var playerNumber = playerIndex + 1;
             var vehicleName = LocalizationService.Translate(_getVehicleName(playerIndex));
-            if (_getPlayerPercent == null)
+            if (_getPlayerPercent != null)
             {
+                var percent = SessionText.FormatPlayerPercentage(_getPlayerPercent(playerIndex));
                 _speakText(LocalizationService.Format(
-                    LocalizationService.Mark("{0}, {1}."),
-                    playerLabel,
+                    LocalizationService.Mark("{0}: {1}, {2}, using {3}."),
+                    playerName,
+                    playerNumber,
+                    percent,
                     vehicleName));
                 return;
             }
 
-            var percent = SessionText.FormatPlayerPercentage(_getPlayerPercent(playerIndex));
             _speakText(LocalizationService.Format(
-                LocalizationService.Mark("{0}, {1}, {2}."),
-                playerLabel,
-                percent,
+                LocalizationService.Mark("{0}: {1}, using {2}."),
+                playerName,
+                playerNumber,
                 vehicleName));
+        }
+
+        private string ResolvePlayerName(int playerIndex)
+        {
+            if (_getPlayerName != null)
+            {
+                var resolved = _getPlayerName(playerIndex);
+                if (!string.IsNullOrWhiteSpace(resolved))
+                    return resolved.Trim();
+            }
+
+            return LocalizationService.Format(
+                LocalizationService.Mark("Player {0}"),
+                playerIndex + 1);
         }
     }
 }

@@ -67,11 +67,9 @@ namespace TopSpeed.Input
 
         public static bool IsReservedKey(Key key)
         {
-            if (key >= Key.F1 && key <= Key.F8)
-                return true;
             if (key == Key.F11)
                 return true;
-            if (key >= Key.D1 && key <= Key.D8)
+            if (key >= Key.D1 && key <= Key.D0)
                 return true;
             return key == Key.LeftAlt || key == Key.BothAlt;
         }

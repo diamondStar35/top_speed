@@ -53,6 +53,7 @@ namespace TopSpeed.Core.Multiplayer
             }
 
             _state.Communicator.FrequencyTenths = frequencyTenths;
+            PlayCommunicatorFrequencyAdjustSound();
             _speech.Speak(LocalizationService.Format(
                 LocalizationService.Mark("Frequency set to {0} MHz."),
                 FormatCommunicatorFrequency(frequencyTenths)));

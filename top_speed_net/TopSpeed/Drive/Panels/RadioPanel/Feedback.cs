@@ -4,7 +4,6 @@ using TopSpeed.Audio;
 using TopSpeed.Core;
 using TopSpeed.Core.Settings;
 using TopSpeed.Input;
-using TopSpeed.Localization;
 using TS.Audio;
 namespace TopSpeed.Drive.Panels
 {
@@ -32,7 +31,7 @@ namespace TopSpeed.Drive.Panels
 
             _radio.SetVolumePercent(target);
             if (target != previous)
-                _announce(LocalizationService.Format(LocalizationService.Mark("{0}%"), target));
+                _announce(target + "%");
             PlayFeedback(feedbackSound);
         }
 

@@ -83,6 +83,7 @@ namespace TopSpeed.Input
         private AxisOrButton _startEngine;
         private AxisOrButton _reportDistance;
         private AxisOrButton _reportSpeed;
+        private AxisOrButton _reportFuel;
         private AxisOrButton _trackName;
         private AxisOrButton _pause;
         private AxisOrButton _pit;
@@ -104,14 +105,7 @@ namespace TopSpeed.Input
         private Key _kbStartEngine;
         private Key _kbReportDistance;
         private Key _kbReportSpeed;
-        private Key _kbPlayer1;
-        private Key _kbPlayer2;
-        private Key _kbPlayer3;
-        private Key _kbPlayer4;
-        private Key _kbPlayer5;
-        private Key _kbPlayer6;
-        private Key _kbPlayer7;
-        private Key _kbPlayer8;
+        private Key _kbReportFuel;
         private Key _kbTrackName;
         private Key _kbPlayerNumber;
         private Key _kbPause;
@@ -124,6 +118,8 @@ namespace TopSpeed.Input
         private Key _kbPlayerPos6;
         private Key _kbPlayerPos7;
         private Key _kbPlayerPos8;
+        private Key _kbPlayerPos9;
+        private Key _kbPlayerPos0;
         private Key _kbFlush;
         private State _center;
         private State _lastController;
@@ -154,6 +150,7 @@ namespace TopSpeed.Input
         private bool _touchStartEngine;
         private bool _touchReportDistance;
         private bool _touchReportSpeed;
+        private bool _touchReportFuel;
         private bool _touchCurrentGear;
         private bool _touchCurrentLapNr;
         private bool _touchCurrentRacePerc;

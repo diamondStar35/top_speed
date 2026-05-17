@@ -225,7 +225,7 @@ namespace TopSpeed.Core.Updates
 
         private async Task<InfoDoc?> ReadInfoAsync(CancellationToken cancellationToken)
         {
-            using (var response = await _http.GetAsync(ResolveProxyUrl(_config.InfoUrl), cancellationToken).ConfigureAwait(false))
+            using (var response = await _http.GetAsync(_config.InfoUrl, cancellationToken).ConfigureAwait(false))
             {
                 if (!response.IsSuccessStatusCode)
                     return null;
@@ -238,7 +238,7 @@ namespace TopSpeed.Core.Updates
 
         private async Task<ReleaseDoc?> ReadLatestReleaseAsync(CancellationToken cancellationToken)
         {
-            using (var response = await _http.GetAsync(ResolveProxyUrl(_config.LatestReleaseApiUrl), cancellationToken).ConfigureAwait(false))
+            using (var response = await _http.GetAsync(_config.LatestReleaseApiUrl, cancellationToken).ConfigureAwait(false))
             {
                 if (!response.IsSuccessStatusCode)
                     return null;

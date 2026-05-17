@@ -19,7 +19,7 @@ namespace TopSpeed.Game
         {
             if (!_settings.UseUpdateProxy)
             {
-                _speech.Speak(LocalizationService.Mark("Enable proxy for updates and changes first."));
+                _speech.Speak(LocalizationService.Mark("Enable update download proxy first."));
                 return;
             }
 

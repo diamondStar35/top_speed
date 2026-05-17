@@ -24,6 +24,7 @@ namespace TopSpeed.Vehicles.Audio
             Source soundMiniCrash,
             Source soundBump,
             Source soundBadSwitch,
+            Source soundFuelWarning,
             Source? soundWipers,
             Source soundCrash,
             Source? soundBackfire,
@@ -62,6 +63,7 @@ namespace TopSpeed.Vehicles.Audio
             SetPlayerEventVolumePercent(settings, soundMiniCrash, 100);
             SetPlayerEventVolumePercent(settings, soundBump, 100);
             SetPlayerEventVolumePercent(settings, soundBadSwitch, 100);
+            SetPlayerEventVolumePercent(settings, soundFuelWarning, 100);
             SetPlayerEventVolumePercent(settings, soundWipers, 100);
             SetPlayerEventVolumePercent(settings, soundCrash, 100);
             SetPlayerEventVolumePercent(settings, soundBackfire, 100);
@@ -181,6 +183,7 @@ namespace TopSpeed.Vehicles.Audio
             Source? soundThrottle,
             Source soundBrake,
             Source soundHorn,
+            Source soundFuelWarning,
             Source? soundWipers,
             Source soundAsphalt,
             Source soundGravel,
@@ -195,6 +198,8 @@ namespace TopSpeed.Vehicles.Audio
                 soundBrake.Stop();
             if (soundHorn.IsPlaying)
                 soundHorn.Stop();
+            if (soundFuelWarning.IsPlaying)
+                soundFuelWarning.Stop();
             stopResetBackfireVariants();
             soundWipers?.Stop();
             switch (surface)

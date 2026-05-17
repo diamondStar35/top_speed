@@ -69,11 +69,11 @@ namespace TopSpeed.Menu
                     () => _settings.AutoCheckUpdates,
                     value => _settingsActions.UpdateSetting(() => _settings.AutoCheckUpdates = value),
                     hintProvider: HintToggleProvider(LocalizationService.Mark("When checked, the game checks for updates automatically after the logo."))),
-                new CheckBox(LocalizationService.Mark("Use proxy for updates and changes"),
+                new CheckBox(LocalizationService.Mark("Use proxy for update downloads"),
                     () => _settings.UseUpdateProxy,
                     value => _settingsActions.SetUseUpdateProxy(value),
                     onChanged: _ => RefreshGeneralSettingsMenu(),
-                    hintProvider: HintToggleProvider(LocalizationService.Mark("When checked, update checks, update downloads, and latest changes requests are routed through your proxy URL.")))
+                    hintProvider: HintToggleProvider(LocalizationService.Mark("When checked, update package downloads are routed through your proxy URL.")))
             };
 
             if (_settings.UseUpdateProxy)
@@ -82,7 +82,7 @@ namespace TopSpeed.Menu
                     BuildProxyUrlItemText,
                     MenuAction.None,
                     onActivate: _settingsActions.EditUpdateProxyUrl,
-                    hintProvider: HintSelectProvider(LocalizationService.Mark("Edit the proxy URL used for update checks, downloads, and latest changes requests."))));
+                    hintProvider: HintSelectProvider(LocalizationService.Mark("Edit the proxy URL used for update package downloads."))));
             }
 
             return items;

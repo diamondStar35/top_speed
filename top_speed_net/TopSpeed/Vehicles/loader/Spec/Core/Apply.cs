@@ -26,6 +26,8 @@ namespace TopSpeed.Vehicles.Loader
             def.RevLimiter = spec.RevLimiter;
             def.AutoShiftRpm = spec.AutoShiftRpm;
             def.EngineBraking = spec.EngineBraking;
+            def.FuelTankCapacityLiters = spec.FuelTankCapacityLiters;
+            def.EngineDisplacementLiters = spec.EngineDisplacementLiters;
             def.MassKg = spec.MassKg;
             def.DrivetrainEfficiency = spec.DrivetrainEfficiency;
             def.EngineBrakingTorqueNm = spec.EngineBrakingTorqueNm;

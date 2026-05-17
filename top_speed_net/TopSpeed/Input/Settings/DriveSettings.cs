@@ -198,6 +198,7 @@ namespace TopSpeed.Input
                 [DriveIntent.StartEngine] = AxisOrButton.Button10,
                 [DriveIntent.ReportDistance] = AxisOrButton.Button11,
                 [DriveIntent.ReportSpeed] = AxisOrButton.Button12,
+                [DriveIntent.ReportFuel] = AxisOrButton.Button15,
                 [DriveIntent.TrackName] = AxisOrButton.Button13,
                 [DriveIntent.Pause] = AxisOrButton.Button14,
                 [DriveIntent.Pit] = AxisOrButton.Button15
@@ -225,6 +226,7 @@ namespace TopSpeed.Input
                 [DriveIntent.StartEngine] = Key.Return,
                 [DriveIntent.ReportDistance] = Key.C,
                 [DriveIntent.ReportSpeed] = Key.S,
+                [DriveIntent.ReportFuel] = Key.X,
                 [DriveIntent.TrackName] = Key.F9,
                 [DriveIntent.Pause] = Key.P,
                 [DriveIntent.Pit] = Key.I

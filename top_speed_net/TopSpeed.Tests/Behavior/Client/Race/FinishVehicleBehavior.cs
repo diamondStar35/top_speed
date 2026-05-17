@@ -171,6 +171,7 @@ public sealed class FinishVehicleBehaviorTests
         public float FuelEfficiencyMpg => 0f;
         public bool FuelLow => false;
         public bool FuelEmpty => false;
+        public void AddFuelLiters(float liters) { }
 
         public void Initialize(float positionX = 0, float positionY = 0) { }
         public void SetPosition(float positionX, float positionY) { }

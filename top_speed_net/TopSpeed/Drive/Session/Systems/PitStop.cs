@@ -374,6 +374,21 @@ namespace TopSpeed.Drive.Session.Systems
                 && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))
                 AddFuelFromCan(elapsed);
 
+            // Can 1: early finish — tank full or can empty before scheduled end
+            if (_audioPhase1 && !_audioPhase7 && _canFuelRemainingLiters <= 0f
+                && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))
+            {
+                _audioPhase7 = true;
+                _soundFuelingUp?.Stop();
+                if (_choiceId == RefuelChoiceId)
+                    _workDuration = _workTimer + FuelSoundLeadSeconds;
+                else if (_car.FuelLitersRemaining >= _car.FuelTankCapacityLiters - 0.01f)
+                {
+                    _carFilledInCan1 = true;
+                    _workDuration = Math.Max(TiresDurationSeconds, _workTimer + FuelSoundLeadSeconds);
+                }
+            }
+
             // Can 1: sound stops after 7s dump (0.5s trail before next event)
             if (!_audioPhase7 && _workTimer >= FuelSoundLeadSeconds + FuelStopTimeSeconds
                 && (_choiceId == RefuelChoiceId || _choiceId == BothChoiceId))

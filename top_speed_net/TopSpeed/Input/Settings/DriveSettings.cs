@@ -199,6 +199,7 @@ namespace TopSpeed.Input
                 [DriveIntent.ReportDistance] = AxisOrButton.Button11,
                 [DriveIntent.ReportSpeed] = AxisOrButton.Button12,
                 [DriveIntent.ReportFuel] = AxisOrButton.Button15,
+                [DriveIntent.ReportTireState] = AxisOrButton.Button16,
                 [DriveIntent.TrackName] = AxisOrButton.Button13,
                 [DriveIntent.Pause] = AxisOrButton.Button14
             };
@@ -226,6 +227,7 @@ namespace TopSpeed.Input
                 [DriveIntent.ReportDistance] = Key.C,
                 [DriveIntent.ReportSpeed] = Key.S,
                 [DriveIntent.ReportFuel] = Key.X,
+                [DriveIntent.ReportTireState] = Key.V,
                 [DriveIntent.TrackName] = Key.F9,
                 [DriveIntent.Pause] = Key.P
             };

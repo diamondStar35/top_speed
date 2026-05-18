@@ -52,6 +52,7 @@ namespace TopSpeed.Input
             Add(DriveIntent.ReportDistance, LocalizationService.Mark("Report distance"), InputScope.Auxiliary, TriggerMode.Press, TriggerMode.Press, () => _kbReportDistance, key => SetReportDistance(key), () => _reportDistance, axis => SetReportDistance(axis));
             Add(DriveIntent.ReportSpeed, LocalizationService.Mark("Report speed"), InputScope.Auxiliary, TriggerMode.Press, TriggerMode.Press, () => _kbReportSpeed, key => SetReportSpeed(key), () => _reportSpeed, axis => SetReportSpeed(axis));
             Add(DriveIntent.ReportFuel, LocalizationService.Mark("Report fuel"), InputScope.Auxiliary, TriggerMode.Press, TriggerMode.Press, () => _kbReportFuel, key => SetReportFuel(key), () => _reportFuel, axis => SetReportFuel(axis));
+            Add(DriveIntent.ReportTireState, LocalizationService.Mark("Report tire state"), InputScope.Auxiliary, TriggerMode.Press, TriggerMode.Press, () => _kbReportTireState, key => SetReportTireState(key), () => _reportTireState, axis => SetReportTireState(axis));
             Add(DriveIntent.TrackName, LocalizationService.Mark("Report track name"), InputScope.Auxiliary, TriggerMode.Press, TriggerMode.Press, () => _kbTrackName, key => SetTrackName(key), () => _trackName, axis => SetTrackName(axis));
             Add(DriveIntent.Pause, LocalizationService.Mark("Pause"), InputScope.Auxiliary, TriggerMode.Hold, TriggerMode.Hold, () => _kbPause, key => SetPause(key), () => _pause, axis => SetPause(axis));
 

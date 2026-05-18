@@ -32,6 +32,7 @@ namespace TopSpeed.Vehicles.Loader
             def.DrivetrainEfficiency = spec.DrivetrainEfficiency;
             def.EngineBrakingTorqueNm = spec.EngineBrakingTorqueNm;
             def.TireGripCoefficient = spec.TireGripCoefficient;
+            def.TireWearConfig = spec.TireWearConfig;
             def.PeakTorqueNm = spec.PeakTorqueNm;
             def.PeakTorqueRpm = spec.PeakTorqueRpm;
             def.IdleTorqueNm = spec.IdleTorqueNm;

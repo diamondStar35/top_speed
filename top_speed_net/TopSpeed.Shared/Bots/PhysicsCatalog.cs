@@ -91,7 +91,8 @@ namespace TopSpeed.Bots
                 minCoupledRiseFullRpmPerSecond: spec.MinCoupledRiseFullRpmPerSecond,
                 engineOverrunIdleLossFraction: spec.EngineOverrunIdleLossFraction,
                 overrunCurveExponent: spec.OverrunCurveExponent,
-                engineBrakeTransferEfficiency: spec.EngineBrakeTransferEfficiency);
+                engineBrakeTransferEfficiency: spec.EngineBrakeTransferEfficiency,
+                tireWearConfig: spec.TireWearConfig);
         }
 
         private static CurveProfile BuildTorqueCurve(OfficialVehicleSpec spec)

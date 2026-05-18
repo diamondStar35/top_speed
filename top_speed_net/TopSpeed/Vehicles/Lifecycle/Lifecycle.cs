@@ -15,6 +15,7 @@ namespace TopSpeed.Vehicles
             _positionY = Math.Max(0f, positionY);
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
+            ResetTireWearState();
             _laneWidth = _track.LaneWidth * 2;
             _stickReleased = true;
             _audioInitialized = false;

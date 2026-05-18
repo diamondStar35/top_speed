@@ -12,5 +12,9 @@ namespace TopSpeed.Bots
         public float AutomaticCouplingFactor;
         public float CvtRatio;
         public float EffectiveDriveRatio;
+        public float TireWearFraction;
+        public float TireTemperatureC;
+        public float TireSmoothedSlipNormalized;
+        public float SurfaceTemperatureC;
     }
 }

@@ -54,6 +54,13 @@ namespace TopSpeed.Vehicles
         public float FuelEfficiencyMpg => _fuelEfficiencyMpg;
         public bool FuelLow => _fuelLow;
         public bool FuelEmpty => _fuelEmpty;
+        public float TireWearPercent => _tireWearState.WearFraction * 100f;
+        public float TireTemperatureC => _tireWearState.TemperatureC;
+        public float TireTemperaturePercent => _tireWearRuntime.TemperatureNormalized * 100f;
+        public float TireColdEndTemperatureC => _tireWearConfig.ColdEndTemperatureC;
+        public float TireOptimalStartTemperatureC => _tireWearConfig.OptimalStartTemperatureC;
+        public float TireOptimalEndTemperatureC => _tireWearConfig.OptimalEndTemperatureC;
+        public float TireOverheatEndTemperatureC => _tireWearConfig.OverheatEndTemperatureC;
 
         public void SetPhysicsModel(IModel model)
         {

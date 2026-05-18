@@ -33,6 +33,7 @@ namespace TopSpeed.Vehicles.Loader
                 DrivetrainEfficiency = parameters.DrivetrainEfficiency,
                 EngineBrakingTorqueNm = parameters.EngineBrakingTorqueNm,
                 TireGripCoefficient = parameters.TireGripCoefficient,
+                TireWearConfig = parameters.TireWearConfig,
                 PeakTorqueNm = parameters.PeakTorqueNm,
                 PeakTorqueRpm = parameters.PeakTorqueRpm,
                 IdleTorqueNm = parameters.IdleTorqueNm,

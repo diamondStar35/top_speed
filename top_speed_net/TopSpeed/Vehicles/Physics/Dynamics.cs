@@ -19,6 +19,8 @@ namespace TopSpeed.Vehicles
         private void RunRunningDynamics(float elapsed, in CarControlIntent controlIntent)
         {
             GuardDynamicInputs();
+            _lastLongitudinalResult = default;
+            _lastLateralLoadRatio = 0f;
 
             _currentSteering = controlIntent.Steering;
             _currentThrottle = _combustionState == EngineCombustionState.On ? controlIntent.Throttle : 0;
@@ -75,6 +77,7 @@ namespace TopSpeed.Vehicles
             UpdateFuelModel(elapsed);
             UpdateBrakeAndSteeringOutput();
             IntegrateVehiclePosition(elapsed, currentLapStart);
+            UpdateTireWear(elapsed, Math.Max(0f, _speed / 3.6f));
             UpdateFrameAudioAndFeedback();
             EnsureSurfaceLoopPlaying();
 
@@ -98,7 +101,7 @@ namespace TopSpeed.Vehicles
                     throttle: 0f,
                     brake: ParkingHoldBrakeInput,
                     surfaceTractionModifier: 1f,
-                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier(),
+                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier() * ResolveTireWearBrakeScale(),
                     surfaceRollingResistanceModifier: ResolveSurfaceRollingResistanceModifier(),
                     longitudinalGripFactor: 1f,
                     GetDriveGear(),

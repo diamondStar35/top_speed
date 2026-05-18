@@ -95,6 +95,10 @@ namespace TopSpeed.Vehicles
         private float _speedDiff;
         private float _lateralVelocityMps;
         private float _yawRateRad;
+        private float _tireWearFraction;
+        private float _tireTemperatureC;
+        private float _tireSmoothedSlipNormalized;
+        private float _surfaceTemperatureC;
         private int _difficulty;
         private bool _finished;
         private bool _horning;

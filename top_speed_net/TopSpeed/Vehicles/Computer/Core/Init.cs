@@ -59,6 +59,10 @@ namespace TopSpeed.Vehicles
             _speedDiff = 0;
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
+            _tireWearFraction = 0f;
+            _tireTemperatureC = float.NaN;
+            _tireSmoothedSlipNormalized = 0f;
+            _surfaceTemperatureC = float.NaN;
             _speed = 0;
             _frame = 1;
             _finished = false;
@@ -268,7 +272,8 @@ namespace TopSpeed.Vehicles
                 minCoupledRiseFullRpmPerSecond: build.MinCoupledRiseFullRpmPerSecond,
                 engineOverrunIdleLossFraction: build.EngineOverrunIdleLossFraction,
                 overrunCurveExponent: build.OverrunCurveExponent,
-                engineBrakeTransferEfficiency: build.EngineBrakeTransferEfficiency);
+                engineBrakeTransferEfficiency: build.EngineBrakeTransferEfficiency,
+                tireWearConfig: definition.TireWearConfig);
 
             _raceAudio = raceAudio.CreateRemote(definition);
             BindAudio(_raceAudio);

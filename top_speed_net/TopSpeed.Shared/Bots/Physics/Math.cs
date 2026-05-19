@@ -8,13 +8,6 @@ namespace TopSpeed.Bots
         private const float SurfaceHeatingTauSeconds = 45f;
         private const float SurfaceCoolingTauSeconds = 18f;
 
-        private static float SmoothStep(float a, float b, float t)
-        {
-            var clamped = Clamp(t, 0f, 1f);
-            clamped = clamped * clamped * (3f - 2f * clamped);
-            return a + ((b - a) * clamped);
-        }
-
         private static float Clamp(float v, float min, float max)
         {
             if (v < min)
@@ -27,29 +20,6 @@ namespace TopSpeed.Bots
         private static float Clamp01(float v)
         {
             return Clamp(v, 0f, 1f);
-        }
-
-        private static float NormalizeUnit(float value, float reference)
-        {
-            if (reference <= 0f)
-                return 0f;
-            return Clamp01(value / reference);
-        }
-
-        private static float ResolveLoadNormalized(float massKg, float lateralLoadRatio, float longitudinalSlipNormalized)
-        {
-            var massNormalized = Clamp01((massKg - 700f) / 1800f);
-            return Clamp01(
-                (lateralLoadRatio * 0.56f)
-                + (longitudinalSlipNormalized * 0.24f)
-                + (massNormalized * 0.20f));
-        }
-
-        private static float ResolveRollingResistanceNormalized(float rollingResistanceCoefficient, float surfaceRollingResistanceFactor, float speedMps)
-        {
-            var speedFactor = Clamp01(speedMps / 45f);
-            var normalizedRollingCoefficient = Clamp01((rollingResistanceCoefficient * Math.Max(0.1f, surfaceRollingResistanceFactor)) / 0.030f);
-            return Clamp01(normalizedRollingCoefficient * speedFactor);
         }
 
         private static float ResolveForwardSafetySpeedKph(float referenceTopSpeedKph)

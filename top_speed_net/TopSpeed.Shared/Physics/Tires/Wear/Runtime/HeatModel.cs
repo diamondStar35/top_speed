@@ -15,76 +15,84 @@ namespace TopSpeed.Physics.Tires.Wear
         {
             var speedNormalized = TireWearMath.Clamp01(input.SpeedMps / 55f);
             var airflowSpeedNormalized = TireWearMath.Clamp(input.SpeedMps / 95f, 0f, 1.8f);
-            var speedHeatActivity = TireWearMath.Clamp01(input.SpeedMps / 15f);
-            var slipActivity = TireWearMath.Clamp01(input.SpeedMps / 5f);
-            var thermalLoadScale = 0.60f + (0.68f * input.LoadNormalized);
+            var speedHeatActivity = TireWearMath.Clamp01(input.SpeedMps / 12f);
+            var slipActivity = TireWearMath.Clamp01(input.SpeedMps / 6f);
+            var thermalLoadScale = 0.58f + (0.70f * input.LoadNormalized);
             var thermalControl = TireWearThermalControl.Resolve(config, state);
-            var corneringUtilizationSignal = TireWearMath.Pow(input.CorneringUtilizationNormalized, 1.08f);
-            var corneringSlideSignal = TireWearMath.Pow(input.CorneringSlipNormalized, 1.35f);
-            var lateralSlideSignal = TireWearMath.Pow(TireWearMath.Clamp01(input.LateralSlipNormalized / 1.25f), 1.25f);
-            var longitudinalHeatSignal = TireWearMath.Pow(input.LongitudinalSlipNormalized, 1.30f);
-            var longitudinalSlideSignal = TireWearMath.Pow(input.LongitudinalSlideNormalized, 1.20f);
+            var corneringUtilizationSignal = TireWearMath.Pow(input.CorneringUtilizationNormalized, 1.15f);
+            var corneringSlideSignal = TireWearMath.Pow(input.CorneringSlipNormalized, 1.40f);
+            var lateralSlideSignal = TireWearMath.Pow(TireWearMath.Clamp01(input.LateralSlipNormalized / 1.30f), 1.30f);
+            var longitudinalStressSignal = TireWearMath.Pow(input.LongitudinalSlipNormalized, 1.15f);
+            var longitudinalSlideSignal = TireWearMath.Pow(input.LongitudinalSlideNormalized, 1.30f);
+            var corneringSlideComposite = Math.Max(corneringSlideSignal, lateralSlideSignal);
+            var slideSeverity = TireWearMath.Clamp01(
+                Math.Max(corneringSlideComposite, longitudinalSlideSignal));
+            var highSpeedRecovery = TireWearMath.Clamp01((speedNormalized - 0.45f) / 0.55f);
+            var lowSlideRecovery = TireWearMath.Clamp01((0.28f - slideSeverity) / 0.28f);
+            var thermalSurplusNormalized = TireWearMath.Clamp01(
+                (state.TemperatureC - config.OptimalEndTemperatureC) / 24f);
+            var wearFreshness = 1f - TireWearMath.Clamp01(state.WearFraction);
 
             var corneringHeatRate = config.CorneringHeatCPerSecond
-                * ((0.26f * corneringUtilizationSignal) + (0.74f * corneringSlideSignal))
+                * ((0.08f * corneringUtilizationSignal) + (0.92f * corneringSlideComposite))
                 * thermalLoadScale
                 * slipActivity;
-            var lateralSlipHeatRate = config.CorneringHeatCPerSecond
-                * 0.15f
-                * lateralSlideSignal
-                * thermalLoadScale
+            var longitudinalHeatRate = config.LongitudinalHeatCPerSecond
+                * ((0.35f * longitudinalStressSignal) + (0.65f * longitudinalSlideSignal))
+                * (0.52f + (0.62f * input.LoadNormalized))
                 * slipActivity;
-            var longitudinalHeatRate = config.LongitudinalHeatCPerSecond * longitudinalHeatSignal * thermalLoadScale * slipActivity;
             var loadHeatRate = config.LoadHeatCPerSecond
-                * (0.30f + (0.58f * input.LoadNormalized))
-                * speedHeatActivity;
+                * (0.40f + (0.60f * input.LoadNormalized))
+                * (0.55f + (0.45f * speedNormalized));
             var rollingHeatRate = config.RollingHeatCPerSecond
-                * (0.34f + (0.52f * input.RollingResistanceNormalized))
-                * speedHeatActivity;
-            var powertrainSlipHeatSignal = TireWearMath.Pow((input.LongitudinalSlipNormalized * 0.45f) + (longitudinalSlideSignal * 0.55f), 1.05f);
-            var powertrainWorkHeatRate = config.LongitudinalHeatCPerSecond
-                * (0.08f + (0.92f * powertrainSlipHeatSignal))
-                * (0.52f + (0.48f * speedNormalized))
-                * (0.46f + (0.54f * input.LoadNormalized))
-                * speedHeatActivity
-                * 0.78f;
-            var cruiseFlexHeatBase = (config.LoadHeatCPerSecond * 0.28f) + (config.RollingHeatCPerSecond * 0.44f);
-            var cruiseSlipFactor = 0.30f + (0.70f * input.LongitudinalSlipNormalized);
+                * (0.45f + (0.55f * input.RollingResistanceNormalized))
+                * (0.45f + (0.55f * speedNormalized));
+            var cruiseFlexHeatBase = (config.LoadHeatCPerSecond * 0.42f) + (config.RollingHeatCPerSecond * 0.74f);
             var cruiseFlexHeatRate = cruiseFlexHeatBase
-                * TireWearMath.Pow(speedNormalized, 1.12f)
+                * TireWearMath.Pow(speedNormalized, 1.05f)
                 * speedHeatActivity
-                * (0.50f + (0.50f * input.LoadNormalized))
-                * cruiseSlipFactor;
+                * (0.48f + (0.52f * input.LoadNormalized))
+                * (0.45f + (0.55f * (1f - slideSeverity)));
             var heatingRateCPerSecond = corneringHeatRate
-                + lateralSlipHeatRate
                 + longitudinalHeatRate
                 + loadHeatRate
                 + rollingHeatRate
-                + powertrainWorkHeatRate
                 + cruiseFlexHeatRate;
+
+            // At speed and low slip, fresh tires should naturally stabilize near the working band.
+            var overOptimalNormalized = TireWearMath.Clamp01(
+                (state.TemperatureC - config.OptimalStartTemperatureC)
+                / Math.Max(6f, (config.OptimalEndTemperatureC - config.OptimalStartTemperatureC) + 6f));
+            var thermalStability = wearFreshness
+                * (0.35f + (0.65f * lowSlideRecovery))
+                * (0.25f + (0.75f * speedNormalized));
+            var stabilityHeatScale = 1f - (0.24f * thermalStability * overOptimalNormalized);
+            heatingRateCPerSecond *= TireWearMath.Clamp(stabilityHeatScale, 0.72f, 1f);
             heatingRateCPerSecond *= thermalControl.HeatingScale;
 
-            var exchangeScale = 1f;
             var roadExchangeGain = (config.RoadExchangePerCPerSecond + (wetnessNormalized * config.WetRoadExchangePerCPerSecond))
-                * exchangeScale
                 * thermalControl.CoolingScale;
             var ambientExchangeRate = (ambientTemperatureC - state.TemperatureC)
                 * config.AmbientExchangePerCPerSecond
-                * exchangeScale
                 * thermalControl.CoolingScale;
             var roadExchangeRate = (surfaceTemperatureC - state.TemperatureC) * roadExchangeGain;
             var airflowSpeedGain = 1f
-                + (0.40f * airflowSpeedNormalized)
-                + (0.90f * airflowSpeedNormalized * airflowSpeedNormalized);
+                + (0.75f * airflowSpeedNormalized)
+                + (1.65f * airflowSpeedNormalized * airflowSpeedNormalized);
+            var thermalRecoveryWindow = TireWearMath.Clamp01(
+                (state.TemperatureC - config.OptimalStartTemperatureC) / 18f);
+            var lowSlideCoolingBoost = 1f + (1.25f * highSpeedRecovery * lowSlideRecovery * thermalRecoveryWindow);
+            var overheatRecoveryBoost = 1f + (1.25f * highSpeedRecovery * lowSlideRecovery * thermalSurplusNormalized);
             var airflowCoolingRate = Math.Max(0f, state.TemperatureC - ambientTemperatureC)
                 * input.SpeedMps
                 * config.AirflowCoolingPerMpsPerCPerSecond
                 * airflowSpeedGain
+                * lowSlideCoolingBoost
+                * overheatRecoveryBoost
                 * thermalControl.CoolingScale;
 
             var ambientCoolingRate = Math.Max(0f, state.TemperatureC - ambientTemperatureC)
                 * config.AmbientExchangePerCPerSecond
-                * exchangeScale
                 * thermalControl.CoolingScale;
             var roadCoolingRate = Math.Max(0f, state.TemperatureC - surfaceTemperatureC) * roadExchangeGain;
             var coolingRateCPerSecond = ambientCoolingRate + roadCoolingRate + airflowCoolingRate;

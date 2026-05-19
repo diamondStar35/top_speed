@@ -66,7 +66,7 @@ public sealed class TireWearRuntimeBehaviorTests
                 surfaceTemperatureC: 33f,
                 wetnessNormalized: 0f));
 
-        result.State.TemperatureC.Should().BeGreaterThan(40f);
+        result.State.TemperatureC.Should().BeGreaterThan(36f);
         result.State.TemperatureC.Should().BeLessThan(config.OverheatEndTemperatureC + 5f);
     }
 

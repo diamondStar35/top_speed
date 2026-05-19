@@ -164,11 +164,17 @@ namespace TopSpeed.Bots
             state.LateralVelocityMps = lateralOutput.State.LateralVelocityMps;
             state.YawRateRad = lateralOutput.State.YawRateRad;
 
-            var driveStress = NormalizeUnit(longitudinalResult.DriveAccelerationMps2, 6f);
-            var brakeStress = NormalizeUnit(longitudinalResult.BrakeDecelKph / 3.6f, 9f);
-            var longitudinalSlipNormalized = Clamp01((driveStress * 0.55f) + (brakeStress * 0.45f));
-            var loadNormalized = ResolveLoadNormalized(config.MassKg, lateralOutput.LateralLoadRatio, longitudinalSlipNormalized);
-            var rollingResistanceNormalized = ResolveRollingResistanceNormalized(config.RollingResistanceCoefficient, surfaceRollingResistance, speedMps);
+            var longitudinalSlipNormalized = TireWearInputSignals.ResolveLongitudinalSlipNormalized(
+                longitudinalResult.DriveAccelerationMps2,
+                longitudinalResult.BrakeDecelKph / 3.6f);
+            var loadNormalized = TireWearInputSignals.ResolveLoadNormalized(
+                config.MassKg,
+                lateralOutput.LateralLoadRatio,
+                longitudinalSlipNormalized);
+            var rollingResistanceNormalized = TireWearInputSignals.ResolveRollingResistanceNormalized(
+                config.RollingResistanceCoefficient,
+                surfaceRollingResistance,
+                speedMps);
             wearRuntime = TireWearRuntime.Step(
                 config.TireWearConfig,
                 wearState,

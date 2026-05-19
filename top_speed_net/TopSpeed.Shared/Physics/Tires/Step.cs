@@ -55,7 +55,7 @@ namespace TopSpeed.Physics.Tires
             var nextVy = state.LateralVelocityMps + (vyDot * dt);
             var nextYawRate = state.YawRateRad + (rDot * dt);
 
-            var neutralInput = Math.Abs(input.SteeringInput) <= 4;
+            var neutralInput = Math.Abs(input.SteeringInput) <= 8;
             if (neutralInput)
             {
                 // Fast recenter for legacy "release stops steering" feel.
@@ -72,9 +72,12 @@ namespace TopSpeed.Physics.Tires
             nextVy = TireModelMath.Clamp(nextVy, -steer.ForwardSpeed * 1.6f, steer.ForwardSpeed * 1.6f);
             nextYawRate = TireModelMath.Clamp(nextYawRate, -5f, 5f);
 
-            // Ensure steering direction is stable across the full speed range.
+            // Keep direction locking only for deliberate steering so small corrections can naturally recenter.
             var desiredDirection = TireModelMath.Sign(input.SteeringInput);
-            if (desiredDirection != 0f && steer.SpeedMps > 1f)
+            var enforceDirection = desiredDirection != 0f
+                && steer.SpeedMps > 1f
+                && steerMag >= 0.24f;
+            if (enforceDirection)
             {
                 if (TireModelMath.Sign(nextVy) != desiredDirection)
                     nextVy = desiredDirection * Math.Abs(nextVy);

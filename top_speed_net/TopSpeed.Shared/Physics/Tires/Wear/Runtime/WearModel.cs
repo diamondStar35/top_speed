@@ -11,7 +11,13 @@ namespace TopSpeed.Physics.Tires.Wear
             float elapsedSeconds)
         {
             var distanceKilometers = (input.SpeedMps * elapsedSeconds) / 1000f;
+            var speedNormalized = TireWearMath.Clamp01(input.SpeedMps / 62f);
             var baseWear = distanceKilometers * config.BaseWearPerKilometer;
+            var workloadWear = distanceKilometers
+                * config.BaseWearPerKilometer
+                * (0.26f + (0.62f * input.LoadNormalized))
+                * (0.36f + (0.64f * speedNormalized))
+                * ((input.CorneringUtilizationNormalized * 0.38f) + (input.LongitudinalSlipNormalized * 0.27f) + 0.35f);
             var corneringWearSignal = TireWearMath.Pow(
                 (input.CorneringUtilizationNormalized * 0.28f) + (input.CorneringSlipNormalized * 0.72f),
                 1.15f);
@@ -24,6 +30,10 @@ namespace TopSpeed.Physics.Tires.Wear
                 0f,
                 2.5f);
             var slipWear = smoothedSlipNormalized * slipWearSignal * config.SlipWearRatePerSecond * elapsedSeconds;
+            var enduranceWear = elapsedSeconds
+                * config.SlipWearRatePerSecond
+                * (0.06f + (0.20f * input.CorneringUtilizationNormalized))
+                * (0.35f + (0.65f * speedNormalized));
             var loadWearMultiplier = 1f + (input.LoadNormalized * config.LoadWearGain);
             var temperatureWearMultiplier = TireWearTemperature.ResolveWearMultiplier(config, temperatureC);
             var wearFractionNormalized = TireWearMath.Clamp01(wearFraction);
@@ -32,7 +42,7 @@ namespace TopSpeed.Physics.Tires.Wear
             var agingWearMultiplier = 1f + (2.2f * endOfLifeRunaway * endOfLifeRunaway);
             agingWearMultiplier += 2.6f * (endOfLifeRunaway * overheatNormalized * overheatNormalized);
 
-            return (baseWear + slipWear)
+            return (baseWear + workloadWear + slipWear + enduranceWear)
                 * loadWearMultiplier
                 * temperatureWearMultiplier
                 * TireWearMath.Clamp(agingWearMultiplier, 1f, 5f);

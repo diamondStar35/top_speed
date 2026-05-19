@@ -8,8 +8,6 @@ namespace TopSpeed.Vehicles
     {
         private const float MinimumGripScale = 0.45f;
         private const float KphPerMps = 3.6f;
-        private const float DriveSlipReferenceMps2 = 6.0f;
-        private const float BrakeSlipReferenceMps2 = 9.0f;
         private const float SurfaceHeatingTauSeconds = 45f;
         private const float SurfaceCoolingTauSeconds = 18f;
 
@@ -31,11 +29,14 @@ namespace TopSpeed.Vehicles
         private void UpdateTireWear(float elapsedSeconds, float speedMps)
         {
             var speed = Math.Max(0f, speedMps);
-            var driveSlipNormalized = NormalizeUnit(_lastLongitudinalResult.DriveAccelerationMps2, DriveSlipReferenceMps2);
-            var brakeSlipNormalized = NormalizeUnit(_lastLongitudinalResult.BrakeDecelKph / KphPerMps, BrakeSlipReferenceMps2);
-            var longitudinalSlipNormalized = Clamp01((driveSlipNormalized * 0.55f) + (brakeSlipNormalized * 0.45f));
-            var loadNormalized = ResolveLoadNormalized(_massKg, _lastLateralLoadRatio, longitudinalSlipNormalized);
-            var rollingResistanceNormalized = ResolveRollingResistanceNormalized(
+            var longitudinalSlipNormalized = TireWearInputSignals.ResolveLongitudinalSlipNormalized(
+                _lastLongitudinalResult.DriveAccelerationMps2,
+                _lastLongitudinalResult.BrakeDecelKph / KphPerMps);
+            var loadNormalized = TireWearInputSignals.ResolveLoadNormalized(
+                _massKg,
+                _lastLateralLoadRatio,
+                longitudinalSlipNormalized);
+            var rollingResistanceNormalized = TireWearInputSignals.ResolveRollingResistanceNormalized(
                 _rollingResistanceCoefficient,
                 _currentSurfaceRollingResistanceFactor,
                 speed);
@@ -112,22 +113,6 @@ namespace TopSpeed.Vehicles
             _surfaceTemperatureC = Clamp(_surfaceTemperatureC, ambientTemperatureC - 35f, ambientTemperatureC + 75f);
         }
 
-        private static float ResolveLoadNormalized(float massKg, float lateralLoadRatio, float longitudinalSlipNormalized)
-        {
-            var massNormalized = Clamp01((massKg - 700f) / 1800f);
-            return Clamp01(
-                (lateralLoadRatio * 0.56f)
-                + (longitudinalSlipNormalized * 0.24f)
-                + (massNormalized * 0.20f));
-        }
-
-        private static float ResolveRollingResistanceNormalized(float rollingResistanceCoefficient, float surfaceRollingResistanceFactor, float speedMps)
-        {
-            var speedFactor = Clamp01(speedMps / 45f);
-            var normalizedRollingCoefficient = Clamp01((rollingResistanceCoefficient * Math.Max(0.1f, surfaceRollingResistanceFactor)) / 0.030f);
-            return Clamp01(normalizedRollingCoefficient * speedFactor);
-        }
-
         private static float ResolveInitialSurfaceTemperature(TrackSurface surface, float ambientTemperatureC, float wetness)
         {
             var dryLift = ResolveSurfaceDryHeatLift(surface);
@@ -160,12 +145,6 @@ namespace TopSpeed.Vehicles
             var rain = Clamp01(weather.RainGain);
             var storm = Clamp01(weather.StormGain);
             return Clamp01(rain + (storm * 0.55f));
-        }
-
-        private static float NormalizeUnit(float value, float reference)
-        {
-            var normalized = reference > 0f ? value / reference : 0f;
-            return Clamp01(normalized);
         }
 
         private static float ResolveExpAlpha(float elapsedSeconds, float timeConstantSeconds)

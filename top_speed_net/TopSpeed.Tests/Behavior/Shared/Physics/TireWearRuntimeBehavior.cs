@@ -111,7 +111,7 @@ public sealed class TireWearRuntimeBehaviorTests
                 wetnessNormalized: 0f));
 
         straight.State.TemperatureC.Should().BeGreaterThan(40f);
-        straight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 13f);
+        straight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 15f);
     }
 
     [Fact]

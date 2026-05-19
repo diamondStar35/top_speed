@@ -12,7 +12,9 @@ namespace TopSpeed.Physics.Tires.Wear
             float longitudinalSlipNormalized,
             float loadNormalized,
             float rollingResistanceNormalized,
+            float corneringUtilizationNormalized,
             float corneringSlipNormalized,
+            float longitudinalSlideNormalized,
             float rawSlipNormalized)
         {
             ElapsedSeconds = elapsedSeconds;
@@ -22,7 +24,9 @@ namespace TopSpeed.Physics.Tires.Wear
             LongitudinalSlipNormalized = longitudinalSlipNormalized;
             LoadNormalized = loadNormalized;
             RollingResistanceNormalized = rollingResistanceNormalized;
+            CorneringUtilizationNormalized = corneringUtilizationNormalized;
             CorneringSlipNormalized = corneringSlipNormalized;
+            LongitudinalSlideNormalized = longitudinalSlideNormalized;
             RawSlipNormalized = rawSlipNormalized;
         }
 
@@ -33,20 +37,27 @@ namespace TopSpeed.Physics.Tires.Wear
         public float LongitudinalSlipNormalized { get; }
         public float LoadNormalized { get; }
         public float RollingResistanceNormalized { get; }
+        public float CorneringUtilizationNormalized { get; }
         public float CorneringSlipNormalized { get; }
+        public float LongitudinalSlideNormalized { get; }
         public float RawSlipNormalized { get; }
 
         public static TireWearStepInput Create(in TireWearInput input)
         {
             var elapsedSeconds = Math.Max(0f, input.ElapsedSeconds);
             var speedMps = Math.Max(0f, input.SpeedMps);
-            var slipAngleNormalized = TireWearMath.Clamp01(input.SlipAngleNormalized);
-            var lateralSlipNormalized = TireWearMath.Clamp01(input.LateralSlipNormalized);
+            var slipAngleNormalized = TireWearMath.Clamp(input.SlipAngleNormalized, 0f, 3f);
+            var lateralSlipNormalized = TireWearMath.Clamp(input.LateralSlipNormalized, 0f, 3f);
             var longitudinalSlipNormalized = TireWearMath.Clamp01(input.LongitudinalSlipNormalized);
             var loadNormalized = TireWearMath.Clamp01(input.LoadNormalized);
             var rollingResistanceNormalized = TireWearMath.Clamp01(input.RollingResistanceNormalized);
-            var corneringSlipNormalized = TireWearMath.Clamp01((slipAngleNormalized * 0.78f) + (lateralSlipNormalized * 0.22f));
-            var rawSlipNormalized = TireWearMath.Clamp01((corneringSlipNormalized * 0.56f) + (longitudinalSlipNormalized * 0.44f));
+            var corneringCombined = (slipAngleNormalized * 0.74f) + (lateralSlipNormalized * 0.26f);
+            var corneringUtilizationNormalized = TireWearMath.Clamp01(corneringCombined);
+            var corneringSlipNormalized = TireWearMath.Clamp01((corneringCombined - 1f) / 1.2f);
+            var longitudinalSlideNormalized = TireWearMath.Clamp01((longitudinalSlipNormalized - 0.52f) / 0.48f);
+            var rawSlipNormalized = TireWearMath.Clamp01(
+                (corneringSlipNormalized * 0.60f)
+                + (longitudinalSlideNormalized * 0.40f));
 
             return new TireWearStepInput(
                 elapsedSeconds,
@@ -56,7 +67,9 @@ namespace TopSpeed.Physics.Tires.Wear
                 longitudinalSlipNormalized,
                 loadNormalized,
                 rollingResistanceNormalized,
+                corneringUtilizationNormalized,
                 corneringSlipNormalized,
+                longitudinalSlideNormalized,
                 rawSlipNormalized);
         }
     }

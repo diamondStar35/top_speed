@@ -33,6 +33,7 @@ namespace TopSpeed.Physics.Tires.Wear
                 config,
                 input,
                 smoothedSlipNormalized,
+                state.WearFraction,
                 heatBalance.TemperatureC,
                 elapsedSeconds);
             var wearFraction = TireWearMath.Clamp01(state.WearFraction + wearDelta);

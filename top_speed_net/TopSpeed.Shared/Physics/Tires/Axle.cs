@@ -55,8 +55,10 @@ namespace TopSpeed.Physics.Tires
             var rearSlip = -(float)Math.Atan2(state.LateralVelocityMps - (b * state.YawRateRad), steer.ForwardSpeed);
             var frontSlipEff = ShapeSlip(frontSlip, peakSlipRad, parameters.SlipAngleFalloff);
             var rearSlipEff = ShapeSlip(rearSlip, peakSlipRad, parameters.SlipAngleFalloff);
-            var slipAngleNormalized = TireModelMath.Clamp01(
-                ((Math.Abs(frontSlip) + Math.Abs(rearSlip)) / 2f) / Math.Max(0.0001f, peakSlipRad));
+            var slipAngleNormalized = TireModelMath.Clamp(
+                ((Math.Abs(frontSlip) + Math.Abs(rearSlip)) / 2f) / Math.Max(0.0001f, peakSlipRad),
+                0f,
+                3f);
 
             var baseCornerStiffness = Math.Max(100f, grip.GripForce / Math.Max(0.05f, peakSlipRad));
             var cornerFront = baseCornerStiffness * Math.Max(0.2f, parameters.CornerStiffnessFront);

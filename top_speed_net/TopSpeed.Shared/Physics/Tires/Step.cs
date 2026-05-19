@@ -114,8 +114,10 @@ namespace TopSpeed.Physics.Tires
                 TireModelMath.Lerp(2.2f, 1.3f, highSpeedStability),
                 yaw.SpeedSharpness);
             nextYawRate = TireModelMath.Clamp(nextYawRate, -maxYawRate, maxYawRate);
-            var lateralSlipNormalized = TireModelMath.Clamp01(
-                Math.Abs(nextVy) / Math.Max(0.5f, steer.ForwardSpeed * 0.30f));
+            var lateralSlipNormalized = TireModelMath.Clamp(
+                Math.Abs(nextVy) / Math.Max(0.5f, steer.ForwardSpeed * 0.30f),
+                0f,
+                3f);
 
             var nextState = new TireModelState(nextVy, nextYawRate);
             return new TireModelOutput(

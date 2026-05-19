@@ -61,9 +61,20 @@ namespace TopSpeed.Vehicles
             _tireWearState = _tireWearRuntime.State;
         }
 
-        private float ResolveTireWearTractionScale()
+        private float ResolveTireWearTractionScale(
+            float speedMps,
+            int steeringInput,
+            float slipAngleNormalized,
+            float lateralSlipNormalized)
         {
-            return Clamp(_tireWearRuntime.TractionGripScale, MinimumGripScale, 1f);
+            return TireTractionAssist.ResolveStraightLineTractionScale(
+                baseTractionScale: Clamp(_tireWearRuntime.TractionGripScale, MinimumGripScale, 1f),
+                speedMps: speedMps,
+                steeringInput: steeringInput,
+                slipAngleNormalized: slipAngleNormalized,
+                lateralSlipNormalized: lateralSlipNormalized,
+                wearFraction: _tireWearState.WearFraction,
+                overheatNormalized: _tireWearRuntime.OverheatNormalized);
         }
 
         private float ResolveTireWearLateralScale()

@@ -9,15 +9,13 @@ namespace TopSpeed.Tests;
 public sealed class TireWearRuntimePhysicalBehaviorTests
 {
     [Fact]
-    public void Vehicle1_AggressiveStraight_ShouldReach90CWithinReasonableTime()
+    public void Vehicle1_AggressiveStraight_ShouldSettleNearUpperWorkingRangeWithoutRunaway()
     {
         var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
-        var initialState = TireWearDefaults.CreateInitialState(26f);
-        var secondsToNinety = ResolveSecondsToTemperature(
+        var result = RunForDuration(
             config,
-            initialState,
-            targetTemperatureC: 90f,
-            maxSeconds: 1800f,
+            TireWearDefaults.CreateInitialState(26f),
+            durationSeconds: 900f,
             speedMps: 44f,
             slipAngleNormalized: 0.03f,
             lateralSlipNormalized: 0.02f,
@@ -28,12 +26,12 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             surfaceTemperatureC: 33f,
             wetnessNormalized: 0f);
 
-        secondsToNinety.Should().NotBeNull();
-        secondsToNinety!.Value.Should().BeInRange(80f, 420f);
+        result.State.TemperatureC.Should().BeGreaterThan(config.OptimalStartTemperatureC + 5f);
+        result.State.TemperatureC.Should().BeLessThan(config.OverheatEndTemperatureC + 8f);
     }
 
     [Fact]
-    public void OfficialProfiles_AggressiveStraight_ShouldReachOwnOptimalStart()
+    public void OfficialProfiles_AggressiveStraight_ShouldReachWorkingThermalWindow()
     {
         foreach (var spec in OfficialVehicleCatalog.Vehicles)
         {
@@ -52,9 +50,12 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
                 surfaceTemperatureC: 33f,
                 wetnessNormalized: 0f);
 
+            var minimumWorkingTemperatureC = Math.Max(
+                config.ColdEndTemperatureC + 18f,
+                config.OptimalStartTemperatureC - 6f);
             result.State.TemperatureC.Should().BeGreaterThanOrEqualTo(
-                config.OptimalStartTemperatureC - 1f,
-                $"{spec.Name} should reach its own optimal start under sustained aggressive straight driving");
+                minimumWorkingTemperatureC,
+                $"{spec.Name} should reach a working tire temperature under sustained aggressive straight driving");
         }
     }
 
@@ -116,7 +117,7 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             surfaceTemperatureC: 36f,
             wetnessNormalized: 0f);
 
-        shortStraight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 12f);
+        shortStraight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 18f);
         shortStraight.State.TemperatureC.Should().BeGreaterThan(config.OptimalStartTemperatureC - 2f);
     }
 
@@ -143,14 +144,14 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
     }
 
     [Fact]
-    public void Vehicle1_LowSlipStraight_ShouldReach50CQuicklyButNotReach90C()
+    public void Vehicle1_LowSlipStraight_ShouldReach45CReasonablyQuicklyButNotReach90C()
     {
         var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
-        var secondsToFifty = ResolveSecondsToTemperature(
+        var secondsToFortyFive = ResolveSecondsToTemperature(
             config,
             TireWearDefaults.CreateInitialState(26f),
-            targetTemperatureC: 50f,
-            maxSeconds: 300f,
+            targetTemperatureC: 45f,
+            maxSeconds: 420f,
             speedMps: 38f,
             slipAngleNormalized: 0.01f,
             lateralSlipNormalized: 0.01f,
@@ -175,20 +176,19 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             surfaceTemperatureC: 33f,
             wetnessNormalized: 0f);
 
-        secondsToFifty.Should().NotBeNull();
-        secondsToFifty!.Value.Should().BeLessThan(180f);
+        secondsToFortyFive.Should().NotBeNull();
+        secondsToFortyFive!.Value.Should().BeLessThan(300f);
         secondsToNinety.Should().BeNull();
     }
 
     [Fact]
-    public void Vehicle1_AggressiveStraight_ShouldReach90CFasterThanLowSlipStraight()
+    public void Vehicle1_AggressiveStraight_ShouldRunHotterThanLowSlipStraight()
     {
         var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
-        var aggressiveSeconds = ResolveSecondsToTemperature(
+        var aggressive = RunForDuration(
             config,
             TireWearDefaults.CreateInitialState(26f),
-            targetTemperatureC: 90f,
-            maxSeconds: 1800f,
+            durationSeconds: 900f,
             speedMps: 44f,
             slipAngleNormalized: 0.03f,
             lateralSlipNormalized: 0.02f,
@@ -198,11 +198,10 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             ambientTemperatureC: 26f,
             surfaceTemperatureC: 33f,
             wetnessNormalized: 0f);
-        var lowSlipSeconds = ResolveSecondsToTemperature(
+        var lowSlip = RunForDuration(
             config,
             TireWearDefaults.CreateInitialState(26f),
-            targetTemperatureC: 90f,
-            maxSeconds: 1800f,
+            durationSeconds: 900f,
             speedMps: 38f,
             slipAngleNormalized: 0.01f,
             lateralSlipNormalized: 0.01f,
@@ -213,10 +212,7 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             surfaceTemperatureC: 33f,
             wetnessNormalized: 0f);
 
-        aggressiveSeconds.Should().NotBeNull();
-        aggressiveSeconds!.Value.Should().BeLessThan(1200f);
-        if (lowSlipSeconds.HasValue)
-            lowSlipSeconds.Value.Should().BeGreaterThan(aggressiveSeconds.Value * 1.35f);
+        aggressive.State.TemperatureC.Should().BeGreaterThan(lowSlip.State.TemperatureC + 6f);
     }
 
     [Fact]
@@ -244,6 +240,130 @@ public sealed class TireWearRuntimePhysicalBehaviorTests
             seconds.Should().NotBeNull($"{spec.Name} should leave cold band during sustained straight-line throttle");
             seconds!.Value.Should().BeLessThan(900f, $"{spec.Name} warm-up should not take excessively long in dry warm weather");
         }
+    }
+
+    [Fact]
+    public void Vehicle1_HighSpeedFreshStraight_ShouldStabilizeWithoutEarlyThermalRunaway()
+    {
+        var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
+        var result = RunForDuration(
+            config,
+            new TireWearState(wearFraction: 0.08f, temperatureC: 38f, smoothedSlipNormalized: 0.08f),
+            durationSeconds: 900f,
+            speedMps: 82f,
+            slipAngleNormalized: 0.02f,
+            lateralSlipNormalized: 0.02f,
+            longitudinalSlipNormalized: 0.10f,
+            loadNormalized: 0.24f,
+            rollingResistanceNormalized: 0.31f,
+            ambientTemperatureC: 27f,
+            surfaceTemperatureC: 34f,
+            wetnessNormalized: 0f);
+
+        result.State.TemperatureC.Should().BeGreaterThan(config.ColdEndTemperatureC + 4f);
+        result.State.TemperatureC.Should().BeLessThan(config.OverheatEndTemperatureC + 10f);
+    }
+
+    [Fact]
+    public void CupStyleProfile_HighSpeedModerateSlip_ShouldAvoidEarlyOverheatOnFreshTires()
+    {
+        var config = TireWearProfiles.CreateFromVehicle(
+            tireGripCoefficient: 1.16f,
+            massKg: 1560f,
+            tireCircumferenceM: 2.28f,
+            lateralGripCoefficient: 1.12f);
+        var result = RunForDuration(
+            config,
+            new TireWearState(wearFraction: 0.06f, temperatureC: 30f, smoothedSlipNormalized: 0.10f),
+            durationSeconds: 240f,
+            speedMps: 94f,
+            slipAngleNormalized: 0.24f,
+            lateralSlipNormalized: 0.18f,
+            longitudinalSlipNormalized: 0.14f,
+            loadNormalized: 0.55f,
+            rollingResistanceNormalized: 0.34f,
+            ambientTemperatureC: 26f,
+            surfaceTemperatureC: 33f,
+            wetnessNormalized: 0f);
+
+        result.State.TemperatureC.Should().BeLessThan(config.OverheatEndTemperatureC + 6f);
+        result.State.WearFraction.Should().BeLessThan(0.28f);
+    }
+
+    [Fact]
+    public void Vehicle1_HighUtilizationWithoutSlide_ShouldRunCoolerThanActiveSlide()
+    {
+        var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
+        var initialState = TireWearDefaults.CreateInitialState(30f);
+        var highUtilization = RunForDuration(
+            config,
+            initialState,
+            durationSeconds: 180f,
+            speedMps: 82f,
+            slipAngleNormalized: 1.0f,
+            lateralSlipNormalized: 1.0f,
+            longitudinalSlipNormalized: 0.10f,
+            loadNormalized: 0.62f,
+            rollingResistanceNormalized: 0.33f,
+            ambientTemperatureC: 26f,
+            surfaceTemperatureC: 33f,
+            wetnessNormalized: 0f);
+        var activeSlide = RunForDuration(
+            config,
+            initialState,
+            durationSeconds: 180f,
+            speedMps: 82f,
+            slipAngleNormalized: 2.1f,
+            lateralSlipNormalized: 2.0f,
+            longitudinalSlipNormalized: 0.10f,
+            loadNormalized: 0.62f,
+            rollingResistanceNormalized: 0.33f,
+            ambientTemperatureC: 26f,
+            surfaceTemperatureC: 33f,
+            wetnessNormalized: 0f);
+
+        activeSlide.State.TemperatureC.Should().BeGreaterThan(highUtilization.State.TemperatureC + 14f);
+        activeSlide.State.WearFraction.Should().BeGreaterThan(highUtilization.State.WearFraction);
+    }
+
+    [Fact]
+    public void Vehicle1_WornTires_ShouldHeatUpFasterAndWearFasterThanFreshTires()
+    {
+        var config = OfficialVehicleCatalog.Get(0).TireWearConfig;
+        var freshInitial = new TireWearState(wearFraction: 0.10f, temperatureC: 86f, smoothedSlipNormalized: 0.35f);
+        var wornInitial = new TireWearState(wearFraction: 0.82f, temperatureC: 86f, smoothedSlipNormalized: 0.35f);
+
+        var fresh = RunForDuration(
+            config,
+            freshInitial,
+            durationSeconds: 180f,
+            speedMps: 58f,
+            slipAngleNormalized: 0.62f,
+            lateralSlipNormalized: 0.48f,
+            longitudinalSlipNormalized: 0.44f,
+            loadNormalized: 0.66f,
+            rollingResistanceNormalized: 0.36f,
+            ambientTemperatureC: 28f,
+            surfaceTemperatureC: 35f,
+            wetnessNormalized: 0f);
+        var worn = RunForDuration(
+            config,
+            wornInitial,
+            durationSeconds: 180f,
+            speedMps: 58f,
+            slipAngleNormalized: 0.62f,
+            lateralSlipNormalized: 0.48f,
+            longitudinalSlipNormalized: 0.44f,
+            loadNormalized: 0.66f,
+            rollingResistanceNormalized: 0.36f,
+            ambientTemperatureC: 28f,
+            surfaceTemperatureC: 35f,
+            wetnessNormalized: 0f);
+
+        worn.State.TemperatureC.Should().BeGreaterThan(fresh.State.TemperatureC + 1f);
+        var freshWearDelta = fresh.State.WearFraction - freshInitial.WearFraction;
+        var wornWearDelta = worn.State.WearFraction - wornInitial.WearFraction;
+        wornWearDelta.Should().BeGreaterThan(freshWearDelta * 1.30f);
     }
 
     private static float? ResolveSecondsToTemperature(

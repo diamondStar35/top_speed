@@ -35,7 +35,11 @@ namespace TopSpeed.Vehicles
             }
 
             var tireOutput = SolveTireModel(elapsed, speedMpsCurrent, _currentSteering, surfaceTractionMod, 1f, commitState: false);
-            longitudinalGripFactor = tireOutput.LongitudinalGripFactor * ResolveTireWearTractionScale();
+            longitudinalGripFactor = tireOutput.LongitudinalGripFactor * ResolveTireWearTractionScale(
+                speedMpsCurrent,
+                _currentSteering,
+                tireOutput.SlipAngleNormalized,
+                tireOutput.LateralSlipNormalized);
             var result = LongitudinalStep.Compute(
                 new LongitudinalStepInput(
                     _powertrainConfiguration,

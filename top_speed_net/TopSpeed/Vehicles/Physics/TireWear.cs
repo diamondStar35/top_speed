@@ -11,6 +11,8 @@ namespace TopSpeed.Vehicles
         private const float SurfaceHeatingTauSeconds = 45f;
         private const float SurfaceCoolingTauSeconds = 18f;
 
+        public void ResetTireWear() => ResetTireWearState();
+
         private void ResetTireWearState()
         {
             var weather = _track.GetActiveWeatherProfile();

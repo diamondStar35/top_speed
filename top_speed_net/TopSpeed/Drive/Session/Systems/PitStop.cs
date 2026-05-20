@@ -70,6 +70,7 @@ namespace TopSpeed.Drive.Session.Systems
         private bool _audioPhase7;
         private bool _audioPhase8;
         private bool _audioPhase9;
+        private bool _audioPhase10;
         private float _canFuelRemainingLiters;
         private bool _carFilledInCan1;
         private float _pitRoadCenterX;
@@ -242,6 +243,7 @@ namespace TopSpeed.Drive.Session.Systems
             _audioPhase7 = false;
             _audioPhase8 = false;
             _audioPhase9 = false;
+            _audioPhase10 = false;
             _canFuelRemainingLiters = 0f;
             _carFilledInCan1 = false;
 
@@ -409,6 +411,15 @@ namespace TopSpeed.Drive.Session.Systems
             {
                 _audioPhase9 = true;
                 _soundLeftTires?.Play(loop: false);
+            }
+
+            // Reset tire wear when left tire sound finishes
+            if (!_audioPhase10 && _audioPhase9
+                && (_soundLeftTires == null || !_soundLeftTires.IsPlaying)
+                && (_choiceId == TiresChoiceId || _choiceId == BothChoiceId))
+            {
+                _audioPhase10 = true;
+                _car.ResetTireWear();
             }
 
             // Can 2: fueling sound starts at 8.5s (skip if car was filled by can 1)

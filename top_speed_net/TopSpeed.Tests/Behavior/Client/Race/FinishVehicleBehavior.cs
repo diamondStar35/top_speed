@@ -172,6 +172,7 @@ public sealed class FinishVehicleBehaviorTests
         public bool FuelLow => false;
         public bool FuelEmpty => false;
         public void AddFuelLiters(float liters) { }
+        public void ResetTireWear() { }
         public float TireWearPercent => 0f;
         public float TireTemperatureC => 0f;
         public float TireTemperaturePercent => 0f;

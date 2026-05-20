@@ -197,6 +197,8 @@ namespace TopSpeed.Input
                     return _touchReportSpeed;
                 case DriveIntent.ReportFuel:
                     return _touchReportFuel;
+                case DriveIntent.ReportTireState:
+                    return _touchReportTireState;
                 case DriveIntent.CurrentGear:
                     return _touchCurrentGear;
                 case DriveIntent.CurrentLapNr:

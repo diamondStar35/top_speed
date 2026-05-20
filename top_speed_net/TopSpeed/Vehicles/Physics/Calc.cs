@@ -103,8 +103,12 @@ namespace TopSpeed.Vehicles
             }
 
             var surfaceTractionModLat = _surfaceTractionFactor > 0f ? _currentSurfaceTractionFactor / _surfaceTractionFactor : 1.0f;
-            var tireOutput = SolveTireModel(elapsed, speedMps, _currentSteering, surfaceTractionModLat, _currentSurfaceLateralMultiplier);
+            var lateralGripScale = ResolveTireWearLateralScale();
+            var tireOutput = SolveTireModel(elapsed, speedMps, _currentSteering, surfaceTractionModLat, _currentSurfaceLateralMultiplier * lateralGripScale);
             _positionX += tireOutput.LateralSpeedMps * elapsed;
+            _lastLateralLoadRatio = tireOutput.LateralLoadRatio;
+            _lastSlipAngleNormalized = tireOutput.SlipAngleNormalized;
+            _lastLateralSlipNormalized = tireOutput.LateralSlipNormalized;
         }
     }
 }

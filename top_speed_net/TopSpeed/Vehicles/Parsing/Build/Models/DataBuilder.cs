@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using TopSpeed.Physics.Tires.Wear;
 
 namespace TopSpeed.Vehicles.Parsing
 {
@@ -90,6 +91,7 @@ namespace TopSpeed.Vehicles.Parsing
                 BrakeStrength = values.BrakeStrength,
                 Steering = values.SteeringResponse,
                 TireGripCoefficient = values.TireGrip,
+                TireWearConfig = ResolveTireWearConfig(values, tireCircumferenceResolved),
                 LateralGripCoefficient = values.LateralGrip,
                 HighSpeedStability = values.HighSpeedStability,
                 WheelbaseM = values.Wheelbase,
@@ -113,6 +115,46 @@ namespace TopSpeed.Vehicles.Parsing
                 TireCircumferenceM = tireCircumferenceResolved,
                 TransmissionPolicy = transmissionPolicy
             };
+        }
+
+        private static TireWearConfig ResolveTireWearConfig(ParsedValues values, float tireCircumferenceResolved)
+        {
+            var profile = TireWearProfiles.CreateFromVehicle(
+                values.TireGrip,
+                values.MassKg,
+                tireCircumferenceResolved,
+                values.LateralGrip);
+
+            return new TireWearConfig(
+                baseWearPerKilometer: values.TireWearBasePerKilometer ?? profile.BaseWearPerKilometer,
+                slipWearRatePerSecond: values.TireWearSlipRatePerSecond ?? profile.SlipWearRatePerSecond,
+                corneringSlipWearWeight: values.TireWearCorneringSlipWeight ?? profile.CorneringSlipWearWeight,
+                longitudinalSlipWearWeight: values.TireWearLongitudinalSlipWeight ?? profile.LongitudinalSlipWearWeight,
+                loadWearGain: values.TireWearLoadGain ?? profile.LoadWearGain,
+                wearHotStartTemperatureC: values.TireWearHotStartTemperatureC ?? profile.WearHotStartTemperatureC,
+                wearHotGainPerC: values.TireWearHotGainPerC ?? profile.WearHotGainPerC,
+                wearColdStartTemperatureC: values.TireWearColdStartTemperatureC ?? profile.WearColdStartTemperatureC,
+                wearColdGainPerC: values.TireWearColdGainPerC ?? profile.WearColdGainPerC,
+                ambientTemperatureC: profile.AmbientTemperatureC,
+                coldEndTemperatureC: values.TireTemperatureColdEndC ?? profile.ColdEndTemperatureC,
+                optimalStartTemperatureC: values.TireTemperatureOptimalStartC ?? profile.OptimalStartTemperatureC,
+                optimalEndTemperatureC: values.TireTemperatureOptimalEndC ?? profile.OptimalEndTemperatureC,
+                overheatEndTemperatureC: values.TireTemperatureOverheatEndC ?? profile.OverheatEndTemperatureC,
+                gripAtVeryCold: values.TireGripVeryCold ?? profile.GripAtVeryCold,
+                gripAtColdEnd: values.TireGripColdEnd ?? profile.GripAtColdEnd,
+                gripAtOptimal: values.TireGripOptimal ?? profile.GripAtOptimal,
+                gripAtOverheatEnd: values.TireGripOverheatEnd ?? profile.GripAtOverheatEnd,
+                gripAtCooked: values.TireGripCooked ?? profile.GripAtCooked,
+                gripAtFullWear: values.TireWearGripAtFullWear ?? profile.GripAtFullWear,
+                corneringHeatCPerSecond: values.TireHeatCorneringCPerSecond ?? profile.CorneringHeatCPerSecond,
+                longitudinalHeatCPerSecond: values.TireHeatLongitudinalCPerSecond ?? profile.LongitudinalHeatCPerSecond,
+                loadHeatCPerSecond: values.TireHeatLoadCPerSecond ?? profile.LoadHeatCPerSecond,
+                rollingHeatCPerSecond: values.TireHeatRollingCPerSecond ?? profile.RollingHeatCPerSecond,
+                airflowCoolingPerMpsPerCPerSecond: values.TireCoolingAirflowPerMpsPerCPerSecond ?? profile.AirflowCoolingPerMpsPerCPerSecond,
+                ambientExchangePerCPerSecond: values.TireExchangeAmbientPerCPerSecond ?? profile.AmbientExchangePerCPerSecond,
+                roadExchangePerCPerSecond: values.TireExchangeRoadPerCPerSecond ?? profile.RoadExchangePerCPerSecond,
+                wetRoadExchangePerCPerSecond: values.TireExchangeWetRoadPerCPerSecond ?? profile.WetRoadExchangePerCPerSecond,
+                slipSmoothingTimeConstantSeconds: values.TireSlipSmoothingTauSeconds ?? profile.SlipSmoothingTimeConstantSeconds);
         }
     }
 }

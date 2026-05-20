@@ -46,6 +46,15 @@ Multiplayer is split into state, dispatch, runtime, and UI reactions:
 
 Rule: packet handlers update store/runtime state first; menu/speech effects happen second. Do not mix room state mutation with UI side effects in the same method.
 
+### Vehicle tire wear, weather, and reporting
+
+- Shared tire wear runtime lives under `top_speed_net/TopSpeed.Shared/Physics/Tires/Wear/`; `TireWearRuntime` is a thin facade and step internals are split under `.../Wear/Runtime/` (`Core`, `Environment`, `Integrator`, `Stepper`, `Temperature`, `ResultBuilder`, `StateSanitizer`, `Math`).
+- Longitudinal tire wear input is normalized through `top_speed_net/TopSpeed.Shared/Physics/Tires/Wear/InputSignals.cs`; both player and bot physics must use this shared mapper so normal acceleration is not treated as tire slide.
+- Player-car integration lives in `top_speed_net/TopSpeed/Vehicles/Physics/TireWear.cs`; it consumes live weather from `Track.GetActiveWeatherProfile()` and models both tire and surface temperature.
+- Bot integration lives in `top_speed_net/TopSpeed.Shared/Bots/Physics/` (`BotPhysicsInput`, `BotPhysicsState`, `BotPhysicsConfig`, `BotPhysics.Step`) and must stay behaviorally aligned with player-car tire wear semantics.
+- Custom vehicle tire wear tuning is parsed from `[tire_model]` in `top_speed_net/TopSpeed/Vehicles/Parsing/` using explicit keys for wear/thermal behavior (for example `wear_slip_rate_per_s`, `temp_optimal_end_c`, `heat_cornering_c_per_s`, `exchange_wet_road_per_c_per_s`).
+- In-race tire state speech is bound through `DriveIntent.ReportTireState` and handled in `Drive/Session/Systems/CoreRequests.cs`; default keyboard binding is `V` and must not alter `GearDown` behavior.
+
 ### Menu, dialog, and localization
 
 - Menu items and screen titles must be fed through `LocalizationService.Mark(...)` at the source (see `TopSpeed.Shared/Localization/LocalizationService.cs`).

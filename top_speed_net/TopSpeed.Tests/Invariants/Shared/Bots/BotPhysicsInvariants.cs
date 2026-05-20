@@ -24,7 +24,11 @@ public sealed class BotPhysicsInvariantTests
                 scenario.Surface,
                 scenario.Throttle,
                 scenario.Brake,
-                scenario.Steering);
+                scenario.Steering,
+                ambientTemperatureC: float.NaN,
+                rainGain: 0f,
+                stormGain: 0f,
+                windGain: 0f);
 
             BotPhysics.Step(config, ref state, input);
 
@@ -58,7 +62,11 @@ public sealed class BotPhysicsInvariantTests
                     scenario.Surface,
                     throttle: 0,
                     brake: -100,
-                    steering: scenario.Steering));
+                    steering: scenario.Steering,
+                    ambientTemperatureC: float.NaN,
+                    rainGain: 0f,
+                    stormGain: 0f,
+                    windGain: 0f));
         }
 
         state.SpeedKph.Should().BeLessThanOrEqualTo(initialSpeed + 0.001f);

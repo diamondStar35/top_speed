@@ -13,6 +13,8 @@ namespace TopSpeed.Drive.Session.Systems
         private const float MetersPerMile = 1609.344f;
         private const float MetersToFeet = 3.28084f;
         private const float LitersToGallons = 0.264172052f;
+        private const float CelsiusToFahrenheitScale = 1.8f;
+        private const float CelsiusToFahrenheitOffset = 32f;
 
         private readonly DriveInput _input;
         private readonly DriveSettings _settings;
@@ -67,6 +69,7 @@ namespace TopSpeed.Drive.Session.Systems
             HandleTrackNameRequest();
             HandleSpeedReportRequest();
             HandleFuelReportRequest();
+            HandleTireReportRequest();
             HandleDistanceReportRequest();
         }
 
@@ -202,6 +205,14 @@ namespace TopSpeed.Drive.Session.Systems
             _speakText(BuildFuelStatusPhrase());
         }
 
+        private void HandleTireReportRequest()
+        {
+            if (!_input.Intents.IsTriggered(DriveIntent.ReportTireState) || !IsActiveLapRange())
+                return;
+
+            _speakText(BuildTireStatusPhrase());
+        }
+
         private void HandleDistanceReportRequest()
         {
             if (!_input.Intents.IsTriggered(DriveIntent.ReportDistance) || !IsActiveLapRange())
@@ -268,5 +279,51 @@ namespace TopSpeed.Drive.Session.Systems
                 remainingLiters,
                 fuelPercent);
         }
+
+        private string BuildTireStatusPhrase()
+        {
+            var wearPercent = Math.Max(0f, Math.Min(100f, _car.TireWearPercent));
+            var temperatureC = _car.TireTemperatureC;
+            var wearState = ResolveTireWearState(wearPercent);
+            var temperatureState = TireTemperatureStatus.ResolvePhrase(
+                temperatureC,
+                _car.TireColdEndTemperatureC,
+                _car.TireOptimalStartTemperatureC,
+                _car.TireOptimalEndTemperatureC,
+                _car.TireOverheatEndTemperatureC);
+
+            if (_settings.Units == UnitSystem.Imperial)
+            {
+                var temperatureF = (temperatureC * CelsiusToFahrenheitScale) + CelsiusToFahrenheitOffset;
+                return LocalizationService.Format(
+                    LocalizationService.Mark("tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"),
+                    wearPercent,
+                    temperatureF,
+                    wearState,
+                    temperatureState);
+            }
+
+            return LocalizationService.Format(
+                LocalizationService.Mark("tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"),
+                wearPercent,
+                temperatureC,
+                wearState,
+                temperatureState);
+        }
+
+        private static string ResolveTireWearState(float wearPercent)
+        {
+            if (wearPercent >= 90f)
+                return LocalizationService.Mark("worn tires");
+            if (wearPercent >= 70f)
+                return LocalizationService.Mark("heavy wear");
+            if (wearPercent >= 40f)
+                return LocalizationService.Mark("moderate wear");
+            if (wearPercent >= 15f)
+                return LocalizationService.Mark("light wear");
+
+            return LocalizationService.Mark("new tires");
+        }
+
     }
 }

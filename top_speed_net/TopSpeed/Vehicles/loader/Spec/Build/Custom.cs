@@ -34,6 +34,7 @@ namespace TopSpeed.Vehicles.Loader
                 DrivetrainEfficiency = parsed.DrivetrainEfficiency,
                 EngineBrakingTorqueNm = parsed.EngineBrakingTorqueNm,
                 TireGripCoefficient = parsed.TireGripCoefficient,
+                TireWearConfig = parsed.TireWearConfig,
                 PeakTorqueNm = parsed.PeakTorqueNm,
                 PeakTorqueRpm = parsed.PeakTorqueRpm,
                 IdleTorqueNm = parsed.IdleTorqueNm,

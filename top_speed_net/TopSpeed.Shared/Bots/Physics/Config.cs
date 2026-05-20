@@ -1,5 +1,6 @@
 using System;
 using TopSpeed.Physics.Powertrain;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Physics.Torque;
 using TopSpeed.Vehicles;
 
@@ -75,7 +76,8 @@ namespace TopSpeed.Bots
             float minCoupledRiseFullRpmPerSecond = -1f,
             float engineOverrunIdleLossFraction = -1f,
             float overrunCurveExponent = -1f,
-            float engineBrakeTransferEfficiency = -1f)
+            float engineBrakeTransferEfficiency = -1f,
+            TireWearConfig? tireWearConfig = null)
         {
             var build = PowertrainBuild.Create(
                 new BuildInput(
@@ -194,6 +196,12 @@ namespace TopSpeed.Bots
             AutomaticTuning = automaticTuning ?? AutomaticDrivelineTuning.Default;
             TorqueCurve = torqueCurve ?? throw new ArgumentNullException(nameof(torqueCurve));
             Powertrain = build.Powertrain;
+            TireWearConfig = tireWearConfig
+                ?? TireWearProfiles.CreateFromVehicle(
+                    TireGripCoefficient,
+                    MassKg,
+                    WheelRadiusM * 2f * (float)Math.PI,
+                    LateralGripCoefficient);
         }
 
         public float SurfaceTractionFactor { get; }
@@ -265,6 +273,7 @@ namespace TopSpeed.Bots
         public TransmissionType ActiveTransmissionType { get; }
         public AutomaticDrivelineTuning AutomaticTuning { get; }
         public Config Powertrain { get; }
+        public TireWearConfig TireWearConfig { get; }
 
         public float GetGearRatio(int gear)
         {

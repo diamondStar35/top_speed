@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TopSpeed.Localization;
 using TopSpeed.Physics.Fuel;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Protocol;
 
 namespace TopSpeed.Vehicles
@@ -48,6 +49,7 @@ namespace TopSpeed.Vehicles
         public float DrivetrainEfficiency { get; set; } = 0.85f;
         public float EngineBrakingTorqueNm { get; set; } = 150f;
         public float TireGripCoefficient { get; set; } = 0.9f;
+        public TireWearConfig TireWearConfig { get; set; } = TireWearProfiles.Balanced;
         public float PeakTorqueNm { get; set; } = 200f;
         public float PeakTorqueRpm { get; set; } = 4000f;
         public float IdleTorqueNm { get; set; } = 60f;

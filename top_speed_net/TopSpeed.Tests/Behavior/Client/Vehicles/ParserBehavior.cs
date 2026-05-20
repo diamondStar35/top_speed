@@ -74,6 +74,73 @@ namespace TopSpeed.Tests
             withoutStopData.Sounds.Stop.Should().BeNull();
         }
 
+        [Fact]
+        public void TireWearModelKeys_ShouldOverrideDerivedRuntimeConfig()
+        {
+            using var tempFile = TempVehicleFile.Create(BuildVehicleTsv(
+                primaryType: "manual",
+                supportedTypes: "manual",
+                shiftOnDemand: false,
+                includeAtcSection: false,
+                tireWearOverrides: @"
+wear_base_per_km=0.0085
+wear_slip_rate_per_s=0.0009
+wear_cornering_slip_weight=0.45
+wear_longitudinal_slip_weight=0.8
+wear_load_gain=1.3
+wear_hot_start_c=96
+wear_hot_gain_per_c=0.042
+wear_cold_start_c=24
+wear_cold_gain_per_c=0.011
+temp_cold_end_c=38
+temp_optimal_start_c=78
+temp_optimal_end_c=104
+temp_overheat_end_c=141
+grip_very_cold=0.72
+grip_cold_end=0.94
+grip_optimal=1.03
+grip_overheat_end=0.73
+grip_cooked=0.62
+wear_grip_at_full_wear=0.61
+heat_cornering_c_per_s=14
+heat_longitudinal_c_per_s=12
+heat_load_c_per_s=7
+heat_rolling_c_per_s=4
+cool_airflow_per_mps_per_c_per_s=0.0031
+exchange_ambient_per_c_per_s=0.031
+exchange_road_per_c_per_s=0.051
+exchange_wet_road_per_c_per_s=0.072
+slip_smoothing_tau_s=1.2"));
+
+            var ok = VehicleTsvParser.TryLoadFromFile(tempFile.Path, out var data, out var issues);
+
+            ok.Should().BeTrue(DescribeIssues(issues));
+            issues.Select(x => x.Severity).Should().NotContain(VehicleTsvIssueSeverity.Error);
+            data.TireWearConfig.BaseWearPerKilometer.Should().BeApproximately(0.0085f, 0.00001f);
+            data.TireWearConfig.SlipWearRatePerSecond.Should().BeApproximately(0.0009f, 0.0000001f);
+            data.TireWearConfig.CorneringSlipWearWeight.Should().BeApproximately(0.45f, 0.0001f);
+            data.TireWearConfig.LongitudinalSlipWearWeight.Should().BeApproximately(0.8f, 0.0001f);
+            data.TireWearConfig.LoadWearGain.Should().BeApproximately(1.3f, 0.0001f);
+            data.TireWearConfig.WearHotStartTemperatureC.Should().BeApproximately(96f, 0.0001f);
+            data.TireWearConfig.WearHotGainPerC.Should().BeApproximately(0.042f, 0.0001f);
+            data.TireWearConfig.ColdEndTemperatureC.Should().BeApproximately(38f, 0.0001f);
+            data.TireWearConfig.OptimalStartTemperatureC.Should().BeApproximately(78f, 0.0001f);
+            data.TireWearConfig.OptimalEndTemperatureC.Should().BeApproximately(104f, 0.0001f);
+            data.TireWearConfig.OverheatEndTemperatureC.Should().BeApproximately(141f, 0.0001f);
+            data.TireWearConfig.GripAtVeryCold.Should().BeApproximately(0.72f, 0.0001f);
+            data.TireWearConfig.GripAtOverheatEnd.Should().BeApproximately(0.73f, 0.0001f);
+            data.TireWearConfig.GripAtFullWear.Should().BeApproximately(0.61f, 0.0001f);
+            data.TireWearConfig.CorneringHeatCPerSecond.Should().BeApproximately(14f, 0.0001f);
+            data.TireWearConfig.LongitudinalHeatCPerSecond.Should().BeApproximately(12f, 0.0001f);
+            data.TireWearConfig.LoadHeatCPerSecond.Should().BeApproximately(7f, 0.0001f);
+            data.TireWearConfig.RollingHeatCPerSecond.Should().BeApproximately(4f, 0.0001f);
+            data.TireWearConfig.AirflowCoolingPerMpsPerCPerSecond.Should().BeApproximately(0.0031f, 0.0000001f);
+            data.TireWearConfig.AmbientExchangePerCPerSecond.Should().BeApproximately(0.031f, 0.0001f);
+            data.TireWearConfig.RoadExchangePerCPerSecond.Should().BeApproximately(0.051f, 0.0001f);
+            data.TireWearConfig.WetRoadExchangePerCPerSecond.Should().BeApproximately(0.072f, 0.0001f);
+            data.TireWearConfig.SlipSmoothingTimeConstantSeconds.Should().BeApproximately(1.2f, 0.0001f);
+        }
+
         private static string DescribeIssues(System.Collections.Generic.IReadOnlyList<VehicleTsvIssue> issues)
         {
             if (issues.Count == 0)
@@ -106,7 +173,8 @@ namespace TopSpeed.Tests
             bool shiftOnDemand,
             bool includeAtcSection,
             bool includeTorqueCurveSection = true,
-            string? stopSound = null)
+            string? stopSound = null,
+            string? tireWearOverrides = null)
         {
             var atcSection = includeAtcSection
                 ? @"
@@ -130,6 +198,9 @@ disengage_rate=18
 "
                 : string.Empty;
             var stopLine = string.IsNullOrWhiteSpace(stopSound) ? string.Empty : $"stop={stopSound}\n";
+            var tireWearLines = string.IsNullOrWhiteSpace(tireWearOverrides)
+                ? string.Empty
+                : $"{tireWearOverrides.Trim()}\n";
 
             return $@"
 [meta]
@@ -233,6 +304,7 @@ slip_angle_falloff=1.25
 turn_response=1.05
 mass_sensitivity=0.75
 downforce_grip_gain=0.10
+{tireWearLines}
 
 [dynamics]
 corner_stiffness_front=1.05

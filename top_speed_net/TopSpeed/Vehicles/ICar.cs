@@ -47,6 +47,13 @@ namespace TopSpeed.Vehicles
         bool FuelLow { get; }
         bool FuelEmpty { get; }
         void AddFuelLiters(float liters);
+        float TireWearPercent { get; }
+        float TireTemperatureC { get; }
+        float TireTemperaturePercent { get; }
+        float TireColdEndTemperatureC { get; }
+        float TireOptimalStartTemperatureC { get; }
+        float TireOptimalEndTemperatureC { get; }
+        float TireOverheatEndTemperatureC { get; }
 
         void Initialize(float positionX = 0, float positionY = 0);
         void SetPosition(float positionX, float positionY);

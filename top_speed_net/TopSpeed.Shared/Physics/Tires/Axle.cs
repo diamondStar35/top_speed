@@ -4,7 +4,15 @@ namespace TopSpeed.Physics.Tires
 {
     internal readonly struct TireAxleData
     {
-        public TireAxleData(float wheelbase, float trackWidth, float a, float b, float frontForce, float rearForce, float lateralForceRatio)
+        public TireAxleData(
+            float wheelbase,
+            float trackWidth,
+            float a,
+            float b,
+            float frontForce,
+            float rearForce,
+            float lateralForceRatio,
+            float slipAngleNormalized)
         {
             Wheelbase = wheelbase;
             TrackWidth = trackWidth;
@@ -13,6 +21,7 @@ namespace TopSpeed.Physics.Tires
             FrontForce = frontForce;
             RearForce = rearForce;
             LateralForceRatio = lateralForceRatio;
+            SlipAngleNormalized = slipAngleNormalized;
         }
 
         public float Wheelbase { get; }
@@ -22,6 +31,7 @@ namespace TopSpeed.Physics.Tires
         public float FrontForce { get; }
         public float RearForce { get; }
         public float LateralForceRatio { get; }
+        public float SlipAngleNormalized { get; }
         public float TotalForce => FrontForce + RearForce;
     }
 
@@ -45,6 +55,10 @@ namespace TopSpeed.Physics.Tires
             var rearSlip = -(float)Math.Atan2(state.LateralVelocityMps - (b * state.YawRateRad), steer.ForwardSpeed);
             var frontSlipEff = ShapeSlip(frontSlip, peakSlipRad, parameters.SlipAngleFalloff);
             var rearSlipEff = ShapeSlip(rearSlip, peakSlipRad, parameters.SlipAngleFalloff);
+            var slipAngleNormalized = TireModelMath.Clamp(
+                ((Math.Abs(frontSlip) + Math.Abs(rearSlip)) / 2f) / Math.Max(0.0001f, peakSlipRad),
+                0f,
+                3f);
 
             var baseCornerStiffness = Math.Max(100f, grip.GripForce / Math.Max(0.05f, peakSlipRad));
             var cornerFront = baseCornerStiffness * Math.Max(0.2f, parameters.CornerStiffnessFront);
@@ -66,7 +80,7 @@ namespace TopSpeed.Physics.Tires
                 ? Math.Min(1f, Math.Abs(frontForce + rearForce) / grip.GripForce)
                 : 0f;
 
-            return new TireAxleData(wheelbase, trackWidth, a, b, frontForce, rearForce, lateralForceRatio);
+            return new TireAxleData(wheelbase, trackWidth, a, b, frontForce, rearForce, lateralForceRatio, slipAngleNormalized);
         }
 
         private static float ShapeSlip(float slip, float peakSlipRad, float falloff)

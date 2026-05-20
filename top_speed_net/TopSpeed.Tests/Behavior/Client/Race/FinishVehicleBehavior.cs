@@ -172,6 +172,13 @@ public sealed class FinishVehicleBehaviorTests
         public bool FuelLow => false;
         public bool FuelEmpty => false;
         public void AddFuelLiters(float liters) { }
+        public float TireWearPercent => 0f;
+        public float TireTemperatureC => 0f;
+        public float TireTemperaturePercent => 0f;
+        public float TireColdEndTemperatureC => 32f;
+        public float TireOptimalStartTemperatureC => 54f;
+        public float TireOptimalEndTemperatureC => 78f;
+        public float TireOverheatEndTemperatureC => 112f;
 
         public void Initialize(float positionX = 0, float positionY = 0) { }
         public void SetPosition(float positionX, float positionY) { }

@@ -32,7 +32,11 @@ namespace TopSpeed.Server.Network
                 currentRoad.Surface,
                 (int)Math.Round(throttle),
                 brake: 0,
-                steering: (int)Math.Round(steering));
+                steering: (int)Math.Round(steering),
+                ambientTemperatureC: float.NaN,
+                rainGain: 0f,
+                stormGain: 0f,
+                windGain: 0f);
             BotPhysics.Step(bot.PhysicsConfig, ref physicsState, in physicsInput);
 
             bot.PhysicsState = physicsState;

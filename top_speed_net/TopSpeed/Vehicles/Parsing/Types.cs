@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TopSpeed.Localization;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Vehicles;
 
 namespace TopSpeed.Vehicles.Parsing
@@ -130,6 +131,7 @@ namespace TopSpeed.Vehicles.Parsing
 
         public float Steering { get; set; }
         public float TireGripCoefficient { get; set; }
+        public TireWearConfig TireWearConfig { get; set; } = TireWearProfiles.Balanced;
         public float LateralGripCoefficient { get; set; }
         public float HighSpeedStability { get; set; }
         public float WheelbaseM { get; set; }

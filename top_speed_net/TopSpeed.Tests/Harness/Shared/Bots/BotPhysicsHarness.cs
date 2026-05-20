@@ -63,7 +63,16 @@ internal static class BotPhysicsHarness
 
         for (var i = 0; i < steps; i++)
         {
-            var input = new BotPhysicsInput(elapsedSeconds, surface, throttle, brake, steering);
+            var input = new BotPhysicsInput(
+                elapsedSeconds,
+                surface,
+                throttle,
+                brake,
+                steering,
+                ambientTemperatureC: float.NaN,
+                rainGain: 0f,
+                stormGain: 0f,
+                windGain: 0f);
             BotPhysics.Step(config, ref state, input);
 
             if (i % 10 == 0 || i == steps - 1)
@@ -89,7 +98,11 @@ internal static class BotPhysicsHarness
             Gear = Math.Max(1, Math.Min(config.Gears, gear ?? 1)),
             AutomaticCouplingFactor = 1f,
             CvtRatio = config.AutomaticTuning.Cvt.RatioMax,
-            SpeedKph = Math.Max(0f, speedKph)
+            SpeedKph = Math.Max(0f, speedKph),
+            TireWearFraction = 0f,
+            TireTemperatureC = float.NaN,
+            TireSmoothedSlipNormalized = 0f,
+            SurfaceTemperatureC = float.NaN
         };
     }
 

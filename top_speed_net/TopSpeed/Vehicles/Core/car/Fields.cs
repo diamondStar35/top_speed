@@ -163,9 +163,9 @@ namespace TopSpeed.Vehicles
         private bool _fuelEmpty;
         private float _fuelPowerScale = 1f;
         private float _fuelWarningPulseTimerSeconds;
-        private TireWearState _tireWearState = TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.AmbientTemperatureC);
-        private TireWearRuntimeResult _tireWearRuntime = TireWearRuntime.Resolve(TireWearDefaults.Balanced, TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.AmbientTemperatureC));
-        private float _surfaceTemperatureC = TireWearDefaults.Balanced.AmbientTemperatureC;
+        private TireWearState _tireWearState = TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.FallbackAmbientTemperatureC);
+        private TireWearRuntimeResult _tireWearRuntime = TireWearRuntime.Resolve(TireWearDefaults.Balanced, TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.FallbackAmbientTemperatureC));
+        private float _surfaceTemperatureC = TireWearDefaults.Balanced.FallbackAmbientTemperatureC;
         private LongitudinalStepResult _lastLongitudinalResult;
         private float _lastLateralLoadRatio;
         private float _lastSlipAngleNormalized;

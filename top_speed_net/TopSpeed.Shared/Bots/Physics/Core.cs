@@ -23,7 +23,7 @@ namespace TopSpeed.Bots
             if (state.CvtRatio <= 0f)
                 state.CvtRatio = config.AutomaticTuning.Cvt.RatioMax;
 
-            var ambientTemperatureC = ResolveAmbientTemperatureC(input.AmbientTemperatureC, config.TireWearConfig.AmbientTemperatureC);
+            var ambientTemperatureC = ResolveAmbientTemperatureC(input.AmbientTemperatureC, config.TireWearConfig.FallbackAmbientTemperatureC);
             state.SurfaceTemperatureC = StepSurfaceTemperature(
                 state.SurfaceTemperatureC,
                 input.ElapsedSeconds,

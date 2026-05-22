@@ -40,46 +40,50 @@ namespace TopSpeed.Physics.Tires.Wear
             var gripAtOverheatEnd = Clamp(0.79f - (0.08f * compoundAggression), 0.58f, 0.86f);
             var gripAtCooked = Clamp(0.64f - (0.06f * compoundAggression), 0.48f, 0.74f);
             var gripAtFullWear = Clamp(0.79f - (0.14f * compoundAggression) + (0.03f * sizeNorm), 0.52f, 0.90f);
-            var corneringHeatCPerSecond = Clamp(1.55f + (0.95f * compoundAggression) + (0.55f * massNorm), 1.10f, 3.20f);
-            var longitudinalHeatCPerSecond = Clamp(1.30f + (0.82f * compoundAggression) + (0.48f * massNorm), 1.00f, 2.90f);
-            var loadHeatCPerSecond = Clamp(0.40f + (0.52f * massNorm), 0.24f, 1.05f);
-            var rollingHeatCPerSecond = Clamp(0.22f + (0.25f * massNorm) + (0.08f * (1f - sizeNorm)), 0.14f, 0.60f);
-            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.000056f + (0.000034f * (1f - compoundAggression)) + (0.000022f * sizeNorm), 0.000040f, 0.000150f);
-            var ambientExchangePerCPerSecond = Clamp(0.0019f + (0.0009f * (1f - compoundAggression)), 0.0013f, 0.0038f);
-            var roadExchangePerCPerSecond = Clamp(0.0034f + (0.0015f * (1f - compoundAggression)) + (0.0008f * (1f - sizeNorm)), 0.0024f, 0.0078f);
-            var wetRoadExchangePerCPerSecond = Clamp(0.0052f + (0.0030f * compoundAggression) + (0.0017f * (1f - sizeNorm)), 0.0040f, 0.0140f);
+            // Heat coefficients (°C/s when speed=1m/s, load=1, signal=1).
+            // Aggressive compounds heat faster; heavier cars load the contact patch harder.
+            var corneringHeatCPerSecond = Clamp(0.20f + (0.12f * compoundAggression) + (0.06f * massNorm), 0.15f, 0.45f);
+            var longitudinalHeatCPerSecond = Clamp(0.30f + (0.15f * compoundAggression) + (0.06f * massNorm), 0.22f, 0.55f);
+            var loadHeatCPerSecond = Clamp(0.035f + (0.014f * massNorm) + (0.005f * compoundAggression), 0.025f, 0.060f);
+            var rollingHeatCPerSecond = Clamp(0.018f + (0.008f * massNorm) + (0.004f * (1f - sizeNorm)), 0.012f, 0.032f);
+            // Cooling coefficients (1/s). Larger tires shed heat faster; soft compounds run hotter.
+            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.00030f + (0.00006f * sizeNorm) - (0.00004f * compoundAggression), 0.00020f, 0.00045f);
+            var ambientExchangePerCPerSecond = Clamp(0.0022f + (0.0005f * sizeNorm), 0.0015f, 0.0040f);
+            var roadExchangePerCPerSecond = Clamp(0.0030f + (0.0008f * sizeNorm) - (0.0004f * compoundAggression), 0.0020f, 0.0050f);
+            var wetRoadExchangePerCPerSecond = Clamp(0.0050f + (0.0020f * compoundAggression), 0.0040f, 0.0090f);
             var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
-            return new TireWearConfig(
-                baseWearPerKilometer: baseWearPerKilometer,
-                slipWearRatePerSecond: slipWearRatePerSecond,
-                corneringSlipWearWeight: corneringSlipWearWeight,
-                longitudinalSlipWearWeight: longitudinalSlipWearWeight,
-                loadWearGain: loadWearGain,
-                wearHotStartTemperatureC: wearHotStartTemperatureC,
-                wearHotGainPerC: wearHotGainPerC,
-                wearColdStartTemperatureC: wearColdStartTemperatureC,
-                wearColdGainPerC: wearColdGainPerC,
-                ambientTemperatureC: 22f,
-                coldEndTemperatureC: coldEndTemperatureC,
-                optimalStartTemperatureC: optimalStartTemperatureC,
-                optimalEndTemperatureC: optimalEndTemperatureC,
-                overheatEndTemperatureC: overheatEndTemperatureC,
-                gripAtVeryCold: gripAtVeryCold,
-                gripAtColdEnd: gripAtColdEnd,
-                gripAtOptimal: gripAtOptimal,
-                gripAtOverheatEnd: gripAtOverheatEnd,
-                gripAtCooked: gripAtCooked,
-                gripAtFullWear: gripAtFullWear,
-                corneringHeatCPerSecond: corneringHeatCPerSecond,
-                longitudinalHeatCPerSecond: longitudinalHeatCPerSecond,
-                loadHeatCPerSecond: loadHeatCPerSecond,
-                rollingHeatCPerSecond: rollingHeatCPerSecond,
-                airflowCoolingPerMpsPerCPerSecond: airflowCoolingPerMpsPerCPerSecond,
-                ambientExchangePerCPerSecond: ambientExchangePerCPerSecond,
-                roadExchangePerCPerSecond: roadExchangePerCPerSecond,
-                wetRoadExchangePerCPerSecond: wetRoadExchangePerCPerSecond,
-                slipSmoothingTimeConstantSeconds: slipSmoothingTau);
+            return new TireWearConfig
+            {
+                BaseWearPerKilometer = baseWearPerKilometer,
+                SlipWearRatePerSecond = slipWearRatePerSecond,
+                CorneringSlipWearWeight = corneringSlipWearWeight,
+                LongitudinalSlipWearWeight = longitudinalSlipWearWeight,
+                LoadWearGain = loadWearGain,
+                WearHotStartTemperatureC = wearHotStartTemperatureC,
+                WearHotGainPerC = wearHotGainPerC,
+                WearColdStartTemperatureC = wearColdStartTemperatureC,
+                WearColdGainPerC = wearColdGainPerC,
+                ColdEndTemperatureC = coldEndTemperatureC,
+                OptimalStartTemperatureC = optimalStartTemperatureC,
+                OptimalEndTemperatureC = optimalEndTemperatureC,
+                OverheatEndTemperatureC = overheatEndTemperatureC,
+                GripAtVeryCold = gripAtVeryCold,
+                GripAtColdEnd = gripAtColdEnd,
+                GripAtOptimal = gripAtOptimal,
+                GripAtOverheatEnd = gripAtOverheatEnd,
+                GripAtCooked = gripAtCooked,
+                GripAtFullWear = gripAtFullWear,
+                CorneringHeatCPerSecond = corneringHeatCPerSecond,
+                LongitudinalHeatCPerSecond = longitudinalHeatCPerSecond,
+                LoadHeatCPerSecond = loadHeatCPerSecond,
+                RollingHeatCPerSecond = rollingHeatCPerSecond,
+                AirflowCoolingPerMpsPerCPerSecond = airflowCoolingPerMpsPerCPerSecond,
+                AmbientExchangePerCPerSecond = ambientExchangePerCPerSecond,
+                RoadExchangePerCPerSecond = roadExchangePerCPerSecond,
+                WetRoadExchangePerCPerSecond = wetRoadExchangePerCPerSecond,
+                SlipSmoothingTimeConstantSeconds = slipSmoothingTau,
+            };
         }
 
         private static float Clamp01(float value)

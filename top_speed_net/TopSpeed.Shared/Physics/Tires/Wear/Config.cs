@@ -2,107 +2,72 @@ using System;
 
 namespace TopSpeed.Physics.Tires.Wear
 {
+    // Configuration for the tire wear / heat / grip model. All properties are
+    // init-only; build instances with object initializer syntax. Values are
+    // sanitized lazily at the call site (see `TireWearProfiles` / `TireWearDefaults`)
+    // — there is no defensive clamping inside the type itself.
     public sealed class TireWearConfig
     {
-        public TireWearConfig(
-            float baseWearPerKilometer,
-            float slipWearRatePerSecond,
-            float corneringSlipWearWeight,
-            float longitudinalSlipWearWeight,
-            float loadWearGain,
-            float wearHotStartTemperatureC,
-            float wearHotGainPerC,
-            float wearColdStartTemperatureC,
-            float wearColdGainPerC,
-            float ambientTemperatureC,
-            float coldEndTemperatureC,
-            float optimalStartTemperatureC,
-            float optimalEndTemperatureC,
-            float overheatEndTemperatureC,
-            float gripAtVeryCold,
-            float gripAtColdEnd,
-            float gripAtOptimal,
-            float gripAtOverheatEnd,
-            float gripAtCooked,
-            float gripAtFullWear,
-            float corneringHeatCPerSecond,
-            float longitudinalHeatCPerSecond,
-            float loadHeatCPerSecond,
-            float rollingHeatCPerSecond,
-            float airflowCoolingPerMpsPerCPerSecond,
-            float ambientExchangePerCPerSecond,
-            float roadExchangePerCPerSecond,
-            float wetRoadExchangePerCPerSecond,
-            float slipSmoothingTimeConstantSeconds)
-        {
-            BaseWearPerKilometer = Math.Max(0f, baseWearPerKilometer);
-            SlipWearRatePerSecond = Math.Max(0f, slipWearRatePerSecond);
-            CorneringSlipWearWeight = Math.Max(0f, corneringSlipWearWeight);
-            LongitudinalSlipWearWeight = Math.Max(0f, longitudinalSlipWearWeight);
-            LoadWearGain = Math.Max(0f, loadWearGain);
-            WearHotStartTemperatureC = wearHotStartTemperatureC;
-            WearHotGainPerC = Math.Max(0f, wearHotGainPerC);
-            WearColdStartTemperatureC = wearColdStartTemperatureC;
-            WearColdGainPerC = Math.Max(0f, wearColdGainPerC);
-            AmbientTemperatureC = ambientTemperatureC;
-            ColdEndTemperatureC = coldEndTemperatureC;
-            OptimalStartTemperatureC = Math.Max(ColdEndTemperatureC + 1f, optimalStartTemperatureC);
-            OptimalEndTemperatureC = Math.Max(OptimalStartTemperatureC + 1f, optimalEndTemperatureC);
-            OverheatEndTemperatureC = Math.Max(OptimalEndTemperatureC + 1f, overheatEndTemperatureC);
-            GripAtVeryCold = Clamp(gripAtVeryCold, 0.35f, 1.25f);
-            GripAtColdEnd = Clamp(gripAtColdEnd, 0.35f, 1.25f);
-            GripAtOptimal = Clamp(gripAtOptimal, 0.35f, 1.25f);
-            GripAtOverheatEnd = Clamp(gripAtOverheatEnd, 0.35f, 1.25f);
-            GripAtCooked = Clamp(gripAtCooked, 0.35f, 1.25f);
-            GripAtFullWear = Clamp(gripAtFullWear, 0.35f, 1f);
-            CorneringHeatCPerSecond = Math.Max(0f, corneringHeatCPerSecond);
-            LongitudinalHeatCPerSecond = Math.Max(0f, longitudinalHeatCPerSecond);
-            LoadHeatCPerSecond = Math.Max(0f, loadHeatCPerSecond);
-            RollingHeatCPerSecond = Math.Max(0f, rollingHeatCPerSecond);
-            AirflowCoolingPerMpsPerCPerSecond = Math.Max(0f, airflowCoolingPerMpsPerCPerSecond);
-            AmbientExchangePerCPerSecond = Math.Max(0f, ambientExchangePerCPerSecond);
-            RoadExchangePerCPerSecond = Math.Max(0f, roadExchangePerCPerSecond);
-            WetRoadExchangePerCPerSecond = Math.Max(0f, wetRoadExchangePerCPerSecond);
-            SlipSmoothingTimeConstantSeconds = Math.Max(0.01f, slipSmoothingTimeConstantSeconds);
-        }
+        // --- Wear inputs -----------------------------------------------------
 
-        public float BaseWearPerKilometer { get; }
-        public float SlipWearRatePerSecond { get; }
-        public float CorneringSlipWearWeight { get; }
-        public float LongitudinalSlipWearWeight { get; }
-        public float LoadWearGain { get; }
-        public float WearHotStartTemperatureC { get; }
-        public float WearHotGainPerC { get; }
-        public float WearColdStartTemperatureC { get; }
-        public float WearColdGainPerC { get; }
-        public float AmbientTemperatureC { get; }
-        public float ColdEndTemperatureC { get; }
-        public float OptimalStartTemperatureC { get; }
-        public float OptimalEndTemperatureC { get; }
-        public float OverheatEndTemperatureC { get; }
-        public float GripAtVeryCold { get; }
-        public float GripAtColdEnd { get; }
-        public float GripAtOptimal { get; }
-        public float GripAtOverheatEnd { get; }
-        public float GripAtCooked { get; }
-        public float GripAtFullWear { get; }
-        public float CorneringHeatCPerSecond { get; }
-        public float LongitudinalHeatCPerSecond { get; }
-        public float LoadHeatCPerSecond { get; }
-        public float RollingHeatCPerSecond { get; }
-        public float AirflowCoolingPerMpsPerCPerSecond { get; }
-        public float AmbientExchangePerCPerSecond { get; }
-        public float RoadExchangePerCPerSecond { get; }
-        public float WetRoadExchangePerCPerSecond { get; }
-        public float SlipSmoothingTimeConstantSeconds { get; }
+        // Distance-based wear at unit load, per kilometer travelled.
+        public float BaseWearPerKilometer { get; init; }
 
-        private static float Clamp(float value, float min, float max)
-        {
-            if (value < min)
-                return min;
-            if (value > max)
-                return max;
-            return value;
-        }
+        // Slip-driven wear rate; scaled by the squared slip signals below.
+        public float SlipWearRatePerSecond { get; init; }
+        public float CorneringSlipWearWeight { get; init; }
+        public float LongitudinalSlipWearWeight { get; init; }
+
+        // Multiplier on distance wear at full normalized load.
+        public float LoadWearGain { get; init; }
+
+        // Temperature penalties: extra wear when running hot or cold.
+        public float WearHotStartTemperatureC { get; init; }
+        public float WearHotGainPerC { get; init; }
+        public float WearColdStartTemperatureC { get; init; }
+        public float WearColdGainPerC { get; init; }
+
+        // --- Grip curve (piecewise) ------------------------------------------
+
+        public float ColdEndTemperatureC { get; init; }
+        public float OptimalStartTemperatureC { get; init; }
+        public float OptimalEndTemperatureC { get; init; }
+        public float OverheatEndTemperatureC { get; init; }
+
+        public float GripAtVeryCold { get; init; }
+        public float GripAtColdEnd { get; init; }
+        public float GripAtOptimal { get; init; }
+        public float GripAtOverheatEnd { get; init; }
+        public float GripAtCooked { get; init; }
+        public float GripAtFullWear { get; init; }
+
+        // --- Heat balance ----------------------------------------------------
+        //
+        //   dT/dt = wear_amp * (flex_heat + friction_heat) - h_total(v) * (T - T_eff)
+        //
+        // flex_heat is load·speed driven; friction_heat is load·speed·slip² driven;
+        // h_total = ambient + (airflow * v) + road. All values are in °C/s when
+        // multiplied with their respective normalized signals.
+
+        public float CorneringHeatCPerSecond { get; init; }
+        public float LongitudinalHeatCPerSecond { get; init; }
+        public float LoadHeatCPerSecond { get; init; }
+        public float RollingHeatCPerSecond { get; init; }
+
+        public float AirflowCoolingPerMpsPerCPerSecond { get; init; }
+        public float AmbientExchangePerCPerSecond { get; init; }
+        public float RoadExchangePerCPerSecond { get; init; }
+        public float WetRoadExchangePerCPerSecond { get; init; }
+
+        // --- Smoothing -------------------------------------------------------
+
+        public float SlipSmoothingTimeConstantSeconds { get; init; }
+
+        // --- Environment fallback --------------------------------------------
+
+        // Used only when the per-step ambient is non-finite (e.g. NaN from a
+        // crashed weather source). Tracks supply their real ambient through
+        // `TireWearInput.AmbientTemperatureC` for every step.
+        public float FallbackAmbientTemperatureC { get; init; } = 22f;
     }
 }

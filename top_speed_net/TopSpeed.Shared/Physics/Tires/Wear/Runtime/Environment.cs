@@ -14,7 +14,7 @@ namespace TopSpeed.Physics.Tires.Wear
         public static float ResolveAmbientTemperature(TireWearConfig config, float temperatureC)
         {
             if (!TireWearMath.IsFinite(temperatureC))
-                return TireWearMath.Clamp(config.AmbientTemperatureC, -40f, 80f);
+                return TireWearMath.Clamp(config.FallbackAmbientTemperatureC, -40f, 80f);
             return TireWearMath.Clamp(temperatureC, -40f, 80f);
         }
 

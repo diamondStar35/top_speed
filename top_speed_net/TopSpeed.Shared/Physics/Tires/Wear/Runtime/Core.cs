@@ -6,7 +6,7 @@ namespace TopSpeed.Physics.Tires.Wear
     {
         public static TireWearRuntimeResult Resolve(TireWearConfig config, in TireWearState state)
         {
-            var ambientTemperatureC = TireWearEnvironment.ResolveAmbientTemperature(config, config.AmbientTemperatureC);
+            var ambientTemperatureC = TireWearEnvironment.ResolveAmbientTemperature(config, config.FallbackAmbientTemperatureC);
             var sanitizedState = TireWearStateSanitizer.Sanitize(config, state, ambientTemperatureC, ambientTemperatureC);
             return TireWearResultBuilder.Build(config, sanitizedState, sanitizedState.SmoothedSlipNormalized, heatingRateCPerSecond: 0f, coolingRateCPerSecond: 0f);
         }

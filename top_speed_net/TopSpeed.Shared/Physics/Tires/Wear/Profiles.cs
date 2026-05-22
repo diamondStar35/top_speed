@@ -54,16 +54,17 @@ namespace TopSpeed.Physics.Tires.Wear
             // Internal conductance: how fast the surface drains into the carcass.
             // Race compounds run with a stiffer, more heat-conductive carcass than
             // touring rubber, so aggressive compounds pull surface spikes into the
-            // bulk slightly faster.
-            var internalConductancePerSecond = Clamp(0.070f + (0.025f * compoundAggression), 0.050f, 0.110f);
+            // bulk slightly faster. Baseline kept low enough that the surface
+            // peak isn't squashed during brief corner spikes.
+            var internalConductancePerSecond = Clamp(0.050f + (0.025f * compoundAggression), 0.035f, 0.090f);
             // Carcass mass ratio: how much thermal mass sits behind the surface.
             // Heavier cars and bigger tires carry more reservoir mass, so they
             // take longer to warm through; race compounds run slightly lighter
             // carcass for the same size so they reach optimal sooner.
             var carcassMassRatio = Clamp(
-                1.70f + (0.65f * massNorm) + (0.55f * sizeNorm) - (0.35f * compoundAggression),
-                1.30f,
-                3.20f);
+                2.05f + (0.65f * massNorm) + (0.55f * sizeNorm) - (0.35f * compoundAggression),
+                1.50f,
+                3.50f);
             var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
             return new TireWearConfig

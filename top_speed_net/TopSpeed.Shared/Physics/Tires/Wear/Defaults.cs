@@ -4,20 +4,22 @@ namespace TopSpeed.Physics.Tires.Wear
     {
         // Balanced compound. Two-node model tuned against issue #84 with the
         // simulator at /home/ubuntu/tire_sim.py. 26 °C ambient + road reference:
-        //  - 100 mph cruise (load=0.30, slip=0.05):  T_s_eq ≈ 92 °C (199 °F)
+        //  - 100 mph cruise (load=0.30, slip=0.05):  T_s_eq ≈ 93 °C (199 °F)
         //  - 160 mph cruise:                           T_s_eq ≈ 99 °C (211 °F)
         //  - 200 mph cruise:                           T_s_eq ≈ 102 °C (216 °F)
-        //  - Superspeedway 4 s turn @ 175 mph spike:   T_s   ≈ 105 °C (221 °F)
-        //  - Austria hairpin peak (10 s of cornering): T_s   ≈ 108 °C (227 °F)
-        //  - Eas-left straight recovery (14 s):        T_s   ≈ 99 °C (210 °F)
-        //  - Warm-up from 30 °C @ 100 mph to 82 °C:    ~7.4 mi
-        //  - 95% wear straight cruise (5 min):         T_s   ≈ 190 °C (overheat)
+        //  - Superspeedway 4 s turn @ 175 mph spike:   T_s   ≈ 106 °C (222 °F)
+        //  - Austria hairpin peak (10 s of cornering): T_s   ≈ 109 °C (228 °F)
+        //  - Eas-left straight recovery (14 s):       −9.7 °C drop
+        //  - Warm-up from 30 °C @ 100 mph to 82 °C:    ~8.8 mi
+        //  - 95% wear straight cruise (5 min):         T_s   ≈ 184 °C (overheat)
         //  - Cold 10 °C ambient vs 26 °C reference:    −8.7 °C
         //  - Hot road 50 °C vs 26 °C reference:       +7.0 °C
         //
-        // Surface time constant τ_fast ≈ 7 s (fast spike recovery), carcass
-        // τ_slow ≈ 160 s (slow warm-up so the cold tire spends 5–10 mi getting
+        // Surface time constant τ_fast ≈ 8 s (fast spike recovery), carcass
+        // τ_slow ≈ 200 s (slow warm-up so the cold tire spends 5–10 mi getting
         // into the optimal band at highway speeds).
+        // Coupling kept off the floor of the spec band so spike recovery and
+        // hairpin peaks have headroom on both sides instead of riding the edge.
         public static TireWearConfig Balanced { get; } = new TireWearConfig
         {
             BaseWearPerKilometer = 0.0024f,
@@ -47,8 +49,8 @@ namespace TopSpeed.Physics.Tires.Wear
             AmbientExchangePerCPerSecond = 0.0022f,
             RoadExchangePerCPerSecond = 0.0030f,
             WetRoadExchangePerCPerSecond = 0.0050f,
-            InternalConductancePerSecond = 0.08f,
-            CarcassMassRatio = 2.0f,
+            InternalConductancePerSecond = 0.06f,
+            CarcassMassRatio = 2.5f,
             SlipSmoothingTimeConstantSeconds = 1.4f,
         };
 

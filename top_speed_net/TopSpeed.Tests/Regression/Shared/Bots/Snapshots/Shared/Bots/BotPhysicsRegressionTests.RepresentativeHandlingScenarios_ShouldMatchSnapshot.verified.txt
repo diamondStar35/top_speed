@@ -4,7 +4,7 @@
     Vehicle: Vehicle1,
     Surface: Gravel,
     Steps: 45,
-    FinalSpeedKph: 110.65,
+    FinalSpeedKph: 110.66,
     FinalGear: 3,
     FinalPositionX: 11.18,
     FinalPositionY: 128.53,
@@ -45,20 +45,20 @@
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 105.56,
+        SpeedKph: 105.57,
         Gear: 2,
         PositionX: 7.34,
         PositionY: 86.5,
-        LateralVelocityMps: 2.216,
+        LateralVelocityMps: 2.217,
         YawRateRad: 1.487,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 109.02,
+        SpeedKph: 109.03,
         Gear: 3,
-        PositionX: 10.05,
+        PositionX: 10.06,
         PositionY: 116.3,
         LateralVelocityMps: 2.364,
         YawRateRad: 1.514,
@@ -67,12 +67,12 @@
       {
         Step: 45,
         TimeSeconds: 4.5,
-        SpeedKph: 110.65,
+        SpeedKph: 110.66,
         Gear: 3,
         PositionX: 11.18,
         PositionY: 128.53,
         LateralVelocityMps: 2.433,
-        YawRateRad: 1.526,
+        YawRateRad: 1.527,
         Coupling: 1.0
       }
     ]
@@ -107,7 +107,7 @@
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 24.88,
+        SpeedKph: 24.87,
         Gear: 2,
         PositionX: 0.15,
         PositionY: 28.94,
@@ -139,7 +139,7 @@
     Vehicle: Vehicle11,
     Surface: Sand,
     Steps: 45,
-    FinalSpeedKph: 32.82,
+    FinalSpeedKph: 32.83,
     FinalGear: 1,
     FinalPositionX: -0.43,
     FinalPositionY: 44.86,
@@ -202,7 +202,7 @@
       {
         Step: 45,
         TimeSeconds: 4.5,
-        SpeedKph: 32.82,
+        SpeedKph: 32.83,
         Gear: 1,
         PositionX: -0.43,
         PositionY: 44.86,

@@ -19,36 +19,36 @@ namespace TopSpeed.Physics.Tires.Wear
             var sizeNorm = Clamp01((tireCircumferenceM - 1.6f) / 0.8f);
 
             var baseWearPerKilometer = Clamp(
-                0.0010f + (0.0011f * compoundAggression) + (0.0007f * massNorm) - (0.0003f * sizeNorm),
-                0.0007f,
-                0.0045f);
-            var slipWearRatePerSecond = Clamp(0.00011f + (0.00010f * compoundAggression) + (0.00004f * massNorm), 0.00006f, 0.00035f);
+                0.0022f + (0.0019f * compoundAggression) + (0.0012f * massNorm) - (0.0003f * sizeNorm),
+                0.0016f,
+                0.0075f);
+            var slipWearRatePerSecond = Clamp(0.00024f + (0.00022f * compoundAggression) + (0.00010f * massNorm), 0.00014f, 0.00072f);
             var corneringSlipWearWeight = Clamp(0.38f + (0.14f * compoundAggression), 0.24f, 0.62f);
             var longitudinalSlipWearWeight = Clamp(0.62f + (0.08f * compoundAggression), 0.45f, 0.86f);
-            var loadWearGain = Clamp(0.58f + (0.75f * massNorm), 0.45f, 1.55f);
-            var wearHotStartTemperatureC = Clamp(70f + (8f * compoundAggression), 64f, 86f);
-            var wearHotGainPerC = Clamp(0.020f + (0.016f * compoundAggression), 0.012f, 0.060f);
-            var wearColdStartTemperatureC = Clamp(22f - (4f * compoundAggression), 12f, 28f);
-            var wearColdGainPerC = Clamp(0.005f + (0.004f * (1f - compoundAggression)), 0.002f, 0.020f);
-            var coldEndTemperatureC = Clamp(32f - (4f * compoundAggression), 24f, 36f);
-            var optimalStartTemperatureC = Clamp(50f + (10f * compoundAggression), 44f, 66f);
-            var optimalEndTemperatureC = Clamp(74f + (10f * compoundAggression), 66f, 90f);
-            var overheatEndTemperatureC = Clamp(108f + (12f * compoundAggression), 96f, 130f);
-            var gripAtVeryCold = Clamp(0.78f - (0.05f * compoundAggression), 0.64f, 0.86f);
-            var gripAtColdEnd = Clamp(0.95f - (0.03f * compoundAggression), 0.82f, 0.98f);
+            var loadWearGain = Clamp(0.72f + (0.95f * massNorm), 0.60f, 1.95f);
+            var wearHotStartTemperatureC = Clamp(102f + (7f * compoundAggression), 96f, 116f);
+            var wearHotGainPerC = Clamp(0.014f + (0.016f * compoundAggression), 0.008f, 0.045f);
+            var wearColdStartTemperatureC = Clamp(40f - (6f * compoundAggression), 30f, 46f);
+            var wearColdGainPerC = Clamp(0.0025f + (0.0025f * (1f - compoundAggression)), 0.001f, 0.009f);
+            var coldEndTemperatureC = Clamp(54f - (10f * compoundAggression), 46f, 60f);
+            var optimalStartTemperatureC = Clamp(81f + (7f * compoundAggression), 79f, 90f);
+            var optimalEndTemperatureC = Clamp(126f + (10f * compoundAggression), 122f, 136f);
+            var overheatEndTemperatureC = Clamp(139f + (11f * compoundAggression), 136f, 148f);
+            var gripAtVeryCold = Clamp(0.74f - (0.05f * compoundAggression), 0.60f, 0.82f);
+            var gripAtColdEnd = Clamp(0.93f - (0.03f * compoundAggression), 0.80f, 0.97f);
             var gripAtOptimal = 1.0f;
-            var gripAtOverheatEnd = Clamp(0.77f - (0.08f * compoundAggression), 0.58f, 0.85f);
-            var gripAtCooked = Clamp(0.67f - (0.06f * compoundAggression), 0.50f, 0.75f);
-            var gripAtFullWear = Clamp(0.81f - (0.12f * compoundAggression) + (0.03f * sizeNorm), 0.55f, 0.90f);
-            var corneringHeatCPerSecond = Clamp(0.72f + (0.45f * compoundAggression) + (0.28f * massNorm), 0.45f, 1.65f);
-            var longitudinalHeatCPerSecond = Clamp(0.64f + (0.42f * compoundAggression) + (0.25f * massNorm), 0.40f, 1.50f);
-            var loadHeatCPerSecond = Clamp(0.14f + (0.22f * massNorm), 0.08f, 0.48f);
-            var rollingHeatCPerSecond = Clamp(0.07f + (0.10f * massNorm) + (0.04f * (1f - sizeNorm)), 0.05f, 0.28f);
-            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.00007f + (0.00005f * (1f - compoundAggression)) + (0.00003f * sizeNorm), 0.00004f, 0.00020f);
-            var ambientExchangePerCPerSecond = Clamp(0.0022f + (0.0012f * (1f - compoundAggression)), 0.0016f, 0.0048f);
-            var roadExchangePerCPerSecond = Clamp(0.0042f + (0.0018f * (1f - compoundAggression)) + (0.0010f * (1f - sizeNorm)), 0.0028f, 0.0085f);
-            var wetRoadExchangePerCPerSecond = Clamp(0.0064f + (0.0032f * compoundAggression) + (0.0016f * (1f - sizeNorm)), 0.0048f, 0.0140f);
-            var slipSmoothingTau = Clamp(1.8f - (0.75f * compoundAggression), 0.6f, 2.6f);
+            var gripAtOverheatEnd = Clamp(0.79f - (0.08f * compoundAggression), 0.58f, 0.86f);
+            var gripAtCooked = Clamp(0.64f - (0.06f * compoundAggression), 0.48f, 0.74f);
+            var gripAtFullWear = Clamp(0.79f - (0.14f * compoundAggression) + (0.03f * sizeNorm), 0.52f, 0.90f);
+            var corneringHeatCPerSecond = Clamp(1.55f + (0.95f * compoundAggression) + (0.55f * massNorm), 1.10f, 3.20f);
+            var longitudinalHeatCPerSecond = Clamp(1.30f + (0.82f * compoundAggression) + (0.48f * massNorm), 1.00f, 2.90f);
+            var loadHeatCPerSecond = Clamp(0.40f + (0.52f * massNorm), 0.24f, 1.05f);
+            var rollingHeatCPerSecond = Clamp(0.22f + (0.25f * massNorm) + (0.08f * (1f - sizeNorm)), 0.14f, 0.60f);
+            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.000056f + (0.000034f * (1f - compoundAggression)) + (0.000022f * sizeNorm), 0.000040f, 0.000150f);
+            var ambientExchangePerCPerSecond = Clamp(0.0019f + (0.0009f * (1f - compoundAggression)), 0.0013f, 0.0038f);
+            var roadExchangePerCPerSecond = Clamp(0.0034f + (0.0015f * (1f - compoundAggression)) + (0.0008f * (1f - sizeNorm)), 0.0024f, 0.0078f);
+            var wetRoadExchangePerCPerSecond = Clamp(0.0052f + (0.0030f * compoundAggression) + (0.0017f * (1f - sizeNorm)), 0.0040f, 0.0140f);
+            var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
             return new TireWearConfig(
                 baseWearPerKilometer: baseWearPerKilometer,

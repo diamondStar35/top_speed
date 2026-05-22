@@ -15,26 +15,26 @@ namespace TopSpeed.Physics.Tires.Wear
         {
             var wearFraction = TireWearMath.Clamp01(state.WearFraction);
             var overheatNormalized = TireWearTemperature.ResolveOverheat(config, state.TemperatureC);
-            var wearDegradation = TireWearMath.Clamp01((wearFraction - 0.45f) / 0.55f);
-            var lateWear = TireWearMath.Clamp01((wearFraction - 0.78f) / 0.22f);
-            var severeWear = TireWearMath.Pow(lateWear, 1.35f);
-            var overheatStress = TireWearMath.Pow(overheatNormalized, 1.20f);
+            var wearDegradation = TireWearMath.Clamp01((wearFraction - 0.70f) / 0.30f);
+            var lateWear = TireWearMath.Clamp01((wearFraction - 0.88f) / 0.12f);
+            var severeWear = TireWearMath.Pow(lateWear, 1.30f);
+            var overheatStress = TireWearMath.Pow(overheatNormalized, 1.25f);
             var thermalDamage = TireWearMath.Clamp01(
-                (wearDegradation * 0.62f)
-                + (severeWear * 0.28f)
-                + (overheatStress * 0.10f));
-            var runawaySignal = severeWear * TireWearMath.Clamp01((overheatNormalized - 0.35f) / 0.65f);
+                (wearDegradation * 0.52f)
+                + (severeWear * 0.32f)
+                + (overheatStress * 0.16f));
+            var runawaySignal = severeWear * TireWearMath.Clamp01((overheatNormalized - 0.20f) / 0.80f);
             var runawayEscalation = runawaySignal * runawaySignal;
 
             // Fresh tires self-regulate heat better; heavy wear progressively removes that buffer.
-            var heatingScale = TireWearMath.Lerp(1.02f, 1.12f, thermalDamage) + (0.30f * runawayEscalation);
-            var coolingScale = TireWearMath.Lerp(1.06f, 0.90f, thermalDamage);
+            var heatingScale = TireWearMath.Lerp(1.00f, 1.08f, thermalDamage) + (0.36f * runawayEscalation);
+            var coolingScale = TireWearMath.Lerp(1.08f, 0.92f, thermalDamage);
             coolingScale *= TireWearMath.Lerp(1f, 0.86f, runawaySignal);
-            coolingScale *= TireWearMath.Lerp(1f, 0.78f, runawayEscalation);
+            coolingScale *= TireWearMath.Lerp(1f, 0.74f, runawayEscalation);
 
             return new TireWearThermalControl(
-                TireWearMath.Clamp(heatingScale, 0.82f, 1.70f),
-                TireWearMath.Clamp(coolingScale, 0.62f, 1.25f));
+                TireWearMath.Clamp(heatingScale, 0.84f, 1.72f),
+                TireWearMath.Clamp(coolingScale, 0.60f, 1.26f));
         }
     }
 }

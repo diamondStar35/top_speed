@@ -5,10 +5,13 @@ using Xunit;
 namespace TopSpeed.Tests;
 
 // Spec-anchored thermal behavior. Each test maps to a real driving scenario
-// described in issue #84: warm-up should reach the optimal band in a few
-// miles, cruise should stabilize in 195–225 °F, corner spikes should recover
-// on the next straight, worn tires should run hotter and spike more, and the
-// road surface temperature should pull the equilibrium up or down.
+// described in issue #84: warm-up should reach the optimal band in 5–10 miles
+// at highway speed (slow carcass time constant), cruise should stabilize in
+// 195–225 °F, corner spikes should recover on the next straight (fast surface
+// time constant), worn tires should run hotter and spike more, and the road
+// surface temperature should pull the equilibrium up or down. The two-node
+// thermal model is what allows the slow warm-up and the fast spike recovery
+// to coexist.
 [Trait("Category", "Behavior")]
 public sealed class TireWearThermalSpecBehaviorTests
 {
@@ -17,12 +20,13 @@ public sealed class TireWearThermalSpecBehaviorTests
     private const float ReferenceSurfaceC = 26f;
 
     [Fact]
-    public void Warmup_HundredMphCruise_ReachesOptimalBandWithinFiveMiles()
+    public void Warmup_HundredMphCruise_ReachesOptimalBandBetweenFiveAndTenMiles()
     {
         var config = TireWearDefaults.Balanced;
         const float speedMps = 44.7f; // 100 mph
-        const float maxMiles = 5f;
-        var maxSeconds = (maxMiles * 1609f) / speedMps;
+        const float upperBoundMiles = 10f;
+        const float lowerBoundMiles = 4f;
+        var maxSeconds = (upperBoundMiles * 1609f) / speedMps;
 
         var miles = ResolveMilesToTemperature(
             config,
@@ -36,8 +40,40 @@ public sealed class TireWearThermalSpecBehaviorTests
             loadNormalized: 0.30f,
             rollingResistanceNormalized: 0.40f);
 
-        miles.Should().NotBeNull("100 mph cruise should reach optimal range inside 5 miles");
-        miles!.Value.Should().BeLessThan(maxMiles);
+        miles.Should().NotBeNull("100 mph cruise should reach the optimal band within 10 miles");
+        miles!.Value.Should().BeLessThan(upperBoundMiles);
+        miles.Value.Should().BeGreaterThan(
+            lowerBoundMiles,
+            "warm-up should not snap into the optimal band—the cold carcass needs ~5+ mi to soak through");
+    }
+
+    [Fact]
+    public void Warmup_CarcassLagsBehindSurface()
+    {
+        var config = TireWearDefaults.Balanced;
+        var initial = TireWearDefaults.CreateInitialState(30f);
+
+        // Two minutes of 100 mph cruise from cold. The surface should be
+        // visibly ahead of the carcass—that's the whole point of the two-node
+        // split, and the reason warm-up still takes 5–10 mi despite the
+        // surface itself having a fast time constant.
+        var result = RunForDuration(
+            config,
+            initial,
+            durationSeconds: 120f,
+            speedMps: 44.7f,
+            slipAngleNormalized: 0.04f,
+            lateralSlipNormalized: 0.03f,
+            longitudinalSlipNormalized: 0.05f,
+            loadNormalized: 0.30f,
+            rollingResistanceNormalized: 0.40f);
+
+        result.State.TemperatureC.Should().BeGreaterThan(
+            result.State.CarcassTemperatureC + 3f,
+            "surface should lead the carcass while warming up");
+        result.State.CarcassTemperatureC.Should().BeGreaterThan(
+            initial.CarcassTemperatureC + 8f,
+            "the carcass should still pick up real heat over two minutes of cruising");
     }
 
     [Fact]
@@ -66,7 +102,7 @@ public sealed class TireWearThermalSpecBehaviorTests
     public void Spike_HardCornering_RecoversOnFollowingStraight()
     {
         var config = TireWearDefaults.Balanced;
-        var warm = new TireWearState(wearFraction: 0.10f, temperatureC: 90f, smoothedSlipNormalized: 0.20f);
+        var warm = new TireWearState(wearFraction: 0.10f, temperatureC: 90f, carcassTemperatureC: 88f, smoothedSlipNormalized: 0.20f);
 
         var afterCorner = RunForDuration(
             config,
@@ -100,8 +136,8 @@ public sealed class TireWearThermalSpecBehaviorTests
     public void Wear_BeyondSeventyFivePercent_AmplifiesCorneringHeat()
     {
         var config = TireWearDefaults.Balanced;
-        var freshState = new TireWearState(wearFraction: 0.10f, temperatureC: 95f, smoothedSlipNormalized: 0.30f);
-        var wornState = new TireWearState(wearFraction: 0.85f, temperatureC: 95f, smoothedSlipNormalized: 0.30f);
+        var freshState = new TireWearState(wearFraction: 0.10f, temperatureC: 95f, carcassTemperatureC: 93f, smoothedSlipNormalized: 0.30f);
+        var wornState = new TireWearState(wearFraction: 0.85f, temperatureC: 95f, carcassTemperatureC: 93f, smoothedSlipNormalized: 0.30f);
 
         var fresh = RunForDuration(
             config,
@@ -138,7 +174,7 @@ public sealed class TireWearThermalSpecBehaviorTests
     public void Wear_BeyondNinetyPercent_WarmsTireOnStraightCruise()
     {
         var config = TireWearDefaults.Balanced;
-        var blown = new TireWearState(wearFraction: 0.95f, temperatureC: 85f, smoothedSlipNormalized: 0.10f);
+        var blown = new TireWearState(wearFraction: 0.95f, temperatureC: 85f, carcassTemperatureC: 85f, smoothedSlipNormalized: 0.10f);
 
         var result = RunForDuration(
             config,
@@ -229,7 +265,7 @@ public sealed class TireWearThermalSpecBehaviorTests
     public void Lap_RoadCourseProfile_PeaksInsideExpectedBandAndRecoversOnStraight()
     {
         var config = TireWearDefaults.Balanced;
-        var state = new TireWearState(wearFraction: 0.10f, temperatureC: 85f, smoothedSlipNormalized: 0.20f);
+        var state = new TireWearState(wearFraction: 0.10f, temperatureC: 85f, carcassTemperatureC: 84f, smoothedSlipNormalized: 0.20f);
 
         // Approximate Austria first half: brake → hard left → hairpin → eas-left straight.
         state = StepSegment(config, state, durationSeconds: 3f, speedMps: 32f, slipAngle: 0.50f, lateralSlip: 0.35f, longitudinalSlip: 0.55f, load: 0.55f, rolling: 0.45f).State;

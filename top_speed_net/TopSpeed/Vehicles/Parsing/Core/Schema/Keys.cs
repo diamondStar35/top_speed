@@ -118,6 +118,8 @@ namespace TopSpeed.Vehicles.Parsing
                     "exchange_ambient_per_c_per_s",
                     "exchange_road_per_c_per_s",
                     "exchange_wet_road_per_c_per_s",
+                    "internal_conductance_per_s",
+                    "carcass_mass_ratio",
                     "slip_smoothing_tau_s"),
                 ["dynamics"] = Set("corner_stiffness_front", "corner_stiffness_rear", "yaw_inertia_scale", "steering_curve", "transient_damping"),
                 ["dimensions"] = Set("vehicle_width", "vehicle_length"),

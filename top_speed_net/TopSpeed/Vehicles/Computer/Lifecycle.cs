@@ -14,6 +14,7 @@ namespace TopSpeed.Vehicles
             _yawRateRad = 0f;
             _tireWearFraction = 0f;
             _tireTemperatureC = float.NaN;
+            _tireCarcassTemperatureC = float.NaN;
             _tireSmoothedSlipNormalized = 0f;
             _surfaceTemperatureC = float.NaN;
             _trackLength = trackLength;

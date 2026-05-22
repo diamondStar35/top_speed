@@ -41,13 +41,19 @@ namespace TopSpeed.Physics.Tires.Wear
         public float GripAtCooked { get; init; }
         public float GripAtFullWear { get; init; }
 
-        // --- Heat balance ----------------------------------------------------
+        // --- Heat balance (two-node) -----------------------------------------
         //
-        //   dT/dt = wear_amp * (flex_heat + friction_heat) - h_total(v) * (T - T_eff)
+        // Surface (contact patch, low thermal mass):
+        //   dT_s/dt = wear_amp * (flex_heat + friction_heat)
+        //           - h_total(v) * (T_s - T_eff)
+        //           - k_int * (T_s - T_c)
+        //
+        // Carcass (bulk rubber + belts, high thermal mass):
+        //   dT_c/dt = (k_int / mass_ratio) * (T_s - T_c)
         //
         // flex_heat is load·speed driven; friction_heat is load·speed·slip² driven;
-        // h_total = ambient + (airflow * v) + road. All values are in °C/s when
-        // multiplied with their respective normalized signals.
+        // h_total = ambient + (airflow * v) + road. All heat values are in °C/s
+        // when multiplied with their respective normalized signals.
 
         public float CorneringHeatCPerSecond { get; init; }
         public float LongitudinalHeatCPerSecond { get; init; }
@@ -58,6 +64,16 @@ namespace TopSpeed.Physics.Tires.Wear
         public float AmbientExchangePerCPerSecond { get; init; }
         public float RoadExchangePerCPerSecond { get; init; }
         public float WetRoadExchangePerCPerSecond { get; init; }
+
+        // Internal coupling between the surface and carcass nodes. Higher
+        // conductance → spikes drain into the carcass faster (faster recovery)
+        // but also warm the carcass faster (faster overall warm-up).
+        public float InternalConductancePerSecond { get; init; }
+
+        // Carcass heat capacity expressed as a multiple of the surface node.
+        // Larger ratio → carcass is harder to move → surface spikes recover
+        // quickly into a still-cool reservoir, but warm-up takes longer.
+        public float CarcassMassRatio { get; init; }
 
         // --- Smoothing -------------------------------------------------------
 

@@ -1,16 +1,26 @@
 namespace TopSpeed.Physics.Tires.Wear
 {
+    // Two-node thermal state. `TemperatureC` is the surface (tread / contact
+    // patch) — what the player's gauge reads and what drives grip. `CarcassTemperatureC`
+    // is the bulk rubber + belts: high thermal mass, slow response, acts as a
+    // reservoir that decouples warm-up time from spike-recovery time.
     public readonly struct TireWearState
     {
-        public TireWearState(float wearFraction, float temperatureC, float smoothedSlipNormalized)
+        public TireWearState(
+            float wearFraction,
+            float temperatureC,
+            float carcassTemperatureC,
+            float smoothedSlipNormalized)
         {
             WearFraction = wearFraction;
             TemperatureC = temperatureC;
+            CarcassTemperatureC = carcassTemperatureC;
             SmoothedSlipNormalized = smoothedSlipNormalized;
         }
 
         public float WearFraction { get; }
         public float TemperatureC { get; }
+        public float CarcassTemperatureC { get; }
         public float SmoothedSlipNormalized { get; }
     }
 

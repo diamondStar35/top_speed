@@ -51,6 +51,19 @@ namespace TopSpeed.Physics.Tires.Wear
             var ambientExchangePerCPerSecond = Clamp(0.0022f + (0.0005f * sizeNorm), 0.0015f, 0.0040f);
             var roadExchangePerCPerSecond = Clamp(0.0030f + (0.0008f * sizeNorm) - (0.0004f * compoundAggression), 0.0020f, 0.0050f);
             var wetRoadExchangePerCPerSecond = Clamp(0.0050f + (0.0020f * compoundAggression), 0.0040f, 0.0090f);
+            // Internal conductance: how fast the surface drains into the carcass.
+            // Race compounds run with a stiffer, more heat-conductive carcass than
+            // touring rubber, so aggressive compounds pull surface spikes into the
+            // bulk slightly faster.
+            var internalConductancePerSecond = Clamp(0.070f + (0.025f * compoundAggression), 0.050f, 0.110f);
+            // Carcass mass ratio: how much thermal mass sits behind the surface.
+            // Heavier cars and bigger tires carry more reservoir mass, so they
+            // take longer to warm through; race compounds run slightly lighter
+            // carcass for the same size so they reach optimal sooner.
+            var carcassMassRatio = Clamp(
+                1.70f + (0.65f * massNorm) + (0.55f * sizeNorm) - (0.35f * compoundAggression),
+                1.30f,
+                3.20f);
             var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
             return new TireWearConfig
@@ -82,6 +95,8 @@ namespace TopSpeed.Physics.Tires.Wear
                 AmbientExchangePerCPerSecond = ambientExchangePerCPerSecond,
                 RoadExchangePerCPerSecond = roadExchangePerCPerSecond,
                 WetRoadExchangePerCPerSecond = wetRoadExchangePerCPerSecond,
+                InternalConductancePerSecond = internalConductancePerSecond,
+                CarcassMassRatio = carcassMassRatio,
                 SlipSmoothingTimeConstantSeconds = slipSmoothingTau,
             };
         }

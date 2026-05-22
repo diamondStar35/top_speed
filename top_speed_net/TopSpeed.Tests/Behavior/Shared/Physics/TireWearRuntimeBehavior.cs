@@ -110,9 +110,17 @@ public sealed class TireWearRuntimeBehaviorTests
                 surfaceTemperatureC: 36f,
                 wetnessNormalized: 0f));
 
-        straight.State.TemperatureC.Should().BeGreaterThan(40f);
-        straight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 22f);
-        straight.State.TemperatureC.Should().BeGreaterThan(config.OptimalStartTemperatureC - 8f);
+        // After 90 s of hard cornering both the surface and the carcass are
+        // saturated against the upper clamp. A 12 s straight should bleed the
+        // surface visibly (fast τ by design) but it must stay well above
+        // ambient — the carcass reservoir is what keeps that floor in place.
+        straight.State.TemperatureC.Should().BeGreaterThan(
+            80f,
+            "the carcass should keep the surface well clear of ambient even after a long cool-down");
+        straight.State.TemperatureC.Should().BeLessThan(heated.State.TemperatureC);
+        straight.State.TemperatureC.Should().BeGreaterThan(
+            config.OptimalStartTemperatureC - 10f,
+            "the tire should not drop out of the working range in a single 12 s straight");
     }
 
     [Fact]
@@ -163,10 +171,12 @@ public sealed class TireWearRuntimeBehaviorTests
         var moderateState = new TireWearState(
             wearFraction: 0.18f,
             temperatureC: config.OptimalStartTemperatureC + 5f,
+            carcassTemperatureC: config.OptimalStartTemperatureC + 4f,
             smoothedSlipNormalized: 0.45f);
         var hotState = new TireWearState(
             wearFraction: 0.18f,
             temperatureC: config.OverheatEndTemperatureC + 12f,
+            carcassTemperatureC: config.OverheatEndTemperatureC + 10f,
             smoothedSlipNormalized: 0.45f);
         var input = new TireWearInput(
             elapsedSeconds: 16f,
@@ -194,6 +204,7 @@ public sealed class TireWearRuntimeBehaviorTests
         var state = new TireWearState(
             wearFraction: float.NaN,
             temperatureC: float.PositiveInfinity,
+            carcassTemperatureC: float.NaN,
             smoothedSlipNormalized: float.NegativeInfinity);
         var input = new TireWearInput(
             elapsedSeconds: 5f,
@@ -225,6 +236,7 @@ public sealed class TireWearRuntimeBehaviorTests
         var state = new TireWearState(
             wearFraction: 0.12f,
             temperatureC: 96f,
+            carcassTemperatureC: 94f,
             smoothedSlipNormalized: 0.45f);
 
         var dry = TireWearRuntime.Step(

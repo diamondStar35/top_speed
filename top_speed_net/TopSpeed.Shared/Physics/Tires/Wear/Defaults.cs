@@ -2,12 +2,22 @@ namespace TopSpeed.Physics.Tires.Wear
 {
     public static class TireWearDefaults
     {
-        // Balanced compound, 26 °C ambient/road reference:
-        //  - 100 mph cruise (load=0.30, slip=0.05): T_eq ≈ 92 °C (198 °F)
-        //  - 160 mph cruise:                          T_eq ≈ 99 °C (210 °F)
-        //  - Superspeedway turn peaks:                T   ≈ 100 °C (212 °F)
-        //  - Austria hairpin peaks:                   T   ≈ 115 °C (239 °F)
-        //  - Warm-up from 30 °C @ 100 mph to 82 °C:   ~2 mi
+        // Balanced compound. Two-node model tuned against issue #84 with the
+        // simulator at /home/ubuntu/tire_sim.py. 26 °C ambient + road reference:
+        //  - 100 mph cruise (load=0.30, slip=0.05):  T_s_eq ≈ 92 °C (199 °F)
+        //  - 160 mph cruise:                           T_s_eq ≈ 99 °C (211 °F)
+        //  - 200 mph cruise:                           T_s_eq ≈ 102 °C (216 °F)
+        //  - Superspeedway 4 s turn @ 175 mph spike:   T_s   ≈ 105 °C (221 °F)
+        //  - Austria hairpin peak (10 s of cornering): T_s   ≈ 108 °C (227 °F)
+        //  - Eas-left straight recovery (14 s):        T_s   ≈ 99 °C (210 °F)
+        //  - Warm-up from 30 °C @ 100 mph to 82 °C:    ~7.4 mi
+        //  - 95% wear straight cruise (5 min):         T_s   ≈ 190 °C (overheat)
+        //  - Cold 10 °C ambient vs 26 °C reference:    −8.7 °C
+        //  - Hot road 50 °C vs 26 °C reference:       +7.0 °C
+        //
+        // Surface time constant τ_fast ≈ 7 s (fast spike recovery), carcass
+        // τ_slow ≈ 160 s (slow warm-up so the cold tire spends 5–10 mi getting
+        // into the optimal band at highway speeds).
         public static TireWearConfig Balanced { get; } = new TireWearConfig
         {
             BaseWearPerKilometer = 0.0024f,
@@ -37,12 +47,17 @@ namespace TopSpeed.Physics.Tires.Wear
             AmbientExchangePerCPerSecond = 0.0022f,
             RoadExchangePerCPerSecond = 0.0030f,
             WetRoadExchangePerCPerSecond = 0.0050f,
+            InternalConductancePerSecond = 0.08f,
+            CarcassMassRatio = 2.0f,
             SlipSmoothingTimeConstantSeconds = 1.4f,
         };
 
+        // Cold tire: surface and carcass both start at the same ambient-blended
+        // temperature. The carcass will track the surface lazily once heat input
+        // begins.
         public static TireWearState CreateInitialState(float temperatureC)
         {
-            return new TireWearState(0f, temperatureC, 0f);
+            return new TireWearState(0f, temperatureC, temperatureC, 0f);
         }
     }
 }

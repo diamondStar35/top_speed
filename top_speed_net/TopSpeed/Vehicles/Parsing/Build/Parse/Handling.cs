@@ -52,6 +52,8 @@ namespace TopSpeed.Vehicles.Parsing
             values.TireExchangeAmbientPerCPerSecond = OptionalFloatRange(section, "exchange_ambient_per_c_per_s", 0f, 0.3f, issues);
             values.TireExchangeRoadPerCPerSecond = OptionalFloatRange(section, "exchange_road_per_c_per_s", 0f, 0.3f, issues);
             values.TireExchangeWetRoadPerCPerSecond = OptionalFloatRange(section, "exchange_wet_road_per_c_per_s", 0f, 0.3f, issues);
+            values.TireInternalConductancePerSecond = OptionalFloatRange(section, "internal_conductance_per_s", 0f, 1f, issues);
+            values.TireCarcassMassRatio = OptionalFloatRange(section, "carcass_mass_ratio", 0.2f, 20f, issues);
             values.TireSlipSmoothingTauSeconds = OptionalFloatRange(section, "slip_smoothing_tau_s", 0.05f, 20f, issues);
         }
 

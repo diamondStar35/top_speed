@@ -47,7 +47,11 @@ namespace TopSpeed.Bots
             var brake = Math.Max(0f, Math.Min(100f, -input.Brake)) / 100f;
             var steeringInput = input.Steering;
             var surfaceTractionMod = surfaceTraction / config.SurfaceTractionFactor;
-            var wearState = new TireWearState(state.TireWearFraction, state.TireTemperatureC, state.TireSmoothedSlipNormalized);
+            var wearState = new TireWearState(
+                state.TireWearFraction,
+                state.TireTemperatureC,
+                state.TireCarcassTemperatureC,
+                state.TireSmoothedSlipNormalized);
             var wearRuntime = TireWearRuntime.Resolve(config.TireWearConfig, wearState);
             var longitudinalGripFactor = 1.0f;
             var speedDiffKph = 0f;
@@ -191,6 +195,7 @@ namespace TopSpeed.Bots
                     wetnessNormalized: weatherWetness));
             state.TireWearFraction = wearRuntime.State.WearFraction;
             state.TireTemperatureC = wearRuntime.State.TemperatureC;
+            state.TireCarcassTemperatureC = wearRuntime.State.CarcassTemperatureC;
             state.TireSmoothedSlipNormalized = wearRuntime.State.SmoothedSlipNormalized;
         }
     }

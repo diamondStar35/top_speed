@@ -38,7 +38,11 @@ namespace TopSpeed.Physics.Tires.Wear
                 elapsedSeconds);
             var wearFraction = TireWearMath.Clamp01(state.WearFraction + wearDelta);
 
-            return new TireWearState(wearFraction, heatBalance.TemperatureC, smoothedSlipNormalized);
+            return new TireWearState(
+                wearFraction,
+                heatBalance.TemperatureC,
+                heatBalance.CarcassTemperatureC,
+                smoothedSlipNormalized);
         }
     }
 }

@@ -110,6 +110,8 @@ cool_airflow_per_mps_per_c_per_s=0.0031
 exchange_ambient_per_c_per_s=0.031
 exchange_road_per_c_per_s=0.051
 exchange_wet_road_per_c_per_s=0.072
+internal_conductance_per_s=0.09
+carcass_mass_ratio=2.4
 slip_smoothing_tau_s=1.2"));
 
             var ok = VehicleTsvParser.TryLoadFromFile(tempFile.Path, out var data, out var issues);
@@ -138,6 +140,8 @@ slip_smoothing_tau_s=1.2"));
             data.TireWearConfig.AmbientExchangePerCPerSecond.Should().BeApproximately(0.031f, 0.0001f);
             data.TireWearConfig.RoadExchangePerCPerSecond.Should().BeApproximately(0.051f, 0.0001f);
             data.TireWearConfig.WetRoadExchangePerCPerSecond.Should().BeApproximately(0.072f, 0.0001f);
+            data.TireWearConfig.InternalConductancePerSecond.Should().BeApproximately(0.09f, 0.0001f);
+            data.TireWearConfig.CarcassMassRatio.Should().BeApproximately(2.4f, 0.0001f);
             data.TireWearConfig.SlipSmoothingTimeConstantSeconds.Should().BeApproximately(1.2f, 0.0001f);
         }
 

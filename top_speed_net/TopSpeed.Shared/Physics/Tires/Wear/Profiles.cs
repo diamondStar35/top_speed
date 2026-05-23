@@ -75,11 +75,13 @@ namespace TopSpeed.Physics.Tires.Wear
                 1.60f);
             // Carcass mass ratio: bulk reservoir behind the cascade. Heavier
             // cars and bigger tires soak longer; race compounds soak slightly
-            // faster for the same size.
+            // faster for the same size. Sized so a balanced reference vehicle
+            // (compound aggression ≈ 0.5, mass ≈ 1750 kg, tire size ≈ 2.2 m)
+            // lands near 4.9 → τ_warmup ≈ 285 s, ≥ 5 mi warm-up at 100 mph.
             var carcassMassRatio = Clamp(
-                2.90f + (0.90f * massNorm) + (0.75f * sizeNorm) - (0.50f * compoundAggression),
-                2.20f,
-                5.00f);
+                3.80f + (1.10f * massNorm) + (0.80f * sizeNorm) - (0.50f * compoundAggression),
+                3.10f,
+                6.50f);
             var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
             return new TireWearConfig

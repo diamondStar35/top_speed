@@ -33,8 +33,8 @@ public sealed class TireWearThermalSpecBehaviorTests
         miles!.Value.Should().BeLessThan(
             10f,
             "tires should reach optimal in less than 10 miles on a superspeedway");
-        miles.Value.Should().BeGreaterThan(
-            3f,
+        miles.Value.Should().BeGreaterThanOrEqualTo(
+            5f,
             "warm-up should not snap into optimal—the carcass needs minutes to soak");
     }
 

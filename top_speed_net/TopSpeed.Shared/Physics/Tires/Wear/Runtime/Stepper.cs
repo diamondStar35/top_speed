@@ -41,6 +41,7 @@ namespace TopSpeed.Physics.Tires.Wear
             return new TireWearState(
                 wearFraction,
                 heatBalance.TemperatureC,
+                heatBalance.TreadTemperatureC,
                 heatBalance.CarcassTemperatureC,
                 smoothedSlipNormalized);
         }

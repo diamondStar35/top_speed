@@ -13,6 +13,9 @@ namespace TopSpeed.Physics.Tires.Wear
             var temperatureC = TireWearMath.IsFinite(state.TemperatureC)
                 ? state.TemperatureC
                 : fallbackTemperatureC;
+            var treadTemperatureC = TireWearMath.IsFinite(state.TreadTemperatureC)
+                ? state.TreadTemperatureC
+                : fallbackTemperatureC;
             var carcassTemperatureC = TireWearMath.IsFinite(state.CarcassTemperatureC)
                 ? state.CarcassTemperatureC
                 : fallbackTemperatureC;
@@ -20,8 +23,9 @@ namespace TopSpeed.Physics.Tires.Wear
             var minTemperatureC = ambientTemperatureC - 35f;
             var maxTemperatureC = Math.Max(surfaceTemperatureC + 90f, config.OverheatEndTemperatureC + 30f);
             temperatureC = TireWearMath.Clamp(temperatureC, minTemperatureC, maxTemperatureC);
+            treadTemperatureC = TireWearMath.Clamp(treadTemperatureC, minTemperatureC, maxTemperatureC);
             carcassTemperatureC = TireWearMath.Clamp(carcassTemperatureC, minTemperatureC, maxTemperatureC);
-            return new TireWearState(wearFraction, temperatureC, carcassTemperatureC, smoothedSlipNormalized);
+            return new TireWearState(wearFraction, temperatureC, treadTemperatureC, carcassTemperatureC, smoothedSlipNormalized);
         }
     }
 }

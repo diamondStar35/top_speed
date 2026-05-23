@@ -154,7 +154,9 @@ namespace TopSpeed.Vehicles.Parsing
                 AmbientExchangePerCPerSecond = values.TireExchangeAmbientPerCPerSecond ?? profile.AmbientExchangePerCPerSecond,
                 RoadExchangePerCPerSecond = values.TireExchangeRoadPerCPerSecond ?? profile.RoadExchangePerCPerSecond,
                 WetRoadExchangePerCPerSecond = values.TireExchangeWetRoadPerCPerSecond ?? profile.WetRoadExchangePerCPerSecond,
-                InternalConductancePerSecond = values.TireInternalConductancePerSecond ?? profile.InternalConductancePerSecond,
+                SurfaceToTreadConductancePerSecond = values.TireSurfaceToTreadConductancePerSecond ?? profile.SurfaceToTreadConductancePerSecond,
+                TreadToCarcassConductancePerSecond = values.TireTreadToCarcassConductancePerSecond ?? profile.TreadToCarcassConductancePerSecond,
+                TreadMassRatio = values.TireTreadMassRatio ?? profile.TreadMassRatio,
                 CarcassMassRatio = values.TireCarcassMassRatio ?? profile.CarcassMassRatio,
                 SlipSmoothingTimeConstantSeconds = values.TireSlipSmoothingTauSeconds ?? profile.SlipSmoothingTimeConstantSeconds,
             };

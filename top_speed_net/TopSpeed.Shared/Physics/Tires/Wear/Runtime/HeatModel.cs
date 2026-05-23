@@ -2,34 +2,35 @@ using System;
 
 namespace TopSpeed.Physics.Tires.Wear
 {
-    // Two-node lumped-thermal-mass tire model. Heat enters the surface node;
-    // the surface bleeds into the carcass through an internal conductance and
-    // bleeds to the environment through Newton's law:
+    // Three-node lumped-thermal-mass tire cascade. Heat enters the surface
+    // node; the surface bleeds into the tread, the tread bleeds into the
+    // carcass, and each node bleeds to ambient via Newton's law as well.
     //
-    //   dT_s/dt = Q_in - h_total(v) * (T_s - T_eff) - k_int * (T_s - T_c)
-    //   dT_c/dt = (k_int / mass_ratio) * (T_s - T_c)
+    //   dT_s/dt = Q_in - h_total(v) * (T_s - T_eff) - k_st * (T_s - T_t)
+    //   dT_t/dt = ( k_st * (T_s - T_t) - k_tc * (T_t - T_c) ) / m_tread
+    //   dT_c/dt =   k_tc * (T_t - T_c) / m_carcass
     //
-    // Q_in is the heat injected by the contact patch and bulk hysteresis;
+    // Q_in is the wear-amplified contact-patch + flex heat injection;
     // h_total(v) is convective + conductive coupling to the surrounding air
     // and road; T_eff is the load-weighted mix of air and road temperature.
-    // Wear past ~75% gradually amplifies heat input and adds a small
+    // Wear past ~75 % gradually amplifies heat input and adds a small
     // "breakdown" term that warms even an idle tire.
     //
-    // Decoupling the two nodes gives us two independent time constants:
-    //  - τ_fast (≈ 1 / (h + k_int))  — fast surface response, so spikes recover
-    //    on the next straight,
-    //  - τ_slow (≈ mass_ratio / k_int) — slow carcass response, so cold tires
-    //    spend 5–10 mi warming up at highway speed instead of < 2 mi.
+    // The cascade gives us three independent time constants, one per spec
+    // target:
+    //   τ_corner    ≈ 1 / (k_st + h_total(v))  — in-corner heat-up (~1–5 s)
+    //   τ_recovery  ≈ m_tread / k_st           — spike fade on the straight (~10–30 s)
+    //   τ_warmup    ≈ m_carcass / k_tc         — bulk cold-tire soak (~200–400 s)
     //
-    // Each frame is split into substeps no larger than `MaxSubstepSeconds` so
-    // we stay well below the smallest time constant in the system regardless
-    // of frame rate.
+    // Each frame is split into substeps no larger than `MaxSubstepSeconds`
+    // so the forward-Euler integrator stays well below the smallest stable
+    // time constant in the system regardless of frame rate.
     internal static class TireWearHeatModel
     {
-        // Wear amplification kicks in past 75% wear; breakdown is the extra
-        // heat term past 90% wear that warms the tire even at low slip.
+        // Wear amplification kicks in past 75 % wear; breakdown is the extra
+        // heat term past 90 % wear that warms the tire even at low slip.
         private const float WearAmpStart = 0.75f;
-        private const float WearAmpGain = 2.5f;
+        private const float WearAmpGain = 4.5f;
         private const float WearBreakdownStart = 0.90f;
         private const float WearBreakdownHeatCPerSecond = 1.20f;
         // Road coupling weight in the effective-ambient mix (0 = pure air, 1 = pure road).
@@ -40,8 +41,8 @@ namespace TopSpeed.Physics.Tires.Wear
         private const float CorneringSlideBonus = 1.50f;
         private const float LongitudinalSlideBonus = 1.20f;
         // Largest stable substep for the surface node. The fastest
-        // representative τ in tuned defaults is ≈ 7 s, so 0.25 s leaves
-        // ample margin (forward-Euler stability needs dt ≲ 2τ).
+        // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
+        // ample margin (forward-Euler stability needs dt ≲ 2 τ).
         private const float MaxSubstepSeconds = 0.25f;
         private const int MaxSubsteps = 240;
 
@@ -80,7 +81,7 @@ namespace TopSpeed.Physics.Tires.Wear
                 (config.CorneringHeatCPerSecond * corneringPower)
                 + (config.LongitudinalHeatCPerSecond * longitudinalPower));
 
-            // Wear amplification: 1× until 75%, then ramps; past 90% the tire
+            // Wear amplification: 1× until 75 %, then ramps; past 90 % the tire
             // generates extra heat just from rolling so the player still notices
             // a blown tire on the straights.
             var wearOver = TireWearMath.Clamp01((state.WearFraction - WearAmpStart) / (1f - WearAmpStart));
@@ -107,14 +108,16 @@ namespace TopSpeed.Physics.Tires.Wear
                   / (((1f - RoadCouplingWeight) * airCoupling) + (RoadCouplingWeight * roadCoupling))
                 : ambientTemperatureC;
 
-            var internalConductance = Math.Max(0f, config.InternalConductancePerSecond);
-            var carcassMassRatio = Math.Max(0.1f, config.CarcassMassRatio);
-            var carcassDriveRate = internalConductance / carcassMassRatio;
+            var kSt = Math.Max(0f, config.SurfaceToTreadConductancePerSecond);
+            var kTc = Math.Max(0f, config.TreadToCarcassConductancePerSecond);
+            var mTread = Math.Max(0.1f, config.TreadMassRatio);
+            var mCarcass = Math.Max(0.1f, config.CarcassMassRatio);
 
             var minTemperatureC = Math.Min(ambientTemperatureC, surfaceTemperatureC) - 8f;
             var maxTemperatureC = Math.Max(surfaceTemperatureC + 120f, config.OverheatEndTemperatureC + 60f);
 
             var surfaceC = state.TemperatureC;
+            var treadC = state.TreadTemperatureC;
             var carcassC = state.CarcassTemperatureC;
             var coolingAccumC = 0f;
             var remaining = Math.Max(0f, elapsedSeconds);
@@ -123,10 +126,13 @@ namespace TopSpeed.Physics.Tires.Wear
             {
                 var dt = remaining > MaxSubstepSeconds ? MaxSubstepSeconds : remaining;
                 var surfaceCooling = totalCoupling * (surfaceC - effectiveAmbientC);
-                var internalFlow = internalConductance * (surfaceC - carcassC);
-                surfaceC += (heatingRateCPerSecond - surfaceCooling - internalFlow) * dt;
-                carcassC += carcassDriveRate * (surfaceC - carcassC) * dt;
+                var surfaceToTread = kSt * (surfaceC - treadC);
+                var treadToCarcass = kTc * (treadC - carcassC);
+                surfaceC += (heatingRateCPerSecond - surfaceCooling - surfaceToTread) * dt;
+                treadC += (surfaceToTread - treadToCarcass) / mTread * dt;
+                carcassC += treadToCarcass / mCarcass * dt;
                 surfaceC = TireWearMath.Clamp(surfaceC, minTemperatureC, maxTemperatureC);
+                treadC = TireWearMath.Clamp(treadC, minTemperatureC, maxTemperatureC);
                 carcassC = TireWearMath.Clamp(carcassC, minTemperatureC, maxTemperatureC);
                 coolingAccumC += Math.Max(0f, surfaceCooling) * dt;
                 remaining -= dt;
@@ -139,6 +145,7 @@ namespace TopSpeed.Physics.Tires.Wear
 
             return new TireWearHeatBalance(
                 surfaceC,
+                treadC,
                 carcassC,
                 heatingRateCPerSecond,
                 coolingRateCPerSecond);
@@ -149,17 +156,20 @@ namespace TopSpeed.Physics.Tires.Wear
     {
         public TireWearHeatBalance(
             float temperatureC,
+            float treadTemperatureC,
             float carcassTemperatureC,
             float heatingRateCPerSecond,
             float coolingRateCPerSecond)
         {
             TemperatureC = temperatureC;
+            TreadTemperatureC = treadTemperatureC;
             CarcassTemperatureC = carcassTemperatureC;
             HeatingRateCPerSecond = heatingRateCPerSecond;
             CoolingRateCPerSecond = coolingRateCPerSecond;
         }
 
         public float TemperatureC { get; }
+        public float TreadTemperatureC { get; }
         public float CarcassTemperatureC { get; }
         public float HeatingRateCPerSecond { get; }
         public float CoolingRateCPerSecond { get; }

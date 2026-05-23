@@ -101,6 +101,7 @@ internal static class BotPhysicsHarness
             SpeedKph = Math.Max(0f, speedKph),
             TireWearFraction = 0f,
             TireTemperatureC = float.NaN,
+            TireTreadTemperatureC = float.NaN,
             TireCarcassTemperatureC = float.NaN,
             TireSmoothedSlipNormalized = 0f,
             SurfaceTemperatureC = float.NaN

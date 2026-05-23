@@ -50,6 +50,7 @@ namespace TopSpeed.Bots
             var wearState = new TireWearState(
                 state.TireWearFraction,
                 state.TireTemperatureC,
+                state.TireTreadTemperatureC,
                 state.TireCarcassTemperatureC,
                 state.TireSmoothedSlipNormalized);
             var wearRuntime = TireWearRuntime.Resolve(config.TireWearConfig, wearState);
@@ -195,6 +196,7 @@ namespace TopSpeed.Bots
                     wetnessNormalized: weatherWetness));
             state.TireWearFraction = wearRuntime.State.WearFraction;
             state.TireTemperatureC = wearRuntime.State.TemperatureC;
+            state.TireTreadTemperatureC = wearRuntime.State.TreadTemperatureC;
             state.TireCarcassTemperatureC = wearRuntime.State.CarcassTemperatureC;
             state.TireSmoothedSlipNormalized = wearRuntime.State.SmoothedSlipNormalized;
         }

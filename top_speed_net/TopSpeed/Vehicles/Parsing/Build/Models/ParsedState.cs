@@ -142,7 +142,9 @@ namespace TopSpeed.Vehicles.Parsing
             public float? TireExchangeAmbientPerCPerSecond { get; set; }
             public float? TireExchangeRoadPerCPerSecond { get; set; }
             public float? TireExchangeWetRoadPerCPerSecond { get; set; }
-            public float? TireInternalConductancePerSecond { get; set; }
+            public float? TireSurfaceToTreadConductancePerSecond { get; set; }
+            public float? TireTreadToCarcassConductancePerSecond { get; set; }
+            public float? TireTreadMassRatio { get; set; }
             public float? TireCarcassMassRatio { get; set; }
             public float? TireSlipSmoothingTauSeconds { get; set; }
             public float LateralGrip { get; set; }

@@ -2,24 +2,24 @@ namespace TopSpeed.Physics.Tires.Wear
 {
     public static class TireWearDefaults
     {
-        // Balanced compound. Two-node model tuned against issue #84 with the
-        // simulator at /home/ubuntu/tire_sim.py. 26 °C ambient + road reference:
-        //  - 100 mph cruise (load=0.30, slip=0.05):  T_s_eq ≈ 93 °C (199 °F)
-        //  - 160 mph cruise:                           T_s_eq ≈ 99 °C (211 °F)
-        //  - 200 mph cruise:                           T_s_eq ≈ 102 °C (216 °F)
-        //  - Superspeedway 4 s turn @ 175 mph spike:   T_s   ≈ 106 °C (222 °F)
-        //  - Austria hairpin peak (10 s of cornering): T_s   ≈ 109 °C (228 °F)
-        //  - Eas-left straight recovery (14 s):       −9.7 °C drop
-        //  - Warm-up from 30 °C @ 100 mph to 82 °C:    ~8.8 mi
-        //  - 95% wear straight cruise (5 min):         T_s   ≈ 184 °C (overheat)
-        //  - Cold 10 °C ambient vs 26 °C reference:    −8.7 °C
-        //  - Hot road 50 °C vs 26 °C reference:       +7.0 °C
+        // Balanced compound, three-node cascade. Tuned against issue #84 with
+        // the simulator at /home/ubuntu/tire_sim/sim.py at 26 °C ambient/road:
+        //  - Warm-up superspeedway lap (avg ~150 mph banked oval) cold→82 °C: 4.6 mi
+        //  - Cruise 100 mph steady (low slip, low load):                      85.6 °C
+        //  - Cruise 160 mph steady:                                           94.9 °C
+        //  - Cruise 200 mph steady:                                           98.4 °C
+        //  - Race cruise drift over 10 min hold:                              +0.7 °C
+        //  - Austria hairpin peak (10 s of cornering on warm tire):           115.9 °C
+        //  - 14 s straight recovery after a hairpin spike:                    −10.1 °C
+        //  - 85 % wear vs 10 % wear corner spike:                             +14.6 °C
+        //  - 95 % wear 5-min straight cruise:                                 226 °C (overheat)
+        //  - Cold 10 °C ambient / 8 °C road cruise:                           69.2 °C (depressed)
+        //  - Hot 30 °C ambient / 50 °C road cruise:                           92.6 °C (elevated)
         //
-        // Surface time constant τ_fast ≈ 8 s (fast spike recovery), carcass
-        // τ_slow ≈ 200 s (slow warm-up so the cold tire spends 5–10 mi getting
-        // into the optimal band at highway speeds).
-        // Coupling kept off the floor of the spec band so spike recovery and
-        // hairpin peaks have headroom on both sides instead of riding the edge.
+        // Three-node time constants:
+        //  - τ_corner   ≈ 4 s   — surface heats up in seconds in a corner
+        //  - τ_recovery ≈ 17 s  — spike fade on the next straight
+        //  - τ_warmup   ≈ 240 s — bulk soak from cold to operating temperature
         public static TireWearConfig Balanced { get; } = new TireWearConfig
         {
             BaseWearPerKilometer = 0.0024f,
@@ -49,17 +49,19 @@ namespace TopSpeed.Physics.Tires.Wear
             AmbientExchangePerCPerSecond = 0.0022f,
             RoadExchangePerCPerSecond = 0.0030f,
             WetRoadExchangePerCPerSecond = 0.0050f,
-            InternalConductancePerSecond = 0.06f,
-            CarcassMassRatio = 2.5f,
+            SurfaceToTreadConductancePerSecond = 0.16f,
+            TreadToCarcassConductancePerSecond = 0.040f,
+            TreadMassRatio = 1.0f,
+            CarcassMassRatio = 3.5f,
             SlipSmoothingTimeConstantSeconds = 1.4f,
         };
 
-        // Cold tire: surface and carcass both start at the same ambient-blended
-        // temperature. The carcass will track the surface lazily once heat input
-        // begins.
+        // Cold tire: surface, tread, and carcass all start at the same
+        // ambient-blended temperature. The cascade will warm them in
+        // staggered fashion once heat input begins.
         public static TireWearState CreateInitialState(float temperatureC)
         {
-            return new TireWearState(0f, temperatureC, temperatureC, 0f);
+            return new TireWearState(0f, temperatureC, temperatureC, temperatureC, 0f);
         }
     }
 }

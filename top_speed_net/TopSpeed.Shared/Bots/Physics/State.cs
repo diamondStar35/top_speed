@@ -14,6 +14,7 @@ namespace TopSpeed.Bots
         public float EffectiveDriveRatio;
         public float TireWearFraction;
         public float TireTemperatureC;
+        public float TireTreadTemperatureC;
         public float TireCarcassTemperatureC;
         public float TireSmoothedSlipNormalized;
         public float SurfaceTemperatureC;

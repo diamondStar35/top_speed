@@ -97,6 +97,7 @@ namespace TopSpeed.Vehicles
         private float _yawRateRad;
         private float _tireWearFraction;
         private float _tireTemperatureC;
+        private float _tireTreadTemperatureC;
         private float _tireCarcassTemperatureC;
         private float _tireSmoothedSlipNormalized;
         private float _surfaceTemperatureC;

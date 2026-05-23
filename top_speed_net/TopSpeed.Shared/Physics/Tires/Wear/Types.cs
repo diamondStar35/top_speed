@@ -1,26 +1,38 @@
 namespace TopSpeed.Physics.Tires.Wear
 {
-    // Two-node thermal state. `TemperatureC` is the surface (tread / contact
-    // patch) — what the player's gauge reads and what drives grip. `CarcassTemperatureC`
-    // is the bulk rubber + belts: high thermal mass, slow response, acts as a
-    // reservoir that decouples warm-up time from spike-recovery time.
+    // Three-node thermal state. The model is a cascade:
+    //   surface (T_s) — outer tread / contact patch. Smallest mass, drives
+    //                   grip and the player's gauge. Heat input lands here.
+    //   tread   (T_t) — bulk tread + belts. Intermediate mass. Holds the
+    //                   in-corner spike for tens of seconds.
+    //   carcass (T_c) — carcass + sidewall + rim soak. Largest mass.
+    //                   Sets the warm-up time scale (cold → optimal in
+    //                   minutes).
+    //
+    // Three independent time constants — one per phenomenon:
+    //   τ_corner    ≈ 1 / (k_st + h_air(v))   — in-corner heat-up
+    //   τ_recovery  ≈ m_tread / k_st          — spike fade on the straight
+    //   τ_warmup    ≈ m_carcass / k_tc        — bulk cold-tire soak
     public readonly struct TireWearState
     {
         public TireWearState(
             float wearFraction,
             float temperatureC,
+            float treadTemperatureC,
             float carcassTemperatureC,
             float smoothedSlipNormalized)
         {
             WearFraction = wearFraction;
             TemperatureC = temperatureC;
+            TreadTemperatureC = treadTemperatureC;
             CarcassTemperatureC = carcassTemperatureC;
             SmoothedSlipNormalized = smoothedSlipNormalized;
         }
 
         public float WearFraction { get; }
-        public float TemperatureC { get; }
-        public float CarcassTemperatureC { get; }
+        public float TemperatureC { get; }            // surface node
+        public float TreadTemperatureC { get; }       // tread node
+        public float CarcassTemperatureC { get; }     // carcass + rim node
         public float SmoothedSlipNormalized { get; }
     }
 

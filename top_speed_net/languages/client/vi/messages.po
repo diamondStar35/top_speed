@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-17 13:43\n"
+"PO-Revision-Date: 2026-05-25 04:55\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -5044,7 +5044,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Gears.cs:21
 #, csharp-format
 msgid "gear_ratios count ({0}) must match number_of_gears ({1})."
-msgstr "Số lượng gear_ratios ({0}) phải khớp với number_of_gears ({1})."
+msgstr "số lượng gear_ratios ({0}) phải khớp với number_of_gears ({1})."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Gears.cs:44
 msgid "gear_ratios must be non-increasing from gear 1 to last gear."

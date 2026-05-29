@@ -38,8 +38,8 @@ namespace TopSpeed.Physics.Tires.Wear
         // Cornering signal that always contributes (utilization), and slide
         // bonus that only activates past the grip limit.
         private const float CorneringUtilizationWeight = 0.85f;
-        private const float CorneringSlideBonus = 1.50f;
-        private const float LongitudinalSlideBonus = 1.20f;
+        private const float CorneringSlideBonus = 1.0f;
+        private const float LongitudinalSlideBonus = 0.75f;
         // Largest stable substep for the surface node. The fastest
         // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
         // ample margin (forward-Euler stability needs dt ≲ 2 τ).

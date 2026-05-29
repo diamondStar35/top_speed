@@ -42,46 +42,38 @@ namespace TopSpeed.Physics.Tires.Wear
             var gripAtFullWear = Clamp(0.79f - (0.14f * compoundAggression) + (0.03f * sizeNorm), 0.52f, 0.90f);
             // Heat coefficients (°C/s when speed=1m/s, load=1, signal=1).
             // Aggressive compounds heat faster; heavier cars load the contact patch harder.
-            var corneringHeatCPerSecond = Clamp(0.20f + (0.12f * compoundAggression) + (0.06f * massNorm), 0.15f, 0.45f);
-            var longitudinalHeatCPerSecond = Clamp(0.30f + (0.15f * compoundAggression) + (0.06f * massNorm), 0.22f, 0.55f);
+            var corneringHeatCPerSecond = Clamp(0.12f + (0.12f * compoundAggression) + (0.06f * massNorm), 0.08f, 0.45f);
+            var longitudinalHeatCPerSecond = Clamp(0.18f + (0.15f * compoundAggression) + (0.06f * massNorm), 0.12f, 0.55f);
             var loadHeatCPerSecond = Clamp(0.035f + (0.014f * massNorm) + (0.005f * compoundAggression), 0.025f, 0.060f);
             var rollingHeatCPerSecond = Clamp(0.018f + (0.008f * massNorm) + (0.004f * (1f - sizeNorm)), 0.012f, 0.032f);
             // Cooling coefficients (1/s). Larger tires shed heat faster; soft compounds run hotter.
-            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.00030f + (0.00006f * sizeNorm) - (0.00004f * compoundAggression), 0.00020f, 0.00045f);
-            var ambientExchangePerCPerSecond = Clamp(0.0022f + (0.0005f * sizeNorm), 0.0015f, 0.0040f);
-            var roadExchangePerCPerSecond = Clamp(0.0030f + (0.0008f * sizeNorm) - (0.0004f * compoundAggression), 0.0020f, 0.0050f);
-            var wetRoadExchangePerCPerSecond = Clamp(0.0050f + (0.0020f * compoundAggression), 0.0040f, 0.0090f);
-            // Surface↔tread conductance: how fast the surface bleeds into the
-            // intermediate tread node. Race compounds run with stiffer, more
-            // heat-conductive rubber than touring tires, so aggressive
-            // compounds drain spikes into the tread slightly faster. Kept low
-            // enough that the surface peak isn't squashed during brief corner
-            // spikes (this is what makes the player feel the spike on the
-            // gauge).
+            // TRIPLED ambient, road, and airflow cooling to rapidly dump heat into the environment.
+            var airflowCoolingPerMpsPerCPerSecond = Clamp(0.00135f + (0.00018f * sizeNorm) - (0.00012f * compoundAggression), 0.00060f, 0.00225f);
+            var ambientExchangePerCPerSecond = Clamp(0.0105f + (0.0015f * sizeNorm), 0.0045f, 0.0120f);
+            var roadExchangePerCPerSecond = Clamp(0.0135f + (0.0024f * sizeNorm) - (0.0012f * compoundAggression), 0.0060f, 0.0150f);
+            var wetRoadExchangePerCPerSecond = Clamp(0.0150f + (0.0060f * compoundAggression), 0.0120f, 0.0270f);
+
+            // Surface?tread conductance: increased base and caps ~3.75x
+            // Drains surface heat spikes into intermediate tread node instantly.
             var surfaceToTreadConductancePerSecond = Clamp(
-                0.14f + (0.06f * compoundAggression), 0.10f, 0.24f);
-            // Tread↔carcass conductance: how fast the tread drains into the
-            // bulk carcass+rim soak. Together with `carcassMassRatio` this is
-            // the dominant control over warm-up time.
+                0.45f + (0.15f * compoundAggression), 0.30f, 0.80f);
+
+            // Tread?carcass conductance: increased base and caps ~5x
+            // Channels bulk tread heat deep into the carcass reservoir.
             var treadToCarcassConductancePerSecond = Clamp(
-                0.035f + (0.015f * compoundAggression), 0.025f, 0.060f);
-            // Tread mass ratio: how much intermediate buffer sits between
-            // surface and carcass. Larger tires (and heavier cars on bigger
-            // contact patches) carry more bulk-tread mass; race compounds
-            // run slightly lighter.
+                0.100f + (0.040f * compoundAggression), 0.060f, 0.200f);
+
+            // Tread mass ratio: halved mass to reduce thermal buffer inertia.
             var treadMassRatio = Clamp(
-                0.85f + (0.40f * sizeNorm) + (0.20f * massNorm) - (0.20f * compoundAggression),
-                0.70f,
-                1.60f);
-            // Carcass mass ratio: bulk reservoir behind the cascade. Heavier
-            // cars and bigger tires soak longer; race compounds soak slightly
-            // faster for the same size. Sized so a balanced reference vehicle
-            // (compound aggression ≈ 0.5, mass ≈ 1750 kg, tire size ≈ 2.2 m)
-            // lands near 4.9 → τ_warmup ≈ 285 s, ≥ 5 mi warm-up at 100 mph.
+                0.45f + (0.20f * sizeNorm) + (0.10f * massNorm) - (0.10f * compoundAggression),
+                0.30f,
+                0.90f);
+
+            // Carcass mass ratio: halved bulk mass so the entire tire sheds heat and cools down rapidly.
             var carcassMassRatio = Clamp(
-                3.80f + (1.10f * massNorm) + (0.80f * sizeNorm) - (0.50f * compoundAggression),
-                3.10f,
-                6.50f);
+                1.80f + (0.60f * massNorm) + (0.40f * sizeNorm) - (0.30f * compoundAggression),
+                1.20f,
+                3.20f);
             var slipSmoothingTau = Clamp(1.55f - (0.68f * compoundAggression), 0.55f, 2.50f);
 
             return new TireWearConfig

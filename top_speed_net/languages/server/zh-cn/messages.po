@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-17 13:43\n"
+"PO-Revision-Date: 2026-05-19 12:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1606,12 +1606,12 @@ msgstr "您的客户端协议版本是 {0}。此服务器支持的协议版本�
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:215
 #, csharp-format
 msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
+msgstr "您的客户端协议版本 {0} 低于此服务器的协议版本 {1}。此服务器支持的协议版本为 {2}。您可以继续使用，但某些功能可能表现不同或完全无法使用。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:221
 #, csharp-format
 msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
+msgstr "您的客户端协议版本 {0} 低于此服务器的协议版本 {1}。此服务器支持的协议版本为 {2}。您可以继续使用，但某些功能可能表现不同或完全无法使用。"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:58
 #, csharp-format

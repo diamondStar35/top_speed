@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-17 13:43\n"
+"PO-Revision-Date: 2026-05-19 12:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1141,7 +1141,7 @@ msgstr "编辑"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:85
 msgid "Edit the proxy URL used for update package downloads."
-msgstr ""
+msgstr "编辑用于更新包下载的代理URL。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:13
 msgid "Enable HRTF audio"
@@ -1157,7 +1157,7 @@ msgstr "启用菜单循环"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
-msgstr ""
+msgstr "请先启用更新下载代理。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:44
 msgid "Enable usage hints"
@@ -3019,7 +3019,7 @@ msgstr "报告距离"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:54
 msgid "Report fuel"
-msgstr ""
+msgstr "报告燃油"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:53
 msgid "Report speed"
@@ -4522,7 +4522,7 @@ msgstr "使用运动传感器转向"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:72
 msgid "Use proxy for update downloads"
-msgstr ""
+msgstr "为更新下载使用代理"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Network\Participants.cs:149
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
@@ -4696,7 +4696,7 @@ msgstr "启用后，游戏启动时播放启动音效。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:76
 msgid "When checked, update package downloads are routed through your proxy URL."
-msgstr ""
+msgstr "勾选后，更新包下载将通过您的代理URL进行路由。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4998,7 +4998,7 @@ msgstr "end_area 不能为空。"
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:43
 #, csharp-format
 msgid "engine_displacement_l must be between {0} and {1} liters."
-msgstr ""
+msgstr "engine_displacement_l 的值必须在 {0} 到 {1} 升之间。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:28
 msgid "fixed distance"
@@ -5007,27 +5007,27 @@ msgstr "固定距离"
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
-msgstr ""
+msgstr "燃油量必须在 {0} 到 {1} 升之间。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
-msgstr ""
+msgstr "燃油{0:F1}加仑，{1:F0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
-msgstr ""
+msgstr "燃油{0:F1}加仑，{1:F0}%，{2:F1}英里/加仑"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
-msgstr ""
+msgstr "燃油{0:F1}升，{1:F0}%"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
-msgstr ""
+msgstr "燃油 {0:F1}升，{1:F0}%，100千米消耗{2:F1}升"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:63
 msgid "game cancel request"
@@ -5594,10 +5594,10 @@ msgstr "{0}：{1}%"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:156
 #, csharp-format
 msgid "{0}: {1}, using {2}."
-msgstr ""
+msgstr "{0}：{1}，使用 {2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:147
 #, csharp-format
 msgid "{0}: {1}, {2}, using {3}."
-msgstr ""
+msgstr "{0}：{1}，{2}，使用 {3}。"
 

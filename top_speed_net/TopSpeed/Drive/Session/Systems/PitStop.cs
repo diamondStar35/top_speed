@@ -62,7 +62,6 @@ namespace TopSpeed.Drive.Session.Systems
         private bool _prevInitialized;
         private float _pitEntryDist;
         private float _pitExitDist;
-        private bool _hasPitLane;
         private float _pitEntryX;
         private float _pitEntryY;
         private bool _audioPhase0;
@@ -128,8 +127,7 @@ namespace TopSpeed.Drive.Session.Systems
             _queueSoundDelayed = queueSoundDelayed ?? throw new ArgumentNullException(nameof(queueSoundDelayed));
             _pitController = new PitLaneController(car.GetGearForSpeedKmh);
 
-            _hasPitLane = track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, out _pitEntryDist);
-            if (!_hasPitLane)
+            if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, out _pitEntryDist))
                 _pitEntryDist = 0f;
             if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, out _pitExitDist))
                 _pitExitDist = _pitEntryDist;
@@ -252,22 +250,14 @@ namespace TopSpeed.Drive.Session.Systems
             var road = _track.RoadAtPosition(_pitEntryY);
             _pitRoadCenterX = (road.Left + road.Right) * 0.5f;
 
-            if (!_hasPitLane)
-            {
-                _pitEntryRoad = road;
-                _trackPitEdge = Math.Min(road.Left, road.Right);
-                _carHalfWidth = _car.WidthM / 2f;
-                _offTrackTargetX = _trackPitEdge - _carHalfWidth;
-                _offTrackReached = false;
-                _listenerCurrentX = _pitRoadCenterX;
-                ListenerXOverride = _pitRoadCenterX;
-                _pitController.SteerTargetX = null; // X is managed via SetPosition
-            }
-            else
-            {
-                ListenerXOverride = null;
-                _pitController.SteerTargetX = _pitRoadCenterX;
-            }
+            _pitEntryRoad = road;
+            _trackPitEdge = Math.Min(road.Left, road.Right);
+            _carHalfWidth = _car.WidthM / 2f;
+            _offTrackTargetX = _trackPitEdge - _carHalfWidth;
+            _offTrackReached = false;
+            _listenerCurrentX = _pitRoadCenterX;
+            ListenerXOverride = _pitRoadCenterX;
+            _pitController.SteerTargetX = null;
 
             if (!_car.CombustionActive)
                 _car.RestartFromStall();
@@ -279,19 +269,16 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void UpdateEnteringLane(float elapsed)
         {
-            if (!_hasPitLane)
+            var xProgress = Math.Min(1f, _timer / OffTrackMoveSeconds);
+            var carX = _pitEntryX + (_offTrackTargetX - _pitEntryX) * xProgress;
+            _car.SetPosition(carX, _pitEntryY);
+            EvaluateWithWideRoad();
+            if (!_offTrackReached && xProgress >= 1f)
             {
-                var xProgress = Math.Min(1f, _timer / OffTrackMoveSeconds);
-                var carX = _pitEntryX + (_offTrackTargetX - _pitEntryX) * xProgress;
-                _car.SetPosition(carX, _pitEntryY);
-                EvaluateWithWideRoad();
-                if (!_offTrackReached && xProgress >= 1f)
-                {
-                    _offTrackReached = true;
-                    _listenerCurrentX = _pitRoadCenterX;
-                }
-                UpdateEnteringLaneListener(elapsed);
+                _offTrackReached = true;
+                _listenerCurrentX = _pitRoadCenterX;
             }
+            UpdateEnteringLaneListener(elapsed);
 
             _timer += elapsed;
             if (_timer < EnteringLaneDurationSeconds)
@@ -328,12 +315,9 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void UpdateInService(float elapsed)
         {
-            if (!_hasPitLane)
-            {
-                _car.SetPosition(_offTrackTargetX, _pitEntryY);
-                EvaluateWithWideRoad();
-                LerpListenerToward(_offTrackTargetX, elapsed);
-            }
+            _car.SetPosition(_offTrackTargetX, _pitEntryY);
+            EvaluateWithWideRoad();
+            LerpListenerToward(_offTrackTargetX, elapsed);
 
             if (_workStarted)
             {
@@ -474,36 +458,33 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void UpdateExitingLane(float elapsed)
         {
-            if (!_hasPitLane)
+            if (_timer < ExitStartMoveSeconds)
             {
-                if (_timer < ExitStartMoveSeconds)
+                // 0–14s: car held off-track, listener tracks car position.
+                _car.SetPosition(_offTrackTargetX, _pitEntryY);
+                _listenerCurrentX = _offTrackTargetX;
+                ListenerXOverride = _offTrackTargetX;
+            }
+            else
+            {
+                // 14–15s: car moves back onto the track.
+                var xProgress = Math.Min(1f, (_timer - ExitStartMoveSeconds) /
+                    (ExitingLaneDurationSeconds - ExitStartMoveSeconds));
+                var carX = _offTrackTargetX + (_pitEntryX - _offTrackTargetX) * xProgress;
+                _car.SetPosition(carX, _pitEntryY);
+
+                // Listener follows car after a 0.5s delay so car is heard panning right first.
+                if (_timer >= ExitStartMoveSeconds + ListenerFollowDelaySeconds)
                 {
-                    // 0–14s: car held off-track, listener tracks car position.
-                    _car.SetPosition(_offTrackTargetX, _pitEntryY);
-                    _listenerCurrentX = _offTrackTargetX;
-                    ListenerXOverride = _offTrackTargetX;
+                    _listenerCurrentX = carX;
+                    ListenerXOverride = carX;
                 }
                 else
                 {
-                    // 14–15s: car moves back onto the track.
-                    var xProgress = Math.Min(1f, (_timer - ExitStartMoveSeconds) /
-                        (ExitingLaneDurationSeconds - ExitStartMoveSeconds));
-                    var carX = _offTrackTargetX + (_pitEntryX - _offTrackTargetX) * xProgress;
-                    _car.SetPosition(carX, _pitEntryY);
-
-                    // Listener follows car after a 0.5s delay so car is heard panning right first.
-                    if (_timer >= ExitStartMoveSeconds + ListenerFollowDelaySeconds)
-                    {
-                        _listenerCurrentX = carX;
-                        ListenerXOverride = carX;
-                    }
-                    else
-                    {
-                        ListenerXOverride = _offTrackTargetX;
-                    }
+                    ListenerXOverride = _offTrackTargetX;
                 }
-                EvaluateWithWideRoad();
             }
+            EvaluateWithWideRoad();
 
             _timer += elapsed;
 
@@ -518,8 +499,11 @@ namespace TopSpeed.Drive.Session.Systems
             var lapStart = lapDist > 0f
                 ? (float)Math.Floor(_pitEntryY / lapDist) * lapDist
                 : 0f;
+            var exitY = lapStart + _pitExitDist;
+            var exitRoad = _track.RoadAtPosition(exitY);
+            var exitX = (exitRoad.Left + exitRoad.Right) * 0.5f;
             _car.PrepareEngineForPitExit(PitLaneSpeedKmh);
-            _car.SetPosition(_pitEntryX, lapStart + _pitExitDist);
+            _car.SetPosition(exitX, exitY);
             _car.SetOverrideController(null);
             _soundExitPitRoad?.Play(loop: false);
             ListenerXOverride = null;

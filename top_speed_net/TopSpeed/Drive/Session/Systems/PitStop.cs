@@ -30,8 +30,10 @@ namespace TopSpeed.Drive.Session.Systems
         private const float FillRateLitersPerSecond = CanLiters / FuelStopTimeSeconds;
         private const float ListenerLerpRate = 4.0f;
         private const float OffTrackMoveSeconds = 3.0f;
-        private const float ExitStartMoveSeconds = 14.0f;
-        private const float ListenerFollowDelaySeconds = 0.5f;
+        private const float ExitMoveSeconds = 2.0f;
+        private const float ExitStartMoveSeconds = ExitingLaneDurationSeconds - ExitMoveSeconds;
+        private const float ExitPanSeconds = ExitMoveSeconds * 0.5f;
+        private const float ExitListenerCenterSeconds = 0.5f;
 
         private readonly DriveInput _input;
         private readonly ICar _car;
@@ -75,11 +77,11 @@ namespace TopSpeed.Drive.Session.Systems
         private float _pitRoadCenterX;
         private Track.Road _pitEntryRoad;
 
-        // Off-track pit lane state (used when !_hasPitLane)
         // Note: listener forward=+Z, so right=-X, left=+X. We go off the +X (audio-left) side.
         private float _trackPitEdge;
         private float _carHalfWidth;
         private float _offTrackTargetX;
+        private float _pitExitX;
         private bool _offTrackReached;
         private float _listenerCurrentX;
 
@@ -454,41 +456,55 @@ namespace TopSpeed.Drive.Session.Systems
             _pitPhase = PitPhase.ExitingLane;
             _timer = 0f;
             _pitController.BrakeMode = false;
+            _pitController.SteerTargetX = null;
+            _listenerCurrentX = _offTrackTargetX;
+
+            var lapDist = _track.Length;
+            var lapStart = lapDist > 0f ? (float)Math.Floor(_pitEntryY / lapDist) * lapDist : 0f;
+            var exitRoad = _track.RoadAtPosition(lapStart + _pitExitDist);
+            _pitExitX = (exitRoad.Left + exitRoad.Right) * 0.5f;
         }
 
         private void UpdateExitingLane(float elapsed)
         {
             if (_timer < ExitStartMoveSeconds)
             {
-                // 0–14s: car held off-track, listener tracks car position.
+                // Hold phase: car braked and frozen at pit box; sounds centered.
                 _car.SetPosition(_offTrackTargetX, _pitEntryY);
                 _listenerCurrentX = _offTrackTargetX;
                 ListenerXOverride = _offTrackTargetX;
             }
-            else
+            else if (_timer < ExitingLaneDurationSeconds)
             {
-                // 14–15s: car moves back onto the track.
-                var xProgress = Math.Min(1f, (_timer - ExitStartMoveSeconds) /
-                    (ExitingLaneDurationSeconds - ExitStartMoveSeconds));
-                var carX = _offTrackTargetX + (_pitEntryX - _offTrackTargetX) * xProgress;
-                _car.SetPosition(carX, _pitEntryY);
-
-                // Listener follows car after a 0.5s delay so car is heard panning right first.
-                if (_timer >= ExitStartMoveSeconds + ListenerFollowDelaySeconds)
+                // Move phase: release brakes and let physics steer naturally to road center.
+                // No SetPosition — car drives freely so there's no velocity snap.
+                // Listener follows at half speed to keep pan within ~half the stereo field.
+                _pitController.BrakeMode = false;
+                _pitController.SteerTargetX = _pitExitX;
+                if (_timer - ExitStartMoveSeconds < ExitPanSeconds)
                 {
-                    _listenerCurrentX = carX;
-                    ListenerXOverride = carX;
+                    // Pan phase: listener stays put while car steers right.
+                    _listenerCurrentX = _offTrackTargetX;
+                    ListenerXOverride = _offTrackTargetX;
                 }
                 else
                 {
-                    ListenerXOverride = _offTrackTargetX;
+                    // Follow phase: listener chases the car to reduce the pan.
+                    LerpListenerToward(_car.PositionX, elapsed);
                 }
+            }
+            else
+            {
+                // Centering phase: listener glides to road center before control returns.
+                var blend = Math.Min(1f, elapsed * 8f);
+                _listenerCurrentX += (_pitExitX - _listenerCurrentX) * blend;
+                ListenerXOverride = _listenerCurrentX;
             }
             EvaluateWithWideRoad();
 
             _timer += elapsed;
 
-            if (_timer < ExitingLaneDurationSeconds)
+            if (_timer < ExitingLaneDurationSeconds + ExitListenerCenterSeconds)
                 return;
             CompletePitExit();
         }

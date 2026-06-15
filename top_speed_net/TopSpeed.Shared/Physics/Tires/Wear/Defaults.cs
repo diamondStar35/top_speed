@@ -22,7 +22,7 @@ namespace TopSpeed.Physics.Tires.Wear
         //  - τ_warmup   ≈ 285 s — bulk soak from cold to operating temperature
         public static TireWearConfig Balanced { get; } = new TireWearConfig
         {
-            BaseWearPerKilometer = 0.0024f,
+            BaseWearPerKilometer = 0.002f,
             SlipWearRatePerSecond = 0.00025f,
             CorneringSlipWearWeight = 0.48f,
             LongitudinalSlipWearWeight = 0.62f,
@@ -36,13 +36,13 @@ namespace TopSpeed.Physics.Tires.Wear
             OptimalEndTemperatureC = 128f,
             OverheatEndTemperatureC = 140f,
             GripAtVeryCold = 0.72f,
-            GripAtColdEnd = 0.94f,
+            GripAtColdEnd = 0.9f,
             GripAtOptimal = 1.0f,
             GripAtOverheatEnd = 0.80f,
-            GripAtCooked = 0.65f,
-            GripAtFullWear = 0.78f,
-            CorneringHeatCPerSecond = 0.10f,
-            LongitudinalHeatCPerSecond = 0.14f,
+            GripAtCooked = 0.5f,
+            GripAtFullWear = 0.5f,
+            CorneringHeatCPerSecond = 0.095f,
+            LongitudinalHeatCPerSecond = 0.10f,
             LoadHeatCPerSecond = 0.040f,
             RollingHeatCPerSecond = 0.018f,
             AirflowCoolingPerMpsPerCPerSecond = 0.00165f,

@@ -68,7 +68,8 @@ namespace TopSpeed.Physics.Tires.Wear
         //   τ_warmup   ≈ m_carcass / k_tc        — cold-tire soak (~200–400 s)
 
         public float CorneringHeatCPerSecond { get; init; }
-        public float LongitudinalHeatCPerSecond { get; init; }
+        public float AccelerationHeatCPerSecond { get; init; }
+        public float BrakeHeatCPerSecond { get; init; }
         public float LoadHeatCPerSecond { get; init; }
         public float RollingHeatCPerSecond { get; init; }
 

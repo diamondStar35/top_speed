@@ -103,7 +103,8 @@ grip_overheat_end=0.73
 grip_cooked=0.62
 wear_grip_at_full_wear=0.61
 heat_cornering_c_per_s=14
-heat_longitudinal_c_per_s=12
+heat_acceleration_c_per_s=12
+heat_braking_c_per_s=9
 heat_load_c_per_s=7
 heat_rolling_c_per_s=4
 cool_airflow_per_mps_per_c_per_s=0.0031
@@ -135,7 +136,8 @@ slip_smoothing_tau_s=1.2"));
             data.TireWearConfig.GripAtOverheatEnd.Should().BeApproximately(0.73f, 0.0001f);
             data.TireWearConfig.GripAtFullWear.Should().BeApproximately(0.61f, 0.0001f);
             data.TireWearConfig.CorneringHeatCPerSecond.Should().BeApproximately(14f, 0.0001f);
-            data.TireWearConfig.LongitudinalHeatCPerSecond.Should().BeApproximately(12f, 0.0001f);
+            data.TireWearConfig.AccelerationHeatCPerSecond.Should().BeApproximately(12f, 0.0001f);
+            data.TireWearConfig.BrakeHeatCPerSecond.Should().BeApproximately(9f, 0.0001f);
             data.TireWearConfig.LoadHeatCPerSecond.Should().BeApproximately(7f, 0.0001f);
             data.TireWearConfig.RollingHeatCPerSecond.Should().BeApproximately(4f, 0.0001f);
             data.TireWearConfig.AirflowCoolingPerMpsPerCPerSecond.Should().BeApproximately(0.0031f, 0.0000001f);

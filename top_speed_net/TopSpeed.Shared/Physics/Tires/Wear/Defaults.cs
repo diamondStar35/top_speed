@@ -42,7 +42,11 @@ namespace TopSpeed.Physics.Tires.Wear
             GripAtCooked = 0.5f,
             GripAtFullWear = 0.5f,
             CorneringHeatCPerSecond = 0.095f,
-            LongitudinalHeatCPerSecond = 0.10f,
+            AccelerationHeatCPerSecond = 0.10f,
+            // Step 1 plumbing: equals acceleration for now and is not yet wired
+            // into the heat math. Step 2 routes braking separately and tunes it
+            // higher (the "worse offender").
+            BrakeHeatCPerSecond = 0.10f,
             LoadHeatCPerSecond = 0.040f,
             RollingHeatCPerSecond = 0.018f,
             AirflowCoolingPerMpsPerCPerSecond = 0.00165f,

@@ -79,7 +79,7 @@ namespace TopSpeed.Physics.Tires.Wear
                 + (longitudinalSlide * longitudinalSlide * LongitudinalSlideBonus);
             var frictionHeat = input.SpeedMps * load * (
                 (config.CorneringHeatCPerSecond * corneringPower)
-                + (config.LongitudinalHeatCPerSecond * longitudinalPower));
+                + (config.AccelerationHeatCPerSecond * longitudinalPower));
 
             // Wear amplification: 1× until 75 %, then ramps; past 90 % the tire
             // generates extra heat just from rolling so the player still notices

@@ -149,6 +149,7 @@ namespace TopSpeed.Vehicles.Parsing
                 CorneringHeatCPerSecond = values.TireHeatCorneringCPerSecond ?? profile.CorneringHeatCPerSecond,
                 AccelerationHeatCPerSecond = values.TireHeatAccelerationCPerSecond ?? profile.AccelerationHeatCPerSecond,
                 BrakeHeatCPerSecond = values.TireHeatBrakingCPerSecond ?? profile.BrakeHeatCPerSecond,
+                BrakeSurfaceHeatFraction = profile.BrakeSurfaceHeatFraction,
                 LoadHeatCPerSecond = values.TireHeatLoadCPerSecond ?? profile.LoadHeatCPerSecond,
                 RollingHeatCPerSecond = values.TireHeatRollingCPerSecond ?? profile.RollingHeatCPerSecond,
                 AirflowCoolingPerMpsPerCPerSecond = values.TireCoolingAirflowPerMpsPerCPerSecond ?? profile.AirflowCoolingPerMpsPerCPerSecond,

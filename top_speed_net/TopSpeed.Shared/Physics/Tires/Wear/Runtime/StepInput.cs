@@ -15,7 +15,10 @@ namespace TopSpeed.Physics.Tires.Wear
             float corneringUtilizationNormalized,
             float corneringSlipNormalized,
             float longitudinalSlideNormalized,
-            float rawSlipNormalized)
+            float rawSlipNormalized,
+            float accelerationHeatStressNormalized,
+            float brakeHeatStressNormalized,
+            float engineBrakeHeatStressNormalized)
         {
             ElapsedSeconds = elapsedSeconds;
             SpeedMps = speedMps;
@@ -28,6 +31,9 @@ namespace TopSpeed.Physics.Tires.Wear
             CorneringSlipNormalized = corneringSlipNormalized;
             LongitudinalSlideNormalized = longitudinalSlideNormalized;
             RawSlipNormalized = rawSlipNormalized;
+            AccelerationHeatStressNormalized = accelerationHeatStressNormalized;
+            BrakeHeatStressNormalized = brakeHeatStressNormalized;
+            EngineBrakeHeatStressNormalized = engineBrakeHeatStressNormalized;
         }
 
         public float ElapsedSeconds { get; }
@@ -41,6 +47,9 @@ namespace TopSpeed.Physics.Tires.Wear
         public float CorneringSlipNormalized { get; }
         public float LongitudinalSlideNormalized { get; }
         public float RawSlipNormalized { get; }
+        public float AccelerationHeatStressNormalized { get; }
+        public float BrakeHeatStressNormalized { get; }
+        public float EngineBrakeHeatStressNormalized { get; }
 
         public static TireWearStepInput Create(in TireWearInput input)
         {
@@ -58,6 +67,9 @@ namespace TopSpeed.Physics.Tires.Wear
             var rawSlipNormalized = TireWearMath.Clamp01(
                 (corneringSlipNormalized * 0.60f)
                 + (longitudinalSlideNormalized * 0.40f));
+            var accelerationHeatStressNormalized = TireWearMath.Clamp01(input.AccelerationHeatStressNormalized);
+            var brakeHeatStressNormalized = TireWearMath.Clamp01(input.BrakeHeatStressNormalized);
+            var engineBrakeHeatStressNormalized = TireWearMath.Clamp01(input.EngineBrakeHeatStressNormalized);
 
             return new TireWearStepInput(
                 elapsedSeconds,
@@ -70,7 +82,10 @@ namespace TopSpeed.Physics.Tires.Wear
                 corneringUtilizationNormalized,
                 corneringSlipNormalized,
                 longitudinalSlideNormalized,
-                rawSlipNormalized);
+                rawSlipNormalized,
+                accelerationHeatStressNormalized,
+                brakeHeatStressNormalized,
+                engineBrakeHeatStressNormalized);
         }
     }
 }

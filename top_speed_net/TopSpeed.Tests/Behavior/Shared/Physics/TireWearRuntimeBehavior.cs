@@ -190,7 +190,8 @@ public sealed class TireWearRuntimeBehaviorTests
             rollingResistanceNormalized: 0.32f,
             ambientTemperatureC: 30f,
             surfaceTemperatureC: 36f,
-            wetnessNormalized: 0f);
+            wetnessNormalized: 0f,
+            brakeHeatStressNormalized: 0.72f);
 
         var moderate = TireWearRuntime.Step(config, moderateState, input);
         var hot = TireWearRuntime.Step(config, hotState, input);

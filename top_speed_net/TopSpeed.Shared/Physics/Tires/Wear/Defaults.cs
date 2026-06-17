@@ -43,10 +43,12 @@ namespace TopSpeed.Physics.Tires.Wear
             GripAtFullWear = 0.5f,
             CorneringHeatCPerSecond = 0.095f,
             AccelerationHeatCPerSecond = 0.10f,
-            // Step 1 plumbing: equals acceleration for now and is not yet wired
-            // into the heat math. Step 2 routes braking separately and tunes it
-            // higher (the "worse offender").
-            BrakeHeatCPerSecond = 0.10f,
+            // Braking is the worse offender: more heat than acceleration. ~40 %
+            // lands at the surface as lockup/slip flash, ~60 % soaks into the
+            // tread (rotor/hub heat that lingers). Starting estimate — re-tune
+            // against the thermal spec once driving feel is checked.
+            BrakeHeatCPerSecond = 0.16f,
+            BrakeSurfaceHeatFraction = 0.40f,
             LoadHeatCPerSecond = 0.040f,
             RollingHeatCPerSecond = 0.018f,
             AirflowCoolingPerMpsPerCPerSecond = 0.00165f,

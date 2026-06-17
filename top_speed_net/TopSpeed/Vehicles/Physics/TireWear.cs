@@ -10,6 +10,14 @@ namespace TopSpeed.Vehicles
         private const float KphPerMps = 3.6f;
         private const float SurfaceHeatingTauSeconds = 45f;
         private const float SurfaceCoolingTauSeconds = 18f;
+        // Low-pass on the longitudinal heat-stress signals so on/off (digital)
+        // throttle/brake taps converge to the same heat as a smooth analog hold
+        // of the equivalent average — parity across input methods.
+        private const float HeatStressSmoothingTauSeconds = 0.8f;
+
+        private float _smoothedAccelHeatStress;
+        private float _smoothedBrakeHeatStress;
+        private float _smoothedEngineBrakeHeatStress;
 
         private void ResetTireWearState()
         {
@@ -24,6 +32,9 @@ namespace TopSpeed.Vehicles
             _lastLateralLoadRatio = 0f;
             _lastSlipAngleNormalized = 0f;
             _lastLateralSlipNormalized = 0f;
+            _smoothedAccelHeatStress = 0f;
+            _smoothedBrakeHeatStress = 0f;
+            _smoothedEngineBrakeHeatStress = 0f;
         }
 
         private void UpdateTireWear(float elapsedSeconds, float speedMps)
@@ -40,6 +51,21 @@ namespace TopSpeed.Vehicles
                 _rollingResistanceCoefficient,
                 _currentSurfaceRollingResistanceFactor,
                 speed);
+
+            // Separate, smoothed acceleration / brake / engine-brake heat-stress
+            // signals (the merged longitudinal signal above still drives wear and
+            // load). Smoothing gives digital tappers the same heat as an analog
+            // hold of the equivalent average.
+            var heatStressAlpha = ResolveExpAlpha(elapsedSeconds, HeatStressSmoothingTauSeconds);
+            var accelHeatStress = TireWearInputSignals.ResolveAccelerationHeatStressNormalized(
+                _lastLongitudinalResult.DriveAccelerationMps2);
+            var brakeHeatStress = TireWearInputSignals.ResolveBrakeHeatStressNormalized(
+                _lastLongitudinalResult.BrakeDecelKph / KphPerMps);
+            var engineBrakeHeatStress = TireWearInputSignals.ResolveEngineBrakeHeatStressNormalized(
+                _lastLongitudinalResult.EngineBrakeDecelKph / KphPerMps);
+            _smoothedAccelHeatStress += (accelHeatStress - _smoothedAccelHeatStress) * heatStressAlpha;
+            _smoothedBrakeHeatStress += (brakeHeatStress - _smoothedBrakeHeatStress) * heatStressAlpha;
+            _smoothedEngineBrakeHeatStress += (engineBrakeHeatStress - _smoothedEngineBrakeHeatStress) * heatStressAlpha;
 
             var weather = _track.GetActiveWeatherProfile();
             var wetness = ResolveWeatherWetness(weather);
@@ -58,7 +84,10 @@ namespace TopSpeed.Vehicles
                     rollingResistanceNormalized: rollingResistanceNormalized,
                     ambientTemperatureC: weather.TemperatureC,
                     surfaceTemperatureC: _surfaceTemperatureC,
-                    wetnessNormalized: wetness));
+                    wetnessNormalized: wetness,
+                    accelerationHeatStressNormalized: _smoothedAccelHeatStress,
+                    brakeHeatStressNormalized: _smoothedBrakeHeatStress,
+                    engineBrakeHeatStressNormalized: _smoothedEngineBrakeHeatStress));
             _tireWearState = _tireWearRuntime.State;
         }
 

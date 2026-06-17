@@ -48,7 +48,10 @@ namespace TopSpeed.Physics.Tires.Wear
             float rollingResistanceNormalized,
             float ambientTemperatureC,
             float surfaceTemperatureC,
-            float wetnessNormalized)
+            float wetnessNormalized,
+            float accelerationHeatStressNormalized = 0f,
+            float brakeHeatStressNormalized = 0f,
+            float engineBrakeHeatStressNormalized = 0f)
         {
             ElapsedSeconds = elapsedSeconds;
             SpeedMps = speedMps;
@@ -60,6 +63,9 @@ namespace TopSpeed.Physics.Tires.Wear
             AmbientTemperatureC = ambientTemperatureC;
             SurfaceTemperatureC = surfaceTemperatureC;
             WetnessNormalized = wetnessNormalized;
+            AccelerationHeatStressNormalized = accelerationHeatStressNormalized;
+            BrakeHeatStressNormalized = brakeHeatStressNormalized;
+            EngineBrakeHeatStressNormalized = engineBrakeHeatStressNormalized;
         }
 
         public float ElapsedSeconds { get; }
@@ -72,6 +78,9 @@ namespace TopSpeed.Physics.Tires.Wear
         public float AmbientTemperatureC { get; }
         public float SurfaceTemperatureC { get; }
         public float WetnessNormalized { get; }
+        public float AccelerationHeatStressNormalized { get; }
+        public float BrakeHeatStressNormalized { get; }
+        public float EngineBrakeHeatStressNormalized { get; }
     }
 
     public readonly struct TireWearRuntimeResult

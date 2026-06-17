@@ -6,6 +6,28 @@ namespace TopSpeed.Physics.Tires.Wear
     {
         private const float DriveStressReferenceMps2 = 6f;
         private const float BrakeStressReferenceMps2 = 9f;
+        // Engine braking is much weaker than the service brakes, so it saturates
+        // at a lower deceleration.
+        private const float EngineBrakeStressReferenceMps2 = 3.5f;
+
+        // Separate heat-stress signals so braking, acceleration, and engine
+        // braking can each drive tire heat independently (the merged
+        // longitudinal signal above is kept for wear/load). 0 = none, 1 = the
+        // reference stress or beyond.
+        public static float ResolveAccelerationHeatStressNormalized(float driveAccelerationMps2)
+        {
+            return NormalizeUnit(driveAccelerationMps2, DriveStressReferenceMps2);
+        }
+
+        public static float ResolveBrakeHeatStressNormalized(float brakeDecelMps2)
+        {
+            return NormalizeUnit(brakeDecelMps2, BrakeStressReferenceMps2);
+        }
+
+        public static float ResolveEngineBrakeHeatStressNormalized(float engineBrakeDecelMps2)
+        {
+            return NormalizeUnit(engineBrakeDecelMps2, EngineBrakeStressReferenceMps2);
+        }
 
         public static float ResolveLongitudinalSlipNormalized(float driveAccelerationMps2, float brakeDecelMps2)
         {

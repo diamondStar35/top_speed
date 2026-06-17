@@ -39,7 +39,10 @@ namespace TopSpeed.Physics.Tires.Wear
         // bonus that only activates past the grip limit.
         private const float CorneringUtilizationWeight = 0.85f;
         private const float CorneringSlideBonus = 1.0f;
-        private const float LongitudinalSlideBonus = 0.75f;
+        // Engine-braking soak into the tread, as a fraction of the brake-heat
+        // coefficient. Small — downshifting warms the tire far less than the
+        // service brakes.
+        private const float EngineBrakeTreadFactor = 0.25f;
         // Largest stable substep for the surface node. The fastest
         // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
         // ample margin (forward-Euler stability needs dt ≲ 2 τ).
@@ -59,8 +62,9 @@ namespace TopSpeed.Physics.Tires.Wear
             var rolling = TireWearMath.Clamp01(input.RollingResistanceNormalized);
             var corneringUtilization = TireWearMath.Clamp01(input.CorneringUtilizationNormalized);
             var corneringSlide = TireWearMath.Clamp01(input.CorneringSlipNormalized);
-            var longitudinalSlip = TireWearMath.Clamp01(input.LongitudinalSlipNormalized);
-            var longitudinalSlide = TireWearMath.Clamp01(input.LongitudinalSlideNormalized);
+            var accelStress = TireWearMath.Clamp01(input.AccelerationHeatStressNormalized);
+            var brakeStress = TireWearMath.Clamp01(input.BrakeHeatStressNormalized);
+            var engineBrakeStress = TireWearMath.Clamp01(input.EngineBrakeHeatStressNormalized);
 
             // Bulk flex heat (rolling hysteresis) — always present when moving.
             // Linear in speed and (offset) load: a still tire generates no flex heat,
@@ -70,16 +74,32 @@ namespace TopSpeed.Physics.Tires.Wear
                 * input.SpeedMps;
 
             // Friction heat from slip — physical model is P = μ·N·v_slip, which we
-            // approximate as proportional to load · speed · slip². Cornering uses
-            // the smooth utilization signal plus a slide bonus past the grip limit;
-            // longitudinal uses the raw slip plus a slide bonus past the slide threshold.
+            // approximate as proportional to load · speed · stress². Cornering uses
+            // the smooth utilization signal plus a slide bonus past the grip limit.
+            // Acceleration and braking are now separate signals (braking is the
+            // worse offender).
             var corneringPower = (corneringUtilization * corneringUtilization * CorneringUtilizationWeight)
                 + (corneringSlide * corneringSlide * CorneringSlideBonus);
-            var longitudinalPower = (longitudinalSlip * longitudinalSlip)
-                + (longitudinalSlide * longitudinalSlide * LongitudinalSlideBonus);
-            var frictionHeat = input.SpeedMps * load * (
+            var accelPower = accelStress * accelStress;
+            var brakePower = brakeStress * brakeStress;
+            var engineBrakePower = engineBrakeStress * engineBrakeStress;
+
+            var brakeSurfaceFraction = TireWearMath.Clamp01(config.BrakeSurfaceHeatFraction);
+            var loadSpeed = input.SpeedMps * load;
+
+            // Surface (contact-patch) friction: cornering + acceleration + the
+            // lockup/slip "flash" share of braking. Heats fast, fades fast.
+            var surfaceFrictionHeat = loadSpeed * (
                 (config.CorneringHeatCPerSecond * corneringPower)
-                + (config.AccelerationHeatCPerSecond * longitudinalPower));
+                + (config.AccelerationHeatCPerSecond * accelPower)
+                + (config.BrakeHeatCPerSecond * brakePower * brakeSurfaceFraction));
+
+            // Tread-injected heat: the rotor/hub "soak" share of braking plus a
+            // whisper of engine braking. Lingers, then sheds to air through the
+            // cascade once airflow picks up on the straight.
+            var treadInjectedHeat = loadSpeed * (
+                (config.BrakeHeatCPerSecond * brakePower * (1f - brakeSurfaceFraction))
+                + (config.BrakeHeatCPerSecond * engineBrakePower * EngineBrakeTreadFactor));
 
             // Wear amplification: 1× until 75 %, then ramps; past 90 % the tire
             // generates extra heat just from rolling so the player still notices
@@ -91,7 +111,8 @@ namespace TopSpeed.Physics.Tires.Wear
                 * WearBreakdownHeatCPerSecond
                 * (0.40f + (0.60f * TireWearMath.Clamp01(input.SpeedMps / 22f)));
 
-            var heatingRateCPerSecond = (wearAmp * (flexHeat + frictionHeat)) + breakdownHeat;
+            var surfaceHeatRate = (wearAmp * (flexHeat + surfaceFrictionHeat)) + breakdownHeat;
+            var treadHeatRate = wearAmp * treadInjectedHeat;
 
             // Cooling: Newton's law against an effective ambient that mixes air
             // and road. Air coupling scales with airspeed (forced convection),
@@ -128,8 +149,8 @@ namespace TopSpeed.Physics.Tires.Wear
                 var surfaceCooling = totalCoupling * (surfaceC - effectiveAmbientC);
                 var surfaceToTread = kSt * (surfaceC - treadC);
                 var treadToCarcass = kTc * (treadC - carcassC);
-                surfaceC += (heatingRateCPerSecond - surfaceCooling - surfaceToTread) * dt;
-                treadC += (surfaceToTread - treadToCarcass) / mTread * dt;
+                surfaceC += (surfaceHeatRate - surfaceCooling - surfaceToTread) * dt;
+                treadC += (surfaceToTread - treadToCarcass + treadHeatRate) / mTread * dt;
                 carcassC += treadToCarcass / mCarcass * dt;
                 surfaceC = TireWearMath.Clamp(surfaceC, minTemperatureC, maxTemperatureC);
                 treadC = TireWearMath.Clamp(treadC, minTemperatureC, maxTemperatureC);
@@ -147,7 +168,7 @@ namespace TopSpeed.Physics.Tires.Wear
                 surfaceC,
                 treadC,
                 carcassC,
-                heatingRateCPerSecond,
+                surfaceHeatRate + treadHeatRate,
                 coolingRateCPerSecond);
         }
     }

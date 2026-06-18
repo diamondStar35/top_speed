@@ -13,14 +13,25 @@ namespace TopSpeed.Physics.Tires.Wear
             out float heatingRateCPerSecond,
             out float coolingRateCPerSecond)
         {
-            var slipSmoothingAlpha = TireWearMath.ResolveExpAlpha(elapsedSeconds, config.SlipSmoothingTimeConstantSeconds);
-            var smoothedSlipNormalized = state.SmoothedSlipNormalized
-                + ((input.RawSlipNormalized - state.SmoothedSlipNormalized) * slipSmoothingAlpha);
+            // Single shared low-pass over every driver-stress input. One alpha,
+            // one time constant — heat and wear both read these smoothed values,
+            // and the squaring downstream happens after this (smooth-then-square).
+            var alpha = TireWearMath.ResolveExpAlpha(elapsedSeconds, config.SlipSmoothingTimeConstantSeconds);
+            var previous = state.Smoothed;
+            var smoothed = new TireWearSmoothedInputs(
+                TireWearMath.Lerp(previous.CorneringUtilization, input.CorneringUtilizationNormalized, alpha),
+                TireWearMath.Lerp(previous.CorneringSlip, input.CorneringSlipNormalized, alpha),
+                TireWearMath.Lerp(previous.AccelerationStress, input.AccelerationHeatStressNormalized, alpha),
+                TireWearMath.Lerp(previous.BrakeStress, input.BrakeHeatStressNormalized, alpha),
+                TireWearMath.Lerp(previous.EngineBrakeStress, input.EngineBrakeHeatStressNormalized, alpha),
+                TireWearMath.Lerp(previous.LongitudinalSlip, input.LongitudinalSlipNormalized, alpha),
+                TireWearMath.Lerp(previous.Load, input.LoadNormalized, alpha));
 
             var heatBalance = TireWearHeatModel.StepTemperature(
                 config,
                 state,
                 input,
+                smoothed,
                 elapsedSeconds,
                 ambientTemperatureC,
                 surfaceTemperatureC,
@@ -32,7 +43,7 @@ namespace TopSpeed.Physics.Tires.Wear
             var wearDelta = TireWearWearModel.ResolveWearDelta(
                 config,
                 input,
-                smoothedSlipNormalized,
+                smoothed,
                 state.WearFraction,
                 heatBalance.TemperatureC,
                 elapsedSeconds);
@@ -43,7 +54,7 @@ namespace TopSpeed.Physics.Tires.Wear
                 heatBalance.TemperatureC,
                 heatBalance.TreadTemperatureC,
                 heatBalance.CarcassTemperatureC,
-                smoothedSlipNormalized);
+                smoothed);
         }
     }
 }

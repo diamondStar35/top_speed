@@ -52,7 +52,7 @@ namespace TopSpeed.Bots
                 state.TireTemperatureC,
                 state.TireTreadTemperatureC,
                 state.TireCarcassTemperatureC,
-                state.TireSmoothedSlipNormalized);
+                state.TireSmoothedInputs);
             var wearRuntime = TireWearRuntime.Resolve(config.TireWearConfig, wearState);
             var longitudinalGripFactor = 1.0f;
             var speedDiffKph = 0f;
@@ -198,7 +198,7 @@ namespace TopSpeed.Bots
             state.TireTemperatureC = wearRuntime.State.TemperatureC;
             state.TireTreadTemperatureC = wearRuntime.State.TreadTemperatureC;
             state.TireCarcassTemperatureC = wearRuntime.State.CarcassTemperatureC;
-            state.TireSmoothedSlipNormalized = wearRuntime.State.SmoothedSlipNormalized;
+            state.TireSmoothedInputs = wearRuntime.State.Smoothed;
         }
     }
 }

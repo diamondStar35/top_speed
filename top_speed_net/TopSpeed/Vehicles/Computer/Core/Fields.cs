@@ -6,6 +6,7 @@ using TopSpeed.Core;
 using TopSpeed.Data;
 using TopSpeed.Drive.Session.Audio;
 using TopSpeed.Input;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Tracks;
 using TopSpeed.Vehicles.Live;
 using TS.Audio;
@@ -99,7 +100,7 @@ namespace TopSpeed.Vehicles
         private float _tireTemperatureC;
         private float _tireTreadTemperatureC;
         private float _tireCarcassTemperatureC;
-        private float _tireSmoothedSlipNormalized;
+        private TireWearSmoothedInputs _tireSmoothedInputs;
         private float _surfaceTemperatureC;
         private int _difficulty;
         private bool _finished;

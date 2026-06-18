@@ -1,3 +1,5 @@
+using TopSpeed.Physics.Tires.Wear;
+
 namespace TopSpeed.Bots
 {
     public struct BotPhysicsState
@@ -16,7 +18,7 @@ namespace TopSpeed.Bots
         public float TireTemperatureC;
         public float TireTreadTemperatureC;
         public float TireCarcassTemperatureC;
-        public float TireSmoothedSlipNormalized;
+        public TireWearSmoothedInputs TireSmoothedInputs;
         public float SurfaceTemperatureC;
     }
 }

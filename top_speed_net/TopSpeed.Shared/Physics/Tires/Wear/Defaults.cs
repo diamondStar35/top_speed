@@ -58,7 +58,10 @@ namespace TopSpeed.Physics.Tires.Wear
             TreadToCarcassConductancePerSecond = 0.160f,
             TreadMassRatio = 0.6f,
             CarcassMassRatio = 2.4f,
-            SlipSmoothingTimeConstantSeconds = 1.4f,
+            // Unified input-smoothing window: every driver-stress signal (accel,
+            // brake, engine brake, cornering, load) is low-passed by this single
+            // time constant before heat and wear consume it.
+            SlipSmoothingTimeConstantSeconds = 1.0f,
         };
 
         // Cold tire: surface, tread, and carcass all start at the same
@@ -66,7 +69,7 @@ namespace TopSpeed.Physics.Tires.Wear
         // staggered fashion once heat input begins.
         public static TireWearState CreateInitialState(float temperatureC)
         {
-            return new TireWearState(0f, temperatureC, temperatureC, temperatureC, 0f);
+            return new TireWearState(0f, temperatureC, temperatureC, temperatureC, default);
         }
     }
 }

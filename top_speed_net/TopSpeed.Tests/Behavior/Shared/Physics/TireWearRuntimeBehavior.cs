@@ -173,13 +173,13 @@ public sealed class TireWearRuntimeBehaviorTests
             temperatureC: config.OptimalStartTemperatureC + 5f,
             treadTemperatureC: config.OptimalStartTemperatureC + 4.5f,
             carcassTemperatureC: config.OptimalStartTemperatureC + 4f,
-            smoothedSlipNormalized: 0.45f);
+            smoothed: default);
         var hotState = new TireWearState(
             wearFraction: 0.18f,
             temperatureC: config.OverheatEndTemperatureC + 12f,
             treadTemperatureC: config.OverheatEndTemperatureC + 11f,
             carcassTemperatureC: config.OverheatEndTemperatureC + 10f,
-            smoothedSlipNormalized: 0.45f);
+            smoothed: default);
         var input = new TireWearInput(
             elapsedSeconds: 16f,
             speedMps: 52f,
@@ -209,7 +209,7 @@ public sealed class TireWearRuntimeBehaviorTests
             temperatureC: float.PositiveInfinity,
             treadTemperatureC: float.PositiveInfinity,
             carcassTemperatureC: float.NaN,
-            smoothedSlipNormalized: float.NegativeInfinity);
+            smoothed: default);
         var input = new TireWearInput(
             elapsedSeconds: 5f,
             speedMps: 120f,
@@ -242,7 +242,7 @@ public sealed class TireWearRuntimeBehaviorTests
             temperatureC: 96f,
             treadTemperatureC: 95f,
             carcassTemperatureC: 94f,
-            smoothedSlipNormalized: 0.45f);
+            smoothed: default);
 
         var dry = TireWearRuntime.Step(
             config,

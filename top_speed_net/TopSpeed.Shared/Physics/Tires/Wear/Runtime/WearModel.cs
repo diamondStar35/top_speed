@@ -17,22 +17,25 @@ namespace TopSpeed.Physics.Tires.Wear
         public static float ResolveWearDelta(
             TireWearConfig config,
             in TireWearStepInput input,
-            float smoothedSlipNormalized,
+            in TireWearSmoothedInputs smoothed,
             float wearFraction,
             float temperatureC,
             float elapsedSeconds)
         {
             var distanceKilometers = (input.SpeedMps * elapsedSeconds) / 1000f;
-            var load = TireWearMath.Clamp01(input.LoadNormalized);
+            var load = TireWearMath.Clamp01(smoothed.Load);
 
             var distanceWear = distanceKilometers * config.BaseWearPerKilometer * (1f + (config.LoadWearGain * load));
 
-            var corneringSlip = TireWearMath.Clamp01(input.CorneringSlipNormalized);
-            var longitudinalSlip = TireWearMath.Clamp01(input.LongitudinalSlipNormalized);
+            // Smooth-then-square: the slip terms are already low-passed by the
+            // shared input filter, so a brief tap averages out before being
+            // squared. (The old design squared the instantaneous slip and then
+            // gated it by a separately smoothed slip — two filters, one signal.)
+            var corneringSlip = TireWearMath.Clamp01(smoothed.CorneringSlip);
+            var longitudinalSlip = TireWearMath.Clamp01(smoothed.LongitudinalSlip);
             var slipWearSignal = (config.CorneringSlipWearWeight * corneringSlip * corneringSlip)
                 + (config.LongitudinalSlipWearWeight * longitudinalSlip * longitudinalSlip);
-            var slipWear = smoothedSlipNormalized
-                * slipWearSignal
+            var slipWear = slipWearSignal
                 * config.SlipWearRatePerSecond
                 * elapsedSeconds;
 

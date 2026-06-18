@@ -202,13 +202,13 @@ public sealed class TireWearThermalSpecBehaviorTests
             temperatureC: fresh.TemperatureC,
             treadTemperatureC: fresh.TreadTemperatureC,
             carcassTemperatureC: fresh.CarcassTemperatureC,
-            smoothedSlipNormalized: 0.30f);
+            smoothed: default);
         var wornState = new TireWearState(
             wearFraction: 0.85f,
             temperatureC: fresh.TemperatureC,
             treadTemperatureC: fresh.TreadTemperatureC,
             carcassTemperatureC: fresh.CarcassTemperatureC,
-            smoothedSlipNormalized: 0.30f);
+            smoothed: default);
 
         var freshAfter = RunForDuration(
             config,
@@ -250,7 +250,7 @@ public sealed class TireWearThermalSpecBehaviorTests
             temperatureC: warm.TemperatureC,
             treadTemperatureC: warm.TreadTemperatureC,
             carcassTemperatureC: warm.CarcassTemperatureC,
-            smoothedSlipNormalized: 0.10f);
+            smoothed: default);
 
         var result = RunForDuration(
             config,
@@ -350,7 +350,7 @@ public sealed class TireWearThermalSpecBehaviorTests
             temperatureC: warm.TemperatureC,
             treadTemperatureC: warm.TreadTemperatureC,
             carcassTemperatureC: warm.CarcassTemperatureC,
-            smoothedSlipNormalized: 0.20f);
+            smoothed: default);
 
         // Approximate Austria first half: brake → hard left → hairpin → eas-left straight.
         state = StepSegment(config, state, durationSeconds: 3f, speedMps: 32f, slipAngle: 0.55f, lateralSlip: 0.40f, longitudinalSlip: 0.60f, load: 0.55f, rolling: 0.45f).State;

@@ -16,7 +16,7 @@ namespace TopSpeed.Vehicles
             _tireTemperatureC = float.NaN;
             _tireTreadTemperatureC = float.NaN;
             _tireCarcassTemperatureC = float.NaN;
-            _tireSmoothedSlipNormalized = 0f;
+            _tireSmoothedInputs = default;
             _surfaceTemperatureC = float.NaN;
             _trackLength = trackLength;
             _laneWidth = _track.LaneWidth;

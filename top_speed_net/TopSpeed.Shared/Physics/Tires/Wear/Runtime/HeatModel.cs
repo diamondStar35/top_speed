@@ -59,18 +59,21 @@ namespace TopSpeed.Physics.Tires.Wear
             TireWearConfig config,
             in TireWearState state,
             in TireWearStepInput input,
+            in TireWearSmoothedInputs smoothed,
             float elapsedSeconds,
             float ambientTemperatureC,
             float surfaceTemperatureC,
             float wetnessNormalized)
         {
-            var load = TireWearMath.Clamp01(input.LoadNormalized);
+            // Stress signals come pre-smoothed (smooth-then-square); speed and
+            // rolling resistance are read raw — they aren't tap-able inputs.
+            var load = TireWearMath.Clamp01(smoothed.Load);
             var rolling = TireWearMath.Clamp01(input.RollingResistanceNormalized);
-            var corneringUtilization = TireWearMath.Clamp01(input.CorneringUtilizationNormalized);
-            var corneringSlide = TireWearMath.Clamp01(input.CorneringSlipNormalized);
-            var accelStress = TireWearMath.Clamp01(input.AccelerationHeatStressNormalized);
-            var brakeStress = TireWearMath.Clamp01(input.BrakeHeatStressNormalized);
-            var engineBrakeStress = TireWearMath.Clamp01(input.EngineBrakeHeatStressNormalized);
+            var corneringUtilization = TireWearMath.Clamp01(smoothed.CorneringUtilization);
+            var corneringSlide = TireWearMath.Clamp01(smoothed.CorneringSlip);
+            var accelStress = TireWearMath.Clamp01(smoothed.AccelerationStress);
+            var brakeStress = TireWearMath.Clamp01(smoothed.BrakeStress);
+            var engineBrakeStress = TireWearMath.Clamp01(smoothed.EngineBrakeStress);
 
             // Bulk flex heat (rolling hysteresis) — always present when moving.
             // Linear in speed and (offset) load: a still tire generates no flex heat,

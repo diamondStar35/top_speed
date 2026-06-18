@@ -120,7 +120,7 @@ namespace TopSpeed.Server.Network
                         TireTemperatureC = float.NaN,
                         TireTreadTemperatureC = float.NaN,
                         TireCarcassTemperatureC = float.NaN,
-                        TireSmoothedSlipNormalized = 0f,
+                        TireSmoothedInputs = default,
                         SurfaceTemperatureC = float.NaN
                     };
                 }

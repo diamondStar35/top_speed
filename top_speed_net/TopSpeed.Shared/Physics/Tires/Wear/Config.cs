@@ -70,11 +70,6 @@ namespace TopSpeed.Physics.Tires.Wear
         public float CorneringHeatCPerSecond { get; init; }
         public float AccelerationHeatCPerSecond { get; init; }
         public float BrakeHeatCPerSecond { get; init; }
-
-        // Fraction of brake heat injected at the surface node (lockup/slip
-        // "flash" that fades fast); the remainder soaks into the tread node
-        // (rotor/hub heat that lingers but still sheds to air on the straight).
-        public float BrakeSurfaceHeatFraction { get; init; }
         public float LoadHeatCPerSecond { get; init; }
         public float RollingHeatCPerSecond { get; init; }
 

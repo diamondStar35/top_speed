@@ -43,12 +43,18 @@ namespace TopSpeed.Physics.Tires.Wear
             return Clamp01(slideSignal + (stressSignal * 0.22f));
         }
 
+        // Contact-patch load proxy. Lateral load transfer (cornering) is the
+        // dominant term, but braking/acceleration transfer load too — hard
+        // braking slams weight onto the front tires — so the longitudinal term
+        // carries real weight, otherwise straight-line braking heats far less
+        // than a corner at the same speed. Sum can exceed 1 under combined
+        // loading; the Clamp01 saturates it.
         public static float ResolveLoadNormalized(float massKg, float lateralLoadRatio, float longitudinalSlipNormalized)
         {
             var massNormalized = Clamp01((massKg - 700f) / 1800f);
             return Clamp01(
                 (lateralLoadRatio * 0.56f)
-                + (Clamp01(longitudinalSlipNormalized) * 0.24f)
+                + (Clamp01(longitudinalSlipNormalized) * 0.48f)
                 + (massNormalized * 0.20f));
         }
 

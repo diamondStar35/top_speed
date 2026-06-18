@@ -43,6 +43,12 @@ namespace TopSpeed.Physics.Tires.Wear
         // coefficient. Small — downshifting warms the tire far less than the
         // service brakes.
         private const float EngineBrakeTreadFactor = 0.25f;
+        // Fraction of brake heat injected at the surface node (lockup/slip
+        // "flash" that fades fast); the remainder soaks into the tread node
+        // (rotor/hub heat that lingers but still sheds to air on the straight).
+        // A shape parameter, not a per-vehicle tunable, so it lives here rather
+        // than in TireWearConfig.
+        private const float BrakeSurfaceHeatFraction = 0.60f;
         // Largest stable substep for the surface node. The fastest
         // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
         // ample margin (forward-Euler stability needs dt ≲ 2 τ).
@@ -84,7 +90,7 @@ namespace TopSpeed.Physics.Tires.Wear
             var brakePower = brakeStress * brakeStress;
             var engineBrakePower = engineBrakeStress * engineBrakeStress;
 
-            var brakeSurfaceFraction = TireWearMath.Clamp01(config.BrakeSurfaceHeatFraction);
+            var brakeSurfaceFraction = TireWearMath.Clamp01(BrakeSurfaceHeatFraction);
             var loadSpeed = input.SpeedMps * load;
 
             // Surface (contact-patch) friction: cornering + acceleration + the

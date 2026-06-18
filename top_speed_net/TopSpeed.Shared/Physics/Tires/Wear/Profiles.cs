@@ -45,11 +45,11 @@ namespace TopSpeed.Physics.Tires.Wear
             var corneringHeatCPerSecond = Clamp(0.12f + (0.12f * compoundAggression) + (0.06f * massNorm), 0.08f, 0.45f);
             var accelerationHeatCPerSecond = Clamp(0.18f + (0.15f * compoundAggression) + (0.06f * massNorm), 0.12f, 0.55f);
             // Braking is the worse offender — heavier cars dump more energy into
-            // the brakes, so brake heat is ~1.6x the acceleration coefficient and
-            // scales up further with mass.
+            // the brakes, so brake heat is ~3.2x the acceleration coefficient and
+            // scales up further with mass. Starting point for global brake-heat
+            // tuning; re-tune against race-stint feel.
             var brakeHeatCPerSecond = Clamp(
-                (accelerationHeatCPerSecond * 1.6f) + (0.05f * massNorm), 0.16f, 0.95f);
-            var brakeSurfaceHeatFraction = 0.40f;
+                (accelerationHeatCPerSecond * 3.2f) + (0.10f * massNorm), 0.16f, 2.5f);
             var loadHeatCPerSecond = Clamp(0.035f + (0.014f * massNorm) + (0.005f * compoundAggression), 0.025f, 0.060f);
             var rollingHeatCPerSecond = Clamp(0.018f + (0.008f * massNorm) + (0.004f * (1f - sizeNorm)), 0.012f, 0.032f);
             // Cooling coefficients (1/s). Larger tires shed heat faster; soft compounds run hotter.
@@ -106,7 +106,6 @@ namespace TopSpeed.Physics.Tires.Wear
                 CorneringHeatCPerSecond = corneringHeatCPerSecond,
                 AccelerationHeatCPerSecond = accelerationHeatCPerSecond,
                 BrakeHeatCPerSecond = brakeHeatCPerSecond,
-                BrakeSurfaceHeatFraction = brakeSurfaceHeatFraction,
                 LoadHeatCPerSecond = loadHeatCPerSecond,
                 RollingHeatCPerSecond = rollingHeatCPerSecond,
                 AirflowCoolingPerMpsPerCPerSecond = airflowCoolingPerMpsPerCPerSecond,

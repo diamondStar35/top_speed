@@ -26,13 +26,13 @@ namespace TopSpeed.Core.Multiplayer
             uint gameRulesFlags,
             TrackPackageRef track,
             string trackName,
-            byte laps,
+            int laps,
             byte playersToStart)
         {
             var ghostEnabled = (gameRulesFlags & (uint)RoomGameRules.GhostMode) != 0u;
             var customTracksEnabled = (gameRulesFlags & (uint)RoomGameRules.CustomTracks) != 0u;
             var trackDisplay = ResolveTrackAnnouncement(track, trackName);
-            var normalizedLaps = laps > 0 ? laps : (byte)1;
+            var normalizedLaps = laps > 0 ? laps : 1;
             var normalizedPlayers = playersToStart >= 2 ? playersToStart : (byte)2;
             var lapsText = LocalizationService.Format(
                 normalizedLaps == 1

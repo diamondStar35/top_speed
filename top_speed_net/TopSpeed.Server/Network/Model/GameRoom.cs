@@ -52,7 +52,7 @@ namespace TopSpeed.Server.Network
         public TrackData? TrackData { get; set; }
         public string TrackName { get; set; }
         public TrackPackageRef TrackSelection { get; set; }
-        public byte Laps { get; set; }
+        public int Laps { get; set; }
         public uint GameRulesFlags { get; set; }
         public HashSet<uint> TrackReadyPlayers { get; } = new HashSet<uint>();
         public HashSet<uint> ActiveRaceParticipantIds { get; } = new HashSet<uint>();

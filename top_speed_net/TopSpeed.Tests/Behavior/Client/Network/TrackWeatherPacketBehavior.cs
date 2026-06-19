@@ -92,7 +92,7 @@ public sealed class TrackWeatherPacketBehaviorTests
                 metadata: null)
         };
 
-        var payloadSize = 1 + 12 + 1 + 2 + 2 + PacketWriter.MeasureString16("clear") + 1;
+        var payloadSize = 4 + 12 + 1 + 2 + 2 + PacketWriter.MeasureString16("clear") + 1;
         foreach (var profile in weatherProfiles)
             payloadSize += 2 + PacketWriter.MeasureString16(profile.Id) + 1 + (11 * 4);
         foreach (var definition in definitions)
@@ -102,7 +102,7 @@ public sealed class TrackWeatherPacketBehaviorTests
         var writer = new PacketWriter(buffer);
         writer.WriteByte(ProtocolConstants.Version);
         writer.WriteByte((byte)Command.LoadCustomTrack);
-        writer.WriteByte(3);
+        writer.WriteInt32(3);
         writer.WriteFixedString("custom", 12);
         writer.WriteByte((byte)TrackAmbience.Airport);
         writer.WriteUInt16((ushort)definitions.Length);
@@ -145,7 +145,7 @@ public sealed class TrackWeatherPacketBehaviorTests
             new TrackDefinition(TrackType.Straight, TrackSurface.Asphalt, TrackNoise.NoNoise, 100f)
         };
 
-        var payloadSize = 1 + 12 + 1 + 2 + 1;
+        var payloadSize = 4 + 12 + 1 + 2 + 1;
         foreach (var definition in definitions)
             payloadSize += 1 + 1 + 1 + 4;
 
@@ -153,7 +153,7 @@ public sealed class TrackWeatherPacketBehaviorTests
         var writer = new PacketWriter(buffer);
         writer.WriteByte(ProtocolConstants.Version);
         writer.WriteByte((byte)Command.LoadCustomTrack);
-        writer.WriteByte(3);
+        writer.WriteInt32(3);
         writer.WriteFixedString("legacy", 12);
         writer.WriteByte((byte)TrackAmbience.Airport);
         writer.WriteUInt16((ushort)definitions.Length);

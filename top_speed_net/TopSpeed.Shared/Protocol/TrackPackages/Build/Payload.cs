@@ -11,7 +11,7 @@ namespace TopSpeed.Protocol
             TrackData trackData,
             string trackFile,
             string displayName,
-            byte fallbackLaps,
+            int fallbackLaps,
             out TrackPackagePayload payload,
             out string error)
         {

@@ -30,7 +30,7 @@ namespace TopSpeed.Drive.TimeTrial
 {
     internal sealed partial class TimeTrialSession : IDisposable
     {
-        private const int MaxLaps = 16;
+        private const int MaxLaps = 500;
         private const int MaxUnkeys = 12;
         private const int RandomSoundGroups = 16;
         private const int RandomSoundMax = 32;

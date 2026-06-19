@@ -15,7 +15,7 @@ namespace TopSpeed.Core.Multiplayer
         public TrackPackageRef RoomOptionsTrack = TrackPackageRef.BuiltIn(string.Empty);
         public string RoomOptionsTrackDisplayName = string.Empty;
         public bool RoomOptionsTrackRandom;
-        public byte RoomOptionsLaps = 1;
+        public int RoomOptionsLaps = 1;
         public byte RoomOptionsPlayersToStart = 2;
         public uint RoomOptionsGameRulesFlags;
         public uint RoomOptionsAppliedGameRulesFlags;

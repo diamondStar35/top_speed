@@ -50,7 +50,7 @@ namespace TopSpeed.Menu
                     value => _settingsActions.UpdateSetting(() => _settings.AutomaticInfo = (AutomaticInfoMode)value),
                     hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose how much automatic race information is spoken, such as lap numbers and player positions."))),
                 new Slider(LocalizationService.Mark("Number of laps"),
-                    "1-16",
+                    "1-500",
                     () => _settings.NrOfLaps,
                     value => _settingsActions.UpdateSetting(() => _settings.NrOfLaps = value),
                     hintProvider: HintSliderProvider(LocalizationService.Mark("Sets how many laps the race will be for single race, time trial, and multiplayer."))),
@@ -76,7 +76,7 @@ namespace TopSpeed.Menu
         private MenuScreen BuildOptionsLapsMenu()
         {
             var items = new List<MenuItem>();
-            for (var laps = 1; laps <= 16; laps++)
+            for (var laps = 1; laps <= 500; laps++)
             {
                 var value = laps;
                 items.Add(new MenuItem(laps.ToString(), MenuAction.Back, onActivate: () => _settingsActions.UpdateSetting(() => _settings.NrOfLaps = value)));

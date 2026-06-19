@@ -8,7 +8,7 @@ namespace TopSpeed.Protocol
         public static bool TryBuildPackageFromTrackFile(
             string trackFile,
             string displayName,
-            byte fallbackLaps,
+            int fallbackLaps,
             out TrackPackagePayload payload,
             out byte[] bytes,
             out string error)

@@ -54,7 +54,7 @@ namespace TopSpeed.Network
             return _sender.TrySend(ClientPacketSerializer.WriteRoomSetTrack(track), PacketStream.Room);
         }
 
-        public bool SendRoomSetLaps(byte laps)
+        public bool SendRoomSetLaps(int laps)
         {
             return _sender.TrySend(ClientPacketSerializer.WriteRoomSetLaps(laps), PacketStream.Room);
         }

@@ -39,7 +39,7 @@ namespace TopSpeed.Core.Multiplayer
             items.Add(new RadioButton(LocalizationService.Mark("Number of laps"),
                 LapCountOptions,
                 GetRoomOptionsLapsIndex,
-                value => SetRoomOptionsLaps((byte)(value + 1)),
+                value => SetRoomOptionsLaps(value + 1),
                 hintProvider: () => InteractionHints.ForPlatform(
                     LocalizationService.Mark("Choose the number of laps for this room."),
                     LocalizationService.Mark("Use LEFT or RIGHT to change."),

@@ -19,7 +19,7 @@ namespace TopSpeed.Core.Multiplayer
         public bool IsHost;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = TrackPackageRef.BuiltIn(string.Empty);
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public RoomParticipant[] Players = Array.Empty<RoomParticipant>();
     }

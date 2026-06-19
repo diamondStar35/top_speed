@@ -144,7 +144,7 @@ namespace TopSpeed.Protocol
 
     public sealed class PacketLoadCustomTrack
     {
-        public byte NrOfLaps;
+        public int NrOfLaps;
         public string TrackName = string.Empty;
         public TrackAmbience TrackAmbience;
         public string DefaultWeatherProfileId = TrackWeatherProfile.DefaultProfileId;
@@ -227,7 +227,7 @@ namespace TopSpeed.Protocol
 
     public sealed class PacketRoomSetLaps
     {
-        public byte Laps;
+        public int Laps;
     }
 
     public sealed class PacketRoomSetPlayersToStart
@@ -275,7 +275,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public PacketRoomPlayer[] Players = Array.Empty<PacketRoomPlayer>();
     }
@@ -295,7 +295,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public PacketRoomPlayer[] Players = Array.Empty<PacketRoomPlayer>();
     }
@@ -315,7 +315,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public string RoomName = string.Empty;
         public uint SubjectPlayerId;

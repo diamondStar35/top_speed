@@ -17,7 +17,7 @@ namespace TopSpeed.Core.Multiplayer
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = TrackPackageRef.BuiltIn(string.Empty);
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public string RoomName = string.Empty;
         public uint SubjectPlayerId;

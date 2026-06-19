@@ -73,7 +73,7 @@ namespace TopSpeed.Protocol
 
         public static bool IsValidRoomSetLaps(PacketRoomSetLaps packet)
         {
-            return packet != null && packet.Laps >= 1 && packet.Laps <= 16;
+            return packet != null && packet.Laps >= 1 && packet.Laps <= 500;
         }
 
         public static bool IsValidRoomSetPlayersToStart(PacketRoomSetPlayersToStart packet, GameRoomType roomType)

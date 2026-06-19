@@ -10,7 +10,7 @@ namespace TopSpeed.Server.Tracks
     {
         private const float MinPartLength = 50.0f;
 
-        public static TrackData LoadTrack(string nameOrPath, byte defaultLaps, Logger? logger = null)
+        public static TrackData LoadTrack(string nameOrPath, int defaultLaps, Logger? logger = null)
         {
             if (TrackCatalog.BuiltIn.TryGetValue(nameOrPath, out var builtIn))
             {
@@ -23,11 +23,11 @@ namespace TopSpeed.Server.Tracks
             return data;
         }
 
-        private static byte ResolveLaps(string trackName, byte defaultLaps)
+        private static int ResolveLaps(string trackName, int defaultLaps)
         {
             return trackName.IndexOf("adv", StringComparison.OrdinalIgnoreCase) < 0
                 ? defaultLaps
-                : (byte)1;
+                : 1;
         }
 
         private static TrackData ReadCustomTrackData(string filename, Logger? logger)

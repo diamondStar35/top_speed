@@ -83,13 +83,13 @@ namespace TopSpeed.Network
             return buffer;
         }
 
-        public static byte[] WriteRoomSetLaps(byte laps)
+        public static byte[] WriteRoomSetLaps(int laps)
         {
-            var buffer = WritePacketHeader(Command.RoomSetLaps, 1);
+            var buffer = WritePacketHeader(Command.RoomSetLaps, 4);
             var writer = new PacketWriter(buffer);
             writer.WriteByte(ProtocolConstants.Version);
             writer.WriteByte((byte)Command.RoomSetLaps);
-            writer.WriteByte(laps);
+            writer.WriteInt32(laps);
             return buffer;
         }
 

@@ -100,7 +100,7 @@ namespace TopSpeed.Network
                 packet.RacePaused = reader.ReadBool();
                 packet.Track = ReadTrackRef(ref reader);
                 packet.TrackName = packet.Track.IsBuiltIn ? packet.Track.BuiltInTrackKey : packet.Track.TrackId;
-                packet.Laps = reader.ReadByte();
+                packet.Laps = reader.ReadInt32();
                 packet.GameRulesFlags = reader.ReadUInt32();
                 var count = reader.ReadByte();
                 var players = new PacketRoomPlayer[count];
@@ -155,7 +155,7 @@ namespace TopSpeed.Network
                 packet.RacePaused = reader.ReadBool();
                 packet.Track = ReadTrackRef(ref reader);
                 packet.TrackName = packet.Track.IsBuiltIn ? packet.Track.BuiltInTrackKey : packet.Track.TrackId;
-                packet.Laps = reader.ReadByte();
+                packet.Laps = reader.ReadInt32();
                 packet.GameRulesFlags = reader.ReadUInt32();
                 packet.RoomName = reader.ReadFixedString(ProtocolConstants.MaxRoomNameLength);
                 packet.SubjectPlayerId = reader.ReadUInt32();
@@ -201,7 +201,7 @@ namespace TopSpeed.Network
                 packet.RacePaused = reader.ReadBool();
                 packet.Track = ReadTrackRef(ref reader);
                 packet.TrackName = packet.Track.IsBuiltIn ? packet.Track.BuiltInTrackKey : packet.Track.TrackId;
-                packet.Laps = reader.ReadByte();
+                packet.Laps = reader.ReadInt32();
                 packet.GameRulesFlags = reader.ReadUInt32();
                 var count = reader.ReadByte();
                 var players = new PacketRoomPlayer[count];

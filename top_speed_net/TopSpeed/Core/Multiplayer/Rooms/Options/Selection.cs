@@ -11,16 +11,16 @@ namespace TopSpeed.Core.Multiplayer
             if (!_state.RoomDrafts.RoomOptionsDraftActive)
                 BeginRoomOptionsDraft();
 
-            var laps = _state.RoomDrafts.RoomOptionsLaps < 1 ? (byte)1 : _state.RoomDrafts.RoomOptionsLaps;
+            var laps = _state.RoomDrafts.RoomOptionsLaps < 1 ? 1 : _state.RoomDrafts.RoomOptionsLaps;
             return Math.Max(0, Math.Min(LapCountOptions.Length - 1, laps - 1));
         }
 
-        private void SetRoomOptionsLaps(byte laps)
+        private void SetRoomOptionsLaps(int laps)
         {
             if (!_state.RoomDrafts.RoomOptionsDraftActive)
                 BeginRoomOptionsDraft();
 
-            if (laps < 1 || laps > 16)
+            if (laps < 1 || laps > 500)
                 return;
             _state.RoomDrafts.RoomOptionsLaps = laps;
         }

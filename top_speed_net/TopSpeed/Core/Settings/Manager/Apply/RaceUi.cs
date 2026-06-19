@@ -20,7 +20,7 @@ namespace TopSpeed.Core.Settings
                     "race.curveAnnouncementLeadTimeSeconds",
                     issues);
             }
-            settings.NrOfLaps = ClampInt(race.NumberOfLaps, settings.NrOfLaps, 1, 16, "race.numberOfLaps", issues);
+            settings.NrOfLaps = ClampInt(race.NumberOfLaps, settings.NrOfLaps, 1, 500, "race.numberOfLaps", issues);
             settings.NrOfComputers = ClampInt(race.NumberOfComputers, settings.NrOfComputers, 1, 7, "race.numberOfComputers", issues);
             settings.Difficulty = ReadEnum(race.Difficulty, settings.Difficulty, "race.difficulty", issues);
             settings.Units = ReadEnum(race.Units, settings.Units, "race.units", issues);

@@ -34,7 +34,7 @@ namespace TopSpeed.Drive.Single
     {
         private const int MaxComputerPlayers = 7;
         private const int MaxPlayers = 8;
-        private const int MaxLaps = 16;
+        private const int MaxLaps = 500;
         private const int MaxUnkeys = 12;
         private const int RandomSoundGroups = 16;
         private const int RandomSoundMax = 32;

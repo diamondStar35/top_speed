@@ -40,7 +40,7 @@ namespace TopSpeed.Core.Multiplayer
                 ? _state.RoomDrafts.RoomOptionsTrack.BuiltInTrackKey
                 : _state.RoomDrafts.RoomOptionsTrack.TrackId;
             _state.RoomDrafts.RoomOptionsTrackDisplayName = FormatTrackRefDisplay(_state.RoomDrafts.RoomOptionsTrack);
-            _state.RoomDrafts.RoomOptionsLaps = _state.Rooms.CurrentRoom.Laps > 0 ? _state.Rooms.CurrentRoom.Laps : (byte)1;
+            _state.RoomDrafts.RoomOptionsLaps = _state.Rooms.CurrentRoom.Laps > 0 ? _state.Rooms.CurrentRoom.Laps : 1;
             _state.RoomDrafts.RoomOptionsPlayersToStart = _state.Rooms.CurrentRoom.PlayersToStart >= 2 ? _state.Rooms.CurrentRoom.PlayersToStart : (byte)2;
             var gameRules = NormalizeRoomOptionsGameRulesFlags(_state.Rooms.CurrentRoom.GameRulesFlags);
             _state.RoomDrafts.RoomOptionsGameRulesFlags = gameRules;

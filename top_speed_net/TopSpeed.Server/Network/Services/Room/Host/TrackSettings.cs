@@ -79,9 +79,9 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
-                if (packet.Laps < 1 || packet.Laps > 16)
+                if (packet.Laps < 1 || packet.Laps > 500)
                 {
-                    _owner.SendProtocolMessage(player, ProtocolMessageCode.InvalidLaps, LocalizationService.Mark("Laps must be between 1 and 16."));
+                    _owner.SendProtocolMessage(player, ProtocolMessageCode.InvalidLaps, LocalizationService.Mark("Laps must be between 1 and 500."));
                     return;
                 }
 

@@ -49,6 +49,11 @@ namespace TopSpeed.Physics.Tires.Wear
         // A shape parameter, not a per-vehicle tunable, so it lives here rather
         // than in TireWearConfig.
         private const float BrakeSurfaceHeatFraction = 0.60f;
+        // Brake heat is partly decoupled from speed: this fraction acts as if the
+        // car were always at the reference braking speed below, so a hard stop
+        // keeps heating the tire as it slows instead of fading out with loadSpeed.
+        private const float BrakeSpeedIndependentFraction = 0.5f;
+        private const float BrakeReferenceSpeedMps = 30f;
         // Largest stable substep for the surface node. The fastest
         // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
         // ample margin (forward-Euler stability needs dt ≲ 2 τ).
@@ -96,19 +101,25 @@ namespace TopSpeed.Physics.Tires.Wear
             var brakeSurfaceFraction = TireWearMath.Clamp01(BrakeSurfaceHeatFraction);
             var loadSpeed = input.SpeedMps * load;
 
+            // Brake heat uses a speed drive with a floor (half actual speed, half
+            // a fixed reference) so a hard stop still heats the tire through its
+            // slow end. Cornering / acceleration stay fully speed-scaled.
+            var brakeDriveSpeed = (input.SpeedMps * (1f - BrakeSpeedIndependentFraction))
+                + (BrakeReferenceSpeedMps * BrakeSpeedIndependentFraction);
+            var brakeHeat = load * brakeDriveSpeed * config.BrakeHeatCPerSecond * brakePower;
+
             // Surface (contact-patch) friction: cornering + acceleration + the
             // lockup/slip "flash" share of braking. Heats fast, fades fast.
-            var surfaceFrictionHeat = loadSpeed * (
+            var surfaceFrictionHeat = (loadSpeed * (
                 (config.CorneringHeatCPerSecond * corneringPower)
-                + (config.AccelerationHeatCPerSecond * accelPower)
-                + (config.BrakeHeatCPerSecond * brakePower * brakeSurfaceFraction));
+                + (config.AccelerationHeatCPerSecond * accelPower)))
+                + (brakeHeat * brakeSurfaceFraction);
 
             // Tread-injected heat: the rotor/hub "soak" share of braking plus a
             // whisper of engine braking. Lingers, then sheds to air through the
             // cascade once airflow picks up on the straight.
-            var treadInjectedHeat = loadSpeed * (
-                (config.BrakeHeatCPerSecond * brakePower * (1f - brakeSurfaceFraction))
-                + (config.BrakeHeatCPerSecond * engineBrakePower * EngineBrakeTreadFactor));
+            var treadInjectedHeat = (brakeHeat * (1f - brakeSurfaceFraction))
+                + (loadSpeed * config.BrakeHeatCPerSecond * engineBrakePower * EngineBrakeTreadFactor);
 
             // Wear amplification: 1× until 75 %, then ramps; past 90 % the tire
             // generates extra heat just from rolling so the player still notices

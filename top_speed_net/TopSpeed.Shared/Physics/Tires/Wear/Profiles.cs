@@ -22,7 +22,10 @@ namespace TopSpeed.Physics.Tires.Wear
                 0.0022f + (0.0019f * compoundAggression) + (0.0012f * massNorm) - (0.0003f * sizeNorm),
                 0.0016f,
                 0.0075f);
-            var slipWearRatePerSecond = Clamp(0.00024f + (0.00022f * compoundAggression) + (0.00010f * massNorm), 0.00014f, 0.00072f);
+            // Scaled 0.35x after the smooth-then-square wear cleanup removed the
+            // old 0-1 smoothed-slip gate; lands slightly slower than the
+            // pre-refactor pace.
+            var slipWearRatePerSecond = Clamp(0.000084f + (0.000077f * compoundAggression) + (0.000035f * massNorm), 0.000049f, 0.000252f);
             var corneringSlipWearWeight = Clamp(0.38f + (0.14f * compoundAggression), 0.24f, 0.62f);
             var longitudinalSlipWearWeight = Clamp(0.62f + (0.08f * compoundAggression), 0.45f, 0.86f);
             var loadWearGain = Clamp(0.72f + (0.95f * massNorm), 0.60f, 1.95f);
@@ -42,14 +45,19 @@ namespace TopSpeed.Physics.Tires.Wear
             var gripAtFullWear = Clamp(0.79f - (0.14f * compoundAggression) + (0.03f * sizeNorm), 0.52f, 0.90f);
             // Heat coefficients (°C/s when speed=1m/s, load=1, signal=1).
             // Aggressive compounds heat faster; heavier cars load the contact patch harder.
-            var corneringHeatCPerSecond = Clamp(0.12f + (0.12f * compoundAggression) + (0.06f * massNorm), 0.08f, 0.45f);
-            var accelerationHeatCPerSecond = Clamp(0.18f + (0.15f * compoundAggression) + (0.06f * massNorm), 0.12f, 0.55f);
-            // Braking is the worse offender — heavier cars dump more energy into
-            // the brakes, so brake heat is ~3.2x the acceleration coefficient and
-            // scales up further with mass. Starting point for global brake-heat
-            // tuning; re-tune against race-stint feel.
-            var brakeHeatCPerSecond = Clamp(
-                (accelerationHeatCPerSecond * 3.2f) + (0.10f * massNorm), 0.16f, 2.5f);
+            // Cornering heat trimmed 30% (was 0.12 / 0.12 / 0.06, cap 0.45) — it
+            // ran a touch high, and the headroom helps keep peaks manageable once
+            // braking heat is brought up to spec.
+            var corneringHeatCPerSecond = Clamp(0.084f + (0.084f * compoundAggression) + (0.042f * massNorm), 0.056f, 0.315f);
+            // Acceleration heat trimmed 40% total (was 0.18 / 0.15 / 0.06, cap
+            // 0.55) — realized-acceleration heat ran high in low gears (more
+            // wheel torque = harder real acceleration out of corners).
+            var accelerationHeatCPerSecond = Clamp(0.108f + (0.09f * compoundAggression) + (0.036f * massNorm), 0.072f, 0.33f);
+            // Braking is the worse offender. Independent formula (not derived
+            // from acceleration). Bumped 1.5x so braking makes more heat, paired
+            // with the speed-independent brake floor in the heat model so hard
+            // stops keep heating as they slow. Re-tune vs stint feel.
+            var brakeHeatCPerSecond = Clamp(0.864f + (0.72f * compoundAggression) + (0.438f * massNorm), 0.24f, 3.75f);
             var loadHeatCPerSecond = Clamp(0.035f + (0.014f * massNorm) + (0.005f * compoundAggression), 0.025f, 0.060f);
             var rollingHeatCPerSecond = Clamp(0.018f + (0.008f * massNorm) + (0.004f * (1f - sizeNorm)), 0.012f, 0.032f);
             // Cooling coefficients (1/s). Larger tires shed heat faster; soft compounds run hotter.

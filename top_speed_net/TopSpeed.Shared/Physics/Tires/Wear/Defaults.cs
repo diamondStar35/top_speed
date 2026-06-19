@@ -23,7 +23,10 @@ namespace TopSpeed.Physics.Tires.Wear
         public static TireWearConfig Balanced { get; } = new TireWearConfig
         {
             BaseWearPerKilometer = 0.002f,
-            SlipWearRatePerSecond = 0.00025f,
+            // Scaled 0.35x after the smooth-then-square wear cleanup removed the
+            // old 0-1 smoothed-slip gate (which had been suppressing slip wear).
+            // 0.35 lands slightly slower than the pre-refactor pace.
+            SlipWearRatePerSecond = 0.0000875f,
             CorneringSlipWearWeight = 0.48f,
             LongitudinalSlipWearWeight = 0.62f,
             LoadWearGain = 0.95f,
@@ -41,13 +44,13 @@ namespace TopSpeed.Physics.Tires.Wear
             GripAtOverheatEnd = 0.80f,
             GripAtCooked = 0.5f,
             GripAtFullWear = 0.5f,
-            CorneringHeatCPerSecond = 0.095f,
-            AccelerationHeatCPerSecond = 0.10f,
+            CorneringHeatCPerSecond = 0.0665f,
+            AccelerationHeatCPerSecond = 0.06f,
             // Braking is the worse offender: more heat than acceleration. The
             // surface/tread split is a global shape constant in the heat model
             // (BrakeSurfaceHeatFraction). Starting estimate — re-tune against
             // the thermal spec once driving feel is checked.
-            BrakeHeatCPerSecond = 0.9f,
+            BrakeHeatCPerSecond = 1.35f,
             LoadHeatCPerSecond = 0.040f,
             RollingHeatCPerSecond = 0.018f,
             AirflowCoolingPerMpsPerCPerSecond = 0.00165f,

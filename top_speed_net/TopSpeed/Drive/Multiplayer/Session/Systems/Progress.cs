@@ -14,7 +14,7 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
         private readonly DriveSettings _settings;
         private readonly IDictionary<byte, RemotePlayer> _remotePlayers;
         private readonly int _lapLimit;
-        private readonly Source[] _lapSounds;
+        private readonly Func<int, Source?> _getLapSound;
         private readonly byte _localPlayerNumber;
         private readonly Func<int> _getLap;
         private readonly Action<int> _setLap;
@@ -40,7 +40,7 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
             DriveSettings settings,
             IDictionary<byte, RemotePlayer> remotePlayers,
             int lapLimit,
-            Source[] lapSounds,
+            Func<int, Source?> getLapSound,
             byte localPlayerNumber,
             Func<int> getLap,
             Action<int> setLap,
@@ -64,7 +64,7 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _remotePlayers = remotePlayers ?? throw new ArgumentNullException(nameof(remotePlayers));
             _lapLimit = lapLimit;
-            _lapSounds = lapSounds ?? throw new ArgumentNullException(nameof(lapSounds));
+            _getLapSound = getLapSound ?? throw new ArgumentNullException(nameof(getLapSound));
             _localPlayerNumber = localPlayerNumber;
             _getLap = getLap ?? throw new ArgumentNullException(nameof(getLap));
             _setLap = setLap ?? throw new ArgumentNullException(nameof(setLap));
@@ -109,11 +109,11 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
             if (currentLap <= _lapLimit)
             {
                 if (_settings.AutomaticInfo != AutomaticInfoMode.Off
-                    && currentLap > 1
-                    && _lapLimit - currentLap >= 0
-                    && _lapLimit - currentLap < _lapSounds.Length)
+                    && currentLap > 1)
                 {
-                    _speak(_lapSounds[_lapLimit - currentLap], true);
+                    var lapSound = _getLapSound(_lapLimit - currentLap);
+                    if (lapSound != null)
+                        _speak(lapSound, true);
                 }
 
                 return;

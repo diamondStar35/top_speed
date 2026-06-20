@@ -36,14 +36,14 @@ namespace TopSpeed.Core.Multiplayer
                     LocalizationService.Mark("Press ENTER to change."),
                     LocalizationService.Mark("Swipe up to change."))));
 
-            items.Add(new RadioButton(LocalizationService.Mark("Number of laps"),
-                LapCountOptions,
-                GetRoomOptionsLapsIndex,
-                value => SetRoomOptionsLaps(value + 1),
+            items.Add(new Slider(LocalizationService.Mark("Number of laps"),
+                "1-500",
+                GetRoomOptionsLaps,
+                SetRoomOptionsLaps,
                 hintProvider: () => InteractionHints.ForPlatform(
                     LocalizationService.Mark("Choose the number of laps for this room."),
-                    LocalizationService.Mark("Use LEFT or RIGHT to change."),
-                    LocalizationService.Mark("Swipe left or right with two fingers to change."))));
+                    LocalizationService.Mark("Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."),
+                    LocalizationService.Mark("Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."))));
 
             var maxPlayersItem = new RadioButton(LocalizationService.Mark("Maximum players allowed in this room"),
                 RoomCapacityOptions,

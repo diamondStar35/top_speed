@@ -66,7 +66,7 @@ namespace TopSpeed.Drive.Single
         private readonly string?[] _randomSoundBaseNames;
         private readonly int[] _totalRandomSounds;
         private readonly Source[] _soundUnkey;
-        private readonly Source[] _soundLaps;
+        private readonly Source?[] _soundLaps;
         private readonly Source?[] _soundPosition;
         private readonly Source?[] _soundPlayerNr;
         private readonly Source?[] _soundPlayerNrInfo;
@@ -156,7 +156,7 @@ namespace TopSpeed.Drive.Single
             _finishOrder = new List<int>(MaxPlayers);
 
             _nrOfLaps = ApplyAdventureLapOverride(track, laps);
-            _soundLaps = CreateLapSounds(_nrOfLaps);
+            _soundLaps = CreateLapSoundSlots(_nrOfLaps);
             var runtimeObjects = CreateRuntimeObjects(track, vehicleIndex, vehicleFile);
             _track = runtimeObjects.Track;
             _car = runtimeObjects.Car;
@@ -243,7 +243,7 @@ namespace TopSpeed.Drive.Single
                 _car,
                 _settings,
                 _nrOfLaps,
-                _soundLaps,
+                GetLapSound,
                 () => _lap,
                 lap => _lap = lap,
                 ApplyPlayerFinishState,

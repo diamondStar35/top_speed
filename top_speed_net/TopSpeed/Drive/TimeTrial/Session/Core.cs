@@ -62,7 +62,7 @@ namespace TopSpeed.Drive.TimeTrial
         private readonly string?[] _randomSoundBaseNames;
         private readonly int[] _totalRandomSounds;
         private readonly Source[] _soundUnkey;
-        private readonly Source[] _soundLaps;
+        private readonly Source?[] _soundLaps;
 
         private readonly PanelsSubsystem _panels;
         private readonly PlayerVehicleSubsystem _playerVehicle;
@@ -138,7 +138,7 @@ namespace TopSpeed.Drive.TimeTrial
             _randomSoundBaseNames = new string?[RandomSoundGroups];
             ConfigureDefaultRandomSounds();
             _soundUnkey = CreateUnkeySounds();
-            _soundLaps = CreateLapSounds(_nrOfLaps);
+            _soundLaps = CreateLapSoundSlots(_nrOfLaps);
             _soundStart = LoadLanguageSound("race\\start321");
             _soundTheme = LoadLanguageMusicSound("music\\theme4", streamFromDisk: false);
             _soundPause = LoadLanguageSound("race\\pause");
@@ -206,7 +206,7 @@ namespace TopSpeed.Drive.TimeTrial
                 _car,
                 _settings,
                 _nrOfLaps,
-                _soundLaps,
+                GetLapSound,
                 _lapTimes,
                 () => _lap,
                 lap => _lap = lap,

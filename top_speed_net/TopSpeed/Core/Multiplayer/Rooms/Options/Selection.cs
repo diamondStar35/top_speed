@@ -6,13 +6,13 @@ namespace TopSpeed.Core.Multiplayer
 {
     internal sealed partial class MultiplayerCoordinator
     {
-        private int GetRoomOptionsLapsIndex()
+        private int GetRoomOptionsLaps()
         {
             if (!_state.RoomDrafts.RoomOptionsDraftActive)
                 BeginRoomOptionsDraft();
 
             var laps = _state.RoomDrafts.RoomOptionsLaps < 1 ? 1 : _state.RoomDrafts.RoomOptionsLaps;
-            return Math.Max(0, Math.Min(LapCountOptions.Length - 1, laps - 1));
+            return Math.Max(1, Math.Min(500, laps));
         }
 
         private void SetRoomOptionsLaps(int laps)

@@ -117,7 +117,7 @@ namespace TopSpeed.Drive.Multiplayer
                     _settings,
                     _remotePlayers,
                     _lapLimit,
-                    _soundLaps,
+                    GetLapSound,
                     LocalPlayerNumber,
                     () => _lap,
                     lap => _lap = lap,

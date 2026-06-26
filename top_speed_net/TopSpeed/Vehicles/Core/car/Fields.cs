@@ -161,6 +161,8 @@ namespace TopSpeed.Vehicles
         private float _fuelEfficiencyMpg;
         private bool _fuelLow;
         private bool _fuelEmpty;
+        private bool _tireWearEnabled = true;
+        private bool _fuelConsumptionEnabled = true;
         private float _fuelPowerScale = 1f;
         private float _fuelWarningPulseTimerSeconds;
         private TireWearState _tireWearState = TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.FallbackAmbientTemperatureC);

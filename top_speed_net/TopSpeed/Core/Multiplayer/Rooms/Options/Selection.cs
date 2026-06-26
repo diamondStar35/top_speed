@@ -82,6 +82,50 @@ namespace TopSpeed.Core.Multiplayer
             _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
         }
 
+        private bool GetRoomOptionsFuelConsumptionEnabled()
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            return (_state.RoomDrafts.RoomOptionsGameRulesFlags & (uint)RoomGameRules.FuelConsumption) != 0u;
+        }
+
+        private void SetRoomOptionsFuelConsumptionEnabled(bool enabled)
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            var flags = NormalizeRoomOptionsGameRulesFlags(_state.RoomDrafts.RoomOptionsGameRulesFlags);
+            if (enabled)
+                flags |= (uint)RoomGameRules.FuelConsumption;
+            else
+                flags &= ~(uint)RoomGameRules.FuelConsumption;
+
+            _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
+        }
+
+        private bool GetRoomOptionsTireWearEnabled()
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            return (_state.RoomDrafts.RoomOptionsGameRulesFlags & (uint)RoomGameRules.TireWear) != 0u;
+        }
+
+        private void SetRoomOptionsTireWearEnabled(bool enabled)
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            var flags = NormalizeRoomOptionsGameRulesFlags(_state.RoomDrafts.RoomOptionsGameRulesFlags);
+            if (enabled)
+                flags |= (uint)RoomGameRules.TireWear;
+            else
+                flags &= ~(uint)RoomGameRules.TireWear;
+
+            _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
+        }
+
         private bool GetRoomOptionsCustomTracksEnabled()
         {
             if (!_state.RoomDrafts.RoomOptionsDraftActive)

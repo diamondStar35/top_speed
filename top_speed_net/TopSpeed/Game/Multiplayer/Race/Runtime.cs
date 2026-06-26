@@ -6,6 +6,7 @@ using TopSpeed.Drive.Multiplayer;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
 using TopSpeed.Protocol;
+using TopSpeed.Vehicles;
 
 namespace TopSpeed.Game
 {
@@ -169,6 +170,11 @@ namespace TopSpeed.Game
                 var laps = _binding.PendingLaps > 0 ? _binding.PendingLaps : _owner._settings.NrOfLaps;
                 var vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, _binding.VehicleIndex));
 
+                var effectiveRules = _owner._multiplayerCoordinator.GetCurrentRaceEffectiveGameRules();
+                var physicsToggles = new RacePhysicsToggles(
+                    tireWearEnabled: (effectiveRules & (uint)RoomGameRules.TireWear) != 0u,
+                    fuelConsumptionEnabled: (effectiveRules & (uint)RoomGameRules.FuelConsumption) != 0u);
+
                 DisposeMode();
                 _mode = _owner._driveSessionFactory.CreateMultiplayer(
                     _binding.PendingTrack!,
@@ -180,6 +186,7 @@ namespace TopSpeed.Game
                     _owner._input.VibrationDevice,
                     _owner._session,
                     _binding.RaceInstanceId,
+                    physicsToggles,
                     number => _owner._multiplayerCoordinator.ResolvePlayerName(number));
                 _mode.Initialize();
                 _binding.BindStartedRace();

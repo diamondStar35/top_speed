@@ -51,6 +51,14 @@ namespace TopSpeed.Core.Multiplayer
         void StopConnectingSoundPulse();
 
         string ResolvePlayerName(byte playerNumber);
+
+        /// <summary>
+        /// The effective <c>RoomGameRules</c> flags for the current room's race. Today this is the
+        /// room's authoritative rules; the per-race transient disable mask (set by the host's no-pit
+        /// warning) is folded in here once delivered by the server, so it never mutates the
+        /// persistent room rules shown in the rules menu.
+        /// </summary>
+        uint GetCurrentRaceEffectiveGameRules();
     }
 }
 

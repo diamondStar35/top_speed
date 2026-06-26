@@ -17,8 +17,9 @@ namespace TopSpeed.Vehicles
             string? vehicleFile,
             Func<float> currentTime,
             Func<bool> started,
-            IVibrationDevice? vibrationDevice = null)
-            : base(raceAudio, track, input, settings, vehicleIndex, vehicleFile, currentTime, started, vibrationDevice)
+            IVibrationDevice? vibrationDevice = null,
+            RacePhysicsToggles? physicsToggles = null)
+            : base(raceAudio, track, input, settings, vehicleIndex, vehicleFile, currentTime, started, vibrationDevice, physicsToggles)
         {
         }
     }

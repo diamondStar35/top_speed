@@ -68,7 +68,15 @@ namespace TopSpeed.Menu
                     },
                     () => (int)_settings.Difficulty,
                     value => _settingsActions.UpdateSetting(() => _settings.Difficulty = (RaceDifficulty)value),
-                    hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose the difficulty level for single races.")))
+                    hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose the difficulty level for single races."))),
+                new CheckBox(LocalizationService.Mark("Enable fuel consumption"),
+                    () => _settings.FuelConsumptionEnabled,
+                    value => _settingsActions.UpdateSetting(() => _settings.FuelConsumptionEnabled = value),
+                    hint: LocalizationService.Mark("When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits.")),
+                new CheckBox(LocalizationService.Mark("Enable tire wear"),
+                    () => _settings.TireWearEnabled,
+                    value => _settingsActions.UpdateSetting(() => _settings.TireWearEnabled = value),
+                    hint: LocalizationService.Mark("When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."))
             };
             return BackMenu("options_drive", items);
         }

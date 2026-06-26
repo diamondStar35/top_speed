@@ -74,7 +74,8 @@ namespace TopSpeed.Vehicles
                 UpdateStallState(elapsed, _speed / 3.6f, throttle, clutchInput);
                 UpdateBackfireStateAfterDrive();
             }
-            UpdateFuelModel(elapsed);
+            if (_fuelConsumptionEnabled)
+                UpdateFuelModel(elapsed);
             UpdateBrakeAndSteeringOutput();
             IntegrateVehiclePosition(elapsed, currentLapStart);
             var postSpeedMps = Math.Max(0f, _speed / 3.6f);
@@ -82,7 +83,8 @@ namespace TopSpeed.Vehicles
             // when pinned at a gear's rev limit even while gross drive torque is
             // high, so the tire model treats rev-limited cruise as cruise.
             var realizedDriveAccelMps2 = elapsed > 0f ? (postSpeedMps - speedMpsCurrent) / elapsed : 0f;
-            UpdateTireWear(elapsed, postSpeedMps, realizedDriveAccelMps2);
+            if (_tireWearEnabled)
+                UpdateTireWear(elapsed, postSpeedMps, realizedDriveAccelMps2);
             UpdateFrameAudioAndFeedback();
             EnsureSurfaceLoopPlaying();
 

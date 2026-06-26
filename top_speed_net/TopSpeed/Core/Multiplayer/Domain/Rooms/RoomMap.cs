@@ -67,6 +67,12 @@ namespace TopSpeed.Core.Multiplayer
                 Track = CloneTrack(packet.Track),
                 Laps = packet.Laps,
                 GameRulesFlags = packet.GameRulesFlags,
+                // No transient per-race override is delivered over the wire yet, so the effective
+                // rules equal the persistent room rules. When pit-less tracks introduce the host's
+                // "disable for this race" override, the server will compute effective rules
+                // (room minus the disable mask) and deliver them here. See PitAreaWarning / the MP
+                // host-side seam in MultiplayerCoordinator.
+                RaceEffectiveGameRulesFlags = packet.GameRulesFlags,
                 Players = ToParticipants(packet.Players)
             };
         }

@@ -51,6 +51,7 @@ namespace TopSpeed.Drive.Single
         private readonly DriveInput _input;
         private readonly IVibrationDevice? _vibrationDevice;
         private readonly IFileDialogs _fileDialogs;
+        private readonly RacePhysicsToggles _physicsToggles;
         private readonly Track _track;
         private readonly ICar _car;
         private readonly SessionRuntime _session;
@@ -135,7 +136,8 @@ namespace TopSpeed.Drive.Single
             int vehicleIndex,
             string? vehicleFile,
             IVibrationDevice? vibrationDevice,
-            IFileDialogs fileDialogs)
+            IFileDialogs fileDialogs,
+            RacePhysicsToggles physicsToggles)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
             _speech = speech ?? throw new ArgumentNullException(nameof(speech));
@@ -143,6 +145,7 @@ namespace TopSpeed.Drive.Single
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _vibrationDevice = vibrationDevice;
             _fileDialogs = fileDialogs ?? throw new ArgumentNullException(nameof(fileDialogs));
+            _physicsToggles = physicsToggles;
             _raceAudio = new RaceAudioFactory(_audio);
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();

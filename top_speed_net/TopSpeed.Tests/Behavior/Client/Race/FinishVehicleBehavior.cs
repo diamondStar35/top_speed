@@ -171,6 +171,8 @@ public sealed class FinishVehicleBehaviorTests
         public float FuelEfficiencyMpg => 0f;
         public bool FuelLow => false;
         public bool FuelEmpty => false;
+        public bool FuelConsumptionEnabled => true;
+        public bool TireWearEnabled => true;
         public void AddFuelLiters(float liters) { }
         public void ResetTireWear() { }
         public float TireWearPercent => 0f;

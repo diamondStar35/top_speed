@@ -31,6 +31,8 @@ namespace TopSpeed.Core.Multiplayer
         {
             var ghostEnabled = (gameRulesFlags & (uint)RoomGameRules.GhostMode) != 0u;
             var customTracksEnabled = (gameRulesFlags & (uint)RoomGameRules.CustomTracks) != 0u;
+            var fuelEnabled = (gameRulesFlags & (uint)RoomGameRules.FuelConsumption) != 0u;
+            var tireWearEnabled = (gameRulesFlags & (uint)RoomGameRules.TireWear) != 0u;
             var trackDisplay = ResolveTrackAnnouncement(track, trackName);
             var normalizedLaps = laps > 0 ? laps : (byte)1;
             var normalizedPlayers = playersToStart >= 2 ? playersToStart : (byte)2;
@@ -45,11 +47,17 @@ namespace TopSpeed.Core.Multiplayer
                     : LocalizationService.Mark("{0} players"),
                 normalizedPlayers);
             return LocalizationService.Format(
-                LocalizationService.Mark("Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."),
+                LocalizationService.Mark("Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."),
                 ghostEnabled
                     ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
                     : LocalizationService.Translate(LocalizationService.Mark("disabled")),
                 customTracksEnabled
+                    ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
+                    : LocalizationService.Translate(LocalizationService.Mark("disabled")),
+                fuelEnabled
+                    ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
+                    : LocalizationService.Translate(LocalizationService.Mark("disabled")),
+                tireWearEnabled
                     ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
                     : LocalizationService.Translate(LocalizationService.Mark("disabled")),
                 trackDisplay,
@@ -59,7 +67,10 @@ namespace TopSpeed.Core.Multiplayer
 
         private static uint NormalizeRoomOptionsGameRulesFlags(uint flags)
         {
-            return flags & ((uint)RoomGameRules.GhostMode | (uint)RoomGameRules.CustomTracks);
+            return flags & ((uint)RoomGameRules.GhostMode
+                | (uint)RoomGameRules.CustomTracks
+                | (uint)RoomGameRules.FuelConsumption
+                | (uint)RoomGameRules.TireWear);
         }
 
         private void HandleAuthoritativeRoomGameRulesChanged()

@@ -77,6 +77,11 @@ namespace TopSpeed.Core.Multiplayer
         {
             return _state.Rooms.ResolvePlayerName(playerNumber);
         }
+
+        internal uint GetCurrentRaceEffectiveGameRules()
+        {
+            return NormalizeRoomOptionsGameRulesFlags(_state.Rooms.CurrentRoom.RaceEffectiveGameRulesFlags);
+        }
     }
 }
 

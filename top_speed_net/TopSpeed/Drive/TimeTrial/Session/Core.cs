@@ -46,6 +46,7 @@ namespace TopSpeed.Drive.TimeTrial
         private readonly DriveInput _input;
         private readonly IVibrationDevice? _vibrationDevice;
         private readonly IFileDialogs _fileDialogs;
+        private readonly RacePhysicsToggles _physicsToggles;
         private readonly Track _track;
         private readonly ICar _car;
         private readonly Store _scores;
@@ -116,7 +117,8 @@ namespace TopSpeed.Drive.TimeTrial
             int vehicleIndex,
             string? vehicleFile,
             IVibrationDevice? vibrationDevice,
-            IFileDialogs fileDialogs)
+            IFileDialogs fileDialogs,
+            RacePhysicsToggles physicsToggles)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
             _speech = speech ?? throw new ArgumentNullException(nameof(speech));
@@ -124,6 +126,7 @@ namespace TopSpeed.Drive.TimeTrial
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _vibrationDevice = vibrationDevice;
             _fileDialogs = fileDialogs ?? throw new ArgumentNullException(nameof(fileDialogs));
+            _physicsToggles = physicsToggles;
             _trackId = trackId ?? throw new ArgumentNullException(nameof(trackId));
             _raceAudio = new RaceAudioFactory(_audio);
             _scores = Store.CreateDefault();

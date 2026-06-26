@@ -76,6 +76,8 @@ namespace TopSpeed.Core.Settings
                     NumberOfComputers = settings.NrOfComputers,
                     Difficulty = (int)settings.Difficulty,
                     Units = (int)settings.Units,
+                    FuelConsumptionEnabled = settings.FuelConsumptionEnabled,
+                    TireWearEnabled = settings.TireWearEnabled,
                     RandomCustomTracks = settings.RandomCustomTracks,
                     RandomCustomVehicles = settings.RandomCustomVehicles,
                     SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles

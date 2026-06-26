@@ -239,6 +239,9 @@ namespace TopSpeed.Drive.Session.Systems
 
         private string BuildFuelStatusPhrase()
         {
+            if (!_car.FuelConsumptionEnabled)
+                return LocalizationService.Mark("fuel consumption off");
+
             var tankLiters = Math.Max(0f, _car.FuelTankCapacityLiters);
             var remainingLiters = Math.Max(0f, Math.Min(tankLiters, _car.FuelLitersRemaining));
             var fuelPercent = tankLiters > 0f
@@ -282,6 +285,9 @@ namespace TopSpeed.Drive.Session.Systems
 
         private string BuildTireStatusPhrase()
         {
+            if (!_car.TireWearEnabled)
+                return LocalizationService.Mark("tire wear off");
+
             var wearPercent = Math.Max(0f, Math.Min(100f, _car.TireWearPercent));
             var temperatureC = _car.TireTemperatureC;
             var wearState = ResolveTireWearState(wearPercent);

@@ -76,9 +76,7 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
-                var allowedFlags = (uint)RoomGameRules.GhostMode;
-                if (_owner._config.Features.CustomTracks)
-                    allowedFlags |= (uint)RoomGameRules.CustomTracks;
+                var allowedFlags = GameRulesPolicy.ResolveAllowedGameRules(_owner._config.Features);
                 var normalizedFlags = requestedFlags & allowedFlags;
                 if (room.GameRulesFlags == normalizedFlags)
                     return;

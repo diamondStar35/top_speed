@@ -48,7 +48,8 @@ namespace TopSpeed.Drive.Multiplayer
                 vehicleFile,
                 () => _session.Context.RuntimeSeconds,
                 () => _started,
-                _vibrationDevice);
+                _vibrationDevice,
+                _physicsToggles);
             var localRadio = new VehicleRadioController(_audio);
             var radioPanel = new RadioVehiclePanel(
                 _input,

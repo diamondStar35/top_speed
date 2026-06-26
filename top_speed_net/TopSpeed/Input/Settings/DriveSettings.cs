@@ -38,6 +38,8 @@ namespace TopSpeed.Input
         public int NrOfComputers { get; set; }
         public RaceDifficulty Difficulty { get; set; }
         public UnitSystem Units { get; set; }
+        public bool FuelConsumptionEnabled { get; set; }
+        public bool TireWearEnabled { get; set; }
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
@@ -127,6 +129,8 @@ namespace TopSpeed.Input
             NrOfComputers = 3;
             Difficulty = RaceDifficulty.Easy;
             Units = UnitSystem.Metric;
+            FuelConsumptionEnabled = true;
+            TireWearEnabled = true;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));

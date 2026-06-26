@@ -53,6 +53,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly DriveInput _input;
         private readonly IVibrationDevice? _vibrationDevice;
         private readonly IFileDialogs _fileDialogs;
+        private readonly TopSpeed.Vehicles.RacePhysicsToggles _physicsToggles;
         private readonly Track _track;
         private readonly ICar _car;
         private readonly SessionRuntime _session;

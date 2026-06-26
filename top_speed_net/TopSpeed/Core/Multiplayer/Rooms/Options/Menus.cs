@@ -93,6 +93,18 @@ namespace TopSpeed.Core.Multiplayer
                 SetRoomOptionsCustomTracksEnabled,
                 hint: LocalizationService.Mark("When enabled, room hosts can upload and select custom tracks from this server.")));
 
+            items.Add(new CheckBox(
+                LocalizationService.Mark("Enable fuel consumption"),
+                GetRoomOptionsFuelConsumptionEnabled,
+                SetRoomOptionsFuelConsumptionEnabled,
+                hint: LocalizationService.Mark("When enabled, cars burn fuel and players must pit to refuel.")));
+
+            items.Add(new CheckBox(
+                LocalizationService.Mark("Enable tire wear"),
+                GetRoomOptionsTireWearEnabled,
+                SetRoomOptionsTireWearEnabled,
+                hint: LocalizationService.Mark("When enabled, tires wear and lose grip and players must pit to replace them.")));
+
             var preserveSelection = string.Equals(_menu.CurrentId, MultiplayerMenuKeys.RoomGameRules, StringComparison.Ordinal);
             _menu.UpdateItems(MultiplayerMenuKeys.RoomGameRules, items, preserveSelection);
         }

@@ -54,6 +54,8 @@ namespace TopSpeed.Vehicles
         public float FuelEfficiencyMpg => _fuelEfficiencyMpg;
         public bool FuelLow => _fuelLow;
         public bool FuelEmpty => _fuelEmpty;
+        public bool FuelConsumptionEnabled => _fuelConsumptionEnabled;
+        public bool TireWearEnabled => _tireWearEnabled;
         public float TireWearPercent => _tireWearState.WearFraction * 100f;
         public float TireTemperatureC => _tireWearState.TemperatureC;
         public float TireTemperaturePercent => _tireWearRuntime.TemperatureNormalized * 100f;

@@ -77,7 +77,8 @@ namespace TopSpeed.Bots
             float engineOverrunIdleLossFraction = -1f,
             float overrunCurveExponent = -1f,
             float engineBrakeTransferEfficiency = -1f,
-            TireWearConfig? tireWearConfig = null)
+            TireWearConfig? tireWearConfig = null,
+            bool tireWearEnabled = false)
         {
             var build = PowertrainBuild.Create(
                 new BuildInput(
@@ -202,6 +203,7 @@ namespace TopSpeed.Bots
                     MassKg,
                     WheelRadiusM * 2f * (float)Math.PI,
                     LateralGripCoefficient);
+            TireWearEnabled = tireWearEnabled;
         }
 
         public float SurfaceTractionFactor { get; }
@@ -274,6 +276,11 @@ namespace TopSpeed.Bots
         public AutomaticDrivelineTuning AutomaticTuning { get; }
         public Config Powertrain { get; }
         public TireWearConfig TireWearConfig { get; }
+
+        // Whether bots simulate tire wear. Off for now: bots can't perform pit stops yet, so we keep
+        // them off both fuel and tire wear regardless of the player's toggle. Flip on (and add bot
+        // pitting + fuel) in a later project. This is the single plug-in point for that work.
+        public bool TireWearEnabled { get; }
 
         public float GetGearRatio(int gear)
         {

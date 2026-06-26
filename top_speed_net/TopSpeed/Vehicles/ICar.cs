@@ -46,6 +46,8 @@ namespace TopSpeed.Vehicles
         float FuelEfficiencyMpg { get; }
         bool FuelLow { get; }
         bool FuelEmpty { get; }
+        bool FuelConsumptionEnabled { get; }
+        bool TireWearEnabled { get; }
         void AddFuelLiters(float liters);
         void ResetTireWear();
         float TireWearPercent { get; }

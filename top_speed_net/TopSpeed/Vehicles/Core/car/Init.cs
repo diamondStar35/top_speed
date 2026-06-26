@@ -27,11 +27,15 @@ namespace TopSpeed.Vehicles
             string? vehicleFile,
             Func<float> currentTime,
             Func<bool> started,
-            IVibrationDevice? vibrationDevice = null)
+            IVibrationDevice? vibrationDevice = null,
+            RacePhysicsToggles? physicsToggles = null)
             : base(new DriveInputCarController(input))
         {
             if (raceAudio == null)
                 throw new ArgumentNullException(nameof(raceAudio));
+            var toggles = physicsToggles ?? RacePhysicsToggles.AllEnabled;
+            _tireWearEnabled = toggles.TireWearEnabled;
+            _fuelConsumptionEnabled = toggles.FuelConsumptionEnabled;
             _track = track;
             _settings = settings;
             _currentTime = currentTime;

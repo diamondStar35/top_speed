@@ -8,6 +8,7 @@ namespace TopSpeed.Drive.Multiplayer
         {
             _soundQueue.Clear();
             _raceInfoQueue.Clear();
+            _trackInfoQueue.Clear();
             _liveTx.Dispose();
             _panelManager.Dispose();
             _localRadio.Dispose();

@@ -56,6 +56,7 @@ namespace TopSpeed.Drive.Single
         private readonly SessionRuntime _session;
         private readonly Queue _soundQueue;
         private readonly Queue _raceInfoQueue;
+        private readonly Queue _trackInfoQueue;
         private readonly ICarController _finishLockController;
         private readonly VehicleRadioController _localRadio;
         private readonly RadioVehiclePanel _radioPanel;
@@ -145,6 +146,7 @@ namespace TopSpeed.Drive.Single
             _raceAudio = new RaceAudioFactory(_audio);
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();
+            _trackInfoQueue = new Queue();
             _finishLockController = new FinishLockInputController(input);
             _manualTransmission = !automaticTransmission;
             _nComputerPlayers = Math.Min(settings.NrOfComputers, MaxComputerPlayers);
@@ -174,7 +176,7 @@ namespace TopSpeed.Drive.Single
             LoadRaceUiSounds();
             _soundStart = LoadLanguageSound("race\\start321");
 
-            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueRaceInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
+            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
             _panels = new PanelsSubsystem("panels", 110, _input, _panelManager, _radioPanel, SpeakText);
             _playerVehicle = new PlayerVehicleSubsystem(
                 "vehicle",

@@ -47,6 +47,7 @@ namespace TopSpeed.Drive.Multiplayer
             _finishLockController = new FinishLockInputController(input);
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();
+            _trackInfoQueue = new Queue();
             _manualTransmission = !automaticTransmission;
             _lapLimit = laps;
             _participants = new ParticipantState(MaxPlayers);

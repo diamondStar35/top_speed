@@ -66,7 +66,7 @@ namespace TopSpeed.Drive.Multiplayer
                 _settings,
                 GetRandomSoundBySlot,
                 _soundTurnEndDing,
-                QueueRaceInfoSound,
+                QueueTrackInfoSound,
                 (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
 
             var pitStop = new PitStopSubsystem(

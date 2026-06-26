@@ -34,6 +34,9 @@ namespace TopSpeed.Drive.Multiplayer
                 case Events.PlayInfoSound:
                     QueueRaceInfoSound(sessionEvent.Data as TS.Audio.Source);
                     break;
+                case Events.PlayTrackInfoSound:
+                    QueueTrackInfoSound(sessionEvent.Data as TS.Audio.Source);
+                    break;
                 case Events.PlayUnkey:
                     _unkeyQueue--;
                     if (_unkeyQueue == 0)
@@ -52,6 +55,7 @@ namespace TopSpeed.Drive.Multiplayer
             {
                 _soundQueue.Pause();
                 _raceInfoQueue.Pause();
+                _trackInfoQueue.Pause();
                 _track.PauseAudio();
                 _car.Pause();
                 foreach (var remote in _remotePlayers.Values)
@@ -66,6 +70,7 @@ namespace TopSpeed.Drive.Multiplayer
             {
                 _soundQueue.Resume();
                 _raceInfoQueue.Resume();
+                _trackInfoQueue.Resume();
                 _track.ResumeAudio();
                 _car.Unpause();
                 foreach (var remote in _remotePlayers.Values)

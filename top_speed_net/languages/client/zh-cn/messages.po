@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-19 12:22\n"
+"PO-Revision-Date: 2026-06-24 13:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4808,7 +4808,7 @@ msgstr "你撞了 {0} 次。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:154
 #, csharp-format
 msgid "You finished in {0}."
-msgstr "您以第{0}名完赛。"
+msgstr "您用时 {0} 完赛。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:146
 msgid "You fought the course all the way through and still lost."
@@ -4894,7 +4894,7 @@ msgstr "本次最快单圈：{0}。"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:153
 #, csharp-format
 msgid "Your time: {0}."
-msgstr "你的时间：{0}。"
+msgstr "您的用时：{0}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:132
 msgid "Z minus"
@@ -5567,17 +5567,17 @@ msgstr "{0}，{1} 游戏，{2} 人，最多 {3} 名玩家"
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:74
 #, csharp-format
 msgid "{0}: completed in position {1} with a time of {2}."
-msgstr "{0}：用时 {2}，获得第 {1} 名。"
+msgstr "{0}：第 {1} 名，用时 {2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:68
 #, csharp-format
 msgid "{0}: crossed in position {1} after {2}."
-msgstr "{0}：用时 {2}，第 {1} 名冲线。"
+msgstr "{0}：第 {1} 名冲线，用时 {2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:62
 #, csharp-format
 msgid "{0}: finished in position {1} with {2}."
-msgstr "{0}：用时 {2}，第 {1} 名完赛。"
+msgstr "{0}：第 {1} 名完赛，用时 {2}。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:61
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:67

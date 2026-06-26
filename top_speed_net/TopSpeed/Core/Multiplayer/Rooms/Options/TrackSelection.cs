@@ -65,7 +65,7 @@ namespace TopSpeed.Core.Multiplayer
             for (var i = 0; i < tracks.Count; i++)
             {
                 var track = tracks[i];
-                items.Add(new MenuItem(track.Display, MenuAction.None, onActivate: () => SelectRoomTrack(TrackPackageRef.BuiltIn(track.Key), track.Display, false)));
+                items.Add(new MenuItem(track.Display, MenuAction.None, onActivate: () => SelectRoomTrack(TrackPackageRef.BuiltIn(track.Key), string.Empty, false)));
             }
 
             items.Add(new MenuItem(LocalizationService.Mark("Random"), MenuAction.None, onActivate: () => SelectRandomRoomTrackCategory(category)));

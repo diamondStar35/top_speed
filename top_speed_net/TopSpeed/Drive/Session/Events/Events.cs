@@ -9,6 +9,7 @@ namespace TopSpeed.Drive.Session
         public const EventId FinalizeResults = EventId.FinalizeResults;
         public const EventId PlaySound = EventId.PlaySound;
         public const EventId PlayInfoSound = EventId.PlayInfoSound;
+        public const EventId PlayTrackInfoSound = EventId.PlayTrackInfoSound;
         public const EventId PlayUnkey = EventId.PlayUnkey;
     }
 }

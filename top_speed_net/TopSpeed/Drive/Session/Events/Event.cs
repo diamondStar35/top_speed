@@ -11,6 +11,7 @@ namespace TopSpeed.Drive.Session
         FinalizeResults,
         PlaySound,
         PlayInfoSound,
+        PlayTrackInfoSound,
         PlayUnkey
     }
 

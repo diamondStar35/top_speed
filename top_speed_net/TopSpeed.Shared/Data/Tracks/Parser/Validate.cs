@@ -20,6 +20,9 @@ namespace TopSpeed.Data
             var soundEndAreas = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             string? defaultWeatherProfileId = null;
             var currentSectionId = string.Empty;
+            var pitAreaDisabled = false;
+            var pitAreaLine = 0;
+            var hasPitPointSegment = false;
 
             int lineNumber = 0;
             foreach (var raw in File.ReadLines(filename))
@@ -106,8 +109,20 @@ namespace TopSpeed.Data
                             defaultWeatherProfileId = NormalizeNullable(value);
                         else if (key == "ambience" && !IsValidAmbience(value))
                             issues.Add(new TrackTsmIssue(TrackTsmIssueSeverity.Error, lineNumber, Localized("Invalid ambience value '{0}'.", value)));
+                        else if (key == "pit_area")
+                        {
+                            if (!TryParseBool(value, out var pitAreaValue))
+                                issues.Add(new TrackTsmIssue(TrackTsmIssueSeverity.Error, lineNumber, Localized("Invalid boolean '{0}' for key '{1}'.", value, key)));
+                            else if (!pitAreaValue)
+                            {
+                                pitAreaDisabled = true;
+                                pitAreaLine = lineNumber;
+                            }
+                        }
                         break;
                     case "segment":
+                        if (key == "pit" && TryParseSegmentPitPoint(value, out _))
+                            hasPitPointSegment = true;
                         ValidateSegmentField(
                             key,
                             value,
@@ -140,6 +155,12 @@ namespace TopSpeed.Data
 
             if (segmentIds.Count == 0)
                 issues.Add(new TrackTsmIssue(TrackTsmIssueSeverity.Error, 0, Localized("Track must include at least one [segment:<id>] section.")));
+
+            if (pitAreaDisabled && hasPitPointSegment)
+                issues.Add(new TrackTsmIssue(
+                    TrackTsmIssueSeverity.Warning,
+                    pitAreaLine,
+                    Localized("Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored.")));
 
             if (string.IsNullOrWhiteSpace(defaultWeatherProfileId))
             {

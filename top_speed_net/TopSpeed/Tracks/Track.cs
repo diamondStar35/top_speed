@@ -28,6 +28,7 @@ namespace TopSpeed.Tracks
         private readonly bool _userDefined;
         private readonly TrackDefinition[] _definition;
         private readonly int _segmentCount;
+        private readonly bool _hasPitArea;
         private readonly TrackWeather _defaultWeatherKind;
         private readonly TrackAmbience _ambience;
         private readonly string _defaultWeatherProfileId;
@@ -98,6 +99,7 @@ namespace TopSpeed.Tracks
             _weatherProfiles = data.WeatherProfiles;
             _definition = data.Definitions;
             _segmentCount = _definition.Length;
+            _hasPitArea = data.HasPitArea;
             _roomProfiles = data.RoomProfiles;
             _soundDefinitions = data.SoundSources;
             _segmentIndexById = BuildSegmentIndex(_definition);
@@ -126,6 +128,7 @@ namespace TopSpeed.Tracks
         public TrackWeather Weather => _defaultWeatherKind;
         public TrackAmbience Ambience => _ambience;
         public bool UserDefined => _userDefined;
+        public bool HasPitArea => _hasPitArea;
         public float LaneWidth => _laneWidth;
         public TrackSurface InitialSurface => _definition.Length > 0 ? _definition[0].Surface : TrackSurface.Asphalt;
     }

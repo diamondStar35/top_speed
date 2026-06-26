@@ -159,6 +159,31 @@ namespace TopSpeed.Data
         public int Length => Definitions.Length;
         public byte Laps { get; set; }
 
+        /// <summary>
+        /// Whether this track has a pit area. True unless the <c>[meta]</c> section explicitly sets
+        /// <c>pit_area = false</c>. A track with a pit area uses its defined pit entry/exit segments,
+        /// or falls back to the start/finish line when none are defined; a track without one cannot
+        /// pit at all (fuel/tire models that need pitting should be warned about / disabled).
+        /// </summary>
+        public bool HasPitArea => !MetadataDisablesPitArea(Metadata);
+
+        /// <summary>Whether <c>pit_area</c> in the metadata is an explicit false token.</summary>
+        internal static bool MetadataDisablesPitArea(IReadOnlyDictionary<string, string>? metadata)
+        {
+            if (metadata == null || !metadata.TryGetValue("pit_area", out var raw) || raw == null)
+                return false;
+            switch (raw.Trim().ToLowerInvariant())
+            {
+                case "false":
+                case "0":
+                case "no":
+                case "off":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
         public TrackData(
             bool userDefined,
             TrackWeather weather,

@@ -129,8 +129,8 @@ namespace TopSpeed.Input
             NrOfComputers = 3;
             Difficulty = RaceDifficulty.Easy;
             Units = UnitSystem.Metric;
-            FuelConsumptionEnabled = true;
-            TireWearEnabled = true;
+            FuelConsumptionEnabled = false;
+            TireWearEnabled = false;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));

@@ -40,6 +40,9 @@ namespace TopSpeed.Drive.TimeTrial
                 case Events.PlayInfoSound:
                     QueueRaceInfoSound(sessionEvent.Data as Source);
                     break;
+                case Events.PlayTrackInfoSound:
+                    QueueTrackInfoSound(sessionEvent.Data as Source);
+                    break;
                 case Events.PlayUnkey:
                     _unkeyQueue--;
                     if (_unkeyQueue == 0)
@@ -59,6 +62,7 @@ namespace TopSpeed.Drive.TimeTrial
             {
                 _soundQueue.Pause();
                 _raceInfoQueue.Pause();
+                _trackInfoQueue.Pause();
                 _track.PauseAudio();
                 _soundTheme?.Play(loop: true);
                 FadeInTheme();
@@ -72,6 +76,7 @@ namespace TopSpeed.Drive.TimeTrial
             {
                 _soundQueue.Resume();
                 _raceInfoQueue.Resume();
+                _trackInfoQueue.Resume();
                 _track.ResumeAudio();
                 _car.Unpause();
                 _panels.Resume();

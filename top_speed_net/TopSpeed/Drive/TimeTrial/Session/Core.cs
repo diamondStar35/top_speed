@@ -51,6 +51,7 @@ namespace TopSpeed.Drive.TimeTrial
         private readonly SessionRuntime _session;
         private readonly Queue _soundQueue;
         private readonly Queue _raceInfoQueue;
+        private readonly Queue _trackInfoQueue;
         private readonly List<int> _lapTimes;
         private readonly string _trackId;
         private readonly int _nrOfLaps;
@@ -121,6 +122,7 @@ namespace TopSpeed.Drive.TimeTrial
             _scores = Store.CreateDefault();
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();
+            _trackInfoQueue = new Queue();
             _lapTimes = new List<int>();
             _finishLockController = new FinishLockInputController(input);
             _manualTransmission = !automaticTransmission;
@@ -145,7 +147,7 @@ namespace TopSpeed.Drive.TimeTrial
             _soundResume = LoadLanguageSound("race\\unpause");
             _soundTurnEndDing = LoadLegacySound("ding.ogg");
             PreloadRaceSpeechSources();
-            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueRaceInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
+            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
             _panels = new PanelsSubsystem("panels", 100, _input, _panelManager, _radioPanel, SpeakText);
             _playerVehicle = new PlayerVehicleSubsystem(
                 "vehicle",

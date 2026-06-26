@@ -57,6 +57,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly SessionRuntime _session;
         private readonly Queue _soundQueue;
         private readonly Queue _raceInfoQueue;
+        private readonly Queue _trackInfoQueue;
         private readonly ICarController _finishLockController;
         private readonly VehicleRadioController _localRadio;
         private readonly TopSpeed.Drive.Panels.RadioVehiclePanel _radioPanel;

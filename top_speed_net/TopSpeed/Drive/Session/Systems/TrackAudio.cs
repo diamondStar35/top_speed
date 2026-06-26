@@ -12,7 +12,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly DriveSettings _settings;
         private readonly Func<int, Source?> _getRandomSound;
         private readonly Source? _turnEndDing;
-        private readonly Action<Source?> _queueSound;
+        private readonly Action<Source?> _queueTrackInfoSound;
         private readonly Action<Event, float> _queueEvent;
         private TrackType _lastRoadTypeAtPosition;
         private bool _hasLastRoadTypeAtPosition;
@@ -21,13 +21,13 @@ namespace TopSpeed.Drive.Session.Systems
             DriveSettings settings,
             Func<int, Source?> getRandomSound,
             Source? turnEndDing,
-            Action<Source?> queueSound,
+            Action<Source?> queueTrackInfoSound,
             Action<Event, float> queueEvent)
         {
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _getRandomSound = getRandomSound ?? throw new ArgumentNullException(nameof(getRandomSound));
             _turnEndDing = turnEndDing;
-            _queueSound = queueSound ?? throw new ArgumentNullException(nameof(queueSound));
+            _queueTrackInfoSound = queueTrackInfoSound ?? throw new ArgumentNullException(nameof(queueTrackInfoSound));
             _queueEvent = queueEvent ?? throw new ArgumentNullException(nameof(queueEvent));
             Reset();
         }
@@ -60,13 +60,13 @@ namespace TopSpeed.Drive.Session.Systems
             if ((int)_settings.Copilot > 0 && nextRoad.Type != TrackType.Straight)
             {
                 var index = (int)nextRoad.Type - 1;
-                _queueSound(_getRandomSound(index));
+                _queueTrackInfoSound(_getRandomSound(index));
             }
 
             if ((int)_settings.Copilot > 1 && nextRoad.Surface != currentRoad.Surface)
             {
                 var index = (int)nextRoad.Surface + 8;
-                _queueEvent(new Event(Events.PlayInfoSound, _getRandomSound(index)), 1.0f);
+                _queueEvent(new Event(Events.PlayTrackInfoSound, _getRandomSound(index)), 1.0f);
             }
 
             return nextRoad;

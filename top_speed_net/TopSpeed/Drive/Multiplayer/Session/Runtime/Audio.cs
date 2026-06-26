@@ -52,6 +52,12 @@ namespace TopSpeed.Drive.Multiplayer
                 _raceInfoQueue.Enqueue(sound);
         }
 
+        private void QueueTrackInfoSound(AudioSource? sound)
+        {
+            if (sound != null)
+                _trackInfoQueue.Enqueue(sound);
+        }
+
         private bool TrySendRace(bool sent)
         {
             if (sent)

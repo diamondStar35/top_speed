@@ -108,6 +108,21 @@ namespace TopSpeed.Tests
             text.Should().Be("赛道已更改为 美国。");
         }
 
+        [Fact]
+        public void RoomTrackSelection_ShouldTranslateBuiltInTrackKey()
+        {
+            using var scope = LocalizationScope.Map(new Dictionary<string, string>
+            {
+                [TrackList.RaceTracks[0].Display] = "Localized America"
+            });
+
+            var text = MultiplayerCoordinator.FormatTrackDisplayName(
+                TrackPackageRef.BuiltIn(TrackList.RaceTracks[0].Key),
+                string.Empty);
+
+            text.Should().Be("Localized America");
+        }
+
         private sealed class LocalizationScope : IDisposable
         {
             private LocalizationScope(ITextLocalizer localizer)

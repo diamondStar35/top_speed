@@ -59,6 +59,14 @@ namespace TopSpeed.Drive.TimeTrial
             _raceInfoQueue.Enqueue(sound);
         }
 
+        private void QueueTrackInfoSound(Source? sound)
+        {
+            if (sound == null)
+                return;
+
+            _trackInfoQueue.Enqueue(sound);
+        }
+
         private void RefreshCategoryVolumes()
         {
             var ambientPercent = _settings.AudioVolumes?.AmbientsAndSourcesPercent ?? 100;

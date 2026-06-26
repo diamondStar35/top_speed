@@ -34,6 +34,7 @@ namespace TopSpeed.Drive.Single
             _localCrashCount = 0;
             _soundQueue.Clear();
             _raceInfoQueue.Clear();
+            _trackInfoQueue.Clear();
             _unkeyQueue = 0;
             _speakTime = 0f;
             _lap = 0;
@@ -90,6 +91,7 @@ namespace TopSpeed.Drive.Single
         {
             _soundQueue.Clear();
             _raceInfoQueue.Clear();
+            _trackInfoQueue.Clear();
             _panelManager.Dispose();
             _localRadio.Dispose();
             _car.Dispose();
@@ -152,6 +154,9 @@ namespace TopSpeed.Drive.Single
                 case Events.PlayInfoSound:
                     QueueRaceInfoSound(sessionEvent.Data as Source);
                     break;
+                case Events.PlayTrackInfoSound:
+                    QueueTrackInfoSound(sessionEvent.Data as Source);
+                    break;
                 case Events.PlayUnkey:
                     _unkeyQueue--;
                     if (_unkeyQueue == 0)
@@ -171,6 +176,7 @@ namespace TopSpeed.Drive.Single
             {
                 _soundQueue.Pause();
                 _raceInfoQueue.Pause();
+                _trackInfoQueue.Pause();
                 _track.PauseAudio();
                 _soundTheme?.Play(loop: true);
                 FadeInTheme();
@@ -186,6 +192,7 @@ namespace TopSpeed.Drive.Single
             {
                 _soundQueue.Resume();
                 _raceInfoQueue.Resume();
+                _trackInfoQueue.Resume();
                 _track.ResumeAudio();
                 _car.Unpause();
                 for (var i = 0; i < _nComputerPlayers; i++)
@@ -230,7 +237,7 @@ namespace TopSpeed.Drive.Single
                 return false;
             if (_requirePostFinishStopBeforeExit && !AreVehiclesSettledForExit())
                 return false;
-            return _soundQueue.IsIdle && _raceInfoQueue.IsIdle;
+            return _soundQueue.IsIdle && _raceInfoQueue.IsIdle && _trackInfoQueue.IsIdle;
         }
 
         private float CalculateGridStartX(int gridIndex, float vehicleWidth, float startLineY)

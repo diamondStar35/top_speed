@@ -232,7 +232,7 @@ namespace TopSpeed.Input
                 [DriveIntent.ReportDistance] = Key.C,
                 [DriveIntent.ReportSpeed] = Key.S,
                 [DriveIntent.ReportFuel] = Key.X,
-                [DriveIntent.ReportTireState] = Key.V,
+                [DriveIntent.ReportTireState] = Key.B,
                 [DriveIntent.TrackName] = Key.F9,
                 [DriveIntent.Pause] = Key.P,
                 [DriveIntent.Pit] = Key.I

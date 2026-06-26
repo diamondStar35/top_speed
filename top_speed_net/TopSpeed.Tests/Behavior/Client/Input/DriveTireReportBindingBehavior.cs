@@ -7,17 +7,17 @@ namespace TopSpeed.Tests;
 public sealed class DriveTireReportBindingBehaviorTests
 {
     [Fact]
-    public void ReportTireState_DefaultKeyboardBinding_ShouldUseV_AndNotOverrideGearDown()
+    public void ReportTireState_DefaultKeyboardBinding_ShouldUseB_AndNotOverrideGearDown()
     {
         var settings = new DriveSettings { DeviceMode = InputDeviceMode.Keyboard };
         var input = new DriveInput(settings);
 
-        settings.GetKeyboardBinding(DriveIntent.ReportTireState).Should().Be(InputKey.V);
+        settings.GetKeyboardBinding(DriveIntent.ReportTireState).Should().Be(InputKey.B);
         settings.GetKeyboardBinding(DriveIntent.GearDown).Should().Be(InputKey.Z);
 
         input.Run(new InputState(), 0f);
         var state = new InputState();
-        state.Set(InputKey.V, true);
+        state.Set(InputKey.B, true);
         input.Run(state, 0f);
 
         input.Intents.IsTriggered(DriveIntent.ReportTireState).Should().BeTrue();
@@ -33,7 +33,7 @@ public sealed class DriveTireReportBindingBehaviorTests
 
         input.Run(new InputState(), 0f);
         var oldKey = new InputState();
-        oldKey.Set(InputKey.V, true);
+        oldKey.Set(InputKey.B, true);
         input.Run(oldKey, 0f);
         input.Intents.IsTriggered(DriveIntent.ReportTireState).Should().BeFalse();
 

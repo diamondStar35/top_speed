@@ -4,14 +4,14 @@
     Vehicle: Vehicle1,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 97.17,
+    FinalSpeedKph: 89.76,
     FinalGear: 2,
-    FinalPositionY: 93.25,
+    FinalPositionY: 84.56,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.88,
+        SpeedKph: 1.7,
         Gear: 1,
         PositionY: 0.05,
         Coupling: 0.94
@@ -19,49 +19,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 20.59,
+        SpeedKph: 18.27,
         Gear: 1,
-        PositionY: 3.45,
+        PositionY: 3.06,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 43.07,
+        SpeedKph: 37.09,
         Gear: 1,
-        PositionY: 12.4,
+        PositionY: 10.81,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 62.94,
+        SpeedKph: 56.72,
         Gear: 1,
-        PositionY: 27.59,
+        PositionY: 24.27,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 75.56,
+        SpeedKph: 69.44,
         Gear: 2,
-        PositionY: 47.03,
-        Coupling: 1.0
+        PositionY: 42.16,
+        Coupling: 0.48
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 87.9,
+        SpeedKph: 80.61,
         Gear: 2,
-        PositionY: 69.95,
+        PositionY: 63.11,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 97.17,
+        SpeedKph: 89.76,
         Gear: 2,
-        PositionY: 93.25,
+        PositionY: 84.56,
         Coupling: 1.0
       }
     ]
@@ -71,14 +71,14 @@
     Vehicle: Vehicle2,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 94.15,
+    FinalSpeedKph: 84.44,
     FinalGear: 2,
-    FinalPositionY: 81.59,
+    FinalPositionY: 71.79,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.57,
+        SpeedKph: 1.42,
         Gear: 1,
         PositionY: 0.04,
         Coupling: 0.94
@@ -86,49 +86,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 16.29,
+        SpeedKph: 14.46,
         Gear: 1,
-        PositionY: 2.74,
+        PositionY: 2.44,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 30.74,
+        SpeedKph: 26.77,
         Gear: 1,
-        PositionY: 9.43,
+        PositionY: 8.34,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 51.59,
+        SpeedKph: 42.63,
         Gear: 1,
-        PositionY: 20.95,
+        PositionY: 18.05,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 68.63,
-        Gear: 2,
-        PositionY: 38.3,
-        Coupling: 0.48
+        SpeedKph: 62.16,
+        Gear: 1,
+        PositionY: 33.0,
+        Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 82.21,
+        SpeedKph: 73.02,
         Gear: 2,
-        PositionY: 59.32,
+        PositionY: 51.95,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 94.15,
+        SpeedKph: 84.44,
         Gear: 2,
-        PositionY: 81.59,
+        PositionY: 71.79,
         Coupling: 1.0
       }
     ]
@@ -138,64 +138,64 @@
     Vehicle: Vehicle3,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 33.24,
+    FinalSpeedKph: 29.81,
     FinalGear: 1,
-    FinalPositionY: 30.56,
+    FinalPositionY: 25.13,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 0.96,
+        SpeedKph: 0.87,
         Gear: 1,
-        PositionY: 0.03,
+        PositionY: 0.02,
         Coupling: 1.0
       },
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 6.85,
+        SpeedKph: 5.84,
         Gear: 1,
-        PositionY: 1.22,
+        PositionY: 1.04,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 11.8,
+        SpeedKph: 10.01,
         Gear: 1,
-        PositionY: 3.89,
+        PositionY: 3.32,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 18.08,
+        SpeedKph: 13.88,
         Gear: 1,
-        PositionY: 8.04,
+        PositionY: 6.67,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 26.27,
+        SpeedKph: 20.1,
         Gear: 1,
-        PositionY: 14.37,
+        PositionY: 11.4,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 31.03,
+        SpeedKph: 26.41,
         Gear: 1,
-        PositionY: 22.47,
+        PositionY: 18.01,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 33.24,
+        SpeedKph: 29.81,
         Gear: 1,
-        PositionY: 30.56,
+        PositionY: 25.13,
         Coupling: 1.0
       }
     ]
@@ -205,64 +205,64 @@
     Vehicle: Vehicle4,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 72.31,
+    FinalSpeedKph: 66.93,
     FinalGear: 2,
-    FinalPositionY: 76.3,
+    FinalPositionY: 70.08,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 2.38,
+        SpeedKph: 2.16,
         Gear: 1,
-        PositionY: 0.07,
+        PositionY: 0.06,
         Coupling: 1.0
       },
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 23.67,
+        SpeedKph: 21.2,
         Gear: 1,
-        PositionY: 4.04,
+        PositionY: 3.61,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 39.72,
+        SpeedKph: 36.22,
         Gear: 1,
-        PositionY: 13.21,
+        PositionY: 11.92,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 50.28,
-        Gear: 2,
-        PositionY: 25.95,
+        SpeedKph: 46.41,
+        Gear: 1,
+        PositionY: 23.63,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 59.02,
+        SpeedKph: 54.35,
         Gear: 2,
-        PositionY: 41.28,
+        PositionY: 37.75,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 66.52,
+        SpeedKph: 61.4,
         Gear: 2,
-        PositionY: 58.84,
+        PositionY: 53.94,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 72.31,
+        SpeedKph: 66.93,
         Gear: 2,
-        PositionY: 76.3,
+        PositionY: 70.08,
         Coupling: 1.0
       }
     ]
@@ -272,14 +272,14 @@
     Vehicle: Vehicle5,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 77.64,
+    FinalSpeedKph: 70.56,
     FinalGear: 2,
-    FinalPositionY: 68.09,
+    FinalPositionY: 60.5,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.39,
+        SpeedKph: 1.26,
         Gear: 1,
         PositionY: 0.04,
         Coupling: 1.0
@@ -287,49 +287,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 14.25,
+        SpeedKph: 12.68,
         Gear: 1,
-        PositionY: 2.4,
+        PositionY: 2.14,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 26.7,
+        SpeedKph: 23.74,
         Gear: 1,
-        PositionY: 8.27,
+        PositionY: 7.36,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 41.6,
+        SpeedKph: 35.51,
         Gear: 1,
-        PositionY: 17.81,
+        PositionY: 15.68,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 57.5,
+        SpeedKph: 50.59,
         Gear: 1,
-        PositionY: 31.92,
+        PositionY: 27.85,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 68.61,
-        Gear: 2,
-        PositionY: 49.65,
+        SpeedKph: 62.29,
+        Gear: 1,
+        PositionY: 43.79,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 77.64,
+        SpeedKph: 70.56,
         Gear: 2,
-        PositionY: 68.09,
+        PositionY: 60.5,
         Coupling: 1.0
       }
     ]
@@ -339,14 +339,14 @@
     Vehicle: Vehicle6,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 45.5,
-    FinalGear: 3,
-    FinalPositionY: 31.81,
+    FinalSpeedKph: 37.82,
+    FinalGear: 2,
+    FinalPositionY: 25.61,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 0.8,
+        SpeedKph: 0.73,
         Gear: 1,
         PositionY: 0.02,
         Coupling: 0.58
@@ -354,50 +354,50 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 4.93,
+        SpeedKph: 4.35,
         Gear: 1,
-        PositionY: 0.88,
+        PositionY: 0.78,
         Coupling: 0.36
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 8.86,
+        SpeedKph: 7.79,
         Gear: 1,
-        PositionY: 2.85,
+        PositionY: 2.52,
         Coupling: 0.36
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 14.97,
+        SpeedKph: 11.77,
         Gear: 1,
-        PositionY: 6.12,
-        Coupling: 0.736
+        PositionY: 5.23,
+        Coupling: 0.626
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 28.44,
+        SpeedKph: 20.01,
         Gear: 1,
-        PositionY: 12.19,
-        Coupling: 0.96
+        PositionY: 9.61,
+        Coupling: 0.916
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 37.11,
+        SpeedKph: 30.29,
         Gear: 2,
-        PositionY: 21.34,
-        Coupling: 0.96
+        PositionY: 17.01,
+        Coupling: 0.73
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 45.5,
-        Gear: 3,
-        PositionY: 31.81,
-        Coupling: 1.0
+        SpeedKph: 37.82,
+        Gear: 2,
+        PositionY: 25.61,
+        Coupling: 0.96
       }
     ]
   },
@@ -406,14 +406,14 @@
     Vehicle: Vehicle7,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 78.48,
+    FinalSpeedKph: 63.0,
     FinalGear: 1,
-    FinalPositionY: 55.11,
+    FinalPositionY: 45.53,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.03,
+        SpeedKph: 0.93,
         Gear: 1,
         PositionY: 0.03,
         Coupling: 0.94
@@ -421,49 +421,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 10.75,
+        SpeedKph: 9.44,
         Gear: 1,
-        PositionY: 1.8,
+        PositionY: 1.58,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 20.14,
+        SpeedKph: 17.72,
         Gear: 1,
-        PositionY: 6.23,
+        PositionY: 5.47,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 29.45,
+        SpeedKph: 25.65,
         Gear: 1,
-        PositionY: 13.22,
+        PositionY: 11.62,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 41.9,
+        SpeedKph: 34.84,
         Gear: 1,
-        PositionY: 23.2,
+        PositionY: 20.08,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 59.84,
+        SpeedKph: 47.5,
         Gear: 1,
-        PositionY: 37.43,
+        PositionY: 31.6,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 78.48,
+        SpeedKph: 63.0,
         Gear: 1,
-        PositionY: 55.11,
+        PositionY: 45.53,
         Coupling: 1.0
       }
     ]
@@ -473,64 +473,64 @@
     Vehicle: Vehicle8,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 71.95,
+    FinalSpeedKph: 66.12,
     FinalGear: 3,
-    FinalPositionY: 68.0,
+    FinalPositionY: 61.65,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.67,
+        SpeedKph: 1.51,
         Gear: 1,
-        PositionY: 0.05,
+        PositionY: 0.04,
         Coupling: 0.58
       },
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 11.91,
+        SpeedKph: 10.11,
         Gear: 1,
-        PositionY: 2.01,
-        Coupling: 0.593
+        PositionY: 1.78,
+        Coupling: 0.36
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 32.84,
+        SpeedKph: 28.29,
         Gear: 1,
-        PositionY: 8.46,
+        PositionY: 7.19,
         Coupling: 0.96
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 45.59,
+        SpeedKph: 40.82,
         Gear: 2,
-        PositionY: 19.5,
+        PositionY: 17.15,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 56.77,
-        Gear: 3,
-        PositionY: 33.96,
+        SpeedKph: 51.87,
+        Gear: 2,
+        PositionY: 30.25,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 64.63,
+        SpeedKph: 59.16,
         Gear: 3,
-        PositionY: 50.81,
+        PositionY: 45.88,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 71.95,
+        SpeedKph: 66.12,
         Gear: 3,
-        PositionY: 68.0,
+        PositionY: 61.65,
         Coupling: 1.0
       }
     ]
@@ -540,14 +540,14 @@
     Vehicle: Vehicle9,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 45.63,
+    FinalSpeedKph: 41.92,
     FinalGear: 3,
-    FinalPositionY: 46.13,
+    FinalPositionY: 41.91,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 1.62,
+        SpeedKph: 1.47,
         Gear: 1,
         PositionY: 0.04,
         Coupling: 0.64
@@ -555,50 +555,50 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 12.02,
+        SpeedKph: 10.21,
         Gear: 1,
-        PositionY: 1.98,
-        Coupling: 0.66
+        PositionY: 1.74,
+        Coupling: 0.605
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 22.66,
+        SpeedKph: 21.14,
         Gear: 2,
-        PositionY: 7.18,
-        Coupling: 0.77
+        PositionY: 6.35,
+        Coupling: 0.96
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 30.99,
+        SpeedKph: 28.13,
         Gear: 2,
-        PositionY: 14.83,
+        PositionY: 13.23,
         Coupling: 0.96
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 36.3,
+        SpeedKph: 33.06,
         Gear: 3,
-        PositionY: 24.23,
-        Coupling: 0.96
+        PositionY: 21.9,
+        Coupling: 0.42
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 41.64,
+        SpeedKph: 38.05,
         Gear: 3,
-        PositionY: 35.16,
+        PositionY: 31.85,
         Coupling: 0.96
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 45.63,
+        SpeedKph: 41.92,
         Gear: 3,
-        PositionY: 46.13,
-        Coupling: 1.0
+        PositionY: 41.91,
+        Coupling: 0.96
       }
     ]
   },
@@ -607,14 +607,14 @@
     Vehicle: Vehicle10,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 93.93,
+    FinalSpeedKph: 83.89,
     FinalGear: 1,
-    FinalPositionY: 101.25,
+    FinalPositionY: 90.29,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 3.39,
+        SpeedKph: 3.08,
         Gear: 1,
         PositionY: 0.09,
         Coupling: 1.0
@@ -622,49 +622,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 31.0,
+        SpeedKph: 27.63,
         Gear: 1,
-        PositionY: 5.43,
+        PositionY: 4.85,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 51.92,
+        SpeedKph: 46.25,
         Gear: 1,
-        PositionY: 17.37,
+        PositionY: 15.49,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 67.63,
+        SpeedKph: 60.26,
         Gear: 1,
-        PositionY: 34.3,
+        PositionY: 30.57,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 79.35,
+        SpeedKph: 70.75,
         Gear: 1,
-        PositionY: 54.95,
+        PositionY: 48.98,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 88.05,
+        SpeedKph: 78.58,
         Gear: 1,
-        PositionY: 78.38,
+        PositionY: 69.88,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 93.93,
+        SpeedKph: 83.89,
         Gear: 1,
-        PositionY: 101.25,
+        PositionY: 90.29,
         Coupling: 1.0
       }
     ]
@@ -674,64 +674,64 @@
     Vehicle: Vehicle11,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 99.68,
+    FinalSpeedKph: 89.05,
     FinalGear: 1,
-    FinalPositionY: 106.18,
+    FinalPositionY: 94.71,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 3.46,
+        SpeedKph: 3.13,
         Gear: 1,
-        PositionY: 0.1,
+        PositionY: 0.09,
         Coupling: 1.0
       },
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 31.94,
+        SpeedKph: 28.47,
         Gear: 1,
-        PositionY: 5.57,
+        PositionY: 4.98,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 53.9,
+        SpeedKph: 48.03,
         Gear: 1,
-        PositionY: 17.93,
+        PositionY: 15.99,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 70.7,
+        SpeedKph: 63.01,
         Gear: 1,
-        PositionY: 35.58,
+        PositionY: 31.71,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 83.44,
+        SpeedKph: 74.42,
         Gear: 1,
-        PositionY: 57.24,
+        PositionY: 51.03,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 93.07,
+        SpeedKph: 83.07,
         Gear: 1,
-        PositionY: 81.96,
+        PositionY: 73.08,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 99.68,
+        SpeedKph: 89.05,
         Gear: 1,
-        PositionY: 106.18,
+        PositionY: 94.71,
         Coupling: 1.0
       }
     ]
@@ -741,14 +741,14 @@
     Vehicle: Vehicle12,
     Surface: Asphalt,
     Steps: 60,
-    FinalSpeedKph: 94.07,
+    FinalSpeedKph: 84.0,
     FinalGear: 1,
-    FinalPositionY: 101.34,
+    FinalPositionY: 90.37,
     Samples: [
       {
         Step: 1,
         TimeSeconds: 0.1,
-        SpeedKph: 3.39,
+        SpeedKph: 3.08,
         Gear: 1,
         PositionY: 0.09,
         Coupling: 1.0
@@ -756,49 +756,49 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 31.01,
+        SpeedKph: 27.65,
         Gear: 1,
-        PositionY: 5.43,
+        PositionY: 4.85,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 51.95,
+        SpeedKph: 46.28,
         Gear: 1,
-        PositionY: 17.38,
+        PositionY: 15.49,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 67.68,
+        SpeedKph: 60.31,
         Gear: 1,
-        PositionY: 34.31,
+        PositionY: 30.58,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 79.43,
+        SpeedKph: 70.82,
         Gear: 1,
-        PositionY: 54.99,
+        PositionY: 49.01,
         Coupling: 1.0
       },
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 88.16,
+        SpeedKph: 78.66,
         Gear: 1,
-        PositionY: 78.44,
+        PositionY: 69.93,
         Coupling: 1.0
       },
       {
         Step: 60,
         TimeSeconds: 6.0,
-        SpeedKph: 94.07,
+        SpeedKph: 84.0,
         Gear: 1,
-        PositionY: 101.34,
+        PositionY: 90.37,
         Coupling: 1.0
       }
     ]

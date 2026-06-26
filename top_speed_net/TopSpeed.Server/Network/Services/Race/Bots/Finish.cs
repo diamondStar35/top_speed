@@ -29,7 +29,9 @@ namespace TopSpeed.Server.Network
                 AutoShiftCooldownSeconds = 0f,
                 TireWearFraction = 0f,
                 TireTemperatureC = float.NaN,
-                TireSmoothedSlipNormalized = 0f,
+                TireTreadTemperatureC = float.NaN,
+                TireCarcassTemperatureC = float.NaN,
+                TireSmoothedInputs = default,
                 SurfaceTemperatureC = float.NaN
             };
         }

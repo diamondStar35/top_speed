@@ -45,13 +45,18 @@ namespace TopSpeed.Vehicles.Parsing
             values.TireGripCooked = OptionalFloatRange(section, "grip_cooked", 0.35f, 1.2f, issues);
             values.TireWearGripAtFullWear = OptionalFloatRange(section, "wear_grip_at_full_wear", 0.35f, 1f, issues);
             values.TireHeatCorneringCPerSecond = OptionalFloatRange(section, "heat_cornering_c_per_s", 0f, 80f, issues);
-            values.TireHeatLongitudinalCPerSecond = OptionalFloatRange(section, "heat_longitudinal_c_per_s", 0f, 80f, issues);
+            values.TireHeatAccelerationCPerSecond = OptionalFloatRange(section, "heat_acceleration_c_per_s", 0f, 80f, issues);
+            values.TireHeatBrakingCPerSecond = OptionalFloatRange(section, "heat_braking_c_per_s", 0f, 80f, issues);
             values.TireHeatLoadCPerSecond = OptionalFloatRange(section, "heat_load_c_per_s", 0f, 80f, issues);
             values.TireHeatRollingCPerSecond = OptionalFloatRange(section, "heat_rolling_c_per_s", 0f, 80f, issues);
             values.TireCoolingAirflowPerMpsPerCPerSecond = OptionalFloatRange(section, "cool_airflow_per_mps_per_c_per_s", 0f, 0.1f, issues);
             values.TireExchangeAmbientPerCPerSecond = OptionalFloatRange(section, "exchange_ambient_per_c_per_s", 0f, 0.3f, issues);
             values.TireExchangeRoadPerCPerSecond = OptionalFloatRange(section, "exchange_road_per_c_per_s", 0f, 0.3f, issues);
             values.TireExchangeWetRoadPerCPerSecond = OptionalFloatRange(section, "exchange_wet_road_per_c_per_s", 0f, 0.3f, issues);
+            values.TireSurfaceToTreadConductancePerSecond = OptionalFloatRange(section, "surface_to_tread_conductance_per_s", 0f, 1f, issues);
+            values.TireTreadToCarcassConductancePerSecond = OptionalFloatRange(section, "tread_to_carcass_conductance_per_s", 0f, 1f, issues);
+            values.TireTreadMassRatio = OptionalFloatRange(section, "tread_mass_ratio", 0.2f, 20f, issues);
+            values.TireCarcassMassRatio = OptionalFloatRange(section, "carcass_mass_ratio", 0.2f, 20f, issues);
             values.TireSlipSmoothingTauSeconds = OptionalFloatRange(section, "slip_smoothing_tau_s", 0.05f, 20f, issues);
         }
 

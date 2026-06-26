@@ -23,7 +23,7 @@ namespace TopSpeed.Bots
             if (state.CvtRatio <= 0f)
                 state.CvtRatio = config.AutomaticTuning.Cvt.RatioMax;
 
-            var ambientTemperatureC = ResolveAmbientTemperatureC(input.AmbientTemperatureC, config.TireWearConfig.AmbientTemperatureC);
+            var ambientTemperatureC = ResolveAmbientTemperatureC(input.AmbientTemperatureC, config.TireWearConfig.FallbackAmbientTemperatureC);
             state.SurfaceTemperatureC = StepSurfaceTemperature(
                 state.SurfaceTemperatureC,
                 input.ElapsedSeconds,
@@ -47,7 +47,12 @@ namespace TopSpeed.Bots
             var brake = Math.Max(0f, Math.Min(100f, -input.Brake)) / 100f;
             var steeringInput = input.Steering;
             var surfaceTractionMod = surfaceTraction / config.SurfaceTractionFactor;
-            var wearState = new TireWearState(state.TireWearFraction, state.TireTemperatureC, state.TireSmoothedSlipNormalized);
+            var wearState = new TireWearState(
+                state.TireWearFraction,
+                state.TireTemperatureC,
+                state.TireTreadTemperatureC,
+                state.TireCarcassTemperatureC,
+                state.TireSmoothedInputs);
             var wearRuntime = TireWearRuntime.Resolve(config.TireWearConfig, wearState);
             var longitudinalGripFactor = 1.0f;
             var speedDiffKph = 0f;
@@ -191,7 +196,9 @@ namespace TopSpeed.Bots
                     wetnessNormalized: weatherWetness));
             state.TireWearFraction = wearRuntime.State.WearFraction;
             state.TireTemperatureC = wearRuntime.State.TemperatureC;
-            state.TireSmoothedSlipNormalized = wearRuntime.State.SmoothedSlipNormalized;
+            state.TireTreadTemperatureC = wearRuntime.State.TreadTemperatureC;
+            state.TireCarcassTemperatureC = wearRuntime.State.CarcassTemperatureC;
+            state.TireSmoothedInputs = wearRuntime.State.Smoothed;
         }
     }
 }

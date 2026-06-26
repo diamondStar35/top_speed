@@ -59,7 +59,9 @@ namespace TopSpeed.Vehicles
                     EffectiveDriveRatio = _effectiveDriveRatio,
                     TireWearFraction = _tireWearFraction,
                     TireTemperatureC = _tireTemperatureC,
-                    TireSmoothedSlipNormalized = _tireSmoothedSlipNormalized,
+                    TireTreadTemperatureC = _tireTreadTemperatureC,
+                    TireCarcassTemperatureC = _tireCarcassTemperatureC,
+                    TireSmoothedInputs = _tireSmoothedInputs,
                     SurfaceTemperatureC = _surfaceTemperatureC
                 };
                 var weather = _track.GetActiveWeatherProfile();
@@ -87,7 +89,9 @@ namespace TopSpeed.Vehicles
                 _effectiveDriveRatio = physicsState.EffectiveDriveRatio;
                 _tireWearFraction = physicsState.TireWearFraction;
                 _tireTemperatureC = physicsState.TireTemperatureC;
-                _tireSmoothedSlipNormalized = physicsState.TireSmoothedSlipNormalized;
+                _tireTreadTemperatureC = physicsState.TireTreadTemperatureC;
+                _tireCarcassTemperatureC = physicsState.TireCarcassTemperatureC;
+                _tireSmoothedInputs = physicsState.TireSmoothedInputs;
                 _surfaceTemperatureC = physicsState.SurfaceTemperatureC;
                 _speedDiff = _speed - beforeSpeed;
 

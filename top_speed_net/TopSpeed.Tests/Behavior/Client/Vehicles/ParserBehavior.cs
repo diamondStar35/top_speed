@@ -103,13 +103,18 @@ grip_overheat_end=0.73
 grip_cooked=0.62
 wear_grip_at_full_wear=0.61
 heat_cornering_c_per_s=14
-heat_longitudinal_c_per_s=12
+heat_acceleration_c_per_s=12
+heat_braking_c_per_s=9
 heat_load_c_per_s=7
 heat_rolling_c_per_s=4
 cool_airflow_per_mps_per_c_per_s=0.0031
 exchange_ambient_per_c_per_s=0.031
 exchange_road_per_c_per_s=0.051
 exchange_wet_road_per_c_per_s=0.072
+surface_to_tread_conductance_per_s=0.18
+tread_to_carcass_conductance_per_s=0.045
+tread_mass_ratio=1.1
+carcass_mass_ratio=2.4
 slip_smoothing_tau_s=1.2"));
 
             var ok = VehicleTsvParser.TryLoadFromFile(tempFile.Path, out var data, out var issues);
@@ -131,13 +136,18 @@ slip_smoothing_tau_s=1.2"));
             data.TireWearConfig.GripAtOverheatEnd.Should().BeApproximately(0.73f, 0.0001f);
             data.TireWearConfig.GripAtFullWear.Should().BeApproximately(0.61f, 0.0001f);
             data.TireWearConfig.CorneringHeatCPerSecond.Should().BeApproximately(14f, 0.0001f);
-            data.TireWearConfig.LongitudinalHeatCPerSecond.Should().BeApproximately(12f, 0.0001f);
+            data.TireWearConfig.AccelerationHeatCPerSecond.Should().BeApproximately(12f, 0.0001f);
+            data.TireWearConfig.BrakeHeatCPerSecond.Should().BeApproximately(9f, 0.0001f);
             data.TireWearConfig.LoadHeatCPerSecond.Should().BeApproximately(7f, 0.0001f);
             data.TireWearConfig.RollingHeatCPerSecond.Should().BeApproximately(4f, 0.0001f);
             data.TireWearConfig.AirflowCoolingPerMpsPerCPerSecond.Should().BeApproximately(0.0031f, 0.0000001f);
             data.TireWearConfig.AmbientExchangePerCPerSecond.Should().BeApproximately(0.031f, 0.0001f);
             data.TireWearConfig.RoadExchangePerCPerSecond.Should().BeApproximately(0.051f, 0.0001f);
             data.TireWearConfig.WetRoadExchangePerCPerSecond.Should().BeApproximately(0.072f, 0.0001f);
+            data.TireWearConfig.SurfaceToTreadConductancePerSecond.Should().BeApproximately(0.18f, 0.0001f);
+            data.TireWearConfig.TreadToCarcassConductancePerSecond.Should().BeApproximately(0.045f, 0.0001f);
+            data.TireWearConfig.TreadMassRatio.Should().BeApproximately(1.1f, 0.0001f);
+            data.TireWearConfig.CarcassMassRatio.Should().BeApproximately(2.4f, 0.0001f);
             data.TireWearConfig.SlipSmoothingTimeConstantSeconds.Should().BeApproximately(1.2f, 0.0001f);
         }
 

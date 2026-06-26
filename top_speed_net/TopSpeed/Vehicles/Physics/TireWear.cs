@@ -28,11 +28,18 @@ namespace TopSpeed.Vehicles
             _lastLateralSlipNormalized = 0f;
         }
 
-        private void UpdateTireWear(float elapsedSeconds, float speedMps)
+        private void UpdateTireWear(float elapsedSeconds, float speedMps, float realizedDriveAccelMps2)
         {
             var speed = Math.Max(0f, speedMps);
+            // Drive direction is gated on the car's *realized* acceleration, not
+            // the gross engine/gear drive acceleration. At a gear's rev limit the
+            // engine still makes torque (gross accel stays high), but the car is
+            // pinned at the gear's max speed and is no longer accelerating — from
+            // the contact patch it's steady cruise, so it should not heat or wear
+            // like acceleration. Braking/engine-braking are decel and unaffected.
+            var driveAccelMps2 = Math.Max(0f, realizedDriveAccelMps2);
             var longitudinalSlipNormalized = TireWearInputSignals.ResolveLongitudinalSlipNormalized(
-                _lastLongitudinalResult.DriveAccelerationMps2,
+                driveAccelMps2,
                 _lastLongitudinalResult.BrakeDecelKph / KphPerMps);
             var loadNormalized = TireWearInputSignals.ResolveLoadNormalized(
                 _massKg,
@@ -42,6 +49,16 @@ namespace TopSpeed.Vehicles
                 _rollingResistanceCoefficient,
                 _currentSurfaceRollingResistanceFactor,
                 speed);
+
+            // Raw acceleration / brake / engine-brake heat-stress signals. The
+            // tire runtime now applies the single shared input-smoothing filter
+            // to these (and to cornering and load), so they are fed in raw.
+            var accelHeatStress = TireWearInputSignals.ResolveAccelerationHeatStressNormalized(
+                driveAccelMps2);
+            var brakeHeatStress = TireWearInputSignals.ResolveBrakeHeatStressNormalized(
+                _lastLongitudinalResult.BrakeDecelKph / KphPerMps);
+            var engineBrakeHeatStress = TireWearInputSignals.ResolveEngineBrakeHeatStressNormalized(
+                _lastLongitudinalResult.EngineBrakeDecelKph / KphPerMps);
 
             var weather = _track.GetActiveWeatherProfile();
             var wetness = ResolveWeatherWetness(weather);
@@ -60,7 +77,10 @@ namespace TopSpeed.Vehicles
                     rollingResistanceNormalized: rollingResistanceNormalized,
                     ambientTemperatureC: weather.TemperatureC,
                     surfaceTemperatureC: _surfaceTemperatureC,
-                    wetnessNormalized: wetness));
+                    wetnessNormalized: wetness,
+                    accelerationHeatStressNormalized: accelHeatStress,
+                    brakeHeatStressNormalized: brakeHeatStress,
+                    engineBrakeHeatStressNormalized: engineBrakeHeatStress));
             _tireWearState = _tireWearRuntime.State;
         }
 

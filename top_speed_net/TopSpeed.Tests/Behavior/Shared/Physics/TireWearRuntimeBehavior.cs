@@ -110,8 +110,17 @@ public sealed class TireWearRuntimeBehaviorTests
                 surfaceTemperatureC: 36f,
                 wetnessNormalized: 0f));
 
-        straight.State.TemperatureC.Should().BeGreaterThan(40f);
-        straight.State.TemperatureC.Should().BeGreaterThan(heated.State.TemperatureC - 15f);
+        // After 90 s of hard cornering both the surface and the carcass are
+        // saturated against the upper clamp. A 12 s straight should bleed the
+        // surface visibly (fast τ by design) but it must stay well above
+        // ambient — the carcass reservoir is what keeps that floor in place.
+        straight.State.TemperatureC.Should().BeGreaterThan(
+            80f,
+            "the carcass should keep the surface well clear of ambient even after a long cool-down");
+        straight.State.TemperatureC.Should().BeLessThan(heated.State.TemperatureC);
+        straight.State.TemperatureC.Should().BeGreaterThan(
+            config.OptimalStartTemperatureC - 10f,
+            "the tire should not drop out of the working range in a single 12 s straight");
     }
 
     [Fact]
@@ -162,11 +171,15 @@ public sealed class TireWearRuntimeBehaviorTests
         var moderateState = new TireWearState(
             wearFraction: 0.18f,
             temperatureC: config.OptimalStartTemperatureC + 5f,
-            smoothedSlipNormalized: 0.45f);
+            treadTemperatureC: config.OptimalStartTemperatureC + 4.5f,
+            carcassTemperatureC: config.OptimalStartTemperatureC + 4f,
+            smoothed: default);
         var hotState = new TireWearState(
             wearFraction: 0.18f,
             temperatureC: config.OverheatEndTemperatureC + 12f,
-            smoothedSlipNormalized: 0.45f);
+            treadTemperatureC: config.OverheatEndTemperatureC + 11f,
+            carcassTemperatureC: config.OverheatEndTemperatureC + 10f,
+            smoothed: default);
         var input = new TireWearInput(
             elapsedSeconds: 16f,
             speedMps: 52f,
@@ -177,7 +190,8 @@ public sealed class TireWearRuntimeBehaviorTests
             rollingResistanceNormalized: 0.32f,
             ambientTemperatureC: 30f,
             surfaceTemperatureC: 36f,
-            wetnessNormalized: 0f);
+            wetnessNormalized: 0f,
+            brakeHeatStressNormalized: 0.72f);
 
         var moderate = TireWearRuntime.Step(config, moderateState, input);
         var hot = TireWearRuntime.Step(config, hotState, input);
@@ -193,7 +207,9 @@ public sealed class TireWearRuntimeBehaviorTests
         var state = new TireWearState(
             wearFraction: float.NaN,
             temperatureC: float.PositiveInfinity,
-            smoothedSlipNormalized: float.NegativeInfinity);
+            treadTemperatureC: float.PositiveInfinity,
+            carcassTemperatureC: float.NaN,
+            smoothed: default);
         var input = new TireWearInput(
             elapsedSeconds: 5f,
             speedMps: 120f,
@@ -224,7 +240,9 @@ public sealed class TireWearRuntimeBehaviorTests
         var state = new TireWearState(
             wearFraction: 0.12f,
             temperatureC: 96f,
-            smoothedSlipNormalized: 0.45f);
+            treadTemperatureC: 95f,
+            carcassTemperatureC: 94f,
+            smoothed: default);
 
         var dry = TireWearRuntime.Step(
             config,

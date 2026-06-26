@@ -2,120 +2,216 @@ using System;
 
 namespace TopSpeed.Physics.Tires.Wear
 {
+    // Three-node lumped-thermal-mass tire cascade. Heat enters the surface
+    // node; the surface bleeds into the tread, the tread bleeds into the
+    // carcass, and each node bleeds to ambient via Newton's law as well.
+    //
+    //   dT_s/dt = Q_in - h_total(v) * (T_s - T_eff) - k_st * (T_s - T_t)
+    //   dT_t/dt = ( k_st * (T_s - T_t) - k_tc * (T_t - T_c) ) / m_tread
+    //   dT_c/dt =   k_tc * (T_t - T_c) / m_carcass
+    //
+    // Q_in is the wear-amplified contact-patch + flex heat injection;
+    // h_total(v) is convective + conductive coupling to the surrounding air
+    // and road; T_eff is the load-weighted mix of air and road temperature.
+    // Wear past ~75 % gradually amplifies heat input and adds a small
+    // "breakdown" term that warms even an idle tire.
+    //
+    // The cascade gives us three independent time constants, one per spec
+    // target:
+    //   τ_corner    ≈ 1 / (k_st + h_total(v))  — in-corner heat-up (~1–5 s)
+    //   τ_recovery  ≈ m_tread / k_st           — spike fade on the straight (~10–30 s)
+    //   τ_warmup    ≈ m_carcass / k_tc         — bulk cold-tire soak (~200–400 s)
+    //
+    // Each frame is split into substeps no larger than `MaxSubstepSeconds`
+    // so the forward-Euler integrator stays well below the smallest stable
+    // time constant in the system regardless of frame rate.
     internal static class TireWearHeatModel
     {
+        // Wear amplification kicks in past 75 % wear; breakdown is the extra
+        // heat term past 90 % wear that warms the tire even at low slip.
+        private const float WearAmpStart = 0.75f;
+        private const float WearAmpGain = 4.5f;
+        private const float WearBreakdownStart = 0.90f;
+        private const float WearBreakdownHeatCPerSecond = 1.20f;
+        // Road coupling weight in the effective-ambient mix (0 = pure air, 1 = pure road).
+        private const float RoadCouplingWeight = 0.55f;
+        // Cornering signal that always contributes (utilization), and slide
+        // bonus that only activates past the grip limit.
+        private const float CorneringUtilizationWeight = 0.85f;
+        private const float CorneringSlideBonus = 1.0f;
+        // Engine-braking soak into the tread, as a fraction of the brake-heat
+        // coefficient. Small — downshifting warms the tire far less than the
+        // service brakes.
+        private const float EngineBrakeTreadFactor = 0.25f;
+        // Fraction of brake heat injected at the surface node (lockup/slip
+        // "flash" that fades fast); the remainder soaks into the tread node
+        // (rotor/hub heat that lingers but still sheds to air on the straight).
+        // A shape parameter, not a per-vehicle tunable, so it lives here rather
+        // than in TireWearConfig.
+        private const float BrakeSurfaceHeatFraction = 0.60f;
+        // Brake heat is partly decoupled from speed: this fraction acts as if the
+        // car were always at the reference braking speed below, so a hard stop
+        // keeps heating the tire as it slows instead of fading out with loadSpeed.
+        private const float BrakeSpeedIndependentFraction = 0.5f;
+        private const float BrakeReferenceSpeedMps = 30f;
+        // Largest stable substep for the surface node. The fastest
+        // representative τ in tuned defaults is ≈ 4 s, so 0.25 s leaves
+        // ample margin (forward-Euler stability needs dt ≲ 2 τ).
+        private const float MaxSubstepSeconds = 0.25f;
+        private const int MaxSubsteps = 240;
+
         public static TireWearHeatBalance StepTemperature(
             TireWearConfig config,
             in TireWearState state,
             in TireWearStepInput input,
+            in TireWearSmoothedInputs smoothed,
             float elapsedSeconds,
             float ambientTemperatureC,
             float surfaceTemperatureC,
             float wetnessNormalized)
         {
-            var speedNormalized = TireWearMath.Clamp01(input.SpeedMps / 55f);
-            var airflowSpeedNormalized = TireWearMath.Clamp(input.SpeedMps / 95f, 0f, 1.8f);
-            var speedHeatActivity = TireWearMath.Clamp01(input.SpeedMps / 12f);
-            var slipActivity = TireWearMath.Clamp01(input.SpeedMps / 6f);
-            var thermalLoadScale = 0.58f + (0.70f * input.LoadNormalized);
-            var thermalControl = TireWearThermalControl.Resolve(config, state);
-            var corneringUtilizationSignal = TireWearMath.Pow(input.CorneringUtilizationNormalized, 1.15f);
-            var corneringSlideSignal = TireWearMath.Pow(input.CorneringSlipNormalized, 1.40f);
-            var lateralSlideSignal = TireWearMath.Pow(TireWearMath.Clamp01(input.LateralSlipNormalized / 1.30f), 1.30f);
-            var longitudinalStressSignal = TireWearMath.Pow(input.LongitudinalSlipNormalized, 1.15f);
-            var longitudinalSlideSignal = TireWearMath.Pow(input.LongitudinalSlideNormalized, 1.30f);
-            var corneringSlideComposite = Math.Max(corneringSlideSignal, lateralSlideSignal);
-            var slideSeverity = TireWearMath.Clamp01(
-                Math.Max(corneringSlideComposite, longitudinalSlideSignal));
-            var highSpeedRecovery = TireWearMath.Clamp01((speedNormalized - 0.45f) / 0.55f);
-            var lowSlideRecovery = TireWearMath.Clamp01((0.28f - slideSeverity) / 0.28f);
-            var thermalSurplusNormalized = TireWearMath.Clamp01(
-                (state.TemperatureC - config.OptimalEndTemperatureC) / 24f);
-            var wearFreshness = 1f - TireWearMath.Clamp01(state.WearFraction);
+            // Stress signals come pre-smoothed (smooth-then-square); speed and
+            // rolling resistance are read raw — they aren't tap-able inputs.
+            var load = TireWearMath.Clamp01(smoothed.Load);
+            var rolling = TireWearMath.Clamp01(input.RollingResistanceNormalized);
+            var corneringUtilization = TireWearMath.Clamp01(smoothed.CorneringUtilization);
+            var corneringSlide = TireWearMath.Clamp01(smoothed.CorneringSlip);
+            var accelStress = TireWearMath.Clamp01(smoothed.AccelerationStress);
+            var brakeStress = TireWearMath.Clamp01(smoothed.BrakeStress);
+            var engineBrakeStress = TireWearMath.Clamp01(smoothed.EngineBrakeStress);
 
-            var corneringHeatRate = config.CorneringHeatCPerSecond
-                * ((0.08f * corneringUtilizationSignal) + (0.92f * corneringSlideComposite))
-                * thermalLoadScale
-                * slipActivity;
-            var longitudinalHeatRate = config.LongitudinalHeatCPerSecond
-                * ((0.35f * longitudinalStressSignal) + (0.65f * longitudinalSlideSignal))
-                * (0.52f + (0.62f * input.LoadNormalized))
-                * slipActivity;
-            var loadHeatRate = config.LoadHeatCPerSecond
-                * (0.40f + (0.60f * input.LoadNormalized))
-                * (0.55f + (0.45f * speedNormalized));
-            var rollingHeatRate = config.RollingHeatCPerSecond
-                * (0.45f + (0.55f * input.RollingResistanceNormalized))
-                * (0.45f + (0.55f * speedNormalized));
-            var cruiseFlexHeatBase = (config.LoadHeatCPerSecond * 0.42f) + (config.RollingHeatCPerSecond * 0.74f);
-            var cruiseFlexHeatRate = cruiseFlexHeatBase
-                * TireWearMath.Pow(speedNormalized, 1.05f)
-                * speedHeatActivity
-                * (0.48f + (0.52f * input.LoadNormalized))
-                * (0.45f + (0.55f * (1f - slideSeverity)));
-            var heatingRateCPerSecond = corneringHeatRate
-                + longitudinalHeatRate
-                + loadHeatRate
-                + rollingHeatRate
-                + cruiseFlexHeatRate;
+            // Bulk flex heat (rolling hysteresis) — always present when moving.
+            // Linear in speed and (offset) load: a still tire generates no flex heat,
+            // and a fully loaded tire generates ~3× the heat of a lightly loaded one.
+            var flexHeat = ((config.LoadHeatCPerSecond * (0.30f + (0.70f * load)))
+                + (config.RollingHeatCPerSecond * (0.30f + (0.70f * rolling))))
+                * input.SpeedMps;
 
-            // At speed and low slip, fresh tires should naturally stabilize near the working band.
-            var overOptimalNormalized = TireWearMath.Clamp01(
-                (state.TemperatureC - config.OptimalStartTemperatureC)
-                / Math.Max(6f, (config.OptimalEndTemperatureC - config.OptimalStartTemperatureC) + 6f));
-            var thermalStability = wearFreshness
-                * (0.35f + (0.65f * lowSlideRecovery))
-                * (0.25f + (0.75f * speedNormalized));
-            var stabilityHeatScale = 1f - (0.24f * thermalStability * overOptimalNormalized);
-            heatingRateCPerSecond *= TireWearMath.Clamp(stabilityHeatScale, 0.72f, 1f);
-            heatingRateCPerSecond *= thermalControl.HeatingScale;
+            // Friction heat from slip — physical model is P = μ·N·v_slip, which we
+            // approximate as proportional to load · speed · stress². Cornering uses
+            // the smooth utilization signal plus a slide bonus past the grip limit.
+            // Acceleration and braking are now separate signals (braking is the
+            // worse offender).
+            var corneringPower = (corneringUtilization * corneringUtilization * CorneringUtilizationWeight)
+                + (corneringSlide * corneringSlide * CorneringSlideBonus);
+            var accelPower = accelStress * accelStress;
+            var brakePower = brakeStress * brakeStress;
+            var engineBrakePower = engineBrakeStress * engineBrakeStress;
 
-            var roadExchangeGain = (config.RoadExchangePerCPerSecond + (wetnessNormalized * config.WetRoadExchangePerCPerSecond))
-                * thermalControl.CoolingScale;
-            var ambientExchangeRate = (ambientTemperatureC - state.TemperatureC)
-                * config.AmbientExchangePerCPerSecond
-                * thermalControl.CoolingScale;
-            var roadExchangeRate = (surfaceTemperatureC - state.TemperatureC) * roadExchangeGain;
-            var airflowSpeedGain = 1f
-                + (0.75f * airflowSpeedNormalized)
-                + (1.65f * airflowSpeedNormalized * airflowSpeedNormalized);
-            var thermalRecoveryWindow = TireWearMath.Clamp01(
-                (state.TemperatureC - config.OptimalStartTemperatureC) / 18f);
-            var lowSlideCoolingBoost = 1f + (1.25f * highSpeedRecovery * lowSlideRecovery * thermalRecoveryWindow);
-            var overheatRecoveryBoost = 1f + (1.25f * highSpeedRecovery * lowSlideRecovery * thermalSurplusNormalized);
-            var airflowCoolingRate = Math.Max(0f, state.TemperatureC - ambientTemperatureC)
-                * input.SpeedMps
-                * config.AirflowCoolingPerMpsPerCPerSecond
-                * airflowSpeedGain
-                * lowSlideCoolingBoost
-                * overheatRecoveryBoost
-                * thermalControl.CoolingScale;
+            var brakeSurfaceFraction = TireWearMath.Clamp01(BrakeSurfaceHeatFraction);
+            var loadSpeed = input.SpeedMps * load;
 
-            var ambientCoolingRate = Math.Max(0f, state.TemperatureC - ambientTemperatureC)
-                * config.AmbientExchangePerCPerSecond
-                * thermalControl.CoolingScale;
-            var roadCoolingRate = Math.Max(0f, state.TemperatureC - surfaceTemperatureC) * roadExchangeGain;
-            var coolingRateCPerSecond = ambientCoolingRate + roadCoolingRate + airflowCoolingRate;
+            // Brake heat uses a speed drive with a floor (half actual speed, half
+            // a fixed reference) so a hard stop still heats the tire through its
+            // slow end. Cornering / acceleration stay fully speed-scaled.
+            var brakeDriveSpeed = (input.SpeedMps * (1f - BrakeSpeedIndependentFraction))
+                + (BrakeReferenceSpeedMps * BrakeSpeedIndependentFraction);
+            var brakeHeat = load * brakeDriveSpeed * config.BrakeHeatCPerSecond * brakePower;
 
-            var netTemperatureRateCPerSecond = heatingRateCPerSecond + ambientExchangeRate + roadExchangeRate - airflowCoolingRate;
-            var temperatureC = state.TemperatureC + (netTemperatureRateCPerSecond * elapsedSeconds);
-            var maxTemperatureC = Math.Max(surfaceTemperatureC + 90f, config.OverheatEndTemperatureC + 35f);
-            temperatureC = TireWearMath.Clamp(temperatureC, ambientTemperatureC - 35f, maxTemperatureC);
+            // Surface (contact-patch) friction: cornering + acceleration + the
+            // lockup/slip "flash" share of braking. Heats fast, fades fast.
+            var surfaceFrictionHeat = (loadSpeed * (
+                (config.CorneringHeatCPerSecond * corneringPower)
+                + (config.AccelerationHeatCPerSecond * accelPower)))
+                + (brakeHeat * brakeSurfaceFraction);
 
-            return new TireWearHeatBalance(temperatureC, heatingRateCPerSecond, coolingRateCPerSecond);
+            // Tread-injected heat: the rotor/hub "soak" share of braking plus a
+            // whisper of engine braking. Lingers, then sheds to air through the
+            // cascade once airflow picks up on the straight.
+            var treadInjectedHeat = (brakeHeat * (1f - brakeSurfaceFraction))
+                + (loadSpeed * config.BrakeHeatCPerSecond * engineBrakePower * EngineBrakeTreadFactor);
+
+            // Wear amplification: 1× until 75 %, then ramps; past 90 % the tire
+            // generates extra heat just from rolling so the player still notices
+            // a blown tire on the straights.
+            var wearOver = TireWearMath.Clamp01((state.WearFraction - WearAmpStart) / (1f - WearAmpStart));
+            var wearAmp = 1f + (WearAmpGain * wearOver * wearOver);
+            var breakdown = TireWearMath.Clamp01((state.WearFraction - WearBreakdownStart) / (1f - WearBreakdownStart));
+            var breakdownHeat = breakdown * breakdown
+                * WearBreakdownHeatCPerSecond
+                * (0.40f + (0.60f * TireWearMath.Clamp01(input.SpeedMps / 22f)));
+
+            var surfaceHeatRate = (wearAmp * (flexHeat + surfaceFrictionHeat)) + breakdownHeat;
+            var treadHeatRate = wearAmp * treadInjectedHeat;
+
+            // Cooling: Newton's law against an effective ambient that mixes air
+            // and road. Air coupling scales with airspeed (forced convection),
+            // road coupling has a wet-road bonus because water carries heat away
+            // faster than dry asphalt.
+            var airCoupling = config.AmbientExchangePerCPerSecond
+                + (config.AirflowCoolingPerMpsPerCPerSecond * input.SpeedMps);
+            var roadCoupling = config.RoadExchangePerCPerSecond
+                + (wetnessNormalized * config.WetRoadExchangePerCPerSecond);
+            var totalCoupling = airCoupling + roadCoupling;
+            var effectiveAmbientC = totalCoupling > 0f
+                ? (((1f - RoadCouplingWeight) * airCoupling * ambientTemperatureC)
+                   + (RoadCouplingWeight * roadCoupling * surfaceTemperatureC))
+                  / (((1f - RoadCouplingWeight) * airCoupling) + (RoadCouplingWeight * roadCoupling))
+                : ambientTemperatureC;
+
+            var kSt = Math.Max(0f, config.SurfaceToTreadConductancePerSecond);
+            var kTc = Math.Max(0f, config.TreadToCarcassConductancePerSecond);
+            var mTread = Math.Max(0.1f, config.TreadMassRatio);
+            var mCarcass = Math.Max(0.1f, config.CarcassMassRatio);
+
+            var minTemperatureC = Math.Min(ambientTemperatureC, surfaceTemperatureC) - 8f;
+            var maxTemperatureC = Math.Max(surfaceTemperatureC + 120f, config.OverheatEndTemperatureC + 60f);
+
+            var surfaceC = state.TemperatureC;
+            var treadC = state.TreadTemperatureC;
+            var carcassC = state.CarcassTemperatureC;
+            var coolingAccumC = 0f;
+            var remaining = Math.Max(0f, elapsedSeconds);
+            var substeps = 0;
+            while (remaining > 0f && substeps < MaxSubsteps)
+            {
+                var dt = remaining > MaxSubstepSeconds ? MaxSubstepSeconds : remaining;
+                var surfaceCooling = totalCoupling * (surfaceC - effectiveAmbientC);
+                var surfaceToTread = kSt * (surfaceC - treadC);
+                var treadToCarcass = kTc * (treadC - carcassC);
+                surfaceC += (surfaceHeatRate - surfaceCooling - surfaceToTread) * dt;
+                treadC += (surfaceToTread - treadToCarcass + treadHeatRate) / mTread * dt;
+                carcassC += treadToCarcass / mCarcass * dt;
+                surfaceC = TireWearMath.Clamp(surfaceC, minTemperatureC, maxTemperatureC);
+                treadC = TireWearMath.Clamp(treadC, minTemperatureC, maxTemperatureC);
+                carcassC = TireWearMath.Clamp(carcassC, minTemperatureC, maxTemperatureC);
+                coolingAccumC += Math.Max(0f, surfaceCooling) * dt;
+                remaining -= dt;
+                substeps++;
+            }
+
+            var coolingRateCPerSecond = elapsedSeconds > 0f
+                ? coolingAccumC / elapsedSeconds
+                : 0f;
+
+            return new TireWearHeatBalance(
+                surfaceC,
+                treadC,
+                carcassC,
+                surfaceHeatRate + treadHeatRate,
+                coolingRateCPerSecond);
         }
     }
 
     internal readonly struct TireWearHeatBalance
     {
-        public TireWearHeatBalance(float temperatureC, float heatingRateCPerSecond, float coolingRateCPerSecond)
+        public TireWearHeatBalance(
+            float temperatureC,
+            float treadTemperatureC,
+            float carcassTemperatureC,
+            float heatingRateCPerSecond,
+            float coolingRateCPerSecond)
         {
             TemperatureC = temperatureC;
+            TreadTemperatureC = treadTemperatureC;
+            CarcassTemperatureC = carcassTemperatureC;
             HeatingRateCPerSecond = heatingRateCPerSecond;
             CoolingRateCPerSecond = coolingRateCPerSecond;
         }
 
         public float TemperatureC { get; }
+        public float TreadTemperatureC { get; }
+        public float CarcassTemperatureC { get; }
         public float HeatingRateCPerSecond { get; }
         public float CoolingRateCPerSecond { get; }
     }

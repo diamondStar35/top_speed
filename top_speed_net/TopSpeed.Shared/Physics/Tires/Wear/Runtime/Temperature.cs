@@ -4,16 +4,6 @@ namespace TopSpeed.Physics.Tires.Wear
 {
     internal static class TireWearTemperature
     {
-        public static float ResolveWearMultiplier(TireWearConfig config, float temperatureC)
-        {
-            var multiplier = 1f;
-            if (temperatureC > config.WearHotStartTemperatureC)
-                multiplier += (temperatureC - config.WearHotStartTemperatureC) * config.WearHotGainPerC;
-            if (temperatureC < config.WearColdStartTemperatureC)
-                multiplier += (config.WearColdStartTemperatureC - temperatureC) * config.WearColdGainPerC;
-            return Math.Max(0.2f, multiplier);
-        }
-
         public static float ResolveGrip(TireWearConfig config, float temperatureC)
         {
             if (temperatureC <= config.ColdEndTemperatureC)

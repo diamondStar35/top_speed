@@ -77,7 +77,12 @@ namespace TopSpeed.Vehicles
             UpdateFuelModel(elapsed);
             UpdateBrakeAndSteeringOutput();
             IntegrateVehiclePosition(elapsed, currentLapStart);
-            UpdateTireWear(elapsed, Math.Max(0f, _speed / 3.6f));
+            var postSpeedMps = Math.Max(0f, _speed / 3.6f);
+            // Realized longitudinal acceleration after the gear-speed clamp: ~0
+            // when pinned at a gear's rev limit even while gross drive torque is
+            // high, so the tire model treats rev-limited cruise as cruise.
+            var realizedDriveAccelMps2 = elapsed > 0f ? (postSpeedMps - speedMpsCurrent) / elapsed : 0f;
+            UpdateTireWear(elapsed, postSpeedMps, realizedDriveAccelMps2);
             UpdateFrameAudioAndFeedback();
             EnsureSurfaceLoopPlaying();
 

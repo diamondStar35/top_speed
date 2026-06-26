@@ -6,6 +6,28 @@ namespace TopSpeed.Physics.Tires.Wear
     {
         private const float DriveStressReferenceMps2 = 6f;
         private const float BrakeStressReferenceMps2 = 9f;
+        // Engine braking is much weaker than the service brakes, so it saturates
+        // at a lower deceleration.
+        private const float EngineBrakeStressReferenceMps2 = 3.5f;
+
+        // Separate heat-stress signals so braking, acceleration, and engine
+        // braking can each drive tire heat independently (the merged
+        // longitudinal signal above is kept for wear/load). 0 = none, 1 = the
+        // reference stress or beyond.
+        public static float ResolveAccelerationHeatStressNormalized(float driveAccelerationMps2)
+        {
+            return NormalizeUnit(driveAccelerationMps2, DriveStressReferenceMps2);
+        }
+
+        public static float ResolveBrakeHeatStressNormalized(float brakeDecelMps2)
+        {
+            return NormalizeUnit(brakeDecelMps2, BrakeStressReferenceMps2);
+        }
+
+        public static float ResolveEngineBrakeHeatStressNormalized(float engineBrakeDecelMps2)
+        {
+            return NormalizeUnit(engineBrakeDecelMps2, EngineBrakeStressReferenceMps2);
+        }
 
         public static float ResolveLongitudinalSlipNormalized(float driveAccelerationMps2, float brakeDecelMps2)
         {
@@ -21,12 +43,18 @@ namespace TopSpeed.Physics.Tires.Wear
             return Clamp01(slideSignal + (stressSignal * 0.22f));
         }
 
+        // Contact-patch load proxy. Lateral load transfer (cornering) is the
+        // dominant term, but braking/acceleration transfer load too — hard
+        // braking slams weight onto the front tires — so the longitudinal term
+        // carries real weight, otherwise straight-line braking heats far less
+        // than a corner at the same speed. Sum can exceed 1 under combined
+        // loading; the Clamp01 saturates it.
         public static float ResolveLoadNormalized(float massKg, float lateralLoadRatio, float longitudinalSlipNormalized)
         {
             var massNormalized = Clamp01((massKg - 700f) / 1800f);
             return Clamp01(
                 (lateralLoadRatio * 0.56f)
-                + (Clamp01(longitudinalSlipNormalized) * 0.24f)
+                + (Clamp01(longitudinalSlipNormalized) * 0.48f)
                 + (massNormalized * 0.20f));
         }
 

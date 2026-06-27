@@ -53,7 +53,12 @@ namespace TopSpeed.Core
             }
 
             for (var i = 0; i < issues.Count; i++)
-                AddIssue(issues[i].ToString());
+            {
+                var label = issues[i].Severity == VehicleTsvIssueSeverity.Error
+                    ? LocalizationService.Translate(LocalizationService.Mark("Error"))
+                    : LocalizationService.Translate(LocalizationService.Mark("Warning"));
+                AddIssue(LocalizationService.Format(LocalizationService.Mark("{0}: {1}"), label, issues[i].ToString()));
+            }
         }
     }
 }

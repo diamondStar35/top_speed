@@ -10,7 +10,12 @@ namespace TopSpeed.Core
     {
         private readonly Dictionary<string, (DateTime LastWriteUtc, TInfo Value)> _cache =
             new Dictionary<string, (DateTime LastWriteUtc, TInfo Value)>(StringComparer.OrdinalIgnoreCase);
-        private readonly List<string> _issues = new List<string>();
+        // Issues are kept per file so they survive cache hits. The cache (above) skips re-parsing an
+        // unchanged file, so issues collected only at parse time would otherwise be lost on every
+        // list rebuild after the first; keeping them here lets ConsumeIssues report them each time.
+        private readonly Dictionary<string, List<string>> _fileIssues =
+            new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        private List<string>? _activeFileIssues;
         private readonly string _rootFolder;
         private readonly string _pattern;
 
@@ -27,11 +32,11 @@ namespace TopSpeed.Core
 
         public IReadOnlyList<TInfo> GetInfo()
         {
-            _issues.Clear();
             var files = Scan.Find(_rootFolder, _pattern);
             if (files.Count == 0)
             {
                 _cache.Clear();
+                _fileIssues.Clear();
                 return Array.Empty<TInfo>();
             }
 
@@ -45,6 +50,10 @@ namespace TopSpeed.Core
             }
 
             Scan.Prune(_cache, known);
+            var staleIssues = _fileIssues.Keys.Where(key => !known.Contains(key)).ToList();
+            for (var i = 0; i < staleIssues.Count; i++)
+                _fileIssues.Remove(staleIssues[i]);
+
             return items
                 .OrderBy(GetDisplay, StringComparer.OrdinalIgnoreCase)
                 .ToList();
@@ -52,12 +61,13 @@ namespace TopSpeed.Core
 
         public IReadOnlyList<string> ConsumeIssues()
         {
-            if (_issues.Count == 0)
+            if (_fileIssues.Count == 0)
                 return Array.Empty<string>();
 
-            var copy = _issues.ToArray();
-            _issues.Clear();
-            return copy;
+            var all = new List<string>();
+            foreach (var pair in _fileIssues)
+                all.AddRange(pair.Value);
+            return all;
         }
 
         protected abstract string GetKey(TInfo info);
@@ -66,20 +76,22 @@ namespace TopSpeed.Core
 
         protected void AddFileIssue(string file)
         {
-            _issues.Add(LocalizationService.Format(
+            AddIssue(LocalizationService.Format(
                 LocalizationService.Mark("File: {0}"),
                 Path.GetFileName(file)));
         }
 
         protected void AddIssue(string message)
         {
-            if (string.IsNullOrWhiteSpace(message))
+            if (string.IsNullOrWhiteSpace(message) || _activeFileIssues == null)
                 return;
-            _issues.Add(message);
+            _activeFileIssues.Add(message);
         }
 
         private (bool Success, TInfo Value) Parse(string file)
         {
+            var fileIssues = new List<string>();
+            _activeFileIssues = fileIssues;
             try
             {
                 return ParseCore(file);
@@ -114,7 +126,14 @@ namespace TopSpeed.Core
                 AddIssue(ex.Message);
                 return (false, default!);
             }
+            finally
+            {
+                _activeFileIssues = null;
+                if (fileIssues.Count > 0)
+                    _fileIssues[file] = fileIssues;
+                else
+                    _fileIssues.Remove(file);
+            }
         }
     }
 }
-

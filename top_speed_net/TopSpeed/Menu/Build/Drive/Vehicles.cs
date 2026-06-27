@@ -96,8 +96,8 @@ namespace TopSpeed.Menu
             if (issues.Count > 0)
             {
                 _ui.ShowMessageDialog(
-                    LocalizationService.Mark("Custom vehicle errors"),
-                    LocalizationService.Mark("Some custom vehicle files are invalid and were skipped."),
+                    LocalizationService.Mark("Custom vehicle issues"),
+                    LocalizationService.Mark("Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."),
                     issues);
             }
         }

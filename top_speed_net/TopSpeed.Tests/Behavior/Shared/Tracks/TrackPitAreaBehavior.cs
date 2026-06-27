@@ -98,6 +98,66 @@ public sealed class TrackPitAreaBehaviorTests
     }
 
     [Fact]
+    public void Parser_SegmentWithBothPitMarkers_ShouldBeEntryAndExit()
+    {
+        using var temp = new TemporaryTrackFile(
+            """
+            [meta]
+            name = Combined Pit
+            weather = clear
+            ambience = noambience
+
+            [weather:clear]
+            kind = sunny
+
+            [segment:one]
+            type = straight
+            surface = asphalt
+            noise = none
+            length = 100
+            pit = pit_entry
+            pit = pit_exit
+            """);
+
+        var loaded = TrackTsmParser.TryLoadFromFile(temp.Path, out var track, out var issues);
+
+        loaded.Should().BeTrue(string.Join(Environment.NewLine, issues.Select(i => i.ToString())));
+        var segment = track.Definitions.Single();
+        segment.IsPitEntry.Should().BeTrue();
+        segment.IsPitExit.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Parser_SegmentWithBothPitMarkers_OrderIndependent()
+    {
+        using var temp = new TemporaryTrackFile(
+            """
+            [meta]
+            name = Combined Pit Reversed
+            weather = clear
+            ambience = noambience
+
+            [weather:clear]
+            kind = sunny
+
+            [segment:one]
+            type = straight
+            surface = asphalt
+            noise = none
+            length = 100
+            pit = pit_exit
+            pit = pit_entry
+            """);
+
+        var loaded = TrackTsmParser.TryLoadFromFile(temp.Path, out var track, out var issues);
+
+        loaded.Should().BeTrue(string.Join(Environment.NewLine, issues.Select(i => i.ToString())));
+        var segment = track.Definitions.Single();
+        segment.IsPitEntry.Should().BeTrue();
+        segment.IsPitExit.Should().BeTrue();
+    }
+
+    [Fact]
     public void Parser_PitAreaInvalidValue_ShouldReject()
     {
         using var temp = new TemporaryTrackFile(

@@ -46,7 +46,9 @@ public sealed class TrackPackageBehaviorTests
                     metadata: new Dictionary<string, string>
                     {
                         ["hint"] = "apex-late"
-                    })
+                    },
+                    isPitEntry: true,
+                    isPitExit: true)
             },
             Metadata = new Dictionary<string, string>(System.StringComparer.OrdinalIgnoreCase)
             {
@@ -136,6 +138,8 @@ public sealed class TrackPackageBehaviorTests
         parsed.Definitions[0].Metadata.Should().ContainKey("hint");
         parsed.Definitions[0].WeatherProfileId.Should().Be("storm");
         parsed.Definitions[0].WeatherTransitionSeconds.Should().Be(1.25f);
+        parsed.Definitions[0].IsPitEntry.Should().BeTrue();
+        parsed.Definitions[0].IsPitExit.Should().BeTrue();
         parsed.SoundDefinitions.Should().ContainKey("engine");
         parsed.SoundDefinitions["engine"].Type.Should().Be(TrackSoundSourceType.Static);
         parsed.SoundDefinitions["engine"].RandomMode.Should().Be(TrackSoundRandomMode.PerArea);

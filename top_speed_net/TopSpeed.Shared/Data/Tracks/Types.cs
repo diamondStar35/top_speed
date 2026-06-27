@@ -80,7 +80,12 @@ namespace TopSpeed.Data
         public TrackRoomOverrides? RoomOverrides { get; }
         public IReadOnlyList<string> SoundSourceIds { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
-        public SegmentPitPoint? PitPoint { get; }
+
+        /// <summary>Whether this segment is marked as a pit entry. A segment may be both entry and exit.</summary>
+        public bool IsPitEntry { get; }
+
+        /// <summary>Whether this segment is marked as a pit exit. A segment may be both entry and exit.</summary>
+        public bool IsPitExit { get; }
 
         public TrackDefinition(TrackType type, TrackSurface surface, TrackNoise noise, float length)
             : this(type, surface, noise, length, null, 0f, 0f, null, 0f, null, null, null, null)
@@ -117,7 +122,8 @@ namespace TopSpeed.Data
             TrackRoomOverrides? roomOverrides,
             IReadOnlyList<string>? soundSourceIds,
             IReadOnlyDictionary<string, string>? metadata,
-            SegmentPitPoint? pitPoint = null)
+            bool isPitEntry = false,
+            bool isPitExit = false)
         {
             Type = type;
             Surface = surface;
@@ -132,7 +138,8 @@ namespace TopSpeed.Data
             RoomOverrides = roomOverrides;
             SoundSourceIds = soundSourceIds ?? EmptySoundSources;
             Metadata = metadata ?? EmptyMetadata;
-            PitPoint = pitPoint;
+            IsPitEntry = isPitEntry;
+            IsPitExit = isPitExit;
         }
     }
 

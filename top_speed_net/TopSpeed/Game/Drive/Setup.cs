@@ -67,10 +67,11 @@ namespace TopSpeed.Game
 
             var baseToggles = new RacePhysicsToggles(_settings.TireWearEnabled, _settings.FuelConsumptionEnabled);
 
-            // No-pit-area warning (dormant today: HasPitArea is true for every track). When the
-            // selected track lacks a pit area while a model that needs pitting is on, offer to
-            // disable those models for this race only — without touching the saved settings.
-            var hasPitArea = !Track.TryResolveData(track, out var trackData) || Track.HasPitArea(trackData);
+            // No-pit-area warning: when the selected track lacks a pit area (pit_area = false in its
+            // metadata) while a model that needs pitting is on, offer to disable those models for
+            // this race only — without touching the saved settings. If the track data can't be
+            // resolved, assume it has a pit area so we never block a race spuriously.
+            var hasPitArea = !Track.TryResolveData(track, out var trackData) || trackData.HasPitArea;
             if (PitAreaWarning.IsRequired(hasPitArea, baseToggles.FuelConsumptionEnabled, baseToggles.TireWearEnabled))
             {
                 PromptNoPitAreaWarning(mode, track, trackId, automatic, vehicleIndex, vehicleFile, baseToggles);

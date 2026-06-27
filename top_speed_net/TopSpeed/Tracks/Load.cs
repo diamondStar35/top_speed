@@ -27,21 +27,6 @@ namespace TopSpeed.Tracks
         }
 
         /// <summary>
-        /// Whether a track has a usable pit area. Today every track does — when a track file defines
-        /// no explicit pit entry/exit, the pit stop system falls back to the start/finish line (see
-        /// <c>PitStop</c>), so this returns <c>true</c> for every track. This is the single plug-in
-        /// point for the eventual "pit-less track" feature: once we decide how such tracks are
-        /// expressed (e.g. a <c>disablePitArea</c> entry in <see cref="TrackData.Metadata"/>, or the
-        /// absence of pit-point segments in <see cref="TrackData.Definitions"/>), implement the real
-        /// check here and every no-pit warning call site picks it up automatically.
-        /// </summary>
-        public static bool HasPitArea(TrackData data)
-        {
-            _ = data;
-            return true;
-        }
-
-        /// <summary>
         /// Resolves a track's data from a built-in key or custom file path without constructing a
         /// <see cref="Track"/> (so no audio is loaded). Used for cheap pre-race checks such as the
         /// no-pit-area warning. Returns false if the data cannot be read.

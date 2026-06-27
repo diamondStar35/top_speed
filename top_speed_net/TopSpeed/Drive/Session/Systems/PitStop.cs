@@ -64,6 +64,7 @@ namespace TopSpeed.Drive.Session.Systems
         private bool _prevInitialized;
         private float _pitEntryDist;
         private float _pitExitDist;
+        private readonly bool _pitAvailable;
         private float _pitEntryX;
         private float _pitEntryY;
         private bool _audioPhase0;
@@ -129,10 +130,16 @@ namespace TopSpeed.Drive.Session.Systems
             _queueSoundDelayed = queueSoundDelayed ?? throw new ArgumentNullException(nameof(queueSoundDelayed));
             _pitController = new PitLaneController(car.GetGearForSpeedKmh);
 
-            if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, out _pitEntryDist))
-                _pitEntryDist = 0f;
-            if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, out _pitExitDist))
-                _pitExitDist = _pitEntryDist;
+            _pitAvailable = track.HasPitArea;
+            if (_pitAvailable)
+            {
+                // Defined pit entry/exit, or fall back to the start/finish line (distance 0) when the
+                // track does not define them. Tracks with no pit area skip this entirely.
+                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, out _pitEntryDist))
+                    _pitEntryDist = 0f;
+                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, out _pitExitDist))
+                    _pitExitDist = _pitEntryDist;
+            }
         }
 
         public void SetChoice(int choiceId)
@@ -206,10 +213,17 @@ namespace TopSpeed.Drive.Session.Systems
         {
             if (_input.Intents.IsTriggered(DriveIntent.Pit) && !_pitThisLap)
             {
-                _pitThisLap = true;
-                _queueSound(_soundLetsPit);
-                if (_soundLetsPit == null)
-                    _speakText(LocalizationService.Mark("Pitting this time"));
+                if (!_pitAvailable)
+                {
+                    _speakText(LocalizationService.Mark("This track has no pit area."));
+                }
+                else
+                {
+                    _pitThisLap = true;
+                    _queueSound(_soundLetsPit);
+                    if (_soundLetsPit == null)
+                        _speakText(LocalizationService.Mark("Pitting this time"));
+                }
             }
 
             if (!_pitThisLap || !_prevInitialized)

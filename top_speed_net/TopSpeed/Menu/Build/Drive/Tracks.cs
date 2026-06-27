@@ -109,8 +109,8 @@ namespace TopSpeed.Menu
             if (issues.Count > 0)
             {
                 _ui.ShowMessageDialog(
-                    LocalizationService.Mark("Custom track errors"),
-                    LocalizationService.Mark("Some custom track files are invalid and were skipped."),
+                    LocalizationService.Mark("Custom track issues"),
+                    LocalizationService.Mark("Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."),
                     issues);
             }
         }

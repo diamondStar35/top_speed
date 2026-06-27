@@ -80,6 +80,18 @@ namespace TopSpeed.Server.Protocol
             return PacketValidation.IsValidRoomSetLaps(packet);
         }
 
+        public static bool TryReadRoomStartRace(byte[] data, out uint disableGameRulesMask)
+        {
+            disableGameRulesMask = 0u;
+            if (data.Length < 2 + 4)
+                return false;
+            var reader = new PacketReader(data);
+            reader.ReadByte();
+            reader.ReadByte();
+            disableGameRulesMask = reader.ReadUInt32();
+            return true;
+        }
+
         public static bool TryReadRoomSetPlayersToStart(byte[] data, out PacketRoomSetPlayersToStart packet)
         {
             packet = new PacketRoomSetPlayersToStart();

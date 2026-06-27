@@ -170,7 +170,11 @@ namespace TopSpeed.Game
                 var laps = _binding.PendingLaps > 0 ? _binding.PendingLaps : _owner._settings.NrOfLaps;
                 var vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, _binding.VehicleIndex));
 
-                var effectiveRules = _owner._multiplayerCoordinator.GetCurrentRaceEffectiveGameRules();
+                // Prefer the effective rules delivered with this race instance (room rules minus any
+                // host per-race disable); fall back to the room's current rules if not present.
+                var effectiveRules = _binding.HasEffectiveGameRules
+                    ? _binding.EffectiveGameRules
+                    : _owner._multiplayerCoordinator.GetCurrentRaceEffectiveGameRules();
                 var physicsToggles = new RacePhysicsToggles(
                     tireWearEnabled: (effectiveRules & (uint)RoomGameRules.TireWear) != 0u,
                     fuelConsumptionEnabled: (effectiveRules & (uint)RoomGameRules.FuelConsumption) != 0u);

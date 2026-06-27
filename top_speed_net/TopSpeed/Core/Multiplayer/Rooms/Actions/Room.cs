@@ -1,12 +1,18 @@
+using TopSpeed.Drive;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
 using TopSpeed.Network;
 using TopSpeed.Protocol;
+using TopSpeed.Tracks;
 
 namespace TopSpeed.Core.Multiplayer
 {
     internal sealed partial class MultiplayerCoordinator
     {
+        private const int NoPitAreaDisableId = 4001;
+        private const int NoPitAreaRaceAnywayId = 4002;
+        private const int NoPitAreaCancelId = 4003;
+
         private void OpenLeaveRoomConfirmation()
         {
             if (!_state.Rooms.CurrentRoom.InRoom)
@@ -70,7 +76,60 @@ namespace TopSpeed.Core.Multiplayer
                 return;
             }
 
-            TrySend(session.SendRoomStartRace(), LocalizationService.Mark("race start request"));
+            // No-pit-area warning: if the chosen track has no pit area while fuel consumption and/or
+            // tire wear are enabled, let the host disable those models for this race only (without
+            // changing the persistent room rules). Otherwise start immediately.
+            var rules = _state.Rooms.CurrentRoom.GameRulesFlags;
+            var fuelEnabled = (rules & (uint)RoomGameRules.FuelConsumption) != 0u;
+            var tireEnabled = (rules & (uint)RoomGameRules.TireWear) != 0u;
+            var hasPitArea = !Track.TryResolveData(_state.Rooms.CurrentRoom.TrackName, out var trackData)
+                || trackData.HasPitArea;
+
+            if (PitAreaWarning.IsRequired(hasPitArea, fuelEnabled, tireEnabled))
+            {
+                ShowHostNoPitAreaWarning(fuelEnabled, tireEnabled);
+                return;
+            }
+
+            TrySend(session.SendRoomStartRace(0u), LocalizationService.Mark("race start request"));
+        }
+
+        private void ShowHostNoPitAreaWarning(bool fuelEnabled, bool tireEnabled)
+        {
+            var dialog = new Dialog(
+                PitAreaWarning.BuildTitle(),
+                PitAreaWarning.BuildCaption(fuelEnabled, tireEnabled),
+                NoPitAreaCancelId,
+                new[] { new DialogItem(LocalizationService.Mark("Choose how to start this race.")) },
+                resultId => HandleHostNoPitAreaResult(resultId, fuelEnabled, tireEnabled),
+                new DialogButton(NoPitAreaDisableId, LocalizationService.Mark("Disable for this race"), flags: DialogButtonFlags.Default),
+                new DialogButton(NoPitAreaRaceAnywayId, LocalizationService.Mark("Race anyway")),
+                new DialogButton(NoPitAreaCancelId, LocalizationService.Mark("Cancel")));
+            _dialogs.Show(dialog);
+        }
+
+        private void HandleHostNoPitAreaResult(int resultId, bool fuelEnabled, bool tireEnabled)
+        {
+            if (resultId == NoPitAreaCancelId)
+                return;
+
+            var session = SessionOrNull();
+            if (session == null)
+            {
+                _speech.Speak(LocalizationService.Mark("Not connected to a server."));
+                return;
+            }
+
+            var disableMask = 0u;
+            if (resultId == NoPitAreaDisableId)
+            {
+                if (fuelEnabled)
+                    disableMask |= (uint)RoomGameRules.FuelConsumption;
+                if (tireEnabled)
+                    disableMask |= (uint)RoomGameRules.TireWear;
+            }
+
+            TrySend(session.SendRoomStartRace(disableMask), LocalizationService.Mark("race start request"));
         }
 
         private void AddBotToRoom()

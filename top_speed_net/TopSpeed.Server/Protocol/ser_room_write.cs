@@ -277,7 +277,7 @@ namespace TopSpeed.Server.Protocol
 
         public static byte[] WriteRoomRaceStateChanged(PacketRoomRaceStateChanged packet)
         {
-            var payload = 4 + 4 + 4 + 4 + 1;
+            var payload = 4 + 4 + 4 + 4 + 1 + 4;
             var buffer = WritePacketHeader(Command.RoomRaceStateChanged, payload);
             var writer = new PacketWriter(buffer);
             writer.WriteByte(ProtocolConstants.Version);
@@ -287,6 +287,7 @@ namespace TopSpeed.Server.Protocol
             writer.WriteUInt32(packet.EventSequence);
             writer.WriteUInt32(packet.RaceInstanceId);
             writer.WriteByte((byte)packet.State);
+            writer.WriteUInt32(packet.EffectiveGameRulesFlags);
             return buffer;
         }
 

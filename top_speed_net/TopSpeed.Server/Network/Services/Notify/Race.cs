@@ -18,7 +18,8 @@ namespace TopSpeed.Server.Network
                     RoomVersion = room.Version,
                     EventSequence = sequence,
                     RaceInstanceId = room.RaceInstanceId,
-                    State = room.RaceState
+                    State = room.RaceState,
+                    EffectiveGameRulesFlags = room.RaceEffectiveGameRulesFlags
                 });
                 RoomEventJournal.Record(room, Command.RoomRaceStateChanged, sequence, payload, PacketStream.Room);
                 ToRoom(room, payload, PacketStream.Room);

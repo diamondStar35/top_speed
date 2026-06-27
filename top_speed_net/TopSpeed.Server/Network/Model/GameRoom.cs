@@ -54,6 +54,9 @@ namespace TopSpeed.Server.Network
         public TrackPackageRef TrackSelection { get; set; }
         public byte Laps { get; set; }
         public uint GameRulesFlags { get; set; }
+        // Effective rules for the current race instance = GameRulesFlags minus the host's per-race
+        // disable mask (set when the race starts). Equals GameRulesFlags when there is no override.
+        public uint RaceEffectiveGameRulesFlags { get; set; }
         public HashSet<uint> TrackReadyPlayers { get; } = new HashSet<uint>();
         public HashSet<uint> ActiveRaceParticipantIds { get; } = new HashSet<uint>();
         public List<RoomEventJournalEntry> EventJournal { get; } = new List<RoomEventJournalEntry>();

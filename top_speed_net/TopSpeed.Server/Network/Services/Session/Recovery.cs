@@ -233,7 +233,8 @@ namespace TopSpeed.Server.Network
                         RoomVersion = room.Version,
                         EventSequence = room.EventSequence,
                         RaceInstanceId = room.RaceInstanceId,
-                        State = room.RaceState
+                        State = room.RaceState,
+                        EffectiveGameRulesFlags = room.RaceEffectiveGameRulesFlags
                     }), PacketStream.Room);
                 }
             }

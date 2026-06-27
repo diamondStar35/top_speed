@@ -8,7 +8,7 @@ namespace TopSpeed.Server.Network
     {
         private sealed partial class Room
         {
-            public void StartRoomGame(PlayerConnection player)
+            public void StartRoomGame(PlayerConnection player, uint disableGameRulesMask)
             {
                 if (!TryGetHosted(player, out var room))
                     return;
@@ -38,6 +38,13 @@ namespace TopSpeed.Server.Network
                     _owner.SendProtocolMessage(player, ProtocolMessageCode.Failed, LocalizationService.Mark("Race setup is already in progress."));
                     return;
                 }
+
+                // The host can disable fuel consumption and/or tire wear for this race only (e.g.
+                // when the chosen track has no pit area). That override applies to the race instance
+                // without changing the room's persistent rules.
+                var raceDisableMask = disableGameRulesMask
+                    & ((uint)RoomGameRules.FuelConsumption | (uint)RoomGameRules.TireWear);
+                room.RaceEffectiveGameRulesFlags = room.GameRulesFlags & ~raceDisableMask;
 
                 _owner._race.TransitionRaceState(room, RoomRaceState.Preparing);
                 room.PendingLoadouts.Clear();

@@ -234,7 +234,7 @@ namespace TopSpeed.Network
         public static bool TryReadRoomRaceStateChanged(byte[] data, out PacketRoomRaceStateChanged packet)
         {
             packet = new PacketRoomRaceStateChanged();
-            if (data.Length < 2 + 4 + 4 + 4 + 4 + 1)
+            if (data.Length < 2 + 4 + 4 + 4 + 4 + 1 + 4)
                 return false;
             if (data[0] != ProtocolConstants.Version || data[1] != (byte)Command.RoomRaceStateChanged)
                 return false;
@@ -246,6 +246,7 @@ namespace TopSpeed.Network
             packet.EventSequence = reader.ReadUInt32();
             packet.RaceInstanceId = reader.ReadUInt32();
             packet.State = (RoomRaceState)reader.ReadByte();
+            packet.EffectiveGameRulesFlags = reader.ReadUInt32();
             return true;
         }
 

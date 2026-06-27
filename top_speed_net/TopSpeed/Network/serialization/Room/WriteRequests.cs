@@ -93,9 +93,14 @@ namespace TopSpeed.Network
             return buffer;
         }
 
-        public static byte[] WriteRoomStartRace()
+        public static byte[] WriteRoomStartRace(uint disableGameRulesMask)
         {
-            return WriteGeneral(Command.RoomStartRace);
+            var buffer = WritePacketHeader(Command.RoomStartRace, 4);
+            var writer = new PacketWriter(buffer);
+            writer.WriteByte(ProtocolConstants.Version);
+            writer.WriteByte((byte)Command.RoomStartRace);
+            writer.WriteUInt32(disableGameRulesMask);
+            return buffer;
         }
 
         public static byte[] WriteRoomSetPlayersToStart(byte playersToStart)

@@ -59,9 +59,9 @@ namespace TopSpeed.Network
             return _sender.TrySend(ClientPacketSerializer.WriteRoomSetLaps(laps), PacketStream.Room);
         }
 
-        public bool SendRoomStartRace()
+        public bool SendRoomStartRace(uint disableGameRulesMask)
         {
-            return _sender.TrySend(ClientPacketSerializer.WriteRoomStartRace(), PacketStream.Room);
+            return _sender.TrySend(ClientPacketSerializer.WriteRoomStartRace(disableGameRulesMask), PacketStream.Room);
         }
 
         public bool SendRoomSetPlayersToStart(byte playersToStart)

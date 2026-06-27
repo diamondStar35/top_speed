@@ -91,7 +91,13 @@ namespace TopSpeed.Server.Network
                     else
                         _owner.PacketFail(endPoint, Command.RoomSetLaps);
                 });
-                registry.Add("room", Command.RoomStartRace, (player, _, _) => StartRoomGame(player));
+                registry.Add("room", Command.RoomStartRace, (player, payload, endPoint) =>
+                {
+                    if (PacketSerializer.TryReadRoomStartRace(payload, out var disableMask))
+                        StartRoomGame(player, disableMask);
+                    else
+                        _owner.PacketFail(endPoint, Command.RoomStartRace);
+                });
                 registry.Add("room", Command.RoomSetPlayersToStart, (player, payload, endPoint) =>
                 {
                     if (PacketSerializer.TryReadRoomSetPlayersToStart(payload, out var setPlayers))

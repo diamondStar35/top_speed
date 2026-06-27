@@ -331,6 +331,10 @@ namespace TopSpeed.Protocol
         public uint EventSequence;
         public uint RaceInstanceId;
         public RoomRaceState State;
+        // Effective RoomGameRules for this race instance: the room's persistent rules minus any
+        // per-race disable the host chose (e.g. turning fuel/tire off for a pit-less track). Clients
+        // build their car from this so the override never changes the persistent room rules.
+        public uint EffectiveGameRulesFlags;
     }
 
     public sealed class PacketRoomRacePlayerFinished

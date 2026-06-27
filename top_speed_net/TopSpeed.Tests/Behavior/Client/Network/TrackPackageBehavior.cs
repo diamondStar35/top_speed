@@ -286,12 +286,14 @@ public sealed class TrackPackageBehaviorTests
                 new PacketTrackPackageCatalogEntry
                 {
                     Track = TrackPackageRef.Custom("city-loop", "2.4", "AABBCCDDEEFF"),
-                    DisplayName = "City Loop by QA"
+                    DisplayName = "City Loop by QA",
+                    HasPitArea = true
                 },
                 new PacketTrackPackageCatalogEntry
                 {
                     Track = TrackPackageRef.Custom("desert-run", "1.0", "001122334455"),
-                    DisplayName = "Desert Run"
+                    DisplayName = "Desert Run",
+                    HasPitArea = false
                 }
             }
         };
@@ -303,6 +305,8 @@ public sealed class TrackPackageBehaviorTests
         parsed.Tracks[0].Track.Version.Should().Be("2.4");
         parsed.Tracks[0].Track.Hash.Should().Be("aabbccddeeff");
         parsed.Tracks[0].DisplayName.Should().Be("City Loop by QA");
+        parsed.Tracks[0].HasPitArea.Should().BeTrue();
+        parsed.Tracks[1].HasPitArea.Should().BeFalse();
     }
 
     [Fact]

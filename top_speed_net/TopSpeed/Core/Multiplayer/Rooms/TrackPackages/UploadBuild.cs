@@ -22,6 +22,14 @@ namespace TopSpeed.Core.Multiplayer
                 return false;
 
             var hash = TrackPackageRef.NormalizeHash(payload.Manifest.Hash);
+            if (!string.IsNullOrWhiteSpace(hash))
+            {
+                // Remember this custom track's pit-area status (from its parsed [meta]) so the
+                // host's no-pit-area start-race warning can resolve it from the room's hash-only ref.
+                _customTrackHasPitAreaByHash[hash] =
+                    TrackPackageCodec.ToTrackData(payload, userDefined: true, sourcePath: string.Empty).HasPitArea;
+            }
+
             var trackId = payload.Manifest.TrackId ?? string.Empty;
             var version = payload.Manifest.Version ?? string.Empty;
             var resolvedDisplayName = (displayName ?? string.Empty).Trim();

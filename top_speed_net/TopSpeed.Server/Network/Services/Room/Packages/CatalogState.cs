@@ -29,7 +29,8 @@ namespace TopSpeed.Server.Network
                 .Select(record => new PacketTrackPackageCatalogEntry
                 {
                     Track = TrackPackageRef.Custom(record.Ref.TrackId, record.Ref.Version, record.Ref.Hash),
-                    DisplayName = ResolveTrackPackageDisplayName(record)
+                    DisplayName = ResolveTrackPackageDisplayName(record),
+                    HasPitArea = record.TrackData?.HasPitArea ?? true
                 })
                 .Take(ProtocolConstants.MaxTrackPackageCatalogEntries)
                 .ToArray();

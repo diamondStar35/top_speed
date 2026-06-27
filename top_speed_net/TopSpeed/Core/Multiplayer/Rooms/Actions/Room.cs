@@ -82,8 +82,7 @@ namespace TopSpeed.Core.Multiplayer
             var rules = _state.Rooms.CurrentRoom.GameRulesFlags;
             var fuelEnabled = (rules & (uint)RoomGameRules.FuelConsumption) != 0u;
             var tireEnabled = (rules & (uint)RoomGameRules.TireWear) != 0u;
-            var hasPitArea = !Track.TryResolveData(_state.Rooms.CurrentRoom.TrackName, out var trackData)
-                || trackData.HasPitArea;
+            var hasPitArea = ResolveCurrentRoomTrackHasPitArea();
 
             if (PitAreaWarning.IsRequired(hasPitArea, fuelEnabled, tireEnabled))
             {
@@ -92,6 +91,28 @@ namespace TopSpeed.Core.Multiplayer
             }
 
             TrySend(session.SendRoomStartRace(0u), LocalizationService.Mark("race start request"));
+        }
+
+        // Resolves whether the room's currently-selected track has a pit area. Built-in tracks are
+        // resolved live from the catalog; custom tracks carry no metadata on their room ref, so we
+        // consult the host-side memo populated when this host built the upload package. An unknown
+        // custom track (e.g. one selected from the server catalog rather than uploaded here) is
+        // assumed to have a pit area so we never raise a spurious warning.
+        private bool ResolveCurrentRoomTrackHasPitArea()
+        {
+            var track = _state.Rooms.CurrentRoom.Track;
+            if (track != null && !track.IsBuiltIn)
+            {
+                var hash = TrackPackageRef.NormalizeHash(track.Hash);
+                if (!string.IsNullOrWhiteSpace(hash) && _customTrackHasPitAreaByHash.TryGetValue(hash, out var known))
+                    return known;
+                return true;
+            }
+
+            var key = track != null && track.IsBuiltIn && !string.IsNullOrWhiteSpace(track.BuiltInTrackKey)
+                ? track.BuiltInTrackKey
+                : _state.Rooms.CurrentRoom.TrackName;
+            return !Track.TryResolveData(key, out var trackData) || trackData.HasPitArea;
         }
 
         private void ShowHostNoPitAreaWarning(bool fuelEnabled, bool tireEnabled)

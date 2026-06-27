@@ -78,6 +78,7 @@ namespace TopSpeed.Server.Protocol
                 var entry = tracks[i] ?? new PacketTrackPackageCatalogEntry();
                 payload += MeasureCatalogTrackRef(entry.Track);
                 payload += 2 + PacketWriter.MeasureString16(entry.DisplayName ?? string.Empty);
+                payload += 1;
             }
 
             var buffer = WritePacketHeader(Command.TrackPackageCatalog, payload);
@@ -90,6 +91,7 @@ namespace TopSpeed.Server.Protocol
                 var entry = tracks[i] ?? new PacketTrackPackageCatalogEntry();
                 WriteCatalogTrackRef(ref writer, entry.Track);
                 writer.WriteString16(entry.DisplayName ?? string.Empty);
+                writer.WriteBool(entry.HasPitArea);
             }
 
             return buffer;

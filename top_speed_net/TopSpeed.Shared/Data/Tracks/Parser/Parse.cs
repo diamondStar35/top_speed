@@ -25,7 +25,8 @@ namespace TopSpeed.Data
                 p.RoomOverrides.HasAny ? p.RoomOverrides : null,
                 p.SoundSourceIds,
                 p.Metadata,
-                p.PitPoint));
+                p.IsPitEntry,
+                p.IsPitExit));
         }
 
         private static void FlushPending(ref WeatherBuilder? pendingWeather, Dictionary<string, TrackWeatherProfile> weatherProfiles)

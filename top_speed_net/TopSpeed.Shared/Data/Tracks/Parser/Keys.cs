@@ -71,7 +71,12 @@ namespace TopSpeed.Data
 
             if (key == "pit" && TryParseSegmentPitPoint(value, out var pitPoint))
             {
-                builder.PitPoint = pitPoint;
+                // Accumulate rather than overwrite so a segment can carry both markers
+                // (e.g. a "pit = pit_entry" and "pit = pit_exit" line in any order).
+                if (pitPoint == SegmentPitPoint.PitEntry)
+                    builder.IsPitEntry = true;
+                else
+                    builder.IsPitExit = true;
                 return;
             }
 

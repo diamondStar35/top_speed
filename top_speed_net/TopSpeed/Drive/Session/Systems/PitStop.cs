@@ -83,6 +83,7 @@ namespace TopSpeed.Drive.Session.Systems
         private float _carHalfWidth;
         private float _offTrackTargetX;
         private float _pitExitX;
+        private float _pitExitY;
         private bool _offTrackReached;
         private float _listenerCurrentX;
 
@@ -135,9 +136,10 @@ namespace TopSpeed.Drive.Session.Systems
             {
                 // Defined pit entry/exit, or fall back to the start/finish line (distance 0) when the
                 // track does not define them. Tracks with no pit area skip this entirely.
-                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, out _pitEntryDist))
+                // Entry is the start of the pit-entry segment; exit is the end of the pit-exit segment.
+                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, atSegmentEnd: false, out _pitEntryDist))
                     _pitEntryDist = 0f;
-                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, out _pitExitDist))
+                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, atSegmentEnd: true, out _pitExitDist))
                     _pitExitDist = _pitEntryDist;
             }
         }
@@ -473,10 +475,25 @@ namespace TopSpeed.Drive.Session.Systems
             _pitController.SteerTargetX = null;
             _listenerCurrentX = _offTrackTargetX;
 
-            var lapDist = _track.Length;
-            var lapStart = lapDist > 0f ? (float)Math.Floor(_pitEntryY / lapDist) * lapDist : 0f;
-            var exitRoad = _track.RoadAtPosition(lapStart + _pitExitDist);
+            _pitExitY = ComputeExitY();
+            var exitRoad = _track.RoadAtPosition(_pitExitY);
             _pitExitX = (exitRoad.Left + exitRoad.Right) * 0.5f;
+        }
+
+        // Absolute lap position where the car rejoins the track at the end of the pit-exit segment.
+        // When the pit exit lies earlier in the lap than the pit entry, rejoining there means the car
+        // has completed a lap during the stop, so advance one lap. The position-based lap counter then
+        // picks up the increment and the laps-to-go announcement fires on its own.
+        private float ComputeExitY()
+        {
+            var lapDist = _track.Length;
+            if (lapDist <= 0f)
+                return _pitEntryY;
+            var lapStart = (float)Math.Floor(_pitEntryY / lapDist) * lapDist;
+            var exitY = lapStart + _pitExitDist;
+            if (_pitExitDist < _pitEntryDist)
+                exitY += lapDist;
+            return exitY;
         }
 
         private void UpdateExitingLane(float elapsed)
@@ -525,15 +542,8 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void CompletePitExit()
         {
-            var lapDist = _track.Length;
-            var lapStart = lapDist > 0f
-                ? (float)Math.Floor(_pitEntryY / lapDist) * lapDist
-                : 0f;
-            var exitY = lapStart + _pitExitDist;
-            var exitRoad = _track.RoadAtPosition(exitY);
-            var exitX = (exitRoad.Left + exitRoad.Right) * 0.5f;
             _car.PrepareEngineForPitExit(PitLaneSpeedKmh);
-            _car.SetPosition(exitX, exitY);
+            _car.SetPosition(_pitExitX, _pitExitY);
             _car.SetOverrideController(null);
             _soundExitPitRoad?.Play(loop: false);
             ListenerXOverride = null;

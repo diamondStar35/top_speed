@@ -21,6 +21,8 @@ namespace TopSpeed.Protocol
             WriteRoomOverrides(writer, definition.RoomOverrides);
             WriteStringList(writer, definition.SoundSourceIds ?? Array.Empty<string>());
             WriteMetadata(writer, definition.Metadata ?? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase));
+            writer.Write(definition.IsPitEntry);
+            writer.Write(definition.IsPitExit);
         }
 
         private static TopSpeed.Data.TrackDefinition ReadDefinition(BinaryReader reader)
@@ -38,6 +40,8 @@ namespace TopSpeed.Protocol
             var roomOverrides = ReadRoomOverrides(reader);
             var soundSourceIds = ReadStringList(reader);
             var metadata = ReadMetadata(reader);
+            var isPitEntry = reader.ReadBoolean();
+            var isPitExit = reader.ReadBoolean();
             return new TopSpeed.Data.TrackDefinition(
                 type,
                 surface,
@@ -51,7 +55,9 @@ namespace TopSpeed.Protocol
                 roomId,
                 roomOverrides,
                 soundSourceIds,
-                metadata);
+                metadata,
+                isPitEntry,
+                isPitExit);
         }
     }
 }

@@ -72,15 +72,22 @@ namespace TopSpeed.Tracks
             };
         }
 
-        public bool TryGetPitPointDistance(Data.SegmentPitPoint pitPoint, out float distanceInLap)
+        public bool TryGetPitPointDistance(Data.SegmentPitPoint pitPoint, bool atSegmentEnd, out float distanceInLap)
         {
             if (_lapDistance == 0)
                 Initialize();
             for (var i = 0; i < _segmentCount; i++)
             {
-                if (_definition[i].PitPoint == pitPoint)
+                var matches = pitPoint == Data.SegmentPitPoint.PitEntry
+                    ? _definition[i].IsPitEntry
+                    : _definition[i].IsPitExit;
+                if (matches)
                 {
+                    // Pit entry begins at the start of its segment; pit exit rejoins the
+                    // track at the end of its segment (start distance + segment length).
                     distanceInLap = _segmentStartDistances[i];
+                    if (atSegmentEnd)
+                        distanceInLap += _definition[i].Length;
                     return true;
                 }
             }

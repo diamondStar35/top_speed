@@ -86,7 +86,8 @@ namespace TopSpeed.Drive.Multiplayer
                 () => _currentState = Protocol.PlayerState.Racing,
                 SpeakText,
                 s => QueueSound(s),
-                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d));
+                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d),
+                road => trackAudio.AnnounceUpcomingCurve(road));
 
             return new SubsystemSet(
                 trackAudio,

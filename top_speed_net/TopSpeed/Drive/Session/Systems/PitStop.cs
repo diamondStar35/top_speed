@@ -50,6 +50,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly Action<string> _speakText;
         private readonly Action<AudioSource?> _queueSound;
         private readonly Action<AudioSource?, float> _queueSoundDelayed;
+        private readonly Action<Track.Road>? _announceUpcomingCurve;
         private readonly PitLaneController _pitController;
 
         private PitPhase _pitPhase;
@@ -86,6 +87,7 @@ namespace TopSpeed.Drive.Session.Systems
         private float _pitExitX;
         private float _pitExitY;
         private bool _offTrackReached;
+        private bool _exitCurveAnnounced;
         private float _listenerCurrentX;
 
         public PitPhase Phase => _pitPhase;
@@ -112,7 +114,8 @@ namespace TopSpeed.Drive.Session.Systems
             Action setRacing,
             Action<string> speakText,
             Action<AudioSource?> queueSound,
-            Action<AudioSource?, float> queueSoundDelayed)
+            Action<AudioSource?, float> queueSoundDelayed,
+            Action<Track.Road>? announceUpcomingCurve = null)
             : base(name, order)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
@@ -130,6 +133,7 @@ namespace TopSpeed.Drive.Session.Systems
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
             _queueSound = queueSound ?? throw new ArgumentNullException(nameof(queueSound));
             _queueSoundDelayed = queueSoundDelayed ?? throw new ArgumentNullException(nameof(queueSoundDelayed));
+            _announceUpcomingCurve = announceUpcomingCurve;
             _pitController = new PitLaneController(car.GetGearForSpeedKmh);
 
             _pitAvailable = track.HasPitArea;
@@ -480,6 +484,7 @@ namespace TopSpeed.Drive.Session.Systems
             _pitController.BrakeMode = false;
             _pitController.SteerTargetX = null;
             _listenerCurrentX = _offTrackTargetX;
+            _exitCurveAnnounced = false;
 
             _pitExitY = ComputeExitY();
             var exitRoad = _track.RoadAtPosition(_pitExitY);
@@ -521,6 +526,14 @@ namespace TopSpeed.Drive.Session.Systems
                 // Move phase: release brakes and let physics steer naturally to road center.
                 // No SetPosition — car drives freely so there's no velocity snap.
                 // Listener follows at half speed to keep pan within ~half the stereo field.
+                if (!_exitCurveAnnounced)
+                {
+                    // Coming off pit road: call out the segment we rejoin on if it's a curve.
+                    // The normal look-ahead can't announce it (the car starts inside that segment),
+                    // so we do it here as the car pulls out.
+                    _exitCurveAnnounced = true;
+                    _announceUpcomingCurve?.Invoke(_track.RoadComputer(_pitExitY));
+                }
                 _pitController.BrakeMode = false;
                 _pitController.SteerTargetX = _pitExitX;
                 if (_timer - ExitStartMoveSeconds < ExitPanSeconds)

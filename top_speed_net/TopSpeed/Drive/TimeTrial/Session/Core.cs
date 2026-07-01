@@ -233,7 +233,8 @@ namespace TopSpeed.Drive.TimeTrial
                 () => { },
                 SpeakText,
                 s => QueueSound(s),
-                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d));
+                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d),
+                road => _trackAudio.AnnounceUpcomingCurve(road));
             _progress = new ProgressSubsystem(
                 "progress",
                 120,

@@ -304,7 +304,8 @@ namespace TopSpeed.Drive.Single
                 () => { },
                 SpeakText,
                 s => QueueSound(s),
-                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d));
+                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d),
+                road => _trackAudio.AnnounceUpcomingCurve(road));
 
             _session = CreateSession();
         }

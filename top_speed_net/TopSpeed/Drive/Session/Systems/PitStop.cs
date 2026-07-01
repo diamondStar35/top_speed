@@ -50,6 +50,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly Action<string> _speakText;
         private readonly Action<AudioSource?> _queueSound;
         private readonly Action<AudioSource?, float> _queueSoundDelayed;
+        private readonly Action<Track.Road>? _announceUpcomingCurve;
         private readonly PitLaneController _pitController;
 
         private PitPhase _pitPhase;
@@ -64,6 +65,7 @@ namespace TopSpeed.Drive.Session.Systems
         private bool _prevInitialized;
         private float _pitEntryDist;
         private float _pitExitDist;
+        private float _pitExitStartDist;
         private readonly bool _pitAvailable;
         private float _pitEntryX;
         private float _pitEntryY;
@@ -85,6 +87,7 @@ namespace TopSpeed.Drive.Session.Systems
         private float _pitExitX;
         private float _pitExitY;
         private bool _offTrackReached;
+        private bool _exitCurveAnnounced;
         private float _listenerCurrentX;
 
         public PitPhase Phase => _pitPhase;
@@ -111,7 +114,8 @@ namespace TopSpeed.Drive.Session.Systems
             Action setRacing,
             Action<string> speakText,
             Action<AudioSource?> queueSound,
-            Action<AudioSource?, float> queueSoundDelayed)
+            Action<AudioSource?, float> queueSoundDelayed,
+            Action<Track.Road>? announceUpcomingCurve = null)
             : base(name, order)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
@@ -129,6 +133,7 @@ namespace TopSpeed.Drive.Session.Systems
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
             _queueSound = queueSound ?? throw new ArgumentNullException(nameof(queueSound));
             _queueSoundDelayed = queueSoundDelayed ?? throw new ArgumentNullException(nameof(queueSoundDelayed));
+            _announceUpcomingCurve = announceUpcomingCurve;
             _pitController = new PitLaneController(car.GetGearForSpeedKmh);
 
             _pitAvailable = track.HasPitArea;
@@ -136,9 +141,14 @@ namespace TopSpeed.Drive.Session.Systems
             {
                 // Defined pit entry/exit, or fall back to the start/finish line (distance 0) when the
                 // track does not define them. Tracks with no pit area skip this entirely.
-                // Entry is the start of the pit-entry segment; exit is the end of the pit-exit segment.
+                // Entry is the start of the pit-entry segment. Exit normally rejoins at the end of the
+                // pit-exit segment, but when the pit-exit segment lies earlier in the lap than the
+                // pit-entry segment it rejoins at that segment's start (see ComputeExitY), so we keep
+                // both the start and end distances of the pit-exit segment.
                 if (!track.TryGetPitPointDistance(SegmentPitPoint.PitEntry, atSegmentEnd: false, out _pitEntryDist))
                     _pitEntryDist = 0f;
+                if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, atSegmentEnd: false, out _pitExitStartDist))
+                    _pitExitStartDist = _pitEntryDist;
                 if (!track.TryGetPitPointDistance(SegmentPitPoint.PitExit, atSegmentEnd: true, out _pitExitDist))
                     _pitExitDist = _pitEntryDist;
             }
@@ -474,24 +484,30 @@ namespace TopSpeed.Drive.Session.Systems
             _pitController.BrakeMode = false;
             _pitController.SteerTargetX = null;
             _listenerCurrentX = _offTrackTargetX;
+            _exitCurveAnnounced = false;
 
             _pitExitY = ComputeExitY();
             var exitRoad = _track.RoadAtPosition(_pitExitY);
             _pitExitX = (exitRoad.Left + exitRoad.Right) * 0.5f;
         }
 
-        // Absolute lap position where the car rejoins the track at the end of the pit-exit segment.
-        // When the pit exit lies earlier in the lap than the pit entry, rejoining there means the car
-        // has completed a lap during the stop, so advance one lap. The position-based lap counter then
-        // picks up the increment and the laps-to-go announcement fires on its own.
+        // Absolute lap position where the car rejoins the track.
+        //
+        // Normally (pit-exit segment at or after the pit-entry segment in the lap, including both
+        // markers on the same segment) the car rejoins at the *end* of the pit-exit segment on the
+        // same lap. When the pit-exit segment lies *earlier* in the lap than the pit-entry segment,
+        // the car has driven a full lap through the pit, so it rejoins at the *start* of the pit-exit
+        // segment on the next lap. Advancing a lap lets the position-based lap counter pick up the
+        // increment, and the laps-to-go announcement fires on its own.
         private float ComputeExitY()
         {
             var lapDist = _track.Length;
             if (lapDist <= 0f)
                 return _pitEntryY;
             var lapStart = (float)Math.Floor(_pitEntryY / lapDist) * lapDist;
-            var exitY = lapStart + _pitExitDist;
-            if (_pitExitDist < _pitEntryDist)
+            var exitEarlier = _pitExitStartDist < _pitEntryDist;
+            var exitY = lapStart + (exitEarlier ? _pitExitStartDist : _pitExitDist);
+            if (exitEarlier)
                 exitY += lapDist;
             return exitY;
         }
@@ -510,6 +526,14 @@ namespace TopSpeed.Drive.Session.Systems
                 // Move phase: release brakes and let physics steer naturally to road center.
                 // No SetPosition — car drives freely so there's no velocity snap.
                 // Listener follows at half speed to keep pan within ~half the stereo field.
+                if (!_exitCurveAnnounced)
+                {
+                    // Coming off pit road: call out the segment we rejoin on if it's a curve.
+                    // The normal look-ahead can't announce it (the car starts inside that segment),
+                    // so we do it here as the car pulls out.
+                    _exitCurveAnnounced = true;
+                    _announceUpcomingCurve?.Invoke(_track.RoadComputer(_pitExitY));
+                }
                 _pitController.BrakeMode = false;
                 _pitController.SteerTargetX = _pitExitX;
                 if (_timer - ExitStartMoveSeconds < ExitPanSeconds)
@@ -544,6 +568,9 @@ namespace TopSpeed.Drive.Session.Systems
         {
             _car.PrepareEngineForPitExit(PitLaneSpeedKmh);
             _car.SetPosition(_pitExitX, _pitExitY);
+            // The teleport can move the segment index backwards (lap-gaining exit); re-anchor the
+            // curve-announcement state so the next curve is still called out.
+            _track.ResyncCurveAnnouncement(_pitExitY);
             _car.SetOverrideController(null);
             _soundExitPitRoad?.Play(loop: false);
             ListenerXOverride = null;

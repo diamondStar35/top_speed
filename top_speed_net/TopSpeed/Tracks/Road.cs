@@ -137,6 +137,20 @@ namespace TopSpeed.Tracks
             return false;
         }
 
+        // Re-anchor the speed-dependent curve-announcement state to a new position after the car is
+        // teleported (e.g. exiting the pit lane). NextRoad only advances _lastCalled when it announces,
+        // so a jump that moves the segment index backwards (a lap-gaining pit exit) leaves _lastCalled
+        // ahead of the car and suppresses announcements for most of a lap. Setting it to the segment
+        // the car now occupies makes the next segment ahead announce normally.
+        public void ResyncCurveAnnouncement(float position)
+        {
+            if (_lapDistance == 0)
+                Initialize();
+            var index = RoadIndexAt(position);
+            if (index >= 0)
+                _lastCalled = index;
+        }
+
         private int RoadIndexAt(float position)
         {
             if (_lapDistance == 0)

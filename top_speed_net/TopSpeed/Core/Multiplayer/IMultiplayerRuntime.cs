@@ -44,6 +44,8 @@ namespace TopSpeed.Core.Multiplayer
         void HandleRoomRaceStateChanged(PacketRoomRaceStateChanged roomRaceStateChanged);
         void HandleTrackPackageUploadResult(PacketTrackPackageUploadResult result);
         void HandleTrackPackageCatalog(PacketTrackPackageCatalog catalog);
+        void HandleVehiclePackageCatalog(PacketVehiclePackageCatalog catalog);
+        string? LocalSelectedCustomVehicleHash { get; }
         void HandleOnlinePlayers(PacketOnlinePlayers onlinePlayers);
         void HandleProtocolMessage(PacketProtocolMessage message);
         void PlayConnectedSound();

@@ -32,7 +32,8 @@ namespace TopSpeed.Drive.Multiplayer
             IFileDialogs fileDialogs,
             NetworkSession network,
             uint raceInstanceId,
-            Func<byte, string> resolvePlayerName)
+            Func<byte, string> resolvePlayerName,
+            Func<byte, string?>? resolveRemoteVehicleFile = null)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
             _speech = speech ?? throw new ArgumentNullException(nameof(speech));
@@ -44,6 +45,7 @@ namespace TopSpeed.Drive.Multiplayer
             _raceAudio = new RaceAudioFactory(_audio);
             _raceInstanceId = raceInstanceId;
             _resolvePlayerName = resolvePlayerName ?? throw new ArgumentNullException(nameof(resolvePlayerName));
+            _resolveRemoteVehicleFile = resolveRemoteVehicleFile;
             _finishLockController = new FinishLockInputController(input);
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();

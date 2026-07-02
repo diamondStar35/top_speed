@@ -22,7 +22,11 @@ namespace TopSpeed.Menu
                             LocalizationService.Mark("Default call sign: {0}"),
                             _settings.DefaultCallSign),
                     MenuAction.None,
-                    onActivate: _server.BeginDefaultCallSignEntry)
+                    onActivate: _server.BeginDefaultCallSignEntry),
+                new CheckBox(LocalizationService.Mark("Prompt to keep downloaded vehicles"),
+                    () => _settings.KeepDownloadedVehiclesPrompt,
+                    value => _settingsActions.UpdateSetting(() => _settings.KeepDownloadedVehiclesPrompt = value),
+                    hintProvider: HintToggleProvider(LocalizationService.Mark("When checked, after a multiplayer race you are asked whether to keep custom vehicles you downloaded (they are saved to your Vehicles folder and become available offline). When unchecked, downloaded vehicles are never kept after you close the game.")))
             };
             return BackMenu("options_server", items);
         }

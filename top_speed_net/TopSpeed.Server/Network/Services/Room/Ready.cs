@@ -33,11 +33,29 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
-                var selectedCar = RaceServer.NormalizeNetworkCar(ready.Car);
-                player.Car = selectedCar;
-                RaceServer.ApplyVehicleDimensions(player, selectedCar);
+                CarType selectedCar;
+                var selectedVehicleHash = string.Empty;
+                if (ready.Vehicle != null && ready.Vehicle.IsCustomPackage
+                    && _owner.TryGetVehiclePackage(ready.Vehicle.Hash, out var vehicleRecord))
+                {
+                    selectedCar = CarType.CustomVehicle;
+                    selectedVehicleHash = vehicleRecord.Ref.Hash;
+                    player.Car = selectedCar;
+                    player.SelectedVehicleHash = selectedVehicleHash;
+                    RaceServer.ApplyCustomVehicleDimensions(player, vehicleRecord);
+                    _owner.DistributeVehiclePackageToRoom(room, vehicleRecord);
+                }
+                else
+                {
+                    selectedCar = RaceServer.NormalizeNetworkCar(ready.Car);
+                    player.Car = selectedCar;
+                    player.SelectedVehicleHash = string.Empty;
+                    RaceServer.ApplyVehicleDimensions(player, selectedCar);
+                }
+
+                _owner.BroadcastPlayerVehicle(room, player.PlayerNumber, selectedVehicleHash);
                 room.PrepareSkips.Remove(player.Id);
-                room.PendingLoadouts[player.Id] = new PlayerLoadout(selectedCar, ready.AutomaticTransmission);
+                room.PendingLoadouts[player.Id] = new PlayerLoadout(selectedCar, ready.AutomaticTransmission, selectedVehicleHash);
                 _owner._logger.Debug(LocalizationService.Format(
                     LocalizationService.Mark("Player ready: room={0}, player={1}, car={2}, automatic={3}, ready={4}/{5}."),
                     room.Id,

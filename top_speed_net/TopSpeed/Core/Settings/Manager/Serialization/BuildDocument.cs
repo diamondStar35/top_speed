@@ -78,7 +78,8 @@ namespace TopSpeed.Core.Settings
                     Units = (int)settings.Units,
                     RandomCustomTracks = settings.RandomCustomTracks,
                     RandomCustomVehicles = settings.RandomCustomVehicles,
-                    SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles
+                    SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles,
+                    KeepDownloadedVehiclesPrompt = settings.KeepDownloadedVehiclesPrompt
                 },
                 Ui = new SettingsUiDocument
                 {

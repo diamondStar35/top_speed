@@ -21,6 +21,10 @@ namespace TopSpeed.Core.Multiplayer
             _state.RoomDrafts.IsRoomBrowserOpenPending = false;
             _state.RoomDrafts.IsOnlinePlayersOpenPending = false;
             _state.RoomDrafts.PendingLoadoutVehicleIndex = 0;
+            _state.RoomDrafts.PendingLoadoutVehicle = null;
+            _state.RoomDrafts.PendingLoadoutVehicleDisplay = string.Empty;
+            _state.RoomDrafts.LoadoutVehicleCatalog = System.Array.Empty<PacketVehiclePackageCatalogEntry>();
+            _state.RoomDrafts.LoadoutVehicleCatalogOpenPending = false;
             _state.RoomDrafts.RoomOptionsDraftActive = false;
             _state.RoomDrafts.RoomOptionsTrackName = string.Empty;
             _state.RoomDrafts.RoomOptionsTrack = TrackPackageRef.BuiltIn(string.Empty);

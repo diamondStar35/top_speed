@@ -48,6 +48,7 @@ namespace TopSpeed.Input
         public bool RandomCustomTracks { get; set; }
         public bool RandomCustomVehicles { get; set; }
         public bool SingleRaceCustomVehicles { get; set; }
+        public bool KeepDownloadedVehiclesPrompt { get; set; }
         public string LastServerAddress { get; set; } = string.Empty;
         public int DefaultServerPort { get; set; }
         public string DefaultCallSign { get; set; } = string.Empty;
@@ -138,6 +139,7 @@ namespace TopSpeed.Input
             RandomCustomTracks = false;
             RandomCustomVehicles = false;
             SingleRaceCustomVehicles = false;
+            KeepDownloadedVehiclesPrompt = true;
             LastServerAddress = string.Empty;
             DefaultServerPort = 28630;
             DefaultCallSign = string.Empty;

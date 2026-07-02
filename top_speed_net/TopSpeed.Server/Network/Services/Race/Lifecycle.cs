@@ -117,6 +117,14 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
+                if (!_owner.EnsureRoomVehiclePackagesReady(room, activeHumanParticipantIds))
+                {
+                    _owner._logger.Debug(LocalizationService.Format(
+                        LocalizationService.Mark("Waiting for custom vehicle downloads to finish: room={0}."),
+                        room.Id));
+                    return;
+                }
+
                 _owner._notify.ProtocolToRoom(room, RoomTexts.AllPlayersReadyStartingGame);
                 _owner._logger.Info(LocalizationService.Format(
                     LocalizationService.Mark("All loadouts ready: room={0} \"{1}\", starting race."),

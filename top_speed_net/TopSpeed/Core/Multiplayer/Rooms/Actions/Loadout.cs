@@ -24,6 +24,16 @@ namespace TopSpeed.Core.Multiplayer
                 return;
             }
 
+            var pendingVehicle = _state.RoomDrafts.PendingLoadoutVehicle;
+            if (pendingVehicle != null && pendingVehicle.IsCustomPackage)
+            {
+                if (!TrySend(session.SendRoomPlayerReady(CarType.CustomVehicle, automaticTransmission, pendingVehicle), LocalizationService.Mark("ready state")))
+                    return;
+                _speech.Speak(LocalizationService.Mark("Ready. Waiting for other players."));
+                _menu.ShowRoot(MultiplayerMenuKeys.RoomControls);
+                return;
+            }
+
             var vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, _state.RoomDrafts.PendingLoadoutVehicleIndex));
             var parameters = VehicleCatalog.Vehicles[vehicleIndex];
             if (!TransmissionSelect.TryResolveRequested(
@@ -38,7 +48,7 @@ namespace TopSpeed.Core.Multiplayer
 
             var selectedCar = (CarType)vehicleIndex;
             _setLocalMultiplayerLoadout(vehicleIndex, automaticTransmission);
-            if (!TrySend(session.SendRoomPlayerReady(selectedCar, automaticTransmission), LocalizationService.Mark("ready state")))
+            if (!TrySend(session.SendRoomPlayerReady(selectedCar, automaticTransmission, VehiclePackageRef.None()), LocalizationService.Mark("ready state")))
                 return;
             _speech.Speak(LocalizationService.Mark("Ready. Waiting for other players."));
             _menu.ShowRoot(MultiplayerMenuKeys.RoomControls);
@@ -48,6 +58,7 @@ namespace TopSpeed.Core.Multiplayer
         {
             vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, vehicleIndex));
             _state.RoomDrafts.PendingLoadoutVehicleIndex = vehicleIndex;
+            _state.RoomDrafts.PendingLoadoutVehicle = null;
             if (TryResolveSingleLoadoutTransmission(vehicleIndex, out var automaticTransmission))
             {
                 SubmitLoadoutReady(automaticTransmission);

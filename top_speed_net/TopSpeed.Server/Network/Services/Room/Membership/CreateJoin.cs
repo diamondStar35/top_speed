@@ -113,6 +113,7 @@ namespace TopSpeed.Server.Network
                 player.State = PlayerState.NotReady;
                 room.PrepareSkips.Remove(player.Id);
                 room.TrackReadyPlayers.Remove(player.Id);
+                room.VehiclePackageReadyByPlayer.Remove(player.Id);
                 CompactNumbers(room);
 
                 _owner.SendStream(player, PacketSerializer.WritePlayerNumber(player.Id, player.PlayerNumber), PacketStream.Control);

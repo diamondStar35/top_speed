@@ -64,6 +64,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly TopSpeed.Drive.Panels.VehiclePanelManager _panelManager;
         private readonly uint _raceInstanceId;
         private readonly Func<byte, string> _resolvePlayerName;
+        private readonly Func<byte, string?>? _resolveRemoteVehicleFile;
         private readonly int _lapLimit;
         private readonly ParticipantState _participants;
         private readonly SnapshotState _snapshots;

@@ -84,9 +84,9 @@ namespace TopSpeed.Network
             return _sender.TrySend(ClientPacketSerializer.WriteRoomRemoveBot(), PacketStream.Room);
         }
 
-        public bool SendRoomPlayerReady(CarType car, bool automaticTransmission)
+        public bool SendRoomPlayerReady(CarType car, bool automaticTransmission, VehiclePackageRef vehicle)
         {
-            return _sender.TrySend(ClientPacketSerializer.WriteRoomPlayerReady(car, automaticTransmission), PacketStream.Room);
+            return _sender.TrySend(ClientPacketSerializer.WriteRoomPlayerReady(car, automaticTransmission, vehicle ?? VehiclePackageRef.None()), PacketStream.Room);
         }
 
         public bool SendRoomPlayerWithdraw()
@@ -125,6 +125,19 @@ namespace TopSpeed.Network
         public bool SendTrackPackageCatalogRequest()
         {
             return _sender.TrySend(ClientPacketSerializer.WriteTrackPackageCatalogRequest(), PacketStream.Room);
+        }
+
+        public bool SendVehiclePackageCatalogRequest()
+        {
+            return _sender.TrySend(ClientPacketSerializer.WriteVehiclePackageCatalogRequest(), PacketStream.Room);
+        }
+
+        public bool SendVehiclePackageReady(string hash)
+        {
+            return _sender.TrySend(ClientPacketSerializer.WriteVehiclePackageReady(new PacketVehiclePackageReady
+            {
+                Hash = VehiclePackageRef.NormalizeHash(hash)
+            }), PacketStream.Room);
         }
     }
 }

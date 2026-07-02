@@ -129,7 +129,14 @@ namespace TopSpeed.Protocol
         PlayerCommunicatorMediaBegin = 74,
         PlayerCommunicatorMediaChunk = 75,
         PlayerCommunicatorMediaEnd = 76,
-        PlayerCommunicatorMediaState = 77
+        PlayerCommunicatorMediaState = 77,
+        VehiclePackageTransferBegin = 78,
+        VehiclePackageTransferChunk = 79,
+        VehiclePackageTransferEnd = 80,
+        VehiclePackageReady = 81,
+        VehiclePackageCatalogRequest = 82,
+        VehiclePackageCatalog = 83,
+        RoomPlayerVehicle = 84
     }
 
     public enum ProtocolMessageCode : byte

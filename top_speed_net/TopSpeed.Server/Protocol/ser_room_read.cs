@@ -114,6 +114,17 @@ namespace TopSpeed.Server.Protocol
             reader.ReadByte();
             packet.Car = (CarType)reader.ReadByte();
             packet.AutomaticTransmission = reader.ReadBool();
+            if (data.Length > 2 + 1 + 1)
+            {
+                try
+                {
+                    packet.Vehicle = ReadCatalogVehicleRef(ref reader);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
             return PacketValidation.IsValidRoomPlayerReady(packet);
         }
 

@@ -44,7 +44,8 @@ namespace TopSpeed.Game
             IVibrationDevice? vibrationDevice,
             NetworkMultiplayerSession session,
             uint raceInstanceId,
-            Func<byte, string> resolvePlayerName);
+            Func<byte, string> resolvePlayerName,
+            Func<byte, string?> resolveRemoteVehicleFile);
     }
 
     internal sealed class DriveSessionFactory : IDriveSessionFactory
@@ -125,7 +126,8 @@ namespace TopSpeed.Game
             IVibrationDevice? vibrationDevice,
             NetworkMultiplayerSession session,
             uint raceInstanceId,
-            Func<byte, string> resolvePlayerName)
+            Func<byte, string> resolvePlayerName,
+            Func<byte, string?> resolveRemoteVehicleFile)
         {
             return new DriveMultiplayerSession(
                 _audio,
@@ -142,7 +144,8 @@ namespace TopSpeed.Game
                 _fileDialogs,
                 session,
                 raceInstanceId,
-                resolvePlayerName);
+                resolvePlayerName,
+                resolveRemoteVehicleFile);
         }
     }
 }

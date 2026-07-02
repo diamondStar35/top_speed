@@ -38,6 +38,22 @@ namespace TopSpeed.Server.Network
                     _owner._race.TryStartAfterLoadout(room);
             }
 
+            public void HandleVehiclePackageReady(PlayerConnection player, PacketVehiclePackageReady packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+
+                var hash = VehiclePackageRef.NormalizeHash(packet.Hash);
+                if (string.IsNullOrWhiteSpace(hash))
+                    return;
+
+                _owner.MarkPlayerVehiclePackageReady(room, player.Id, hash);
+                if (room.PreparingRace)
+                    _owner._race.TryStartAfterLoadout(room);
+            }
+
             private bool IsCustomSelectionEnabled(GameRoom room)
             {
                 return room != null

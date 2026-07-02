@@ -25,7 +25,8 @@ namespace TopSpeed.Vehicles
             int playerNumber,
             Func<float> currentTime,
             Func<bool> started,
-            Action<string>? debugSpeak = null)
+            Action<string>? debugSpeak = null,
+            string? customVehicleFile = null)
         {
             if (raceAudio == null)
                 throw new ArgumentNullException(nameof(raceAudio));
@@ -73,7 +74,23 @@ namespace TopSpeed.Vehicles
             _radioPlaying = false;
             _radioMediaId = 0;
 
-            var definition = VehicleLoader.LoadOfficial(vehicleIndex, track.Weather);
+            VehicleDefinition definition;
+            if (!string.IsNullOrWhiteSpace(customVehicleFile))
+            {
+                try
+                {
+                    definition = VehicleLoader.LoadCustom(customVehicleFile!, track.Weather);
+                }
+                catch
+                {
+                    // Fall back to a built-in vehicle if the downloaded package fails to load.
+                    definition = VehicleLoader.LoadOfficial(vehicleIndex, track.Weather);
+                }
+            }
+            else
+            {
+                definition = VehicleLoader.LoadOfficial(vehicleIndex, track.Weather);
+            }
             _surfaceTractionFactor = definition.SurfaceTractionFactor;
             _topSpeed = definition.TopSpeed;
             var torqueCurve = PowertrainProfileBuilder.Build(definition);

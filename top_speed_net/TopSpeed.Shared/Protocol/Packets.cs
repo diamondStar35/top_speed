@@ -244,6 +244,10 @@ namespace TopSpeed.Protocol
     {
         public CarType Car;
         public bool AutomaticTransmission;
+
+        // Custom vehicle package the player selected from the server catalog.
+        // Kind == None for built-in vehicles (Car carries the selection instead).
+        public VehiclePackageRef Vehicle = new VehiclePackageRef();
     }
 
     public sealed class PacketRoomRaceControl

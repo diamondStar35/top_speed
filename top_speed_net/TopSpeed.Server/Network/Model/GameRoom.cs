@@ -55,6 +55,9 @@ namespace TopSpeed.Server.Network
         public byte Laps { get; set; }
         public uint GameRulesFlags { get; set; }
         public HashSet<uint> TrackReadyPlayers { get; } = new HashSet<uint>();
+
+        // Per-player set of custom vehicle package hashes that player has confirmed downloaded.
+        public Dictionary<uint, HashSet<string>> VehiclePackageReadyByPlayer { get; } = new Dictionary<uint, HashSet<string>>();
         public HashSet<uint> ActiveRaceParticipantIds { get; } = new HashSet<uint>();
         public List<RoomEventJournalEntry> EventJournal { get; } = new List<RoomEventJournalEntry>();
         public List<byte> RaceResults { get; } = new List<byte>();

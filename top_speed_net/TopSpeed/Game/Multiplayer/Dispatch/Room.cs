@@ -15,6 +15,11 @@ namespace TopSpeed.Game
                 _reg.Add("room", Command.LoadCustomTrack, HandleLoadCustomTrack);
                 _reg.Add("room", Command.TrackPackageUploadResult, HandleTrackPackageUploadResult);
                 _reg.Add("room", Command.TrackPackageCatalog, HandleTrackPackageCatalog);
+                _reg.Add("room", Command.VehiclePackageCatalog, HandleVehiclePackageCatalog);
+                _reg.Add("room", Command.VehiclePackageTransferBegin, HandleVehiclePackageTransferBegin);
+                _reg.Add("room", Command.VehiclePackageTransferChunk, HandleVehiclePackageTransferChunk);
+                _reg.Add("room", Command.VehiclePackageTransferEnd, HandleVehiclePackageTransferEnd);
+                _reg.Add("room", Command.RoomPlayerVehicle, HandleRoomPlayerVehicle);
                 _reg.Add("room", Command.TrackPackageTransferBegin, HandleTrackPackageTransferBegin);
                 _reg.Add("room", Command.TrackPackageTransferChunk, HandleTrackPackageTransferChunk);
                 _reg.Add("room", Command.TrackPackageTransferEnd, HandleTrackPackageTransferEnd);
@@ -67,6 +72,41 @@ namespace TopSpeed.Game
             {
                 if (ClientPacketSerializer.TryReadTrackPackageCatalog(packet.Payload, out var catalog))
                     _owner._multiplayerCoordinator.HandleTrackPackageCatalog(catalog);
+                return true;
+            }
+
+            private bool HandleVehiclePackageCatalog(IncomingPacket packet)
+            {
+                if (ClientPacketSerializer.TryReadVehiclePackageCatalog(packet.Payload, out var catalog))
+                    _owner._multiplayerCoordinator.HandleVehiclePackageCatalog(catalog);
+                return true;
+            }
+
+            private bool HandleVehiclePackageTransferBegin(IncomingPacket packet)
+            {
+                if (ClientPacketSerializer.TryReadVehiclePackageTransferBegin(packet.Payload, out var begin))
+                    _owner.HandleVehiclePackageTransferBegin(begin);
+                return true;
+            }
+
+            private bool HandleVehiclePackageTransferChunk(IncomingPacket packet)
+            {
+                if (ClientPacketSerializer.TryReadVehiclePackageTransferChunk(packet.Payload, out var chunk))
+                    _owner.HandleVehiclePackageTransferChunk(chunk);
+                return true;
+            }
+
+            private bool HandleVehiclePackageTransferEnd(IncomingPacket packet)
+            {
+                if (ClientPacketSerializer.TryReadVehiclePackageTransferEnd(packet.Payload, out var end))
+                    _owner.HandleVehiclePackageTransferEnd(end);
+                return true;
+            }
+
+            private bool HandleRoomPlayerVehicle(IncomingPacket packet)
+            {
+                if (ClientPacketSerializer.TryReadRoomPlayerVehicle(packet.Payload, out var vehicle))
+                    _owner.HandleRoomPlayerVehicle(vehicle);
                 return true;
             }
 
@@ -214,7 +254,10 @@ namespace TopSpeed.Game
                 if (ClientPacketSerializer.TryReadRoomRaceCompleted(packet.Payload, out var completed))
                 {
                     if (_owner._multiplayerRaceRuntime.AcceptRaceEvent(completed.RoomId, completed.RaceInstanceId, completed.EventSequence, allowBindRaceInstance: true))
+                    {
                         _owner._multiplayerRaceRuntime.Mode.HandleServerRaceCompleted(completed);
+                        _owner.PromptKeepDownloadedVehicles();
+                    }
                     else if (_owner._multiplayerRaceRuntime.ShouldRequestResync(completed.RoomId, completed.RaceInstanceId, completed.EventSequence))
                         _owner.RequestMultiplayerRoomResync();
                 }

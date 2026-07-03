@@ -66,7 +66,9 @@ public sealed class VehiclePackageBehaviorTests
                 new PacketVehiclePackageCatalogEntry
                 {
                     Vehicle = VehiclePackageRef.Custom("Rocket", "2", VehiclePackageRef.NormalizeHash("ABCDEF")),
-                    DisplayName = "Rocket (2)"
+                    DisplayName = "Rocket (2)",
+                    SupportsAutomatic = false,
+                    SupportsManual = true
                 }
             }
         };
@@ -78,6 +80,8 @@ public sealed class VehiclePackageBehaviorTests
         Assert.Equal("2", restored.Vehicles[0].Vehicle.Version);
         Assert.Equal("abcdef", restored.Vehicles[0].Vehicle.Hash);
         Assert.Equal("Rocket (2)", restored.Vehicles[0].DisplayName);
+        Assert.False(restored.Vehicles[0].SupportsAutomatic);
+        Assert.True(restored.Vehicles[0].SupportsManual);
     }
 
     [Fact]

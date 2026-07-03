@@ -21,6 +21,7 @@ namespace TopSpeed.Vehicles
         private readonly Action<string>? _debugSpeak;
         private readonly int _playerNumber;
         private readonly int _vehicleIndex;
+        private readonly string? _customVehicleName;
         private readonly List<BotEvent> _events;
         private readonly RemoteVehicleAudio _raceAudio;
 

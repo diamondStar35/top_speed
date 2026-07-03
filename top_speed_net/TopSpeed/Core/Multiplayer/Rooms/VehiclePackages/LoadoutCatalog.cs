@@ -33,7 +33,9 @@ namespace TopSpeed.Core.Multiplayer
                 items.Add(new PacketVehiclePackageCatalogEntry
                 {
                     Vehicle = VehiclePackageRef.Custom(item.Vehicle.VehicleId, item.Vehicle.Version, item.Vehicle.Hash),
-                    DisplayName = item.DisplayName
+                    DisplayName = item.DisplayName,
+                    SupportsAutomatic = item.SupportsAutomatic,
+                    SupportsManual = item.SupportsManual
                 });
             }
 
@@ -91,8 +93,8 @@ namespace TopSpeed.Core.Multiplayer
                     var display = string.IsNullOrWhiteSpace(entry.DisplayName)
                         ? LocalizationService.Mark("Custom vehicle")
                         : entry.DisplayName;
-                    var vehicle = entry.Vehicle;
-                    items.Add(new MenuItem(display, MenuAction.None, onActivate: () => SelectLoadoutCustomVehicle(vehicle, display)));
+                    var selected = entry;
+                    items.Add(new MenuItem(display, MenuAction.None, onActivate: () => SelectLoadoutCustomVehicle(selected, display)));
                 }
             }
 
@@ -100,13 +102,27 @@ namespace TopSpeed.Core.Multiplayer
             _menu.UpdateItems(MultiplayerMenuKeys.LoadoutVehicleCustom, items, preserveSelection);
         }
 
-        private void SelectLoadoutCustomVehicle(VehiclePackageRef vehicle, string display)
+        private void SelectLoadoutCustomVehicle(PacketVehiclePackageCatalogEntry entry, string display)
         {
-            _state.RoomDrafts.PendingLoadoutVehicle = VehiclePackageRef.Clone(vehicle);
+            _state.RoomDrafts.PendingLoadoutVehicle = VehiclePackageRef.Clone(entry.Vehicle);
             _state.RoomDrafts.PendingLoadoutVehicleDisplay = display ?? string.Empty;
+            _state.RoomDrafts.PendingLoadoutVehicleSupportsAutomatic = entry.SupportsAutomatic;
+            _state.RoomDrafts.PendingLoadoutVehicleSupportsManual = entry.SupportsManual;
 
-            // Custom vehicles offer both transmission modes; the vehicle's actual supported
-            // modes are resolved client-side once its package has been downloaded.
+            // Skip the transmission prompt when the vehicle only supports one mode (most custom
+            // vehicles are manual-only). The catalog carries the supported modes so we can decide
+            // this before the package is downloaded. Only ask when both modes are available.
+            if (entry.SupportsAutomatic && !entry.SupportsManual)
+            {
+                SubmitLoadoutReady(true, LocalizationService.Mark("Automatic transmission is required for this vehicle."));
+                return;
+            }
+            if (entry.SupportsManual && !entry.SupportsAutomatic)
+            {
+                SubmitLoadoutReady(false, LocalizationService.Mark("Manual transmission is required for this vehicle."));
+                return;
+            }
+
             _menu.Push(MultiplayerMenuKeys.LoadoutTransmission);
         }
     }

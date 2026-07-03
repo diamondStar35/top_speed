@@ -26,7 +26,8 @@ namespace TopSpeed.Vehicles
             Func<float> currentTime,
             Func<bool> started,
             Action<string>? debugSpeak = null,
-            string? customVehicleFile = null)
+            string? customVehicleFile = null,
+            string? customVehicleName = null)
         {
             if (raceAudio == null)
                 throw new ArgumentNullException(nameof(raceAudio));
@@ -34,6 +35,7 @@ namespace TopSpeed.Vehicles
             _settings = settings;
             _playerNumber = playerNumber;
             _vehicleIndex = vehicleIndex;
+            _customVehicleName = string.IsNullOrWhiteSpace(customVehicleName) ? null : customVehicleName;
             _currentTime = currentTime;
             _started = started;
             _debugSpeak = debugSpeak;

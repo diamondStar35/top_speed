@@ -12,6 +12,8 @@ namespace TopSpeed.Server.Network
         public float WidthM { get; set; }
         public float LengthM { get; set; }
         public float MassKg { get; set; }
+        public bool SupportsAutomatic { get; set; } = true;
+        public bool SupportsManual { get; set; } = true;
         public DateTime LastAccessUtc { get; set; } = DateTime.UtcNow;
         public string SourcePath { get; set; } = string.Empty;
         public DateTime SourceLastWriteUtc { get; set; } = DateTime.MinValue;

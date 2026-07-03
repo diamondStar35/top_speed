@@ -150,7 +150,9 @@ namespace TopSpeed.Game
                 var laps = _binding.PendingLaps > 0 ? _binding.PendingLaps : _owner._settings.NrOfLaps;
                 var vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, _binding.VehicleIndex));
 
-                var localVehicleFile = _owner.ResolveCustomVehicleFileByHash(_owner._multiplayerCoordinator.LocalSelectedCustomVehicleHash);
+                var localVehicleHash = _owner._multiplayerCoordinator.LocalSelectedCustomVehicleHash;
+                var localVehicleFile = _owner.ResolveCustomVehicleFileByHash(localVehicleHash);
+                var localVehicleName = _owner.ResolveCustomVehicleNameByHash(localVehicleHash);
 
                 DisposeMode();
                 _mode = _owner._driveSessionFactory.CreateMultiplayer(
@@ -160,11 +162,13 @@ namespace TopSpeed.Game
                     laps,
                     vehicleIndex,
                     localVehicleFile,
+                    localVehicleName,
                     _owner._input.VibrationDevice,
                     _owner._session,
                     _binding.RaceInstanceId,
                     number => _owner._multiplayerCoordinator.ResolvePlayerName(number),
-                    number => _owner.ResolveRemoteCustomVehicleFile(number));
+                    number => _owner.ResolveRemoteCustomVehicleFile(number),
+                    number => _owner.ResolveRemoteCustomVehicleName(number));
                 _mode.Initialize();
                 _binding.BindStartedRace();
                 _owner._state = AppState.MultiplayerRace;

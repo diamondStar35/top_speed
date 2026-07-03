@@ -46,6 +46,26 @@ namespace TopSpeed.Game
             return string.IsNullOrWhiteSpace(package.TsvPath) ? null : package.TsvPath;
         }
 
+        // Display name for a remote player's custom vehicle, keyed by network player number.
+        private string? ResolveRemoteCustomVehicleName(byte playerNumber)
+        {
+            if (!_multiplayerPlayerVehicleHashes.TryGetValue(playerNumber, out var hash))
+                return null;
+            return ResolveCustomVehicleNameByHash(hash);
+        }
+
+        // The authoritative display name comes from the package manifest / vehicle metadata, not the
+        // .tsv filename (downloaded packages are stored as "vehicle.tsv"; kept ones carry a hash suffix).
+        private string? ResolveCustomVehicleNameByHash(string? hash)
+        {
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash ?? string.Empty);
+            if (string.IsNullOrWhiteSpace(normalizedHash))
+                return null;
+            if (!TryGetCachedVehiclePackage(normalizedHash, out var package))
+                return null;
+            return string.IsNullOrWhiteSpace(package.DisplayName) ? null : package.DisplayName;
+        }
+
         private sealed class IncomingVehiclePackageTransfer
         {
             public string VehicleId = string.Empty;

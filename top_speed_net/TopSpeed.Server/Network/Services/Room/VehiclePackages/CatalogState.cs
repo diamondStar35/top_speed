@@ -17,7 +17,9 @@ namespace TopSpeed.Server.Network
                 .Select(record => new PacketVehiclePackageCatalogEntry
                 {
                     Vehicle = VehiclePackageRef.Custom(record.Ref.VehicleId, record.Ref.Version, record.Ref.Hash),
-                    DisplayName = ResolveVehiclePackageDisplayName(record)
+                    DisplayName = ResolveVehiclePackageDisplayName(record),
+                    SupportsAutomatic = record.SupportsAutomatic,
+                    SupportsManual = record.SupportsManual
                 })
                 .Take(ProtocolConstants.MaxVehiclePackageCatalogEntries)
                 .ToArray();

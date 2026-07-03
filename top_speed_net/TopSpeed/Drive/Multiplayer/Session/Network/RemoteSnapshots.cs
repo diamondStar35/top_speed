@@ -50,6 +50,8 @@ namespace TopSpeed.Drive.Multiplayer
             var raceDistance = GetSpatialTrackLength();
 
             var remote = GetOrCreateRemotePlayer(playerNumber, car, positionX, positionY);
+            if (remote == null)
+                return;
             remote.State = state;
             if (state == PlayerState.Finished && !remote.Finished)
             {
@@ -77,14 +79,38 @@ namespace TopSpeed.Drive.Multiplayer
             TryApplyPendingRemoteMedia(playerNumber, remote);
         }
 
-        private RemotePlayer GetOrCreateRemotePlayer(byte playerNumber, CarType car, float positionX, float positionY)
+        private RemotePlayer? GetOrCreateRemotePlayer(byte playerNumber, CarType car, float positionX, float positionY)
         {
             if (_remotePlayers.TryGetValue(playerNumber, out var existing))
                 return existing;
 
+            string? customVehicleFile = null;
+            string? customVehicleName = null;
+            if (car == CarType.CustomVehicle)
+            {
+                customVehicleFile = _resolveRemoteVehicleFile?.Invoke(playerNumber);
+                if (string.IsNullOrWhiteSpace(customVehicleFile))
+                {
+                    // The vehicle package (identified by the RoomPlayerVehicle broadcast) may not
+                    // have propagated yet. Defer building this player's car so we don't cache a
+                    // default-car placeholder for the whole race; fall back only if it never resolves.
+                    _deferredRemoteVehicleAttempts.TryGetValue(playerNumber, out var attempts);
+                    if (attempts < MaxRemoteVehicleDeferralAttempts)
+                    {
+                        _deferredRemoteVehicleAttempts[playerNumber] = attempts + 1;
+                        return null;
+                    }
+                    customVehicleFile = null;
+                }
+                else
+                {
+                    customVehicleName = _resolveRemoteVehicleName?.Invoke(playerNumber);
+                }
+            }
+
+            _deferredRemoteVehicleAttempts.Remove(playerNumber);
             var vehicleIndex = car == CarType.CustomVehicle ? 0 : (int)car;
-            var customVehicleFile = car == CarType.CustomVehicle ? _resolveRemoteVehicleFile?.Invoke(playerNumber) : null;
-            var bot = new ComputerPlayer(_audio, _raceAudio, _track, _settings, vehicleIndex, playerNumber, () => _session.Context.RuntimeSeconds, () => _started, debugSpeak: null, customVehicleFile: customVehicleFile);
+            var bot = new ComputerPlayer(_audio, _raceAudio, _track, _settings, vehicleIndex, playerNumber, () => _session.Context.RuntimeSeconds, () => _started, debugSpeak: null, customVehicleFile: customVehicleFile, customVehicleName: customVehicleName);
             bot.Initialize(positionX, positionY, GetSpatialTrackLength());
             var remote = new RemotePlayer(bot);
             _remotePlayers[playerNumber] = remote;

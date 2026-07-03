@@ -76,6 +76,7 @@ namespace TopSpeed.Server.Protocol
                 var entry = vehicles[i] ?? new PacketVehiclePackageCatalogEntry();
                 payload += MeasureCatalogVehicleRef(entry.Vehicle);
                 payload += 2 + PacketWriter.MeasureString16(entry.DisplayName ?? string.Empty);
+                payload += 2; // SupportsAutomatic + SupportsManual
             }
 
             var buffer = WritePacketHeader(Command.VehiclePackageCatalog, payload);
@@ -88,6 +89,8 @@ namespace TopSpeed.Server.Protocol
                 var entry = vehicles[i] ?? new PacketVehiclePackageCatalogEntry();
                 WriteCatalogVehicleRef(ref writer, entry.Vehicle);
                 writer.WriteString16(entry.DisplayName ?? string.Empty);
+                writer.WriteBool(entry.SupportsAutomatic);
+                writer.WriteBool(entry.SupportsManual);
             }
 
             return buffer;

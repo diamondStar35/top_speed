@@ -29,5 +29,7 @@ namespace TopSpeed.Core.Multiplayer
         public PacketVehiclePackageCatalogEntry[] LoadoutVehicleCatalog = System.Array.Empty<PacketVehiclePackageCatalogEntry>();
         public VehiclePackageRef? PendingLoadoutVehicle;
         public string PendingLoadoutVehicleDisplay = string.Empty;
+        public bool PendingLoadoutVehicleSupportsAutomatic = true;
+        public bool PendingLoadoutVehicleSupportsManual = true;
     }
 }

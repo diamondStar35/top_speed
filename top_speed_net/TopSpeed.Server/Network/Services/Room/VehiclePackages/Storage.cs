@@ -48,6 +48,8 @@ namespace TopSpeed.Server.Network
                 WidthM = parsed?.WidthM ?? 0f,
                 LengthM = parsed?.LengthM ?? 0f,
                 MassKg = parsed?.MassKg ?? 0f,
+                SupportsAutomatic = VehicleTransmissionSupport.SupportsAutomatic(parsed),
+                SupportsManual = VehicleTransmissionSupport.SupportsManual(parsed),
                 LastAccessUtc = DateTime.UtcNow,
                 SourcePath = sourcePath ?? string.Empty,
                 SourceLastWriteUtc = sourceLastWriteUtc

@@ -23,6 +23,8 @@ namespace TopSpeed.Core.Multiplayer
             _state.RoomDrafts.PendingLoadoutVehicleIndex = 0;
             _state.RoomDrafts.PendingLoadoutVehicle = null;
             _state.RoomDrafts.PendingLoadoutVehicleDisplay = string.Empty;
+            _state.RoomDrafts.PendingLoadoutVehicleSupportsAutomatic = true;
+            _state.RoomDrafts.PendingLoadoutVehicleSupportsManual = true;
             _state.RoomDrafts.LoadoutVehicleCatalog = System.Array.Empty<PacketVehiclePackageCatalogEntry>();
             _state.RoomDrafts.LoadoutVehicleCatalogOpenPending = false;
             _state.RoomDrafts.RoomOptionsDraftActive = false;

@@ -38,6 +38,10 @@ namespace TopSpeed.Protocol
     {
         public VehiclePackageRef Vehicle = new VehiclePackageRef();
         public string DisplayName = string.Empty;
+        // Which transmission modes the vehicle supports, so the client can skip the
+        // automatic/manual prompt for single-mode vehicles before the package is downloaded.
+        public bool SupportsAutomatic = true;
+        public bool SupportsManual = true;
     }
 
     public sealed class PacketVehiclePackageCatalog

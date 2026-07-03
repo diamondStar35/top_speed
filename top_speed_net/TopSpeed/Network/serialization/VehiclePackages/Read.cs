@@ -135,10 +135,14 @@ namespace TopSpeed.Network
                 {
                     var vehicle = ReadCatalogVehicleRef(ref reader);
                     var displayName = reader.ReadString16();
+                    var supportsAutomatic = reader.ReadBool();
+                    var supportsManual = reader.ReadBool();
                     vehicles[i] = new PacketVehiclePackageCatalogEntry
                     {
                         Vehicle = vehicle,
-                        DisplayName = displayName
+                        DisplayName = displayName,
+                        SupportsAutomatic = supportsAutomatic,
+                        SupportsManual = supportsManual
                     };
                 }
 

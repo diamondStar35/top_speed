@@ -137,6 +137,8 @@ namespace TopSpeed.Drive.Multiplayer
         {
             if (playerIndex == LocalPlayerNumber)
             {
+                if (!string.IsNullOrWhiteSpace(_localVehicleName))
+                    return _localVehicleName!;
                 if (_car.UserDefined && !string.IsNullOrWhiteSpace(_car.CustomFile))
                     return TopSpeed.Drive.Session.SessionText.FormatVehicleName(_car.CustomFile);
                 return _car.VehicleName;
@@ -144,7 +146,11 @@ namespace TopSpeed.Drive.Multiplayer
 
             var targetNumber = (byte)playerIndex;
             if (_remotePlayers.TryGetValue(targetNumber, out var remote))
+            {
+                if (!string.IsNullOrWhiteSpace(remote.Player.CustomVehicleName))
+                    return remote.Player.CustomVehicleName!;
                 return VehicleCatalog.Vehicles[remote.Player.VehicleIndex].Name;
+            }
 
             return LocalizationService.Mark("Vehicle");
         }

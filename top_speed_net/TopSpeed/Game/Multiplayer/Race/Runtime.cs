@@ -60,11 +60,14 @@ namespace TopSpeed.Game
             {
                 _binding.ApplyRoomState(roomState);
                 _mode?.SetHostPaused(roomState.RacePaused);
+                _mode?.UpdateRaceInstanceId(_binding.RaceInstanceId);
             }
 
             public bool ApplyRaceState(TopSpeed.Protocol.PacketRoomRaceStateChanged changed)
             {
-                return _binding.ApplyRaceState(changed);
+                var applied = _binding.ApplyRaceState(changed);
+                _mode?.UpdateRaceInstanceId(_binding.RaceInstanceId);
+                return applied;
             }
 
             public bool MatchesRoom(uint roomId)

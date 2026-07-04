@@ -256,7 +256,8 @@ namespace TopSpeed.Game
                     if (_owner._multiplayerRaceRuntime.AcceptRaceEvent(completed.RoomId, completed.RaceInstanceId, completed.EventSequence, allowBindRaceInstance: true))
                     {
                         _owner._multiplayerRaceRuntime.Mode.HandleServerRaceCompleted(completed);
-                        _owner.PromptKeepDownloadedVehicles();
+                        // Defer the keep prompt until the race exits back to the menu (see field docs).
+                        _owner._pendingVehicleKeepPromptAfterRace = true;
                     }
                     else if (_owner._multiplayerRaceRuntime.ShouldRequestResync(completed.RoomId, completed.RaceInstanceId, completed.EventSequence))
                         _owner.RequestMultiplayerRoomResync();

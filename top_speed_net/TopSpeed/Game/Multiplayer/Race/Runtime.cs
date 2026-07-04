@@ -200,6 +200,12 @@ namespace TopSpeed.Game
                     if (resultSummary != null)
                         _owner.ShowRaceResultDialog(resultSummary);
                 }
+
+                if (_owner._pendingVehicleKeepPromptAfterRace)
+                {
+                    _owner._pendingVehicleKeepPromptAfterRace = false;
+                    _owner.PromptKeepDownloadedVehicles();
+                }
             }
 
             public void Disconnect()

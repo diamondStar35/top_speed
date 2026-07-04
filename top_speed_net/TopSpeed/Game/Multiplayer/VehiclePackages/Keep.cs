@@ -11,6 +11,11 @@ namespace TopSpeed.Game
     {
         private Queue<string>? _pendingVehicleKeepPrompts;
 
+        // Set when the server reports the race completed; the actual keep prompt is shown once the
+        // race has exited back to the menu (showing it mid-finish loses it to the result dialog and
+        // the menu transition, since the race loop does not service question dialogs).
+        private bool _pendingVehicleKeepPromptAfterRace;
+
         // Called when a race finishes: offer to keep each vehicle downloaded this race (deduped).
         private void PromptKeepDownloadedVehicles()
         {

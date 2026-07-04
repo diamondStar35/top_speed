@@ -255,6 +255,17 @@ namespace TopSpeed.Server.Network
                 }
 
                 InitializeParticipants(room);
+
+                // Re-broadcast each participant's selected custom vehicle keyed by their FINAL
+                // (post-shuffle) player number. The ready-time broadcast used pre-shuffle numbers, so
+                // without this clients map remote players to the wrong vehicle (each opponent shows up
+                // as whoever held that number before the shuffle). Empty hash clears built-in players.
+                foreach (var id in room.ActiveRaceParticipantIds)
+                {
+                    if (_owner._players.TryGetValue(id, out var participant))
+                        _owner.BroadcastPlayerVehicle(room, participant.PlayerNumber, participant.SelectedVehicleHash ?? string.Empty);
+                }
+
                 _owner.BroadcastSelectedTrackToRoom(room);
                 var startPayload = PacketSerializer.WriteGeneral(Command.StartRace);
                 foreach (var id in activePlayerIds)

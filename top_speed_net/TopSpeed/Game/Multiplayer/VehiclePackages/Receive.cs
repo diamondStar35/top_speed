@@ -15,10 +15,18 @@ namespace TopSpeed.Game
                 return;
 
             var hash = VehiclePackageRef.NormalizeHash(packet.Hash);
+            _multiplayerPlayerVehicleHashes.TryGetValue(packet.PlayerNumber, out var previous);
             if (string.IsNullOrWhiteSpace(hash))
                 _multiplayerPlayerVehicleHashes.Remove(packet.PlayerNumber);
             else
                 _multiplayerPlayerVehicleHashes[packet.PlayerNumber] = hash;
+
+            // The authoritative broadcast at race start (post player-number shuffle) can arrive after
+            // a snapshot already built this player's remote car from a stale mapping. If the vehicle
+            // for this number changed, drop the remote car so the next snapshot rebuilds it with the
+            // correct vehicle. markDisconnected:false so it is allowed to be recreated.
+            if (!string.Equals(previous ?? string.Empty, hash ?? string.Empty, StringComparison.OrdinalIgnoreCase))
+                _multiplayerRaceRuntime.Mode?.RemoveRemotePlayer(packet.PlayerNumber, markDisconnected: false);
         }
 
         // Materialized custom-vehicle .tsv path for a remote player, or null when they use a

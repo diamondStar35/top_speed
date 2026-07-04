@@ -91,15 +91,35 @@ namespace TopSpeed.Game
             if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
                 return;
 
-            var folderName = BuildKeptVehicleFolderName(pkg.DisplayName, normalizedHash);
-            var destination = Path.Combine(GetClientVehiclesFolder(), folderName);
+            var vehiclesFolder = GetClientVehiclesFolder();
+            var folderName = ResolveKeptVehicleFolderName(pkg);
+            var destination = Path.Combine(vehiclesFolder, folderName);
+            // A kept copy of THIS vehicle is excluded before prompting, so an existing folder of the
+            // same name means a different vehicle already claimed it; disambiguate with a hash suffix.
+            if (Directory.Exists(destination))
+            {
+                var suffix = normalizedHash.Length >= 8 ? normalizedHash.Substring(0, 8) : normalizedHash;
+                destination = Path.Combine(vehiclesFolder, folderName + "_" + suffix);
+            }
+
             if (TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
                 InvalidateLocalVehicleIndex();
         }
 
-        private static string BuildKeptVehicleFolderName(string displayName, string hash)
+        // Reproduce the source folder name ("Chevy Laguna") so a kept vehicle matches the server's
+        // on-disk layout. Falls back to the display name / .tsv basename when the source .tsv sat
+        // directly in the Vehicles root (whose leaf directory name is just "Vehicles").
+        private static string ResolveKeptVehicleFolderName(DownloadedVehiclePackage pkg)
         {
-            var name = string.IsNullOrWhiteSpace(displayName) ? "custom-vehicle" : displayName;
+            var folder = (pkg.Payload?.Manifest?.FolderName ?? string.Empty).Trim();
+            if (string.IsNullOrWhiteSpace(folder) || string.Equals(folder, "Vehicles", StringComparison.OrdinalIgnoreCase))
+            {
+                folder = !string.IsNullOrWhiteSpace(pkg.DisplayName)
+                    ? pkg.DisplayName
+                    : Path.GetFileNameWithoutExtension(pkg.Payload?.Manifest?.TsvFileName ?? string.Empty);
+            }
+
+            var name = string.IsNullOrWhiteSpace(folder) ? "custom-vehicle" : folder;
             foreach (var invalid in Path.GetInvalidFileNameChars())
                 name = name.Replace(invalid, '_');
             name = name.Trim().Trim('.');
@@ -107,9 +127,7 @@ namespace TopSpeed.Game
                 name = "custom-vehicle";
             if (name.Length > 64)
                 name = name.Substring(0, 64);
-
-            var suffix = hash.Length >= 8 ? hash.Substring(0, 8) : hash;
-            return name + "_" + suffix;
+            return name;
         }
 
         // Wipes session-only downloaded vehicles left over from a previous run. Kept vehicles

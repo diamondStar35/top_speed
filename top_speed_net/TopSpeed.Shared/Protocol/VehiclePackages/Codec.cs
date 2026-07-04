@@ -21,6 +21,11 @@ namespace TopSpeed.Protocol
             using (var writer = new BinaryWriter(ms, Encoding.UTF8, leaveOpen: true))
             {
                 WritePayload(writer, payload, includeHash: true);
+                // Trailing metadata, deliberately outside WritePayload so it is NOT part of the
+                // content hash (ComputeHash only calls WritePayload).
+                var manifest = payload.Manifest ?? new VehiclePackageManifest();
+                writer.Write(manifest.TsvFileName ?? string.Empty);
+                writer.Write(manifest.FolderName ?? string.Empty);
                 writer.Flush();
                 return ms.ToArray();
             }
@@ -164,6 +169,10 @@ namespace TopSpeed.Protocol
                 TsvText = reader.ReadString()
             };
             payload.AssetBlobs = ReadAssets(reader);
+            // Trailing metadata written by Serialize (see WritePayload comment). Only Serialize output
+            // is ever deserialized, so these are always present here.
+            payload.Manifest.TsvFileName = reader.ReadString();
+            payload.Manifest.FolderName = reader.ReadString();
             return payload;
         }
 

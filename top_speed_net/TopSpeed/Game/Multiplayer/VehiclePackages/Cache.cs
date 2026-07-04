@@ -122,7 +122,7 @@ namespace TopSpeed.Game
                     File.WriteAllBytes(candidate, pair.Value ?? Array.Empty<byte>());
                 }
 
-                tsvPath = Path.Combine(root, "vehicle.tsv");
+                tsvPath = Path.Combine(root, ResolvePackageTsvFileName(payload));
                 File.WriteAllText(tsvPath, payload.TsvText ?? string.Empty);
                 return true;
             }
@@ -134,6 +134,20 @@ namespace TopSpeed.Game
             {
                 return false;
             }
+        }
+
+        // The original .tsv filename from the package (e.g. "chevy laguna.tsv"), sanitized, so a
+        // materialized/kept vehicle keeps its real name instead of a generic "vehicle.tsv".
+        private static string ResolvePackageTsvFileName(VehiclePackagePayload payload)
+        {
+            var name = Path.GetFileName((payload?.Manifest?.TsvFileName ?? string.Empty).Trim());
+            if (string.IsNullOrWhiteSpace(name))
+                return "vehicle.tsv";
+            foreach (var invalid in Path.GetInvalidFileNameChars())
+                name = name.Replace(invalid, '_');
+            if (!name.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
+                name += ".tsv";
+            return name;
         }
 
         // Builds hash -> .tsv path for every vehicle already in the client's Vehicles folder.

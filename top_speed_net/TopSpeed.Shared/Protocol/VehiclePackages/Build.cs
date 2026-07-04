@@ -55,7 +55,9 @@ namespace TopSpeed.Protocol
                     VehicleId = ResolveVehicleId(parsed, vehicleFile),
                     Version = string.IsNullOrWhiteSpace(parsed.Meta?.Version) ? "1" : parsed.Meta!.Version,
                     Hash = string.Empty,
-                    DisplayName = ClampDisplayName(displayName)
+                    DisplayName = ClampDisplayName(displayName),
+                    TsvFileName = Path.GetFileName(vehicleFile) ?? string.Empty,
+                    FolderName = Path.GetFileName(Path.GetDirectoryName(Path.GetFullPath(vehicleFile))) ?? string.Empty
                 },
                 TsvText = tsvText,
                 AssetBlobs = assets

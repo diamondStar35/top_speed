@@ -183,29 +183,32 @@ namespace TopSpeed.Game
                 _quitConfirmActive = false;
                 _binding.ClearRaceBinding();
 
-                if (_owner._session != null)
-                {
-                    _owner._input.ResetState();
-                    _owner._state = AppState.Menu;
-                    _owner._multiplayerCoordinator.ShowMultiplayerMenuAfterRace();
-                    if (resultSummary != null)
-                        _owner.ShowRaceResultDialog(resultSummary);
-                }
-                else
-                {
-                    _owner._input.ResetState();
-                    _owner._state = AppState.Menu;
-                    _owner._menu.ShowRoot("main");
-                    _owner._menu.FadeInMenuMusic();
-                    if (resultSummary != null)
-                        _owner.ShowRaceResultDialog(resultSummary);
-                }
-
+                // Show the "keep downloaded vehicle?" prompt only after the finishing-order result
+                // dialog is closed, so the player reads the results first and the prompt is announced
+                // when it takes focus. If there is no result dialog, prompt immediately.
+                Action? afterResult = null;
                 if (_owner._pendingVehicleKeepPromptAfterRace)
                 {
                     _owner._pendingVehicleKeepPromptAfterRace = false;
-                    _owner.PromptKeepDownloadedVehicles();
+                    afterResult = _owner.PromptKeepDownloadedVehicles;
                 }
+
+                _owner._input.ResetState();
+                _owner._state = AppState.Menu;
+                if (_owner._session != null)
+                {
+                    _owner._multiplayerCoordinator.ShowMultiplayerMenuAfterRace();
+                }
+                else
+                {
+                    _owner._menu.ShowRoot("main");
+                    _owner._menu.FadeInMenuMusic();
+                }
+
+                if (resultSummary != null)
+                    _owner.ShowRaceResultDialog(resultSummary, afterResult);
+                else
+                    afterResult?.Invoke();
             }
 
             public void Disconnect()

@@ -17,12 +17,15 @@ namespace TopSpeed.Game
             _dialogs = dialogs ?? throw new ArgumentNullException(nameof(dialogs));
         }
 
-        public void Show(DriveResultSummary? summary)
+        public void Show(DriveResultSummary? summary, Action? onClosed = null)
         {
             if (summary == null)
+            {
+                onClosed?.Invoke();
                 return;
+            }
 
-            var plan = _dialogs.Build(summary);
+            var plan = _dialogs.Build(summary, onClosed);
             _show(plan.Dialog);
             if (plan.PlayWin)
                 _playWin();

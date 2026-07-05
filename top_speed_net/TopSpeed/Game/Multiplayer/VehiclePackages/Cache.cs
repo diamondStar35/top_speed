@@ -39,8 +39,20 @@ namespace TopSpeed.Game
 
             if (_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var cached) && cached != null)
             {
-                package = cached;
-                return true;
+                // A cached entry can point at a Vehicles-folder file the user deleted or renamed
+                // mid-session. If its path is gone, drop the stale entry and invalidate the index so
+                // the fresh by-hash scan below re-finds it (renamed copy) or reports it missing so the
+                // caller re-downloads it. This makes a disappeared vehicle behave exactly like one we
+                // never had this session. A downloaded copy lives in the session dir (untouched by a
+                // Vehicles-folder edit), so its path stays valid and it is never wrongly evicted.
+                if (string.IsNullOrEmpty(cached.TsvPath) || File.Exists(cached.TsvPath))
+                {
+                    package = cached;
+                    return true;
+                }
+
+                _multiplayerVehiclePackageCache.Remove(normalizedHash);
+                InvalidateLocalVehicleIndex();
             }
 
             // Reuse a vehicle we already have locally (previously kept, or authored by the user)

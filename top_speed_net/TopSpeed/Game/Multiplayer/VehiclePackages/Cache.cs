@@ -39,13 +39,12 @@ namespace TopSpeed.Game
 
             if (_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var cached) && cached != null)
             {
-                // A cached entry can point at a Vehicles-folder file the user deleted or renamed
-                // mid-session. If its path is gone, drop the stale entry and invalidate the index so
-                // the fresh by-hash scan below re-finds it (renamed copy) or reports it missing so the
-                // caller re-downloads it. This makes a disappeared vehicle behave exactly like one we
-                // never had this session. A downloaded copy lives in the session dir (untouched by a
-                // Vehicles-folder edit), so its path stays valid and it is never wrongly evicted.
-                if (string.IsNullOrEmpty(cached.TsvPath) || File.Exists(cached.TsvPath))
+                // A cached entry can go stale mid-session if the user edits the backing Vehicles-folder
+                // copy (deletes the .tsv, or deletes/renames a referenced sound). If it no longer holds
+                // the content the server wants, drop it and invalidate the index so the fresh by-hash
+                // scan below re-finds a renamed copy or reports it missing so the caller re-downloads
+                // the intact package. This makes a broken copy behave exactly like one we never had.
+                if (IsCachedVehiclePackageUsable(cached, normalizedHash))
                 {
                     package = cached;
                     return true;
@@ -75,6 +74,30 @@ namespace TopSpeed.Game
             }
 
             return false;
+        }
+
+        // True when a cached entry still holds the content identified by expectedHash. A downloaded
+        // package lives in the self-managed session dir, so an existence check on its .tsv is enough.
+        // A Vehicles-folder copy can have a referenced sound deleted/renamed/edited out from under it
+        // (which changes the content hash but not the .tsv path), so it is re-hashed and compared;
+        // a mismatch means the on-disk copy is no longer the package the server wants.
+        private bool IsCachedVehiclePackageUsable(DownloadedVehiclePackage cached, string expectedHash)
+        {
+            if (string.IsNullOrEmpty(cached.TsvPath))
+                return true;
+            if (!File.Exists(cached.TsvPath))
+                return false;
+
+            var sessionRoot = Path.GetFullPath(GetVehiclePackageSessionRoot());
+            if (Path.GetFullPath(cached.TsvPath).StartsWith(sessionRoot, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (!VehiclePackageBuild.TryBuildPackageFromVehicleFile(cached.TsvPath, out var payload, out _, out _, out _))
+                return false;
+            return string.Equals(
+                VehiclePackageRef.NormalizeHash(payload.Manifest.Hash),
+                expectedHash,
+                StringComparison.OrdinalIgnoreCase);
         }
 
         // Writes the .tsv + sound blobs to a per-hash session dir, parses via the shared parser

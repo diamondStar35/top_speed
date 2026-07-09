@@ -147,7 +147,11 @@ namespace TopSpeed.Vehicles
             return _shiftOnDemandEnabled
                 && _shiftOnDemandSupported
                 && !_manualTransmission
-                && TransmissionTypes.IsAutomaticFamily(_activeTransmissionType);
+                && TransmissionTypes.IsAutomaticFamily(_activeTransmissionType)
+                // While the pit sequence (or any override) is driving the car, let the automatic
+                // shifter run so it reaches pit-lane speed instead of being capped in first gear.
+                // The player's shift-on-demand preference is untouched and resumes at handoff.
+                && !HasOverrideController;
         }
     }
 }

@@ -165,6 +165,14 @@ namespace TopSpeed.Vehicles
             if (_combustionState != EngineCombustionState.On || _engineRotationState == EngineRotationState.Stopped)
                 return;
             _speed = Math.Max(_speed, targetSpeedKmh);
+            // Hand the car back in a gear that suits the speed it rejoins at. The exit launch only
+            // lasts a couple of seconds, so a car whose first gear tops out below pit-lane speed
+            // (e.g. the Mini) is still in first here; syncing the engine in first at pit-lane speed
+            // pegs it against the rev limiter, which cuts power so the car coasts down once control
+            // returns to the player. Selecting the speed-appropriate gear keeps the RPM sane.
+            _gear = _engine.GetGearForSpeedKmh(_speed);
+            _switchingGear = 0;
+            _autoShiftCooldown = 0f;
             _engine.SyncFromSpeed(
                 _speed,
                 GetDriveGear(),

@@ -290,7 +290,14 @@ namespace TopSpeed.Drive.Session.Systems
             if (!_car.CombustionActive)
                 _car.RestartFromStall();
             _setPitting();
-            _car.SetFirstGear();
+            // A manual keeps its explicit first-gear reset; the pit controller re-selects the right
+            // gear on the way in. An automatic already in a forward gear keeps it and lets its own
+            // shifter downshift naturally to pit-lane speed. Slamming an automatic into first here
+            // would pin it there for the whole entry, because the low-throttle pit-lane cruise never
+            // meets the acceleration-based upshift threshold. Only force first when there's no
+            // forward gear to keep (neutral or reverse).
+            if (_car.ManualTransmission || _car.InReverseGear || _car.Gear < 1)
+                _car.SetFirstGear();
             _pitController.BrakeMode = false;
             _car.SetOverrideController(_pitController);
         }

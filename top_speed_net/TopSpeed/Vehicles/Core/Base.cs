@@ -18,6 +18,10 @@ namespace TopSpeed.Vehicles.Core
             _modifiers = Array.Empty<ICarModifier>();
         }
 
+        // True while the game is auto-driving the car (e.g. the pit lane sequence) instead of the
+        // player. Player-only aids like shift-on-demand stand down in that window.
+        protected bool HasOverrideController => _overrideController != null;
+
         protected CarControlIntent ResolveControlIntent(in CarControlContext context)
         {
             var intent = _controlArbiter.ResolveIntent(_primaryController, _overrideController, context);

@@ -5,8 +5,23 @@ namespace TopSpeed.Vehicles.Control
     internal sealed class PitLaneController : ICarController
     {
         private const float TargetSpeedKmh = 56.33f;
-        private const float BandKmh = 2f;
+        private const float ShiftBandKmh = 2f;
         private const float SteerThresholdM = 0.3f;
+
+        // Cruise is a proportional throttle law rather than an on/off band. Every vehicle in the
+        // catalog holds pit-lane speed on somewhere between 16% and 85% throttle, so the loop
+        // settles on a steady partial opening instead of chattering the throttle shut and open
+        // several times a second. A closed throttle is what arms the overrun backfire, so a
+        // chattering throttle made backfire-equipped cars pop continuously down pit road.
+        private const float CruiseThrottlePercent = 50f;
+        private const float ThrottleGainPercentPerKmh = 30f;
+
+        // The brake only engages for a genuine overspeed — arriving at pit entry from racing
+        // speed. Below this the car sheds speed on coast alone (1.4-3.9 m/s^2 depending on the
+        // vehicle), which is also all the old band-edge brake did: Car.ApplyCoastDecel ignores
+        // any brake request weaker than 10%, so a -4% command was already a no-op.
+        private const float BrakeEngageKmh = 5f;
+        private const float BrakeGainPercentPerKmh = 2f;
 
         private readonly Func<float, int> _gearForSpeed;
 
@@ -49,23 +64,24 @@ namespace TopSpeed.Vehicles.Control
                     gearDown = true;
                     clutch = 100;
                 }
-                else if (gear < targetGear && error > BandKmh)
+                else if (gear < targetGear && error > ShiftBandKmh)
                 {
                     gearUp = true;
                     clutch = 100;
                 }
             }
 
-            if (error > BandKmh)
-                return new CarControlIntent(steering, 100, 0, clutch, false, gearUp, gearDown);
-
-            if (error < -BandKmh)
+            if (error < -BrakeEngageKmh)
             {
-                var brake = (int)Math.Max(-100f, error * 2f);
+                var brake = (int)Math.Max(-100f, error * BrakeGainPercentPerKmh);
                 return new CarControlIntent(steering, 0, brake, clutch, false, false, gearDown);
             }
 
-            return new CarControlIntent(steering, 50, 0, clutch, false, false, gearDown);
+            // Clamped at zero rather than left negative: CarControlIntent only clamps to [-100, 100],
+            // and a negative throttle reads as a brake request once Car resolves thrust.
+            var throttle = (int)Math.Round(CruiseThrottlePercent + (ThrottleGainPercentPerKmh * error));
+            throttle = Math.Max(0, Math.Min(100, throttle));
+            return new CarControlIntent(steering, throttle, 0, clutch, false, gearUp, gearDown);
         }
     }
 }

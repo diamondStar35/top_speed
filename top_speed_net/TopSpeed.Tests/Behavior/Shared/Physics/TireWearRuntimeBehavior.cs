@@ -80,24 +80,34 @@ public sealed class TireWearRuntimeBehaviorTests
             lateralGripCoefficient: 1.0f);
         var initial = TireWearDefaults.CreateInitialState(temperatureC: 28f);
 
-        var heated = TireWearRuntime.Step(
-            config,
-            initial,
-            new TireWearInput(
-                elapsedSeconds: 90f,
-                speedMps: 44f,
-                slipAngleNormalized: 0.70f,
-                lateralSlipNormalized: 0.55f,
-                longitudinalSlipNormalized: 0.45f,
-                loadNormalized: 0.62f,
-                rollingResistanceNormalized: 0.36f,
-                ambientTemperatureC: 28f,
-                surfaceTemperatureC: 36f,
-                wetnessNormalized: 0f));
+        // ~90 s of hard cornering-and-braking, fed as 3 s steps so we exercise the
+        // acceleration/brake heat channels the game populates (a single 90 s Step
+        // would also be capped at the heat model's 60 s substep budget).
+        var heated = initial;
+        for (var i = 0; i < 30; i++)
+        {
+            heated = TireWearRuntime.Step(
+                config,
+                heated,
+                new TireWearInput(
+                    elapsedSeconds: 3f,
+                    speedMps: 44f,
+                    slipAngleNormalized: 0.70f,
+                    lateralSlipNormalized: 0.55f,
+                    longitudinalSlipNormalized: 0.45f,
+                    loadNormalized: 0.62f,
+                    rollingResistanceNormalized: 0.36f,
+                    ambientTemperatureC: 28f,
+                    surfaceTemperatureC: 36f,
+                    wetnessNormalized: 0f,
+                    accelerationHeatStressNormalized: 0.20f,
+                    brakeHeatStressNormalized: 0.60f,
+                    engineBrakeHeatStressNormalized: 0.10f)).State;
+        }
 
         var straight = TireWearRuntime.Step(
             config,
-            heated.State,
+            heated,
             new TireWearInput(
                 elapsedSeconds: 12f,
                 speedMps: 50f,
@@ -110,14 +120,14 @@ public sealed class TireWearRuntimeBehaviorTests
                 surfaceTemperatureC: 36f,
                 wetnessNormalized: 0f));
 
-        // After 90 s of hard cornering both the surface and the carcass are
-        // saturated against the upper clamp. A 12 s straight should bleed the
-        // surface visibly (fast τ by design) but it must stay well above
-        // ambient — the carcass reservoir is what keeps that floor in place.
+        // After 90 s of hard cornering-and-braking the surface and carcass are
+        // both very hot. A 12 s straight should bleed the surface visibly
+        // (fast τ by design) but it must stay well above ambient — the carcass
+        // reservoir is what keeps that floor in place.
         straight.State.TemperatureC.Should().BeGreaterThan(
             80f,
             "the carcass should keep the surface well clear of ambient even after a long cool-down");
-        straight.State.TemperatureC.Should().BeLessThan(heated.State.TemperatureC);
+        straight.State.TemperatureC.Should().BeLessThan(heated.TemperatureC);
         straight.State.TemperatureC.Should().BeGreaterThan(
             config.OptimalStartTemperatureC - 10f,
             "the tire should not drop out of the working range in a single 12 s straight");

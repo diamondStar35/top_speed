@@ -102,7 +102,7 @@
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 42.63,
+        SpeedKph: 42.64,
         Gear: 1,
         PositionY: 18.05,
         Coupling: 1.0
@@ -118,7 +118,7 @@
       {
         Step: 51,
         TimeSeconds: 5.1,
-        SpeedKph: 73.02,
+        SpeedKph: 73.03,
         Gear: 2,
         PositionY: 51.95,
         Coupling: 1.0
@@ -244,7 +244,7 @@
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 54.35,
+        SpeedKph: 54.36,
         Gear: 2,
         PositionY: 37.75,
         Coupling: 1.0
@@ -341,7 +341,7 @@
     Steps: 60,
     FinalSpeedKph: 37.82,
     FinalGear: 2,
-    FinalPositionY: 25.61,
+    FinalPositionY: 25.62,
     Samples: [
       {
         Step: 1,
@@ -396,7 +396,7 @@
         TimeSeconds: 6.0,
         SpeedKph: 37.82,
         Gear: 2,
-        PositionY: 25.61,
+        PositionY: 25.62,
         Coupling: 0.96
       }
     ]

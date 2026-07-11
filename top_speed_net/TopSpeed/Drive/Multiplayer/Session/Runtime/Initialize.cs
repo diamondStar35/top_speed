@@ -112,6 +112,17 @@ namespace TopSpeed.Drive.Multiplayer
             _session.ApplyCommand(new SessionCommand(Commands.ClearPauseRequest));
         }
 
+        // Adopts the authoritative race instance from the server once it is known. After an abort the
+        // session can be created before the room/race-state packet re-binds the instance, leaving it
+        // at 0; every race packet we send then carries instance 0 and the server silently drops it
+        // (including our finish), so the race never completes. Self-healing to the real instance lets
+        // our outgoing packets be accepted again.
+        public void UpdateRaceInstanceId(uint raceInstanceId)
+        {
+            if (raceInstanceId != 0)
+                _raceInstanceId = raceInstanceId;
+        }
+
         public DriveResultSummary? ConsumeResultSummary()
         {
             var summary = _pendingResultSummary;

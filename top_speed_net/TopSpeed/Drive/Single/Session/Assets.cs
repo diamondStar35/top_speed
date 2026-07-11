@@ -134,15 +134,28 @@ namespace TopSpeed.Drive.Single
             return _soundPosition[index] ??= LoadLanguageSound($"race\\info\\youarepos{positionIndex}");
         }
 
-        private Source? GetFinishedSoundByIndex(int index)
+        private Source? GetNumberedFinishedSound(int index)
         {
-            var slots = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundFinished.Length));
-            if (index < 0 || index >= slots)
+            if (index < 0 || index >= _soundFinished.Length)
                 return null;
 
-            var finishIndex = Math.Min(index, slots - 1);
-            var positionIndex = finishIndex == slots - 1 ? MaxPlayers : Math.Min(MaxPlayers, finishIndex + 1);
-            return _soundFinished[finishIndex] ??= LoadLanguageSound($"race\\info\\finished{positionIndex}");
+            return _soundFinished[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedFinishedKey(index));
+        }
+
+        private Source? GetFinishedLastSound()
+        {
+            return _soundFinishedLast ??= LoadLanguageSound(RaceInfoSounds.FinishedLastKey);
+        }
+
+        private Source? GetFinishedSoundByIndex(int index)
+        {
+            var racers = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundFinished.Length));
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetFinishedLastSound()
+                : GetNumberedFinishedSound(index);
         }
 
         private void PreloadRaceSpeechSources()

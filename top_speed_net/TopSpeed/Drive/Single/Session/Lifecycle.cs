@@ -117,6 +117,8 @@ namespace TopSpeed.Drive.Single
                 DisposeSound(_soundPosition[i]);
                 DisposeSound(_soundFinished[i]);
             }
+            DisposeSound(_soundFinishedLast);
+            DisposeSound(_soundPositionLast);
             for (var i = 0; i < _randomSounds.Length; i++)
             {
                 var count = _totalRandomSounds[i];

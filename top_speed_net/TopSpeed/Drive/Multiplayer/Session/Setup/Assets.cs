@@ -102,13 +102,30 @@ namespace TopSpeed.Drive.Multiplayer
             return _soundPlayerNrInfo[index] ??= LoadLanguageSound($"race\\info\\player{index + 1}");
         }
 
-        private Source? GetPositionSoundByIndex(int index)
+        private Source? GetNumberedPositionSound(int index)
         {
             if (index < 0 || index >= _soundPosition.Length)
                 return null;
 
-            var positionIndex = index == MaxPlayers - 1 ? MaxPlayers : index + 1;
-            return _soundPosition[index] ??= LoadLanguageSound($"race\\info\\youarepos{positionIndex}");
+            return _soundPosition[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedPositionKey(index));
+        }
+
+        private Source? GetPositionLastSound()
+        {
+            return _soundPositionLast ??= LoadLanguageSound(RaceInfoSounds.PositionLastKey);
+        }
+
+        private Source? GetPositionSoundByIndex(int index)
+        {
+            // Field-size aware, matching the finish announcement: whoever currently sits last hears
+            // "you are last" instead of a number that would otherwise need a youarepos10 clip.
+            var racers = TotalRacers();
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetPositionLastSound()
+                : GetNumberedPositionSound(index);
         }
 
         // Racers still in the race: the local player plus every remote player whose slot has not
@@ -158,15 +175,19 @@ namespace TopSpeed.Drive.Multiplayer
                 GetNumberSound(i + 1);
                 GetPlayerNumberSoundByIndex(i);
                 GetPlayerNumberInfoSoundByIndex(i);
-                GetPositionSoundByIndex(i);
             }
 
-            // Preload every finish call the race could reach regardless of how many racers are in
-            // the room right now, since players may still join. The highest numbered clip that can
-            // ever play is one below MaxPlayers -- the final position is always "finished last".
+            // Preload every finish call and position callout the race could reach regardless of how
+            // many racers are in the room right now, since players may still join. The highest
+            // numbered clip that can ever play is one below MaxPlayers -- the final position is
+            // always last.
             for (var i = 0; i < MaxPlayers - 1; i++)
+            {
                 GetNumberedFinishedSound(i);
+                GetNumberedPositionSound(i);
+            }
             GetFinishedLastSound();
+            GetPositionLastSound();
 
             PreloadRandomSounds();
         }

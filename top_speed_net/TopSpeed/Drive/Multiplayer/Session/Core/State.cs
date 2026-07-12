@@ -81,6 +81,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly AudioSource?[] _soundPlayerNrInfo;
         private readonly AudioSource?[] _soundFinished;
         private AudioSource? _soundFinishedLast;
+        private AudioSource? _soundPositionLast;
         private readonly Tx _liveTx;
         private readonly TrackAudioService _trackAudio;
         private readonly PanelsSubsystem _panels;

@@ -124,14 +124,30 @@ namespace TopSpeed.Drive.Single
             return _soundPlayerNrInfo[index] ??= LoadLanguageSound($"race\\info\\player{index + 1}");
         }
 
-        private Source? GetPositionSoundByIndex(int index)
+        private Source? GetNumberedPositionSound(int index)
         {
-            var slots = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundPosition.Length));
-            if (index < 0 || index >= slots)
+            if (index < 0 || index >= _soundPosition.Length)
                 return null;
 
-            var positionIndex = index == slots - 1 ? MaxPlayers : Math.Min(MaxPlayers, index + 1);
-            return _soundPosition[index] ??= LoadLanguageSound($"race\\info\\youarepos{positionIndex}");
+            return _soundPosition[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedPositionKey(index));
+        }
+
+        private Source? GetPositionLastSound()
+        {
+            return _soundPositionLast ??= LoadLanguageSound(RaceInfoSounds.PositionLastKey);
+        }
+
+        private Source? GetPositionSoundByIndex(int index)
+        {
+            // Field-size aware, matching the finish announcement: whoever sits last in the field
+            // hears "you are last" rather than a number.
+            var racers = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundPosition.Length));
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetPositionLastSound()
+                : GetNumberedPositionSound(index);
         }
 
         private Source? GetNumberedFinishedSound(int index)

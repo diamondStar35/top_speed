@@ -55,4 +55,35 @@ public sealed class RaceInfoSoundsBehaviorTests
             }
         }
     }
+
+    [Theory]
+    [InlineData(0, "race\\info\\youarepos1")]
+    [InlineData(2, "race\\info\\youarepos3")]
+    [InlineData(7, "race\\info\\youarepos8")]
+    [InlineData(8, "race\\info\\youarepos9")]
+    public void NumberedPositionKey_ShouldNameTheOneBasedPosition(int positionIndex, string expected)
+    {
+        RaceInfoSounds.NumberedPositionKey(positionIndex).Should().Be(expected);
+    }
+
+    [Fact]
+    public void PositionCallouts_ShouldNeverNeedATenthPositionClip()
+    {
+        // Position callouts share the finish rule: last in the field says "you are last", so the
+        // tenth position is always last and youarepos10 need not exist.
+        const int maxPlayers = TopSpeed.Protocol.ProtocolConstants.MaxPlayers;
+
+        for (var racers = 1; racers <= maxPlayers; racers++)
+        {
+            for (var index = 0; index < racers; index++)
+            {
+                if (RaceInfoSounds.IsLastPlace(index, racers))
+                    continue;
+
+                RaceInfoSounds.NumberedPositionKey(index).Should().NotBe(
+                    $"race\\info\\youarepos{maxPlayers}",
+                    $"position {index + 1} of {racers} should never ask for a {maxPlayers}th-place clip");
+            }
+        }
+    }
 }

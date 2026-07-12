@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-06-24 13:04\n"
+"POT-Creation-Date: 2026-05-19 01:14+0300\n"
+"PO-Revision-Date: 2026-07-12 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1446,7 +1446,7 @@ msgstr "游戏版本：{0}"
 msgid "Gamepad"
 msgstr "游戏手柄"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:114
 #, csharp-format
 msgid "Gear {0}"
 msgstr "挡位 {0}"
@@ -1832,7 +1832,7 @@ msgstr "单圈统计："
 msgid "Lap summary:"
 msgstr "单圈摘要："
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:120
 #, csharp-format
 msgid "Lap {0}"
 msgstr "第 {0} 圈"
@@ -1936,7 +1936,7 @@ msgstr "左扳机"
 msgid "Left {0}"
 msgstr "左 {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:31
 #, csharp-format
 msgid "Line {0}: {1}"
 msgstr "第 {0} 行：{1}"
@@ -2629,7 +2629,7 @@ msgid "Panel"
 msgstr "面板"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:57
 msgid "Pause"
 msgstr "暂停"
 
@@ -2913,7 +2913,7 @@ msgstr "比赛设置"
 msgid "Race started."
 msgstr "比赛已开始。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
 #, csharp-format
 msgid "Race time {0}"
 msgstr "比赛时间 {0}"
@@ -3026,6 +3026,10 @@ msgid "Report speed"
 msgstr "报告速度"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+msgid "Report tire state"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Report track name"
 msgstr "报告赛道名称"
 
@@ -4528,7 +4532,7 @@ msgstr "为更新下载使用代理"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:18
 msgid "Vehicle"
 msgstr "车辆"
 
@@ -4925,7 +4929,7 @@ msgstr "自动换挡转速必须为0或在怠速转速和转速限制器之间�
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动升挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:108
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4951,6 +4955,10 @@ msgstr "复选框"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Items\CheckBox.cs:36
 msgid "checked"
 msgstr "已勾选"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:23
+msgid "cold tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\Buffers.cs:211
 msgid "connections"
@@ -5009,22 +5017,22 @@ msgstr "固定距离"
 msgid "fuel must be between {0} and {1} liters."
 msgstr "燃油量必须在 {0} 到 {1} 升之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:257
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
 msgstr "燃油{0:F1}加仑，{1:F0}%"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:250
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
 msgstr "燃油{0:F1}加仑，{1:F0}%，{2:F1}英里/加仑"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:273
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
 msgstr "燃油{0:F1}升，{1:F0}%"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:266
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr "燃油 {0:F1}升，{1:F0}%，100千米消耗{2:F1}升"
@@ -5063,9 +5071,17 @@ msgstr "全局聊天"
 msgid "hard"
 msgstr "困难"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
+msgid "heavy wear"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph 必须大于 high_speed_steer_start_kph。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:17
+msgid "hot tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:40
 msgid "imperial"
@@ -5100,6 +5116,10 @@ msgstr "[transmission_dct] 中 launch_coupling_max 必须大于或等于 launch_
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm 不得超过 rev_limiter。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
+msgid "light wear"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:9
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:12
 msgid "main room"
@@ -5120,6 +5140,14 @@ msgstr "min_coupled_rise_full_rpm_per_s 必须大于或等于 min_coupled_rise_i
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Load.cs:101
 msgid "missing"
 msgstr "缺失"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
+msgid "moderate wear"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
+msgid "new tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:11
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:127
@@ -5151,6 +5179,14 @@ msgstr "一对一"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:27
 msgid "online players request"
 msgstr "在线玩家列表请求"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:19
+msgid "optimal temperature"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
+msgid "overheated tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:165
 msgid "panel"
@@ -5258,7 +5294,7 @@ msgstr "房间列表请求"
 msgid "room state refresh request"
 msgstr "房间状态刷新请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:107
 msgid "shift on demand"
 msgstr "按需换挡。"
 
@@ -5318,6 +5354,16 @@ msgstr "轮胎轮辋必须在4到30英寸之间。"
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "轮胎宽度必须在20到450毫米之间。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
+#, csharp-format
+msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
+#, csharp-format
+msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "最高频率必须大于或等于怠速频率。"
@@ -5351,32 +5397,40 @@ msgstr "开始赛道上传"
 msgid "unknown"
 msgstr "未知"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:21
+msgid "warming up tires"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
+msgid "worn tires"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "已行驶 {0:F0} 英尺"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:188
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} km/h，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:231
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "已行驶 {0:F0} 米"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:180
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} mph，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:229
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "已行驶 {0:F1} 公里"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:221
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "已行驶 {0:F1} 英里"

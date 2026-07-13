@@ -306,6 +306,8 @@ Automatically focus first menu item decides where focus lands when a menu opens.
 
 Enable menu wrapping controls list edges. With wrapping on, moving past the last item jumps to the first item, and the opposite. With wrapping off, focus stays at the edge.
 
+Enable digit navigation globally controls whether pressing a number key activates the item at that position in a menu. When unchecked, this works only in certain areas, such as the pit stop menu, where the 1, 2, and 3 keys pick Refuel, Tires, or Both. When checked, it works in every menu, so pressing a digit jumps straight to and activates the item at that position. This setting is off by default.
+
 Menu sounds chooses the sound style used while moving in menus.
 
 Enable menu navigation panning adds left-right panning to menu movement sounds, which can help orientation for some players.

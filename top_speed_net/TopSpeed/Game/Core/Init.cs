@@ -84,6 +84,7 @@ namespace TopSpeed.Game
             _menu.SetWrapNavigation(_settings.MenuWrapNavigation);
             _menu.SetMenuSoundPreset(_settings.MenuSoundPreset);
             _menu.SetMenuNavigatePanning(_settings.MenuNavigatePanning);
+            _menu.SetMenuDigitActivation(_settings.MenuDigitActivation);
             _menu.SetMenuAutoFocus(_settings.MenuAutoFocus);
             _selection = new DriveSelection(_setup, _settings);
             _menuRegistry = new MenuRegistry(_menu, _settings, _setup, _driveInput, _selection, this, this, this, this, this, this);

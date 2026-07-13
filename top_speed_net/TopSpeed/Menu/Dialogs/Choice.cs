@@ -8,7 +8,8 @@ namespace TopSpeed.Menu
     internal enum ChoiceDialogFlags
     {
         None = 0,
-        Cancelable = 1
+        Cancelable = 1,
+        NumberActivation = 1 << 1
     }
 
     internal readonly struct ChoiceDialogResult
@@ -61,6 +62,7 @@ namespace TopSpeed.Menu
         public Action<ChoiceDialogResult>? OnResult { get; }
         public bool OpenAsOverlay { get; set; }
         public bool IsCancelable => (Flags & ChoiceDialogFlags.Cancelable) != 0;
+        public bool ForcesNumberActivation => (Flags & ChoiceDialogFlags.NumberActivation) != 0;
     }
 
     internal sealed class ChoiceDialogManager
@@ -120,6 +122,7 @@ namespace TopSpeed.Menu
             }
 
             _menu.UpdateItems(MenuId, items);
+            _menu.SetForceNumberActivation(MenuId, dialog.ForcesNumberActivation);
             var announcement = DialogAnnouncement.Compose(dialog.Title, dialog.Caption);
             _menu.Push(MenuId, announcement, firstChoiceIndex);
         }
@@ -145,6 +148,7 @@ namespace TopSpeed.Menu
                 return;
 
             _activeDialog = null;
+            _menu.SetForceNumberActivation(MenuId, false);
 
             if (IsChoiceMenu(_menu.CurrentId) && _menu.CanPop)
                 _menu.PopToPrevious();

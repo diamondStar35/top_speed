@@ -25,7 +25,7 @@ namespace TopSpeed.Game
                 null,
                 items,
                 onResult,
-                flags: ChoiceDialogFlags.None)
+                flags: ChoiceDialogFlags.NumberActivation)
             {
                 OpenAsOverlay = true
             };

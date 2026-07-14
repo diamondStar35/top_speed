@@ -83,8 +83,16 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
-                player.Car = RaceServer.NormalizeNetworkCar(data.Car);
-                RaceServer.ApplyVehicleDimensions(player, player.Car);
+                // A custom-vehicle player's car and dimensions are established authoritatively at
+                // loadout (PlayerReady) and must NOT be taken from the per-frame data stream: the wire
+                // CarType for a custom car is CustomVehicle, and NormalizeNetworkCar collapses that to
+                // Vehicle1, corrupting the server's record so every subsequent snapshot advertises the
+                // default car to peers. Only built-in players derive their car from incoming data.
+                if (string.IsNullOrEmpty(player.SelectedVehicleHash))
+                {
+                    player.Car = RaceServer.NormalizeNetworkCar(data.Car);
+                    RaceServer.ApplyVehicleDimensions(player, player.Car);
+                }
                 player.PositionX = incomingPositionX;
                 player.PositionY = incomingPositionY;
                 player.Speed = data.RaceData.Speed;

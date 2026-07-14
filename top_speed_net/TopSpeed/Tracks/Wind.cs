@@ -11,6 +11,11 @@ namespace TopSpeed.Tracks
             return _activeWeatherProfile.ToResistanceEnvironment();
         }
 
+        public TrackWeatherProfile GetActiveWeatherProfile()
+        {
+            return _activeWeatherProfile;
+        }
+
         private void InitializeWeatherRuntime()
         {
             _lastWeatherUpdateUtc = DateTime.UtcNow;

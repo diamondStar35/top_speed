@@ -19,6 +19,8 @@ namespace TopSpeed.Vehicles
         private void RunRunningDynamics(float elapsed, in CarControlIntent controlIntent)
         {
             GuardDynamicInputs();
+            _lastLongitudinalResult = default;
+            _lastLateralLoadRatio = 0f;
 
             _currentSteering = controlIntent.Steering;
             _currentThrottle = _combustionState == EngineCombustionState.On ? controlIntent.Throttle : 0;
@@ -72,9 +74,17 @@ namespace TopSpeed.Vehicles
                 UpdateStallState(elapsed, _speed / 3.6f, throttle, clutchInput);
                 UpdateBackfireStateAfterDrive();
             }
-            UpdateFuelModel(elapsed);
+            if (_fuelConsumptionEnabled)
+                UpdateFuelModel(elapsed);
             UpdateBrakeAndSteeringOutput();
             IntegrateVehiclePosition(elapsed, currentLapStart);
+            var postSpeedMps = Math.Max(0f, _speed / 3.6f);
+            // Realized longitudinal acceleration after the gear-speed clamp: ~0
+            // when pinned at a gear's rev limit even while gross drive torque is
+            // high, so the tire model treats rev-limited cruise as cruise.
+            var realizedDriveAccelMps2 = elapsed > 0f ? (postSpeedMps - speedMpsCurrent) / elapsed : 0f;
+            if (_tireWearEnabled)
+                UpdateTireWear(elapsed, postSpeedMps, realizedDriveAccelMps2);
             UpdateFrameAudioAndFeedback();
             EnsureSurfaceLoopPlaying();
 
@@ -98,7 +108,7 @@ namespace TopSpeed.Vehicles
                     throttle: 0f,
                     brake: ParkingHoldBrakeInput,
                     surfaceTractionModifier: 1f,
-                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier(),
+                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier() * ResolveTireWearBrakeScale(),
                     surfaceRollingResistanceModifier: ResolveSurfaceRollingResistanceModifier(),
                     longitudinalGripFactor: 1f,
                     GetDriveGear(),
@@ -139,6 +149,37 @@ namespace TopSpeed.Vehicles
             UpdateSoundRoad();
             if (_speed <= 0f)
                 StopSurfaceLoops();
+        }
+
+        public virtual void SetFirstGear()
+        {
+            _gear = FirstForwardGear;
+            _switchingGear = 0;
+            _autoShiftCooldown = 0f;
+        }
+
+        public virtual int GetGearForSpeedKmh(float speedKmh) => _engine.GetGearForSpeedKmh(speedKmh);
+
+        public virtual void PrepareEngineForPitExit(float targetSpeedKmh)
+        {
+            if (_combustionState != EngineCombustionState.On || _engineRotationState == EngineRotationState.Stopped)
+                return;
+            _speed = Math.Max(_speed, targetSpeedKmh);
+            // Hand the car back in a gear that suits the speed it rejoins at. The exit launch only
+            // lasts a couple of seconds, so a car whose first gear tops out below pit-lane speed
+            // (e.g. the Mini) is still in first here; syncing the engine in first at pit-lane speed
+            // pegs it against the rev limiter, which cuts power so the car coasts down once control
+            // returns to the player. Selecting the speed-appropriate gear keeps the RPM sane.
+            _gear = _engine.GetGearForSpeedKmh(_speed);
+            _switchingGear = 0;
+            _autoShiftCooldown = 0f;
+            _engine.SyncFromSpeed(
+                _speed,
+                GetDriveGear(),
+                elapsed: 0f,
+                throttleInput: 50,
+                couplingMode: EngineCouplingMode.Locked);
+            UpdateEngineFreqManual();
         }
 
         private bool CanApplyThrottleDrive(float drivelineCouplingFactor)

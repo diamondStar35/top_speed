@@ -47,7 +47,7 @@ namespace TopSpeed.Protocol
                 Hash = TrackPackageRef.NormalizeHash(reader.ReadString()),
                 DefaultWeatherProfileId = reader.ReadString(),
                 Ambience = (TopSpeed.Data.TrackAmbience)reader.ReadByte(),
-                Laps = reader.ReadByte()
+                Laps = reader.ReadInt32()
             };
 
             payload.Metadata = ReadMetadata(reader);

@@ -24,6 +24,7 @@ using VehicleSubsystem = TopSpeed.Drive.Multiplayer.Session.Systems.Vehicle;
 using ExitSubsystem = TopSpeed.Drive.Session.Systems.Exit;
 using PanelsSubsystem = TopSpeed.Drive.Session.Systems.Panels;
 using PlayerInfoSubsystem = TopSpeed.Drive.Session.Systems.PlayerInfo;
+using PitStopSubsystem = TopSpeed.Drive.Session.Systems.PitStop;
 using TrackAudioService = TopSpeed.Drive.Session.Systems.TrackAudio;
 
 namespace TopSpeed.Drive.Multiplayer
@@ -31,7 +32,7 @@ namespace TopSpeed.Drive.Multiplayer
     internal sealed partial class MultiplayerSession
     {
         private const int MaxPlayers = ProtocolConstants.MaxPlayers;
-        private const int MaxLaps = 16;
+        private const int MaxLaps = 500;
         private const int MaxUnkeys = 12;
         private const int RandomSoundGroups = 16;
         private const int RandomSoundMax = 32;
@@ -52,6 +53,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly DriveInput _input;
         private readonly IVibrationDevice? _vibrationDevice;
         private readonly IFileDialogs _fileDialogs;
+        private readonly TopSpeed.Vehicles.RacePhysicsToggles _physicsToggles;
         private readonly Track _track;
         private readonly ICar _car;
         private readonly SessionRuntime _session;
@@ -77,7 +79,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly SnapshotState _snapshots;
         private readonly RuntimeState _runtime;
         private readonly AudioSource?[] _soundNumbers;
-        private readonly AudioSource[] _soundLaps;
+        private readonly AudioSource?[] _soundLaps;
         private readonly AudioSource?[][] _randomSounds;
         private readonly string?[] _randomSoundBaseNames;
         private readonly int[] _totalRandomSounds;
@@ -86,6 +88,8 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly AudioSource?[] _soundPlayerNr;
         private readonly AudioSource?[] _soundPlayerNrInfo;
         private readonly AudioSource?[] _soundFinished;
+        private AudioSource? _soundFinishedLast;
+        private AudioSource? _soundPositionLast;
         private readonly Tx _liveTx;
         private readonly TrackAudioService _trackAudio;
         private readonly PanelsSubsystem _panels;
@@ -97,6 +101,7 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly CommentarySubsystem _commentary;
         private readonly PlayerInfoSubsystem _playerInfo;
         private readonly ExitSubsystem _exit;
+        private readonly PitStopSubsystem _pitStop;
         private readonly bool _manualTransmission;
         private NetworkSession _network;
 
@@ -106,6 +111,11 @@ namespace TopSpeed.Drive.Multiplayer
         private AudioSource? _soundTurnEndDing;
         private AudioSource? _soundYouAre;
         private AudioSource? _soundPlayer;
+        private AudioSource? _soundLetsPit;
+        private AudioSource? _soundRightTires;
+        private AudioSource? _soundLeftTires;
+        private AudioSource? _soundFuelingUp;
+        private AudioSource? _soundExitPitRoad;
 
         private byte LocalPlayerNumber => _network.PlayerNumber;
         private bool LocalMediaLoaded => _localRadio.HasMedia;
@@ -115,5 +125,7 @@ namespace TopSpeed.Drive.Multiplayer
         public bool WantsExit => _session.Context.WantsExit;
         public bool WantsPause => _session.Context.WantsPause;
         public bool ServerStopReceived => _serverStopReceived;
+        public bool WantsPitStopMenu => _pitStop.NeedsChoice;
+        public void AcceptPitStopChoice(int choiceId) => _pitStop.SetChoice(choiceId);
     }
 }

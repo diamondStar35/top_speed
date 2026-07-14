@@ -4,6 +4,7 @@ using TopSpeed.Drive.Session.Audio;
 using TopSpeed.Input;
 using TopSpeed.Physics.Fuel;
 using TopSpeed.Physics.Powertrain;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Protocol;
 using TopSpeed.Tracks;
 using TopSpeed.Vehicles.Audio;
@@ -160,8 +161,17 @@ namespace TopSpeed.Vehicles
         private float _fuelEfficiencyMpg;
         private bool _fuelLow;
         private bool _fuelEmpty;
+        private bool _tireWearEnabled = true;
+        private bool _fuelConsumptionEnabled = true;
         private float _fuelPowerScale = 1f;
         private float _fuelWarningPulseTimerSeconds;
+        private TireWearState _tireWearState = TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.FallbackAmbientTemperatureC);
+        private TireWearRuntimeResult _tireWearRuntime = TireWearRuntime.Resolve(TireWearDefaults.Balanced, TireWearDefaults.CreateInitialState(TireWearDefaults.Balanced.FallbackAmbientTemperatureC));
+        private float _surfaceTemperatureC = TireWearDefaults.Balanced.FallbackAmbientTemperatureC;
+        private LongitudinalStepResult _lastLongitudinalResult;
+        private float _lastLateralLoadRatio;
+        private float _lastSlipAngleNormalized;
+        private float _lastLateralSlipNormalized;
 
         private Source _soundEngine = default!;
         private Source? _soundThrottle;
@@ -191,6 +201,7 @@ namespace TopSpeed.Vehicles
         private Config _powertrainConfiguration = default!;
         private FuelConfig _fuelConfiguration = new FuelConfig(FuelDefaults.DefaultTankCapacityLiters, FuelDefaults.DefaultEngineDisplacementLiters);
         private FuelRuntimeState _fuelState = new FuelRuntimeState(FuelDefaults.DefaultTankCapacityLiters, 0f);
+        private TireWearConfig _tireWearConfig = TireWearProfiles.Balanced;
         private TransmissionPolicy _transmissionPolicy = TransmissionPolicy.Default;
         private AutomaticDrivelineTuning _automaticTuning = AutomaticDrivelineTuning.Default;
         private TransmissionType _primaryTransmissionType = TransmissionType.Atc;

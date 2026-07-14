@@ -5,6 +5,28 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## 2026.7.12.1
+### Game Changes
+- Cars now consume fuel over the course of a race. Press X to hear how much fuel you have left, and a low-fuel warning alerts you when you are running low. Be careful not to run out, or you won't be able to finish the race.
+- Tires now heat up, wear down, and lose grip as a race goes on. Press B to hear their current condition: cold, warming up, optimal temperature, hot, or overheated.
+- You can now make a pit stop to refuel and/or change tires. Press I to request a stop, then choose Refuel, Tires, or Both from the menu the next time you reach the pit entry area, or press 1, 2, or 3 to quickly pick the service you want.
+- Fuel consumption and tire wear are optional. For single race and time trial, toggle them under Options, Race settings ("Enable fuel consumption" and "Enable tire wear"). For multiplayer, the host controls them through the race rules. Either way, races play the same as before when they are left off.
+- Filled in missing race-announcement audio: voice for players 9 and 10, finishing positions 8 and 9, live "you are in 8th/9th" position callouts, and "finished last" / "you are last" callouts so the final racer is always announced correctly no matter how many are in the field.
+- The F1 through F8 keys for player information have been replaced with the number row keys, which now speak all the information about each player.
+- Added Brazilian Portuguese (pt-BR) voice audio.
+- Added a Persian translation.
+- Improved how track callouts are announced by separating them from other race information.
+- Fixed a multiplayer bug where a race would never finish if an earlier race in the session had been aborted.
+- Fixed a hard crash that could happen when a vehicle's data file was missing its engine RPM values.
+- Fixed multiplayer track names not being translated.
+- Fixed incorrect Chinese wording on the race results screen and corrected several other dynamic-text translation issues.
+- On Android, the game now prefers the Android text-to-speech voice first (including in automatic mode) and clears leftover update files on startup.
+
+### Server Changes
+- Added support for the fuel consumption and tire wear race rules, broadcasting the effective rules for each race so clients set up their cars correctly.
+- Updated the network protocol for the fuel, tire wear, and pit stop features. Clients and servers must both be on this release to play together.
+
+
 ## 2026.5.14.1
 ### Game Changes
 - Added a full voice chat system to the game. Any player who is connected to a server can enable their communicator by pressing ctrl+shift+c to listen to other players, and either holding v or ctrl+shift+v to talk.

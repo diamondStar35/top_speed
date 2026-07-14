@@ -99,6 +99,8 @@ namespace TopSpeed.Core.Multiplayer
             if (roomEvent.Laps > 0)
                 CurrentRoom.Laps = roomEvent.Laps;
             CurrentRoom.GameRulesFlags = roomEvent.GameRulesFlags;
+            // No transient per-race override is delivered over the wire yet, so effective == room.
+            CurrentRoom.RaceEffectiveGameRulesFlags = roomEvent.GameRulesFlags;
             CurrentRoom.IsHost = localPlayerId != 0 && CurrentRoom.HostPlayerId == localPlayerId;
 
             switch (roomEvent.Kind)

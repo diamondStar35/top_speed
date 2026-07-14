@@ -6,6 +6,7 @@ using TopSpeed.Drive.Multiplayer;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
 using TopSpeed.Protocol;
+using TopSpeed.Vehicles;
 
 namespace TopSpeed.Game
 {
@@ -21,6 +22,7 @@ namespace TopSpeed.Game
             private readonly MultiplayerRaceBinding _binding;
             private MultiplayerSession? _mode;
             private bool _quitConfirmActive;
+            private bool _pitMenuShown;
 
             public MultiplayerRaceRuntime(Game owner)
             {
@@ -109,7 +111,25 @@ namespace TopSpeed.Game
                     return;
                 }
 
+                if (_mode.WantsPitStopMenu && !_pitMenuShown)
+                {
+                    _pitMenuShown = true;
+                    _owner._choices.Show(PitStopMenu.Create(result =>
+                    {
+                        _pitMenuShown = false;
+                        if (!result.IsCanceled)
+                            _mode?.AcceptPitStopChoice(result.ChoiceId);
+                    }));
+                }
+
                 if (_quitConfirmActive)
+                {
+                    var action = _owner._menu.Update(_owner._input);
+                    _owner.HandleMenuAction(action);
+                    return;
+                }
+
+                if (_owner._choices.HasActiveChoiceDialog)
                 {
                     var action = _owner._menu.Update(_owner._input);
                     _owner.HandleMenuAction(action);
@@ -156,6 +176,14 @@ namespace TopSpeed.Game
                 var localVehicleHash = _owner._multiplayerCoordinator.LocalSelectedCustomVehicleHash;
                 var localVehicleFile = _owner.ResolveCustomVehicleFileByHash(localVehicleHash);
                 var localVehicleName = _owner.ResolveCustomVehicleNameByHash(localVehicleHash);
+                // Prefer the effective rules delivered with this race instance (room rules minus any
+                // host per-race disable); fall back to the room's current rules if not present.
+                var effectiveRules = _binding.HasEffectiveGameRules
+                    ? _binding.EffectiveGameRules
+                    : _owner._multiplayerCoordinator.GetCurrentRaceEffectiveGameRules();
+                var physicsToggles = new RacePhysicsToggles(
+                    tireWearEnabled: (effectiveRules & (uint)RoomGameRules.TireWear) != 0u,
+                    fuelConsumptionEnabled: (effectiveRules & (uint)RoomGameRules.FuelConsumption) != 0u);
 
                 DisposeMode();
                 _mode = _owner._driveSessionFactory.CreateMultiplayer(
@@ -169,6 +197,7 @@ namespace TopSpeed.Game
                     _owner._input.VibrationDevice,
                     _owner._session,
                     _binding.RaceInstanceId,
+                    physicsToggles,
                     number => _owner._multiplayerCoordinator.ResolvePlayerName(number),
                     number => _owner.ResolveRemoteCustomVehicleFile(number),
                     number => _owner.ResolveRemoteCustomVehicleName(number));
@@ -215,6 +244,7 @@ namespace TopSpeed.Game
             {
                 DisposeMode();
                 _quitConfirmActive = false;
+                _pitMenuShown = false;
                 _binding.ClearRaceBinding();
                 _binding.ResetPending();
             }

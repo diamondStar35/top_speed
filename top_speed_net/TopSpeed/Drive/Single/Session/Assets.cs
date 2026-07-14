@@ -124,25 +124,54 @@ namespace TopSpeed.Drive.Single
             return _soundPlayerNrInfo[index] ??= LoadLanguageSound($"race\\info\\player{index + 1}");
         }
 
-        private Source? GetPositionSoundByIndex(int index)
+        private Source? GetNumberedPositionSound(int index)
         {
-            var slots = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundPosition.Length));
-            if (index < 0 || index >= slots)
+            if (index < 0 || index >= _soundPosition.Length)
                 return null;
 
-            var positionIndex = index == slots - 1 ? MaxPlayers : Math.Min(MaxPlayers, index + 1);
-            return _soundPosition[index] ??= LoadLanguageSound($"race\\info\\youarepos{positionIndex}");
+            return _soundPosition[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedPositionKey(index));
+        }
+
+        private Source? GetPositionLastSound()
+        {
+            return _soundPositionLast ??= LoadLanguageSound(RaceInfoSounds.PositionLastKey);
+        }
+
+        private Source? GetPositionSoundByIndex(int index)
+        {
+            // Field-size aware, matching the finish announcement: whoever sits last in the field
+            // hears "you are last" rather than a number.
+            var racers = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundPosition.Length));
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetPositionLastSound()
+                : GetNumberedPositionSound(index);
+        }
+
+        private Source? GetNumberedFinishedSound(int index)
+        {
+            if (index < 0 || index >= _soundFinished.Length)
+                return null;
+
+            return _soundFinished[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedFinishedKey(index));
+        }
+
+        private Source? GetFinishedLastSound()
+        {
+            return _soundFinishedLast ??= LoadLanguageSound(RaceInfoSounds.FinishedLastKey);
         }
 
         private Source? GetFinishedSoundByIndex(int index)
         {
-            var slots = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundFinished.Length));
-            if (index < 0 || index >= slots)
+            var racers = Math.Max(0, Math.Min(_nComputerPlayers + 1, _soundFinished.Length));
+            if (index < 0 || index >= racers)
                 return null;
 
-            var finishIndex = Math.Min(index, slots - 1);
-            var positionIndex = finishIndex == slots - 1 ? MaxPlayers : Math.Min(MaxPlayers, finishIndex + 1);
-            return _soundFinished[finishIndex] ??= LoadLanguageSound($"race\\info\\finished{positionIndex}");
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetFinishedLastSound()
+                : GetNumberedFinishedSound(index);
         }
 
         private void PreloadRaceSpeechSources()
@@ -179,6 +208,11 @@ namespace TopSpeed.Drive.Single
             _soundPause = LoadLanguageSound("race\\pause");
             _soundResume = LoadLanguageSound("race\\unpause");
             _soundTurnEndDing = LoadLegacySound("ding.ogg");
+            _soundLetsPit = TryLoadLanguageSound("race\\letspit", allowFallback: false);
+            _soundRightTires = TryLoadPitSound("tirechangeright.ogg");
+            _soundLeftTires = TryLoadPitSound("tirechangeleft.ogg");
+            _soundFuelingUp = TryLoadPitSound("refueling.ogg");
+            _soundExitPitRoad = TryLoadLanguageSound("race\\exitpitroad", allowFallback: false);
             _soundTheme.SetVolumePercent((int)Math.Round(_settings.MusicVolume * 100f));
         }
 
@@ -268,6 +302,14 @@ namespace TopSpeed.Drive.Single
                 throw new FileNotFoundException($"Missing legacy sound {fileName}.");
 
             return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+        }
+
+        private Source? TryLoadPitSound(string fileName)
+        {
+            var path = AssetPaths.ResolvePitSoundPath(fileName);
+            if (path != null)
+                return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+            return null;
         }
 
         private Source LoadBusSource(string path, string busName, bool streamFromDisk)

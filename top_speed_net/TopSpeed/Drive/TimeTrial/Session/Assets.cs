@@ -151,6 +151,14 @@ namespace TopSpeed.Drive.TimeTrial
             return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
         }
 
+        private Source? TryLoadPitSound(string fileName)
+        {
+            var path = AssetPaths.ResolvePitSoundPath(fileName);
+            if (path != null)
+                return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+            return null;
+        }
+
         private Source LoadBusSource(string path, string busName, bool streamFromDisk)
         {
             var asset = _audio.LoadAsset(path, streamFromDisk);

@@ -26,8 +26,15 @@ namespace TopSpeed.Core.Multiplayer
                 items.Add(new PacketTrackPackageCatalogEntry
                 {
                     Track = TrackPackageRef.Custom(item.Track.TrackId, item.Track.Version, item.Track.Hash),
-                    DisplayName = item.DisplayName
+                    DisplayName = item.DisplayName,
+                    HasPitArea = item.HasPitArea
                 });
+
+                // Remember each catalog track's pit-area status so the host's no-pit-area start-race
+                // warning can resolve a track picked from the server catalog (not uploaded here).
+                var hash = TrackPackageRef.NormalizeHash(item.Track.Hash);
+                if (!string.IsNullOrWhiteSpace(hash))
+                    _customTrackHasPitAreaByHash[hash] = item.HasPitArea;
             }
 
             _state.RoomDrafts.RoomTrackCatalog = items.ToArray();

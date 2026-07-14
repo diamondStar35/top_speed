@@ -55,6 +55,18 @@ namespace TopSpeed.Drive.Session.Systems
             _hasLastRoadTypeAtPosition = true;
         }
 
+        // Announce a curve the player is about to drive onto (e.g. the segment they rejoin on when
+        // leaving pit road). Unlike AnnounceNextRoad this is a plain curve callout with no surface
+        // comparison, since there is no meaningful "current" road while parked in the pit box.
+        public void AnnounceUpcomingCurve(Track.Road road)
+        {
+            if ((int)_settings.Copilot > 0 && road.Type != TrackType.Straight)
+            {
+                var index = (int)road.Type - 1;
+                _queueTrackInfoSound(_getRandomSound(index));
+            }
+        }
+
         public Track.Road AnnounceNextRoad(Track.Road currentRoad, Track.Road nextRoad)
         {
             if ((int)_settings.Copilot > 0 && nextRoad.Type != TrackType.Straight)

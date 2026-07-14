@@ -100,6 +100,18 @@ namespace TopSpeed.Input
             _kbHorn = key;
             _settings.SetKeyboardBinding(DriveIntent.Horn, key);
         }
+
+        public void SetPit(AxisOrButton a)
+        {
+            _pit = a;
+            _settings.SetControllerBinding(DriveIntent.Pit, a);
+        }
+
+        public void SetPit(Key key)
+        {
+            _kbPit = key;
+            _settings.SetKeyboardBinding(DriveIntent.Pit, key);
+        }
     }
 }
 

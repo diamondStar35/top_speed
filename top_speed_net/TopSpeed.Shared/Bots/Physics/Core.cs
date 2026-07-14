@@ -2,6 +2,7 @@ using System;
 using TopSpeed.Physics.Powertrain;
 using TopSpeed.Physics.Surface;
 using TopSpeed.Physics.Tires;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Vehicles;
 
 namespace TopSpeed.Bots
@@ -22,6 +23,17 @@ namespace TopSpeed.Bots
             if (state.CvtRatio <= 0f)
                 state.CvtRatio = config.AutomaticTuning.Cvt.RatioMax;
 
+            var ambientTemperatureC = ResolveAmbientTemperatureC(input.AmbientTemperatureC, config.TireWearConfig.FallbackAmbientTemperatureC);
+            state.SurfaceTemperatureC = StepSurfaceTemperature(
+                state.SurfaceTemperatureC,
+                input.ElapsedSeconds,
+                input.Surface,
+                ambientTemperatureC,
+                input.RainGain,
+                input.StormGain,
+                input.WindGain);
+            var weatherWetness = ResolveWeatherWetness(input.RainGain, input.StormGain);
+
             var surface = SurfaceModel.Resolve(input.Surface, config.SurfaceTractionFactor);
             var surfaceTraction = surface.Traction;
             var surfaceBrake = surface.Brake;
@@ -35,6 +47,25 @@ namespace TopSpeed.Bots
             var brake = Math.Max(0f, Math.Min(100f, -input.Brake)) / 100f;
             var steeringInput = input.Steering;
             var surfaceTractionMod = surfaceTraction / config.SurfaceTractionFactor;
+            var wearState = new TireWearState(
+                state.TireWearFraction,
+                state.TireTemperatureC,
+                state.TireTreadTemperatureC,
+                state.TireCarcassTemperatureC,
+                state.TireSmoothedInputs);
+            // Bots keep tire wear off for now (they can't pit yet), so grip scales stay neutral and
+            // the wear state is never advanced. See BotPhysicsConfig.TireWearEnabled.
+            var tireWearEnabled = config.TireWearEnabled;
+            var tractionGripScale = 1f;
+            var brakeGripScale = 1f;
+            var lateralGripScale = 1f;
+            if (tireWearEnabled)
+            {
+                var resolved = TireWearRuntime.Resolve(config.TireWearConfig, wearState);
+                tractionGripScale = resolved.TractionGripScale;
+                brakeGripScale = resolved.BrakeGripScale;
+                lateralGripScale = resolved.LateralGripScale;
+            }
             var longitudinalGripFactor = 1.0f;
             var speedDiffKph = 0f;
             var tireState = new TireModelState(state.LateralVelocityMps, state.YawRateRad);
@@ -77,10 +108,10 @@ namespace TopSpeed.Bots
             if (driveRequested)
             {
                 var tireOutput = SolveTireModel(config, input.ElapsedSeconds, speedMpsCurrent, steeringInput, surfaceTractionMod, 1f, tireState);
-                longitudinalGripFactor = tireOutput.LongitudinalGripFactor;
+                longitudinalGripFactor = tireOutput.LongitudinalGripFactor * tractionGripScale;
             }
 
-            var surfaceBrakeMod = surfaceBrake > 0f ? surfaceBrake : 1f;
+            var surfaceBrakeMod = (surfaceBrake > 0f ? surfaceBrake : 1f) * brakeGripScale;
             var couplingFactor = automaticFamily ? state.AutomaticCouplingFactor : 1f;
             var engineRpmEstimate = Calculator.RpmAtSpeed(
                 config.Powertrain,
@@ -145,10 +176,44 @@ namespace TopSpeed.Bots
             state.EffectiveDriveRatio = driveRatioOverride;
 
             var surfaceTractionModLat = surfaceTraction / config.SurfaceTractionFactor;
-            var lateralOutput = SolveTireModel(config, input.ElapsedSeconds, speedMps, steeringInput, surfaceTractionModLat, surface.LateralSpeedMultiplier, tireState);
+            var lateralOutput = SolveTireModel(config, input.ElapsedSeconds, speedMps, steeringInput, surfaceTractionModLat, surface.LateralSpeedMultiplier * lateralGripScale, tireState);
             state.PositionX += lateralOutput.LateralSpeedMps * input.ElapsedSeconds;
             state.LateralVelocityMps = lateralOutput.State.LateralVelocityMps;
             state.YawRateRad = lateralOutput.State.YawRateRad;
+
+            if (tireWearEnabled)
+            {
+                var longitudinalSlipNormalized = TireWearInputSignals.ResolveLongitudinalSlipNormalized(
+                    longitudinalResult.DriveAccelerationMps2,
+                    longitudinalResult.BrakeDecelKph / 3.6f);
+                var loadNormalized = TireWearInputSignals.ResolveLoadNormalized(
+                    config.MassKg,
+                    lateralOutput.LateralLoadRatio,
+                    longitudinalSlipNormalized);
+                var rollingResistanceNormalized = TireWearInputSignals.ResolveRollingResistanceNormalized(
+                    config.RollingResistanceCoefficient,
+                    surfaceRollingResistance,
+                    speedMps);
+                var steppedWear = TireWearRuntime.Step(
+                    config.TireWearConfig,
+                    wearState,
+                    new TireWearInput(
+                        input.ElapsedSeconds,
+                        speedMps,
+                        slipAngleNormalized: lateralOutput.SlipAngleNormalized,
+                        lateralSlipNormalized: lateralOutput.LateralSlipNormalized,
+                        longitudinalSlipNormalized: longitudinalSlipNormalized,
+                        loadNormalized: loadNormalized,
+                        rollingResistanceNormalized: rollingResistanceNormalized,
+                        ambientTemperatureC: ambientTemperatureC,
+                        surfaceTemperatureC: state.SurfaceTemperatureC,
+                        wetnessNormalized: weatherWetness));
+                state.TireWearFraction = steppedWear.State.WearFraction;
+                state.TireTemperatureC = steppedWear.State.TemperatureC;
+                state.TireTreadTemperatureC = steppedWear.State.TreadTemperatureC;
+                state.TireCarcassTemperatureC = steppedWear.State.CarcassTemperatureC;
+                state.TireSmoothedInputs = steppedWear.State.Smoothed;
+            }
         }
     }
 }

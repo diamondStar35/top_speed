@@ -6,21 +6,21 @@ namespace TopSpeed.Core.Multiplayer
 {
     internal sealed partial class MultiplayerCoordinator
     {
-        private int GetRoomOptionsLapsIndex()
+        private int GetRoomOptionsLaps()
         {
             if (!_state.RoomDrafts.RoomOptionsDraftActive)
                 BeginRoomOptionsDraft();
 
-            var laps = _state.RoomDrafts.RoomOptionsLaps < 1 ? (byte)1 : _state.RoomDrafts.RoomOptionsLaps;
-            return Math.Max(0, Math.Min(LapCountOptions.Length - 1, laps - 1));
+            var laps = _state.RoomDrafts.RoomOptionsLaps < 1 ? 1 : _state.RoomDrafts.RoomOptionsLaps;
+            return Math.Max(1, Math.Min(500, laps));
         }
 
-        private void SetRoomOptionsLaps(byte laps)
+        private void SetRoomOptionsLaps(int laps)
         {
             if (!_state.RoomDrafts.RoomOptionsDraftActive)
                 BeginRoomOptionsDraft();
 
-            if (laps < 1 || laps > 16)
+            if (laps < 1 || laps > 500)
                 return;
             _state.RoomDrafts.RoomOptionsLaps = laps;
         }
@@ -78,6 +78,50 @@ namespace TopSpeed.Core.Multiplayer
                 flags |= (uint)RoomGameRules.GhostMode;
             else
                 flags &= ~(uint)RoomGameRules.GhostMode;
+
+            _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
+        }
+
+        private bool GetRoomOptionsFuelConsumptionEnabled()
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            return (_state.RoomDrafts.RoomOptionsGameRulesFlags & (uint)RoomGameRules.FuelConsumption) != 0u;
+        }
+
+        private void SetRoomOptionsFuelConsumptionEnabled(bool enabled)
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            var flags = NormalizeRoomOptionsGameRulesFlags(_state.RoomDrafts.RoomOptionsGameRulesFlags);
+            if (enabled)
+                flags |= (uint)RoomGameRules.FuelConsumption;
+            else
+                flags &= ~(uint)RoomGameRules.FuelConsumption;
+
+            _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
+        }
+
+        private bool GetRoomOptionsTireWearEnabled()
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            return (_state.RoomDrafts.RoomOptionsGameRulesFlags & (uint)RoomGameRules.TireWear) != 0u;
+        }
+
+        private void SetRoomOptionsTireWearEnabled(bool enabled)
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            var flags = NormalizeRoomOptionsGameRulesFlags(_state.RoomDrafts.RoomOptionsGameRulesFlags);
+            if (enabled)
+                flags |= (uint)RoomGameRules.TireWear;
+            else
+                flags &= ~(uint)RoomGameRules.TireWear;
 
             _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
         }

@@ -26,8 +26,10 @@ namespace TopSpeed.Input
             _reportDistance = AxisOrButton.AxisNone;
             _reportSpeed = AxisOrButton.AxisNone;
             _reportFuel = AxisOrButton.AxisNone;
+            _reportTireState = AxisOrButton.AxisNone;
             _trackName = AxisOrButton.AxisNone;
             _pause = AxisOrButton.AxisNone;
+            _pit = AxisOrButton.AxisNone;
             ReadFromSettings();
             _allowDrivingInput = true;
             _allowAuxiliaryInput = true;
@@ -71,6 +73,7 @@ namespace TopSpeed.Input
             _reportDistance = _settings.GetControllerBinding(DriveIntent.ReportDistance);
             _reportSpeed = _settings.GetControllerBinding(DriveIntent.ReportSpeed);
             _reportFuel = _settings.GetControllerBinding(DriveIntent.ReportFuel);
+            _reportTireState = _settings.GetControllerBinding(DriveIntent.ReportTireState);
             _trackName = _settings.GetControllerBinding(DriveIntent.TrackName);
             _pause = _settings.GetControllerBinding(DriveIntent.Pause);
             _center = _settings.ControllerCenter;
@@ -93,8 +96,11 @@ namespace TopSpeed.Input
             _kbReportDistance = _settings.GetKeyboardBinding(DriveIntent.ReportDistance);
             _kbReportSpeed = _settings.GetKeyboardBinding(DriveIntent.ReportSpeed);
             _kbReportFuel = _settings.GetKeyboardBinding(DriveIntent.ReportFuel);
+            _kbReportTireState = _settings.GetKeyboardBinding(DriveIntent.ReportTireState);
             _kbTrackName = _settings.GetKeyboardBinding(DriveIntent.TrackName);
             _kbPause = _settings.GetKeyboardBinding(DriveIntent.Pause);
+            _pit = _settings.GetControllerBinding(DriveIntent.Pit);
+            _kbPit = _settings.GetKeyboardBinding(DriveIntent.Pit);
             _deviceMode = _settings.DeviceMode;
         }
     }

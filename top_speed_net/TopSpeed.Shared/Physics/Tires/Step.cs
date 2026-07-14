@@ -55,7 +55,7 @@ namespace TopSpeed.Physics.Tires
             var nextVy = state.LateralVelocityMps + (vyDot * dt);
             var nextYawRate = state.YawRateRad + (rDot * dt);
 
-            var neutralInput = Math.Abs(input.SteeringInput) <= 4;
+            var neutralInput = Math.Abs(input.SteeringInput) <= 8;
             if (neutralInput)
             {
                 // Fast recenter for legacy "release stops steering" feel.
@@ -72,9 +72,12 @@ namespace TopSpeed.Physics.Tires
             nextVy = TireModelMath.Clamp(nextVy, -steer.ForwardSpeed * 1.6f, steer.ForwardSpeed * 1.6f);
             nextYawRate = TireModelMath.Clamp(nextYawRate, -5f, 5f);
 
-            // Ensure steering direction is stable across the full speed range.
+            // Keep direction locking only for deliberate steering so small corrections can naturally recenter.
             var desiredDirection = TireModelMath.Sign(input.SteeringInput);
-            if (desiredDirection != 0f && steer.SpeedMps > 1f)
+            var enforceDirection = desiredDirection != 0f
+                && steer.SpeedMps > 1f
+                && steerMag >= 0.24f;
+            if (enforceDirection)
             {
                 if (TireModelMath.Sign(nextVy) != desiredDirection)
                     nextVy = desiredDirection * Math.Abs(nextVy);
@@ -114,9 +117,19 @@ namespace TopSpeed.Physics.Tires
                 TireModelMath.Lerp(2.2f, 1.3f, highSpeedStability),
                 yaw.SpeedSharpness);
             nextYawRate = TireModelMath.Clamp(nextYawRate, -maxYawRate, maxYawRate);
+            var lateralSlipNormalized = TireModelMath.Clamp(
+                Math.Abs(nextVy) / Math.Max(0.5f, steer.ForwardSpeed * 0.30f),
+                0f,
+                3f);
 
             var nextState = new TireModelState(nextVy, nextYawRate);
-            return new TireModelOutput(longitudinalGripFactor, lateralSpeedMps, nextState);
+            return new TireModelOutput(
+                longitudinalGripFactor,
+                lateralSpeedMps,
+                axle.LateralForceRatio,
+                axle.SlipAngleNormalized,
+                lateralSlipNormalized,
+                nextState);
         }
     }
 }

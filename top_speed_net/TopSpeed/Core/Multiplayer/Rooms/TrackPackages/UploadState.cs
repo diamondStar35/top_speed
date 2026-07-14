@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TopSpeed.Core;
 using TopSpeed.Protocol;
 
@@ -7,6 +8,13 @@ namespace TopSpeed.Core.Multiplayer
     internal sealed partial class MultiplayerCoordinator
     {
         private readonly TrackSource _roomTrackUploadSource = new TrackSource();
+
+        // Host-side memo of whether a custom track (keyed by normalized package hash) has a pit area.
+        // Learned when the host builds the upload package, which parses the track's [meta] section.
+        // The room's TrackPackageRef carries no metadata, so the no-pit-area start-race warning
+        // resolves a custom track's pit status through this map.
+        private readonly Dictionary<string, bool> _customTrackHasPitAreaByHash =
+            new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         private PendingTrackUpload? _pendingTrackUpload;
         private uint _nextTrackUploadId = 1;
         private bool _trackUploadProgressOpen;

@@ -69,6 +69,17 @@ namespace TopSpeed.Data
                 return;
             }
 
+            if (key == "pit" && TryParseSegmentPitPoint(value, out var pitPoint))
+            {
+                // Accumulate rather than overwrite so a segment can carry both markers
+                // (e.g. a "pit = pit_entry" and "pit = pit_exit" line in any order).
+                if (pitPoint == SegmentPitPoint.PitEntry)
+                    builder.IsPitEntry = true;
+                else
+                    builder.IsPitExit = true;
+                return;
+            }
+
             builder.Metadata[key] = value;
         }
 

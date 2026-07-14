@@ -110,7 +110,7 @@ public sealed class ProtocolBehaviorTests
             + 2
             + 2;
         var expectedPayload =
-            4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + expectedTrackPayload + 1 + 4 +
+            4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + expectedTrackPayload + 4 + 4 +
             ProtocolConstants.MaxRoomNameLength + 4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength;
         payload.Length.Should().Be(2 + expectedPayload);
 

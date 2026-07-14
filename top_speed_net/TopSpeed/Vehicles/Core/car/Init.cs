@@ -4,6 +4,7 @@ using TopSpeed.Data;
 using TopSpeed.Drive.Session.Audio;
 using TopSpeed.Input;
 using TopSpeed.Physics.Powertrain;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Protocol;
 using TopSpeed.Tracks;
 using TopSpeed.Vehicles.Audio;
@@ -26,11 +27,15 @@ namespace TopSpeed.Vehicles
             string? vehicleFile,
             Func<float> currentTime,
             Func<bool> started,
-            IVibrationDevice? vibrationDevice = null)
+            IVibrationDevice? vibrationDevice = null,
+            RacePhysicsToggles? physicsToggles = null)
             : base(new DriveInputCarController(input))
         {
             if (raceAudio == null)
                 throw new ArgumentNullException(nameof(raceAudio));
+            var toggles = physicsToggles ?? RacePhysicsToggles.AllEnabled;
+            _tireWearEnabled = toggles.TireWearEnabled;
+            _fuelConsumptionEnabled = toggles.FuelConsumptionEnabled;
             _track = track;
             _settings = settings;
             _currentTime = currentTime;
@@ -100,6 +105,7 @@ namespace TopSpeed.Vehicles
             _factor1 = 100;
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
+            ResetTireWearState();
         }
 
         private VehicleDefinition LoadDefinition(int vehicleIndex, string? vehicleFile, TrackWeather weather)
@@ -142,6 +148,7 @@ namespace TopSpeed.Vehicles
             _drivetrainEfficiency = Math.Max(0.1f, Math.Min(1.0f, SanitizeFinite(definition.DrivetrainEfficiency, 0.85f)));
             _engineBrakingTorqueNm = Math.Max(0f, SanitizeFinite(definition.EngineBrakingTorqueNm, 0f));
             _tireGripCoefficient = Math.Max(0.1f, SanitizeFinite(definition.TireGripCoefficient, 0.1f));
+            _tireWearConfig = definition.TireWearConfig ?? TireWearProfiles.Balanced;
             _brakeStrength = Math.Max(0.1f, SanitizeFinite(definition.BrakeStrength, 0.1f));
             _wheelRadiusM = Math.Max(0.01f, SanitizeFinite(definition.TireCircumferenceM, 0f) / (2.0f * (float)Math.PI));
             _engineBraking = Math.Max(0.05f, Math.Min(1.0f, SanitizeFinite(definition.EngineBraking, 0.3f)));
@@ -210,6 +217,7 @@ namespace TopSpeed.Vehicles
             _effectiveDriveRatioOverride = 0f;
             _automaticCreepAccelMps2 = 0f;
             _frequency = _idleFreq;
+            ResetTireWearState();
         }
 
         private void InitializeDriveSystems(VehicleDefinition definition)

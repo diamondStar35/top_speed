@@ -20,6 +20,7 @@
     - [10.3 Curves, surfaces, and co-pilot timing](#103-curves-surfaces-and-co-pilot-timing)
     - [10.4 Practical driving method and recovery](#104-practical-driving-method-and-recovery)
     - [10.5 Holding the phone on Android](#105-holding-the-phone-on-android)
+    - [10.6 Fuel, Tires, and Pit Stops](#106-fuel-tires-and-pit-stops)
 - [11. Full Settings Guide](#11-full-settings-guide)
     - [11.1 Game Settings](#111-game-settings)
     - [11.2 Speech](#112-speech)
@@ -46,7 +47,7 @@
     - [24.2 Main Menu and Startup](#242-main-menu-and-startup)
     - [24.3 Driving Core Intents](#243-driving-core-intents)
     - [24.4 Driving Information Requests](#244-driving-information-requests)
-    - [24.5 Direct Player Number and Position Keys During Race](#245-direct-player-number-and-position-keys-during-race)
+    - [24.5 Direct Player Keys During Race](#245-direct-player-keys-during-race)
     - [24.6 Panel and Radio Controls](#246-panel-and-radio-controls)
     - [24.7 Multiplayer Menu Touch Layout (Android)](#247-multiplayer-menu-touch-layout-android)
     - [24.8 Multiplayer Race Overlay Controls](#248-multiplayer-race-overlay-controls)
@@ -274,6 +275,17 @@ In this landscape position, the vehicle control area is on the right side of the
 
 All driving gestures in the control reference are written from this landscape point of view. If the guide says drag left or drag right, it means physically moving your finger toward the left or right side while holding the phone sideways. This matters especially for steering: steering left is a left drag, and steering right is a right drag. It is not based on portrait up and down directions.
 
+### 10.6 Fuel, Tires, and Pit Stops
+Top Speed can model fuel use and tire wear during a race. Both are optional and independent of each other. For single race and time trial, turn them on under Options, then Race settings, using the "Enable fuel consumption" and "Enable tire wear" check boxes. In multiplayer the host controls them through the room's race rules, so whether they apply depends on the server and room you join. When both are off, races behave exactly as they did before, with no fuel limit and no tire wear.
+
+Fuel: When fuel consumption is on, your car burns fuel as you drive and starts each race with a full tank. Press X during driving to hear how much fuel you have left. As the tank gets low the game gives you a low-fuel warning so the reading does not take you by surprise. If you let the tank run completely dry the car can no longer keep going, and you will not be able to finish the race, so plan a refuel before it reaches that point.
+
+Tires: When tire wear is on, your tires begin cold, warm up to an optimal temperature where they grip best, and then gradually wear and lose grip over a long run. Press B during driving to hear their current condition. The spoken states are cold, warming up, optimal temperature, hot, and overheated. Cold and overheated tires give you less grip than tires at their optimal temperature, so the readout is a useful guide for how hard you can push and when a fresh set is worth a stop.
+
+Making a pit stop: Tracks have a pit area by default, located at the start/finish line, though a track author can place it elsewhere or turn pitting off entirely in the track's settings. Nearly all tracks therefore let you pit. To make a stop, press I (Pit this time) while driving. The game confirms with "Pitting this time" and remembers your request for the next time you reach the pit entry area on the current lap. When you arrive, a short menu opens with three choices: Refuel, Tires, and Both. Pick the service you need. As a shortcut, while that menu is open you can press 1 for Refuel, 2 for Tires, or 3 for Both to choose quickly. The car then services in the pit lane and rejoins the race. Refueling fills the tank, changing tires restores grip, and Both does the two together, which takes a little longer than either service alone. If you press I on a track that has no pit area, the game tells you so and no stop is made. Depending on where a track places its pit exit, you may rejoin the track already on your next lap. That is normal and set by the track's design, not a mistake on your part.
+
+Strategy: With fuel and tires enabled, a race becomes a balance of pace against time spent stopped. A single stop for Both is the simple, safe approach. If you only need one service, refueling or changing tires alone saves time. On short races you may not need to stop at all. Use the X and B readouts to judge when a stop is worth the time it costs.
+
 ## 11. Full Settings Guide
 This section explains what each settings group changes in normal play. If something feels wrong, change one option, test it, and keep notes. Multiple changes at once make problems harder to trace.
 
@@ -355,6 +367,8 @@ Online server event sounds controls multiplayer session event sounds.
 
 Communicator volume controls the loudness of communicator activation cues, the local open and close cues you hear when you start or stop transmitting, and the voice playback of other players speaking through the communicator. It is independent of Radio volume; lowering Radio does not lower the communicator, and vice versa. Streamed media played through the communicator also obeys this slider.
 
+Quick volume keys: Besides these sliders, there is a faster way to adjust volume without opening the settings menu. These keys work globally, including while you are driving. Press F6 to move to the next volume category and Shift+F6 to move to the previous one; the game announces the category you land on. The categories are the same ones listed above: Master, Vehicle engine, Vehicle events, Other vehicles engine, Other vehicles events, Surface loops, Radio, Ambients and sound sources, Music, Online server events, and Communicator. Once a category is selected, press F7 to decrease its volume by one step or F8 to increase it by one step, and add Shift (Shift+F7 or Shift+F8) to change it in larger steps of ten. The selected category and its new level are spoken as you adjust, so you can balance the mix by ear in the middle of a race.
+
 All sliders in this section use the same slider gestures and keys described earlier in section 8.
 
 ### 11.5 Controls
@@ -403,7 +417,11 @@ Number of computer players sets default bot count for single race.
 
 Single race difficulty chooses easy, normal, or hard.
 
-A good beginner starting setup is: co-pilot on All, speed-dependent announcements enabled, automatic race information on, and moderate lap count.
+Enable fuel consumption turns on the fuel model for single race and time trial. When on, your car burns fuel and you must pit to refuel. When off, you race without a fuel limit. See section 10.6 for how fuel, tires, and pit stops work together.
+
+Enable tire wear turns on the tire model for single race and time trial. When on, your tires heat up, wear, and lose grip, and you pit to replace them. When off, tires never wear. In multiplayer these two are set by the host through the room's race rules rather than by this menu.
+
+A good beginner starting setup is: co-pilot on All, speed-dependent announcements enabled, automatic race information on, and moderate lap count. Leave fuel consumption and tire wear off until you are comfortable driving, then enable them when you want to try pit strategy.
 
 ### 11.7 Server Settings (Client-Side Multiplayer Defaults)
 Default server port is used when you enter a host without typing a port.
@@ -1112,6 +1130,11 @@ Toggle shift-on-demand:
 Desktop: M (fixed default shortcut).
 Mobile: No dedicated gesture.
 
+Request a pit stop (Pit this time):
+Desktop: I by default (remappable).
+Mobile: No dedicated gesture.
+This arms a pit stop for the next time you reach the pit entry area. When the pit menu opens, choose Refuel, Tires, or Both, or press 1, 2, or 3 respectively as a shortcut while the menu is open. Only applies when fuel consumption or tire wear is enabled, and only on tracks that have a pit area. See section 10.6.
+
 ### 24.4 Driving Information Requests
 Speak current gear:
 Desktop: Q by default.
@@ -1141,6 +1164,16 @@ Report speed, RPM, and horsepower:
 Desktop: S by default.
 Mobile: Double tap with one finger in the top-left information zone.
 
+Report fuel remaining:
+Desktop: X by default (remappable).
+Mobile: No dedicated gesture.
+Only meaningful when fuel consumption is enabled. See section 10.6.
+
+Report tire condition:
+Desktop: B by default (remappable).
+Mobile: No dedicated gesture.
+Speaks the current tire state: cold, warming up, optimal temperature, hot, or overheated. Only meaningful when tire wear is enabled. See section 10.6.
+
 Report track name:
 Desktop: F9 by default.
 Mobile: No dedicated gesture.
@@ -1161,75 +1194,53 @@ Repeat information for the currently selected player:
 Desktop: No default desktop key.
 Mobile: Two-finger triple tap in the top-right information zone.
 
-Note that player information on desktop uses fixed keys, starting from F1 through F8 to report the vehicle for the corresponding player, and the numbers row from 1 to 8 to report the position of the corresponding player.
+Note that player information on desktop uses the number row: press 1 through 9 for players 1 through 9, and 0 for player 10, to hear that player's full information, including vehicle and current position. See section 24.5.
 
 Exit the race:
 Desktop: Escape.
 Mobile: Swipe down with one finger in the top-left information zone.
 
-### 24.5 Direct Player Number and Position Keys During Race
-Speak vehicle name for player slot 1:
-Desktop: F1.
-Mobile: No direct equivalent gesture.
+### 24.5 Direct Player Keys During Race
+During a race you can ask about a specific player by pressing that player's number on the number row. Each key speaks the full information for that player slot, including their vehicle and current race position. This replaces the older layout that used F1 through F8 for vehicle names and the number row only for positions.
 
-Speak vehicle name for player slot 2:
-Desktop: F2.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 3:
-Desktop: F3.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 4:
-Desktop: F4.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 5:
-Desktop: F5.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 6:
-Desktop: F6.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 7:
-Desktop: F7.
-Mobile: No direct equivalent gesture.
-
-Speak vehicle name for player slot 8:
-Desktop: F8.
-Mobile: No direct equivalent gesture.
-
-Speak race-percentage position for player slot 1:
+Speak full information for player slot 1:
 Desktop: 1.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 2:
+Speak full information for player slot 2:
 Desktop: 2.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 3:
+Speak full information for player slot 3:
 Desktop: 3.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 4:
+Speak full information for player slot 4:
 Desktop: 4.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 5:
+Speak full information for player slot 5:
 Desktop: 5.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 6:
+Speak full information for player slot 6:
 Desktop: 6.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 7:
+Speak full information for player slot 7:
 Desktop: 7.
 Mobile: No direct equivalent gesture.
 
-Speak race-percentage position for player slot 8:
+Speak full information for player slot 8:
 Desktop: 8.
+Mobile: No direct equivalent gesture.
+
+Speak full information for player slot 9:
+Desktop: 9.
+Mobile: No direct equivalent gesture.
+
+Speak full information for player slot 10:
+Desktop: 0.
 Mobile: No direct equivalent gesture.
 
 Speak your own player number:

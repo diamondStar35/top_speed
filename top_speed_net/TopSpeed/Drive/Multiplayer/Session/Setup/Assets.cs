@@ -102,23 +102,70 @@ namespace TopSpeed.Drive.Multiplayer
             return _soundPlayerNrInfo[index] ??= LoadLanguageSound($"race\\info\\player{index + 1}");
         }
 
-        private Source? GetPositionSoundByIndex(int index)
+        private Source? GetNumberedPositionSound(int index)
         {
             if (index < 0 || index >= _soundPosition.Length)
                 return null;
 
-            var positionIndex = index == MaxPlayers - 1 ? MaxPlayers : index + 1;
-            return _soundPosition[index] ??= LoadLanguageSound($"race\\info\\youarepos{positionIndex}");
+            return _soundPosition[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedPositionKey(index));
         }
 
-        private Source? GetFinishedSoundByIndex(int index)
+        private Source? GetPositionLastSound()
+        {
+            return _soundPositionLast ??= LoadLanguageSound(RaceInfoSounds.PositionLastKey);
+        }
+
+        private Source? GetPositionSoundByIndex(int index)
+        {
+            // Field-size aware, matching the finish announcement: whoever currently sits last hears
+            // "you are last" instead of a number that would otherwise need a youarepos10 clip.
+            var racers = TotalRacers();
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetPositionLastSound()
+                : GetNumberedPositionSound(index);
+        }
+
+        // Racers still in the race: the local player plus every remote player whose slot has not
+        // dropped. Drives the "finished last" call, so a two-car race ends first, last.
+        private int TotalRacers()
+        {
+            var total = 1;
+            foreach (var entry in _remotePlayers)
+            {
+                var playerNumber = entry.Key;
+                if (playerNumber < _disconnectedPlayerSlots.Length && _disconnectedPlayerSlots[playerNumber])
+                    continue;
+                total++;
+            }
+
+            return Math.Min(total, MaxPlayers);
+        }
+
+        private Source? GetNumberedFinishedSound(int index)
         {
             if (index < 0 || index >= _soundFinished.Length)
                 return null;
 
-            var finishIndex = Math.Min(index, MaxPlayers - 1);
-            var positionIndex = finishIndex == MaxPlayers - 1 ? MaxPlayers : finishIndex + 1;
-            return _soundFinished[finishIndex] ??= LoadLanguageSound($"race\\info\\finished{positionIndex}");
+            return _soundFinished[index] ??= LoadLanguageSound(RaceInfoSounds.NumberedFinishedKey(index));
+        }
+
+        private Source? GetFinishedLastSound()
+        {
+            return _soundFinishedLast ??= LoadLanguageSound(RaceInfoSounds.FinishedLastKey);
+        }
+
+        private Source? GetFinishedSoundByIndex(int index)
+        {
+            var racers = TotalRacers();
+            if (index < 0 || index >= racers)
+                return null;
+
+            return RaceInfoSounds.IsLastPlace(index, racers)
+                ? GetFinishedLastSound()
+                : GetNumberedFinishedSound(index);
         }
 
         private void PreloadRaceSpeechSources()
@@ -128,9 +175,19 @@ namespace TopSpeed.Drive.Multiplayer
                 GetNumberSound(i + 1);
                 GetPlayerNumberSoundByIndex(i);
                 GetPlayerNumberInfoSoundByIndex(i);
-                GetPositionSoundByIndex(i);
-                GetFinishedSoundByIndex(i);
             }
+
+            // Preload every finish call and position callout the race could reach regardless of how
+            // many racers are in the room right now, since players may still join. The highest
+            // numbered clip that can ever play is one below MaxPlayers -- the final position is
+            // always last.
+            for (var i = 0; i < MaxPlayers - 1; i++)
+            {
+                GetNumberedFinishedSound(i);
+                GetNumberedPositionSound(i);
+            }
+            GetFinishedLastSound();
+            GetPositionLastSound();
 
             PreloadRandomSounds();
         }
@@ -152,6 +209,11 @@ namespace TopSpeed.Drive.Multiplayer
             _soundPause = LoadLanguageSound("race\\pause");
             _soundResume = LoadLanguageSound("race\\unpause");
             _soundTurnEndDing = LoadLegacySound("ding.ogg");
+            _soundLetsPit = TryLoadLanguageSound("race\\letspit", allowFallback: false);
+            _soundRightTires = TryLoadPitSound("tirechangeright.ogg");
+            _soundLeftTires = TryLoadPitSound("tirechangeleft.ogg");
+            _soundFuelingUp = TryLoadPitSound("refueling.ogg");
+            _soundExitPitRoad = TryLoadLanguageSound("race\\exitpitroad", allowFallback: false);
         }
 
         private void QueueRaceIntro()
@@ -220,6 +282,14 @@ namespace TopSpeed.Drive.Multiplayer
                 throw new FileNotFoundException($"Missing legacy sound {fileName}.");
 
             return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+        }
+
+        private Source? TryLoadPitSound(string fileName)
+        {
+            var path = AssetPaths.ResolvePitSoundPath(fileName);
+            if (path != null)
+                return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+            return null;
         }
 
         private Source LoadBusSource(string path, string busName, bool streamFromDisk)

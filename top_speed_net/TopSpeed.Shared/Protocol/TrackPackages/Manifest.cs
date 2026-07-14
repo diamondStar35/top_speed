@@ -9,6 +9,6 @@ namespace TopSpeed.Protocol
         public string Hash = string.Empty;
         public string DefaultWeatherProfileId = TrackWeatherProfile.DefaultProfileId;
         public TrackAmbience Ambience;
-        public byte Laps;
+        public int Laps;
     }
 }

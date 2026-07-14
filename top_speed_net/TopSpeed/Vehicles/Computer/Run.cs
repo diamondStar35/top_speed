@@ -56,9 +56,25 @@ namespace TopSpeed.Vehicles
                     AutoShiftCooldownSeconds = _autoShiftCooldown,
                     AutomaticCouplingFactor = _automaticCouplingFactor,
                     CvtRatio = _cvtRatio,
-                    EffectiveDriveRatio = _effectiveDriveRatio
+                    EffectiveDriveRatio = _effectiveDriveRatio,
+                    TireWearFraction = _tireWearFraction,
+                    TireTemperatureC = _tireTemperatureC,
+                    TireTreadTemperatureC = _tireTreadTemperatureC,
+                    TireCarcassTemperatureC = _tireCarcassTemperatureC,
+                    TireSmoothedInputs = _tireSmoothedInputs,
+                    SurfaceTemperatureC = _surfaceTemperatureC
                 };
-                var physicsInput = new BotPhysicsInput(elapsed, _surface, _currentThrottle, _currentBrake, _currentSteering);
+                var weather = _track.GetActiveWeatherProfile();
+                var physicsInput = new BotPhysicsInput(
+                    elapsed,
+                    _surface,
+                    _currentThrottle,
+                    _currentBrake,
+                    _currentSteering,
+                    ambientTemperatureC: weather.TemperatureC,
+                    rainGain: weather.RainGain,
+                    stormGain: weather.StormGain,
+                    windGain: weather.WindGain);
                 BotPhysics.Step(_physicsConfig, ref physicsState, physicsInput);
 
                 _positionX = physicsState.PositionX;
@@ -71,6 +87,12 @@ namespace TopSpeed.Vehicles
                 _automaticCouplingFactor = physicsState.AutomaticCouplingFactor;
                 _cvtRatio = physicsState.CvtRatio;
                 _effectiveDriveRatio = physicsState.EffectiveDriveRatio;
+                _tireWearFraction = physicsState.TireWearFraction;
+                _tireTemperatureC = physicsState.TireTemperatureC;
+                _tireTreadTemperatureC = physicsState.TireTreadTemperatureC;
+                _tireCarcassTemperatureC = physicsState.TireCarcassTemperatureC;
+                _tireSmoothedInputs = physicsState.TireSmoothedInputs;
+                _surfaceTemperatureC = physicsState.SurfaceTemperatureC;
                 _speedDiff = _speed - beforeSpeed;
 
                 var driveRatioOverride = _effectiveDriveRatio > 0f ? _effectiveDriveRatio : (float?)null;

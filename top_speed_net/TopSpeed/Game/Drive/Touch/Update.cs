@@ -47,6 +47,7 @@ namespace TopSpeed.Game
             var currentLapPerc = _input.WasZoneGesturePressed(GestureIntent.ThreeFingerDoubleTap, DriveTouchInfoLeftZoneId);
             var currentRaceTime = _input.WasZoneGesturePressed(GestureIntent.TwoFingerTripleTap, DriveTouchInfoLeftZoneId);
             var pause = _input.WasZoneGesturePressed(GestureIntent.ThreeFingerTripleTap, DriveTouchInfoLeftZoneId);
+            var pitThisTime = _input.WasZoneGesturePressed(GestureIntent.ThreeFingerTap, DriveTouchVehicleZoneId);
             if (_input.WasZoneGesturePressed(GestureIntent.SwipeDown, DriveTouchInfoLeftZoneId))
                 _driveTouchExitRequested = true;
 
@@ -72,7 +73,8 @@ namespace TopSpeed.Game
                 requestInfo,
                 previousPlayer,
                 nextPlayer,
-                repeatFocusedPlayer);
+                repeatFocusedPlayer,
+                pitThisTime);
         }
 
         private void EnsureDriveTouchZones()

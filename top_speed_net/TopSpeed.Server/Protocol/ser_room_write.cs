@@ -13,7 +13,7 @@ namespace TopSpeed.Server.Protocol
             var definitionCount = Math.Min(track.Definitions.Length, maxLength);
             var weatherProfiles = NormalizeWeatherProfiles(track.WeatherProfiles, track.DefaultWeatherProfileId);
             var profileCount = Math.Min(weatherProfiles.Count, byte.MaxValue);
-            var payload = 1 + 12 + 1 + 2 + 2 + PacketWriter.MeasureString16(track.DefaultWeatherProfileId) + 1;
+            var payload = 4 + 12 + 1 + 2 + 2 + PacketWriter.MeasureString16(track.DefaultWeatherProfileId) + 1;
             for (var i = 0; i < profileCount; i++)
                 payload += MeasureWeatherProfile(weatherProfiles[i]);
             for (var i = 0; i < definitionCount; i++)
@@ -22,7 +22,7 @@ namespace TopSpeed.Server.Protocol
             var writer = new PacketWriter(buffer);
             writer.WriteByte(ProtocolConstants.Version);
             writer.WriteByte((byte)Command.LoadCustomTrack);
-            writer.WriteByte(track.NrOfLaps);
+            writer.WriteInt32(track.NrOfLaps);
             writer.WriteFixedString(track.TrackName, 12);
             writer.WriteByte((byte)track.TrackAmbience);
             writer.WriteUInt16(maxLength);
@@ -143,7 +143,7 @@ namespace TopSpeed.Server.Protocol
         public static byte[] WriteRoomState(PacketRoomState state)
         {
             var count = Math.Min(state.Players.Length, ProtocolConstants.MaxPlayers);
-            var payload = 4 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 4 + 1 +
+            var payload = 4 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 1 + 1 + 1 + 4 + 4 + 1 +
                 (count * (4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength))
                 + MeasureTrackRef(NormalizeTrackRef(state.Track, state.TrackName));
             var buffer = WritePacketHeader(Command.RoomState, payload);
@@ -163,7 +163,7 @@ namespace TopSpeed.Server.Protocol
             writer.WriteBool(state.IsHost);
             writer.WriteBool(state.RacePaused);
             WriteTrackRef(ref writer, NormalizeTrackRef(state.Track, state.TrackName));
-            writer.WriteByte(state.Laps);
+            writer.WriteInt32(state.Laps);
             writer.WriteUInt32(state.GameRulesFlags);
             writer.WriteByte((byte)count);
             for (var i = 0; i < count; i++)
@@ -180,7 +180,7 @@ namespace TopSpeed.Server.Protocol
         public static byte[] WriteRoomGet(PacketRoomGet packet)
         {
             var count = Math.Min(packet.Players.Length, ProtocolConstants.MaxPlayers);
-            var payload = 1 + 4 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 1 + 1 + 4 + 1 +
+            var payload = 1 + 4 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 1 + 4 + 4 + 1 +
                 (count * (4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength))
                 + MeasureTrackRef(NormalizeTrackRef(packet.Track, packet.TrackName));
             var buffer = WritePacketHeader(Command.RoomGet, payload);
@@ -199,7 +199,7 @@ namespace TopSpeed.Server.Protocol
             writer.WriteByte((byte)packet.RaceState);
             writer.WriteBool(packet.RacePaused);
             WriteTrackRef(ref writer, NormalizeTrackRef(packet.Track, packet.TrackName));
-            writer.WriteByte(packet.Laps);
+            writer.WriteInt32(packet.Laps);
             writer.WriteUInt32(packet.GameRulesFlags);
             writer.WriteByte((byte)count);
             for (var i = 0; i < count; i++)
@@ -216,7 +216,7 @@ namespace TopSpeed.Server.Protocol
 
         public static byte[] WriteRoomEvent(PacketRoomEvent evt)
         {
-            var payload = 4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + 4 +
+            var payload = 4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 4 + 4 +
                 ProtocolConstants.MaxRoomNameLength + 4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength
                 + MeasureTrackRef(NormalizeTrackRef(evt.Track, evt.TrackName));
             var buffer = WritePacketHeader(Command.RoomEvent, payload);
@@ -235,7 +235,7 @@ namespace TopSpeed.Server.Protocol
             writer.WriteByte((byte)evt.RaceState);
             writer.WriteBool(evt.RacePaused);
             WriteTrackRef(ref writer, NormalizeTrackRef(evt.Track, evt.TrackName));
-            writer.WriteByte(evt.Laps);
+            writer.WriteInt32(evt.Laps);
             writer.WriteUInt32(evt.GameRulesFlags);
             writer.WriteFixedString(evt.RoomName ?? string.Empty, ProtocolConstants.MaxRoomNameLength);
             writer.WriteUInt32(evt.SubjectPlayerId);
@@ -277,7 +277,7 @@ namespace TopSpeed.Server.Protocol
 
         public static byte[] WriteRoomRaceStateChanged(PacketRoomRaceStateChanged packet)
         {
-            var payload = 4 + 4 + 4 + 4 + 1;
+            var payload = 4 + 4 + 4 + 4 + 1 + 4;
             var buffer = WritePacketHeader(Command.RoomRaceStateChanged, payload);
             var writer = new PacketWriter(buffer);
             writer.WriteByte(ProtocolConstants.Version);
@@ -287,6 +287,7 @@ namespace TopSpeed.Server.Protocol
             writer.WriteUInt32(packet.EventSequence);
             writer.WriteUInt32(packet.RaceInstanceId);
             writer.WriteByte((byte)packet.State);
+            writer.WriteUInt32(packet.EffectiveGameRulesFlags);
             return buffer;
         }
 

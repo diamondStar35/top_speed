@@ -52,8 +52,11 @@ namespace TopSpeed.Server.Network
         public TrackData? TrackData { get; set; }
         public string TrackName { get; set; }
         public TrackPackageRef TrackSelection { get; set; }
-        public byte Laps { get; set; }
+        public int Laps { get; set; }
         public uint GameRulesFlags { get; set; }
+        // Effective rules for the current race instance = GameRulesFlags minus the host's per-race
+        // disable mask (set when the race starts). Equals GameRulesFlags when there is no override.
+        public uint RaceEffectiveGameRulesFlags { get; set; }
         public HashSet<uint> TrackReadyPlayers { get; } = new HashSet<uint>();
 
         // Per-player set of custom vehicle package hashes that player has confirmed downloaded.

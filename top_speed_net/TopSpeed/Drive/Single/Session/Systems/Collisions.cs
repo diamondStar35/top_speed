@@ -32,6 +32,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
         private readonly ComputerPlayer?[] _players;
         private readonly Func<int> _getPlayerNumber;
         private readonly Func<int> _getPlayerCount;
+        private readonly Func<bool> _isInPitStop;
         private readonly HashSet<ulong> _activePairs = new HashSet<ulong>();
 
         public Collisions(
@@ -41,7 +42,8 @@ namespace TopSpeed.Drive.Single.Session.Systems
             Vehicles.ICar car,
             ComputerPlayer?[] players,
             Func<int> getPlayerNumber,
-            Func<int> getPlayerCount)
+            Func<int> getPlayerCount,
+            Func<bool> isInPitStop)
             : base(name, order)
         {
             _track = track ?? throw new ArgumentNullException(nameof(track));
@@ -49,6 +51,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
             _players = players ?? throw new ArgumentNullException(nameof(players));
             _getPlayerNumber = getPlayerNumber ?? throw new ArgumentNullException(nameof(getPlayerNumber));
             _getPlayerCount = getPlayerCount ?? throw new ArgumentNullException(nameof(getPlayerCount));
+            _isInPitStop = isInPitStop ?? throw new ArgumentNullException(nameof(isInPitStop));
         }
 
         public override void Update(TopSpeed.Drive.Session.SessionContext context, float elapsed)
@@ -57,7 +60,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
             var actors = new List<Actor>(_getPlayerCount() + 1);
             var activePairs = new HashSet<ulong>();
 
-            if (_car.State == Vehicles.CarState.Running)
+            if (_car.State == Vehicles.CarState.Running && !_isInPitStop())
                 actors.Add(new Actor((uint)_getPlayerNumber(), isPlayer: true, bot: null));
 
             for (var i = 0; i < _getPlayerCount(); i++)

@@ -246,10 +246,12 @@ namespace TopSpeed.Network
                 {
                     var track = ReadCatalogTrackRef(ref reader);
                     var displayName = reader.ReadString16();
+                    var hasPitArea = reader.ReadBool();
                     tracks[i] = new PacketTrackPackageCatalogEntry
                     {
                         Track = track,
-                        DisplayName = displayName
+                        DisplayName = displayName,
+                        HasPitArea = hasPitArea
                     };
                 }
 

@@ -7,7 +7,7 @@ namespace TopSpeed.Network
     {
         public static byte[] WriteRoomEvent(PacketRoomEvent evt)
         {
-            var payload = 4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + 4 +
+            var payload = 4 + 4 + 4 + 4 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 4 + 4 +
                 ProtocolConstants.MaxRoomNameLength + 4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength
                 + MeasureTrackRef(NormalizeTrackRef(evt.Track, evt.TrackName));
             var buffer = WritePacketHeader(Command.RoomEvent, payload);
@@ -26,7 +26,7 @@ namespace TopSpeed.Network
             writer.WriteByte((byte)evt.RaceState);
             writer.WriteBool(evt.RacePaused);
             WriteTrackRef(ref writer, NormalizeTrackRef(evt.Track, evt.TrackName));
-            writer.WriteByte(evt.Laps);
+            writer.WriteInt32(evt.Laps);
             writer.WriteUInt32(evt.GameRulesFlags);
             writer.WriteFixedString(evt.RoomName ?? string.Empty, ProtocolConstants.MaxRoomNameLength);
             writer.WriteUInt32(evt.SubjectPlayerId);
@@ -39,7 +39,7 @@ namespace TopSpeed.Network
         public static byte[] WriteRoomGet(PacketRoomGet packet)
         {
             var count = Math.Min(packet.Players.Length, ProtocolConstants.MaxPlayers);
-            var payload = 1 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 1 + 4 + 1 +
+            var payload = 1 + 4 + 4 + 4 + 4 + ProtocolConstants.MaxRoomNameLength + 1 + 1 + 1 + 4 + 4 + 1 +
                 (count * (4 + 1 + 1 + ProtocolConstants.MaxPlayerNameLength))
                 + MeasureTrackRef(NormalizeTrackRef(packet.Track, packet.TrackName));
             var buffer = WritePacketHeader(Command.RoomGet, payload);
@@ -56,7 +56,7 @@ namespace TopSpeed.Network
             writer.WriteByte(packet.PlayersToStart);
             writer.WriteByte((byte)packet.RaceState);
             WriteTrackRef(ref writer, NormalizeTrackRef(packet.Track, packet.TrackName));
-            writer.WriteByte(packet.Laps);
+            writer.WriteInt32(packet.Laps);
             writer.WriteUInt32(packet.GameRulesFlags);
             writer.WriteByte((byte)count);
             for (var i = 0; i < count; i++)

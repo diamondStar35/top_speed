@@ -10,7 +10,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
         private readonly Vehicles.ICar _car;
         private readonly DriveSettings _settings;
         private readonly int _lapLimit;
-        private readonly Source[] _lapSounds;
+        private readonly Func<int, Source?> _getLapSound;
         private readonly Func<int> _getLap;
         private readonly Action<int> _setLap;
         private readonly Action _applyPlayerFinishState;
@@ -24,7 +24,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
             Vehicles.ICar car,
             DriveSettings settings,
             int lapLimit,
-            Source[] lapSounds,
+            Func<int, Source?> getLapSound,
             Func<int> getLap,
             Action<int> setLap,
             Action applyPlayerFinishState,
@@ -36,7 +36,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
             _car = car ?? throw new ArgumentNullException(nameof(car));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _lapLimit = lapLimit;
-            _lapSounds = lapSounds ?? throw new ArgumentNullException(nameof(lapSounds));
+            _getLapSound = getLapSound ?? throw new ArgumentNullException(nameof(getLapSound));
             _getLap = getLap ?? throw new ArgumentNullException(nameof(getLap));
             _setLap = setLap ?? throw new ArgumentNullException(nameof(setLap));
             _applyPlayerFinishState = applyPlayerFinishState ?? throw new ArgumentNullException(nameof(applyPlayerFinishState));
@@ -60,11 +60,11 @@ namespace TopSpeed.Drive.Single.Session.Systems
 
             if (_settings.AutomaticInfo != AutomaticInfoMode.Off
                 && currentLap > 1
-                && currentLap <= _lapLimit
-                && _lapLimit - currentLap >= 0
-                && _lapLimit - currentLap < _lapSounds.Length)
+                && currentLap <= _lapLimit)
             {
-                _speak(_lapSounds[_lapLimit - currentLap], true);
+                var lapSound = _getLapSound(_lapLimit - currentLap);
+                if (lapSound != null)
+                    _speak(lapSound, true);
             }
         }
     }

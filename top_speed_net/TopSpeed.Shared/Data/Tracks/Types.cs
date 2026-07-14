@@ -56,6 +56,12 @@ namespace TopSpeed.Data
         Airport = 2
     }
 
+    public enum SegmentPitPoint
+    {
+        PitEntry = 0,
+        PitExit = 1
+    }
+
     public readonly struct TrackDefinition
     {
         private static readonly IReadOnlyList<string> EmptySoundSources = Array.Empty<string>();
@@ -74,6 +80,12 @@ namespace TopSpeed.Data
         public TrackRoomOverrides? RoomOverrides { get; }
         public IReadOnlyList<string> SoundSourceIds { get; }
         public IReadOnlyDictionary<string, string> Metadata { get; }
+
+        /// <summary>Whether this segment is marked as a pit entry. A segment may be both entry and exit.</summary>
+        public bool IsPitEntry { get; }
+
+        /// <summary>Whether this segment is marked as a pit exit. A segment may be both entry and exit.</summary>
+        public bool IsPitExit { get; }
 
         public TrackDefinition(TrackType type, TrackSurface surface, TrackNoise noise, float length)
             : this(type, surface, noise, length, null, 0f, 0f, null, 0f, null, null, null, null)
@@ -109,7 +121,9 @@ namespace TopSpeed.Data
             string? roomId,
             TrackRoomOverrides? roomOverrides,
             IReadOnlyList<string>? soundSourceIds,
-            IReadOnlyDictionary<string, string>? metadata)
+            IReadOnlyDictionary<string, string>? metadata,
+            bool isPitEntry = false,
+            bool isPitExit = false)
         {
             Type = type;
             Surface = surface;
@@ -124,6 +138,8 @@ namespace TopSpeed.Data
             RoomOverrides = roomOverrides;
             SoundSourceIds = soundSourceIds ?? EmptySoundSources;
             Metadata = metadata ?? EmptyMetadata;
+            IsPitEntry = isPitEntry;
+            IsPitExit = isPitExit;
         }
     }
 
@@ -148,14 +164,39 @@ namespace TopSpeed.Data
         public IReadOnlyDictionary<string, TrackSoundSourceDefinition> SoundSources { get; }
         public string? SourcePath { get; }
         public int Length => Definitions.Length;
-        public byte Laps { get; set; }
+        public int Laps { get; set; }
+
+        /// <summary>
+        /// Whether this track has a pit area. True unless the <c>[meta]</c> section explicitly sets
+        /// <c>pit_area = false</c>. A track with a pit area uses its defined pit entry/exit segments,
+        /// or falls back to the start/finish line when none are defined; a track without one cannot
+        /// pit at all (fuel/tire models that need pitting should be warned about / disabled).
+        /// </summary>
+        public bool HasPitArea => !MetadataDisablesPitArea(Metadata);
+
+        /// <summary>Whether <c>pit_area</c> in the metadata is an explicit false token.</summary>
+        internal static bool MetadataDisablesPitArea(IReadOnlyDictionary<string, string>? metadata)
+        {
+            if (metadata == null || !metadata.TryGetValue("pit_area", out var raw) || raw == null)
+                return false;
+            switch (raw.Trim().ToLowerInvariant())
+            {
+                case "false":
+                case "0":
+                case "no":
+                case "off":
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
         public TrackData(
             bool userDefined,
             TrackWeather weather,
             TrackAmbience ambience,
             TrackDefinition[] definitions,
-            byte laps = 0,
+            int laps = 0,
             string? name = null,
             string? version = null,
             IReadOnlyDictionary<string, string>? metadata = null,
@@ -187,7 +228,7 @@ namespace TopSpeed.Data
             IReadOnlyDictionary<string, TrackWeatherProfile>? weatherProfiles,
             TrackAmbience ambience,
             TrackDefinition[] definitions,
-            byte laps = 0,
+            int laps = 0,
             string? name = null,
             string? version = null,
             IReadOnlyDictionary<string, string>? metadata = null,
@@ -235,7 +276,7 @@ namespace TopSpeed.Data
                 : TrackWeatherProfile.CreatePreset(TrackWeatherProfile.DefaultProfileId, TrackWeather.Sunny);
         }
 
-        public TrackData WithLaps(byte laps)
+        public TrackData WithLaps(int laps)
         {
             return new TrackData(
                 UserDefined,

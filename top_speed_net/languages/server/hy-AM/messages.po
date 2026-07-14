@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-17 13:43\n"
+"POT-Creation-Date: 2026-05-19 01:14+0300\n"
+"PO-Revision-Date: 2026-07-12 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Armenian\n"
 "MIME-Version: 1.0\n"
@@ -111,12 +111,12 @@ msgstr ""
 msgid "Bot"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:88
 #, csharp-format
 msgid "Bot crashed: room={0}, bot={1}, number={2}, y={3:0.0}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:106
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:110
 #, csharp-format
 msgid "Bot finished: room={0}, bot={1}, number={2}, place={3}."
 msgstr ""
@@ -907,7 +907,7 @@ msgstr ""
 msgid "Protocol version: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:285
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:289
 #, csharp-format
 msgid "Race completion invariant failed before emit: room={0}, reason={1}."
 msgstr ""
@@ -976,12 +976,12 @@ msgstr ""
 msgid "Race start cancelled because there are not enough ready players."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:263
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:267
 #, csharp-format
 msgid "Race started: room={0} \"{1}\", track={2}, laps={3}, humans={4}, bots={5}."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:334
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:342
 #, csharp-format
 msgid "Race stopped: room={0} \"{1}\", results={2}."
 msgstr ""
@@ -1252,7 +1252,7 @@ msgstr ""
 msgid "Standard input is not available. Update download was skipped."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:277
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:281
 #, csharp-format
 msgid "Stopping race: room={0}, active={1}, trackedResults={2}."
 msgstr ""
@@ -1811,7 +1811,7 @@ msgstr ""
 msgid "{0} says: {1}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:127
+#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:131
 #, csharp-format
 msgid "{0} stopped the current game."
 msgstr ""

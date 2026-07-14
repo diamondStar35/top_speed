@@ -144,7 +144,7 @@ namespace TopSpeed.Protocol
 
     public sealed class PacketLoadCustomTrack
     {
-        public byte NrOfLaps;
+        public int NrOfLaps;
         public string TrackName = string.Empty;
         public TrackAmbience TrackAmbience;
         public string DefaultWeatherProfileId = TrackWeatherProfile.DefaultProfileId;
@@ -227,7 +227,7 @@ namespace TopSpeed.Protocol
 
     public sealed class PacketRoomSetLaps
     {
-        public byte Laps;
+        public int Laps;
     }
 
     public sealed class PacketRoomSetPlayersToStart
@@ -279,7 +279,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public PacketRoomPlayer[] Players = Array.Empty<PacketRoomPlayer>();
     }
@@ -299,7 +299,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public PacketRoomPlayer[] Players = Array.Empty<PacketRoomPlayer>();
     }
@@ -319,7 +319,7 @@ namespace TopSpeed.Protocol
         public bool RacePaused;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = new TrackPackageRef();
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
         public string RoomName = string.Empty;
         public uint SubjectPlayerId;
@@ -335,6 +335,10 @@ namespace TopSpeed.Protocol
         public uint EventSequence;
         public uint RaceInstanceId;
         public RoomRaceState State;
+        // Effective RoomGameRules for this race instance: the room's persistent rules minus any
+        // per-race disable the host chose (e.g. turning fuel/tire off for a pit-less track). Clients
+        // build their car from this so the override never changes the persistent room rules.
+        public uint EffectiveGameRulesFlags;
     }
 
     public sealed class PacketRoomRacePlayerFinished

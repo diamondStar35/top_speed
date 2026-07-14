@@ -47,7 +47,6 @@ namespace TopSpeed.Game
 
         private void StartDrive(CoreRaceMode mode)
         {
-            FadeOutMenuMusic();
             var track = string.IsNullOrWhiteSpace(_setup.TrackNameOrFile)
                 ? TrackList.RaceTracks[0].Key
                 : _setup.TrackNameOrFile!;
@@ -66,6 +65,72 @@ namespace TopSpeed.Game
                 return;
             }
 
+            var baseToggles = new RacePhysicsToggles(_settings.TireWearEnabled, _settings.FuelConsumptionEnabled);
+
+            // No-pit-area warning: when the selected track lacks a pit area (pit_area = false in its
+            // metadata) while a model that needs pitting is on, offer to disable those models for
+            // this race only — without touching the saved settings. If the track data can't be
+            // resolved, assume it has a pit area so we never block a race spuriously.
+            var hasPitArea = !Track.TryResolveData(track, out var trackData) || trackData.HasPitArea;
+            if (PitAreaWarning.IsRequired(hasPitArea, baseToggles.FuelConsumptionEnabled, baseToggles.TireWearEnabled))
+            {
+                PromptNoPitAreaWarning(mode, track, trackId, automatic, vehicleIndex, vehicleFile, baseToggles);
+                return;
+            }
+
+            LaunchDrive(mode, track, trackId, automatic, vehicleIndex, vehicleFile, baseToggles);
+        }
+
+        private void PromptNoPitAreaWarning(
+            CoreRaceMode mode,
+            string track,
+            string trackId,
+            bool automatic,
+            int vehicleIndex,
+            string? vehicleFile,
+            RacePhysicsToggles baseToggles)
+        {
+            var items = new Dictionary<int, string>
+            {
+                [1] = LocalizationService.Mark("Disable for this race"),
+                [2] = LocalizationService.Mark("Race anyway")
+            };
+
+            ShowChoiceDialog(
+                PitAreaWarning.BuildTitle(),
+                PitAreaWarning.BuildCaption(baseToggles.FuelConsumptionEnabled, baseToggles.TireWearEnabled),
+                items,
+                cancelable: true,
+                cancelLabel: LocalizationService.Mark("Cancel"),
+                onResult: result =>
+                {
+                    if (result.IsCanceled)
+                    {
+                        _state = AppState.Menu;
+                        _menu.FadeInMenuMusic(force: true);
+                        return;
+                    }
+
+                    // "Disable for this race" turns off both pit-dependent models for this race only;
+                    // "Race anyway" keeps the player's chosen models. Neither writes to settings.
+                    var toggles = result.ChoiceId == 1
+                        ? new RacePhysicsToggles(false, false)
+                        : baseToggles;
+                    LaunchDrive(mode, track, trackId, automatic, vehicleIndex, vehicleFile, toggles);
+                });
+        }
+
+        private void LaunchDrive(
+            CoreRaceMode mode,
+            string track,
+            string trackId,
+            bool automatic,
+            int vehicleIndex,
+            string? vehicleFile,
+            RacePhysicsToggles physicsToggles)
+        {
+            FadeOutMenuMusic();
+
             try
             {
                 switch (mode)
@@ -82,7 +147,8 @@ namespace TopSpeed.Game
                             _settings.NrOfLaps,
                             vehicleIndex,
                             vehicleFile,
-                            _input.VibrationDevice);
+                            _input.VibrationDevice,
+                            physicsToggles);
                         timeTrial.Initialize();
                         _timeTrial = timeTrial;
                         _state = AppState.TimeTrial;
@@ -100,7 +166,8 @@ namespace TopSpeed.Game
                             _settings.NrOfLaps,
                             vehicleIndex,
                             vehicleFile,
-                            _input.VibrationDevice);
+                            _input.VibrationDevice,
+                            physicsToggles);
                         singleRace.Initialize(SelectSingleRacePlayerNumber());
                         _singleRace = singleRace;
                         _state = AppState.SingleRace;

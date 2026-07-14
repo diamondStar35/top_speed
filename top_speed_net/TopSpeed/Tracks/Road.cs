@@ -72,6 +72,29 @@ namespace TopSpeed.Tracks
             };
         }
 
+        public bool TryGetPitPointDistance(Data.SegmentPitPoint pitPoint, bool atSegmentEnd, out float distanceInLap)
+        {
+            if (_lapDistance == 0)
+                Initialize();
+            for (var i = 0; i < _segmentCount; i++)
+            {
+                var matches = pitPoint == Data.SegmentPitPoint.PitEntry
+                    ? _definition[i].IsPitEntry
+                    : _definition[i].IsPitExit;
+                if (matches)
+                {
+                    // Pit entry begins at the start of its segment; pit exit rejoins the
+                    // track at the end of its segment (start distance + segment length).
+                    distanceInLap = _segmentStartDistances[i];
+                    if (atSegmentEnd)
+                        distanceInLap += _definition[i].Length;
+                    return true;
+                }
+            }
+            distanceInLap = 0f;
+            return false;
+        }
+
         public bool NextRoad(float position, float speed, int curveAnnouncementMode, float speedDependentLeadTimeSeconds, out Road road)
         {
             road = new Road();
@@ -112,6 +135,20 @@ namespace TopSpeed.Tracks
             }
 
             return false;
+        }
+
+        // Re-anchor the speed-dependent curve-announcement state to a new position after the car is
+        // teleported (e.g. exiting the pit lane). NextRoad only advances _lastCalled when it announces,
+        // so a jump that moves the segment index backwards (a lap-gaining pit exit) leaves _lastCalled
+        // ahead of the car and suppresses announcements for most of a lap. Setting it to the segment
+        // the car now occupies makes the next segment ahead announce normally.
+        public void ResyncCurveAnnouncement(float position)
+        {
+            if (_lapDistance == 0)
+                Initialize();
+            var index = RoadIndexAt(position);
+            if (index >= 0)
+                _lastCalled = index;
         }
 
         private int RoadIndexAt(float position)

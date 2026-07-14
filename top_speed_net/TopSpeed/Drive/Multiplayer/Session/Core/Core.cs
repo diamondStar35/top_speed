@@ -33,6 +33,7 @@ namespace TopSpeed.Drive.Multiplayer
             IFileDialogs fileDialogs,
             NetworkSession network,
             uint raceInstanceId,
+            TopSpeed.Vehicles.RacePhysicsToggles physicsToggles,
             Func<byte, string> resolvePlayerName,
             Func<byte, string?>? resolveRemoteVehicleFile = null,
             Func<byte, string?>? resolveRemoteVehicleName = null)
@@ -46,6 +47,7 @@ namespace TopSpeed.Drive.Multiplayer
             _network = network ?? throw new ArgumentNullException(nameof(network));
             _raceAudio = new RaceAudioFactory(_audio);
             _raceInstanceId = raceInstanceId;
+            _physicsToggles = physicsToggles;
             _resolvePlayerName = resolvePlayerName ?? throw new ArgumentNullException(nameof(resolvePlayerName));
             _resolveRemoteVehicleFile = resolveRemoteVehicleFile;
             _resolveRemoteVehicleName = resolveRemoteVehicleName;
@@ -73,7 +75,7 @@ namespace TopSpeed.Drive.Multiplayer
             _panelManager = runtimeObjects.PanelManager;
 
             _soundNumbers = CreateNumberSounds();
-            _soundLaps = CreateLapSounds(_lapLimit);
+            _soundLaps = CreateLapSoundSlots(_lapLimit);
             (_randomSounds, _totalRandomSounds) = CreateRandomSoundContainers();
             _randomSoundBaseNames = new string?[RandomSoundGroups];
             ConfigureDefaultRandomSounds();
@@ -93,6 +95,7 @@ namespace TopSpeed.Drive.Multiplayer
             _commentary = subsystems.Commentary;
             _playerInfo = subsystems.PlayerInfo;
             _exit = subsystems.Exit;
+            _pitStop = subsystems.PitStop;
 
             _session = CreateSession();
         }

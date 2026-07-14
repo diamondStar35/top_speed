@@ -21,7 +21,7 @@ namespace TopSpeed.Server.Network
 
         private static bool IsActiveRaceState(PlayerState state)
         {
-            return state == PlayerState.AwaitingStart || state == PlayerState.Racing;
+            return state == PlayerState.AwaitingStart || state == PlayerState.Racing || state == PlayerState.Pitting;
         }
 
         private void SendRaceSnapshot(GameRoom room, DeliveryMethod deliveryMethod)
@@ -66,7 +66,7 @@ namespace TopSpeed.Server.Network
             {
                 if (!_players.TryGetValue(id, out var player))
                     continue;
-                if (player.State == PlayerState.NotReady || player.State == PlayerState.Undefined)
+                if (player.State == PlayerState.NotReady || player.State == PlayerState.Undefined || player.State == PlayerState.Pitting)
                     continue;
                 if (count >= max)
                     break;

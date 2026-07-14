@@ -10,6 +10,7 @@ using TopSpeed.Drive;
 using TopSpeed.Runtime;
 using TopSpeed.Speech;
 using TopSpeed.Tracks;
+using TopSpeed.Vehicles;
 using DriveMultiplayerSession = TopSpeed.Drive.Multiplayer.MultiplayerSession;
 using NetworkMultiplayerSession = TopSpeed.Network.MultiplayerSession;
 
@@ -24,7 +25,8 @@ namespace TopSpeed.Game
             int laps,
             int vehicleIndex,
             string? vehicleFile,
-            IVibrationDevice? vibrationDevice);
+            IVibrationDevice? vibrationDevice,
+            RacePhysicsToggles physicsToggles);
 
         SingleSession CreateSingleRace(
             string track,
@@ -32,7 +34,8 @@ namespace TopSpeed.Game
             int laps,
             int vehicleIndex,
             string? vehicleFile,
-            IVibrationDevice? vibrationDevice);
+            IVibrationDevice? vibrationDevice,
+            RacePhysicsToggles physicsToggles);
 
         DriveMultiplayerSession CreateMultiplayer(
             TrackData trackData,
@@ -45,6 +48,7 @@ namespace TopSpeed.Game
             IVibrationDevice? vibrationDevice,
             NetworkMultiplayerSession session,
             uint raceInstanceId,
+            RacePhysicsToggles physicsToggles,
             Func<byte, string> resolvePlayerName,
             Func<byte, string?> resolveRemoteVehicleFile,
             Func<byte, string?> resolveRemoteVehicleName);
@@ -79,7 +83,8 @@ namespace TopSpeed.Game
             int laps,
             int vehicleIndex,
             string? vehicleFile,
-            IVibrationDevice? vibrationDevice)
+            IVibrationDevice? vibrationDevice,
+            RacePhysicsToggles physicsToggles)
         {
             return new TimeTrialSession(
                 _audio,
@@ -93,7 +98,8 @@ namespace TopSpeed.Game
                 vehicleIndex,
                 vehicleFile,
                 vibrationDevice,
-                _fileDialogs);
+                _fileDialogs,
+                physicsToggles);
         }
 
         public SingleSession CreateSingleRace(
@@ -102,7 +108,8 @@ namespace TopSpeed.Game
             int laps,
             int vehicleIndex,
             string? vehicleFile,
-            IVibrationDevice? vibrationDevice)
+            IVibrationDevice? vibrationDevice,
+            RacePhysicsToggles physicsToggles)
         {
             return new SingleSession(
                 _audio,
@@ -115,7 +122,8 @@ namespace TopSpeed.Game
                 vehicleIndex,
                 vehicleFile,
                 vibrationDevice,
-                _fileDialogs);
+                _fileDialogs,
+                physicsToggles);
         }
 
         public DriveMultiplayerSession CreateMultiplayer(
@@ -129,6 +137,7 @@ namespace TopSpeed.Game
             IVibrationDevice? vibrationDevice,
             NetworkMultiplayerSession session,
             uint raceInstanceId,
+            RacePhysicsToggles physicsToggles,
             Func<byte, string> resolvePlayerName,
             Func<byte, string?> resolveRemoteVehicleFile,
             Func<byte, string?> resolveRemoteVehicleName)
@@ -149,6 +158,7 @@ namespace TopSpeed.Game
                 _fileDialogs,
                 session,
                 raceInstanceId,
+                physicsToggles,
                 resolvePlayerName,
                 resolveRemoteVehicleFile,
                 resolveRemoteVehicleName);

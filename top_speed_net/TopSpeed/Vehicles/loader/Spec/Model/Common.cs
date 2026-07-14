@@ -28,6 +28,7 @@ namespace TopSpeed.Vehicles.Loader
             public float DrivetrainEfficiency { get; set; }
             public float EngineBrakingTorqueNm { get; set; }
             public float TireGripCoefficient { get; set; }
+            public global::TopSpeed.Physics.Tires.Wear.TireWearConfig TireWearConfig { get; set; } = global::TopSpeed.Physics.Tires.Wear.TireWearProfiles.Balanced;
             public float PeakTorqueNm { get; set; }
             public float PeakTorqueRpm { get; set; }
             public float IdleTorqueNm { get; set; }

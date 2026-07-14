@@ -21,6 +21,8 @@ namespace TopSpeed.Data
             public TrackRoomOverrides RoomOverrides;
             public IReadOnlyList<string> SoundSourceIds;
             public Dictionary<string, string> Metadata;
+            public bool IsPitEntry;
+            public bool IsPitExit;
 
             public static SegmentBuilder Create(string id)
             {
@@ -38,7 +40,9 @@ namespace TopSpeed.Data
                     RoomId = null,
                     RoomOverrides = new TrackRoomOverrides(),
                     SoundSourceIds = Array.Empty<string>(),
-                    Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+                    IsPitEntry = false,
+                    IsPitExit = false
                 };
             }
         }

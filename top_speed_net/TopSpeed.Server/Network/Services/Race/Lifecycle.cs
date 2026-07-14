@@ -250,7 +250,13 @@ namespace TopSpeed.Server.Network
                         PositionY = bot.PositionY,
                         SpeedKph = 0f,
                         Gear = 1,
-                        AutoShiftCooldownSeconds = 0f
+                        AutoShiftCooldownSeconds = 0f,
+                        TireWearFraction = 0f,
+                        TireTemperatureC = float.NaN,
+                        TireTreadTemperatureC = float.NaN,
+                        TireCarcassTemperatureC = float.NaN,
+                        TireSmoothedInputs = default,
+                        SurfaceTemperatureC = float.NaN
                     };
                 }
 
@@ -342,7 +348,13 @@ namespace TopSpeed.Server.Network
                         PositionY = bot.PositionY,
                         SpeedKph = 0f,
                         Gear = 1,
-                        AutoShiftCooldownSeconds = 0f
+                        AutoShiftCooldownSeconds = 0f,
+                        TireWearFraction = 0f,
+                        TireTemperatureC = float.NaN,
+                        TireTreadTemperatureC = float.NaN,
+                        TireCarcassTemperatureC = float.NaN,
+                        TireSmoothedInputs = default,
+                        SurfaceTemperatureC = float.NaN
                     };
                 }
 

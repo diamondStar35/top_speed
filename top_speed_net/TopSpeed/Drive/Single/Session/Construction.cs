@@ -26,7 +26,8 @@ namespace TopSpeed.Drive.Single
                 vehicleFile,
                 () => _session.Context.RuntimeSeconds,
                 () => _started,
-                _vibrationDevice);
+                _vibrationDevice,
+                _physicsToggles);
             var localRadio = new VehicleRadioController(_audio);
             var radioPanel = new RadioVehiclePanel(
                 _input,
@@ -82,13 +83,17 @@ namespace TopSpeed.Drive.Single
             return (sounds, totals);
         }
 
-        private Source[] CreateLapSounds(int laps)
+        private static Source?[] CreateLapSoundSlots(int laps)
         {
-            var sounds = new Source[Math.Max(0, Math.Min(MaxLaps, laps) - 1)];
-            for (var i = 0; i < sounds.Length; i++)
-                sounds[i] = LoadLanguageSound($"race\\info\\laps2go{i + 1}");
+            return new Source?[Math.Max(0, Math.Min(MaxLaps, laps) - 1)];
+        }
 
-            return sounds;
+        private Source? GetLapSound(int index)
+        {
+            if (index < 0 || index >= _soundLaps.Length)
+                return null;
+
+            return _soundLaps[index] ??= LoadLanguageSound($"race\\info\\laps2go{index + 1}");
         }
 
         private void CreateComputerPlayers()

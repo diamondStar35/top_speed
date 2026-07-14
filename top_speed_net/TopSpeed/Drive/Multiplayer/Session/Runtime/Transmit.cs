@@ -40,7 +40,7 @@ namespace TopSpeed.Drive.Multiplayer
             var state = _currentState;
             if (_sentFinish)
                 state = PlayerState.Finished;
-            else if (_started && !_hostPaused && _currentState != PlayerState.AwaitingStart)
+            else if (_started && !_hostPaused && _currentState != PlayerState.AwaitingStart && _currentState != PlayerState.Pitting)
                 state = PlayerState.Racing;
 
             return TrySendRace(_network.SendPlayerData(

@@ -103,6 +103,13 @@ namespace TopSpeed.Data
                 return;
             }
 
+            if (key == "pit")
+            {
+                if (!TryParseSegmentPitPoint(value, out _))
+                    issues.Add(new TrackTsmIssue(TrackTsmIssueSeverity.Error, lineNumber, Localized("Invalid pit value '{0}'. Use pit_entry or pit_exit.", value)));
+                return;
+            }
+
             if (key == "name")
                 return;
 

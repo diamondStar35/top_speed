@@ -36,14 +36,14 @@ namespace TopSpeed.Core.Multiplayer
                     LocalizationService.Mark("Press ENTER to change."),
                     LocalizationService.Mark("Swipe up to change."))));
 
-            items.Add(new RadioButton(LocalizationService.Mark("Number of laps"),
-                LapCountOptions,
-                GetRoomOptionsLapsIndex,
-                value => SetRoomOptionsLaps((byte)(value + 1)),
+            items.Add(new Slider(LocalizationService.Mark("Number of laps"),
+                "1-500",
+                GetRoomOptionsLaps,
+                SetRoomOptionsLaps,
                 hintProvider: () => InteractionHints.ForPlatform(
                     LocalizationService.Mark("Choose the number of laps for this room."),
-                    LocalizationService.Mark("Use LEFT or RIGHT to change."),
-                    LocalizationService.Mark("Swipe left or right with two fingers to change."))));
+                    LocalizationService.Mark("Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."),
+                    LocalizationService.Mark("Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."))));
 
             var maxPlayersItem = new RadioButton(LocalizationService.Mark("Maximum players allowed in this room"),
                 RoomCapacityOptions,
@@ -92,6 +92,18 @@ namespace TopSpeed.Core.Multiplayer
                 GetRoomOptionsCustomTracksEnabled,
                 SetRoomOptionsCustomTracksEnabled,
                 hint: LocalizationService.Mark("When enabled, room hosts can upload and select custom tracks from this server.")));
+
+            items.Add(new CheckBox(
+                LocalizationService.Mark("Enable fuel consumption"),
+                GetRoomOptionsFuelConsumptionEnabled,
+                SetRoomOptionsFuelConsumptionEnabled,
+                hint: LocalizationService.Mark("When enabled, cars burn fuel and players must pit to refuel.")));
+
+            items.Add(new CheckBox(
+                LocalizationService.Mark("Enable tire wear"),
+                GetRoomOptionsTireWearEnabled,
+                SetRoomOptionsTireWearEnabled,
+                hint: LocalizationService.Mark("When enabled, tires wear and lose grip and players must pit to replace them.")));
 
             var preserveSelection = string.Equals(_menu.CurrentId, MultiplayerMenuKeys.RoomGameRules, StringComparison.Ordinal);
             _menu.UpdateItems(MultiplayerMenuKeys.RoomGameRules, items, preserveSelection);

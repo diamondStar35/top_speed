@@ -24,7 +24,9 @@ namespace TopSpeed.Data
                 p.RoomId,
                 p.RoomOverrides.HasAny ? p.RoomOverrides : null,
                 p.SoundSourceIds,
-                p.Metadata));
+                p.Metadata,
+                p.IsPitEntry,
+                p.IsPitExit));
         }
 
         private static void FlushPending(ref WeatherBuilder? pendingWeather, Dictionary<string, TrackWeatherProfile> weatherProfiles)
@@ -102,6 +104,17 @@ namespace TopSpeed.Data
                     return TrackAmbience.Airport;
                 default:
                     return TrackAmbience.NoAmbience;
+            }
+        }
+
+        private static bool TryParseSegmentPitPoint(string raw, out SegmentPitPoint value)
+        {
+            value = SegmentPitPoint.PitEntry;
+            switch (NormalizeLookupToken(raw))
+            {
+                case "pitentry": value = SegmentPitPoint.PitEntry; return true;
+                case "pitexit": value = SegmentPitPoint.PitExit; return true;
+                default: return false;
             }
         }
 

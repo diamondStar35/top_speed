@@ -83,7 +83,7 @@
     Surface: Water,
     Steps: 35,
     FinalGear: 1,
-    FinalPositionX: 0.25,
+    FinalPositionX: 0.18,
     FinalPositionY: 28.74,
     Samples: [
       {
@@ -91,10 +91,8 @@
         TimeSeconds: 0.1,
         SpeedKph: 78.31,
         Gear: 1,
-        PositionX: 0.02,
+        PositionX: 0.01,
         PositionY: 2.18,
-        LateralVelocityMps: 0.107,
-        YawRateRad: 0.017,
         Coupling: 0.82
       },
       {
@@ -102,10 +100,8 @@
         TimeSeconds: 1.1,
         SpeedKph: 44.53,
         Gear: 1,
-        PositionX: 0.15,
+        PositionX: 0.11,
         PositionY: 18.64,
-        LateralVelocityMps: 0.05,
-        YawRateRad: 0.026,
         Coupling: 0.82
       },
       {
@@ -113,19 +109,17 @@
         TimeSeconds: 2.1,
         SpeedKph: 18.6,
         Gear: 2,
-        PositionX: 0.22,
+        PositionX: 0.16,
         PositionY: 26.83,
-        LateralVelocityMps: 0.033,
-        YawRateRad: 0.014,
         Coupling: 0.82
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
         Gear: 1,
-        PositionX: 0.24,
+        PositionX: 0.18,
         PositionY: 28.74,
-        LateralVelocityMps: 0.002,
+        LateralVelocityMps: -0.049,
         YawRateRad: 0.003,
         Coupling: 0.24
       },
@@ -133,9 +127,9 @@
         Step: 35,
         TimeSeconds: 3.5,
         Gear: 1,
-        PositionX: 0.25,
+        PositionX: 0.18,
         PositionY: 28.74,
-        LateralVelocityMps: -0.114,
+        LateralVelocityMps: -0.125,
         YawRateRad: 0.007,
         Coupling: 0.24
       }
@@ -146,10 +140,10 @@
     Vehicle: Vehicle11,
     Surface: Sand,
     Steps: 45,
-    FinalSpeedKph: 51.85,
+    FinalSpeedKph: 38.34,
     FinalGear: 1,
-    FinalPositionX: -3.43,
-    FinalPositionY: 58.08,
+    FinalPositionX: -0.07,
+    FinalPositionY: 49.44,
     Samples: [
       {
         Step: 1,
@@ -165,56 +159,56 @@
       {
         Step: 11,
         TimeSeconds: 1.1,
-        SpeedKph: 43.29,
+        SpeedKph: 40.36,
         Gear: 1,
-        PositionX: -0.66,
-        PositionY: 12.77,
-        LateralVelocityMps: -0.342,
-        YawRateRad: -0.748,
+        PositionX: 0.01,
+        PositionY: 12.4,
+        LateralVelocityMps: 0.522,
+        YawRateRad: -0.593,
         Coupling: 1.0
       },
       {
         Step: 21,
         TimeSeconds: 2.1,
-        SpeedKph: 46.16,
+        SpeedKph: 39.66,
         Gear: 1,
-        PositionX: -1.38,
-        PositionY: 25.24,
-        LateralVelocityMps: -0.421,
-        YawRateRad: -0.79,
+        PositionX: 0.05,
+        PositionY: 23.51,
+        LateralVelocityMps: 0.386,
+        YawRateRad: -0.571,
         Coupling: 1.0
       },
       {
         Step: 31,
         TimeSeconds: 3.1,
-        SpeedKph: 48.74,
+        SpeedKph: 39.01,
         Gear: 1,
-        PositionX: -2.18,
-        PositionY: 38.46,
-        LateralVelocityMps: -0.497,
-        YawRateRad: -0.827,
+        PositionX: 0.02,
+        PositionY: 34.42,
+        LateralVelocityMps: 0.317,
+        YawRateRad: -0.559,
         Coupling: 1.0
       },
       {
         Step: 41,
         TimeSeconds: 4.1,
-        SpeedKph: 51.02,
+        SpeedKph: 38.5,
         Gear: 1,
-        PositionX: -3.05,
-        PositionY: 52.35,
-        LateralVelocityMps: -0.567,
-        YawRateRad: -0.86,
+        PositionX: -0.04,
+        PositionY: 45.17,
+        LateralVelocityMps: 0.294,
+        YawRateRad: -0.559,
         Coupling: 1.0
       },
       {
         Step: 45,
         TimeSeconds: 4.5,
-        SpeedKph: 51.85,
+        SpeedKph: 38.34,
         Gear: 1,
-        PositionX: -3.43,
-        PositionY: 58.08,
-        LateralVelocityMps: -0.593,
-        YawRateRad: -0.873,
+        PositionX: -0.07,
+        PositionY: 49.44,
+        LateralVelocityMps: 0.289,
+        YawRateRad: -0.559,
         Coupling: 1.0
       }
     ]

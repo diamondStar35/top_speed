@@ -23,7 +23,8 @@ namespace TopSpeed.Protocol
         NotReady = 1,
         AwaitingStart = 2,
         Racing = 3,
-        Finished = 4
+        Finished = 4,
+        Pitting = 5
     }
 
     public enum OnlinePresenceState : byte

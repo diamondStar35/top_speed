@@ -54,6 +54,15 @@ namespace TopSpeed.Vehicles
         public float FuelEfficiencyMpg => _fuelEfficiencyMpg;
         public bool FuelLow => _fuelLow;
         public bool FuelEmpty => _fuelEmpty;
+        public bool FuelConsumptionEnabled => _fuelConsumptionEnabled;
+        public bool TireWearEnabled => _tireWearEnabled;
+        public float TireWearPercent => _tireWearState.WearFraction * 100f;
+        public float TireTemperatureC => _tireWearState.TemperatureC;
+        public float TireTemperaturePercent => _tireWearRuntime.TemperatureNormalized * 100f;
+        public float TireColdEndTemperatureC => _tireWearConfig.ColdEndTemperatureC;
+        public float TireOptimalStartTemperatureC => _tireWearConfig.OptimalStartTemperatureC;
+        public float TireOptimalEndTemperatureC => _tireWearConfig.OptimalEndTemperatureC;
+        public float TireOverheatEndTemperatureC => _tireWearConfig.OverheatEndTemperatureC;
 
         public void SetPhysicsModel(IModel model)
         {
@@ -140,7 +149,11 @@ namespace TopSpeed.Vehicles
             return _shiftOnDemandEnabled
                 && _shiftOnDemandSupported
                 && !_manualTransmission
-                && TransmissionTypes.IsAutomaticFamily(_activeTransmissionType);
+                && TransmissionTypes.IsAutomaticFamily(_activeTransmissionType)
+                // While the pit sequence (or any override) is driving the car, let the automatic
+                // shifter run so it reaches pit-lane speed instead of being capped in first gear.
+                // The player's shift-on-demand preference is untouched and resumes at handoff.
+                && !HasOverrideController;
         }
     }
 }

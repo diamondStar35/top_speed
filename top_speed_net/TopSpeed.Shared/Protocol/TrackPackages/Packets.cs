@@ -64,6 +64,10 @@ namespace TopSpeed.Protocol
     {
         public TrackPackageRef Track = new TrackPackageRef();
         public string DisplayName = string.Empty;
+        // Whether this track has a pit area (false when its [meta] sets pit_area = false). Carried so
+        // a host can warn before starting a race on a no-pit track while fuel/tire models are enabled,
+        // without first downloading the package. Defaults true (unknown/legacy => assume pit area).
+        public bool HasPitArea = true;
     }
 
     public sealed class PacketTrackPackageCatalog

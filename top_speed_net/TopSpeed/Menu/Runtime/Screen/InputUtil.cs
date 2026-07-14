@@ -9,6 +9,20 @@ namespace TopSpeed.Menu
     {
         private const int ControllerThreshold = 50;
 
+        public static bool TryGetPressedDigit(IInputService input, out int digit)
+        {
+            for (var d = 1; d <= 9; d++)
+            {
+                if (input.WasPressed(ToDigitKey(d)) || input.WasPressed(ToNumpadKey(d)))
+                {
+                    digit = d;
+                    return true;
+                }
+            }
+            digit = 0;
+            return false;
+        }
+
         public static bool TryGetPressedLetter(IInputService input, out char letter)
         {
             letter = '\0';
@@ -86,6 +100,40 @@ namespace TopSpeed.Menu
             var currentLeft = (useAxes && current.X < -ControllerThreshold) || current.Pov4;
             var previousLeft = (useAxes && previous.X < -ControllerThreshold) || previous.Pov4;
             return currentLeft && !previousLeft;
+        }
+
+        private static Key ToDigitKey(int digit)
+        {
+            return digit switch
+            {
+                1 => Key.D1,
+                2 => Key.D2,
+                3 => Key.D3,
+                4 => Key.D4,
+                5 => Key.D5,
+                6 => Key.D6,
+                7 => Key.D7,
+                8 => Key.D8,
+                9 => Key.D9,
+                _ => Key.Unknown
+            };
+        }
+
+        private static Key ToNumpadKey(int digit)
+        {
+            return digit switch
+            {
+                1 => Key.NumberPad1,
+                2 => Key.NumberPad2,
+                3 => Key.NumberPad3,
+                4 => Key.NumberPad4,
+                5 => Key.NumberPad5,
+                6 => Key.NumberPad6,
+                7 => Key.NumberPad7,
+                8 => Key.NumberPad8,
+                9 => Key.NumberPad9,
+                _ => Key.Unknown
+            };
         }
 
         private static Key ToLetterKey(char letter)

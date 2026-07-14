@@ -26,6 +26,8 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
         private readonly Func<float> _getSpatialTrackLength;
         private readonly Action _trackCrashState;
         private readonly Action<string> _speakText;
+        private readonly Func<bool>? _skipCrashEval;
+        private readonly Func<float?>? _getListenerXOverride;
         private Vector3 _lastListenerPosition;
         private bool _listenerInitialized;
 
@@ -47,7 +49,9 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
             Func<bool> isHostPaused,
             Func<float> getSpatialTrackLength,
             Action trackCrashState,
-            Action<string> speakText)
+            Action<string> speakText,
+            Func<bool>? skipCrashEval = null,
+            Func<float?>? getListenerXOverride = null)
             : base(name, order)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
@@ -66,6 +70,8 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
             _getSpatialTrackLength = getSpatialTrackLength ?? throw new ArgumentNullException(nameof(getSpatialTrackLength));
             _trackCrashState = trackCrashState ?? throw new ArgumentNullException(nameof(trackCrashState));
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
+            _skipCrashEval = skipCrashEval;
+            _getListenerXOverride = getListenerXOverride;
         }
 
         public override void Update(TopSpeed.Drive.Session.SessionContext context, float elapsed)
@@ -95,7 +101,8 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
 
             var road = _track.RoadAtPosition(_car.PositionY);
             _trackAudio.HandleRoad(road);
-            _car.Evaluate(road);
+            if (_skipCrashEval == null || !_skipCrashEval())
+                _car.Evaluate(road);
             _trackCrashState();
             UpdateListener(elapsed);
 
@@ -128,7 +135,9 @@ namespace TopSpeed.Drive.Multiplayer.Session.Systems
         {
             var driverOffsetX = -_car.WidthM * 0.25f;
             var driverOffsetZ = _car.LengthM * 0.1f;
-            var worldPosition = new Vector3(_car.PositionX + driverOffsetX, 0f, _car.PositionY + driverOffsetZ);
+            var overrideX = _getListenerXOverride?.Invoke();
+            var rawX = overrideX.HasValue ? overrideX.Value : _car.PositionX;
+            var worldPosition = new Vector3(rawX + driverOffsetX, 0f, _car.PositionY + driverOffsetZ);
             var worldVelocity = Vector3.Zero;
             if (_listenerInitialized && elapsed > 0f)
                 worldVelocity = (worldPosition - _lastListenerPosition) / elapsed;

@@ -50,7 +50,7 @@ namespace TopSpeed.Menu
                     value => _settingsActions.UpdateSetting(() => _settings.AutomaticInfo = (AutomaticInfoMode)value),
                     hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose how much automatic race information is spoken, such as lap numbers and player positions."))),
                 new Slider(LocalizationService.Mark("Number of laps"),
-                    "1-16",
+                    "1-500",
                     () => _settings.NrOfLaps,
                     value => _settingsActions.UpdateSetting(() => _settings.NrOfLaps = value),
                     hintProvider: HintSliderProvider(LocalizationService.Mark("Sets how many laps the race will be for single race, time trial, and multiplayer."))),
@@ -68,7 +68,15 @@ namespace TopSpeed.Menu
                     },
                     () => (int)_settings.Difficulty,
                     value => _settingsActions.UpdateSetting(() => _settings.Difficulty = (RaceDifficulty)value),
-                    hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose the difficulty level for single races.")))
+                    hintProvider: HintAdjustProvider(LocalizationService.Mark("Choose the difficulty level for single races."))),
+                new CheckBox(LocalizationService.Mark("Enable fuel consumption"),
+                    () => _settings.FuelConsumptionEnabled,
+                    value => _settingsActions.UpdateSetting(() => _settings.FuelConsumptionEnabled = value),
+                    hint: LocalizationService.Mark("When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits.")),
+                new CheckBox(LocalizationService.Mark("Enable tire wear"),
+                    () => _settings.TireWearEnabled,
+                    value => _settingsActions.UpdateSetting(() => _settings.TireWearEnabled = value),
+                    hint: LocalizationService.Mark("When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."))
             };
             return BackMenu("options_drive", items);
         }
@@ -76,7 +84,7 @@ namespace TopSpeed.Menu
         private MenuScreen BuildOptionsLapsMenu()
         {
             var items = new List<MenuItem>();
-            for (var laps = 1; laps <= 16; laps++)
+            for (var laps = 1; laps <= 500; laps++)
             {
                 var value = laps;
                 items.Add(new MenuItem(laps.ToString(), MenuAction.Back, onActivate: () => _settingsActions.UpdateSetting(() => _settings.NrOfLaps = value)));

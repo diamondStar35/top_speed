@@ -115,6 +115,39 @@ namespace TopSpeed.Vehicles.Parsing
             public float HighSpeedSteerFullKph { get; set; }
 
             public float TireGrip { get; set; }
+            public float? TireWearBasePerKilometer { get; set; }
+            public float? TireWearSlipRatePerSecond { get; set; }
+            public float? TireWearCorneringSlipWeight { get; set; }
+            public float? TireWearLongitudinalSlipWeight { get; set; }
+            public float? TireWearLoadGain { get; set; }
+            public float? TireWearHotStartTemperatureC { get; set; }
+            public float? TireWearHotGainPerC { get; set; }
+            public float? TireWearColdStartTemperatureC { get; set; }
+            public float? TireWearColdGainPerC { get; set; }
+            public float? TireTemperatureColdEndC { get; set; }
+            public float? TireTemperatureOptimalStartC { get; set; }
+            public float? TireTemperatureOptimalEndC { get; set; }
+            public float? TireTemperatureOverheatEndC { get; set; }
+            public float? TireGripVeryCold { get; set; }
+            public float? TireGripColdEnd { get; set; }
+            public float? TireGripOptimal { get; set; }
+            public float? TireGripOverheatEnd { get; set; }
+            public float? TireGripCooked { get; set; }
+            public float? TireWearGripAtFullWear { get; set; }
+            public float? TireHeatCorneringCPerSecond { get; set; }
+            public float? TireHeatAccelerationCPerSecond { get; set; }
+            public float? TireHeatBrakingCPerSecond { get; set; }
+            public float? TireHeatLoadCPerSecond { get; set; }
+            public float? TireHeatRollingCPerSecond { get; set; }
+            public float? TireCoolingAirflowPerMpsPerCPerSecond { get; set; }
+            public float? TireExchangeAmbientPerCPerSecond { get; set; }
+            public float? TireExchangeRoadPerCPerSecond { get; set; }
+            public float? TireExchangeWetRoadPerCPerSecond { get; set; }
+            public float? TireSurfaceToTreadConductancePerSecond { get; set; }
+            public float? TireTreadToCarcassConductancePerSecond { get; set; }
+            public float? TireTreadMassRatio { get; set; }
+            public float? TireCarcassMassRatio { get; set; }
+            public float? TireSlipSmoothingTauSeconds { get; set; }
             public float LateralGrip { get; set; }
             public float CombinedGripPenalty { get; set; }
             public float SlipAnglePeakDeg { get; set; }

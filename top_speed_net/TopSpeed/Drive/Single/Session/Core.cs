@@ -26,6 +26,7 @@ using PanelsSubsystem = TopSpeed.Drive.Session.Systems.Panels;
 using PlayerInfoSubsystem = TopSpeed.Drive.Session.Systems.PlayerInfo;
 using PlayerVehicleSubsystem = TopSpeed.Drive.Session.Systems.PlayerVehicle;
 using TrackAudioService = TopSpeed.Drive.Session.Systems.TrackAudio;
+using PitStopSubsystem = TopSpeed.Drive.Session.Systems.PitStop;
 using SessionRuntime = TopSpeed.Drive.Session.Session;
 
 namespace TopSpeed.Drive.Single
@@ -34,7 +35,7 @@ namespace TopSpeed.Drive.Single
     {
         private const int MaxComputerPlayers = 7;
         private const int MaxPlayers = 8;
-        private const int MaxLaps = 16;
+        private const int MaxLaps = 500;
         private const int MaxUnkeys = 12;
         private const int RandomSoundGroups = 16;
         private const int RandomSoundMax = 32;
@@ -50,6 +51,7 @@ namespace TopSpeed.Drive.Single
         private readonly DriveInput _input;
         private readonly IVibrationDevice? _vibrationDevice;
         private readonly IFileDialogs _fileDialogs;
+        private readonly RacePhysicsToggles _physicsToggles;
         private readonly Track _track;
         private readonly ICar _car;
         private readonly SessionRuntime _session;
@@ -67,11 +69,13 @@ namespace TopSpeed.Drive.Single
         private readonly string?[] _randomSoundBaseNames;
         private readonly int[] _totalRandomSounds;
         private readonly Source[] _soundUnkey;
-        private readonly Source[] _soundLaps;
+        private readonly Source?[] _soundLaps;
         private readonly Source?[] _soundPosition;
         private readonly Source?[] _soundPlayerNr;
         private readonly Source?[] _soundPlayerNrInfo;
         private readonly Source?[] _soundFinished;
+        private Source? _soundFinishedLast;
+        private Source? _soundPositionLast;
         private readonly Dictionary<int, int> _finishTimesMs;
         private readonly List<int> _finishOrder;
 
@@ -87,6 +91,7 @@ namespace TopSpeed.Drive.Single
         private readonly ProgressSubsystem _progress;
         private readonly CommentarySubsystem _commentary;
         private readonly CollisionsSubsystem _collisions;
+        private readonly PitStopSubsystem _pitStop;
 
         private Track.Road _currentRoad;
         private CarState _lastRecordedCarState;
@@ -116,6 +121,11 @@ namespace TopSpeed.Drive.Single
         private Source? _soundTurnEndDing;
         private Source? _soundYouAre;
         private Source? _soundPlayer;
+        private Source? _soundLetsPit;
+        private Source? _soundRightTires;
+        private Source? _soundLeftTires;
+        private Source? _soundFuelingUp;
+        private Source? _soundExitPitRoad;
 
         public SingleSession(
             AudioManager audio,
@@ -128,7 +138,8 @@ namespace TopSpeed.Drive.Single
             int vehicleIndex,
             string? vehicleFile,
             IVibrationDevice? vibrationDevice,
-            IFileDialogs fileDialogs)
+            IFileDialogs fileDialogs,
+            RacePhysicsToggles physicsToggles)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
             _speech = speech ?? throw new ArgumentNullException(nameof(speech));
@@ -136,6 +147,7 @@ namespace TopSpeed.Drive.Single
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _vibrationDevice = vibrationDevice;
             _fileDialogs = fileDialogs ?? throw new ArgumentNullException(nameof(fileDialogs));
+            _physicsToggles = physicsToggles;
             _raceAudio = new RaceAudioFactory(_audio);
             _soundQueue = new Queue();
             _raceInfoQueue = new Queue();
@@ -158,7 +170,7 @@ namespace TopSpeed.Drive.Single
             _finishOrder = new List<int>(MaxPlayers);
 
             _nrOfLaps = ApplyAdventureLapOverride(track, laps);
-            _soundLaps = CreateLapSounds(_nrOfLaps);
+            _soundLaps = CreateLapSoundSlots(_nrOfLaps);
             var runtimeObjects = CreateRuntimeObjects(track, vehicleIndex, vehicleFile);
             _track = runtimeObjects.Track;
             _car = runtimeObjects.Car;
@@ -184,8 +196,10 @@ namespace TopSpeed.Drive.Single
                 () => _started,
                 () => _finished,
                 TrackLocalCrashState,
-                SpeakText);
-            _listener = new ListenerSubsystem("listener", 140, _audio, _car, _localRadio);
+                SpeakText,
+                skipCrashEval: () => _pitStop!.IsActive);
+            _listener = new ListenerSubsystem("listener", 140, _audio, _car, _localRadio,
+                () => _pitStop!.ListenerXOverride);
             _coreRequests = new CoreRequestsSubsystem(
                 "coreRequests",
                 200,
@@ -197,7 +211,8 @@ namespace TopSpeed.Drive.Single
                 () => _lap,
                 () => _nrOfLaps,
                 () => _lap <= _nrOfLaps ? _session!.Context.ProgressMilliseconds : _raceTime,
-                SpeakText);
+                SpeakText,
+                isInPitStop: () => _pitStop!.IsActive);
             _generalRequests = new GeneralRequestsSubsystem(
                 "generalRequests",
                 230,
@@ -245,7 +260,7 @@ namespace TopSpeed.Drive.Single
                 _car,
                 _settings,
                 _nrOfLaps,
-                _soundLaps,
+                GetLapSound,
                 () => _lap,
                 lap => _lap = lap,
                 ApplyPlayerFinishState,
@@ -276,13 +291,34 @@ namespace TopSpeed.Drive.Single
                 value => _positionComment = value,
                 SpeakIfLoaded,
                 Speak);
-            _collisions = new CollisionsSubsystem("collisions", 150, _track, _car, _computerPlayers, () => _playerNumber, () => _nComputerPlayers);
+            _collisions = new CollisionsSubsystem("collisions", 150, _track, _car, _computerPlayers, () => _playerNumber, () => _nComputerPlayers, () => _pitStop!.IsGhosted);
+            _pitStop = new PitStopSubsystem(
+                "pitStop",
+                135,
+                _input,
+                _car,
+                _track,
+                () => _started,
+                () => _finished,
+                _soundLetsPit,
+                _soundRightTires,
+                _soundLeftTires,
+                _soundFuelingUp,
+                _soundExitPitRoad,
+                () => { },
+                () => { },
+                SpeakText,
+                s => QueueSound(s),
+                (s, d) => _session!.QueueEvent(new Event(Events.PlaySound, s), d),
+                road => _trackAudio.AnnounceUpcomingCurve(road));
 
             _session = CreateSession();
         }
 
         public bool WantsExit => _session.Context.WantsExit;
         public bool WantsPause => _session.Context.WantsPause;
+        public bool WantsPitStopMenu => _pitStop.NeedsChoice;
+        public void AcceptPitStopChoice(int choiceId) => _pitStop.SetChoice(choiceId);
 
         private SessionRuntime CreateSession()
         {
@@ -291,14 +327,14 @@ namespace TopSpeed.Drive.Single
             var policy = new PolicyBuilder(Phase.Initializing, Phase.Countdown)
                 .Add(Phase.Initializing, false, false, InputPolicy.Create(false, true, false), Defaults.NoSubsystems, allowedCommands, allowedExternalEvents, new[] { Phase.Countdown, Phase.Aborted })
                 .Add(Phase.Countdown, true, true, InputPolicy.Create(true, true, true), PhaseDefinition.Subsystems(_bots, _panels, _playerVehicle, _progress, _listener, _coreRequests, _commentary, _playerInfo, _generalRequests, _exit), allowedCommands, allowedExternalEvents, new[] { Phase.Running, Phase.Paused, Phase.Aborted })
-                .Add(Phase.Running, true, true, InputPolicy.Create(true, true, true), PhaseDefinition.Subsystems(_bots, _panels, _playerVehicle, _progress, _listener, _collisions, _coreRequests, _commentary, _playerInfo, _generalRequests, _exit), allowedCommands, allowedExternalEvents, new[] { Phase.Paused, Phase.Finished, Phase.Aborted })
+                .Add(Phase.Running, true, true, InputPolicy.Create(true, true, true), PhaseDefinition.Subsystems(_bots, _panels, _playerVehicle, _progress, _listener, _collisions, _coreRequests, _commentary, _playerInfo, _generalRequests, _exit, _pitStop), allowedCommands, allowedExternalEvents, new[] { Phase.Paused, Phase.Finished, Phase.Aborted })
                 .Add(Phase.Paused, false, false, InputPolicy.Create(false, true, false), Defaults.NoSubsystems, allowedCommands, allowedExternalEvents, new[] { Phase.Countdown, Phase.Running, Phase.Finished, Phase.Aborted })
                 .Add(Phase.Finished, true, true, InputPolicy.Create(false, true, false), PhaseDefinition.Subsystems(_bots, _playerVehicle, _listener, _exit), allowedCommands, allowedExternalEvents, new[] { Phase.Aborted })
                 .Add(Phase.Aborted, false, false, InputPolicy.Create(false, true, false), Defaults.NoSubsystems, allowedCommands, allowedExternalEvents, Array.Empty<Phase>())
                 .Build();
 
             var builder = new SessionBuilder(policy);
-            builder.AddSubsystems(_bots, _panels, _playerVehicle, _progress, _listener, _collisions, _coreRequests, _commentary, _playerInfo, _generalRequests, _exit);
+            builder.AddSubsystems(_bots, _panels, _playerVehicle, _progress, _listener, _collisions, _coreRequests, _commentary, _playerInfo, _generalRequests, _exit, _pitStop);
             builder.AddEventHandler(new HandlerId("single.events"), 100, HandleSessionEvent);
             builder.AddEventHandler(new HandlerId("single.phase"), 200, HandlePhaseEvent);
             return builder.Build();

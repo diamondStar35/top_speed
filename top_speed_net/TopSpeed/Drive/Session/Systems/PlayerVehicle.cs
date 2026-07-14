@@ -18,6 +18,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly Func<bool> _isFinished;
         private readonly Action _trackCrashState;
         private readonly Action<string> _speakText;
+        private readonly Func<bool>? _skipCrashEval;
 
         public PlayerVehicle(
             string name,
@@ -32,7 +33,8 @@ namespace TopSpeed.Drive.Session.Systems
             Func<bool> isStarted,
             Func<bool> isFinished,
             Action trackCrashState,
-            Action<string> speakText)
+            Action<string> speakText,
+            Func<bool>? skipCrashEval = null)
             : base(name, order)
         {
             _car = car ?? throw new ArgumentNullException(nameof(car));
@@ -46,6 +48,7 @@ namespace TopSpeed.Drive.Session.Systems
             _isFinished = isFinished ?? throw new ArgumentNullException(nameof(isFinished));
             _trackCrashState = trackCrashState ?? throw new ArgumentNullException(nameof(trackCrashState));
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
+            _skipCrashEval = skipCrashEval;
         }
 
         public override void Update(SessionContext context, float elapsed)
@@ -57,7 +60,8 @@ namespace TopSpeed.Drive.Session.Systems
             _track.Run(_car.PositionY);
             var road = _track.RoadAtPosition(_car.PositionY);
             _trackAudio.HandleRoad(road);
-            _car.Evaluate(road);
+            if (_skipCrashEval == null || !_skipCrashEval())
+                _car.Evaluate(road);
             _trackCrashState();
 
             if (_track.NextRoad(

@@ -22,6 +22,7 @@ namespace TopSpeed.Server.Network
                 var playersToStart = RoomRules.NormalizePlayersToStart(roomType, packet.PlayersToStart);
 
                 var room = new GameRoom(roomId, roomName, roomType, playersToStart);
+                room.GameRulesFlags = GameRulesPolicy.ResolveDefaultGameRules(_owner._config.Features);
                 _owner._rooms[room.Id] = room;
                 SetTrackData(room, room.TrackName);
                 JoinPlayer(player, room);

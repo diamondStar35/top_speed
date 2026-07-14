@@ -38,6 +38,8 @@ namespace TopSpeed.Input
         public int NrOfComputers { get; set; }
         public RaceDifficulty Difficulty { get; set; }
         public UnitSystem Units { get; set; }
+        public bool FuelConsumptionEnabled { get; set; }
+        public bool TireWearEnabled { get; set; }
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
@@ -128,6 +130,8 @@ namespace TopSpeed.Input
             NrOfComputers = 3;
             Difficulty = RaceDifficulty.Easy;
             Units = UnitSystem.Metric;
+            FuelConsumptionEnabled = false;
+            TireWearEnabled = false;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));
@@ -201,8 +205,10 @@ namespace TopSpeed.Input
                 [DriveIntent.ReportDistance] = AxisOrButton.Button11,
                 [DriveIntent.ReportSpeed] = AxisOrButton.Button12,
                 [DriveIntent.ReportFuel] = AxisOrButton.Button15,
+                [DriveIntent.ReportTireState] = AxisOrButton.Button16,
                 [DriveIntent.TrackName] = AxisOrButton.Button13,
-                [DriveIntent.Pause] = AxisOrButton.Button14
+                [DriveIntent.Pause] = AxisOrButton.Button14,
+                [DriveIntent.Pit] = AxisOrButton.Button15
             };
         }
 
@@ -228,8 +234,10 @@ namespace TopSpeed.Input
                 [DriveIntent.ReportDistance] = Key.C,
                 [DriveIntent.ReportSpeed] = Key.S,
                 [DriveIntent.ReportFuel] = Key.X,
+                [DriveIntent.ReportTireState] = Key.B,
                 [DriveIntent.TrackName] = Key.F9,
-                [DriveIntent.Pause] = Key.P
+                [DriveIntent.Pause] = Key.P,
+                [DriveIntent.Pit] = Key.I
             };
         }
     }

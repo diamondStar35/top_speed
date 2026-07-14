@@ -1,6 +1,7 @@
 using System;
 using TopSpeed.Physics.Fuel;
 using TopSpeed.Physics.Powertrain;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Protocol;
 using TopSpeed.Vehicles;
 
@@ -38,6 +39,7 @@ namespace TopSpeed.Data
         public float DrivetrainEfficiency { get; }
         public float EngineBrakingTorqueNm { get; }
         public float TireGripCoefficient { get; }
+        public TireWearConfig TireWearConfig { get; }
         public float PeakTorqueNm { get; }
         public float PeakTorqueRpm { get; }
         public float IdleTorqueNm { get; }
@@ -188,7 +190,8 @@ namespace TopSpeed.Data
             string? torqueCurvePreset = null,
             float brakeStrength = 1.0f,
             TransmissionPolicy? transmissionPolicy = null,
-            bool shiftOnDemand = false)
+            bool shiftOnDemand = false,
+            TireWearConfig? tireWearConfig = null)
         {
             Name = name;
             _sounds[(int)VehicleAction.Engine] = engineSound;
@@ -227,6 +230,12 @@ namespace TopSpeed.Data
             DrivetrainEfficiency = drivetrainEfficiency;
             EngineBrakingTorqueNm = engineBrakingTorqueNm;
             TireGripCoefficient = tireGripCoefficient;
+            TireWearConfig = tireWearConfig
+                ?? TireWearProfiles.CreateFromVehicle(
+                    tireGripCoefficient,
+                    massKg,
+                    tireCircumferenceM,
+                    lateralGripCoefficient);
             PeakTorqueNm = peakTorqueNm;
             PeakTorqueRpm = peakTorqueRpm;
             IdleTorqueNm = idleTorqueNm;
@@ -388,7 +397,8 @@ namespace TopSpeed.Data
                 spec.TorqueCurvePreset,
                 spec.BrakeStrength,
                 spec.TransmissionPolicy,
-                spec.ShiftOnDemand);
+                spec.ShiftOnDemand,
+                spec.TireWearConfig);
         }
     }
 }

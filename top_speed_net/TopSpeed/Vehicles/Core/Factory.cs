@@ -17,9 +17,10 @@ namespace TopSpeed.Vehicles.Core
             string? vehicleFile,
             Func<float> currentTime,
             Func<bool> started,
-            IVibrationDevice? vibrationDevice = null)
+            IVibrationDevice? vibrationDevice = null,
+            RacePhysicsToggles? physicsToggles = null)
         {
-            return new RaceCar(raceAudio, track, input, settings, vehicleIndex, vehicleFile, currentTime, started, vibrationDevice);
+            return new RaceCar(raceAudio, track, input, settings, vehicleIndex, vehicleFile, currentTime, started, vibrationDevice, physicsToggles);
         }
     }
 }

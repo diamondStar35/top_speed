@@ -139,7 +139,7 @@ public sealed class ServerStressBehaviorTests
 
         var host = clients[0];
         var other = clients[1];
-        fixture.Send(host, ClientPacketSerializer.WriteRoomStartRace());
+        fixture.Send(host, ClientPacketSerializer.WriteRoomStartRace(0u));
         fixture.DisconnectWithoutResume(other);
         fixture.Send(host, ClientPacketSerializer.WriteRoomPlayerReady(CarType.Vehicle1, automaticTransmission: true, TopSpeed.Protocol.VehiclePackageRef.None()));
         fixture.Server.Update(0.25f);
@@ -237,7 +237,7 @@ public sealed class ServerStressBehaviorTests
             for (var roomIndex = 0; roomIndex < roomCount; roomIndex++)
             {
                 var host = clients[roomIndex * playersPerRoom];
-                Send(host, ClientPacketSerializer.WriteRoomStartRace());
+                Send(host, ClientPacketSerializer.WriteRoomStartRace(0u));
 
                 for (var offset = 0; offset < playersPerRoom; offset++)
                 {

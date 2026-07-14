@@ -69,7 +69,7 @@ namespace TopSpeed.Vehicles
         private void UpdateBrakeAndSteeringOutput()
         {
             var brakingInput = Math.Max(0, -_currentBrake);
-            var isBraking = brakingInput > 0 && _speed > 0;
+            var isBraking = brakingInput >= 15 && _speed > 0;
             var speedRatio = NormalizeSpeedByTopSpeed(_speed, 1f);
             if (isBraking)
             {

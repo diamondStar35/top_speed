@@ -46,6 +46,17 @@ namespace TopSpeed.Vehicles
         float FuelEfficiencyMpg { get; }
         bool FuelLow { get; }
         bool FuelEmpty { get; }
+        bool FuelConsumptionEnabled { get; }
+        bool TireWearEnabled { get; }
+        void AddFuelLiters(float liters);
+        void ResetTireWear();
+        float TireWearPercent { get; }
+        float TireTemperatureC { get; }
+        float TireTemperaturePercent { get; }
+        float TireColdEndTemperatureC { get; }
+        float TireOptimalStartTemperatureC { get; }
+        float TireOptimalEndTemperatureC { get; }
+        float TireOverheatEndTemperatureC { get; }
 
         void Initialize(float positionX = 0, float positionY = 0);
         void SetPosition(float positionX, float positionY);
@@ -59,6 +70,8 @@ namespace TopSpeed.Vehicles
         void MiniCrash(float newPosition);
         void Bump(float bumpX, float bumpY, float speedDeltaKph);
         void SetNeutralGear();
+        void SetFirstGear();
+        int GetGearForSpeedKmh(float speedKmh);
         void Stop();
         void Quiet();
         void Run(float elapsed);
@@ -68,6 +81,8 @@ namespace TopSpeed.Vehicles
         bool Backfiring();
         void Pause();
         void Unpause();
+
+        void PrepareEngineForPitExit(float targetSpeedKmh);
 
         void SetPrimaryController(ICarController controller);
         void SetOverrideController(ICarController? controller);

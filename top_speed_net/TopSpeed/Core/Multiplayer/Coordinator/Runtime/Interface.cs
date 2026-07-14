@@ -121,6 +121,11 @@ namespace TopSpeed.Core.Multiplayer
         {
             return ResolvePlayerName(playerNumber);
         }
+
+        uint IMultiplayerRuntime.GetCurrentRaceEffectiveGameRules()
+        {
+            return GetCurrentRaceEffectiveGameRules();
+        }
     }
 }
 

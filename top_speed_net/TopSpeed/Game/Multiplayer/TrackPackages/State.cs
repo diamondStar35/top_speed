@@ -11,7 +11,7 @@ namespace TopSpeed.Game
         private readonly Dictionary<string, IncomingTrackPackageTransfer> _multiplayerTrackPackageTransfers = new Dictionary<string, IncomingTrackPackageTransfer>(StringComparer.OrdinalIgnoreCase);
         private string _multiplayerTrackDownloadHash = string.Empty;
         private bool _multiplayerTrackDownloadProgressOpen;
-        private byte _multiplayerCurrentRoomLaps = 3;
+        private int _multiplayerCurrentRoomLaps = 3;
 
         private sealed class IncomingTrackPackageTransfer
         {
@@ -30,7 +30,7 @@ namespace TopSpeed.Game
             CloseTrackDownloadProgressDialog();
         }
 
-        private void SetMultiplayerRoomLaps(byte laps)
+        private void SetMultiplayerRoomLaps(int laps)
         {
             if (laps > 0)
                 _multiplayerCurrentRoomLaps = laps;

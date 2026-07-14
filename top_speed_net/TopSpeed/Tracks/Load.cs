@@ -26,6 +26,30 @@ namespace TopSpeed.Tracks
             return new Track(trackName, data, audio, userDefined);
         }
 
+        /// <summary>
+        /// Resolves a track's data from a built-in key or custom file path without constructing a
+        /// <see cref="Track"/> (so no audio is loaded). Used for cheap pre-race checks such as the
+        /// no-pit-area warning. Returns false if the data cannot be read.
+        /// </summary>
+        public static bool TryResolveData(string nameOrPath, out TrackData data)
+        {
+            if (!string.IsNullOrWhiteSpace(nameOrPath) && TrackCatalog.BuiltIn.TryGetValue(nameOrPath, out var builtIn))
+            {
+                data = builtIn;
+                return true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(nameOrPath)
+                && TrackTsmParser.TryLoad(nameOrPath, out var parsed, out _, MinPartLengthMeters))
+            {
+                data = parsed;
+                return true;
+            }
+
+            data = null!;
+            return false;
+        }
+
         private static Dictionary<string, int> BuildSegmentIndex(IReadOnlyList<TrackDefinition> definitions)
         {
             var map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);

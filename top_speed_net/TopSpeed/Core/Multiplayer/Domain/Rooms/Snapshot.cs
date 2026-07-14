@@ -19,8 +19,11 @@ namespace TopSpeed.Core.Multiplayer
         public bool IsHost;
         public string TrackName = string.Empty;
         public TrackPackageRef Track = TrackPackageRef.BuiltIn(string.Empty);
-        public byte Laps;
+        public int Laps;
         public uint GameRulesFlags;
+        // Effective rules for the in-progress race instance: the persistent GameRulesFlags minus
+        // any per-race transient disable mask. Equals GameRulesFlags when there is no override.
+        public uint RaceEffectiveGameRulesFlags;
         public RoomParticipant[] Players = Array.Empty<RoomParticipant>();
     }
 }

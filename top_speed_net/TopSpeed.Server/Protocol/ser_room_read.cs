@@ -71,13 +71,25 @@ namespace TopSpeed.Server.Protocol
         public static bool TryReadRoomSetLaps(byte[] data, out PacketRoomSetLaps packet)
         {
             packet = new PacketRoomSetLaps();
-            if (data.Length < 2 + 1)
+            if (data.Length < 2 + 4)
                 return false;
             var reader = new PacketReader(data);
             reader.ReadByte();
             reader.ReadByte();
-            packet.Laps = reader.ReadByte();
+            packet.Laps = reader.ReadInt32();
             return PacketValidation.IsValidRoomSetLaps(packet);
+        }
+
+        public static bool TryReadRoomStartRace(byte[] data, out uint disableGameRulesMask)
+        {
+            disableGameRulesMask = 0u;
+            if (data.Length < 2 + 4)
+                return false;
+            var reader = new PacketReader(data);
+            reader.ReadByte();
+            reader.ReadByte();
+            disableGameRulesMask = reader.ReadUInt32();
+            return true;
         }
 
         public static bool TryReadRoomSetPlayersToStart(byte[] data, out PacketRoomSetPlayersToStart packet)
@@ -163,7 +175,7 @@ namespace TopSpeed.Server.Protocol
                 packet.RacePaused = reader.ReadBool();
                 packet.Track = ReadTrackRef(ref reader);
                 packet.TrackName = packet.Track.IsBuiltIn ? packet.Track.BuiltInTrackKey : packet.Track.TrackId;
-                packet.Laps = reader.ReadByte();
+                packet.Laps = reader.ReadInt32();
                 packet.GameRulesFlags = reader.ReadUInt32();
                 packet.RoomName = reader.ReadFixedString(ProtocolConstants.MaxRoomNameLength);
                 packet.SubjectPlayerId = reader.ReadUInt32();

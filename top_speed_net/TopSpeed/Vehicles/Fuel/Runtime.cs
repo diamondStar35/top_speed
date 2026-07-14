@@ -85,6 +85,15 @@ namespace TopSpeed.Vehicles
             _massKg = Math.Max(1f, effectiveMassKg);
         }
 
+        public void AddFuelLiters(float liters)
+        {
+            if (liters <= 0f)
+                return;
+            var newRemaining = Math.Min(_fuelTankCapacityLiters, _fuelState.RemainingLiters + liters);
+            _fuelState = new FuelRuntimeState(newRemaining, _fuelState.SmoothedBurnLitersPerSecond);
+            ApplyFuelMassForRemaining(newRemaining);
+        }
+
         private bool CanStartEngineWithFuel()
         {
             return _fuelState.RemainingLiters > MinUsableFuelLiters;

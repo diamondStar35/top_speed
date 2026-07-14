@@ -72,5 +72,13 @@ namespace TopSpeed.Core
 
             return ResolveExistingPath("Sounds", "Legacy", fileName);
         }
+
+        public static string? ResolvePitSoundPath(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                return null;
+
+            return ResolveExistingPath("Sounds", "pit", fileName);
+        }
     }
 }

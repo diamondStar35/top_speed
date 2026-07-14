@@ -10,7 +10,7 @@ namespace TopSpeed.Drive.Multiplayer
     {
         private void ApplyBumpCore(PacketPlayerBumped bump)
         {
-            if (bump.PlayerNumber == LocalPlayerNumber)
+            if (bump.PlayerNumber == LocalPlayerNumber && !_pitStop.IsGhosted)
                 _car.Bump(bump.BumpX, bump.BumpY, bump.SpeedDeltaKph);
         }
 

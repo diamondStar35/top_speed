@@ -125,6 +125,18 @@ namespace TopSpeed.Input
             _settings.SetKeyboardBinding(DriveIntent.ReportFuel, key);
         }
 
+        public void SetReportTireState(AxisOrButton a)
+        {
+            _reportTireState = a;
+            _settings.SetControllerBinding(DriveIntent.ReportTireState, a);
+        }
+
+        public void SetReportTireState(Key key)
+        {
+            _kbReportTireState = key;
+            _settings.SetKeyboardBinding(DriveIntent.ReportTireState, key);
+        }
+
         public void SetTrackName(AxisOrButton a)
         {
             _trackName = a;

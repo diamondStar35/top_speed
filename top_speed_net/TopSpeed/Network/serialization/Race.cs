@@ -54,7 +54,7 @@ namespace TopSpeed.Network
         {
             packet = new PacketLoadCustomTrack();
             const int headerSize = 2;
-            const int baseSize = 1 + 12 + 1 + 2;
+            const int baseSize = 4 + 12 + 1 + 2;
             if (data.Length < headerSize + baseSize)
                 return false;
             if (data[0] != ProtocolConstants.Version || data[1] != (byte)Command.LoadCustomTrack)
@@ -64,7 +64,7 @@ namespace TopSpeed.Network
                 var reader = new PacketReader(data);
                 reader.ReadByte();
                 reader.ReadByte();
-                packet.NrOfLaps = reader.ReadByte();
+                packet.NrOfLaps = reader.ReadInt32();
                 packet.TrackName = reader.ReadFixedString(12);
                 packet.TrackAmbience = (TrackAmbience)reader.ReadByte();
                 packet.TrackLength = reader.ReadUInt16();

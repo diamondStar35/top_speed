@@ -168,7 +168,7 @@ namespace TopSpeed.Vehicles
         private void ApplyStalledDecel(float elapsed)
         {
             var brakeInput = Math.Max(0f, Math.Min(100f, -_currentBrake)) / 100f;
-            var brakeDecel = CalculateBrakeDecel(brakeInput, ResolveSurfaceBrakeModifier());
+            var brakeDecel = CalculateBrakeDecel(brakeInput, ResolveSurfaceBrakeModifier() * ResolveTireWearBrakeScale());
             var resistance = ResistanceModel.Compute(
                 _powertrainConfiguration,
                 Math.Max(0f, _speed / 3.6f),
@@ -182,6 +182,17 @@ namespace TopSpeed.Vehicles
                 massKgOverride: _massKg);
             var passiveDecel = ((resistance.AerodynamicForceN + resistance.RollingResistanceForceN + resistance.WheelSideDragForceN) / Math.Max(1f, _massKg)) * 3.6f;
             _speedDiff = -(brakeDecel + passiveDecel) * elapsed;
+            _lastLongitudinalResult = new LongitudinalStepResult(
+                _speedDiff,
+                coupledDriveRpm: 0f,
+                driveAccelerationMps2: 0f,
+                totalDecelKph: brakeDecel + passiveDecel,
+                brakeDecelKph: brakeDecel,
+                engineBrakeDecelKph: 0f,
+                aerodynamicDecelKph: 0f,
+                rollingResistanceDecelKph: 0f,
+                wheelSideDragDecelKph: 0f,
+                coupledDrivelineDragDecelKph: 0f);
             _lastDriveRpm = 0f;
         }
     }

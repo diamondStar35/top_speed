@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-15 10:21+0300\n"
-"PO-Revision-Date: 2026-05-17 13:43\n"
+"POT-Creation-Date: 2026-05-19 01:14+0300\n"
+"PO-Revision-Date: 2026-07-12 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1446,7 +1446,7 @@ msgstr ""
 msgid "Gamepad"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:111
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:114
 #, csharp-format
 msgid "Gear {0}"
 msgstr "Marcha {0}"
@@ -1832,7 +1832,7 @@ msgstr ""
 msgid "Lap summary:"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:117
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:120
 #, csharp-format
 msgid "Lap {0}"
 msgstr "Vuelta {0}"
@@ -1936,7 +1936,7 @@ msgstr ""
 msgid "Left {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Types.cs:31
 #, csharp-format
 msgid "Line {0}: {1}"
 msgstr "Línea {0}: {1}"
@@ -2629,7 +2629,7 @@ msgid "Panel"
 msgstr "Panel"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:66
-#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:57
 msgid "Pause"
 msgstr "Pausa"
 
@@ -2913,7 +2913,7 @@ msgstr "Configuraciones de carrera"
 msgid "Race started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
 #, csharp-format
 msgid "Race time {0}"
 msgstr "Tiempo de carrera {0}"
@@ -3026,6 +3026,10 @@ msgid "Report speed"
 msgstr "Informe de velocidad"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
+msgid "Report tire state"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Report track name"
 msgstr "Informe del nombre de la pista"
 
@@ -4527,7 +4531,7 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:86
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Single\Session\Format.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Car.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:17
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\VehicleDefinition.cs:18
 msgid "Vehicle"
 msgstr "Vehículo"
 
@@ -4924,7 +4928,7 @@ msgstr "auto_shift_rpm debe ser 0 o estar entre idle_rpm y rev_limiter."
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_upshift_rpm debe ser 0 o estar entre idle_rpm y rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:105
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:108
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4950,6 +4954,10 @@ msgstr "casilla de verificación"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Items\CheckBox.cs:36
 msgid "checked"
 msgstr "verificado"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:23
+msgid "cold tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\Buffers.cs:211
 msgid "connections"
@@ -5008,22 +5016,22 @@ msgstr "distancia fija"
 msgid "fuel must be between {0} and {1} liters."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:246
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:257
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:250
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:262
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:273
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:255
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:266
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr ""
@@ -5062,9 +5070,17 @@ msgstr "chat global"
 msgid "hard"
 msgstr "difícil"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
+msgid "heavy wear"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph debe ser mayor que high_speed_steer_start_kph."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:17
+msgid "hot tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:40
 msgid "imperial"
@@ -5099,6 +5115,10 @@ msgstr "launch_coupling_max debe ser mayor o igual que launch_coupling_min en [t
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm no debe exceder rev_limiter."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
+msgid "light wear"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:9
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:12
 msgid "main room"
@@ -5119,6 +5139,14 @@ msgstr ""
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Load.cs:101
 msgid "missing"
 msgstr "desaparecido"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
+msgid "moderate wear"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
+msgid "new tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:11
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:127
@@ -5149,6 +5177,14 @@ msgstr "uno a uno"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:27
 msgid "online players request"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:19
+msgid "optimal temperature"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
+msgid "overheated tires"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:165
@@ -5257,7 +5293,7 @@ msgstr ""
 msgid "room state refresh request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:107
 msgid "shift on demand"
 msgstr ""
 
@@ -5317,6 +5353,16 @@ msgstr "tire_rim debe tener entre 4 y 30 pulgadas."
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "tire_width debe estar entre 20 y 450 mm."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
+#, csharp-format
+msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
+#, csharp-format
+msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "top_freq debe ser mayor o igual que idle_freq."
@@ -5350,32 +5396,40 @@ msgstr ""
 msgid "unknown"
 msgstr "desconocido"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:212
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:21
+msgid "warming up tires"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
+msgid "worn tires"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "{0:F0} pies recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:188
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} kilómetros por hora, {1:F0} RPM, {2:F0} caballos de fuerza"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:220
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:231
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "{0:F0} metros recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:177
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:180
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} millas por hora, {1:F0} RPM, {2:F0} caballos de fuerza"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:218
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:229
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "{0:F1} kilómetros recorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:210
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:221
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "{0:F1} millas recorridas"

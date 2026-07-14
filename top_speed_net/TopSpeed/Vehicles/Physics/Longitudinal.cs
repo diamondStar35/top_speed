@@ -24,6 +24,7 @@ namespace TopSpeed.Vehicles
             {
                 _speedDiff = 0f;
                 _lastDriveRpm = 0f;
+                _lastLongitudinalResult = default;
                 return;
             }
 
@@ -34,7 +35,11 @@ namespace TopSpeed.Vehicles
             }
 
             var tireOutput = SolveTireModel(elapsed, speedMpsCurrent, _currentSteering, surfaceTractionMod, 1f, commitState: false);
-            longitudinalGripFactor = tireOutput.LongitudinalGripFactor;
+            longitudinalGripFactor = tireOutput.LongitudinalGripFactor * ResolveTireWearTractionScale(
+                speedMpsCurrent,
+                _currentSteering,
+                tireOutput.SlipAngleNormalized,
+                tireOutput.LateralSlipNormalized);
             var result = LongitudinalStep.Compute(
                 new LongitudinalStepInput(
                     _powertrainConfiguration,
@@ -61,6 +66,7 @@ namespace TopSpeed.Vehicles
                     driveAccelerationScale: (_factor1 / 100f) * _fuelPowerScale,
                     gearPathEngaged: HasSelectedGearPath(),
                     effectiveMassKg: _massKg));
+            _lastLongitudinalResult = result;
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = result.CoupledDriveRpm;
             if (_backfirePlayed)
@@ -93,7 +99,7 @@ namespace TopSpeed.Vehicles
                     throttle: 0f,
                     brake: 0f,
                     surfaceTractionModifier: 1f,
-                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier(),
+                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier() * ResolveTireWearBrakeScale(),
                     surfaceRollingResistanceModifier: ResolveSurfaceRollingResistanceModifier(),
                     longitudinalGripFactor: 1f,
                     GetDriveGear(),
@@ -110,6 +116,7 @@ namespace TopSpeed.Vehicles
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
                     gearPathEngaged: HasSelectedGearPath(),
                     effectiveMassKg: _massKg));
+            _lastLongitudinalResult = result;
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = 0f;
         }
@@ -125,7 +132,7 @@ namespace TopSpeed.Vehicles
                     throttle: 0f,
                     brake: brakeInput,
                     surfaceTractionModifier: 1f,
-                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier(),
+                    surfaceBrakeModifier: ResolveSurfaceBrakeModifier() * ResolveTireWearBrakeScale(),
                     surfaceRollingResistanceModifier: ResolveSurfaceRollingResistanceModifier(),
                     longitudinalGripFactor: 1f,
                     GetDriveGear(),
@@ -142,6 +149,7 @@ namespace TopSpeed.Vehicles
                     driveRatioOverride: _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
                     gearPathEngaged: HasSelectedGearPath(),
                     effectiveMassKg: _massKg));
+            _lastLongitudinalResult = result;
             _speedDiff = result.SpeedDeltaKph;
             _lastDriveRpm = 0f;
         }

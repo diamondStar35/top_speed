@@ -171,6 +171,17 @@ public sealed class FinishVehicleBehaviorTests
         public float FuelEfficiencyMpg => 0f;
         public bool FuelLow => false;
         public bool FuelEmpty => false;
+        public bool FuelConsumptionEnabled => true;
+        public bool TireWearEnabled => true;
+        public void AddFuelLiters(float liters) { }
+        public void ResetTireWear() { }
+        public float TireWearPercent => 0f;
+        public float TireTemperatureC => 0f;
+        public float TireTemperaturePercent => 0f;
+        public float TireColdEndTemperatureC => 32f;
+        public float TireOptimalStartTemperatureC => 54f;
+        public float TireOptimalEndTemperatureC => 78f;
+        public float TireOverheatEndTemperatureC => 112f;
 
         public void Initialize(float positionX = 0, float positionY = 0) { }
         public void SetPosition(float positionX, float positionY) { }
@@ -184,6 +195,8 @@ public sealed class FinishVehicleBehaviorTests
         public void MiniCrash(float newPosition) { }
         public void Bump(float bumpX, float bumpY, float speedDeltaKph) { }
         public void SetNeutralGear() => Calls.Add(nameof(SetNeutralGear));
+        public void SetFirstGear() { }
+        public int GetGearForSpeedKmh(float speedKmh) => 1;
         public void Stop() { }
         public void Quiet() => Calls.Add(nameof(Quiet));
         public void Run(float elapsed) { }
@@ -193,6 +206,7 @@ public sealed class FinishVehicleBehaviorTests
         public bool Backfiring() => false;
         public void Pause() { }
         public void Unpause() { }
+        public void PrepareEngineForPitExit(float targetSpeedKmh) { }
         public void SetPrimaryController(ICarController controller) { }
 
         public void SetOverrideController(ICarController? controller)

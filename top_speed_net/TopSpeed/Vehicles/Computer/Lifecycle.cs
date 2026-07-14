@@ -12,6 +12,12 @@ namespace TopSpeed.Vehicles
             _positionY = Math.Max(0f, positionY);
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
+            _tireWearFraction = 0f;
+            _tireTemperatureC = float.NaN;
+            _tireTreadTemperatureC = float.NaN;
+            _tireCarcassTemperatureC = float.NaN;
+            _tireSmoothedInputs = default;
+            _surfaceTemperatureC = float.NaN;
             _trackLength = trackLength;
             _laneWidth = _track.LaneWidth;
             _remoteNetInit = false;

@@ -1,5 +1,6 @@
 using System;
 using TopSpeed.Physics.Fuel;
+using TopSpeed.Physics.Tires.Wear;
 using TopSpeed.Protocol;
 
 namespace TopSpeed.Vehicles
@@ -89,7 +90,8 @@ namespace TopSpeed.Vehicles
             float minCoupledRiseFullRpmPerSecond = -1f,
             float overrunCurveExponent = -1f,
             float fuelTankCapacityLiters = -1f,
-            float engineDisplacementLiters = -1f)
+            float engineDisplacementLiters = -1f,
+            TireWearConfig? tireWearConfig = null)
         {
             CarType = carType;
             Name = name;
@@ -116,6 +118,12 @@ namespace TopSpeed.Vehicles
             DrivetrainEfficiency = drivetrainEfficiency;
             EngineBrakingTorqueNm = engineBrakingTorqueNm;
             TireGripCoefficient = tireGripCoefficient;
+            TireWearConfig = tireWearConfig
+                ?? TireWearProfiles.CreateFromVehicle(
+                    tireGripCoefficient,
+                    massKg,
+                    tireCircumferenceM,
+                    lateralGripCoefficient);
             PeakTorqueNm = peakTorqueNm;
             PeakTorqueRpm = peakTorqueRpm;
             IdleTorqueNm = idleTorqueNm;
@@ -204,6 +212,7 @@ namespace TopSpeed.Vehicles
         public float DrivetrainEfficiency { get; }
         public float EngineBrakingTorqueNm { get; }
         public float TireGripCoefficient { get; }
+        public TireWearConfig TireWearConfig { get; }
         public float PeakTorqueNm { get; }
         public float PeakTorqueRpm { get; }
         public float IdleTorqueNm { get; }

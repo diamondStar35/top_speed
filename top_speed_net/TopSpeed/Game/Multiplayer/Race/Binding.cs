@@ -17,6 +17,10 @@ namespace TopSpeed.Game
         public uint StateSequence;
         public int VehicleIndex;
         public bool AutomaticTransmission = true;
+        // Effective game rules for the started race instance (room rules minus any host per-race
+        // disable), delivered on the racing state change. Resolved into the local car at race start.
+        public uint EffectiveGameRules;
+        public bool HasEffectiveGameRules;
 
         public void ResetSession()
         {
@@ -35,6 +39,8 @@ namespace TopSpeed.Game
             PendingStart = false;
             VehicleIndex = 0;
             AutomaticTransmission = true;
+            EffectiveGameRules = 0;
+            HasEffectiveGameRules = false;
         }
 
         public void SetLoadout(int vehicleCount, int vehicleIndex, bool automaticTransmission)
@@ -95,6 +101,8 @@ namespace TopSpeed.Game
 
             RoomId = changed.RoomId;
             RaceInstanceId = changed.RaceInstanceId;
+            EffectiveGameRules = changed.EffectiveGameRulesFlags;
+            HasEffectiveGameRules = true;
             return true;
         }
 

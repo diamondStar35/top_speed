@@ -5,6 +5,11 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## 2026.7.17.1
+### Game Changes
+- Fixed a crash that could happen when starting a race with a custom vehicle that was missing one of its sound files. The vehicle now stays playable: any missing sound is replaced with a built-in default (or, for optional sounds, simply left silent), and the custom vehicles menu shows a warning describing what was missing.
+
+
 ## 2026.7.15.1
 ### Game Changes
 - Fixed a single race bug where the computer cars could still bump into you after you had already finished the race, such as while waiting on the finish line with your engine running. Being hit could leave your car sliding out of your control and could delay the end of the race.

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-12 16:06\n"
+"PO-Revision-Date: 2026-07-18 22:09\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1085,7 +1085,7 @@ msgstr "O download demorou demais ou foi cancelado."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:208
 msgid "Download update"
-msgstr "Baixar atualização."
+msgstr "Baixar atualização"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\DownloadProgress.cs:42
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:18
@@ -1145,7 +1145,7 @@ msgstr "Edite a URL do proxy usada para downloads de pacotes de atualização."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:13
 msgid "Enable HRTF audio"
-msgstr " áudio HRTF"
+msgstr "Ativar áudio HRTF"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
@@ -1157,7 +1157,7 @@ msgstr "Ativar repetição do menu"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
-msgstr "Ativar primeiro o proxy para download de atualizações"
+msgstr "Ativar primeiro o proxy para download de atualizações."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:44
 msgid "Enable usage hints"
@@ -1208,7 +1208,7 @@ msgstr "Digite o endereço IP ou domínio manualmente"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:78
 msgid "Enter the default call sign for this server. Leave empty to use the global default call sign."
-msgstr "Digite o indicativo de chamada padrão para este servidor. Deixe vazio para usar o indicativo de chamada global padrão"
+msgstr "Digite o indicativo de chamada padrão para este servidor. Deixe vazio para usar o indicativo de chamada global padrão."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connection.cs:53
 msgid "Enter the default call sign used when connecting to servers. Leave empty to clear it."
@@ -3027,7 +3027,7 @@ msgstr "Reportar velocidade"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report tire state"
-msgstr ""
+msgstr "Relatório do Estado do pneu"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Report track name"
@@ -4958,7 +4958,7 @@ msgstr "marcado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:23
 msgid "cold tires"
-msgstr ""
+msgstr "pneus frios"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\Buffers.cs:211
 msgid "connections"
@@ -5073,7 +5073,7 @@ msgstr "difícil"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
 msgid "heavy wear"
-msgstr ""
+msgstr "desgaste avançado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
@@ -5081,7 +5081,7 @@ msgstr "high_speed_steer_full_kph deve ser maior que high_speed_steer_start_kph.
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:17
 msgid "hot tires"
-msgstr ""
+msgstr "pneus quentes"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:40
 msgid "imperial"
@@ -5118,7 +5118,7 @@ msgstr "launch_rpm não deve exceder rev_limiter."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
 msgid "light wear"
-msgstr ""
+msgstr "desgaste leve"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:9
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:12
@@ -5143,11 +5143,11 @@ msgstr "ausente"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
 msgid "moderate wear"
-msgstr ""
+msgstr "desgaste moderado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
 msgid "new tires"
-msgstr ""
+msgstr "pneus novos"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:11
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:127
@@ -5182,11 +5182,11 @@ msgstr "solicitação de jogadores online"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:19
 msgid "optimal temperature"
-msgstr ""
+msgstr "temperatura óptima"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
-msgstr ""
+msgstr "pneus sobreaquecidos"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:165
 msgid "panel"
@@ -5357,12 +5357,12 @@ msgstr "tire_width deve estar entre 20 e 450 mm."
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
-msgstr ""
+msgstr "pneus {0:F0} por cento de desgaste, {1:F0} graus Celsius, {2}, {3}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
-msgstr ""
+msgstr "pneus {0:F0} por cento de desgaste, {1:F0} graus Fahrenheit, {2}, {3}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
 msgid "top_freq must be greater than or equal to idle_freq."
@@ -5399,11 +5399,11 @@ msgstr "desconhecido"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:21
 msgid "warming up tires"
-msgstr ""
+msgstr "aquecimento dos pneus"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
 msgid "worn tires"
-msgstr ""
+msgstr "pneus usados"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
 #, csharp-format

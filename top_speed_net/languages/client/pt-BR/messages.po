@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-18 22:09\n"
+"PO-Revision-Date: 2026-07-19 00:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,12 @@ msgstr "5 graus"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:108
 msgid "A cleaner lap would have been a much better choice."
-msgstr "Uma volta mais limpa teria sido uma escolha muito melhor."
+msgstr "Uma volta mais limpa teria sido uma escolha melhor."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:178
 #, csharp-format
 msgid "A new version of Top Speed was detected. Your current version is {0}. The new version is {1}. Would you like to download the update?"
-msgstr "Uma nova versão do Top Speed foi detectada. Sua versão atual é {0}. A nova versão é {1}. Gostaria de baixar a atualização?"
+msgstr "Uma nova versão do Top Speed foi encontrada. Sua versão atual é a {0}. A nova versão é a {1}. Quer fazer o download?"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Network.cs:42
 msgid "A saved server entry was ignored because the host is empty."
@@ -57,7 +57,7 @@ msgstr "Sobre"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:20
 msgid "Accessibility option for clearer left-right cues with HRTF. It attenuates the opposite ear for your own car sounds only."
-msgstr "Opção de acessibilidade para indicações esquerda-direita mais claras com HRTF. Ela atenua o ouvido oposto apenas para os sons do seu próprio carro."
+msgstr "Opção de acessibilidade para indicações esquerda e direita mais claras com HRTF. Ela atenua o ouvido oposto apenas para os sons do seu próprio carro."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Map\Actions.cs:19
 msgid "Action"
@@ -73,15 +73,15 @@ msgstr "Adicionar"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:39
 msgid "Add a bot"
-msgstr "Adicionar um bot"
+msgstr "Adicionar bot"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Menu.cs:34
 msgid "Add a new server"
-msgstr "Adicionar um novo servidor"
+msgstr "Adicionar novo servidor"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:30
 msgid "Adjust category-based volume balance for engine sounds, effects, ambience, radio, music, and online events."
-msgstr "Ajuste o equilíbrio de volume por categoria para sons de motor, efeitos, ambiente, rádio, música e eventos online."
+msgstr "Ajuste o equilíbrio de volume por categorias, sons de motor, efeitos, ambiente, rádio, música e eventos online."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:143
 msgid "Adjust the speech rate for the current backend."
@@ -111,7 +111,7 @@ msgstr "América"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:37
 msgid "Amplifies the captured microphone signal before it is sent to other players. 100 is unity gain. Raise this if other players report you sound too quiet; lower it if your voice clips."
-msgstr "Amplifica o sinal capturado do microfone antes de ser enviado para outros jogadores. 100 é o ganho unitário. Aumente se os outros jogadores relatarem que você está muito baixo; diminua se sua voz estiver estourando."
+msgstr "Amplifica o sinal capturado do microfone antes de ser enviado para outros jogadores. 100 é o ganho padrão. Aumente se os outros jogadores relatarem que seu volume está muito baixo; diminua se sua voz estiver estourando."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:142
 #: D:\top_speed\top_speed_net\TopSpeed\Program.cs:156
@@ -141,7 +141,7 @@ msgstr "Apóstrofo"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:79
 msgid "Applications"
-msgstr "Aplicativos"
+msgstr "Aplicações"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Session.cs:24
 msgid "Are you sure you want to disconnect?"
@@ -224,11 +224,11 @@ msgstr "Automático"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:21
 msgid "Automatic audio device format"
-msgstr "Formato automático de dispositivo de áudio"
+msgstr "Formato automático do dispositivo de áudio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:42
 msgid "Automatic race information"
-msgstr "Informações automáticas de corrida"
+msgstr "Informações automáticas da corrida"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:92
 msgid "Automatic room name selected."
@@ -248,7 +248,7 @@ msgstr "Focar automaticamente o primeiro item do menu"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:53
 msgid "Available game rooms"
-msgstr "Salas de jogo disponíveis"
+msgstr "Salas disponíveis"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:21
 msgid "Available servers"
@@ -284,7 +284,7 @@ msgstr "Barra invertida"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:21
 msgid "Backspace"
-msgstr "Voltar"
+msgstr "Backspace"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:100
@@ -342,7 +342,7 @@ msgstr "Freio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:98
 msgid "Brake pedal direction"
-msgstr "Direção do pedal de freio"
+msgstr "Direção do pedal do freio"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:28
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:102
@@ -351,7 +351,7 @@ msgstr "Brasil"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:37
 msgid "Brilliant result! You set a new best time."
-msgstr "Resultado brilhante! Você definiu um novo melhor tempo."
+msgstr "Resultado brilhante! Você fez um novo recorde de tempo."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:144
 msgid "Button 1"
@@ -419,7 +419,7 @@ msgstr "Botão 9"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:52
 msgid "Call sign cannot be empty."
-msgstr "O indicativo de chamada não pode estar vazio."
+msgstr "O indicador de chamada não pode estar vazio."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:39
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
@@ -454,7 +454,7 @@ msgstr "Alterar opções do jogo"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:172
 msgid "Change log file"
-msgstr "Arquivo do changelog"
+msgstr "Arquivo changelog"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:35
 msgid "Change the track used during the race."
@@ -463,15 +463,15 @@ msgstr "Alterar a pista usada durante a corrida."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:65
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:94
 msgid "Chat message cannot be empty."
-msgstr "A mensagem do bate-papo não pode estar vazia."
+msgstr "A mensagem de chat não pode estar vazia."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:153
 msgid "Check for updates"
-msgstr "Verificar atualizações"
+msgstr "Buscar atualizações"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:68
 msgid "Check for updates on startup"
-msgstr "Verificar atualizações ao iniciar"
+msgstr "Buscar atualizações ao iniciar"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:63
 msgid "Check ping"
@@ -479,7 +479,7 @@ msgstr "Verificar ping"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:42
 msgid "Checking for updates."
-msgstr "Verificando atualizações."
+msgstr "Buscando atualizações."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:104
@@ -492,7 +492,7 @@ msgstr "Escolha"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Menu\Device.cs:35
 msgid "Choose controller"
-msgstr "Escolher controle"
+msgstr "Escolha o controle"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:51
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
@@ -504,7 +504,7 @@ msgstr "Escolha como proceder com o jogo atual."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"
-msgstr "Escolher tecla modificadora"
+msgstr "Escolha a tecla modificadora"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:71
 msgid "Choose the difficulty level for single races."
@@ -520,7 +520,7 @@ msgstr "Escolha o idioma."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:63
 msgid "Choose the microphone used for communicator voice chat."
-msgstr "Escolha o microfone usado para o bate-papo por voz do comunicador."
+msgstr "Escolha o microfone usado para o chat de voz do comunicador."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:44
 msgid "Choose the number of laps for this room."
@@ -533,7 +533,7 @@ msgstr "Escolha a capacidade de jogadores de 2 a 10."
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:93
 msgid "Choose track type"
-msgstr "Escolher tipo de pista"
+msgstr "Escolha o tipo de pista"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:25
 msgid "Choose what information the copilot reports during a race."
@@ -541,7 +541,7 @@ msgstr "Escolha quais informações o copiloto relata durante uma corrida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:107
 msgid "Choose whether spoken messages use speech only, braille only, or speech with braille."
-msgstr "Escolha se as mensagens faladas usarão apenas fala, apenas braille ou fala com braille."
+msgstr "Escolha se as mensagens faladas usarão apenas fala, apenas braille ou fala e braille."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:39
 msgid "Choose whether this room is a race with bots, a multiplayer race without bots, or a one-on-one game."
@@ -549,7 +549,7 @@ msgstr "Escolha se esta sala é uma corrida com bots, uma corrida multiplayer se
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:24
 msgid "Choose which speech backend to prefer. Automatic lets Prism pick the best available backend."
-msgstr "Escolha qual backend de fala preferir. Automático deixa o Prism escolher o melhor backend disponível."
+msgstr "Escolha qual backend de fala preferir. Automático deixa o Sistema escolher o melhor backend disponível."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Multiplayer.cs:123
 msgid "Choose your transmission mode"
@@ -574,7 +574,7 @@ msgstr "Embreagem"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:108
 msgid "Clutch pedal direction"
-msgstr "Direção do pedal de embreagem"
+msgstr "Direção do pedal da embreagem"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:47
 msgid "Colon"
@@ -606,7 +606,7 @@ msgstr "Configure as definições padrão de hospedagem multiplayer, incluindo a
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:15
 msgid "Configure general gameplay and interface behavior, including units, usage hints, menu behavior, and update checking."
-msgstr "Configure a jogabilidade geral e o comportamento da interface, incluindo unidades, dicas de uso, comportamento dos menus e verificação de atualizações."
+msgstr "Configure a jogabilidade geral e o comportamento da interface, incluindo unidades, dicas de uso, comportamento dos menus e busca por atualizações."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:34
 msgid "Configure input devices, force feedback, progressive keyboard behavior, key mappings, and menu shortcut mappings."
@@ -618,7 +618,7 @@ msgstr "Configure o comportamento de áudio espacial, incluindo processamento HR
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:19
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
-msgstr "Configure o comportamento da fala, incluindo a seleção do backend do leitor de tela e a calibração do leitor de tela."
+msgstr "Configure o comportamento da fala, incluindo a seleção do backend e a calibração do leitor de tela."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:61
 msgid "Confirm game options"
@@ -722,7 +722,7 @@ msgstr "Continuar conexão"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\ModifierKeys.cs:115
 msgid "Control"
-msgstr "Control"
+msgstr "Controle"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\ControlPanel.cs:5
 msgid "Control panel"
@@ -738,7 +738,7 @@ msgstr "Backend do controle indisponível"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\Input.cs:36
 msgid "Controller bindings section is missing. Defaults were used for controller bindings."
-msgstr "A seção de mapeamentos do controle está ausente. Os padrões foram usados para os mapeamentos do controle."
+msgstr "A seção de mapeamentos do controle está ausente. Os padrões foram usados para mapear o controle."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Input.cs:117
 msgid "Controller mappings restored to defaults."
@@ -764,7 +764,7 @@ msgstr "Controles"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:72
 msgid "Controls communicator activation cues and remote voice chat playback. Affects how loud other players sound when they speak through the communicator."
-msgstr "Controla os sinais de ativação do comunicador e a reprodução do bate-papo por voz remoto. Afeta a altura do som de outros jogadores quando falam pelo comunicador."
+msgstr "Controla os sinais de ativação do comunicador e a reprodução do chat de voz remoto. Afeta a altura do som de outros jogadores quando falam pelo comunicador."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Volume.cs:33
 msgid "Controls engine-related sounds for bots and other players, including engine start and stop."
@@ -828,7 +828,7 @@ msgstr "Copiar"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:145
 msgid "Copy focused history item"
-msgstr "Copiar item de histórico focado"
+msgstr "Copiar item em foco do histórico"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Panels\RadioPanel\Playlist.cs:66
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:453
@@ -974,30 +974,30 @@ msgstr "Padrão (1 grau)"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:89
 msgid "Default call sign cleared."
-msgstr "Indicativo de chamada padrão limpo."
+msgstr "Indicador de chamada padrão limpo."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:94
 #, csharp-format
 msgid "Default call sign set to {0}."
-msgstr "Indicativo de chamada padrão definido para {0}."
+msgstr "Indicador de chamada padrão definido como {0}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:38
 msgid "Default call sign, currently empty."
-msgstr "Indicativo de chamada padrão, atualmente vazio."
+msgstr "Indicador de chamada padrão, atualmente vazio."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:40
 #, csharp-format
 msgid "Default call sign, currently set to {0}"
-msgstr "Indicativo de chamada padrão, atualmente definido para {0}"
+msgstr "Indicador de chamada padrão, atualmente {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Server.cs:20
 msgid "Default call sign: not set"
-msgstr "Indicativo de chamada padrão: não definido"
+msgstr "Indicador de chamada padrão: não definido"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Server.cs:22
 #, csharp-format
 msgid "Default call sign: {0}"
-msgstr "Indicativo de chamada padrão: {0}"
+msgstr "Indicador de chamada padrão: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:18
 #, csharp-format
@@ -1063,7 +1063,7 @@ msgstr "Você quer cancelar a configuração da corrida e continuar na sala?"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:73
 msgid "Down"
-msgstr "Seta para baixo"
+msgstr "Baixo"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Download.cs:114
 msgid "Download failed"
@@ -1208,11 +1208,11 @@ msgstr "Digite o endereço IP ou domínio manualmente"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:78
 msgid "Enter the default call sign for this server. Leave empty to use the global default call sign."
-msgstr "Digite o indicativo de chamada padrão para este servidor. Deixe vazio para usar o indicativo de chamada global padrão."
+msgstr "Digite o indicador de chamada padrão para este servidor. Deixe vazio para usar o indicador de chamada global padrão."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connection.cs:53
 msgid "Enter the default call sign used when connecting to servers. Leave empty to clear it."
-msgstr "Digite o indicativo de chamada padrão usado ao conectar a servidores. Deixe vazio para limpar."
+msgstr "Digite o indicador de chamada padrão usado ao conectar a servidores. Deixe vazio para limpar."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connection.cs:37
 msgid "Enter the default server port used for manual connections."
@@ -1236,7 +1236,7 @@ msgstr "Digite a porta do servidor ou deixe embranco para padrão."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:67
 msgid "Enter your call sign."
-msgstr "Digite seu indicativo de chamada."
+msgstr "Digite seu indicador de chamada."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Chat\Input.cs:20
 msgid "Enter your global chat message."
@@ -1268,7 +1268,7 @@ msgstr "Até as paredes provavelmente já estavam cansadas disso no final."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:36
 msgid "Excellent driving. You beat your previous best time."
-msgstr "Pilotagem excelente. Você superou seu melhor tempo anterior."
+msgstr "Pilotagem excelente. Você superou seu recorde anterior."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:155
 msgid "Exit Game"
@@ -1467,7 +1467,7 @@ msgstr "Modo fantasma"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:48
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."
-msgstr "O modo fantasma está {0}. As pistas personalizadas estão {1}. A pista escolhida é {2}. O jogo terá {3}. Esta sala está limitada a {4}."
+msgstr "O modo fantasma é {0}. As pistas personalizadas são {1}. A pista escolhida é {2}. O jogo terá {3}. Esta sala está limitada a {4}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
@@ -1517,7 +1517,7 @@ msgstr "O host está inacessível."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
-msgstr "Quantas voltas a corrida deve ter? Isso se aplica aos modos corrida simples, contrarrelógio e multiplayer."
+msgstr "Quantas voltas a corrida deve ter? Isso se aplica aos modos corrida simples, contra o tempo e multiplayer."
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:149
 msgid "Humidity must be between 0 and 1."
@@ -1533,11 +1533,11 @@ msgstr "Se você sair da preparação da corrida agora, o jogo atual será cance
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:30
 msgid "Include custom tracks in randomization"
-msgstr "Incluir pistas personalizadas na aleatorização"
+msgstr "Incluir pistas personalizadas na randomização"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:34
 msgid "Include custom vehicles in randomization"
-msgstr "Incluir veículos personalizados na aleatorização"
+msgstr "Incluir veículos personalizados na randomização"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:240
 msgid "Increase media volume"
@@ -1565,7 +1565,7 @@ msgstr "Aumenta a categoria de volume global selecionada em dez níveis."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:104
 msgid "Info:"
-msgstr "Info:"
+msgstr "Informação:"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:75
 msgid "Insert"
@@ -2237,7 +2237,7 @@ msgstr "O envio pela rede falhou. Verifique sua conexão."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Check.cs:199
 msgid "New version detected."
-msgstr "Nova versão detectada."
+msgstr "Nova versão encontrada."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:132
 msgid "Next chat category"
@@ -2838,11 +2838,11 @@ msgstr "Interrogação"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Core.cs:147
 msgid "Quick start"
-msgstr "Início rápido"
+msgstr "Corrida rápida"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:108
 msgid "Quick start."
-msgstr "Início rápido."
+msgstr "Corrida Rápida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:32
 msgid "Quit race preparation?"
@@ -2907,7 +2907,7 @@ msgstr "Corrida retomada."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Main.cs:35
 msgid "Race settings"
-msgstr "Configurações de corrida"
+msgstr "Configurações da corrida"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:107
 msgid "Race started."
@@ -2916,7 +2916,7 @@ msgstr "Corrida iniciada."
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
 #, csharp-format
 msgid "Race time {0}"
-msgstr "Tempo de corrida {0}"
+msgstr "Tempo da corrida {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:15
@@ -3011,7 +3011,7 @@ msgstr "Reconexão em andamento. Desconectando agora."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:41
 msgid "Remove a bot"
-msgstr "Remover um bot"
+msgstr "Remover bot"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:52
 msgid "Report distance"
@@ -3027,7 +3027,7 @@ msgstr "Reportar velocidade"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report tire state"
-msgstr "Relatório do Estado do pneu"
+msgstr "Reportar Estado dos pneus"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Report track name"
@@ -3109,7 +3109,7 @@ msgstr "Revise estes detalhes antes de conectar."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:49
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:136
 msgid "Ride airport"
-msgstr "Pista do aeroporto"
+msgstr "Caminho até o aeroporto"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:71
 msgid "Right"
@@ -3202,11 +3202,11 @@ msgstr "Sala removida: {0}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:44
 msgid "Run complete. Better luck on the next attempt."
-msgstr "Corrida concluída. Mais sorte na próxima tentativa."
+msgstr "Corrida concluída. Mais sorte na próxima vez."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:43
 msgid "Run finished. Previous best remains unbeaten."
-msgstr "Corrida finalizada. O melhor tempo anterior permanece invicto."
+msgstr "Corrida finalizada. O recorde anterior permanece invicto."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\TrackList.cs:51
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:140
@@ -3351,7 +3351,7 @@ msgstr "Selecione a predefinição de som do menu."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Audio.cs:31
 msgid "Select the microphone used for communicator voice chat in multiplayer."
-msgstr "Selecione o microfone usado para o bate-papo por voz do comunicador no modo multiplayer."
+msgstr "Selecione o microfone usado para o chat de voz do comunicador no modo multiplayer."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:53
 msgid "Select the player capacity for this room. The host can start with fewer players than the specified maximum players, so this is not a hard requirement."
@@ -3692,7 +3692,7 @@ msgstr "Parar o jogo"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:47
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:16
 msgid "Street adventure"
-msgstr "Aventura urbana"
+msgstr "Aventura nas ruas"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:41
 msgid "Subtract"
@@ -3700,7 +3700,7 @@ msgstr "Subtrair"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:55
 msgid "Summary of this run and your previous best:"
-msgstr "Resumo desta corrida e do seu melhor tempo anterior:"
+msgstr "Resumo desta corrida e do seu recorde anterior:"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:50
 msgid "Summary of your latest time trial run:"

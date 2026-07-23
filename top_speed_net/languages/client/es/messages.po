@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-12 16:06\n"
+"PO-Revision-Date: 2026-07-23 16:49\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5642,12 +5642,12 @@ msgstr "{0}: posición {1}, tiempo {2}."
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format
 msgid "{0}: {1} percent"
-msgstr ""
+msgstr "{0}: {1} porciento"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:156
 #, csharp-format
 msgid "{0}: {1}, using {2}."
-msgstr ""
+msgstr "{0}: {1}, usando {2}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PlayerInfo.cs:147
 #, csharp-format

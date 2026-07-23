@@ -74,8 +74,23 @@ namespace TopSpeed.Data
             if (_defs.Length == 0 || LapDistance <= 0f)
                 return new RoadSeg(0f, 0f, TrackSurface.Asphalt, TrackType.Straight, MinPartLengthMeters, -1, 0f);
 
+            // Derive the in-lap distance from the same lap index instead of an
+            // independent modulo, so the two can never disagree at a lap
+            // boundary (a float-rounding split there used to shift the road one
+            // LapCenter sideways for a frame and crash the car — most reliably
+            // on pit exit, which lands exactly on the boundary).
             var lap = (int)Math.Floor(position / LapDistance);
-            var pos = Wrap(position);
+            var pos = position - (lap * LapDistance);
+            if (pos >= LapDistance)
+            {
+                pos -= LapDistance;
+                lap++;
+            }
+            else if (pos < 0f)
+            {
+                pos += LapDistance;
+                lap--;
+            }
             var dist = 0.0f;
             var center = lap * LapCenter;
 

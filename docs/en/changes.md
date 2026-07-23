@@ -5,6 +5,14 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## 2026.7.23.1
+### Game Changes
+- Fixed a bug that could wreck your car for no reason as you crossed the start/finish line or pulled out of the pit lane, most often during longer races. For a single frame the road shifted a full track-width sideways and the game counted you as off the track.
+
+### Server Changes
+- Fixed the same start/finish line glitch for the computer-controlled cars, which could spin them out for no reason as they completed a lap.
+
+
 ## 2026.7.17.1
 ### Game Changes
 - Fixed a crash that could happen when starting a race with a custom vehicle that was missing one of its sound files. The vehicle now stays playable: any missing sound is replaced with a built-in default (or, for optional sounds, simply left silent), and the custom vehicles menu shows a warning describing what was missing.

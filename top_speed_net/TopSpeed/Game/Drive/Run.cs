@@ -32,7 +32,7 @@ namespace TopSpeed.Game
                     _pitMenuShown = false;
                     if (!result.IsCanceled)
                         _timeTrial?.AcceptPitStopChoice(result.ChoiceId);
-                }));
+                }, _driveInput.GetOverlayReservedKeys()));
             }
             if (_choices.HasActiveChoiceDialog)
             {
@@ -65,7 +65,7 @@ namespace TopSpeed.Game
                     _pitMenuShown = false;
                     if (!result.IsCanceled)
                         _singleRace?.AcceptPitStopChoice(result.ChoiceId);
-                }));
+                }, _driveInput.GetOverlayReservedKeys()));
             }
             if (_choices.HasActiveChoiceDialog)
             {

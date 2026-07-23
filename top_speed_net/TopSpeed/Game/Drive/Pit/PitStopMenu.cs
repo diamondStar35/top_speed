@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TopSpeed.Input;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
 
@@ -11,7 +12,9 @@ namespace TopSpeed.Game
         public const int TiresChoiceId = 2;
         public const int BothChoiceId = 3;
 
-        public static ChoiceDialog Create(Action<ChoiceDialogResult> onResult)
+        public static ChoiceDialog Create(
+            Action<ChoiceDialogResult> onResult,
+            IReadOnlyCollection<InputKey>? letterNavReservedKeys = null)
         {
             var items = new Dictionary<int, string>
             {
@@ -27,7 +30,8 @@ namespace TopSpeed.Game
                 onResult,
                 flags: ChoiceDialogFlags.None)
             {
-                OpenAsOverlay = true
+                OpenAsOverlay = true,
+                LetterNavReservedKeys = letterNavReservedKeys
             };
         }
 

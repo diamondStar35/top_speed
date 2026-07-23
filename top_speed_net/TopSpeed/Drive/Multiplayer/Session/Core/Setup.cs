@@ -65,6 +65,7 @@ namespace TopSpeed.Drive.Multiplayer
             var trackAudio = new TrackAudioService(
                 _settings,
                 GetRandomSoundBySlot,
+                LoadRaceCueSound,
                 _soundTurnEndDing,
                 QueueTrackInfoSound,
                 (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));

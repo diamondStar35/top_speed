@@ -29,6 +29,12 @@ namespace TopSpeed.Menu
                     () => _settings.CurveAnnouncement == CurveAnnouncementMode.SpeedDependent,
                     value => _settingsActions.UpdateSetting(() => _settings.CurveAnnouncement = value ? CurveAnnouncementMode.SpeedDependent : CurveAnnouncementMode.FixedDistance),
                     hintProvider: HintChangeProvider(LocalizationService.Mark("Switch between fixed distance and speed dependent curve announcements."))),
+                new Switch(LocalizationService.Mark("Curve announcement method"),
+                    LocalizationService.Mark("tones"),
+                    LocalizationService.Mark("spoken"),
+                    () => _settings.CurveAnnouncementStyle == CurveAnnouncementStyle.Tones,
+                    value => _settingsActions.UpdateSetting(() => _settings.CurveAnnouncementStyle = value ? CurveAnnouncementStyle.Tones : CurveAnnouncementStyle.Spoken),
+                    hintProvider: HintChangeProvider(LocalizationService.Mark("Switch between spoken curve announcements and non-spoken tones. In tones mode each type of curve has its own sound: the tighter the curve the higher the pitch, and the tone plays from the side the curve turns toward, so a left turn is heard on your left. Tones are the same in every language."))),
                 new Slider(
                     LocalizationService.Mark("Speed dependent curve announcement lead time"),
                     "5-40",

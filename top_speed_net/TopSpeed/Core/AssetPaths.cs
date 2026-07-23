@@ -80,5 +80,18 @@ namespace TopSpeed.Core
 
             return ResolveExistingPath("Sounds", "pit", fileName);
         }
+
+        // Resolves a non-spoken race cue (e.g. curve announcement tones) under Sounds/racecues.
+        // These are language independent, so unlike copilot speech there is no language segment.
+        public static string? ResolveRaceCueSoundPath(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key))
+                return null;
+
+            var relative = key.Replace('\\', Path.DirectorySeparatorChar).Replace('/', Path.DirectorySeparatorChar);
+            if (string.IsNullOrWhiteSpace(Path.GetExtension(relative)))
+                relative += ".ogg";
+            return ResolveExistingPath("Sounds", "racecues", relative);
+        }
     }
 }

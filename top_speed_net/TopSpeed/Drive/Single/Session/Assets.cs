@@ -312,6 +312,14 @@ namespace TopSpeed.Drive.Single
             return null;
         }
 
+        private Source? LoadRaceCueSound(string key)
+        {
+            var path = AssetPaths.ResolveRaceCueSoundPath(key);
+            if (path != null)
+                return LoadBusSource(path, AudioEngineOptions.CopilotBusName, streamFromDisk: false);
+            return null;
+        }
+
         private Source LoadBusSource(string path, string busName, bool streamFromDisk)
         {
             var asset = _audio.LoadAsset(path, streamFromDisk);

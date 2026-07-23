@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Key = TopSpeed.Input.InputKey;
 using TopSpeed.Input.Devices.Controller;
 
@@ -66,6 +67,15 @@ namespace TopSpeed.Input
         {
             if (_overlayInputBlocked)
                 return false;
+            return WasPressedRaw(key);
+        }
+
+        // Edge detection without the overlay guard. Intent evaluation applies its own overlay policy
+        // in EvaluateIntentTriggerCore (see IsAllowedDuringOverlay), so whitelisted press intents such
+        // as the fuel/tire reports must use this directly; routing them through WasPressed would
+        // double-block them whenever an overlay (e.g. the pit-stop menu) is open.
+        private bool WasPressedRaw(Key key)
+        {
             return IsKeyDown(_lastState, key) && !IsKeyDown(_prevState, key);
         }
 
@@ -98,7 +108,7 @@ namespace TopSpeed.Input
         {
             if (EvaluateIntentTriggerCore(DriveIntent.Horn))
                 return true;
-            if (_touchHorn && _allowDrivingInput && !_overlayInputBlocked)
+            if (_touchHorn && _allowDrivingInput && (!_overlayInputBlocked || IsAllowedDuringOverlay(DriveIntent.Horn)))
                 return true;
             if (!_pausedHornInputAllowed || _overlayInputBlocked)
                 return false;
@@ -109,9 +119,52 @@ namespace TopSpeed.Input
                 || _touchHorn;
         }
 
+        // Read-only status reports (and the horn) stay available even when an overlay such as the
+        // pit-stop choice dialog is up, so the player can still query fuel, tires, lap, etc. and honk
+        // while deciding. Driving and one-shot actions (pause, pit, start engine) remain blocked.
+        private static bool IsAllowedDuringOverlay(DriveIntent intent)
+        {
+            switch (intent)
+            {
+                case DriveIntent.Horn:
+                case DriveIntent.RequestInfo:
+                case DriveIntent.CurrentGear:
+                case DriveIntent.CurrentLapNr:
+                case DriveIntent.CurrentRacePerc:
+                case DriveIntent.CurrentLapPerc:
+                case DriveIntent.CurrentRaceTime:
+                case DriveIntent.ReportDistance:
+                case DriveIntent.ReportSpeed:
+                case DriveIntent.ReportFuel:
+                case DriveIntent.ReportTireState:
+                case DriveIntent.TrackName:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        // Keys currently bound to drive actions that stay live while an overlay (e.g. the pit-stop
+        // menu) is open. The menu consults this so a key doing its drive job — a status report or the
+        // horn — doesn't also trigger first-letter navigation and move the menu cursor. It is derived
+        // from the live bindings, so it always matches whatever the player has mapped.
+        public IReadOnlyCollection<Key> GetOverlayReservedKeys()
+        {
+            var keys = new HashSet<Key>();
+            foreach (DriveIntent intent in Enum.GetValues(typeof(DriveIntent)))
+            {
+                if (!IsAllowedDuringOverlay(intent))
+                    continue;
+                var key = GetKeyMapping(intent);
+                if (key != Key.Unknown)
+                    keys.Add(key);
+            }
+            return keys;
+        }
+
         private bool EvaluateIntentTriggerCore(DriveIntent intent)
         {
-            if (_overlayInputBlocked)
+            if (_overlayInputBlocked && !IsAllowedDuringOverlay(intent))
                 return false;
 
             var meta = GetIntentMeta(intent);
@@ -135,9 +188,9 @@ namespace TopSpeed.Input
 
             var active = meta.KeyboardMode == TriggerMode.Hold
                 ? IsKeyDown(_lastState, key)
-                : WasPressed(key);
+                : WasPressedRaw(key);
             if (!active && meta.AllowNumpadEnterAlias && key == Key.Return)
-                active = WasPressed(Key.NumberPadEnter);
+                active = WasPressedRaw(Key.NumberPadEnter);
 
             return active;
         }

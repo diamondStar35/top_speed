@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-12 16:06\n"
+"PO-Revision-Date: 2026-07-24 14:15\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3027,7 +3027,7 @@ msgstr "报告速度"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:55
 msgid "Report tire state"
-msgstr ""
+msgstr "报告轮胎状态"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:56
 msgid "Report track name"
@@ -4958,7 +4958,7 @@ msgstr "已勾选"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:23
 msgid "cold tires"
-msgstr ""
+msgstr "冷轮胎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\Buffers.cs:211
 msgid "connections"
@@ -5073,7 +5073,7 @@ msgstr "困难"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
 msgid "heavy wear"
-msgstr ""
+msgstr "严重磨损"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
@@ -5081,7 +5081,7 @@ msgstr "high_speed_steer_full_kph 必须大于 high_speed_steer_start_kph。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:17
 msgid "hot tires"
-msgstr ""
+msgstr "热轮胎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:40
 msgid "imperial"
@@ -5118,7 +5118,7 @@ msgstr "launch_rpm 不得超过 rev_limiter。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
 msgid "light wear"
-msgstr ""
+msgstr "轻微磨损"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:9
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:12
@@ -5143,11 +5143,11 @@ msgstr "缺失"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
 msgid "moderate wear"
-msgstr ""
+msgstr "中度磨损"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
 msgid "new tires"
-msgstr ""
+msgstr "新轮胎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:11
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:127
@@ -5182,11 +5182,11 @@ msgstr "在线玩家列表请求"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:19
 msgid "optimal temperature"
-msgstr ""
+msgstr "最佳温度"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
-msgstr ""
+msgstr "轮胎过热"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:165
 msgid "panel"
@@ -5357,12 +5357,12 @@ msgstr "轮胎宽度必须在20到450毫米之间。"
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
-msgstr ""
+msgstr "轮胎磨损率{0:F0}%，{1:F0}度C,{2}，{3}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
-msgstr ""
+msgstr "轮胎磨损率{0:F0}%，{1:F0}度F,{2}，{3}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
 msgid "top_freq must be greater than or equal to idle_freq."
@@ -5399,11 +5399,11 @@ msgstr "未知"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:21
 msgid "warming up tires"
-msgstr ""
+msgstr "预热轮胎"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
 msgid "worn tires"
-msgstr ""
+msgstr "轮胎磨损"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
 #, csharp-format

@@ -132,6 +132,9 @@ namespace TopSpeed.Input
         private bool _allowDrivingInput;
         private bool _allowAuxiliaryInput;
         private bool _overlayInputBlocked;
+        private bool _menuNavigationActive;
+        private readonly HashSet<Key> _menuNavigationKeys = new HashSet<Key>();
+        private readonly HashSet<AxisOrButton> _menuNavigationControllerInputs = new HashSet<AxisOrButton>();
         private bool _pausedHornInputAllowed;
         private bool _controllerIsRacingWheel;
         private readonly bool[] _hasPedalCalibration = new bool[8];

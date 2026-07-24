@@ -67,7 +67,27 @@ namespace TopSpeed.Input
         {
             if (_overlayInputBlocked)
                 return false;
+            if (IsInputTrappedByMenu(key))
+                return false;
             return WasPressedRaw(key);
+        }
+
+        // While a menu or dialog is navigating during a race, the inputs it navigates with belong to
+        // the menu, not to driving: the menu-navigation keys (arrows, Enter, etc.) and every reserved
+        // key (the number row the pit menu selects with, and so on), plus the controller's d-pad /
+        // stick / accept button. Any drive intent mapped onto one of those reads as not pressed, so it
+        // cannot fire alongside the navigation. Every other key keeps working, so status reports and
+        // the horn stay available while a menu is open.
+        private bool IsInputTrappedByMenu(Key key)
+        {
+            if (!_menuNavigationActive)
+                return false;
+            return _menuNavigationKeys.Contains(key) || KeyMapManager.IsReservedKey(key);
+        }
+
+        private bool IsInputTrappedByMenu(AxisOrButton axis)
+        {
+            return _menuNavigationActive && _menuNavigationControllerInputs.Contains(axis);
         }
 
         // Edge detection without the overlay guard. Intent evaluation applies its own overlay policy
@@ -185,6 +205,8 @@ namespace TopSpeed.Input
             var key = GetKeyMapping(intent);
             if (key == Key.Unknown)
                 return false;
+            if (IsInputTrappedByMenu(key))
+                return false;
 
             var active = meta.KeyboardMode == TriggerMode.Hold
                 ? IsKeyDown(_lastState, key)
@@ -202,6 +224,8 @@ namespace TopSpeed.Input
 
             var axis = GetAxisMapping(intent);
             if (axis == AxisOrButton.AxisNone)
+                return false;
+            if (IsInputTrappedByMenu(axis))
                 return false;
 
             return meta.ControllerMode == TriggerMode.Hold

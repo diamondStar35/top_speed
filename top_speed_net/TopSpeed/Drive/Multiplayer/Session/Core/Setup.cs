@@ -212,7 +212,8 @@ namespace TopSpeed.Drive.Multiplayer
                     () => _started,
                     SpeakText,
                     CalculatePlayerPerc,
-                    HandleLocalPlayerNumberRequest),
+                    HandleLocalPlayerNumberRequest,
+                    () => _settings.BriefStatusReports),
                 new ExitSubsystem(
                     "exit",
                     300,

@@ -126,7 +126,9 @@ namespace TopSpeed.Drive.Session.Systems
         private void HandleCurrentGearRequest()
         {
             if (_input.Intents.IsTriggered(DriveIntent.CurrentGear) && IsReportable())
-                _speakText(LocalizationService.Format(LocalizationService.Mark("Gear {0}"), SessionText.FormatGearCode(_car)));
+                _speakText(_settings.BriefStatusReports
+                    ? SessionText.FormatGearCode(_car)
+                    : LocalizationService.Format(LocalizationService.Mark("Gear {0}"), SessionText.FormatGearCode(_car)));
         }
 
         private void HandleCurrentLapNumberRequest()
@@ -148,7 +150,7 @@ namespace TopSpeed.Drive.Session.Systems
                     percent = 0;
                 if (percent > 100)
                     percent = 100;
-                _speakText(SessionText.FormatRacePercentage(percent));
+                _speakText(SessionText.FormatRacePercentage(percent, _settings.BriefStatusReports));
             }
         }
 
@@ -165,7 +167,7 @@ namespace TopSpeed.Drive.Session.Systems
                     percent = 0;
                 if (percent > 100)
                     percent = 100;
-                _speakText(SessionText.FormatLapPercentage(percent));
+                _speakText(SessionText.FormatLapPercentage(percent, _settings.BriefStatusReports));
             }
         }
 

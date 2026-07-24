@@ -15,6 +15,7 @@ namespace TopSpeed.Drive.Session.Systems
         private readonly Func<int, int>? _getPlayerPercent;
         private readonly Action<string> _speakText;
         private readonly Action? _updateExtra;
+        private readonly Func<bool>? _isBrief;
         private int _focusedPlayer = -1;
 
         public PlayerInfo(
@@ -28,7 +29,8 @@ namespace TopSpeed.Drive.Session.Systems
             Func<bool> isStarted,
             Action<string> speakText,
             Func<int, int>? getPlayerPercent = null,
-            Action? updateExtra = null)
+            Action? updateExtra = null,
+            Func<bool>? isBrief = null)
             : base(name, order)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
@@ -40,6 +42,7 @@ namespace TopSpeed.Drive.Session.Systems
             _speakText = speakText ?? throw new ArgumentNullException(nameof(speakText));
             _getPlayerPercent = getPlayerPercent;
             _updateExtra = updateExtra;
+            _isBrief = isBrief;
         }
 
         public override void Update(SessionContext context, float elapsed)
@@ -137,26 +140,38 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void SpeakPlayerDetails(int playerIndex)
         {
+            var brief = _isBrief?.Invoke() ?? false;
             var playerName = ResolvePlayerName(playerIndex);
             var playerNumber = playerIndex + 1;
             var vehicleName = LocalizationService.Translate(_getVehicleName(playerIndex));
             if (_getPlayerPercent != null)
             {
                 var percent = SessionText.FormatPlayerPercentage(_getPlayerPercent(playerIndex));
-                _speakText(LocalizationService.Format(
-                    LocalizationService.Mark("{0}: {1}, {2}, using {3}."),
-                    playerName,
-                    playerNumber,
-                    percent,
-                    vehicleName));
+                _speakText(brief
+                    ? LocalizationService.Format(
+                        LocalizationService.Mark("{0} {1} {2}"),
+                        percent,
+                        playerName,
+                        vehicleName)
+                    : LocalizationService.Format(
+                        LocalizationService.Mark("{0}: {1}, {2}, using {3}."),
+                        playerName,
+                        playerNumber,
+                        percent,
+                        vehicleName));
                 return;
             }
 
-            _speakText(LocalizationService.Format(
-                LocalizationService.Mark("{0}: {1}, using {2}."),
-                playerName,
-                playerNumber,
-                vehicleName));
+            _speakText(brief
+                ? LocalizationService.Format(
+                    LocalizationService.Mark("{0} {1}"),
+                    playerName,
+                    vehicleName)
+                : LocalizationService.Format(
+                    LocalizationService.Mark("{0}: {1}, using {2}."),
+                    playerName,
+                    playerNumber,
+                    vehicleName));
         }
 
         private string ResolvePlayerName(int playerIndex)

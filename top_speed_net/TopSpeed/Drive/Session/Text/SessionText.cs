@@ -43,15 +43,19 @@ namespace TopSpeed.Drive.Session
             return string.Join(" ", parts);
         }
 
-        public static string FormatRacePercentage(int percent)
+        public static string FormatRacePercentage(int percent, bool brief = false)
         {
             var clamped = Math.Max(0, Math.Min(100, percent));
+            if (brief)
+                return FormatPlayerPercentage(clamped);
             return LocalizationService.Format(LocalizationService.Mark("Race percentage {0} percent"), clamped);
         }
 
-        public static string FormatLapPercentage(int percent)
+        public static string FormatLapPercentage(int percent, bool brief = false)
         {
             var clamped = Math.Max(0, Math.Min(100, percent));
+            if (brief)
+                return FormatPlayerPercentage(clamped);
             return LocalizationService.Format(LocalizationService.Mark("Lap percentage {0} percent"), clamped);
         }
 

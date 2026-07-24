@@ -233,7 +233,8 @@ namespace TopSpeed.Drive.Single
                 () => _started,
                 SpeakText,
                 CalculatePlayerPerc,
-                HandlePlayerNumberRequest);
+                HandlePlayerNumberRequest,
+                () => _settings.BriefStatusReports);
             _exit = new ExitSubsystem(
                 "exit",
                 300,

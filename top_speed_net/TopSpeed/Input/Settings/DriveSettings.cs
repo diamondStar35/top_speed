@@ -40,6 +40,7 @@ namespace TopSpeed.Input
         public UnitSystem Units { get; set; }
         public bool FuelConsumptionEnabled { get; set; }
         public bool TireWearEnabled { get; set; }
+        public bool BriefStatusReports { get; set; }
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
@@ -131,6 +132,7 @@ namespace TopSpeed.Input
             Units = UnitSystem.Metric;
             FuelConsumptionEnabled = false;
             TireWearEnabled = false;
+            BriefStatusReports = false;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));

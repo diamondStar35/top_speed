@@ -41,6 +41,7 @@ namespace TopSpeed.Input
         public bool FuelConsumptionEnabled { get; set; }
         public bool TireWearEnabled { get; set; }
         public bool BriefStatusReports { get; set; }
+        public bool ReportLapAndTurn { get; set; }
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
@@ -133,6 +134,7 @@ namespace TopSpeed.Input
             FuelConsumptionEnabled = false;
             TireWearEnabled = false;
             BriefStatusReports = false;
+            ReportLapAndTurn = false;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));

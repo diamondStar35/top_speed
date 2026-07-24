@@ -213,7 +213,12 @@ namespace TopSpeed.Drive.Multiplayer
                     SpeakText,
                     CalculatePlayerPerc,
                     HandleLocalPlayerNumberRequest,
-                    () => _settings.BriefStatusReports),
+                    () => _settings.BriefStatusReports,
+                    getPlayerPosition: CalculatePlayerPosition,
+                    track: _track,
+                    getLapLimit: () => _lapLimit,
+                    reportLapAndTurn: () => _settings.ReportLapAndTurn,
+                    isPlayerFinished: CalculatePlayerFinished),
                 new ExitSubsystem(
                     "exit",
                     300,

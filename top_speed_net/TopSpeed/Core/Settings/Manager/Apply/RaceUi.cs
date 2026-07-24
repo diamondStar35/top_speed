@@ -31,6 +31,8 @@ namespace TopSpeed.Core.Settings
                 settings.TireWearEnabled = race.TireWearEnabled.Value;
             if (race.BriefStatusReports.HasValue)
                 settings.BriefStatusReports = race.BriefStatusReports.Value;
+            if (race.ReportLapAndTurn.HasValue)
+                settings.ReportLapAndTurn = race.ReportLapAndTurn.Value;
             if (race.RandomCustomTracks.HasValue)
                 settings.RandomCustomTracks = race.RandomCustomTracks.Value;
             if (race.RandomCustomVehicles.HasValue)

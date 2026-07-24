@@ -214,7 +214,12 @@ namespace TopSpeed.Drive.TimeTrial
                 () => _started,
                 SpeakText,
                 CalculatePlayerPerc,
-                isBrief: () => _settings.BriefStatusReports);
+                isBrief: () => _settings.BriefStatusReports,
+                getPlayerPosition: _ => _car.PositionY,
+                track: _track,
+                getLapLimit: () => _nrOfLaps,
+                reportLapAndTurn: () => _settings.ReportLapAndTurn,
+                isPlayerFinished: _ => _finished);
             _exit = new ExitSubsystem(
                 "exit",
                 300,

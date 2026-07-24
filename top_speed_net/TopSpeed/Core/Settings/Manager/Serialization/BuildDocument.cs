@@ -79,6 +79,7 @@ namespace TopSpeed.Core.Settings
                     FuelConsumptionEnabled = settings.FuelConsumptionEnabled,
                     TireWearEnabled = settings.TireWearEnabled,
                     BriefStatusReports = settings.BriefStatusReports,
+                    ReportLapAndTurn = settings.ReportLapAndTurn,
                     RandomCustomTracks = settings.RandomCustomTracks,
                     RandomCustomVehicles = settings.RandomCustomVehicles,
                     SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 18:44+0300\n"
-"PO-Revision-Date: 2026-07-27 17:12\n"
+"PO-Revision-Date: 2026-07-27 22:29\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -902,7 +902,7 @@ msgstr "O caminho do arquivo da pista personalizada está vazio."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
 msgid "Custom track issues"
-msgstr ""
+msgstr "Problemas de pistas personalizadas"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:91
 msgid "Custom tracks"
@@ -927,7 +927,7 @@ msgstr "O arquivo de veículo personalizado deve usar a extensão .tsv."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
 msgid "Custom vehicle issues"
-msgstr ""
+msgstr "Problemas de vehículos Personalizados"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
@@ -1047,7 +1047,7 @@ msgstr "Diálogo"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:126
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:95
 msgid "Disable for this race"
-msgstr ""
+msgstr "Desativar para esta corrida"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:67
 msgid "Discard changes"
@@ -1168,7 +1168,7 @@ msgstr "Ativar áudio HRTF"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:97
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:72
 msgid "Enable fuel consumption"
-msgstr ""
+msgstr "Ativar Consumo de combustível"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
@@ -1181,7 +1181,7 @@ msgstr "Ativar repetição do menu"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:103
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:76
 msgid "Enable tire wear"
-msgstr ""
+msgstr "Ativar Desgaste dos Pneus"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
@@ -1496,7 +1496,7 @@ msgstr "Modo fantasma"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
-msgstr ""
+msgstr "Modo Fantasma: {0}. Pistas personalizadas: {1}. Consumo de combustível: {2}. Desgaste dos pneus: {3}. Pista escolhida: {4}. O jogo será iniciado por {5}. Sala limitada a {6}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
@@ -1637,7 +1637,7 @@ msgstr "Valor numérico inválido '{0}' para a chave '{1}'."
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "Valor de pit inválido ' {0}'. Use pit_entry ou pit_exit."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:25
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:66
@@ -2374,7 +2374,7 @@ msgstr "Nenhuma alteração de opção para aplicar."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:22
 msgid "No pit area"
-msgstr ""
+msgstr "Nenhuma área do pit"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:23
 msgid "No players are currently in this game room."
@@ -2694,15 +2694,15 @@ msgstr "Verificação de ping já em andamento."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:24
 msgid "Pit stop"
-msgstr ""
+msgstr "Pit stop"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:58
 msgid "Pit this time"
-msgstr ""
+msgstr "Tempo do Pit"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:237
 msgid "Pitting this time"
-msgstr ""
+msgstr "Tempo do Pit"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:64
 msgid "Play logo at startup"
@@ -2935,7 +2935,7 @@ msgstr "RZ mais"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:127
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:96
 msgid "Race anyway"
-msgstr ""
+msgstr "Corrida de qualquer jeito"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:16
 msgid "Race complete."
@@ -3068,7 +3068,7 @@ msgstr "Reconexão em andamento. Desconectando agora."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:18
 msgid "Refuel"
-msgstr ""
+msgstr "Reabastecer"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:41
 msgid "Remove a bot"

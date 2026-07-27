@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-19 00:12\n"
+"POT-Creation-Date: 2026-07-27 18:44+0300\n"
+"PO-Revision-Date: 2026-07-27 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -147,11 +147,11 @@ msgstr "Aplicações"
 msgid "Are you sure you want to disconnect?"
 msgstr "Tem certeza de que deseja desconectar?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:28
 msgid "Are you sure you want to leave the current room?"
 msgstr "Tem certeza de que deseja sair da sala atual?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:257
 msgid "Are you sure you want to quit this multiplayer race?"
 msgstr "Tem certeza de que deseja sair desta corrida multiplayer?"
 
@@ -315,6 +315,7 @@ msgstr "Melhor tempo até agora: {0}."
 msgid "Binding intent is missing and was ignored."
 msgstr "A intenção de mapeamento está ausente e foi ignorada."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:74
 msgid "Both"
 msgstr "Ambos"
@@ -331,8 +332,8 @@ msgstr "Ambas as teclas Control"
 msgid "Both Shift keys"
 msgstr "Ambas as teclas Shift"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:87
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:167
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:185
 msgid "Bots can only be managed by the host in race-with-bots rooms."
 msgstr "Os bots só podem ser gerenciados pelo host em salas de corrida com bots."
 
@@ -421,7 +422,9 @@ msgstr "Botão 9"
 msgid "Call sign cannot be empty."
 msgstr "O indicador de chamada não pode estar vazio."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:128
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:104
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Language.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:27
@@ -498,9 +501,13 @@ msgstr "Escolha o controle"
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
 msgstr "Escolha quanta informação automática da corrida é falada, como números de voltas e posições dos jogadores."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:249
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:283
 msgid "Choose how to proceed with the current game."
 msgstr "Escolha como proceder com o jogo atual."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:124
+msgid "Choose how to start this race."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"
@@ -878,7 +885,7 @@ msgstr "Personalizado"
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Identity.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:61
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:43
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:144
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\State.cs:57
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:17
@@ -886,7 +893,6 @@ msgid "Custom track"
 msgstr "Pista personalizada"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:94
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
 msgid "Custom track errors"
 msgstr "Erros de pista personalizada"
 
@@ -894,27 +900,34 @@ msgstr "Erros de pista personalizada"
 msgid "Custom track file path is empty."
 msgstr "O caminho do arquivo da pista personalizada está vazio."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
+msgid "Custom track issues"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:91
 msgid "Custom tracks"
 msgstr "Pistas personalizadas"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:50
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:57
 msgid "Custom tracks are disabled for this room."
 msgstr "As pistas personalizadas estão desativadas para esta sala."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:48
 msgid "Custom vehicle"
 msgstr "Veículo personalizado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:82
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
 msgid "Custom vehicle errors"
 msgstr "Erros de veículo personalizado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Load\File.cs:35
 msgid "Custom vehicle file must use .tsv extension."
 msgstr "O arquivo de veículo personalizado deve usar a extensão .tsv."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
+msgid "Custom vehicle issues"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
@@ -1031,6 +1044,11 @@ msgstr "Excluir este servidor?"
 msgid "Dialog"
 msgstr "Diálogo"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:126
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:95
+msgid "Disable for this race"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:67
 msgid "Discard changes"
 msgstr "Descartar alterações"
@@ -1110,7 +1128,7 @@ msgstr "Ducati Panigale V4"
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
 msgstr "A chave '{0}' duplicada na seção [{1}] não é permitida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:71
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:74
 #, csharp-format
 msgid "Duplicate room id '{0}'."
 msgstr "ID de sala '{0}' duplicado."
@@ -1120,17 +1138,17 @@ msgstr "ID de sala '{0}' duplicado."
 msgid "Duplicate section [{0}] is not allowed."
 msgstr "Seção [{0}] duplicada não é permitida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:62
 #, csharp-format
 msgid "Duplicate segment id '{0}'."
 msgstr "ID de segmento '{0}' duplicado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:76
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:79
 #, csharp-format
 msgid "Duplicate sound id '{0}'."
 msgstr "ID de som '{0}' duplicado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:69
 #, csharp-format
 msgid "Duplicate weather id '{0}'."
 msgstr "ID de clima '{0}' duplicado."
@@ -1147,6 +1165,11 @@ msgstr "Edite a URL do proxy usada para downloads de pacotes de atualização."
 msgid "Enable HRTF audio"
 msgstr "Ativar áudio HRTF"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:72
+msgid "Enable fuel consumption"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
 msgstr "Ativar estéreo na navegação do menu"
@@ -1154,6 +1177,11 @@ msgstr "Ativar estéreo na navegação do menu"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:53
 msgid "Enable menu wrapping"
 msgstr "Ativar repetição do menu"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:76
+msgid "Enable tire wear"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
@@ -1251,6 +1279,7 @@ msgid "Equals"
 msgstr "Igual"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:89
 msgid "Error"
 msgstr "Erro"
 
@@ -1283,7 +1312,7 @@ msgstr "Falha ao inicializar o cliente de rede."
 msgid "Failed to load communicator media. {0}"
 msgstr "Falha ao carregar mídia do comunicador. {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:27
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:28
 #, csharp-format
 msgid "Failed to load custom vehicle '{0}'. {1}"
 msgstr "Falha ao carregar veículo personalizado '{0}'. {1}"
@@ -1293,12 +1322,12 @@ msgstr "Falha ao carregar veículo personalizado '{0}'. {1}"
 msgid "Failed to load radio media. {0}"
 msgstr "Falha ao carregar mídia de rádio. {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Tracks\TrackLoadException.cs:40
 msgid "Failed to load this track file."
 msgstr "Falha ao carregar este arquivo de pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:82
 msgid "Failed to load this vehicle file."
 msgstr "Falha ao carregar este arquivo de veículo."
 
@@ -1367,7 +1396,7 @@ msgstr "Fiat 500"
 msgid "File size: {0}"
 msgstr "Tamanho do arquivo: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:80
 #, csharp-format
 msgid "File: {0}"
 msgstr "Arquivo: {0}"
@@ -1446,7 +1475,7 @@ msgstr "Versão do jogo: {0}"
 msgid "Gamepad"
 msgstr "Gamepad"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:119
 #, csharp-format
 msgid "Gear {0}"
 msgstr "Marcha {0}"
@@ -1464,17 +1493,17 @@ msgstr "Alemanha"
 msgid "Ghost mode"
 msgstr "Modo fantasma"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:48
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
 #, csharp-format
-msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."
-msgstr "O modo fantasma é {0}. As pistas personalizadas são {1}. A pista escolhida é {2}. O jogo terá {3}. Esta sala está limitada a {4}."
+msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
 msgid "Global shortcuts"
 msgstr "Atalhos globais"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:253
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:287
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:259
 msgid "Go back"
 msgstr "Voltar"
@@ -1515,11 +1544,11 @@ msgstr "Início"
 msgid "Host is unreachable."
 msgstr "O host está inacessível."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:93
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
 msgstr "Quantas voltas a corrida deve ter? Isso se aplica aos modos corrida simples, contra o tempo e multiplayer."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:156
 msgid "Humidity must be between 0 and 1."
 msgstr "A umidade deve estar entre 0 e 1."
 
@@ -1575,12 +1604,13 @@ msgstr "Insert"
 msgid "Interrupt screen reader speech"
 msgstr "Interromper fala do leitor de tela"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:111
 #, csharp-format
 msgid "Invalid ambience value '{0}'."
 msgstr "Valor de ambiente inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:115
 #, csharp-format
 msgid "Invalid boolean '{0}' for key '{1}'."
 msgstr "Booleano inválido '{0}' para a chave '{1}'."
@@ -1599,22 +1629,27 @@ msgstr "Chave inválida '{0}'. Use upshift_delay_X_Y para marchas adjacentes."
 msgid "Invalid line. Expected [section] or key=value."
 msgstr "Linha inválida. Era esperado [seção] ou chave=valor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:292
 #, csharp-format
 msgid "Invalid numeric value '{0}' for key '{1}'."
 msgstr "Valor numérico inválido '{0}' para a chave '{1}'."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
+#, csharp-format
+msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:25
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:66
 msgid "Invalid port. Enter a number between 1 and 65535."
 msgstr "Porta inválida. Insira um número entre 1 e 65535."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:300
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:307
 #, csharp-format
 msgid "Invalid room override value '{0}' for key '{1}'."
 msgstr "Valor de substituição de sala inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:193
 #, csharp-format
 msgid "Invalid room value '{0}' for key '{1}'."
 msgstr "Valor de sala inválido '{0}' para a chave '{1}'."
@@ -1654,12 +1689,12 @@ msgstr "Largura de segmento inválida '{0}'."
 msgid "Invalid sound asset path: {0}"
 msgstr "Caminho de ativo de som inválido: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
 #, csharp-format
 msgid "Invalid sound random mode '{0}'."
 msgstr "Modo aleatório de som inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:206
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
 #, csharp-format
 msgid "Invalid sound type '{0}'."
 msgstr "Tipo de som inválido '{0}'."
@@ -1674,12 +1709,12 @@ msgstr "Chave de curva de torque inválida '{0}'. Use o formato como 2000rpm=200
 msgid "Invalid torque value '{0}' for '{1}'."
 msgstr "Valor de torque inválido '{0}' para '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:278
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
 #, csharp-format
 msgid "Invalid vector '{0}' for key '{1}'."
 msgstr "Vetor inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:118
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:125
 #, csharp-format
 msgid "Invalid weather kind '{0}'."
 msgstr "Tipo de clima inválido '{0}'."
@@ -1689,8 +1724,8 @@ msgstr "Tipo de clima inválido '{0}'."
 msgid "Invalid weather transition seconds '{0}'."
 msgstr "Segundos de transição de clima inválidos '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:127
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:133
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:134
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:140
 #, csharp-format
 msgid "Invalid weather value '{0}' for key '{1}'."
 msgstr "Valor de clima inválido '{0}' para a chave '{1}'."
@@ -1743,7 +1778,7 @@ msgstr "A chave '{0}' contém um valor não decimal '{1}'."
 msgid "Key '{0}' in section [{1}] must not be empty."
 msgstr "A chave '{0}' na seção [{1}] não deve estar vazia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:98
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:101
 #, csharp-format
 msgid "Key '{0}' is missing a value."
 msgstr "A chave '{0}' não tem um valor."
@@ -1832,7 +1867,7 @@ msgstr "Estatísticas da volta:"
 msgid "Lap summary:"
 msgstr "Resumo da volta:"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:120
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:125
 #, csharp-format
 msgid "Lap {0}"
 msgstr "Volta {0}"
@@ -1871,11 +1906,11 @@ msgstr "Sair do servidor?"
 msgid "Leave this game room"
 msgstr "Sair desta sala de jogo"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:27
 msgid "Leave this game room?"
 msgstr "Sair desta sala de jogo?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:60
 msgid "Leaving game room."
 msgstr "Saindo da sala de jogo."
 
@@ -1957,7 +1992,7 @@ msgstr "Carregar arquivo de mídia"
 msgid "Load media folder"
 msgstr "Carregar pasta de mídia"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:81
 msgid "Loading custom tracks from server."
 msgstr "Carregando pistas personalizadas do servidor."
 
@@ -2004,7 +2039,7 @@ msgstr "Menu principal"
 msgid "Main menu. Swipe left or right to navigate the options. Swipe up to activate. Swipe down to go back. Swipe up with two fingers to move to the first item and swipe down with two fingers to move to the last item. Long press repeats the current usage hint."
 msgstr "Menu principal. Deslize para a esquerda ou para a direita para navegar pelas opções. Deslize para cima para ativar. Deslize para baixo para voltar. Deslize para cima com dois dedos para mover para o primeiro item e deslize para baixo com dois dedos para mover para o último item. Um toque longo repete a dica de uso atual."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:87
 msgid "Malformed line. Expected '[section]' or 'key = value'."
 msgstr "Linha malformada. Esperado '[seção]' ou 'chave = valor'."
 
@@ -2064,7 +2099,7 @@ msgstr "Máximo de jogadores alterado para {0}."
 msgid "Measure your screen-reader speaking speed again so usage hints and delayed speech timings stay accurate."
 msgstr "Meça novamente a velocidade de fala do seu leitor de tela para que as dicas de uso e os tempos de fala atrasada permaneçam precisos."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:60
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:64
 msgid "Menu sound preset was empty and was reset to default."
 msgstr "O preset de sons de menu estava vazio e foi redefinido para o padrão."
 
@@ -2230,7 +2265,7 @@ msgstr "O envio pela rede falhou ao enviar o início ao vivo."
 msgid "Network send failed while sending live stop."
 msgstr "O envio pela rede falhou ao enviar a parada ao vivo."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:69
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Systems\Sync.cs:94
 msgid "Network send failed. Please check your connection."
 msgstr "O envio pela rede falhou. Verifique sua conexão."
@@ -2292,7 +2327,7 @@ msgstr "Nenhum controle encontrado"
 msgid "No controllers were found. The game has reverted to keyboard input."
 msgstr "Nenhum controle foi encontrado. O jogo voltou ao uso do teclado."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:112
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:119
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:100
 msgid "No custom tracks found."
 msgstr "Nenhuma pista personalizada encontrada."
@@ -2336,6 +2371,10 @@ msgstr "Ainda não há mensagens."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:121
 msgid "No option changes to apply."
 msgstr "Nenhuma alteração de opção para aplicar."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:22
+msgid "No pit area"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:23
 msgid "No players are currently in this game room."
@@ -2383,7 +2422,7 @@ msgstr "Nenhuma atualização encontrada"
 msgid "No, continue preparing"
 msgstr "Não, continuar preparando"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:261
 msgid "No, continue racing"
 msgstr "Não, continuar correndo"
 
@@ -2391,7 +2430,7 @@ msgstr "Não, continuar correndo"
 msgid "No, keep this server"
 msgstr "Não, manter este servidor"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:26
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:32
 msgid "No, stay in this game room"
 msgstr "Não, ficar nesta sala de jogo"
 
@@ -2413,9 +2452,10 @@ msgstr "Não foi uma corrida limpa, mas ainda dá para se recuperar."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:17
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:79
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:63
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:81
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:99
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:140
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:179
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:16
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:66
@@ -2423,11 +2463,11 @@ msgstr "Não foi uma corrida limpa, mas ainda dá para se recuperar."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:19
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:134
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:69
 msgid "Not connected to a server."
 msgstr "Não conectado a um servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:53
 msgid "Not connected to a server. Returning to main menu."
 msgstr "Não conectado a um servidor. Retornando ao menu principal."
 
@@ -2444,7 +2484,7 @@ msgid "Num Lock"
 msgstr "Num Lock"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:57
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:105
 msgid "Number of computer players"
 msgstr "Número de jogadores controlados pelo computador"
 
@@ -2526,7 +2566,7 @@ msgstr "Somente o host pode alterar as opções do jogo."
 msgid "Only the host can change game rules."
 msgstr "Somente o host pode alterar as regras do jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:75
 msgid "Only the host can start the game."
 msgstr "Somente o host pode iniciar o jogo."
 
@@ -2633,7 +2673,7 @@ msgstr "Painel"
 msgid "Pause"
 msgstr "Pausar"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:273
 msgid "Pause the game"
 msgstr "Pausar o jogo"
 
@@ -2652,6 +2692,18 @@ msgstr "Porcentagem: {0}%"
 msgid "Ping check already in progress."
 msgstr "Verificação de ping já em andamento."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:24
+msgid "Pit stop"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:58
+msgid "Pit this time"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:237
+msgid "Pitting this time"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:64
 msgid "Play logo at startup"
 msgstr "Reproduzir logo na inicialização"
@@ -2665,7 +2717,7 @@ msgstr "Reproduzir ou pausar mídia"
 msgid "Player"
 msgstr "Jogador"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:165
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:49
 msgid "Player "
 msgstr "Jogador "
@@ -2788,7 +2840,7 @@ msgstr "Print Screen"
 msgid "Progressive keyboard input"
 msgstr "Entrada de teclado progressiva"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:93
 #, csharp-format
 msgid "Property '{0}' is outside any section."
 msgstr "A propriedade '{0}' está fora de qualquer seção."
@@ -2840,7 +2892,7 @@ msgstr "Interrogação"
 msgid "Quick start"
 msgstr "Corrida rápida"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:175
 msgid "Quick start."
 msgstr "Corrida Rápida."
 
@@ -2848,11 +2900,11 @@ msgstr "Corrida Rápida."
 msgid "Quit race preparation?"
 msgstr "Sair da preparação da corrida?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:222
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:256
 msgid "Quit race?"
 msgstr "Sair da corrida?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:278
 msgid "Quit the race"
 msgstr "Sair da corrida"
 
@@ -2879,6 +2931,11 @@ msgstr "RZ menos"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:139
 msgid "RZ plus"
 msgstr "RZ mais"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:127
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:96
+msgid "Race anyway"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:16
 msgid "Race complete."
@@ -2913,7 +2970,7 @@ msgstr "Configurações da corrida"
 msgid "Race started."
 msgstr "Corrida iniciada."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:165
 #, csharp-format
 msgid "Race time {0}"
 msgstr "Tempo da corrida {0}"
@@ -2956,7 +3013,7 @@ msgstr "Rally nas colinas"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:56
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:71
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:94
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:101
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:18
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:64
@@ -3005,9 +3062,13 @@ msgstr "Reconexão falhou."
 msgid "Reconnection failed: {0}"
 msgstr "Reconexão falhou: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:42
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:48
 msgid "Reconnection is in progress. Disconnecting now."
 msgstr "Reconexão em andamento. Desconectando agora."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:18
+msgid "Refuel"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:41
 msgid "Remove a bot"
@@ -3094,7 +3155,7 @@ msgstr "Restaurar cada mapeamento de atalho de menu para seu valor padrão."
 msgid "Restore only the shortcuts in this menu to their default values."
 msgstr "Restaurar apenas os atalhos deste menu para seus valores padrão."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:238
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:272
 msgid "Resume the game"
 msgstr "Retomar o jogo"
 
@@ -3254,7 +3315,7 @@ msgstr "Calibração do leitor de tela. Você verá um pequeno trecho de texto n
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:54
 #, csharp-format
 msgid "Section '{0}' requires an id."
 msgstr "A seção '{0}' requer um ID."
@@ -3275,17 +3336,17 @@ msgstr "A seção [transmission_cvt] não é usada porque supported_types não i
 msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
 msgstr "A seção [transmission_dct] não é usada porque supported_types não inclui 'dct'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:169
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:190
 #, csharp-format
 msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
 msgstr "O segmento '{0}' faz referência à sala '{1}', mas nenhuma seção [room:{1}] correspondente ou predefinição existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:182
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:203
 #, csharp-format
 msgid "Segment '{0}' references sound source '{1}', but no matching [sound:{1}] section exists."
 msgstr "O segmento '{0}' faz referência à fonte de som '{1}', mas nenhuma seção [sound:{1}] correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:194
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:215
 #, csharp-format
 msgid "Segment '{0}' references weather profile '{1}', but no matching [weather:{1}] section exists."
 msgstr "O segmento '{0}' faz referência ao perfil de clima '{1}', mas nenhuma seção [weather:{1}] correspondente existe."
@@ -3538,7 +3599,7 @@ msgstr "Corrida única"
 msgid "Single race difficulty"
 msgstr "Dificuldade da corrida única"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:176
 msgid "Single race."
 msgstr "Corrida única."
 
@@ -3567,25 +3628,31 @@ msgid "Slowest (1.00 second)"
 msgstr "Mais lento (1,00 segundo)"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:95
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
 msgid "Some custom track files are invalid and were skipped."
 msgstr "Alguns arquivos de pista personalizada são inválidos e foram pulados."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
+msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:83
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
 msgid "Some custom vehicle files are invalid and were skipped."
 msgstr "Alguns arquivos de veículo personalizado são inválidos e foram pulados."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
+msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:47
 msgid "Some settings were missing or invalid. Review these details."
 msgstr "Algumas configurações estavam ausentes ou inválidas. Revise estes detalhes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:237
 #, csharp-format
 msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
 msgstr "O som '{0}' faz referência a end_area '{1}', mas nenhum ID de segmento correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:205
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:226
 #, csharp-format
 msgid "Sound '{0}' references start_area '{1}', but no matching segment id exists."
 msgstr "O som '{0}' faz referência a start_area '{1}', mas nenhum ID de segmento correspondente existe."
@@ -3595,18 +3662,18 @@ msgstr "O som '{0}' faz referência a start_area '{1}', mas nenhum ID de segment
 msgid "Sound asset path escapes the track folder: {0}"
 msgstr "O caminho do arquivo de som sai da pasta da pista: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:234
 #, csharp-format
 msgid "Sound key '{0}' contains invalid path '{1}'. Paths must be track-relative."
 msgstr "A chave de som '{0}' contém um caminho inválido '{1}'. Os caminhos devem ser relativos à pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:220
 #, csharp-format
 msgid "Sound key '{0}' must be a track-relative path and cannot escape the track folder."
 msgstr "A chave de som '{0}' deve ser um caminho relativo à pista e não pode sair da pasta da pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:221
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:237
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
 #, csharp-format
 msgid "Sound list for '{0}' cannot be empty."
 msgstr "A lista de sons para '{0}' não pode estar vazia."
@@ -3685,7 +3752,7 @@ msgstr "Alargamento estéreo para o próprio carro"
 msgid "Stop"
 msgstr "Parar"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:243
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:277
 msgid "Stop the game"
 msgstr "Parar o jogo"
 
@@ -3721,7 +3788,6 @@ msgstr "Suécia"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:41
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:55
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:137
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:47
@@ -3736,6 +3802,7 @@ msgstr "Deslize para a esquerda ou para a direita com dois dedos para visualizar
 msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
 msgstr "Deslize para cima ou para baixo com dois dedos para alterar em 1,0 segundo, deslize para a esquerda ou para a direita com dois dedos para alterar em 0,1 segundo e deslize para cima ou para baixo com três dedos para o máximo ou mínimo."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:150
 msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
 msgstr "Deslize para cima ou para baixo com dois dedos para alterar em 10, deslize para a esquerda ou para a direita com dois dedos para alterar em 1 e deslize para cima ou para baixo com três dedos para o máximo ou mínimo."
@@ -3982,11 +4049,23 @@ msgstr "O caminho da pasta selecionada é inválido."
 msgid "The selected media file does not exist."
 msgstr "O arquivo de mídia selecionado não existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:283
 msgid "The selected track could not be loaded. The drive session was not started."
 msgstr "A pista selecionada não pôde ser carregada. A sessão de condução não foi iniciada."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:34
+msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:40
+msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:44
+msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
 msgid "The selected vehicle does not support the selected transmission mode."
 msgstr "O veículo selecionado não suporta o modo de transmissão selecionado."
 
@@ -4080,6 +4159,10 @@ msgstr "Este servidor não suporta a negociação de protocolo exigida. Por favo
 msgid "This shortcut menu has no bindings to reset."
 msgstr "Este menu de atalhos não possui mapeamentos para redefinir."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:230
+msgid "This track has no pit area."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
 msgid "This vehicle does not support the selected transmission mode."
@@ -4114,9 +4197,13 @@ msgstr "Contra o tempo"
 msgid "Time trial complete."
 msgstr "Corrida contra o tempo concluída."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:89
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:155
 msgid "Time trial."
 msgstr "Contra o tempo."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:19
+msgid "Tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:213
 msgid "Toggle media loop"
@@ -4170,7 +4257,7 @@ msgstr "Toyota Camry"
 msgid "Track"
 msgstr "Pista"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:170
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
 msgstr "O [meta] da pista deve definir uma referência de perfil climático, por exemplo 'weather = default'."
 
@@ -4187,7 +4274,7 @@ msgstr "Guia de criação de pistas"
 msgid "Track data is missing."
 msgstr "Os dados da pista estão ausentes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:156
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:177
 #, csharp-format
 msgid "Track default weather profile '{0}' does not match any [weather:{0}] section."
 msgstr "O perfil climático padrão da pista '{0}' não corresponde a nenhuma seção [weather:{0}]."
@@ -4203,11 +4290,11 @@ msgstr "Arquivo de pista não encontrado: {0}"
 msgid "Track lap average: {0}."
 msgstr "Média de volta da pista: {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:215
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:282
 msgid "Track load error"
 msgstr "Erro de carregamento da pista"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:157
 msgid "Track must include at least one [segment:<id>] section."
 msgstr "A pista deve incluir pelo menos uma seção [segment:<id>]."
 
@@ -4224,6 +4311,10 @@ msgstr "Pacote de pista enviado com sucesso."
 msgid "Track path must point to a .tsm file inside a track folder: {0}"
 msgstr "O caminho da pista deve apontar para um arquivo .tsm dentro de uma pasta de pista: {0}"
 
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
+msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
 msgid "Track source path is missing, so sound assets cannot be resolved."
 msgstr "O caminho de origem da pista está ausente, portanto os arquivos de som não podem ser resolvidos."
@@ -4236,11 +4327,11 @@ msgstr "O envio de pista foi cancelado porque a conexão foi perdida."
 msgid "Track upload canceled."
 msgstr "Envio de pista cancelado."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:119
 msgid "Track, currently random chosen."
 msgstr "Pista, atualmente escolhida de forma aleatória."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:126
 #, csharp-format
 msgid "Track, currently {0}."
 msgstr "Pista, atualmente {0}."
@@ -4252,7 +4343,7 @@ msgstr "Pista, atualmente {0}."
 msgid "Track: {0}"
 msgstr "Pista: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:62
 msgid "Transmission not supported"
 msgstr "Transmissão não suportada"
 
@@ -4347,21 +4438,21 @@ msgstr "Exceção desconhecida."
 msgid "Unknown key '{0}' in section [{1}]."
 msgstr "Chave desconhecida '{0}' na seção [{1}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:24
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:25
 msgid "Unknown parse error."
 msgstr "Erro de análise desconhecido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:191
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:198
 #, csharp-format
 msgid "Unknown room key '{0}'."
 msgstr "Chave de sala desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:179
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
 #, csharp-format
 msgid "Unknown room preset '{0}'."
 msgstr "Predefinição de sala desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:43
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:46
 #, csharp-format
 msgid "Unknown section '{0}'."
 msgstr "Seção desconhecida '{0}'."
@@ -4371,12 +4462,12 @@ msgstr "Seção desconhecida '{0}'."
 msgid "Unknown section [{0}]."
 msgstr "Seção desconhecida [{0}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:110
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:117
 #, csharp-format
 msgid "Unknown segment key '{0}'."
 msgstr "Chave de segmento desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:290
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:297
 #, csharp-format
 msgid "Unknown sound key '{0}'."
 msgstr "Chave de som desconhecida '{0}'."
@@ -4391,7 +4482,7 @@ msgstr "Predefinição de curva de torque desconhecida '{0}'. Valores válidos: 
 msgid "Unknown update error."
 msgstr "Erro de atualização desconhecido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:168
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:175
 #, csharp-format
 msgid "Unknown weather key '{0}'."
 msgstr "Chave climática desconhecida '{0}'."
@@ -4483,7 +4574,7 @@ msgstr "As atualizações não estão disponíveis nesta plataforma."
 msgid "Upload a local custom track"
 msgstr "Enviar uma pista personalizada local"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:100
 msgid "Upload a local track"
 msgstr "Enviar uma pista local"
 
@@ -4500,13 +4591,13 @@ msgstr "Enviando pista..."
 msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
 msgstr "Use ESQUERDA ou DIREITA para alterar em 0,1 segundo, PAGE UP ou PAGE DOWN para alterar em 1,0 segundo, HOME para o máximo, END para o mínimo."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:149
 msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
 msgstr "Use ESQUERDA ou DIREITA para alterar em 1, PAGE UP ou PAGE DOWN para alterar em 10, HOME para o máximo, END para o mínimo."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:40
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:136
 msgid "Use LEFT or RIGHT to change."
@@ -4610,6 +4701,8 @@ msgid "Volume settings"
 msgstr "Configurações de volume"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:90
 msgid "Warning"
 msgstr "Aviso"
 
@@ -4617,15 +4710,15 @@ msgstr "Aviso"
 msgid "Warning:"
 msgstr "Aviso:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:141
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:145
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:153
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:148
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:152
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:164
 #, csharp-format
 msgid "Weather key '{0}' must be greater than zero."
 msgstr "A chave climática '{0}' deve ser maior que zero."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:170
 #, csharp-format
 msgid "Weather key '{0}' must be non-negative."
 msgstr "A chave climática '{0}' não pode ser negativa."
@@ -4638,7 +4731,7 @@ msgstr "Os segundos de transição climática devem ser finitos e não negativos
 msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
 msgstr "Bem-vindo à configuração do Top Speed. Nas próximas telas, você escolherá seu idioma e depois calibrará a velocidade de fala do leitor de tela."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:248
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:282
 msgid "What would you like to do?"
 msgstr "O que você gostaria de fazer?"
 
@@ -4702,6 +4795,10 @@ msgstr "Quando marcado, o áudio do logotipo de inicialização é reproduzido q
 msgid "When checked, update package downloads are routed through your proxy URL."
 msgstr "Quando marcado, os downloads dos pacotes de atualização são roteados através do seu URL de proxy."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:100
+msgid "When enabled, cars burn fuel and players must pit to refuel."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
 msgstr "Quando ativado, os hosts da sala podem enviar e selecionar pistas personalizadas a partir deste servidor."
@@ -4710,9 +4807,21 @@ msgstr "Quando ativado, os hosts da sala podem enviar e selecionar pistas person
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
 msgstr "Quando ativado, o acelerador, o freio e a direção aumentam gradualmente ao longo do tempo, em vez de saltarem instantaneamente para o valor máximo."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:106
+msgid "When enabled, tires wear and lose grip and players must pit to replace them."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:88
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
 msgstr "Quando ativado, as colisões entre veículos são desativadas e os veículos podem passar uns pelos outros."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:75
+msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:79
+msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:43
 msgid "Who is currently present in this game room"
@@ -4758,7 +4867,7 @@ msgstr "Sim, cancelar o jogo atual"
 msgid "Yes, delete this server"
 msgstr "Sim, excluir este servidor"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:25
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:31
 msgid "Yes, leave this game room"
 msgstr "Sim, sair desta sala de jogo"
 
@@ -4766,7 +4875,7 @@ msgstr "Sim, sair desta sala de jogo"
 msgid "Yes, quit race preparation"
 msgstr "Sim, sair da preparação da corrida"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:226
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:260
 msgid "Yes, quit the race"
 msgstr "Sim, sair da corrida"
 
@@ -4774,7 +4883,7 @@ msgstr "Sim, sair da corrida"
 msgid "You are already using the latest version."
 msgstr "Você já está usando a versão mais recente."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:15
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:13
@@ -4908,7 +5017,7 @@ msgstr "Z menos"
 msgid "Z plus"
 msgstr "Z mais"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:91
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:171
 msgid "add bot request"
 msgstr "solicitação de adição de bot"
 
@@ -4921,7 +5030,7 @@ msgstr "tudo"
 msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_downshift_rpm deve ser 0 ou estar entre idle_rpm e rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:46
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:50
 msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_shift_rpm deve ser 0 ou estar entre idle_rpm e rev_limiter."
 
@@ -4929,7 +5038,7 @@ msgstr "auto_shift_rpm deve ser 0 ou estar entre idle_rpm e rev_limiter."
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_upshift_rpm deve ser 0 ou estar entre idle_rpm e rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:113
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4972,7 +5081,7 @@ msgstr "controle"
 msgid "curves only"
 msgstr "apenas curvas"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:67
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
 msgid "custom track list request"
 msgstr "solicitação de lista de pistas personalizadas"
 
@@ -4985,8 +5094,10 @@ msgstr "padrão"
 msgid "default ({0})"
 msgstr "padrão ({0})"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:62
 msgid "disabled"
 msgstr "desativado"
 
@@ -4994,12 +5105,14 @@ msgstr "desativado"
 msgid "easy"
 msgstr "fácil"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:61
 msgid "enabled"
 msgstr "ativado"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:269
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:276
 msgid "end_area cannot be empty."
 msgstr "end_area não pode estar vazia."
 
@@ -5012,27 +5125,31 @@ msgstr "engine_displacement_l deve estar entre {0} e {1} litros."
 msgid "fixed distance"
 msgstr "distância fixa"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:243
+msgid "fuel consumption off"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
 msgstr "fuel deve estar entre {0} e {1} litros."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:257
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:265
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
 msgstr "combustível {0:F1} galões, {1:F0} por cento"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:250
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:258
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
 msgstr "combustível {0:F1} galões, {1:F0} por cento, {2:F1} milhas por galão"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:273
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:281
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
 msgstr "combustível {0:F1} litros, {1:F0} por cento"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:266
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:274
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr "combustível {0:F1} litros, {1:F0} por cento, {2:F1} litros por 100 quilômetros"
@@ -5071,11 +5188,11 @@ msgstr "bate-papo global"
 msgid "hard"
 msgstr "difícil"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:325
 msgid "heavy wear"
 msgstr "desgaste avançado"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:110
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph deve ser maior que high_speed_steer_start_kph."
 
@@ -5112,11 +5229,11 @@ msgstr "launch_coupling_max deve ser maior ou igual a launch_coupling_min em [tr
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
 msgstr "launch_coupling_max deve ser maior ou igual a launch_coupling_min em [transmission_dct]."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:68
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm não deve exceder rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:329
 msgid "light wear"
 msgstr "desgaste leve"
 
@@ -5125,7 +5242,7 @@ msgstr "desgaste leve"
 msgid "main room"
 msgstr "sala principal"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:31
 msgid "max_rpm must be greater than or equal to idle_rpm."
 msgstr "max_rpm deve ser maior ou igual a idle_rpm."
 
@@ -5141,11 +5258,11 @@ msgstr "min_coupled_rise_full_rpm_per_s deve ser maior ou igual a min_coupled_ri
 msgid "missing"
 msgstr "ausente"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:327
 msgid "moderate wear"
 msgstr "desgaste moderado"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:331
 msgid "new tires"
 msgstr "pneus novos"
 
@@ -5184,6 +5301,16 @@ msgstr "solicitação de jogadores online"
 msgid "optimal temperature"
 msgstr "temperatura óptima"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:58
+#, csharp-format
+msgid "optional sound not found, no sound will play: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:62
+#, csharp-format
+msgid "optional sound problem, no sound will play: {0}"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
 msgstr "pneus sobreaquecidos"
@@ -5197,7 +5324,7 @@ msgstr "painel"
 msgid "paused"
 msgstr "pausado"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:59
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
 msgstr "peak_torque_rpm deve estar entre idle_rpm e rev_limiter."
 
@@ -5205,7 +5332,7 @@ msgstr "peak_torque_rpm deve estar entre idle_rpm e rev_limiter."
 msgid "percent"
 msgstr "por cento"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:99
 #, csharp-format
 msgid "pitch_curve_exponent must be between {0} and {1}."
 msgstr "pitch_curve_exponent deve estar entre {0} e {1}."
@@ -5230,7 +5357,8 @@ msgstr "reproduzindo"
 msgid "race preparation withdrawal"
 msgstr "retirada da preparação da corrida"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:73
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:153
 msgid "race start request"
 msgstr "solicitação de início de corrida"
 
@@ -5258,11 +5386,21 @@ msgstr "ratio_max deve ser maior ou igual a ratio_min em [transmission_cvt]."
 msgid "ready state"
 msgstr "estado de pronto"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:189
 msgid "remove bot request"
 msgstr "solicitação de remoção de bot"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:57
+#, csharp-format
+msgid "required sound not found, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:61
+#, csharp-format
+msgid "required sound problem, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:40
 msgid "rev_limiter must be between idle_rpm and max_rpm."
 msgstr "rev_limiter deve estar entre idle_rpm e max_rpm."
 
@@ -5282,7 +5420,7 @@ msgstr "eventos da sala"
 msgid "room join request"
 msgstr "solicitação de entrada na sala"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:58
 msgid "room leave request"
 msgstr "solicitação de saída da sala"
 
@@ -5294,11 +5432,11 @@ msgstr "solicitação de lista de salas"
 msgid "room state refresh request"
 msgstr "solicitação de atualização do estado da sala"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:112
 msgid "shift on demand"
 msgstr "troca sob demanda"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:78
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:86
 msgid "shift_freq must be between idle_freq and top_freq."
 msgstr "shift_freq deve estar entre idle_freq e top_freq."
 
@@ -5322,7 +5460,7 @@ msgstr "fala com braille"
 msgid "speed dependent"
 msgstr "dependente da velocidade"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:259
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:266
 msgid "start_area cannot be empty."
 msgstr "start_area não pode estar vazia."
 
@@ -5337,6 +5475,10 @@ msgstr "target_rpm_high deve ser maior ou igual a target_rpm_low em [transmissio
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:373
 msgid "this menu"
 msgstr "este menu"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:289
+msgid "tire wear off"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:35
 msgid "tire_aspect must be between 5 and 150."
@@ -5354,17 +5496,17 @@ msgstr "tire_rim deve estar entre 4 e 30 polegadas."
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "tire_width deve estar entre 20 e 450 mm."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:313
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
 msgstr "pneus {0:F0} por cento de desgaste, {1:F0} graus Celsius, {2}, {3}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:305
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
 msgstr "pneus {0:F0} por cento de desgaste, {1:F0} graus Fahrenheit, {2}, {3}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:77
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "top_freq deve ser maior ou igual a idle_freq."
 
@@ -5401,36 +5543,36 @@ msgstr "desconhecido"
 msgid "warming up tires"
 msgstr "aquecimento dos pneus"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:323
 msgid "worn tires"
 msgstr "pneus usados"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:228
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "{0:F0} pés percorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:188
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:193
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} quilômetros por hora, {1:F0} RPM, {2:F0} cavalos de potência"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:231
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:236
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "{0:F0} metros percorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:180
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} milhas por hora, {1:F0} RPM, {2:F0} cavalos de potência"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:229
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:234
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "{0:F1} quilômetros percorridos"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:221
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:226
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "{0:F1} milhas percorridas"
@@ -5496,12 +5638,12 @@ msgstr "{0} entrou na sala atual."
 msgid "{0} key '{1}': {2}"
 msgstr "{0} chave '{1}': {2}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:41
 #, csharp-format
 msgid "{0} lap"
 msgstr "{0} volta"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:40
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:42
 #, csharp-format
 msgid "{0} laps"
 msgstr "{0} voltas"
@@ -5558,12 +5700,12 @@ msgstr "{0} por cento"
 msgid "{0} percent."
 msgstr "{0} por cento."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:44
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:46
 #, csharp-format
 msgid "{0} player"
 msgstr "{0} jogador"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:45
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:47
 #, csharp-format
 msgid "{0} players"
 msgstr "{0} jogadores"
@@ -5576,7 +5718,7 @@ msgstr "{0} segundo"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:32
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:43
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:112
 #, csharp-format
 msgid "{0} seconds"
 msgstr "{0} segundos"
@@ -5639,6 +5781,12 @@ msgstr "{0}: terminou na posição {1} com {2}."
 #, csharp-format
 msgid "{0}: position {1}, time {2}."
 msgstr "{0}: posição {1}, tempo {2}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:91
+#, csharp-format
+msgid "{0}: {1}"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format

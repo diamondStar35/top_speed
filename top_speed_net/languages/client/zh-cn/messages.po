@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-24 14:15\n"
+"POT-Creation-Date: 2026-07-27 18:44+0300\n"
+"PO-Revision-Date: 2026-07-27 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -147,11 +147,11 @@ msgstr "上下文菜单"
 msgid "Are you sure you want to disconnect?"
 msgstr "确定要断开连接吗？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:28
 msgid "Are you sure you want to leave the current room?"
 msgstr "确定要离开当前房间吗？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:257
 msgid "Are you sure you want to quit this multiplayer race?"
 msgstr "确定要退出此多人比赛吗？"
 
@@ -315,6 +315,7 @@ msgstr "目前的最佳时间：{0}。"
 msgid "Binding intent is missing and was ignored."
 msgstr "绑定意图缺失，已被忽略。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:74
 msgid "Both"
 msgstr "双向"
@@ -331,8 +332,8 @@ msgstr "两个Ctrl键"
 msgid "Both Shift keys"
 msgstr "两个Shift键"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:87
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:167
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:185
 msgid "Bots can only be managed by the host in race-with-bots rooms."
 msgstr "在机器人比赛房间中，机器人只能由房主管理。"
 
@@ -421,7 +422,9 @@ msgstr "按钮 9"
 msgid "Call sign cannot be empty."
 msgstr "昵称不能为空。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:128
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:104
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Language.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:27
@@ -498,9 +501,13 @@ msgstr "选择控制器"
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
 msgstr "选择自动播报哪些比赛信息，例如圈数和玩家位置。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:249
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:283
 msgid "Choose how to proceed with the current game."
 msgstr "选择如何继续当前游戏。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:124
+msgid "Choose how to start this race."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"
@@ -878,7 +885,7 @@ msgstr "自定义"
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Identity.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:61
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:43
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:144
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\State.cs:57
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:17
@@ -886,7 +893,6 @@ msgid "Custom track"
 msgstr "自定义赛道"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:94
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
 msgid "Custom track errors"
 msgstr "自定义赛道错误"
 
@@ -894,27 +900,34 @@ msgstr "自定义赛道错误"
 msgid "Custom track file path is empty."
 msgstr "自定义赛道文件路径为空。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
+msgid "Custom track issues"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:91
 msgid "Custom tracks"
 msgstr "自定义赛道"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:50
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:57
 msgid "Custom tracks are disabled for this room."
 msgstr "此房间已禁用自定义赛道。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:48
 msgid "Custom vehicle"
 msgstr "自定义车辆"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:82
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
 msgid "Custom vehicle errors"
 msgstr "自定义车辆错误"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Load\File.cs:35
 msgid "Custom vehicle file must use .tsv extension."
 msgstr "自定义车辆文件必须使用.tsv扩展名。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
+msgid "Custom vehicle issues"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
@@ -1031,6 +1044,11 @@ msgstr "删除此服务器？"
 msgid "Dialog"
 msgstr "对话框"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:126
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:95
+msgid "Disable for this race"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:67
 msgid "Discard changes"
 msgstr "放弃更改"
@@ -1110,7 +1128,7 @@ msgstr "杜卡迪 Panigale V4"
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
 msgstr "不允许在部分 [{1}] 中重复键 '{0}'。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:71
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:74
 #, csharp-format
 msgid "Duplicate room id '{0}'."
 msgstr "重复的房间 ID「{0}」。"
@@ -1120,17 +1138,17 @@ msgstr "重复的房间 ID「{0}」。"
 msgid "Duplicate section [{0}] is not allowed."
 msgstr "不允许重复部分 [{0}]。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:62
 #, csharp-format
 msgid "Duplicate segment id '{0}'."
 msgstr "重复的赛道段 ID「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:76
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:79
 #, csharp-format
 msgid "Duplicate sound id '{0}'."
 msgstr "重复的音效 ID「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:69
 #, csharp-format
 msgid "Duplicate weather id '{0}'."
 msgstr "重复的天气 ID「{0}」。"
@@ -1147,6 +1165,11 @@ msgstr "编辑用于更新包下载的代理URL。"
 msgid "Enable HRTF audio"
 msgstr "启用HRTF音频"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:72
+msgid "Enable fuel consumption"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
 msgstr "启用菜单导航平移"
@@ -1154,6 +1177,11 @@ msgstr "启用菜单导航平移"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:53
 msgid "Enable menu wrapping"
 msgstr "启用菜单循环"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:76
+msgid "Enable tire wear"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
@@ -1251,6 +1279,7 @@ msgid "Equals"
 msgstr "等号"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:89
 msgid "Error"
 msgstr "错误"
 
@@ -1283,7 +1312,7 @@ msgstr "初始化网络客户端失败。"
 msgid "Failed to load communicator media. {0}"
 msgstr "无法加载通信器媒体。{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:27
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:28
 #, csharp-format
 msgid "Failed to load custom vehicle '{0}'. {1}"
 msgstr "加载自定义车辆 '{0}' 失败。{1}"
@@ -1293,12 +1322,12 @@ msgstr "加载自定义车辆 '{0}' 失败。{1}"
 msgid "Failed to load radio media. {0}"
 msgstr "加载收音机媒体失败。{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Tracks\TrackLoadException.cs:40
 msgid "Failed to load this track file."
 msgstr "加载此赛道文件失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:82
 msgid "Failed to load this vehicle file."
 msgstr "加载此车辆文件失败。"
 
@@ -1367,7 +1396,7 @@ msgstr "菲亚特500"
 msgid "File size: {0}"
 msgstr "文件大小：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:80
 #, csharp-format
 msgid "File: {0}"
 msgstr "文件：{0}"
@@ -1446,7 +1475,7 @@ msgstr "游戏版本：{0}"
 msgid "Gamepad"
 msgstr "游戏手柄"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:119
 #, csharp-format
 msgid "Gear {0}"
 msgstr "挡位 {0}"
@@ -1464,17 +1493,17 @@ msgstr "德国"
 msgid "Ghost mode"
 msgstr "幽灵模式"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:48
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
 #, csharp-format
-msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."
-msgstr "幽灵模式已{0}。自定义赛道已{1}。所选赛道为 {2}。比赛将进行 {3}。此房间限制为 {4}。"
+msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
 #: D:\top_speed\top_speed_net\TopSpeed\Shortcuts\Catalog.cs:137
 msgid "Global shortcuts"
 msgstr "全局快捷键"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:253
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:287
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:259
 msgid "Go back"
 msgstr "返回"
@@ -1515,11 +1544,11 @@ msgstr "行首"
 msgid "Host is unreachable."
 msgstr "主机无法访问。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:93
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
 msgstr "本局比赛应有多少圈。适用于单人比赛、计时赛和多人游戏模式。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:156
 msgid "Humidity must be between 0 and 1."
 msgstr "湿度必须在 0 到 1 之间。"
 
@@ -1575,12 +1604,13 @@ msgstr "插入"
 msgid "Interrupt screen reader speech"
 msgstr "中断屏幕阅读器语音"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:111
 #, csharp-format
 msgid "Invalid ambience value '{0}'."
 msgstr "无效的环境音效值「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:115
 #, csharp-format
 msgid "Invalid boolean '{0}' for key '{1}'."
 msgstr "键「{1}」的布尔值「{0}」无效。"
@@ -1599,22 +1629,27 @@ msgstr "无效键 '{0}'。相邻挡位使用 upshift_delay_X_Y。"
 msgid "Invalid line. Expected [section] or key=value."
 msgstr "无效行。应为 [section] 或 key=value。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:292
 #, csharp-format
 msgid "Invalid numeric value '{0}' for key '{1}'."
 msgstr "键「{1}」的数值「{0}」无效。"
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
+#, csharp-format
+msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:25
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:66
 msgid "Invalid port. Enter a number between 1 and 65535."
 msgstr "无效端口。请输入1到65535之间的数字。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:300
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:307
 #, csharp-format
 msgid "Invalid room override value '{0}' for key '{1}'."
 msgstr "键「{1}」的房间覆盖值「{0}」无效。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:193
 #, csharp-format
 msgid "Invalid room value '{0}' for key '{1}'."
 msgstr "键「{1}」的房间值「{0}」无效。"
@@ -1654,12 +1689,12 @@ msgstr "无效的赛道段宽度「{0}」。"
 msgid "Invalid sound asset path: {0}"
 msgstr "无效的音效资源路径：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
 #, csharp-format
 msgid "Invalid sound random mode '{0}'."
 msgstr "无效的音效随机模式「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:206
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
 #, csharp-format
 msgid "Invalid sound type '{0}'."
 msgstr "无效的音效类型「{0}」。"
@@ -1674,12 +1709,12 @@ msgstr "无效的扭矩曲线键 '{0}'。使用类似2000rpm=200的格式。"
 msgid "Invalid torque value '{0}' for '{1}'."
 msgstr "'{1}' 的无效扭矩值 '{0}'。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:278
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
 #, csharp-format
 msgid "Invalid vector '{0}' for key '{1}'."
 msgstr "键「{1}」的向量值「{0}」无效。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:118
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:125
 #, csharp-format
 msgid "Invalid weather kind '{0}'."
 msgstr "无效的天气类型「{0}」。"
@@ -1689,8 +1724,8 @@ msgstr "无效的天气类型「{0}」。"
 msgid "Invalid weather transition seconds '{0}'."
 msgstr "无效的天气过渡秒数「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:127
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:133
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:134
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:140
 #, csharp-format
 msgid "Invalid weather value '{0}' for key '{1}'."
 msgstr "键「{1}」的天气值「{0}」无效。"
@@ -1743,7 +1778,7 @@ msgstr "键 '{0}' 包含非浮点值 '{1}'。"
 msgid "Key '{0}' in section [{1}] must not be empty."
 msgstr "部分 [{1}] 中的键 '{0}' 不能为空。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:98
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:101
 #, csharp-format
 msgid "Key '{0}' is missing a value."
 msgstr "键「{0}」缺少值。"
@@ -1832,7 +1867,7 @@ msgstr "单圈统计："
 msgid "Lap summary:"
 msgstr "单圈摘要："
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:120
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:125
 #, csharp-format
 msgid "Lap {0}"
 msgstr "第 {0} 圈"
@@ -1871,11 +1906,11 @@ msgstr "离开服务器？"
 msgid "Leave this game room"
 msgstr "离开此游戏房间"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:27
 msgid "Leave this game room?"
 msgstr "离开此游戏房间？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:60
 msgid "Leaving game room."
 msgstr "正在离开游戏房间。"
 
@@ -1957,7 +1992,7 @@ msgstr "加载媒体文件"
 msgid "Load media folder"
 msgstr "加载媒体文件夹"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:81
 msgid "Loading custom tracks from server."
 msgstr "正在从服务器加载自定义赛道。"
 
@@ -2004,7 +2039,7 @@ msgstr "主菜单"
 msgid "Main menu. Swipe left or right to navigate the options. Swipe up to activate. Swipe down to go back. Swipe up with two fingers to move to the first item and swipe down with two fingers to move to the last item. Long press repeats the current usage hint."
 msgstr "主菜单。左右滑动浏览选项。上滑激活。下滑返回。双指上滑移至第一项，双指下滑移至最后一项。长按重复当前使用提示。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:87
 msgid "Malformed line. Expected '[section]' or 'key = value'."
 msgstr "格式错误的行。应为 '[section]' 或 'key = value'。"
 
@@ -2064,7 +2099,7 @@ msgstr "最大玩家数量已更改为 {0}。"
 msgid "Measure your screen-reader speaking speed again so usage hints and delayed speech timings stay accurate."
 msgstr "重新测量屏幕阅读器的朗读速度，以确保使用提示和延迟语音的时机保持准确。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:60
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:64
 msgid "Menu sound preset was empty and was reset to default."
 msgstr "菜单声音预设为空，已重置为默认值。"
 
@@ -2230,7 +2265,7 @@ msgstr "发送直播开始时网络发送失败。"
 msgid "Network send failed while sending live stop."
 msgstr "发送直播停止时网络发送失败。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:69
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Systems\Sync.cs:94
 msgid "Network send failed. Please check your connection."
 msgstr "网络发送失败。请检查您的连接。"
@@ -2292,7 +2327,7 @@ msgstr "未找到控制器"
 msgid "No controllers were found. The game has reverted to keyboard input."
 msgstr "未找到控制器。游戏已恢复为键盘输入。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:112
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:119
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:100
 msgid "No custom tracks found."
 msgstr "未找到自定义赛道。"
@@ -2336,6 +2371,10 @@ msgstr "暂无消息。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:121
 msgid "No option changes to apply."
 msgstr "没有要应用的选项更改。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:22
+msgid "No pit area"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:23
 msgid "No players are currently in this game room."
@@ -2383,7 +2422,7 @@ msgstr "没有找到更新"
 msgid "No, continue preparing"
 msgstr "否，继续准备"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:261
 msgid "No, continue racing"
 msgstr "否，继续比赛"
 
@@ -2391,7 +2430,7 @@ msgstr "否，继续比赛"
 msgid "No, keep this server"
 msgstr "否，保留此服务器"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:26
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:32
 msgid "No, stay in this game room"
 msgstr "否，留在当前游戏房间"
 
@@ -2413,9 +2452,10 @@ msgstr "跑得不干净，但还能接受。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:17
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:79
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:63
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:81
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:99
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:140
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:179
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:16
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:66
@@ -2423,11 +2463,11 @@ msgstr "跑得不干净，但还能接受。"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:19
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:134
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:69
 msgid "Not connected to a server."
 msgstr "未连接到服务器。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:53
 msgid "Not connected to a server. Returning to main menu."
 msgstr "当前未连接到服务器。正在返回主菜单。"
 
@@ -2444,7 +2484,7 @@ msgid "Num Lock"
 msgstr "数字锁定"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:57
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:105
 msgid "Number of computer players"
 msgstr "电脑玩家数量"
 
@@ -2526,7 +2566,7 @@ msgstr "只有房主可以更改游戏选项。"
 msgid "Only the host can change game rules."
 msgstr "只有房主可以更改游戏规则。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:75
 msgid "Only the host can start the game."
 msgstr "只有房主可以开始游戏。"
 
@@ -2633,7 +2673,7 @@ msgstr "面板"
 msgid "Pause"
 msgstr "暂停"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:273
 msgid "Pause the game"
 msgstr "暂停游戏"
 
@@ -2652,6 +2692,18 @@ msgstr "百分比：{0}%"
 msgid "Ping check already in progress."
 msgstr "延迟检查已在进行中。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:24
+msgid "Pit stop"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:58
+msgid "Pit this time"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:237
+msgid "Pitting this time"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:64
 msgid "Play logo at startup"
 msgstr "启动时播放logo"
@@ -2665,7 +2717,7 @@ msgstr "播放或暂停媒体"
 msgid "Player"
 msgstr "玩家"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:165
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:49
 msgid "Player "
 msgstr "玩家 "
@@ -2788,7 +2840,7 @@ msgstr "打印屏幕"
 msgid "Progressive keyboard input"
 msgstr "渐进式键盘输入"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:93
 #, csharp-format
 msgid "Property '{0}' is outside any section."
 msgstr "属性「{0}」位于任何部分之外。"
@@ -2840,7 +2892,7 @@ msgstr "问题"
 msgid "Quick start"
 msgstr "快速开始"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:175
 msgid "Quick start."
 msgstr "快速开始。"
 
@@ -2848,11 +2900,11 @@ msgstr "快速开始。"
 msgid "Quit race preparation?"
 msgstr "退出比赛准备？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:222
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:256
 msgid "Quit race?"
 msgstr "退出比赛？"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:278
 msgid "Quit the race"
 msgstr "退出比赛"
 
@@ -2879,6 +2931,11 @@ msgstr "RZ轴负"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:139
 msgid "RZ plus"
 msgstr "RZ轴正"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:127
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:96
+msgid "Race anyway"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:16
 msgid "Race complete."
@@ -2913,7 +2970,7 @@ msgstr "比赛设置"
 msgid "Race started."
 msgstr "比赛已开始。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:165
 #, csharp-format
 msgid "Race time {0}"
 msgstr "比赛时间 {0}"
@@ -2956,7 +3013,7 @@ msgstr "丘陵拉力赛"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:56
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:71
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:94
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:101
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:18
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:64
@@ -3005,9 +3062,13 @@ msgstr "重新连接失败。"
 msgid "Reconnection failed: {0}"
 msgstr "重新连接失败：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:42
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:48
 msgid "Reconnection is in progress. Disconnecting now."
 msgstr "正在重新连接。现将立即断开连接。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:18
+msgid "Refuel"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:41
 msgid "Remove a bot"
@@ -3094,7 +3155,7 @@ msgstr "将每个菜单快捷键绑定恢复为默认。"
 msgid "Restore only the shortcuts in this menu to their default values."
 msgstr "仅将此菜单中的快捷键恢复为默认。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:238
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:272
 msgid "Resume the game"
 msgstr "恢复游戏"
 
@@ -3254,7 +3315,7 @@ msgstr "屏幕阅读器校准。下一屏将显示一段简短文字。当屏幕
 msgid "Scroll Lock"
 msgstr "滚动锁定"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:54
 #, csharp-format
 msgid "Section '{0}' requires an id."
 msgstr "部分「{0}」需要一个 ID。"
@@ -3275,17 +3336,17 @@ msgstr "[transmission_cvt] 部分未使用，因为 supported_types 不包含 'c
 msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
 msgstr "[transmission_dct] 部分未使用，因为 supported_types 不包含 'dct'。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:169
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:190
 #, csharp-format
 msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
 msgstr "赛道段「{0}」引用了房间「{1}」，但不存在匹配的 [room:{1}] 部分或预设。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:182
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:203
 #, csharp-format
 msgid "Segment '{0}' references sound source '{1}', but no matching [sound:{1}] section exists."
 msgstr "赛道段「{0}」引用了声源「{1}」，但不存在匹配的 [sound:{1}] 部分。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:194
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:215
 #, csharp-format
 msgid "Segment '{0}' references weather profile '{1}', but no matching [weather:{1}] section exists."
 msgstr "赛道段「{0}」引用了天气配置「{1}」，但不存在匹配的 [weather:{1}] 部分。"
@@ -3538,7 +3599,7 @@ msgstr "单人比赛"
 msgid "Single race difficulty"
 msgstr "单人比赛难度"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:176
 msgid "Single race."
 msgstr "单人比赛。"
 
@@ -3567,25 +3628,31 @@ msgid "Slowest (1.00 second)"
 msgstr "最慢（1.00秒）"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:95
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
 msgid "Some custom track files are invalid and were skipped."
 msgstr "某些自定义赛道文件无效，已跳过。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
+msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:83
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
 msgid "Some custom vehicle files are invalid and were skipped."
 msgstr "某些自定义车辆文件无效，已跳过。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
+msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:47
 msgid "Some settings were missing or invalid. Review these details."
 msgstr "某些设置缺失或无效。请查看这些详情。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:237
 #, csharp-format
 msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
 msgstr "音效「{0}」引用了 end_area「{1}」，但不存在匹配的赛道段 ID。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:205
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:226
 #, csharp-format
 msgid "Sound '{0}' references start_area '{1}', but no matching segment id exists."
 msgstr "音效「{0}」引用了 start_area「{1}」，但不存在匹配的赛道段 ID。"
@@ -3595,18 +3662,18 @@ msgstr "音效「{0}」引用了 start_area「{1}」，但不存在匹配的赛�
 msgid "Sound asset path escapes the track folder: {0}"
 msgstr "音效资源路径超出了赛道文件夹范围：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:234
 #, csharp-format
 msgid "Sound key '{0}' contains invalid path '{1}'. Paths must be track-relative."
 msgstr "音效键「{0}」包含无效路径「{1}」。路径必须是相对于赛道文件夹的。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:220
 #, csharp-format
 msgid "Sound key '{0}' must be a track-relative path and cannot escape the track folder."
 msgstr "音效键「{0}」必须是相对于赛道文件夹的路径，且不能跳出赛道文件夹。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:221
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:237
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
 #, csharp-format
 msgid "Sound list for '{0}' cannot be empty."
 msgstr "「{0}」的音效列表不能为空。"
@@ -3685,7 +3752,7 @@ msgstr "自有车辆立体声扩展"
 msgid "Stop"
 msgstr "停止"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:243
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:277
 msgid "Stop the game"
 msgstr "停止游戏"
 
@@ -3721,7 +3788,6 @@ msgstr "瑞典"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:41
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:55
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:137
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:47
@@ -3736,6 +3802,7 @@ msgstr "双指左右滑动查看。"
 msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
 msgstr "用双指上下滑动可调整1.0秒，双指左右滑动可调整0.1秒，三指上下滑动可设为最大值或最小值。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:150
 msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
 msgstr "用双指上下滑动可调整10，双指左右滑动可调整1，三指上下滑动可设为最大值或最小值。"
@@ -3982,11 +4049,23 @@ msgstr "所选文件夹路径无效。"
 msgid "The selected media file does not exist."
 msgstr "所选媒体文件不存在。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:283
 msgid "The selected track could not be loaded. The drive session was not started."
 msgstr "无法加载所选赛道。比赛未开始。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:34
+msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:40
+msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:44
+msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
 msgid "The selected vehicle does not support the selected transmission mode."
 msgstr "所选车辆不支持当前变速箱模式。"
 
@@ -4080,6 +4159,10 @@ msgstr "此服务器不支持所需的协议协商，请更新您的服务器。
 msgid "This shortcut menu has no bindings to reset."
 msgstr "此快捷键菜单没有可重置的绑定。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:230
+msgid "This track has no pit area."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
 msgid "This vehicle does not support the selected transmission mode."
@@ -4114,9 +4197,13 @@ msgstr "计时赛"
 msgid "Time trial complete."
 msgstr "计时赛完成。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:89
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:155
 msgid "Time trial."
 msgstr "计时赛。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:19
+msgid "Tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:213
 msgid "Toggle media loop"
@@ -4170,7 +4257,7 @@ msgstr "丰田凯美瑞"
 msgid "Track"
 msgstr "赛道"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:170
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
 msgstr "赛道 [meta] 必须定义天气配置引用，例如“weather = default”。"
 
@@ -4187,7 +4274,7 @@ msgstr "赛道创建指南"
 msgid "Track data is missing."
 msgstr "赛道数据缺失。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:156
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:177
 #, csharp-format
 msgid "Track default weather profile '{0}' does not match any [weather:{0}] section."
 msgstr "赛道默认天气配置「{0}」不匹配任何 [weather:{0}] 部分。"
@@ -4203,11 +4290,11 @@ msgstr "未找到赛道文件：{0}"
 msgid "Track lap average: {0}."
 msgstr "赛道单圈平均：{0}。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:215
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:282
 msgid "Track load error"
 msgstr "赛道加载错误"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:157
 msgid "Track must include at least one [segment:<id>] section."
 msgstr "赛道必须至少包含一个 [segment:<id>] 部分。"
 
@@ -4224,6 +4311,10 @@ msgstr "赛道包上传成功。"
 msgid "Track path must point to a .tsm file inside a track folder: {0}"
 msgstr "赛道路径必须指向赛道文件夹内的 .tsm 文件：{0}"
 
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
+msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
 msgid "Track source path is missing, so sound assets cannot be resolved."
 msgstr "缺少赛道源路径，因此无法解析音效资源。"
@@ -4236,11 +4327,11 @@ msgstr "由于连接丢失，赛道上传已取消。"
 msgid "Track upload canceled."
 msgstr "赛道上传已取消。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:119
 msgid "Track, currently random chosen."
 msgstr "赛道，当前为随机选择。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:126
 #, csharp-format
 msgid "Track, currently {0}."
 msgstr "赛道，当前为 {0}。"
@@ -4252,7 +4343,7 @@ msgstr "赛道，当前为 {0}。"
 msgid "Track: {0}"
 msgstr "赛道：{0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:62
 msgid "Transmission not supported"
 msgstr "不支持的变速箱"
 
@@ -4347,21 +4438,21 @@ msgstr "未知异常。"
 msgid "Unknown key '{0}' in section [{1}]."
 msgstr "部分 [{1}] 中存在未知键 '{0}'。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:24
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:25
 msgid "Unknown parse error."
 msgstr "未知解析错误。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:191
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:198
 #, csharp-format
 msgid "Unknown room key '{0}'."
 msgstr "未知的房间键「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:179
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
 #, csharp-format
 msgid "Unknown room preset '{0}'."
 msgstr "未知的房间预设「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:43
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:46
 #, csharp-format
 msgid "Unknown section '{0}'."
 msgstr "未知的部分「{0}」。"
@@ -4371,12 +4462,12 @@ msgstr "未知的部分「{0}」。"
 msgid "Unknown section [{0}]."
 msgstr "未知的部分 [{0}]。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:110
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:117
 #, csharp-format
 msgid "Unknown segment key '{0}'."
 msgstr "未知的赛道段键「{0}」。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:290
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:297
 #, csharp-format
 msgid "Unknown sound key '{0}'."
 msgstr "未知的音效键「{0}」。"
@@ -4391,7 +4482,7 @@ msgstr "未知的扭矩曲线预设 '{0}'。有效值：{1}。"
 msgid "Unknown update error."
 msgstr "未知的更新错误。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:168
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:175
 #, csharp-format
 msgid "Unknown weather key '{0}'."
 msgstr "未知的天气键「{0}」。"
@@ -4483,7 +4574,7 @@ msgstr "此平台不提供更新。"
 msgid "Upload a local custom track"
 msgstr "上传本地自定义赛道"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:100
 msgid "Upload a local track"
 msgstr "上传本地赛道"
 
@@ -4500,13 +4591,13 @@ msgstr "正在上传赛道..."
 msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
 msgstr "按左键或右键可调整 0.1 秒，按 Page Up 键或 Page Down 键可调整 1.0 秒，按 Home 键设为最大值，按 End 键设为最小值。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:149
 msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
 msgstr "按左键或右键可调整 1，按上翻页键或下翻页键可调整 10，按行首键设为最大值，按行尾键设为最小值。"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:40
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:136
 msgid "Use LEFT or RIGHT to change."
@@ -4610,6 +4701,8 @@ msgid "Volume settings"
 msgstr "音量设置"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:90
 msgid "Warning"
 msgstr "警告"
 
@@ -4617,15 +4710,15 @@ msgstr "警告"
 msgid "Warning:"
 msgstr "警告："
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:141
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:145
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:153
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:148
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:152
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:164
 #, csharp-format
 msgid "Weather key '{0}' must be greater than zero."
 msgstr "天气键「{0}」必须大于零。"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:170
 #, csharp-format
 msgid "Weather key '{0}' must be non-negative."
 msgstr "天气键「{0}」必须为非负数。"
@@ -4638,7 +4731,7 @@ msgstr "天气过渡秒数必须是有限且非负的。"
 msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
 msgstr "欢迎使用 Top Speed 设置向导。在接下来的界面中，您将选择语言并校准屏幕阅读器朗读速度。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:248
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:282
 msgid "What would you like to do?"
 msgstr "您想做什么？"
 
@@ -4702,6 +4795,10 @@ msgstr "启用后，游戏启动时播放启动音效。"
 msgid "When checked, update package downloads are routed through your proxy URL."
 msgstr "勾选后，更新包下载将通过您的代理URL进行路由。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:100
+msgid "When enabled, cars burn fuel and players must pit to refuel."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
 msgstr "启用后，房主可以从此服务器上传并选择自定义赛道。"
@@ -4710,9 +4807,21 @@ msgstr "启用后，房主可以从此服务器上传并选择自定义赛道。
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
 msgstr "启用后，油门、刹车和转向将逐步响应，而非瞬间跳到最大值。"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:106
+msgid "When enabled, tires wear and lose grip and players must pit to replace them."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:88
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
 msgstr "启用后，车辆碰撞被禁用，车辆可以穿过彼此。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:75
+msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:79
+msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:43
 msgid "Who is currently present in this game room"
@@ -4758,7 +4867,7 @@ msgstr "是，取消当前游戏"
 msgid "Yes, delete this server"
 msgstr "是，删除此服务器"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:25
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:31
 msgid "Yes, leave this game room"
 msgstr "是，离开此游戏房间"
 
@@ -4766,7 +4875,7 @@ msgstr "是，离开此游戏房间"
 msgid "Yes, quit race preparation"
 msgstr "是，退出比赛准备"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:226
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:260
 msgid "Yes, quit the race"
 msgstr "是，退出比赛"
 
@@ -4774,7 +4883,7 @@ msgstr "是，退出比赛"
 msgid "You are already using the latest version."
 msgstr "您已经在使用最新版本。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:15
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:13
@@ -4908,7 +5017,7 @@ msgstr "Z轴负"
 msgid "Z plus"
 msgstr "Z轴正"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:91
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:171
 msgid "add bot request"
 msgstr "添加机器人请求"
 
@@ -4921,7 +5030,7 @@ msgstr "全部"
 msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动降挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:46
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:50
 msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动换挡转速必须为0或在怠速转速和转速限制器之间。"
 
@@ -4929,7 +5038,7 @@ msgstr "自动换挡转速必须为0或在怠速转速和转速限制器之间�
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动升挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:113
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4972,7 +5081,7 @@ msgstr "控制器"
 msgid "curves only"
 msgstr "仅弯道"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:67
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
 msgid "custom track list request"
 msgstr "自定义赛道列表请求"
 
@@ -4985,8 +5094,10 @@ msgstr "默认"
 msgid "default ({0})"
 msgstr "默认（{0}）"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:62
 msgid "disabled"
 msgstr "禁用"
 
@@ -4994,12 +5105,14 @@ msgstr "禁用"
 msgid "easy"
 msgstr "简单"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:61
 msgid "enabled"
 msgstr "启用"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:269
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:276
 msgid "end_area cannot be empty."
 msgstr "end_area 不能为空。"
 
@@ -5012,27 +5125,31 @@ msgstr "engine_displacement_l 的值必须在 {0} 到 {1} 升之间。"
 msgid "fixed distance"
 msgstr "固定距离"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:243
+msgid "fuel consumption off"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
 msgstr "燃油量必须在 {0} 到 {1} 升之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:257
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:265
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
 msgstr "燃油{0:F1}加仑，{1:F0}%"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:250
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:258
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
 msgstr "燃油{0:F1}加仑，{1:F0}%，{2:F1}英里/加仑"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:273
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:281
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
 msgstr "燃油{0:F1}升，{1:F0}%"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:266
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:274
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr "燃油 {0:F1}升，{1:F0}%，100千米消耗{2:F1}升"
@@ -5071,11 +5188,11 @@ msgstr "全局聊天"
 msgid "hard"
 msgstr "困难"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:325
 msgid "heavy wear"
 msgstr "严重磨损"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:110
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph 必须大于 high_speed_steer_start_kph。"
 
@@ -5112,11 +5229,11 @@ msgstr "[transmission_cvt] 中 launch_coupling_max 必须大于或等于 launch_
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
 msgstr "[transmission_dct] 中 launch_coupling_max 必须大于或等于 launch_coupling_min。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:68
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm 不得超过 rev_limiter。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:329
 msgid "light wear"
 msgstr "轻微磨损"
 
@@ -5125,7 +5242,7 @@ msgstr "轻微磨损"
 msgid "main room"
 msgstr "大厅"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:31
 msgid "max_rpm must be greater than or equal to idle_rpm."
 msgstr "最大转速必须大于或等于怠速转速。"
 
@@ -5141,11 +5258,11 @@ msgstr "min_coupled_rise_full_rpm_per_s 必须大于或等于 min_coupled_rise_i
 msgid "missing"
 msgstr "缺失"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:327
 msgid "moderate wear"
 msgstr "中度磨损"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:331
 msgid "new tires"
 msgstr "新轮胎"
 
@@ -5184,6 +5301,16 @@ msgstr "在线玩家列表请求"
 msgid "optimal temperature"
 msgstr "最佳温度"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:58
+#, csharp-format
+msgid "optional sound not found, no sound will play: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:62
+#, csharp-format
+msgid "optional sound problem, no sound will play: {0}"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
 msgstr "轮胎过热"
@@ -5197,7 +5324,7 @@ msgstr "面板"
 msgid "paused"
 msgstr "已暂停"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:59
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
 msgstr "峰值扭矩转速必须在怠速转速和转速限制器之间。"
 
@@ -5205,7 +5332,7 @@ msgstr "峰值扭矩转速必须在怠速转速和转速限制器之间。"
 msgid "percent"
 msgstr "百分比"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:99
 #, csharp-format
 msgid "pitch_curve_exponent must be between {0} and {1}."
 msgstr "音调曲线指数必须在 {0} 和 {1} 之间。"
@@ -5230,7 +5357,8 @@ msgstr "恢复"
 msgid "race preparation withdrawal"
 msgstr "退出比赛准备"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:73
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:153
 msgid "race start request"
 msgstr "开始比赛请求"
 
@@ -5258,11 +5386,21 @@ msgstr "[transmission_cvt] 中的 ratio_max 必须大于或等于 ratio_min。"
 msgid "ready state"
 msgstr "准备状态"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:189
 msgid "remove bot request"
 msgstr "移除机器人请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:57
+#, csharp-format
+msgid "required sound not found, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:61
+#, csharp-format
+msgid "required sound problem, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:40
 msgid "rev_limiter must be between idle_rpm and max_rpm."
 msgstr "rev_limiter 必须在 idle_rpm 和 max_rpm 之间。"
 
@@ -5282,7 +5420,7 @@ msgstr "房间事件"
 msgid "room join request"
 msgstr "加入房间请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:58
 msgid "room leave request"
 msgstr "离开房间请求"
 
@@ -5294,11 +5432,11 @@ msgstr "房间列表请求"
 msgid "room state refresh request"
 msgstr "房间状态刷新请求"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:112
 msgid "shift on demand"
 msgstr "按需换挡。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:78
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:86
 msgid "shift_freq must be between idle_freq and top_freq."
 msgstr "换挡频率必须在怠速频率和最高频率之间。"
 
@@ -5322,7 +5460,7 @@ msgstr "语音加盲文"
 msgid "speed dependent"
 msgstr "速度相关"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:259
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:266
 msgid "start_area cannot be empty."
 msgstr "start_area 不能为空。"
 
@@ -5337,6 +5475,10 @@ msgstr "[transmission_cvt] 中的 target_rpm_high 必须大于或等于 target_r
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:373
 msgid "this menu"
 msgstr "此菜单"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:289
+msgid "tire wear off"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:35
 msgid "tire_aspect must be between 5 and 150."
@@ -5354,17 +5496,17 @@ msgstr "轮胎轮辋必须在4到30英寸之间。"
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "轮胎宽度必须在20到450毫米之间。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:313
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
 msgstr "轮胎磨损率{0:F0}%，{1:F0}度C,{2}，{3}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:305
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
 msgstr "轮胎磨损率{0:F0}%，{1:F0}度F,{2}，{3}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:77
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "最高频率必须大于或等于怠速频率。"
 
@@ -5401,36 +5543,36 @@ msgstr "未知"
 msgid "warming up tires"
 msgstr "预热轮胎"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:323
 msgid "worn tires"
 msgstr "轮胎磨损"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:228
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "已行驶 {0:F0} 英尺"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:188
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:193
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} km/h，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:231
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:236
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "已行驶 {0:F0} 米"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:180
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} mph，{1:F0} 转速，{2:F0} 马力"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:229
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:234
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "已行驶 {0:F1} 公里"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:221
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:226
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "已行驶 {0:F1} 英里"
@@ -5496,12 +5638,12 @@ msgstr "{0} 加入了当前房间。"
 msgid "{0} key '{1}': {2}"
 msgstr "{0} 键 '{1}'：{2}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:41
 #, csharp-format
 msgid "{0} lap"
 msgstr "{0} 圈"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:40
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:42
 #, csharp-format
 msgid "{0} laps"
 msgstr "{0} 圈"
@@ -5558,12 +5700,12 @@ msgstr "{0}%"
 msgid "{0} percent."
 msgstr "{0}%。"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:44
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:46
 #, csharp-format
 msgid "{0} player"
 msgstr "{0} 名玩家"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:45
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:47
 #, csharp-format
 msgid "{0} players"
 msgstr "{0} 名玩家"
@@ -5576,7 +5718,7 @@ msgstr "{0} 秒"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:32
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:43
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:112
 #, csharp-format
 msgid "{0} seconds"
 msgstr "{0} 秒"
@@ -5639,6 +5781,12 @@ msgstr "{0}：第 {1} 名完赛，用时 {2}。"
 #, csharp-format
 msgid "{0}: position {1}, time {2}."
 msgstr "{0}：第 {1} 名，用时 {2}。"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:91
+#, csharp-format
+msgid "{0}: {1}"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format

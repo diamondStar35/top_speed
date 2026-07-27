@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-23 16:49\n"
+"PO-Revision-Date: 2026-07-27 15:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5447,7 +5447,7 @@ msgstr "{0} cuadro de diálogo {1}"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\Communicator.cs:65
 #, csharp-format
 msgid "{0} MHz"
-msgstr ""
+msgstr "{0} MHz"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Connect.cs:160
 #, csharp-format
@@ -5458,22 +5458,22 @@ msgstr "{0} Mensaje del día: {1}."
 #: D:\top_speed\top_speed_net\TopSpeed\Network\Connect\Connector\Poll.cs:196
 #, csharp-format
 msgid "{0} Socket error: {1}."
-msgstr ""
+msgstr "{0} Error de socket: {1}."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:49
 #, csharp-format
 msgid "{0} and {1}"
-msgstr ""
+msgstr "{0} y {1}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:91
 #, csharp-format
 msgid "{0} changed ready state."
-msgstr ""
+msgstr "{0} cambió el estado listo."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:86
 #, csharp-format
 msgid "{0} crashes."
-msgstr ""
+msgstr "{0} choques."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:71
 #, csharp-format
@@ -5498,12 +5498,12 @@ msgstr "{0} clave '{1}': {2}"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:39
 #, csharp-format
 msgid "{0} lap"
-msgstr ""
+msgstr "{0} vuelta"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:40
 #, csharp-format
 msgid "{0} laps"
-msgstr ""
+msgstr "{0} vueltas"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:35
 #, csharp-format
@@ -5550,22 +5550,22 @@ msgstr "{0} personas están conectadas."
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:181
 #, csharp-format
 msgid "{0} percent"
-msgstr ""
+msgstr "{0} porciento"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Communicator\Runtime\MediaLocal.cs:270
 #, csharp-format
 msgid "{0} percent."
-msgstr ""
+msgstr "{0} porciento."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:44
 #, csharp-format
 msgid "{0} player"
-msgstr ""
+msgstr "{0} jugador"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:45
 #, csharp-format
 msgid "{0} players"
-msgstr ""
+msgstr "{0} jugadores"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:42
@@ -5590,12 +5590,12 @@ msgstr "{0} establecido en {1}."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:42
 #, csharp-format
 msgid "{0} was added to the current room."
-msgstr ""
+msgstr "{0} se agregó a la sala actual."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Chat\HistoryText.cs:49
 #, csharp-format
 msgid "{0} was removed from the current room."
-msgstr ""
+msgstr "{0} fue eliminado de la sala actual."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:33
 #, csharp-format

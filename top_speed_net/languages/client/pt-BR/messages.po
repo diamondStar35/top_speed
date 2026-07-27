@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 18:44+0300\n"
-"PO-Revision-Date: 2026-07-27 15:46\n"
+"PO-Revision-Date: 2026-07-27 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -507,7 +507,7 @@ msgstr "Escolha como proceder com o jogo atual."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:124
 msgid "Choose how to start this race."
-msgstr ""
+msgstr "Escolha como iniciar esta corrida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 01:14+0300\n"
-"PO-Revision-Date: 2026-07-12 16:06\n"
+"POT-Creation-Date: 2026-07-27 18:44+0300\n"
+"PO-Revision-Date: 2026-07-27 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -147,11 +147,11 @@ msgstr "Phím Ứng dụng (Applications)"
 msgid "Are you sure you want to disconnect?"
 msgstr "Bạn có chắc chắn muốn ngắt kết nối không?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:28
 msgid "Are you sure you want to leave the current room?"
 msgstr "Bạn có chắc chắn muốn rời khỏi phòng hiện tại không?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:257
 msgid "Are you sure you want to quit this multiplayer race?"
 msgstr "Bạn có chắc chắn muốn thoát khỏi cuộc đua mạng này không?"
 
@@ -315,6 +315,7 @@ msgstr "Kỷ lục thời gian tính đến hiện tại: {0}."
 msgid "Binding intent is missing and was ignored."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:74
 msgid "Both"
 msgstr "Cả hai"
@@ -331,8 +332,8 @@ msgstr ""
 msgid "Both Shift keys"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:87
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:105
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:167
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:185
 msgid "Bots can only be managed by the host in race-with-bots rooms."
 msgstr "Chỉ có chủ phòng mới có thể quản lý bot trong chế độ đua với bot."
 
@@ -421,7 +422,9 @@ msgstr "Nút 9"
 msgid "Call sign cannot be empty."
 msgstr "Biệt danh không được để trống."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:128
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\UploadProgress.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:104
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Audio.cs:60
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Language.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Updates\Dialog.cs:27
@@ -498,9 +501,13 @@ msgstr "Chọn tay cầm"
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:249
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:283
 msgid "Choose how to proceed with the current game."
 msgstr "Chọn cách tiếp tục với trận đua hiện tại."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:124
+msgid "Choose how to start this race."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Mapping\Handler\Keyboard.cs:40
 msgid "Choose modifier key"
@@ -878,7 +885,7 @@ msgstr "Tùy chỉnh"
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Identity.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Formatting.cs:61
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:43
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:144
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\TrackPackages\State.cs:57
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:17
@@ -886,7 +893,6 @@ msgid "Custom track"
 msgstr "Đường đua tùy chỉnh"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:94
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
 msgid "Custom track errors"
 msgstr "Lỗi đường đua tùy chỉnh"
 
@@ -894,27 +900,34 @@ msgstr "Lỗi đường đua tùy chỉnh"
 msgid "Custom track file path is empty."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:112
+msgid "Custom track issues"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:91
 msgid "Custom tracks"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:50
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:57
 msgid "Custom tracks are disabled for this room."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:48
 msgid "Custom vehicle"
 msgstr "Xe tùy chỉnh"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:82
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
 msgid "Custom vehicle errors"
 msgstr "Lỗi xe tùy chỉnh"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Core\Load\File.cs:35
 msgid "Custom vehicle file must use .tsv extension."
 msgstr "File xe tùy chỉnh phải dùng đuôi .tsv."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:99
+msgid "Custom vehicle issues"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:49
 msgid "Cycles to the next global volume category."
@@ -1031,6 +1044,11 @@ msgstr "Xóa máy chủ này?"
 msgid "Dialog"
 msgstr "Hộp thoại"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:126
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:95
+msgid "Disable for this race"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Form.cs:67
 msgid "Discard changes"
 msgstr "Hủy bỏ thay đổi"
@@ -1110,7 +1128,7 @@ msgstr ""
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
 msgstr "Không được phép trùng khóa '{0}' trong phần [{1}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:71
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:74
 #, csharp-format
 msgid "Duplicate room id '{0}'."
 msgstr "Trùng ID phòng '{0}'."
@@ -1120,17 +1138,17 @@ msgstr "Trùng ID phòng '{0}'."
 msgid "Duplicate section [{0}] is not allowed."
 msgstr "Không được phép trùng phần [{0}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:62
 #, csharp-format
 msgid "Duplicate segment id '{0}'."
 msgstr "Trùng ID phân đoạn '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:76
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:79
 #, csharp-format
 msgid "Duplicate sound id '{0}'."
 msgstr "Trùng ID âm thanh '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:66
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:69
 #, csharp-format
 msgid "Duplicate weather id '{0}'."
 msgstr "Trùng ID thời tiết '{0}'."
@@ -1147,6 +1165,11 @@ msgstr ""
 msgid "Enable HRTF audio"
 msgstr "Bật âm thanh HRTF"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:72
+msgid "Enable fuel consumption"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:59
 msgid "Enable menu navigation panning"
 msgstr "Bật hiệu ứng âm thanh lướt theo menu"
@@ -1154,6 +1177,11 @@ msgstr "Bật hiệu ứng âm thanh lướt theo menu"
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:53
 msgid "Enable menu wrapping"
 msgstr "Bật cuộn vòng menu"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:103
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:76
+msgid "Enable tire wear"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Proxy.cs:22
 msgid "Enable update download proxy first."
@@ -1251,6 +1279,7 @@ msgid "Equals"
 msgstr "Dấu bằng"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:22
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:89
 msgid "Error"
 msgstr "Lỗi"
 
@@ -1283,7 +1312,7 @@ msgstr "Không thể khởi tạo client mạng."
 msgid "Failed to load communicator media. {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:27
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:28
 #, csharp-format
 msgid "Failed to load custom vehicle '{0}'. {1}"
 msgstr "Không thể tải xe tùy chỉnh '{0}'. {1}"
@@ -1293,12 +1322,12 @@ msgstr "Không thể tải xe tùy chỉnh '{0}'. {1}"
 msgid "Failed to load radio media. {0}"
 msgstr "Không thể tải tệp đa phương tiện của radio. {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:49
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\TrackSource.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Tracks\TrackLoadException.cs:40
 msgid "Failed to load this track file."
 msgstr "Không thể tải file đường đua này."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:82
 msgid "Failed to load this vehicle file."
 msgstr "Không thể tải file xe này."
 
@@ -1367,7 +1396,7 @@ msgstr ""
 msgid "File size: {0}"
 msgstr "Kích thước file: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\SourceBase.cs:80
 #, csharp-format
 msgid "File: {0}"
 msgstr "File: {0}"
@@ -1446,7 +1475,7 @@ msgstr "Phiên bản game: {0}"
 msgid "Gamepad"
 msgstr "Gamepad"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:119
 #, csharp-format
 msgid "Gear {0}"
 msgstr "Số {0}"
@@ -1464,9 +1493,9 @@ msgstr "Đức"
 msgid "Ghost mode"
 msgstr "Chế độ bóng ma"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:48
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
 #, csharp-format
-msgid "Ghost mode is {0}. Custom tracks are {1}. The chosen track is {2}. The game will run for {3}. This room is limited to {4}."
+msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:152
@@ -1474,7 +1503,7 @@ msgstr ""
 msgid "Global shortcuts"
 msgstr "Phím tắt toàn cầu"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:253
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:287
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Runtime\Screen\Core.cs:259
 msgid "Go back"
 msgstr "Quay lại"
@@ -1515,11 +1544,11 @@ msgstr "Home"
 msgid "Host is unreachable."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:85
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:93
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
 msgstr "Cuộc đua có bao nhiêu vòng? Tùy chọn này áp dụng cho chế độ đua đơn, đua tính giờ và đua mạng."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:156
 msgid "Humidity must be between 0 and 1."
 msgstr "Độ ẩm phải nằm trong khoảng từ 0 đến 1."
 
@@ -1575,12 +1604,13 @@ msgstr "Insert"
 msgid "Interrupt screen reader speech"
 msgstr "Ngắt lời bộ đọc màn hình"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:111
 #, csharp-format
 msgid "Invalid ambience value '{0}'."
 msgstr "Giá trị môi trường không hợp lệ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:258
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:115
 #, csharp-format
 msgid "Invalid boolean '{0}' for key '{1}'."
 msgstr "Boolean không hợp lệ '{0}' cho khóa '{1}'."
@@ -1599,22 +1629,27 @@ msgstr "Khóa không hợp lệ '{0}'. Dùng upshift_delay_X_Y cho các số li�
 msgid "Invalid line. Expected [section] or key=value."
 msgstr "Dòng không hợp lệ. Cần định dạng [section] hoặc key=value."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:292
 #, csharp-format
 msgid "Invalid numeric value '{0}' for key '{1}'."
 msgstr "Giá trị số không hợp lệ '{0}' cho khóa '{1}'."
+
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
+#, csharp-format
+msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Connection\Prompt.cs:25
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\SavedServers\Draft.cs:66
 msgid "Invalid port. Enter a number between 1 and 65535."
 msgstr "Cổng không hợp lệ. Hãy nhập một số từ 1 đến 65535."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:300
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:307
 #, csharp-format
 msgid "Invalid room override value '{0}' for key '{1}'."
 msgstr "Giá trị ghi đè phòng không hợp lệ '{0}' cho khóa '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:193
 #, csharp-format
 msgid "Invalid room value '{0}' for key '{1}'."
 msgstr "Giá trị phòng không hợp lệ '{0}' cho khóa '{1}'."
@@ -1654,12 +1689,12 @@ msgstr "Độ rộng phân đoạn không hợp lệ '{0}'."
 msgid "Invalid sound asset path: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
 #, csharp-format
 msgid "Invalid sound random mode '{0}'."
 msgstr "Chế độ âm thanh ngẫu nhiên không hợp lệ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:206
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
 #, csharp-format
 msgid "Invalid sound type '{0}'."
 msgstr "Loại âm thanh không hợp lệ '{0}'."
@@ -1674,12 +1709,12 @@ msgstr "Khóa đường cong mô-men xoắn không hợp lệ '{0}'. Hãy dùng 
 msgid "Invalid torque value '{0}' for '{1}'."
 msgstr "Giá trị mô-men xoắn không hợp lệ '{0}' cho '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:278
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
 #, csharp-format
 msgid "Invalid vector '{0}' for key '{1}'."
 msgstr "Vector không hợp lệ '{0}' cho khóa '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:118
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:125
 #, csharp-format
 msgid "Invalid weather kind '{0}'."
 msgstr "Loại thời tiết không hợp lệ '{0}'."
@@ -1689,8 +1724,8 @@ msgstr "Loại thời tiết không hợp lệ '{0}'."
 msgid "Invalid weather transition seconds '{0}'."
 msgstr "Số giây chuyển đổi thời tiết không hợp lệ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:127
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:133
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:134
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:140
 #, csharp-format
 msgid "Invalid weather value '{0}' for key '{1}'."
 msgstr "Giá trị thời tiết không hợp lệ '{0}' cho khóa '{1}'."
@@ -1743,7 +1778,7 @@ msgstr "Khóa '{0}' chứa một giá trị không phải số thực '{1}'."
 msgid "Key '{0}' in section [{1}] must not be empty."
 msgstr "Khóa '{0}' trong phần [{1}] không được để trống."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:98
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:101
 #, csharp-format
 msgid "Key '{0}' is missing a value."
 msgstr "Khóa '{0}' bị thiếu giá trị."
@@ -1832,7 +1867,7 @@ msgstr "Thống kê vòng đua:"
 msgid "Lap summary:"
 msgstr "Tóm tắt vòng đua:"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:120
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:125
 #, csharp-format
 msgid "Lap {0}"
 msgstr "Vòng {0}"
@@ -1871,11 +1906,11 @@ msgstr "Rời máy chủ?"
 msgid "Leave this game room"
 msgstr "Rời khỏi phòng game này"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:27
 msgid "Leave this game room?"
 msgstr "Bạn muốn rời phòng game này?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:60
 msgid "Leaving game room."
 msgstr "Đang rời phòng game."
 
@@ -1957,7 +1992,7 @@ msgstr ""
 msgid "Load media folder"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:81
 msgid "Loading custom tracks from server."
 msgstr ""
 
@@ -2004,7 +2039,7 @@ msgstr "Menu chính"
 msgid "Main menu. Swipe left or right to navigate the options. Swipe up to activate. Swipe down to go back. Swipe up with two fingers to move to the first item and swipe down with two fingers to move to the last item. Long press repeats the current usage hint."
 msgstr "Menu chính. Vuốt trái hoặc phải để điều hướng giữa các tùy chọn. Vuốt lên để kích hoạt. Vuốt xuống để quay lại. Vuốt lên bằng hai ngón tay để di chuyển đến mục đầu tiên và vuốt xuống bằng hai ngón tay để đến mục cuối cùng. Nhấn giữ sẽ đọc lại mẹo sử dụng hiện tại."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:84
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:87
 msgid "Malformed line. Expected '[section]' or 'key = value'."
 msgstr "Dòng bị lỗi định dạng. Cần dạng '[section]' hoặc 'key = value'."
 
@@ -2064,7 +2099,7 @@ msgstr ""
 msgid "Measure your screen-reader speaking speed again so usage hints and delayed speech timings stay accurate."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:60
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Settings\Manager\Apply\RaceUi.cs:64
 msgid "Menu sound preset was empty and was reset to default."
 msgstr "Cấu hình âm thanh menu bị trống và đã được đặt lại về mặc định."
 
@@ -2230,7 +2265,7 @@ msgstr "Gửi qua mạng thất bại trong khi bắt đầu phát trực tiếp
 msgid "Network send failed while sending live stop."
 msgstr "Gửi qua mạng thất bại trong khi dừng phát trực tiếp."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Runtime\Audio.cs:69
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Multiplayer\Session\Systems\Sync.cs:94
 msgid "Network send failed. Please check your connection."
 msgstr "Gửi qua mạng thất bại. Vui lòng kiểm tra kết nối."
@@ -2292,7 +2327,7 @@ msgstr "Không tìm thấy tay cầm nào"
 msgid "No controllers were found. The game has reverted to keyboard input."
 msgstr "Không tìm thấy tay cầm nào. Game đã tự chuyển về điều khiển bằng bàn phím."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:112
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:119
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:100
 msgid "No custom tracks found."
 msgstr "Không tìm thấy đường đua tùy chỉnh nào."
@@ -2336,6 +2371,10 @@ msgstr "Chưa có tin nhắn nào."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:121
 msgid "No option changes to apply."
 msgstr "Không có thay đổi tùy chọn nào để áp dụng."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:22
+msgid "No pit area"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:23
 msgid "No players are currently in this game room."
@@ -2383,7 +2422,7 @@ msgstr "Không tìm thấy bản cập nhật"
 msgid "No, continue preparing"
 msgstr "Không, tiếp tục chuẩn bị"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:261
 msgid "No, continue racing"
 msgstr "Không, tiếp tục đua"
 
@@ -2391,7 +2430,7 @@ msgstr "Không, tiếp tục đua"
 msgid "No, keep this server"
 msgstr "Không, giữ lại máy chủ này"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:26
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:32
 msgid "No, stay in this game room"
 msgstr "Không, ở lại phòng game này"
 
@@ -2413,9 +2452,10 @@ msgstr "Đây không phải là một lượt chạy hoàn hảo, nhưng vẫn c
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:17
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:53
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\LoadoutExit.cs:79
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:63
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:81
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:99
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:140
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:161
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:179
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:16
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Browser.cs:33
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:66
@@ -2423,11 +2463,11 @@ msgstr "Đây không phải là một lượt chạy hoàn hảo, nhưng vẫn c
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Online.cs:19
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:70
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:134
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:69
 msgid "Not connected to a server."
 msgstr "Chưa kết nối với máy chủ nào."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:53
 msgid "Not connected to a server. Returning to main menu."
 msgstr ""
 
@@ -2444,7 +2484,7 @@ msgid "Num Lock"
 msgstr "Num Lock"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:57
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:97
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:105
 msgid "Number of computer players"
 msgstr "Số lượng bot"
 
@@ -2526,7 +2566,7 @@ msgstr "Chỉ chủ phòng mới có thể thay đổi tùy chọn game."
 msgid "Only the host can change game rules."
 msgstr "Chỉ chủ phòng mới có thể thay đổi luật chơi."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:69
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:75
 msgid "Only the host can start the game."
 msgstr "Chỉ chủ phòng mới có thể bắt đầu trận đua."
 
@@ -2633,7 +2673,7 @@ msgstr "Bảng điều khiển"
 msgid "Pause"
 msgstr "Tạm dừng"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:239
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:273
 msgid "Pause the game"
 msgstr "Tạm dừng game"
 
@@ -2652,6 +2692,18 @@ msgstr "Phần trăm: {0}%"
 msgid "Ping check already in progress."
 msgstr "Đang tiến hành kiểm tra ping."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:24
+msgid "Pit stop"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Input\Drive\Bind.cs:58
+msgid "Pit this time"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:237
+msgid "Pitting this time"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Game.cs:64
 msgid "Play logo at startup"
 msgstr "Phát logo khi khởi động"
@@ -2665,7 +2717,7 @@ msgstr ""
 msgid "Player"
 msgstr "Người chơi"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Coordinator\State\Rooms\Apply.cs:165
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Domain\Online\Map.cs:49
 msgid "Player "
 msgstr "Người chơi "
@@ -2788,7 +2840,7 @@ msgstr "Print Screen"
 msgid "Progressive keyboard input"
 msgstr "Hành vi bàn phím tăng dần"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:93
 #, csharp-format
 msgid "Property '{0}' is outside any section."
 msgstr "Thuộc tính '{0}' nằm ngoài tất cả các phần."
@@ -2840,7 +2892,7 @@ msgstr "Câu hỏi"
 msgid "Quick start"
 msgstr "Bắt đầu nhanh"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:175
 msgid "Quick start."
 msgstr "Bắt đầu nhanh."
 
@@ -2848,11 +2900,11 @@ msgstr "Bắt đầu nhanh."
 msgid "Quit race preparation?"
 msgstr "Thoát phần chuẩn bị đua?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:222
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:256
 msgid "Quit race?"
 msgstr "Thoát cuộc đua?"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:244
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:278
 msgid "Quit the race"
 msgstr "Thoát cuộc đua"
 
@@ -2879,6 +2931,11 @@ msgstr "Trục RZ trừ"
 #: D:\top_speed\top_speed_net\TopSpeed\Input\Display\Text.cs:139
 msgid "RZ plus"
 msgstr "Trục RZ cộng"
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:127
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:96
+msgid "Race anyway"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultCatalog.cs:16
 msgid "Race complete."
@@ -2913,7 +2970,7 @@ msgstr "Cài đặt cuộc đua"
 msgid "Race started."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:165
 #, csharp-format
 msgid "Race time {0}"
 msgstr "Thời gian đua {0}"
@@ -2956,7 +3013,7 @@ msgstr "Đua rally qua đồi"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:56
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\TrackSelection.cs:71
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:94
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:101
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:18
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:64
@@ -3005,8 +3062,12 @@ msgstr ""
 msgid "Reconnection failed: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:42
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:48
 msgid "Reconnection is in progress. Disconnecting now."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:18
+msgid "Refuel"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:41
@@ -3094,7 +3155,7 @@ msgstr ""
 msgid "Restore only the shortcuts in this menu to their default values."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:238
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:272
 msgid "Resume the game"
 msgstr "Tiếp tục game"
 
@@ -3254,7 +3315,7 @@ msgstr "Hiệu chỉnh bộ đọc màn hình. Bạn sẽ thấy một đoạn v
 msgid "Scroll Lock"
 msgstr "Scroll Lock"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:51
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:54
 #, csharp-format
 msgid "Section '{0}' requires an id."
 msgstr "Phần '{0}' yêu cầu phải có một ID."
@@ -3275,17 +3336,17 @@ msgstr "Phần [transmission_cvt] không được sử dụng vì supported_type
 msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
 msgstr "Phần [transmission_dct] không được sử dụng vì supported_types không bao gồm 'dct'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:169
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:190
 #, csharp-format
 msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
 msgstr "Phân đoạn '{0}' tham chiếu đến phòng '{1}', nhưng không có phần [room:{1}] hoặc cài đặt sẵn nào tương ứng."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:182
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:203
 #, csharp-format
 msgid "Segment '{0}' references sound source '{1}', but no matching [sound:{1}] section exists."
 msgstr "Phân đoạn '{0}' tham chiếu đến nguồn âm thanh '{1}', nhưng không có phần [sound:{1}] nào tương ứng."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:194
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:215
 #, csharp-format
 msgid "Segment '{0}' references weather profile '{1}', but no matching [weather:{1}] section exists."
 msgstr "Phân đoạn '{0}' tham chiếu đến hồ sơ thời tiết '{1}', nhưng không có phần [weather:{1}] nào tương ứng."
@@ -3538,7 +3599,7 @@ msgstr "Đua đơn"
 msgid "Single race difficulty"
 msgstr "Độ khó phần đua đơn"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:176
 msgid "Single race."
 msgstr "Đua đơn."
 
@@ -3567,25 +3628,31 @@ msgid "Slowest (1.00 second)"
 msgstr "Chậm nhất (1.00 giây)"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:95
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
 msgid "Some custom track files are invalid and were skipped."
 msgstr "Một số file đường đua tùy chỉnh không hợp lệ và đã bị bỏ qua."
 
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
+msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:83
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
 msgid "Some custom vehicle files are invalid and were skipped."
 msgstr "Một số file xe tùy chỉnh không hợp lệ và đã bị bỏ qua."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
+msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:47
 msgid "Some settings were missing or invalid. Review these details."
 msgstr "Một số cài đặt bị thiếu hoặc không hợp lệ. Vui lòng xem lại các chi tiết này."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:237
 #, csharp-format
 msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
 msgstr "Âm thanh '{0}' tham chiếu đến end_area '{1}', nhưng không có ID phân đoạn nào tương ứng."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:205
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:226
 #, csharp-format
 msgid "Sound '{0}' references start_area '{1}', but no matching segment id exists."
 msgstr "Âm thanh '{0}' tham chiếu đến start_area '{1}', nhưng không có ID phân đoạn nào tương ứng."
@@ -3595,18 +3662,18 @@ msgstr "Âm thanh '{0}' tham chiếu đến start_area '{1}', nhưng không có 
 msgid "Sound asset path escapes the track folder: {0}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:227
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:234
 #, csharp-format
 msgid "Sound key '{0}' contains invalid path '{1}'. Paths must be track-relative."
 msgstr "Khóa âm thanh '{0}' chứa đường dẫn không hợp lệ '{1}'. Đường dẫn phải là dạng tương đối trong thư mục đường đua."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:220
 #, csharp-format
 msgid "Sound key '{0}' must be a track-relative path and cannot escape the track folder."
 msgstr "Khóa âm thanh '{0}' phải là đường dẫn tương đối và không được thoát ra ngoài thư mục đường đua."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:221
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:237
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:228
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
 #, csharp-format
 msgid "Sound list for '{0}' cannot be empty."
 msgstr "Danh sách âm thanh cho '{0}' không được để trống."
@@ -3685,7 +3752,7 @@ msgstr "Mở rộng âm thanh nổi (stereo) cho xe của bạn"
 msgid "Stop"
 msgstr "Dừng"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:243
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:277
 msgid "Stop the game"
 msgstr "Dừng game"
 
@@ -3721,7 +3788,6 @@ msgstr "Thụy Điển"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:27
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:41
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:55
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:137
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:47
@@ -3736,6 +3802,7 @@ msgstr ""
 msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:46
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:150
 msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
 msgstr ""
@@ -3982,11 +4049,23 @@ msgstr "Đường dẫn thư mục đã chọn không hợp lệ."
 msgid "The selected media file does not exist."
 msgstr "File đa phương tiện đã chọn không tồn tại."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:216
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:283
 msgid "The selected track could not be loaded. The drive session was not started."
 msgstr "Không thể tải đường đua đã chọn. Không thể bắt đầu chặng đua."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:34
+msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:40
+msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:44
+msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
 msgid "The selected vehicle does not support the selected transmission mode."
 msgstr "Chiếc xe đã chọn không hỗ trợ loại hộp số này."
 
@@ -4080,6 +4159,10 @@ msgstr "Máy chủ này không hỗ trợ việc đàm phán giao thức. Vui l�
 msgid "This shortcut menu has no bindings to reset."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:230
+msgid "This track has no pit area."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
 msgid "This vehicle does not support the selected transmission mode."
@@ -4114,9 +4197,13 @@ msgstr "Đua tính giờ"
 msgid "Time trial complete."
 msgstr "Đã hoàn thành vòng đua tính giờ."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:89
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:155
 msgid "Time trial."
 msgstr "Đua tính giờ."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:19
+msgid "Tires"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:213
 msgid "Toggle media loop"
@@ -4170,7 +4257,7 @@ msgstr ""
 msgid "Track"
 msgstr "Đường đua"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:149
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:170
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
 msgstr "Bản đồ [meta] phải thiết lập một hồ sơ thời tiết, ví dụ như 'weather = default'."
 
@@ -4187,7 +4274,7 @@ msgstr ""
 msgid "Track data is missing."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:156
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:177
 #, csharp-format
 msgid "Track default weather profile '{0}' does not match any [weather:{0}] section."
 msgstr "Hồ sơ thời tiết mặc định '{0}' của đường đua không khớp với bất kỳ phần [weather:{0}] nào."
@@ -4203,11 +4290,11 @@ msgstr "Không tìm thấy file đường đua: {0}"
 msgid "Track lap average: {0}."
 msgstr "Thời gian trung bình mỗi vòng đua: {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:215
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:282
 msgid "Track load error"
 msgstr "Lỗi tải đường đua"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:142
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:157
 msgid "Track must include at least one [segment:<id>] section."
 msgstr "Đường đua phải có ít nhất một phần [segment:<id>]."
 
@@ -4224,6 +4311,10 @@ msgstr ""
 msgid "Track path must point to a .tsm file inside a track folder: {0}"
 msgstr "Đường dẫn đường đua phải trỏ đến file .tsm bên trong thư mục đường đua: {0}"
 
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
+msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
 msgid "Track source path is missing, so sound assets cannot be resolved."
 msgstr ""
@@ -4236,11 +4327,11 @@ msgstr ""
 msgid "Track upload canceled."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:119
 msgid "Track, currently random chosen."
 msgstr "Đường đua, hiện đang chọn ngẫu nhiên."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:114
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:126
 #, csharp-format
 msgid "Track, currently {0}."
 msgstr "Đường đua, hiện đang là {0}."
@@ -4252,7 +4343,7 @@ msgstr "Đường đua, hiện đang là {0}."
 msgid "Track: {0}"
 msgstr "Đường đua: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:62
 msgid "Transmission not supported"
 msgstr "Hộp số không được hỗ trợ"
 
@@ -4347,21 +4438,21 @@ msgstr "Lỗi hệ thống không xác định."
 msgid "Unknown key '{0}' in section [{1}]."
 msgstr "Khóa không rõ '{0}' trong phần [{1}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:24
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\loader\Custom.cs:25
 msgid "Unknown parse error."
 msgstr "Lỗi phân tích không xác định."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:191
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:198
 #, csharp-format
 msgid "Unknown room key '{0}'."
 msgstr "Khóa phòng không rõ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:179
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
 #, csharp-format
 msgid "Unknown room preset '{0}'."
 msgstr "Cấu hình phòng mẫu không rõ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:43
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:46
 #, csharp-format
 msgid "Unknown section '{0}'."
 msgstr "Phần không xác định '{0}'."
@@ -4371,12 +4462,12 @@ msgstr "Phần không xác định '{0}'."
 msgid "Unknown section [{0}]."
 msgstr "Phần không xác định [{0}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:110
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:117
 #, csharp-format
 msgid "Unknown segment key '{0}'."
 msgstr "Khóa phân đoạn không rõ '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:290
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:297
 #, csharp-format
 msgid "Unknown sound key '{0}'."
 msgstr "Khóa âm thanh không rõ '{0}'."
@@ -4391,7 +4482,7 @@ msgstr "Mẫu đường cong mô-men xoắn không rõ '{0}'. Các giá trị h�
 msgid "Unknown update error."
 msgstr "Lỗi cập nhật không xác định."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:168
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:175
 #, csharp-format
 msgid "Unknown weather key '{0}'."
 msgstr "Khóa thời tiết không rõ '{0}'."
@@ -4483,7 +4574,7 @@ msgstr "Tính năng cập nhật không khả dụng trên nền tảng này."
 msgid "Upload a local custom track"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:100
 msgid "Upload a local track"
 msgstr ""
 
@@ -4500,13 +4591,13 @@ msgstr ""
 msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:149
 msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:26
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Create.cs:40
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:45
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:54
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Helpers.cs:136
 msgid "Use LEFT or RIGHT to change."
@@ -4610,6 +4701,8 @@ msgid "Volume settings"
 msgstr "Cài đặt âm lượng"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:21
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:47
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:90
 msgid "Warning"
 msgstr "Cảnh báo"
 
@@ -4617,15 +4710,15 @@ msgstr "Cảnh báo"
 msgid "Warning:"
 msgstr "Cảnh báo:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:141
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:145
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:153
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:157
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:148
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:152
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:160
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:164
 #, csharp-format
 msgid "Weather key '{0}' must be greater than zero."
 msgstr "Khóa thời tiết '{0}' phải lớn hơn không."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:163
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:170
 #, csharp-format
 msgid "Weather key '{0}' must be non-negative."
 msgstr "Khóa thời tiết '{0}' phải là số dương."
@@ -4638,7 +4731,7 @@ msgstr "Giây chuyển đổi thời tiết phải là số hữu hạn và khô
 msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
 msgstr "Chào mừng bạn đến với thiết lập Top Speed. Ở các màn hình tiếp theo, bạn sẽ được chọn ngôn ngữ và sau đó hiệu chỉnh tốc độ giọng đọc của bộ đọc màn hình."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:248
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:282
 msgid "What would you like to do?"
 msgstr "Bạn muốn làm gì?"
 
@@ -4702,6 +4795,10 @@ msgstr ""
 msgid "When checked, update package downloads are routed through your proxy URL."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:100
+msgid "When enabled, cars burn fuel and players must pit to refuel."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
 msgstr ""
@@ -4710,9 +4807,21 @@ msgstr ""
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:106
+msgid "When enabled, tires wear and lose grip and players must pit to replace them."
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:88
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
 msgstr "Khi bật, tính năng va chạm sẽ tắt và các xe có thể chạy xuyên qua nhau."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:75
+msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:79
+msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:43
 msgid "Who is currently present in this game room"
@@ -4758,7 +4867,7 @@ msgstr "Có, hủy trận đua hiện tại"
 msgid "Yes, delete this server"
 msgstr "Có, xóa máy chủ này"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:25
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:31
 msgid "Yes, leave this game room"
 msgstr "Có, rời khỏi phòng game này"
 
@@ -4766,7 +4875,7 @@ msgstr "Có, rời khỏi phòng game này"
 msgid "Yes, quit race preparation"
 msgstr "Có, thoát khỏi phần chuẩn bị đua"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:226
+#: D:\top_speed\top_speed_net\TopSpeed\Game\Multiplayer\Race\Runtime.cs:260
 msgid "Yes, quit the race"
 msgstr "Có, thoát khỏi cuộc đua"
 
@@ -4774,7 +4883,7 @@ msgstr "Có, thoát khỏi cuộc đua"
 msgid "You are already using the latest version."
 msgstr "Bạn đang sử dụng phiên bản mới nhất."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:14
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:20
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:29
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\Players.cs:15
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Draft.cs:13
@@ -4908,7 +5017,7 @@ msgstr "Trục Z trừ"
 msgid "Z plus"
 msgstr "Trục Z cộng"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:91
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:171
 msgid "add bot request"
 msgstr ""
 
@@ -4921,7 +5030,7 @@ msgstr "tất cả"
 msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_downshift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:46
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:50
 msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_shift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limiter."
 
@@ -4929,7 +5038,7 @@ msgstr "auto_shift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limi
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "auto_upshift_rpm phải bằng 0 hoặc nằm giữa idle_rpm và rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:108
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:113
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:31
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:38
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Speech.cs:115
@@ -4972,7 +5081,7 @@ msgstr "tay cầm"
 msgid "curves only"
 msgstr "chỉ khúc cua"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:67
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\TrackPackages\Catalog.cs:74
 msgid "custom track list request"
 msgstr ""
 
@@ -4985,8 +5094,10 @@ msgstr "mặc định"
 msgid "default ({0})"
 msgstr "mặc định ({0})"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:51
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:56
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:59
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:62
 msgid "disabled"
 msgstr ""
 
@@ -4994,12 +5105,14 @@ msgstr ""
 msgid "easy"
 msgstr "dễ"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:50
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:53
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:55
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:58
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:61
 msgid "enabled"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:269
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:276
 msgid "end_area cannot be empty."
 msgstr "end_area không được để trống."
 
@@ -5012,27 +5125,31 @@ msgstr ""
 msgid "fixed distance"
 msgstr "khoảng cách cố định"
 
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:243
+msgid "fuel consumption off"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:257
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:265
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:250
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:258
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:273
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:281
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:266
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:274
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr ""
@@ -5071,11 +5188,11 @@ msgstr "chat tổng"
 msgid "hard"
 msgstr "khó"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:314
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:325
 msgid "heavy wear"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:100
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:110
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph phải lớn hơn high_speed_steer_start_kph."
 
@@ -5112,11 +5229,11 @@ msgstr "launch_coupling_max phải lớn hơn hoặc bằng launch_coupling_min 
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
 msgstr "launch_coupling_max phải lớn hơn hoặc bằng launch_coupling_min trong [transmission_dct]."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:62
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:68
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm không được vượt quá rev_limiter."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:318
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:329
 msgid "light wear"
 msgstr ""
 
@@ -5125,7 +5242,7 @@ msgstr ""
 msgid "main room"
 msgstr "phòng chính"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:30
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:31
 msgid "max_rpm must be greater than or equal to idle_rpm."
 msgstr "max_rpm phải lớn hơn hoặc bằng idle_rpm."
 
@@ -5141,11 +5258,11 @@ msgstr "min_coupled_rise_full_rpm_per_s phải lớn hơn hoặc bằng min_coup
 msgid "missing"
 msgstr "bị thiếu"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:316
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:327
 msgid "moderate wear"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:320
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:331
 msgid "new tires"
 msgstr ""
 
@@ -5184,6 +5301,16 @@ msgstr ""
 msgid "optimal temperature"
 msgstr ""
 
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:58
+#, csharp-format
+msgid "optional sound not found, no sound will play: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:62
+#, csharp-format
+msgid "optional sound problem, no sound will play: {0}"
+msgstr ""
+
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
 msgstr ""
@@ -5197,7 +5324,7 @@ msgstr "bảng điều khiển"
 msgid "paused"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:54
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:59
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
 msgstr "peak_torque_rpm phải nằm giữa idle_rpm và rev_limiter."
 
@@ -5205,7 +5332,7 @@ msgstr "peak_torque_rpm phải nằm giữa idle_rpm và rev_limiter."
 msgid "percent"
 msgstr "phần trăm"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:90
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:99
 #, csharp-format
 msgid "pitch_curve_exponent must be between {0} and {1}."
 msgstr "pitch_curve_exponent phải từ {0} đến {1}."
@@ -5230,7 +5357,8 @@ msgstr ""
 msgid "race preparation withdrawal"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:73
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:93
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:153
 msgid "race start request"
 msgstr ""
 
@@ -5258,11 +5386,21 @@ msgstr "ratio_max phải lớn hơn hoặc bằng ratio_min trong [transmission_
 msgid "ready state"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:109
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:189
 msgid "remove bot request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:38
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:57
+#, csharp-format
+msgid "required sound not found, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:61
+#, csharp-format
+msgid "required sound problem, will use built in fallback: {0}"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:40
 msgid "rev_limiter must be between idle_rpm and max_rpm."
 msgstr "rev_limiter phải nằm giữa idle_rpm và max_rpm."
 
@@ -5282,7 +5420,7 @@ msgstr "sự kiện phòng"
 msgid "room join request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:52
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Room.cs:58
 msgid "room leave request"
 msgstr ""
 
@@ -5294,11 +5432,11 @@ msgstr ""
 msgid "room state refresh request"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:107
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:112
 msgid "shift on demand"
 msgstr "sang số chủ động"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:78
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:86
 msgid "shift_freq must be between idle_freq and top_freq."
 msgstr "shift_freq phải nằm giữa idle_freq và top_freq."
 
@@ -5322,7 +5460,7 @@ msgstr "giọng đọc và chữ nổi"
 msgid "speed dependent"
 msgstr "dựa vào tốc độ"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:259
+#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:266
 msgid "start_area cannot be empty."
 msgstr "start_area không được để trống."
 
@@ -5336,6 +5474,10 @@ msgstr "target_rpm_high phải lớn hơn hoặc bằng target_rpm_low trong [tr
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Controls.cs:373
 msgid "this menu"
+msgstr ""
+
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:289
+msgid "tire wear off"
 msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:35
@@ -5354,17 +5496,17 @@ msgstr "tire_rim phải từ 4 đến 30 inch."
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "tire_width phải từ 20 đến 450 mm."
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:302
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:313
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:294
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:305
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:70
+#: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:77
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "top_freq phải lớn hơn hoặc bằng idle_freq."
 
@@ -5401,36 +5543,36 @@ msgstr "không rõ"
 msgid "warming up tires"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:312
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:323
 msgid "worn tires"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:223
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:228
 #, csharp-format
 msgid "{0:F0} feet traveled"
 msgstr "đã đi được {0:F0} feet"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:188
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:193
 #, csharp-format
 msgid "{0:F0} kilometers per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} km/h, {1:F0} vòng/phút, {2:F0} mã lực"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:231
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:236
 #, csharp-format
 msgid "{0:F0} meters traveled"
 msgstr "đã đi được {0:F0} mét"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:180
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:185
 #, csharp-format
 msgid "{0:F0} miles per hour, {1:F0} RPM, {2:F0} horsepower"
 msgstr "{0:F0} dặm/giờ, {1:F0} vòng/phút, {2:F0} mã lực"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:229
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:234
 #, csharp-format
 msgid "{0:F1} kilometers traveled"
 msgstr "đã đi được {0:F1} kilomet"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:221
+#: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:226
 #, csharp-format
 msgid "{0:F1} miles traveled"
 msgstr "đã đi được {0:F1} dặm"
@@ -5496,12 +5638,12 @@ msgstr "{0} đã vào phòng hiện tại."
 msgid "{0} key '{1}': {2}"
 msgstr "{0} khóa '{1}': {2}"
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:39
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:41
 #, csharp-format
 msgid "{0} lap"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:40
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:42
 #, csharp-format
 msgid "{0} laps"
 msgstr ""
@@ -5558,12 +5700,12 @@ msgstr ""
 msgid "{0} percent."
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:44
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:46
 #, csharp-format
 msgid "{0} player"
 msgstr ""
 
-#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:45
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Rules.cs:47
 #, csharp-format
 msgid "{0} players"
 msgstr ""
@@ -5576,7 +5718,7 @@ msgstr "{0} giây"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Text\SessionText.cs:32
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Results\ResultFmt.cs:43
-#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:104
+#: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:112
 #, csharp-format
 msgid "{0} seconds"
 msgstr "{0} giây"
@@ -5639,6 +5781,12 @@ msgstr "{0}: về đích ở vị trí thứ {1} với thời gian {2}."
 #, csharp-format
 msgid "{0}: position {1}, time {2}."
 msgstr "{0}: vị trí {1}, thời gian {2}."
+
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:64
+#: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:91
+#, csharp-format
+msgid "{0}: {1}"
+msgstr ""
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format

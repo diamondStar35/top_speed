@@ -165,6 +165,30 @@ namespace TopSpeed.Drive.Multiplayer
             return 0;
         }
 
+        private float CalculatePlayerPosition(int player)
+        {
+            if (player == LocalPlayerNumber)
+                return _car.PositionY;
+
+            var targetNumber = (byte)player;
+            if (_remotePlayers.TryGetValue(targetNumber, out var remote))
+                return remote.Player.PositionY;
+
+            return 0f;
+        }
+
+        private bool CalculatePlayerFinished(int player)
+        {
+            if (player == LocalPlayerNumber)
+                return _finished;
+
+            var targetNumber = (byte)player;
+            if (_remotePlayers.TryGetValue(targetNumber, out var remote))
+                return remote.Finished;
+
+            return false;
+        }
+
         private int ClampPercent(float positionY)
         {
             var raceDistance = GetSpatialTrackLength();

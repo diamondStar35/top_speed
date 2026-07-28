@@ -78,6 +78,16 @@ namespace TopSpeed.Drive.Session.Systems
             return _isStarted() && _getLap() <= _getLapLimit();
         }
 
+        // Status reports stay available from the green flag through the post-finish wait, when a player
+        // who has completed their laps is watching the rest of the field finish. IsActiveLapRange also
+        // requires the lap to be within the limit, which would exclude that window even though the
+        // values are still valid to query; it is kept only for the shift-on-demand toggle (a control,
+        // not a report). Lap-based reports clamp the lap to the limit so they read as the final lap.
+        private bool IsReportable()
+        {
+            return _isStarted();
+        }
+
         private void HandleEngineStartRequest()
         {
             if (_isInPitStop?.Invoke() == true)
@@ -115,19 +125,21 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void HandleCurrentGearRequest()
         {
-            if (_input.Intents.IsTriggered(DriveIntent.CurrentGear) && IsActiveLapRange())
-                _speakText(LocalizationService.Format(LocalizationService.Mark("Gear {0}"), SessionText.FormatGearCode(_car)));
+            if (_input.Intents.IsTriggered(DriveIntent.CurrentGear) && IsReportable())
+                _speakText(_settings.BriefStatusReports
+                    ? SessionText.FormatGearCode(_car)
+                    : LocalizationService.Format(LocalizationService.Mark("Gear {0}"), SessionText.FormatGearCode(_car)));
         }
 
         private void HandleCurrentLapNumberRequest()
         {
-            if (_input.Intents.IsTriggered(DriveIntent.CurrentLapNr) && _isStarted() && _getLap() <= _getLapLimit())
-                _speakText(LocalizationService.Format(LocalizationService.Mark("Lap {0}"), _getLap()));
+            if (_input.Intents.IsTriggered(DriveIntent.CurrentLapNr) && IsReportable())
+                _speakText(LocalizationService.Format(LocalizationService.Mark("Lap {0}"), Math.Min(_getLap(), _getLapLimit())));
         }
 
         private void HandleCurrentRacePercentageRequest()
         {
-            if (_input.Intents.IsTriggered(DriveIntent.CurrentRacePerc) && _isStarted() && _getLap() <= _getLapLimit())
+            if (_input.Intents.IsTriggered(DriveIntent.CurrentRacePerc) && IsReportable())
             {
                 var trackLength = _track.Length;
                 var lapLimit = _getLapLimit();
@@ -138,15 +150,15 @@ namespace TopSpeed.Drive.Session.Systems
                     percent = 0;
                 if (percent > 100)
                     percent = 100;
-                _speakText(SessionText.FormatRacePercentage(percent));
+                _speakText(SessionText.FormatRacePercentage(percent, _settings.BriefStatusReports));
             }
         }
 
         private void HandleCurrentLapPercentageRequest()
         {
-            if (_input.Intents.IsTriggered(DriveIntent.CurrentLapPerc) && _isStarted() && _getLap() <= _getLapLimit())
+            if (_input.Intents.IsTriggered(DriveIntent.CurrentLapPerc) && IsReportable())
             {
-                var lap = _getLap();
+                var lap = Math.Min(_getLap(), _getLapLimit());
                 var trackLength = _track.Length;
                 var percent = trackLength > 0f
                     ? (int)(((_car.PositionY - (trackLength * (lap - 1))) / trackLength) * 100.0f)
@@ -155,7 +167,7 @@ namespace TopSpeed.Drive.Session.Systems
                     percent = 0;
                 if (percent > 100)
                     percent = 100;
-                _speakText(SessionText.FormatLapPercentage(percent));
+                _speakText(SessionText.FormatLapPercentage(percent, _settings.BriefStatusReports));
             }
         }
 
@@ -173,7 +185,7 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void HandleSpeedReportRequest()
         {
-            if (!_input.Intents.IsTriggered(DriveIntent.ReportSpeed) || !IsActiveLapRange())
+            if (!_input.Intents.IsTriggered(DriveIntent.ReportSpeed) || !IsReportable())
                 return;
 
             var speedKmh = _car.SpeedKmh;
@@ -199,7 +211,7 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void HandleFuelReportRequest()
         {
-            if (!_input.Intents.IsTriggered(DriveIntent.ReportFuel) || !IsActiveLapRange())
+            if (!_input.Intents.IsTriggered(DriveIntent.ReportFuel) || !IsReportable())
                 return;
 
             _speakText(BuildFuelStatusPhrase());
@@ -207,7 +219,7 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void HandleTireReportRequest()
         {
-            if (!_input.Intents.IsTriggered(DriveIntent.ReportTireState) || !IsActiveLapRange())
+            if (!_input.Intents.IsTriggered(DriveIntent.ReportTireState) || !IsReportable())
                 return;
 
             _speakText(BuildTireStatusPhrase());
@@ -215,7 +227,7 @@ namespace TopSpeed.Drive.Session.Systems
 
         private void HandleDistanceReportRequest()
         {
-            if (!_input.Intents.IsTriggered(DriveIntent.ReportDistance) || !IsActiveLapRange())
+            if (!_input.Intents.IsTriggered(DriveIntent.ReportDistance) || !IsReportable())
                 return;
 
             var distanceM = _car.DistanceMeters;

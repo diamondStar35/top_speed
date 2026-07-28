@@ -11,11 +11,19 @@ namespace TopSpeed.Game
 
             TryShowDeviceChoiceDialog();
 
-            _driveInput.SetOverlayInputBlocked(
-                _state == AppState.MultiplayerRace &&
-                (_multiplayerCoordinator.Questions.HasActiveOverlayQuestion
-                 || _dialogs.HasActiveOverlayDialog
-                 || _choices.HasActiveChoiceDialog));
+            var overlayDialogActive =
+                _multiplayerCoordinator.Questions.HasActiveOverlayQuestion
+                || _dialogs.HasActiveOverlayDialog
+                || _choices.HasActiveChoiceDialog;
+            // The full driving block is multiplayer-only, but the lighter menu-navigation trap applies
+            // in every race mode so a menu that opens mid-race (e.g. the pit-stop choice dialog) always
+            // keeps its navigation keys/buttons for itself. See DriveInput.IsInputTrappedByMenu.
+            _driveInput.SetOverlayInputBlocked(_state == AppState.MultiplayerRace && overlayDialogActive);
+            _driveInput.SetMenuNavigationActive(
+                (_state == AppState.SingleRace
+                 || _state == AppState.TimeTrial
+                 || _state == AppState.MultiplayerRace)
+                && overlayDialogActive);
 
             HandleGlobalVolumeShortcuts();
             UpdateTextInputPrompt();

@@ -65,6 +65,7 @@ namespace TopSpeed.Drive.Multiplayer
             var trackAudio = new TrackAudioService(
                 _settings,
                 GetRandomSoundBySlot,
+                LoadRaceCueSound,
                 _soundTurnEndDing,
                 QueueTrackInfoSound,
                 (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
@@ -212,7 +213,13 @@ namespace TopSpeed.Drive.Multiplayer
                     () => _started,
                     SpeakText,
                     CalculatePlayerPerc,
-                    HandleLocalPlayerNumberRequest),
+                    HandleLocalPlayerNumberRequest,
+                    () => _settings.BriefStatusReports,
+                    getPlayerPosition: CalculatePlayerPosition,
+                    track: _track,
+                    getLapLimit: () => _lapLimit,
+                    reportLapAndTurn: () => _settings.ReportLapAndTurn,
+                    isPlayerFinished: CalculatePlayerFinished),
                 new ExitSubsystem(
                     "exit",
                     300,

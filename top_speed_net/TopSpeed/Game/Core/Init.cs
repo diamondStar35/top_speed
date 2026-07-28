@@ -71,6 +71,7 @@ namespace TopSpeed.Game
             speech.PreferredBackendId = _settings.SpeechBackendId;
             speech.PreferredVoiceIndex = _settings.SpeechVoiceIndex;
             _driveInput = new DriveInput(_settings);
+            _driveInput.SetMenuNavigationInputs(MenuInputBindings.NavigationKeys, MenuInputBindings.NavigationControllerInputs);
             _setup = new DriveSetup();
             _driveSessionFactory = new DriveSessionFactory(audio, speech, _settings, _driveInput, _fileDialogs);
             _stateMachine = new StateMachine(this);

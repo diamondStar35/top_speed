@@ -119,7 +119,7 @@ namespace TopSpeed.Game
                         _pitMenuShown = false;
                         if (!result.IsCanceled)
                             _mode?.AcceptPitStopChoice(result.ChoiceId);
-                    }));
+                    }, _owner._driveInput.GetOverlayReservedKeys()));
                 }
 
                 if (_quitConfirmActive)

@@ -7,6 +7,16 @@ namespace TopSpeed.Menu
 {
     internal sealed partial class MenuManager
     {
+        // Optional caller-supplied test for keys that should not trigger first-letter navigation
+        // because they are already doing a live job elsewhere (e.g. drive status/horn keys while the
+        // pit-stop menu overlay is open). Set while such a dialog is active and cleared afterwards.
+        private Func<Key, bool>? _externalLetterReservation;
+
+        public void SetLetterNavigationReservation(Func<Key, bool>? isReservedKey)
+        {
+            _externalLetterReservation = isReservedKey;
+        }
+
         public MenuAction Update(IInputService input)
         {
             if (_stack.Count == 0)
@@ -71,7 +81,8 @@ namespace TopSpeed.Menu
                 return MenuLetterPress.None;
 
             var reserved = MenuInputUtil.TryGetLetterKey(letter, out var key)
-                && _shortcutCatalog.HasUnmodifiedBindingForKeyInContext(key, in context);
+                && (_shortcutCatalog.HasUnmodifiedBindingForKeyInContext(key, in context)
+                    || (_externalLetterReservation?.Invoke(key) ?? false));
             return new MenuLetterPress(letter, reserved);
         }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Key = TopSpeed.Input.InputKey;
 using TopSpeed.Input;
+using TopSpeed.Input.Devices.Controller;
 
 namespace TopSpeed.Menu
 {
@@ -72,6 +73,40 @@ namespace TopSpeed.Menu
             GestureIntent.ThreeFingerSwipeDown,
             GestureIntent.LongPress
         };
+
+        // The keyboard keys that operate menus and dialogs, derived from the bindings above so the
+        // two can never drift. DriveInput (wired in via the game layer) traps these while a menu is
+        // open during a race, so a drive intent mapped onto e.g. an arrow key drives only the menu.
+        public static IReadOnlyCollection<Key> NavigationKeys { get; } = BuildNavigationKeys();
+
+        // The controller inputs that operate menus, mirroring the d-pad / left-stick / Button 1
+        // logic in MenuInputUtil (WasControllerUp/Down/Activate/BackPressed). Kept here alongside the
+        // keyboard set and expressed as AxisOrButton so DriveInput can trap them the same way; update
+        // this in lockstep with MenuInputUtil if the controller navigation controls change.
+        public static IReadOnlyCollection<AxisOrButton> NavigationControllerInputs { get; } = new HashSet<AxisOrButton>
+        {
+            AxisOrButton.Pov1,
+            AxisOrButton.Pov2,
+            AxisOrButton.Pov3,
+            AxisOrButton.Pov4,
+            AxisOrButton.AxisXNeg,
+            AxisOrButton.AxisXPos,
+            AxisOrButton.AxisYNeg,
+            AxisOrButton.AxisYPos,
+            AxisOrButton.Button1
+        };
+
+        private static HashSet<Key> BuildNavigationKeys()
+        {
+            var keys = new HashSet<Key>();
+            for (var i = 0; i < DefaultBindings.Length; i++)
+            {
+                var binding = DefaultBindings[i];
+                if (binding.Key.HasValue)
+                    keys.Add(binding.Key.Value);
+            }
+            return keys;
+        }
 
         public static bool IsPressed(IInputService input, MenuInputAction action)
         {

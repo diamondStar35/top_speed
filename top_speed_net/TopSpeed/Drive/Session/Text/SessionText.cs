@@ -43,16 +43,74 @@ namespace TopSpeed.Drive.Session
             return string.Join(" ", parts);
         }
 
-        public static string FormatRacePercentage(int percent)
+        public static string FormatRacePercentage(int percent, bool brief = false)
         {
             var clamped = Math.Max(0, Math.Min(100, percent));
+            if (brief)
+                return FormatPlayerPercentage(clamped);
             return LocalizationService.Format(LocalizationService.Mark("Race percentage {0} percent"), clamped);
         }
 
-        public static string FormatLapPercentage(int percent)
+        public static string FormatLapPercentage(int percent, bool brief = false)
         {
             var clamped = Math.Max(0, Math.Min(100, percent));
+            if (brief)
+                return FormatPlayerPercentage(clamped);
             return LocalizationService.Format(LocalizationService.Mark("Lap percentage {0} percent"), clamped);
+        }
+
+        public static string FormatLapAndTurn(int lap, int turn, bool inTurn, bool brief = false)
+        {
+            if (lap < 1)
+                lap = 1;
+            if (turn < 1)
+                turn = 1;
+
+            if (brief)
+            {
+                return inTurn
+                    ? LocalizationService.Format(LocalizationService.Mark("lap {0} turn {1}"), lap, turn)
+                    : LocalizationService.Format(LocalizationService.Mark("lap {0} approaching turn {1}"), lap, turn);
+            }
+
+            return inTurn
+                ? LocalizationService.Format(LocalizationService.Mark("Lap {0}, in turn {1}"), lap, turn)
+                : LocalizationService.Format(LocalizationService.Mark("Lap {0}, approaching turn {1}"), lap, turn);
+        }
+
+        public static string FormatFinished()
+        {
+            return LocalizationService.Translate(LocalizationService.Mark("finished"));
+        }
+
+        public static string FormatCompletingLap(int lap, bool brief = false)
+        {
+            if (lap < 1)
+                lap = 1;
+
+            return brief
+                ? LocalizationService.Format(LocalizationService.Mark("completing lap {0}"), lap)
+                : LocalizationService.Format(LocalizationService.Mark("Completing lap {0}"), lap);
+        }
+
+        public static string FormatApproachingFinish(int lap, bool brief = false)
+        {
+            if (lap < 1)
+                lap = 1;
+
+            return brief
+                ? LocalizationService.Format(LocalizationService.Mark("lap {0} approaching finish"), lap)
+                : LocalizationService.Format(LocalizationService.Mark("Lap {0}, approaching the finish"), lap);
+        }
+
+        public static string FormatLapOnly(int lap, bool brief = false)
+        {
+            if (lap < 1)
+                lap = 1;
+
+            return brief
+                ? LocalizationService.Format(LocalizationService.Mark("lap {0}"), lap)
+                : LocalizationService.Format(LocalizationService.Mark("Lap {0}"), lap);
         }
 
         public static string FormatPlayerPercentage(int percent)

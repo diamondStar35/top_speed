@@ -29,6 +29,7 @@ public sealed class TrackAudioBehaviorTests
                 soundIndexes.Add(index);
                 return null;
             },
+            loadRaceCueSound: null,
             turnEndDing: null,
             queueTrackInfoSound: _ => queuedTrackInfoSounds++,
             queueEvent: (sessionEvent, delay) =>

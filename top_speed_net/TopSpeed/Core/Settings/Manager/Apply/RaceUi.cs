@@ -11,6 +11,7 @@ namespace TopSpeed.Core.Settings
             settings.AutomaticInfo = ReadEnum(race.AutomaticInfo, settings.AutomaticInfo, "race.automaticInfo", issues);
             settings.Copilot = ReadEnum(race.Copilot, settings.Copilot, "race.copilot", issues);
             settings.CurveAnnouncement = ReadEnum(race.CurveAnnouncement, settings.CurveAnnouncement, "race.curveAnnouncement", issues);
+            settings.CurveAnnouncementStyle = ReadEnum(race.CurveAnnouncementStyle, settings.CurveAnnouncementStyle, "race.curveAnnouncementStyle", issues);
             if (race.CurveAnnouncementLeadTimeSeconds.HasValue)
             {
                 settings.CurveAnnouncementLeadTimeSeconds = ClampFloat(
@@ -29,6 +30,10 @@ namespace TopSpeed.Core.Settings
                 settings.FuelConsumptionEnabled = race.FuelConsumptionEnabled.Value;
             if (race.TireWearEnabled.HasValue)
                 settings.TireWearEnabled = race.TireWearEnabled.Value;
+            if (race.BriefStatusReports.HasValue)
+                settings.BriefStatusReports = race.BriefStatusReports.Value;
+            if (race.ReportLapAndTurn.HasValue)
+                settings.ReportLapAndTurn = race.ReportLapAndTurn.Value;
             if (race.RandomCustomTracks.HasValue)
                 settings.RandomCustomTracks = race.RandomCustomTracks.Value;
             if (race.RandomCustomVehicles.HasValue)

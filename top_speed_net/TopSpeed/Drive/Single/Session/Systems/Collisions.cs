@@ -33,6 +33,8 @@ namespace TopSpeed.Drive.Single.Session.Systems
         private readonly Func<int> _getPlayerNumber;
         private readonly Func<int> _getPlayerCount;
         private readonly Func<bool> _isInPitStop;
+        private readonly Func<bool> _isFinished;
+        private readonly Func<bool> _isStarted;
         private readonly HashSet<ulong> _activePairs = new HashSet<ulong>();
 
         public Collisions(
@@ -43,7 +45,9 @@ namespace TopSpeed.Drive.Single.Session.Systems
             ComputerPlayer?[] players,
             Func<int> getPlayerNumber,
             Func<int> getPlayerCount,
-            Func<bool> isInPitStop)
+            Func<bool> isInPitStop,
+            Func<bool> isFinished,
+            Func<bool> isStarted)
             : base(name, order)
         {
             _track = track ?? throw new ArgumentNullException(nameof(track));
@@ -52,15 +56,26 @@ namespace TopSpeed.Drive.Single.Session.Systems
             _getPlayerNumber = getPlayerNumber ?? throw new ArgumentNullException(nameof(getPlayerNumber));
             _getPlayerCount = getPlayerCount ?? throw new ArgumentNullException(nameof(getPlayerCount));
             _isInPitStop = isInPitStop ?? throw new ArgumentNullException(nameof(isInPitStop));
+            _isFinished = isFinished ?? throw new ArgumentNullException(nameof(isFinished));
+            _isStarted = isStarted ?? throw new ArgumentNullException(nameof(isStarted));
         }
 
         public override void Update(TopSpeed.Drive.Session.SessionContext context, float elapsed)
         {
+            // Collisions only exist once the race is underway; before the start the field is packed
+            // together on the grid, so contact there would be spurious. This single gate replaces the
+            // per-car "is running" checks that used to keep grid-bound cars apart as a side effect.
+            if (!_isStarted())
+                return;
+
             var roadModel = ResolveRoadModel();
             var actors = new List<Actor>(_getPlayerCount() + 1);
             var activePairs = new HashSet<ulong>();
 
-            if (_car.State == Vehicles.CarState.Running && !_isInPitStop())
+            // A car is a collision target unless it is finished (or, for the player, pitting/ghosted).
+            // Engine state is irrelevant: sitting still with the engine off, coasting, stalled, or
+            // crashed and not yet restarted all remain hittable by cars still racing.
+            if (!_isInPitStop() && !_isFinished())
                 actors.Add(new Actor((uint)_getPlayerNumber(), isPlayer: true, bot: null));
 
             for (var i = 0; i < _getPlayerCount(); i++)
@@ -69,7 +84,7 @@ namespace TopSpeed.Drive.Single.Session.Systems
                 if (bot == null)
                     continue;
 
-                if (bot.State == ComputerPlayer.ComputerState.Running && !bot.Finished)
+                if (!bot.Finished)
                     actors.Add(new Actor((uint)bot.PlayerNumber, isPlayer: false, bot: bot));
             }
 

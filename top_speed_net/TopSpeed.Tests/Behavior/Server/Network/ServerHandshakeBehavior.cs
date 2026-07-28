@@ -125,7 +125,7 @@ public sealed class ServerHandshakeBehaviorTests
         var compat = ProtocolCompat.Resolve(ProtocolProfile.ClientSupported, ProtocolProfile.ServerSupported);
         compat.IsCompatible.Should().BeTrue();
 
-        var status = RaceServer.ResolveEffectiveCompatibilityStatusForTest(compat, ProtocolProfile.ClientSupported.MinSupported);
+        var status = RaceServer.ResolveEffectiveCompatibilityStatusForTest(compat, new ProtocolVer(2026, 7, 12, 1));
         status.Should().Be(ProtocolCompatStatus.CompatibleDowngrade);
     }
 

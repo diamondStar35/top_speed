@@ -649,6 +649,7 @@ The server has a small set of feature flags that turn major features on or off f
 - `text_chat` enables global and per-room text chat. With it off, the chat shortcuts on clients have no effect and chat history stays empty for everything that happens after the flag is turned off.
 - `voice_chat` enables the voice relay used by the communicator. With it off, communicator transmissions are silently dropped on the server side; clients can still toggle their own communicator on, but no audio reaches other players. Streamed media through the communicator also goes through this flag.
 - `custom_tracks` enables custom track use across the whole server. With it off, room hosts cannot enable the "Custom tracks" game rule, and the server's custom track catalog is not offered to clients. Built-in tracks are unaffected. See section 16 for how custom tracks move between client and server when this is on.
+- `custom_vehicles` enables custom vehicle use across the whole server. With it off, room hosts cannot enable the "Custom vehicles" game rule, and the server's custom vehicle catalog is not offered to clients. Built-in vehicles are unaffected. Unlike the "Custom tracks" game rule, the "Custom vehicles" game rule starts off for a new room, so a host has to turn it on before players can pick a custom vehicle.
 
 Changes to feature flags apply to traffic that arrives after the flag is changed. Players already in the middle of a transmission, chat send, or upload usually finish their current action; new ones honor the new flag.
 

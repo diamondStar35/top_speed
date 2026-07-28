@@ -76,6 +76,13 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
+                if (!_owner._config.Features.CustomVehicles
+                    && (requestedFlags & (uint)RoomGameRules.CustomVehicles) != 0u)
+                {
+                    _owner.SendProtocolMessage(player, ProtocolMessageCode.Failed, LocalizationService.Mark("Custom vehicles are disabled on this server."));
+                    return;
+                }
+
                 var allowedFlags = GameRulesPolicy.ResolveAllowedGameRules(_owner._config.Features);
                 var normalizedFlags = requestedFlags & allowedFlags;
                 if (room.GameRulesFlags == normalizedFlags)

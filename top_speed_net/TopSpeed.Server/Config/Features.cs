@@ -10,6 +10,9 @@ namespace TopSpeed.Server.Config
         [JsonPropertyName("custom_tracks")]
         public bool CustomTracks { get; set; } = true;
 
+        [JsonPropertyName("custom_vehicles")]
+        public bool CustomVehicles { get; set; } = true;
+
         [JsonPropertyName("voice_chat")]
         public bool VoiceChat { get; set; } = true;
 
@@ -19,6 +22,7 @@ namespace TopSpeed.Server.Config
             {
                 TextChat = TextChat,
                 CustomTracks = CustomTracks,
+                CustomVehicles = CustomVehicles,
                 VoiceChat = VoiceChat
             };
         }

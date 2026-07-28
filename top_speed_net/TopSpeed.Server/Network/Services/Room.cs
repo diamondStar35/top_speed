@@ -86,8 +86,8 @@ namespace TopSpeed.Server.Network
                 });
                 registry.Add("room", Command.VehiclePackageCatalogRequest, (player, payload, endPoint) =>
                 {
-                    if (PacketSerializer.TryReadVehiclePackageCatalogRequest(payload, out _))
-                        _owner.SendVehiclePackageCatalog(player, _owner.BuildVehiclePackageCatalog());
+                    if (PacketSerializer.TryReadVehiclePackageCatalogRequest(payload, out var vehicleCatalogRequest))
+                        HandleVehiclePackageCatalogRequest(player, vehicleCatalogRequest);
                     else
                         _owner.PacketFail(endPoint, Command.VehiclePackageCatalogRequest);
                 });

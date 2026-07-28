@@ -195,6 +195,7 @@ namespace TopSpeed.Server.Commands
                 new List<OptionItem>
                 {
                     new OptionItem("custom_tracks", LocalizationService.Mark("Custom tracks"), OptionValueType.Bool, ToggleCustomTracks, () => CommandInput.FormatOnOff(_settings.Features.CustomTracks)),
+                    new OptionItem("custom_vehicles", LocalizationService.Mark("Custom vehicles"), OptionValueType.Bool, ToggleCustomVehicles, () => CommandInput.FormatOnOff(_settings.Features.CustomVehicles)),
                     new OptionItem("text_chat", LocalizationService.Mark("Text chat"), OptionValueType.Bool, ToggleTextChat, () => CommandInput.FormatOnOff(_settings.Features.TextChat)),
                     new OptionItem("voice_chat", LocalizationService.Mark("Voice chat"), OptionValueType.Bool, ToggleVoiceChat, () => CommandInput.FormatOnOff(_settings.Features.VoiceChat))
                 });
@@ -402,6 +403,13 @@ namespace TopSpeed.Server.Commands
             _settings.Features.CustomTracks = !_settings.Features.CustomTracks;
             ApplyFeatureSettings();
             ConsoleSink.WriteLine(BuildOptionLine(LocalizationService.Mark("Custom tracks"), CommandInput.FormatOnOff(_settings.Features.CustomTracks)));
+        }
+
+        private void ToggleCustomVehicles()
+        {
+            _settings.Features.CustomVehicles = !_settings.Features.CustomVehicles;
+            ApplyFeatureSettings();
+            ConsoleSink.WriteLine(BuildOptionLine(LocalizationService.Mark("Custom vehicles"), CommandInput.FormatOnOff(_settings.Features.CustomVehicles)));
         }
 
         private void ToggleCheckForUpdatesOnStartup()

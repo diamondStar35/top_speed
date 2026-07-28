@@ -38,6 +38,24 @@ namespace TopSpeed.Server.Network
                     _owner._race.TryStartAfterLoadout(room);
             }
 
+            // Any room member may request the vehicle catalog (unlike tracks, every player picks
+            // their own vehicle), so this resolves the player's room rather than a hosted room.
+            public void HandleVehiclePackageCatalogRequest(PlayerConnection player, PacketVehiclePackageCatalogRequest packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+
+                if (!IsCustomVehicleSelectionEnabled(room))
+                {
+                    _owner.SendVehiclePackageCatalog(player, new PacketVehiclePackageCatalog());
+                    return;
+                }
+
+                _owner.SendVehiclePackageCatalog(player, _owner.BuildVehiclePackageCatalog());
+            }
+
             public void HandleVehiclePackageReady(PlayerConnection player, PacketVehiclePackageReady packet)
             {
                 if (!player.RoomId.HasValue)
@@ -59,6 +77,14 @@ namespace TopSpeed.Server.Network
                 return room != null
                     && _owner._config.Features.CustomTracks
                     && (room.GameRulesFlags & (uint)RoomGameRules.CustomTracks) != 0u;
+            }
+
+            // Custom vehicles require both the server-wide feature and the room's game rule.
+            private bool IsCustomVehicleSelectionEnabled(GameRoom room)
+            {
+                return room != null
+                    && _owner._config.Features.CustomVehicles
+                    && (room.GameRulesFlags & (uint)RoomGameRules.CustomVehicles) != 0u;
             }
         }
     }

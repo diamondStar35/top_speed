@@ -94,6 +94,12 @@ namespace TopSpeed.Core.Multiplayer
                 hint: LocalizationService.Mark("When enabled, room hosts can upload and select custom tracks from this server.")));
 
             items.Add(new CheckBox(
+                LocalizationService.Mark("Custom vehicles"),
+                GetRoomOptionsCustomVehiclesEnabled,
+                SetRoomOptionsCustomVehiclesEnabled,
+                hint: LocalizationService.Mark("When enabled, players can choose custom vehicles offered by this server.")));
+
+            items.Add(new CheckBox(
                 LocalizationService.Mark("Enable fuel consumption"),
                 GetRoomOptionsFuelConsumptionEnabled,
                 SetRoomOptionsFuelConsumptionEnabled,

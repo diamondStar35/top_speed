@@ -35,7 +35,10 @@ namespace TopSpeed.Server.Network
 
                 CarType selectedCar;
                 var selectedVehicleHash = string.Empty;
+                // A custom vehicle is only honoured when the server feature and the room's game rule
+                // both allow it; otherwise the selection falls through to the built-in path below.
                 if (ready.Vehicle != null && ready.Vehicle.IsCustomPackage
+                    && IsCustomVehicleSelectionEnabled(room)
                     && _owner.TryGetVehiclePackage(ready.Vehicle.Hash, out var vehicleRecord))
                 {
                     selectedCar = CarType.CustomVehicle;

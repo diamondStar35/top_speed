@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 18:44+0300\n"
-"PO-Revision-Date: 2026-07-27 22:29\n"
+"PO-Revision-Date: 2026-07-28 00:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -568,7 +568,7 @@ msgstr "Número de opção inválido."
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "Valor de pit inválido '{0}'. Use pit_entry ou pit_exit."
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:37
 msgid "Invalid player identification packet."
@@ -695,7 +695,7 @@ msgstr "Idioma"
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:84
 msgid "Laps must be between 1 and 500."
-msgstr ""
+msgstr "As voltas devem estar entre 1 e 500."
 
 #: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:51
 msgid "List connected players and protocol versions."
@@ -1411,7 +1411,7 @@ msgstr "O caminho da pista deve apontar para um arquivo .tsm dentro de uma pasta
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "A pista define 'pit_area = false', mas também define segmentos de entrada e saída do pit; o pit está desativado e os segmentos do pit são ignorados."
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
 msgid "Track source path is missing, so sound assets cannot be resolved."

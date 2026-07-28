@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 18:44+0300\n"
-"PO-Revision-Date: 2026-07-27 22:29\n"
+"PO-Revision-Date: 2026-07-28 00:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3633,7 +3633,7 @@ msgstr "Alguns arquivos de pista personalizada são inválidos e foram pulados."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Tracks.cs:113
 msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
-msgstr ""
+msgstr "Alguns arquivos de pistas personalizadas relataram problemas. Pistas com erros foram ignoradas; pistas com avisos foram carregadas."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:83
 msgid "Some custom vehicle files are invalid and were skipped."
@@ -3641,7 +3641,7 @@ msgstr "Alguns arquivos de veículo personalizado são inválidos e foram pulado
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Vehicles.cs:100
 msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
-msgstr ""
+msgstr "Alguns arquivos de veículos personalizados relataram problemas. Veículos com erros foram ignorados; veículos com avisos foram carregados."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\Issues.cs:47
 msgid "Some settings were missing or invalid. Review these details."
@@ -4055,15 +4055,15 @@ msgstr "A pista selecionada não pôde ser carregada. A sessão de condução n�
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:34
 msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
-msgstr ""
+msgstr "A pista selecionada não tem área do pit, mas o consumo de combustível e o desgaste dos pneus estão habilitados. Sem uma área de Pit, não é possível reabastecer ou substituir os pneus durante a corrida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:40
 msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
-msgstr ""
+msgstr "A pista selecionada não tem área de pit, mas o consumo de combustível está ativado. Sem uma área de pit, você não pode reabastecer durante a corrida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\PitAreaWarning.cs:44
 msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
-msgstr ""
+msgstr "A pista selecionada não tem área de pit, mas o desgaste dos pneus está ativado. Sem uma área de pit, não é possível substituir os pneus durante a corrida."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Setup.cs:63
 msgid "The selected vehicle does not support the selected transmission mode."
@@ -4161,7 +4161,7 @@ msgstr "Este menu de atalhos não possui mapeamentos para redefinir."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\PitStop.cs:230
 msgid "This track has no pit area."
-msgstr ""
+msgstr "Esta pista não tem área de pit."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Actions\Loadout.cs:35
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Drive\Transmission.cs:18
@@ -4203,7 +4203,7 @@ msgstr "Contra o tempo."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Drive\Pit\PitStopMenu.cs:19
 msgid "Tires"
-msgstr ""
+msgstr "Pneus"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Lifecycle\Shortcuts.cs:213
 msgid "Toggle media loop"
@@ -4313,7 +4313,7 @@ msgstr "O caminho da pista deve apontar para um arquivo .tsm dentro de uma pasta
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "A pista define 'pit_area = false', mas também define segmentos de entrada e saída do pit; o pit está desativado e os segmentos do pit são ignorados."
 
 #: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
 msgid "Track source path is missing, so sound assets cannot be resolved."
@@ -4797,7 +4797,7 @@ msgstr "Quando marcado, os downloads dos pacotes de atualização são roteados 
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:100
 msgid "When enabled, cars burn fuel and players must pit to refuel."
-msgstr ""
+msgstr "Quando ativado, os carros queimam combustível e os jogadores devem ir até o pit para abastecer."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:94
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4809,7 +4809,7 @@ msgstr "Quando ativado, o acelerador, o freio e a direção aumentam gradualment
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:106
 msgid "When enabled, tires wear and lose grip and players must pit to replace them."
-msgstr ""
+msgstr "Quando ativado, os pneus desgastam e perdem a aderência e os jogadores devem ir até o pit para substituí-los."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Options\Menus.cs:88
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
@@ -4817,11 +4817,11 @@ msgstr "Quando ativado, as colisões entre veículos são desativadas e os veíc
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:75
 msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
-msgstr ""
+msgstr "Quando ativado, seu carro queima combustível e você deve ir até o pit para abastecer. Desative para correr sem limites de combustível."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Menu\Build\Options\Drive.cs:79
 msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
-msgstr ""
+msgstr "Quando ativado, seus pneus se desgastam e perdem a aderência e você deve ir até o pit para substituí-los. Desative para correr sem desgaste dos pneus."
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Multiplayer\Rooms\Menu\LobbyAndControls.cs:43
 msgid "Who is currently present in this game room"
@@ -5127,7 +5127,7 @@ msgstr "distância fixa"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:243
 msgid "fuel consumption off"
-msgstr ""
+msgstr "consumo de combustível desativado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Parse\Powertrain.cs:28
 #, csharp-format
@@ -5304,12 +5304,12 @@ msgstr "temperatura óptima"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:58
 #, csharp-format
 msgid "optional sound not found, no sound will play: {0}"
-msgstr ""
+msgstr "som opcional não encontrado, nenhum som será reproduzido: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:62
 #, csharp-format
 msgid "optional sound problem, no sound will play: {0}"
-msgstr ""
+msgstr "problema de som opcional, nenhum som será reproduzido: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\TireTemperatureStatus.cs:15
 msgid "overheated tires"
@@ -5393,12 +5393,12 @@ msgstr "solicitação de remoção de bot"
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:57
 #, csharp-format
 msgid "required sound not found, will use built in fallback: {0}"
-msgstr ""
+msgstr "som necessário não encontrado, usará fallback embutido: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:61
 #, csharp-format
 msgid "required sound problem, will use built in fallback: {0}"
-msgstr ""
+msgstr "problema de som necessário, usará fallback embutido: {0}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Core.cs:40
 msgid "rev_limiter must be between idle_rpm and max_rpm."
@@ -5478,7 +5478,7 @@ msgstr "este menu"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Drive\Session\Systems\CoreRequests.cs:289
 msgid "tire wear off"
-msgstr ""
+msgstr "desgaste dos pneus desativado"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Vehicles\Parsing\Build\Validation\Tires.cs:35
 msgid "tire_aspect must be between 5 and 150."
@@ -5786,7 +5786,7 @@ msgstr "{0}: posição {1}, tempo {2}."
 #: D:\top_speed\top_speed_net\TopSpeed\Core\Selection\VehicleSource.cs:91
 #, csharp-format
 msgid "{0}: {1}"
-msgstr ""
+msgstr "{0}: {1}"
 
 #: D:\top_speed\top_speed_net\TopSpeed\Game\Settings\VolumeShortcuts.cs:161
 #, csharp-format

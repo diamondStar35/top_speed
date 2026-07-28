@@ -5,6 +5,20 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## 2026.7.28.1
+### Game Changes
+- You can now check your car's status while the pit stop menu is open. Fuel, tire wear, distance, speed, gear and race progress all answer while you decide whether to refuel, change tires, or both. You can also sound the horn during the whole pit stop, including in the pit box and along the pit roads.
+- Status keys now keep working after you finish a race while you wait for the rest of the field, instead of going silent. You can also rev your engine while waiting; the car stays in neutral and cannot move.
+- Added a "Brief status reports" option in race settings. When turned on, spoken status reports are shortened for players who already know their keys: labels such as "lap percentage" and "gear" are dropped, and the number row gives a quick rundown.
+- Added a "Report lap and turn instead of race percentage" option in race settings. The number row and player information then report a car's lap and the turn it is in or approaching, spoken like a spotter, for your own car and any other driver you check.
+- Added a "Curve announcement method" option in race settings. The copilot can signal upcoming curves with tones instead of speech. The tighter the curve the higher the tone, and each tone plays from the side the curve turns toward.
+- Keys that a menu uses to navigate no longer double as driving keys while that menu is open, so a status key mapped to an arrow key moves the menu without also speaking.
+- Improved the localization workflow so translation updates are easier to keep current, and added more Spanish, Brazilian Portuguese and Chinese translations.
+
+### Server Changes
+- Improved the localization workflow so translation updates are easier to keep current, and added more Brazilian Portuguese translations, including the pit area and lap limit messages.
+
+
 ## 2026.7.23.1
 ### Game Changes
 - Fixed a bug that could wreck your car for no reason as you crossed the start/finish line or pulled out of the pit lane, most often during longer races. For a single frame the road shifted a full track-width sideways and the game counted you as off the track.

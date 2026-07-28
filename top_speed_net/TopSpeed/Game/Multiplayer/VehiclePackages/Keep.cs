@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
@@ -38,6 +39,10 @@ namespace TopSpeed.Game
             ShowNextVehicleKeepPrompt();
         }
 
+        private const int VehicleKeepBothChoiceId = 4101;
+        private const int VehicleKeepReplaceChoiceId = 4102;
+        private const int VehicleKeepMineChoiceId = 4103;
+
         private void ShowNextVehicleKeepPrompt()
         {
             if (_pendingVehicleKeepPrompts == null || _pendingVehicleKeepPrompts.Count == 0)
@@ -47,9 +52,19 @@ namespace TopSpeed.Game
             }
 
             var hash = _pendingVehicleKeepPrompts.Dequeue();
-            var name = _multiplayerVehiclePackageCache.TryGetValue(hash, out var pkg) && !string.IsNullOrWhiteSpace(pkg.DisplayName)
-                ? pkg.DisplayName
+            var hasPackage = _multiplayerVehiclePackageCache.TryGetValue(hash, out var pkg) && pkg != null;
+            var name = hasPackage && !string.IsNullOrWhiteSpace(pkg!.DisplayName)
+                ? pkg!.DisplayName
                 : LocalizationService.Mark("Custom vehicle");
+
+            // Saving would land on a folder a DIFFERENT vehicle already occupies (a kept copy of
+            // this same vehicle is filtered out before prompting), so offer the choice rather than
+            // silently saving a second copy under an invented name.
+            if (hasPackage && TryFindKeptVehicleConflict(pkg!, out var existingFolder, out var existingFolderName))
+            {
+                ShowVehicleKeepConflictPrompt(hash, name, existingFolder, existingFolderName);
+                return;
+            }
 
             var question = new Question(
                 LocalizationService.Mark("Keep custom vehicle?"),
@@ -65,6 +80,168 @@ namespace TopSpeed.Game
                 new QuestionButton(QuestionId.No, LocalizationService.Mark("No"), flags: QuestionButtonFlags.Default));
 
             _multiplayerCoordinator.Questions.Show(question);
+        }
+
+        private void ShowVehicleKeepConflictPrompt(string hash, string name, string existingFolder, string existingFolderName)
+        {
+            var question = new Question(
+                LocalizationService.Mark("Keep custom vehicle?"),
+                LocalizationService.Format(
+                    LocalizationService.Mark("You already have a vehicle in the folder \"{0}\". What do you want to do with the downloaded \"{1}\"?"),
+                    existingFolderName,
+                    name),
+                // Escaping keeps what the player already has: the only destructive option here is
+                // replace, so it must never be what happens by accident.
+                VehicleKeepMineChoiceId,
+                resultId =>
+                {
+                    if (resultId == VehicleKeepBothChoiceId)
+                    {
+                        KeepVehiclePackageOnDisk(hash);
+                        ShowNextVehicleKeepPrompt();
+                        return;
+                    }
+
+                    if (resultId == VehicleKeepReplaceChoiceId)
+                    {
+                        ConfirmReplaceKeptVehicle(hash, name, existingFolder, existingFolderName);
+                        return;
+                    }
+
+                    ShowNextVehicleKeepPrompt();
+                },
+                new QuestionButton(VehicleKeepBothChoiceId, LocalizationService.Mark("Keep both")),
+                new QuestionButton(VehicleKeepReplaceChoiceId, LocalizationService.Mark("Replace mine with the downloaded one")),
+                new QuestionButton(VehicleKeepMineChoiceId, LocalizationService.Mark("Keep mine"), flags: QuestionButtonFlags.Default));
+
+            _multiplayerCoordinator.Questions.Show(question);
+        }
+
+        // Replacing deletes a vehicle the player may have built themselves, and it is the only step
+        // in this flow that cannot be undone, so it is confirmed separately.
+        private void ConfirmReplaceKeptVehicle(string hash, string name, string existingFolder, string existingFolderName)
+        {
+            var question = new Question(
+                LocalizationService.Mark("Replace vehicle?"),
+                LocalizationService.Format(
+                    LocalizationService.Mark("This permanently deletes the vehicle in the folder \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"),
+                    existingFolderName,
+                    name),
+                QuestionId.No,
+                resultId =>
+                {
+                    if (resultId == QuestionId.Yes)
+                        ReplaceKeptVehicleOnDisk(hash, existingFolder);
+                    ShowNextVehicleKeepPrompt();
+                },
+                new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, replace it")),
+                new QuestionButton(QuestionId.No, LocalizationService.Mark("No, keep mine"), flags: QuestionButtonFlags.Default));
+
+            _multiplayerCoordinator.Questions.Show(question);
+        }
+
+        // True when the folder this vehicle would be saved into is already taken. Reports the full
+        // path (for deleting) and the folder name relative to the Vehicles folder (for speaking).
+        private bool TryFindKeptVehicleConflict(DownloadedVehiclePackage pkg, out string existingFolder, out string existingFolderName)
+        {
+            existingFolder = string.Empty;
+            existingFolderName = string.Empty;
+
+            var vehiclesFolder = GetClientVehiclesFolder();
+            var folderName = ResolveKeptVehicleFolderName(pkg);
+            var candidate = Path.Combine(vehiclesFolder, folderName);
+            if (!IsInsideVehiclesFolder(candidate, vehiclesFolder) || !Directory.Exists(candidate))
+                return false;
+
+            existingFolder = candidate;
+            existingFolderName = folderName.Replace(Path.DirectorySeparatorChar, '/');
+            return true;
+        }
+
+        private void ReplaceKeptVehicleOnDisk(string hash, string existingFolder)
+        {
+            var vehiclesFolder = GetClientVehiclesFolder();
+            if (!IsInsideVehiclesFolder(existingFolder, vehiclesFolder))
+                return;
+
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
+            if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
+                return;
+            if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
+                return;
+
+            // The old vehicle is moved aside rather than deleted outright, so if writing the
+            // replacement fails part way through it can be put back instead of leaving the player
+            // with neither. The whole folder goes, not just the files being overwritten, so sound
+            // files belonging to the replaced vehicle cannot linger and be picked up by the new one.
+            if (!TryReserveReplacedVehicleBackupPath(existingFolder, out var backupFolder))
+                return;
+
+            try
+            {
+                Directory.Move(existingFolder, backupFolder);
+            }
+            catch (IOException)
+            {
+                return;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return;
+            }
+
+            if (TryWriteVehiclePackageFiles(existingFolder, pkg.Payload, out _))
+            {
+                TryDeleteDirectory(backupFolder);
+                InvalidateLocalVehicleIndex();
+                return;
+            }
+
+            // Writing failed: discard the partial copy and restore what the player had.
+            TryDeleteDirectory(existingFolder);
+            try
+            {
+                Directory.Move(backupFolder, existingFolder);
+            }
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+        }
+
+        private static bool TryReserveReplacedVehicleBackupPath(string existingFolder, out string backupFolder)
+        {
+            for (var attempt = 0; attempt < 100; attempt++)
+            {
+                var candidate = existingFolder + ".replacing" + (attempt == 0
+                    ? string.Empty
+                    : attempt.ToString(CultureInfo.InvariantCulture));
+                if (Directory.Exists(candidate))
+                    continue;
+
+                backupFolder = candidate;
+                return true;
+            }
+
+            backupFolder = string.Empty;
+            return false;
+        }
+
+        private static void TryDeleteDirectory(string folder)
+        {
+            try
+            {
+                if (Directory.Exists(folder))
+                    Directory.Delete(folder, recursive: true);
+            }
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
         }
 
         // "Kept" = present in the client's own Vehicles folder (also usable offline), matched by
@@ -98,14 +275,10 @@ namespace TopSpeed.Game
                 return;
 
             // A kept copy of THIS vehicle is excluded before prompting, so an existing folder of the
-            // same name means a different vehicle already claimed it; disambiguate with a hash suffix.
-            if (Directory.Exists(destination))
-            {
-                var suffix = normalizedHash.Length >= 8 ? normalizedHash.Substring(0, 8) : normalizedHash;
-                destination = Path.Combine(vehiclesFolder, folderName + "_" + suffix);
-                if (!IsInsideVehiclesFolder(destination, vehiclesFolder))
-                    return;
-            }
+            // same name means a different vehicle already claimed it and the player chose to keep
+            // both; save alongside it under the next free number.
+            if (Directory.Exists(destination) && !TryResolveFreeNumberedFolder(vehiclesFolder, folderName, out destination))
+                return;
 
             if (TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
                 InvalidateLocalVehicleIndex();
@@ -143,6 +316,28 @@ namespace TopSpeed.Game
                 : Path.GetFileNameWithoutExtension(pkg.Payload?.Manifest?.TsvFileName ?? string.Empty);
             var fallbackName = SanitizeVehicleFolderSegment(fallback);
             return fallbackName.Length == 0 ? "custom-vehicle" : fallbackName;
+        }
+
+        // "Chevy Laguna 2", then 3, and so on. The folder name is read aloud when two vehicles share
+        // a name, so a plain number beats the content hash this used to append.
+        private static bool TryResolveFreeNumberedFolder(string vehiclesFolder, string folderName, out string destination)
+        {
+            destination = string.Empty;
+            for (var number = 2; number <= 99; number++)
+            {
+                var candidate = Path.Combine(
+                    vehiclesFolder,
+                    folderName + " " + number.ToString(CultureInfo.InvariantCulture));
+                if (!IsInsideVehiclesFolder(candidate, vehiclesFolder))
+                    return false;
+                if (Directory.Exists(candidate))
+                    continue;
+
+                destination = candidate;
+                return true;
+            }
+
+            return false;
         }
 
         // Makes a single path segment safe to create on disk. Returns an empty string when nothing

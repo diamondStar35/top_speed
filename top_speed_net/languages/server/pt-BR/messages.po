@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-27 18:44+0300\n"
-"PO-Revision-Date: 2026-07-28 00:13\n"
+"POT-Creation-Date: 2026-07-27 22:42-0400\n"
+"PO-Revision-Date: 2026-07-28 10:24\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,1818 +16,1780 @@ msgstr ""
 "X-Crowdin-Language: pt-BR\n"
 "X-Crowdin-File: /main/top_speed_net/languages/server/messages.pot\n"
 "X-Crowdin-File-ID: 13\n"
-"Language: pt_BR\n"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:70
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --log <levels>          Alias for --log-level."
 msgstr "  --log <niveis>          Atalho para --log-level."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:71
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --log-file <path>       Output log file path (e.g. log.txt)."
 msgstr "  --log-file <caminho>    Caminho do arquivo de log de saída (ex: log.txt)."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:69
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --log-level <levels>    Comma-separated levels: error,warning,info,debug,all."
 msgstr "  --log-level <niveis>    Níveis separados por vírgula: error,warning,info,debug,all."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:67
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --max-players <number>  Max connected players (1-255)."
 msgstr "  --max-players <numero>  Máximo de jogadores conectados (1-255)."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:68
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --motd <text>           Message of the day."
 msgstr "  --motd <texto>           Mensagem do dia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:66
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  --port <number>         Server port (1-65535)."
 msgstr "  --port <numero>         Porta do servidor (1-65535)."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:72
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  -h, --help              Show this help."
 msgstr "  -h, --help              Mostra esta ajuda."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:63
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "  TopSpeed.Server [options]"
 msgstr "  TopSpeed.Server [opções]"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:494
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "(empty)"
 msgstr "(vazio)"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:54
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:76
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "A multiplayer race is not currently active."
 msgstr "Uma corrida multijogador não está ativa no momento."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:56
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "A new update is available for the server. Your current server version is {0}. Available version: {1}."
 msgstr "Uma nova atualização está disponível para o servidor. A versão atual do seu servidor é {0}. Versão disponível: {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:105
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:12
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:27
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Announcements.cs
 msgid "A player"
 msgstr "Um jogador"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\GameStart.cs:32
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 msgid "A race is already in progress."
 msgstr "Uma corrida já está em andamento."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:122
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "All loadouts ready: room={0} \"{1}\", starting race."
 msgstr "Todos os equipamentos prontos: sala={0} \"{1}\", iniciando corrida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\RoomTexts.cs:7
+#: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "All players are ready. Starting game."
 msgstr "Todos os jogadores estão prontos. Iniciando o jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:211
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:442
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Allow duplicate call signs"
 msgstr "Permitir indicativos de chamada duplicados"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:124
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Available commands:"
 msgstr "Comandos disponíveis:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:272
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "BMW 3 Series"
 msgstr "BMW Série 3"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:253
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:280
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:313
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Back"
 msgstr "Voltar"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:209
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:418
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Block repeated letters in call signs"
 msgstr "Bloquear letras repetidas em indicativos de chamada"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:18
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:20
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "Bot"
 msgstr "Bot"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:88
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Drive.cs
 #, csharp-format
 msgid "Bot crashed: room={0}, bot={1}, number={2}, y={3:0.0}."
 msgstr "Bot bateu: sala={0}, bot={1}, número={2}, y={3:0.0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Drive.cs:110
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Drive.cs
 #, csharp-format
 msgid "Bot finished: room={0}, bot={1}, number={2}, place={3}."
 msgstr "Bot terminou: sala={0}, bot={1}, número={2}, posição={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Audio.cs:54
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Audio.cs
 #, csharp-format
 msgid "Bot horn triggered: bot={0}, number={1}, reason={2}, duration={3:0.00}s."
 msgstr "Buzina do bot acionada: bot={0}, número={1}, motivo={2}, duração={3:0.00}s."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Phases.cs:150
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Phases.cs
 #, csharp-format
 msgid "Bot recovered and resumed: room={0}, bot={1}, number={2}."
 msgstr "Bot se recuperou e retomou: sala={0}, bot={1}, número={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Phases.cs:103
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Phases.cs
 #, csharp-format
 msgid "Bot restarting after crash: room={0}, bot={1}, number={2}, restartDelay={3:0.00}s, startDelay={4:0.00}s."
 msgstr "Bot reiniciando após batida: sala={0}, bot={1}, número={2}, atrasoDeReinício={3:0.00}s, atrasoDeInício={4:0.00}s."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Phases.cs:70
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Phases.cs
 #, csharp-format
 msgid "Bot started racing: room={0}, bot={1}, number={2}."
 msgstr "Bot começou a correr: sala={0}, bot={1}, número={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:76
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 #, csharp-format
 msgid "Bot {0}"
 msgstr "Bot {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:31
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 msgid "Bots can only be added in race-with-bots rooms."
 msgstr "Bots só podem ser adicionados em salas do tipo corrida com bots."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:76
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 msgid "Bots can only be removed in race-with-bots rooms."
 msgstr "Bots só podem ser removidos em salas do tipo corrida com bots."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:25
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 msgid "Cannot add bots while race setup or race is active."
 msgstr "Não é possível adicionar bots enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:67
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "Cannot change game rules while race setup or race is active."
 msgstr "Não é possível alterar as regras do jogo enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:78
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Cannot change laps while race setup or race is active."
 msgstr "Não é possível alterar as voltas enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:24
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "Cannot change player limit while race setup or race is active."
 msgstr "Não é possível alterar o limite de jogadores enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:24
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Cannot change track while race setup or race is active."
 msgstr "Não é possível alterar a pista enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:70
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 msgid "Cannot remove bots while race setup or race is active."
 msgstr "Não é possível remover bots enquanto a configuração da corrida ou a corrida estiver ativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:44
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "Cannot set lower than current players in room."
 msgstr "Não é possível definir um valor menor do que a quantidade atual de jogadores na sala."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:59
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Changes:"
 msgstr "Alterações:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:186
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:411
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Check for updates on startup"
 msgstr "Verificar atualizações ao iniciar"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:30
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Checking for update..."
 msgstr "Verificando atualizações..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:315
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Choose server architecture:"
 msgstr "Escolha a arquitetura do servidor:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:282
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Choose server language:"
 msgstr "Escolha o idioma do servidor:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:114
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Command '{0}' failed: {1}"
 msgstr "O comando '{0}' falhou: {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:117
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Command failed. Check server logs for details."
 msgstr "Falha no comando. Verifique os logs do servidor para obter detalhes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:91
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 #, csharp-format
 msgid "Connection closed by server. Reason: {0}."
 msgstr "Conexão fechada pelo servidor. Motivo: {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:65
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection closed due to protocol error."
 msgstr "Conexão fechada devido a um erro de protocolo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:77
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection closed."
 msgstr "Conexão fechada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:134
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 #, csharp-format
 msgid "Connection established: playerId={0}, endpoint={1}, protocol={2}."
 msgstr "Conexão estabelecida: playerId={0}, endpoint={1}, protocol={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:53
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:84
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection lost. Reconnect is available for a short time."
 msgstr "Conexão perdida. A reconexão estará disponível por um curto período."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:108
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Connection pending protocol negotiation: playerId={0}, endpoint={1}."
 msgstr "Conexão pendente de negociação de protocolo: playerId={0}, endpoint={1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:63
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection refused due to invalid protocol negotiation."
 msgstr "Conexão recusada devido a uma negociação de protocolo inválida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:196
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection refused due to protocol mismatch."
 msgstr "Conexão recusada devido a incompatibilidade de protocolo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:87
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection rejected by transport policy."
 msgstr "Conexão rejeitada pela política de transporte."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:250
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Connection removed: player={0}, endpoint={1}, room={2}, reason={3}, mappedReason={4}, mappedState={5}."
 msgstr "Conexão removida: player={0}, endpoint={1}, room={2}, reason={3}, mappedReason={4}, mappedState={5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:86
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 #, csharp-format
 msgid "Connection resumed: playerId={0}, endpoint={1}, epoch={2}."
 msgstr "Conexão retomada: playerId={0}, endpoint={1}, epoch={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:51
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection setup timed out before authentication."
 msgstr "O tempo limite de configuração da conexão expirou antes da autenticação."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:190
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Connection suspended for reconnect: player={0}, endpoint={1}, room={2}, reason={3}."
 msgstr "Conexão suspensa para reconexão: player={0}, endpoint={1}, room={2}, reason={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:150
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:152
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "Could not launch updater: {0}"
 msgstr "Não foi possível iniciar o atualizador: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\CatalogState.cs:78
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Identity.cs:26
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/CatalogState.cs
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Identity.cs
 msgid "Custom track"
 msgstr "Pista personalizada"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:55
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Custom track package is not available on server."
 msgstr "O pacote de pista personalizada não está disponível no servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:197
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:404
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Custom tracks"
 msgstr "Pistas personalizadas"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:75
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:16
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are disabled on this server."
 msgstr "Pistas personalizadas estão desativadas neste servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:49
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:21
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are not enabled for this room."
 msgstr "Pistas personalizadas não estão ativadas para esta sala."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:182
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Discovery port"
 msgstr "Porta de descoberta"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:383
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Discovery port updated to {0}. Restart required for this change."
 msgstr "Porta de descoberta atualizada para {0}. É necessário reiniciar para aplicar esta alteração."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Discovery\DiscoveryService.cs:80
+#: top_speed_net/TopSpeed.Server/Network/Discovery/DiscoveryService.cs
 #, csharp-format
 msgid "Discovery receive failed: {0}"
 msgstr "Falha no recebimento da descoberta: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Discovery\DiscoveryService.cs:41
+#: top_speed_net/TopSpeed.Server/Network/Discovery/DiscoveryService.cs
 #, csharp-format
 msgid "Discovery service listening on {0}."
 msgstr "Serviço de descoberta escutando em {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Discovery\DiscoveryService.cs:53
+#: top_speed_net/TopSpeed.Server/Network/Discovery/DiscoveryService.cs
 msgid "Discovery service stopped."
 msgstr "Serviço de descoberta parado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:52
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Display server and protocol versions."
 msgstr "Exibe as versões do servidor e do protocolo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:102
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 #, csharp-format
 msgid "Download failed with status code {0}."
 msgstr "Falha no download com o código de status {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:97
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Download failed."
 msgstr "Falha no download."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:176
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 #, csharp-format
 msgid "Download failed: {0}"
 msgstr "Falha no download: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:167
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "Download timed out or was canceled."
 msgstr "O download expirou ou foi cancelado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:86
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Downloading..."
 msgstr "Baixando..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:19
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped packet with invalid header from {0}."
 msgstr "Pacote com cabeçalho inválido descartado de {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:28
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped packet with protocol version mismatch from {0}: received={1}, expected={2}."
 msgstr "Pacote descartado por incompatibilidade de versão de protocolo de {0}: recebido={1}, esperado={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:75
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped pre-auth packet from unknown endpoint {0}: command={1}, sequence={2}."
 msgstr "Pacote de pré-autenticação descartado de um endpoint desconhecido {0}: comando={1}, sequência={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:47
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped stale packet epoch from {0}: command={1}, sequence={2}, expectedEpoch={3}, commandEpoch={4}."
 msgstr "Pacote de época obsoleta descartado de {0}: comando={1}, sequência={2}, expectedEpoch={3}, commandEpoch={4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped stale packet from prior epoch: endpoint={0}, command={1}, sequence={2}, activeEpoch={3}."
 msgstr "Pacote obsoleto de época anterior descartado: endpoint={0}, comando={1}, sequência={2}, activeEpoch={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:366
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ducati Panigale V4"
 msgstr "Ducati Panigale V4"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Completion.cs:83
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Completion.cs
 #, csharp-format
 msgid "Duplicate finish ignored: room={0}, player={1}, number={2}."
 msgstr "Conclusão duplicada ignorada: sala={0}, jogador={1}, número={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:74
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Duplicate room id '{0}'."
 msgstr "ID de sala duplicado '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:62
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Duplicate segment id '{0}'."
 msgstr "ID de segmento duplicado '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:79
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Duplicate sound id '{0}'."
 msgstr "ID de som duplicado '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:69
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Duplicate weather id '{0}'."
 msgstr "ID de clima duplicado '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Localization\Languages.cs:28
+#: top_speed_net/TopSpeed.Server/Localization/Languages.cs
 msgid "English (Original)"
 msgstr "Inglês (Original)"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:375
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Enter discovery port (1-65535):"
 msgstr "Insira a porta de descoberta (1-65535):"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:424
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Enter max call sign length (1-{0}):"
 msgstr "Insira o comprimento máximo do indicativo de chamada (1-{0}):"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:388
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Enter max players (1-255):"
 msgstr "Insira o máximo de jogadores (1-255):"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:346
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Enter message of the day (max {0} chars, empty clears value):"
 msgstr "Insira a mensagem do dia (máx. {0} caracteres, deixar vazio limpa o valor):"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:67
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "Enter option number:"
 msgstr "Insira o número da opção:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:362
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Enter server port (1-65535):"
 msgstr "Insira a porta do servidor (1-65535):"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:22
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Issues/Issue.cs
 msgid "Error"
 msgstr "Erro"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:75
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Failed to parse {0} packet from {1}."
 msgstr "Falha ao analisar o pacote {0} de {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Config\SettingsStore.cs:40
+#: top_speed_net/TopSpeed.Server/Config/SettingsStore.cs
 #, csharp-format
 msgid "Failed to read server settings, using defaults: {0}"
 msgstr "Falha ao ler as configurações do servidor, usando os padrões: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Config\SettingsStore.cs:61
+#: top_speed_net/TopSpeed.Server/Config/SettingsStore.cs
 #, csharp-format
 msgid "Failed to save server settings: {0}"
 msgstr "Falha ao salvar as configurações do servidor: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:121
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "Failed to start transport on port {0}."
 msgstr "Falha ao iniciar o transporte na porta {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:194
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Feature options:"
 msgstr "Opções de recursos:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:184
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Features"
 msgstr "Recursos"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:118
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Fiat 500"
 msgstr "Fiat 500"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Finish.cs:33
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
 msgid "Finish ignored: room={0}, player={1}, number={2}."
 msgstr "Chegada ignorada: sala={0}, jogador={1}, número={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Finish.cs:49
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
 msgid "Finish recorded: room={0}, player={1}, number={2}, place={3}, timeMs={4}."
 msgstr "Chegada registrada: sala={0}, jogador={1}, número={2}, posição={3}, tempoMs={4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:178
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ford Mustang 1969"
 msgstr "Ford Mustang 1969"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:47
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 msgid "Game room not found."
 msgstr "Sala de jogo não encontrada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:17
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "Game {0}"
 msgstr "Jogo {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:156
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "Humidity must be between 0 and 1."
 msgstr "A umidade deve estar entre 0 e 1."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:34
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched player id from {0}: expected={1}, received={2}."
 msgstr "Batimento cardíaco (heartbeat) do cliente ignorado com ID de jogador incompatível de {0}: esperado={1}, recebido={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:44
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched session id from {0}: expected={1}, received={2}."
 msgstr "Batimento cardíaco (heartbeat) do cliente ignorado com ID de sessão incompatível de {0}: esperado={1}, recebido={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:29
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Ignoring pre-identification command from {0}: {1}."
 msgstr "Ignorando comando de pré-identificação de {0}: {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:50
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Ignoring pre-protocol command from {0}: {1}."
 msgstr "Ignorando comando de pré-protocolo de {0}: {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets.cs:97
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Ignoring unknown packet command {0} from {1}."
 msgstr "Ignorando comando de pacote desconhecido {0} de {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:154
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "Invalid --max-players value. Using configured max players."
 msgstr "Valor de --max-players inválido. Usando o máximo de jogadores configurado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:146
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "Invalid --port value. Using configured port."
 msgstr "Valor de --port inválido. Usando a porta configurada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:111
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Invalid ambience value '{0}'."
 msgstr "Valor de ambiente inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:258
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:115
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Invalid boolean '{0}' for key '{1}'."
 msgstr "Booleano inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:103
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Invalid command \"{0}\". Type \"help\" for the list of commands."
 msgstr "Comando inválido \"{0}\". Digite \"help\" para ver a lista de comandos."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:72
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:103
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "Invalid input. Enter a valid number."
 msgstr "Entrada inválida. Insira um número válido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:214
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Invalid input. Enter y or n."
 msgstr "Entrada inválida. Digite s ou n."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:292
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid numeric value '{0}' for key '{1}'."
 msgstr "Valor numérico inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:84
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "Invalid option number."
 msgstr "Número de opção inválido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:109
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
 msgstr "Valor de pit inválido '{0}'. Use pit_entry ou pit_exit."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:37
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid player identification packet."
 msgstr "Pacote de identificação do jogador inválido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:58
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid protocol handshake packet."
 msgstr "Pacote de handshake de protocolo inválido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:88
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Invalid protocol handshake. Reported protocol version {0} is outside declared supported range {1}."
 msgstr "Handshake de protocolo inválido. A versão de protocolo informada {0} está fora do intervalo declarado de suporte {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:77
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid protocol range in handshake packet."
 msgstr "Intervalo de protocolo inválido no pacote de handshake."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:307
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid room override value '{0}' for key '{1}'."
 msgstr "Valor de substituição de sala inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:193
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid room value '{0}' for key '{1}'."
 msgstr "Valor de sala inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:60
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment height '{0}'."
 msgstr "Altura de segmento inválida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:44
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment length '{0}'."
 msgstr "Comprimento de segmento inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:37
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment noise '{0}'."
 msgstr "Ruído de segmento inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:30
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment surface '{0}'."
 msgstr "Superfície de segmento inválida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:23
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment type '{0}'."
 msgstr "Tipo de segmento inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:53
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid segment width '{0}'."
 msgstr "Largura de segmento inválida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:65
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Invalid sound asset path: {0}"
 msgstr "Caminho de recurso de som inválido: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:251
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid sound random mode '{0}'."
 msgstr "Modo aleatório de som inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:213
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid sound type '{0}'."
 msgstr "Tipo de som inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:26
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Invalid track package upload request."
 msgstr "Solicitação de envio de pacote de pista inválida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:30
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Invalid track selection."
 msgstr "Seleção de pista inválida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:285
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid vector '{0}' for key '{1}'."
 msgstr "Vetor inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:125
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid weather kind '{0}'."
 msgstr "Tipo de clima inválido '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:77
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid weather transition seconds '{0}'."
 msgstr "Segundos de transição de clima inválidos '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:134
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:140
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid weather value '{0}' for key '{1}'."
 msgstr "Valor de clima inválido '{0}' para a chave '{1}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "Join denied: player={0}, room={1}, raceStarted={2}, preparing={3}."
 msgstr "Entrada recusada: player={0}, room={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:336
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "Kawasaki Ninja ZX-10R"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:101
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Key '{0}' is missing a value."
 msgstr "A chave '{0}' está sem valor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:240
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Lamborghini Aventador"
 msgstr "Lamborghini Aventador"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:179
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Language"
 msgstr "Idioma"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:84
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Laps must be between 1 and 500."
 msgstr "As voltas devem estar entre 1 e 500."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:51
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "List connected players and protocol versions."
 msgstr "Lista os jogadores conectados e as versões de protocolo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:72
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "LiteNetLib network error: endpoint={0}, socketError={1}."
 msgstr "Erro de rede LiteNetLib: endpoint={0}, socketError={1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:120
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "LiteNetLib peer address changed: old={0}, new={1}."
 msgstr "Endereço do peer LiteNetLib alterado: antigo={0}, novo={1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:136
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "LiteNetLib poll failed: {0}"
 msgstr "Falha no poll do LiteNetLib: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:186
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "LiteNetLib send failed: {0}"
 msgstr "Falha no envio do LiteNetLib: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:152
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "LiteNetLib stop failed: {0}"
 msgstr "Falha ao parar o LiteNetLib: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:124
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "LiteNetLib transport listening on {0}."
 msgstr "Transporte LiteNetLib escutando em {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Transport\ServerTransport.cs:159
+#: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 msgid "LiteNetLib transport stopped."
 msgstr "Transporte LiteNetLib parado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:42
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Logging enabled. Levels: {0}. File: {1}."
 msgstr "Registro em log ativado. Níveis: {0}. Arquivo: {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:87
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Malformed line. Expected '[section]' or 'key = value'."
 msgstr "Linha malformada. Esperado '[section]' ou 'key = value'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:53
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Manually check for server updates."
 msgstr "Verificar manualmente por atualizações do servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:183
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Max players"
 msgstr "Máximo de jogadores"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:397
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Max players updated to {0}."
 msgstr "Máximo de jogadores atualizado para {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:210
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Maximum call sign length"
 msgstr "Comprimento máximo do indicativo de chamada"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:435
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Maximum call sign length updated to {0}."
 msgstr "Comprimento máximo do indicativo de chamada atualizado para {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:304
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mercedes Sprinter"
 msgstr "Mercedes Sprinter"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:180
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Message of the day"
 msgstr "Mensagem do dia"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:357
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Message of the day updated."
 msgstr "Mensagem do dia atualizada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:148
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mini Cooper S"
 msgstr "Mini Cooper S"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:82
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Missing sound asset file: {0}"
 msgstr "Arquivo de recurso de som ausente: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:187
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Moderation"
 msgstr "Moderação"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:206
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Moderation options:"
 msgstr "Opções de moderação:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:54
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Nissan GT-R Nismo"
 msgstr "Nissan GT-R Nismo"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:62
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "No changes were listed for this update."
 msgstr "Nenhuma alteração foi listada para esta atualização."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:273
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "No languages are available."
 msgstr "Nenhum idioma disponível."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\GameStart.cs:25
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 #, csharp-format
 msgid "Not enough players. {0} required to start."
 msgstr "Jogadores insuficientes. {0} necessários para iniciar."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:37
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "One-on-one rooms always allow a maximum of 2 players."
 msgstr "Salas de um contra um sempre permitem no máximo 2 jogadores."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Access.cs:34
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Access.cs
 msgid "Only host can do this."
 msgstr "Apenas o host pode fazer isso."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:50
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Open server options menu."
 msgstr "Abre o menu de opções do servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:65
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "Options:"
 msgstr "Opções:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:79
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "Player joined room: room={0} \"{1}\", player={2}, participants={3}/{4}."
 msgstr "Jogador entrou na sala: room={0} \"{1}\", player={2}, participantes={3}/{4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:106
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #, csharp-format
 msgid "Player left room: room={0} \"{1}\", player={2}, notify={3}, roomClosed={4}."
 msgstr "Jogador saiu da sala: room={0} \"{1}\", player={2}, notify={3}, roomClosed={4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:31
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "Player limit must be between 2 and 10."
 msgstr "O limite de jogadores deve ser entre 2 e 10."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:42
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 #, csharp-format
 msgid "Player ready: room={0}, player={1}, car={2}, automatic={3}, ready={4}/{5}."
 msgstr "Jogador pronto: room={0}, player={1}, car={2}, automatic={3}, prontos={4}/{5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Players.cs:136
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
 #, csharp-format
 msgid "Player state transition from data: room={0}, player={1}, {2} -> {3}."
 msgstr "Transição de estado de jogador a partir de dados: room={0}, player={1}, {2} -> {3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Players.cs:42
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
 #, csharp-format
 msgid "Player state transition: room={0}, player={1}, {2} -> {3} (packet={4})."
 msgstr "Transição de estado do jogador: room={0}, player={1}, {2} -> {3} (pacote={4})."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Admin.cs:124
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Notify\Room.cs:169
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Players.cs:58
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:145
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:38
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:78
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Online.cs:89
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:93
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Core.cs:54
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Admin.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Notify/Room.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Core.cs
 #, csharp-format
 msgid "Player {0}"
 msgstr "Jogador {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:86
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Porsche 911 GT3 RS"
 msgstr "Porsche 911 GT3 RS"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:93
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Property '{0}' is outside any section."
 msgstr "A propriedade '{0}' está fora de qualquer seção."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:211
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Protocol compatibility verified."
 msgstr "Compatibilidade de protocolo verificada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:48
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Protocol current: {0}. Supported: {1}."
 msgstr "Protocolo atual: {0}. Suportado: {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:183
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Protocol negotiation failed."
 msgstr "Falha na negociação de protocolo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:187
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, reason={5}"
 msgstr "Protocolo rejeitado: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, motivo={5}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:111
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
 msgstr "Protocolo rejeitado: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:157
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Protocol supported range: {0} to {1}"
 msgstr "Intervalo de protocolo suportado: {0} a {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:156
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:55
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Protocol version: {0}"
 msgstr "Versão do protocolo: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:291
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race completion invariant failed before emit: room={0}, reason={1}."
 msgstr "Invariante de conclusão de corrida falhou antes da emissão: sala={0}, motivo={1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Finish.cs:59
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
 msgid "Race completion pending: room={0}, finished={1}/{2}."
 msgstr "Conclusão da corrida pendente: sala={0}, concluíram={1}/{2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Completion.cs:58
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Completion.cs
 #, csharp-format
 msgid "Race completion ready: room={0}, all active participants finished."
 msgstr "Conclusão de corrida pronta: sala={0}, todos os participantes ativos terminaram."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Completion.cs:37
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Completion.cs
 #, csharp-format
 msgid "Race completion ready: room={0}, no active participants remain."
 msgstr "Conclusão de corrida pronta: sala={0}, nenhum participante ativo restante."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:43
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "Race preparation is not currently active."
 msgstr "A preparação da corrida não está ativa no momento."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:100
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race prepare cancelled after loadout: room={0} \"{1}\", active={2}, minStart={3}."
 msgstr "Preparação da corrida cancelada após carregamento de equipamentos: sala={0} \"{1}\", ativos={2}, minInício={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:63
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race prepare cancelled: room={0} \"{1}\", participants={2}, minStart={3}, capacity={4}."
 msgstr "Preparação da corrida cancelada: sala={0} \"{1}\", participantes={2}, minInício={3}, capacidade={4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\GameStart.cs:57
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 #, csharp-format
 msgid "Race prepare started: room={0} \"{1}\", requestedBy={2}, humans={3}, bots={4}, capacity={5}, minStart={6}."
 msgstr "Preparação da corrida iniciada: sala={0} \"{1}\", solicitadoPor={2}, humanos={3}, bots={4}, capacidade={5}, minInício={6}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:19
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "Race server started."
 msgstr "Servidor de corrida iniciado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:36
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "Race server stopped."
 msgstr "Servidor de corrida parado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:21
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:67
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "Race setup has not started yet."
 msgstr "A configuração da corrida ainda não começou."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\GameStart.cs:38
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 msgid "Race setup is already in progress."
 msgstr "A configuração da corrida já está em andamento."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Snapshots\StateSnapshots.cs:31
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Snapshots/StateSnapshots.cs
 #, csharp-format
 msgid "Race snapshot send: room={0}, delivery={1}."
 msgstr "Envio de snapshot da corrida: sala={0}, entrega={1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 msgid "Race start cancelled because there are not enough players."
 msgstr "Início de corrida cancelado por falta de jogadores suficientes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:98
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 msgid "Race start cancelled because there are not enough ready players."
 msgstr "Início de corrida cancelado por falta de jogadores prontos suficientes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:269
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race started: room={0} \"{1}\", track={2}, laps={3}, humans={4}, bots={5}."
 msgstr "Corrida iniciada: sala={0} \"{1}\", pista={2}, voltas={3}, humanos={4}, bots={5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:346
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race stopped: room={0} \"{1}\", results={2}."
 msgstr "Corrida parada: sala={0} \"{1}\", resultados={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:55
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect denied because the remote IP does not match the original session."
 msgstr "Reconexão recusada porque o IP de origem não corresponde ao da sessão original."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:57
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect denied because the resume token is invalid."
 msgstr "Reconexão recusada porque o token de retomada é inválido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:59
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect window expired."
 msgstr "A janela de tempo para reconexão expirou."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:96
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Refused connection from {0}: server is full."
 msgstr "Conexão recusada de {0}: o servidor está cheio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:97
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 #, csharp-format
 msgid "Removed bot {0}."
 msgstr "Removido bot {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:168
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 #, csharp-format
 msgid "Resume fallback accepted as new session: pendingPlayerId={0}, endpoint={1}, reason={2}."
 msgstr "Fallback de retomada aceito como nova sessão: pendingPlayerId={0}, endpoint={1}, motivo={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:20
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 #, csharp-format
 msgid "Room add-bot denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Adição de bot na sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:115
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #, csharp-format
 msgid "Room closed: room={0} \"{1}\", reason=last_participant_left."
 msgstr "Sala fechada: room={0} \"{1}\", motivo=ultimo_participante_saiu."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:35
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "Room created: room={0} \"{1}\", host={2}, type={3}, playersToStart={4}."
 msgstr "Sala criada: room={0} \"{1}\", host={2}, tipo={3}, jogadoresParaIniciar={4}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:62
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 #, csharp-format
 msgid "Room game-rules change denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Alteração das regras da sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Numbering.cs:91
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Numbering.cs
 #, csharp-format
 msgid "Room game-start numbers shuffled: room={0}, players={1}, bots={2}."
 msgstr "Números de início de jogo da sala embaralhados: sala={0}, jogadores={1}, bots={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:73
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 #, csharp-format
 msgid "Room laps change denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Alteração de voltas da sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Numbering.cs:47
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Numbering.cs
 #, csharp-format
 msgid "Room numbers reassigned: room={0}, players={1}, bots={2}."
 msgstr "Números da sala reatribuídos: sala={0}, jogadores={1}, bots={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\Rules.cs:19
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 #, csharp-format
 msgid "Room player-limit change denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Alteração do limite de jogadores da sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Bots.cs:65
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 #, csharp-format
 msgid "Room remove-bot denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Remoção de bot da sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:19
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 #, csharp-format
 msgid "Room track change denied: room={0}, player={1}, raceStarted={2}, preparing={3}."
 msgstr "Alteração de pista da sala recusada: room={0}, player={1}, raceStarted={2}, preparing={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:54
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Section '{0}' requires an id."
 msgstr "A seção '{0}' requer um ID."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:190
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
 msgstr "O segmento '{0}' faz referência à sala '{1}', mas nenhuma seção [room:{1}] correspondente ou predefinição existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:203
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Segment '{0}' references sound source '{1}', but no matching [sound:{1}] section exists."
 msgstr "O segmento '{0}' faz referência à fonte de som '{1}', mas nenhuma seção [sound:{1}] correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:215
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Segment '{0}' references weather profile '{1}', but no matching [weather:{1}] section exists."
 msgstr "O segmento '{0}' faz referência ao perfil climático '{1}', mas nenhuma seção [weather:{1}] correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:46
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Segment length '{0}' is below minimum {1} and will be clamped."
 msgstr "O comprimento do segmento '{0}' está abaixo do mínimo {1} e será limitado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:87
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "Segment room id cannot be empty."
 msgstr "O ID de sala do segmento não pode ficar vazio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:100
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "Segment sound source list cannot be empty."
 msgstr "A lista de fontes de som do segmento não pode ficar vazia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:68
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "Segment weather profile id cannot be empty."
 msgstr "O ID de perfil climático do segmento não pode ficar vazio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:185
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server architecture"
 msgstr "Arquitetura do servidor"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:339
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server architecture remains {0}."
 msgstr "A arquitetura do servidor permanece {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:333
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server architecture set to {0}."
 msgstr "Arquitetura do servidor definida para {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:193
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "Server command failed: kind={0}, sequence={1}, reason={2}."
 msgstr "Comando de servidor falhou: kind={0}, sequence={1}, reason={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:71
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server command interface ready. Type \"help\" to get the list of commands."
 msgstr "Interface de comandos do servidor pronta. Digite \"help\" para ver a lista de comandos."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:79
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Server configuration: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.text_chat={4}, features.voice_chat={5}, moderation.maxNameLength={6}, moderation.blockRepeatedLettersInName={7}, moderation.allowDuplicateNames={8}."
 msgstr "Configuração do servidor: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.text_chat={4}, features.voice_chat={5}, moderation.maxNameLength={6}, moderation.blockRepeatedLettersInName={7}, moderation.allowDuplicateNames={8}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:50
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Server is up-to-date."
 msgstr "O servidor está atualizado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:304
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server language remains {0}."
 msgstr "O idioma do servidor permanece {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:300
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server language set to {0}."
 msgstr "Idioma do servidor definido para {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:176
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server options:"
 msgstr "Opções do servidor:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:181
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server port"
 msgstr "Porta do servidor"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:370
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server port updated to {0}. Restart required for this change."
 msgstr "Porta do servidor atualizada para {0}. É necessário reiniciar para aplicar esta alteração."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:54
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Server release: {0}"
 msgstr "Lançamento do servidor: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:47
+#: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Server release: {0}."
 msgstr "Lançamento do servidor: {0}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:104
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "Server started. Press Ctrl+C to stop."
 msgstr "Servidor iniciado. Pressione Ctrl+C para parar."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:111
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "Server stopped."
 msgstr "Servidor parado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:42
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "Server update check failed: {0}"
 msgstr "Falha ao verificar atualizações do servidor: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:100
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "Server update download failed: {0}"
 msgstr "Falha ao baixar a atualização do servidor: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:155
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server version: {0}"
 msgstr "Versão do servidor: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:49
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Show available server commands."
 msgstr "Mostra os comandos disponíveis do servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:54
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Shutdown the server."
 msgstr "Desliga o servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\LocalPackages.cs:50
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/LocalPackages.cs
 #, csharp-format
 msgid "Skipping server track package '{0}': {1}"
 msgstr "Ignorando pacote de pista do servidor '{0}': {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:237
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
 msgstr "O som '{0}' faz referência a end_area '{1}', mas nenhum ID de segmento correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:226
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Sound '{0}' references start_area '{1}', but no matching segment id exists."
 msgstr "O som '{0}' faz referência a start_area '{1}', mas nenhum ID de segmento correspondente existe."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:76
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Sound asset path escapes the track folder: {0}"
 msgstr "O caminho do recurso de som escapa da pasta da pista: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:234
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Sound key '{0}' contains invalid path '{1}'. Paths must be track-relative."
 msgstr "A chave de som '{0}' contém o caminho inválido '{1}'. Os caminhos devem ser relativos à pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:220
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Sound key '{0}' must be a track-relative path and cannot escape the track folder."
 msgstr "A chave de som '{0}' deve ser um caminho relativo à pista e não pode escapar da pasta da pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:228
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:244
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Sound list for '{0}' cannot be empty."
 msgstr "A lista de sons para '{0}' não pode ficar vazia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:92
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:226
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:284
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:317
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:350
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:364
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:377
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:390
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:429
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Standard input is no longer available. Server commands are disabled."
 msgstr "A entrada padrão não está mais disponível. Os comandos do servidor estão desativados."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:65
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Standard input is not available. Server commands are disabled."
 msgstr "A entrada padrão não está disponível. Os comandos do servidor estão desativados."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:77
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Standard input is not available. Update download was skipped."
 msgstr "A entrada padrão não está disponível. O download da atualização foi ignorado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:283
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Stopping race: room={0}, active={1}, trackedResults={2}."
 msgstr "Parando corrida: sala={0}, ativos={1}, resultadosMonitorados={2}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:198
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:449
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Text chat"
 msgstr "Bate-papo por texto"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\TextChat.cs:20
+#: top_speed_net/TopSpeed.Server/Moderation/TextChat.cs
 msgid "Text chat is disabled on this server."
 msgstr "O bate-papo por texto está desativado neste servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:64
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "The current game is already paused."
 msgstr "O jogo atual já está pausado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:65
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "The current game is not paused."
 msgstr "O jogo atual não está pausado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Errors.cs:13
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Errors.cs:19
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Errors.cs
 msgid "The selected custom track is invalid."
 msgstr "A pista personalizada selecionada é inválida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:46
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "The server closed the connection."
 msgstr "O servidor fechou a conexão."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:148
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Admin.cs:61
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:75
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Admin.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "The server will be shut down immediately by the host."
 msgstr "O servidor será desligado imediatamente pelo host."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:38
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "The update info file could not be read."
 msgstr "O arquivo de informações de atualização não pôde ser lido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:42
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "The update info file has an invalid server version format."
 msgstr "O arquivo de informações de atualização possui um formato de versão de servidor inválido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\RoomTexts.cs:9
+#: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "There are no bots to remove."
 msgstr "Não há bots para remover."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:73
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "This call sign is already in use on this server."
 msgstr "Este indicativo de chamada já está em uso neste servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\Names.cs:83
+#: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 msgid "This call sign is already in use on this server. Please choose a different name."
 msgstr "Este indicativo de chamada já está em uso neste servidor. Por favor, escolha um nome diferente."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:66
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 msgid "This game room is currently in progress."
 msgstr "Esta sala de jogo está em andamento no momento."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\RoomTexts.cs:8
+#: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "This game room is unavailable because it is full."
 msgstr "Esta sala de jogo não está disponível porque está cheia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:67
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Packets\Core.cs:94
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:162
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 msgid "This server is full."
 msgstr "Este servidor está cheio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:13
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "TopSpeed Server"
 msgstr "Servidor TopSpeed"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:49
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "TopSpeed Server starting."
 msgstr "Servidor TopSpeed iniciando."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:53
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "TopSpeed Server starting..."
 msgstr "Servidor TopSpeed iniciando..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:109
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "TopSpeed Server stopped."
 msgstr "Servidor TopSpeed parado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:62
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "TopSpeed.Server usage:"
 msgstr "Uso do TopSpeed.Server:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:208
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Toyota Camry"
 msgstr "Toyota Camry"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:170
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
 msgstr "O [meta] da pista deve definir uma referência de perfil climático, por exemplo 'weather = default'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\TrackSettings.cs:39
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Track cannot be empty."
 msgstr "A pista não pode ficar vazia."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Payload.cs:23
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Payload.cs
 msgid "Track data is missing."
 msgstr "Os dados da pista estão ausentes."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:177
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Track default weather profile '{0}' does not match any [weather:{0}] section."
 msgstr "O perfil climático padrão da pista '{0}' não corresponde a nenhuma seção [weather:{0}]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Parser.cs:31
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Parser.cs:55
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Parser.cs
 #, csharp-format
 msgid "Track file not found: {0}"
 msgstr "Arquivo de pista não encontrado: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:157
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track must include at least one [segment:<id>] section."
 msgstr "A pista deve incluir pelo menos uma seção [segment:<id>]."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:33
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package already exists on server."
 msgstr "O pacote da pista já existe no servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:101
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package hash mismatch."
 msgstr "Incompatibilidade de hash do pacote de pista."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:67
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload exceeded declared size."
 msgstr "O envio do pacote de pista excedeu o tamanho declarado."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:88
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload is incomplete."
 msgstr "O envio do pacote de pista está incompleto."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:148
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload ownership changed."
 msgstr "A propriedade do envio do pacote de pista mudou."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:115
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package uploaded successfully."
 msgstr "Pacote de pista enviado com sucesso."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Parser.cs:65
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Parser.cs
 #, csharp-format
 msgid "Track path must point to a .tsm file inside a track folder: {0}"
 msgstr "O caminho da pista deve apontar para um arquivo .tsm dentro de uma pasta de pista: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:163
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
 msgstr "A pista define 'pit_area = false', mas também define segmentos de entrada e saída do pit; o pit está desativado e os segmentos do pit são ignorados."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:23
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Track source path is missing, so sound assets cannot be resolved."
 msgstr "O caminho de origem da pista está ausente, portanto os recursos de som não podem ser resolvidos."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:130
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Transport disconnect observed: player={0}, endpoint={1}, transportReason={2}, socketError={3}, mappedReason={4}, mappedState={5}."
 msgstr "Desconexão de transporte observada: player={0}, endpoint={1}, transportReason={2}, socketError={3}, mappedReason={4}, mappedState={5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Protocol\TrackPackages\Build\Assets.cs:30
+#: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Unable to resolve custom track folder path."
 msgstr "Não foi possível resolver o caminho da pasta da pista personalizada."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:89
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Unable to resolve server host."
 msgstr "Não foi possível resolver o host do servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Recovery.cs:147
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 msgid "Unable to resume the previous multiplayer session."
 msgstr "Não foi possível retomar a sessão multijogador anterior."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Packages\UploadFlow.cs:111
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Unable to store track package on server."
 msgstr "Não foi possível armazenar o pacote de pista no servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Control.cs:34
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "Unknown race control request."
 msgstr "Solicitação de controle de corrida desconhecida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:198
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown room key '{0}'."
 msgstr "Chave de sala desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:186
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown room preset '{0}'."
 msgstr "Predefinição de sala desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Validate.cs:46
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Unknown section '{0}'."
 msgstr "Seção desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:117
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown segment key '{0}'."
 msgstr "Chave de segmento desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:297
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown sound key '{0}'."
 msgstr "Chave de som desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:247
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "Unknown update error."
 msgstr "Erro de atualização desconhecido."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:175
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown weather key '{0}'."
 msgstr "Chave de clima desconhecida '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:39
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Update check failed."
 msgstr "Falha na verificação de atualização."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:77
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 #, csharp-format
 msgid "Update check failed: {0}"
 msgstr "Falha na verificação de atualização: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:73
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "Update check timed out."
 msgstr "A verificação de atualização expirou."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Service.cs:56
+#: top_speed_net/TopSpeed.Server/Updates/Service.cs
 #, csharp-format
 msgid "Update package '{0}' was not found in the latest release."
 msgstr "O pacote de atualização '{0}' não foi encontrado no lançamento mais recente."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:119
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "Updater not found: {0}"
 msgstr "Atualizador não encontrado: {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:129
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "Value cannot be empty."
 msgstr "O valor não pode ficar vazio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:135
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 #, csharp-format
 msgid "Value is too long. Maximum length is {0} characters."
 msgstr "O valor é muito longo. O comprimento máximo é {0} caracteres."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:109
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 #, csharp-format
 msgid "Value must be between {0} and {1}."
 msgstr "O valor deve estar entre {0} e {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:199
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:456
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Voice chat"
 msgstr "Bate-papo por voz"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:79
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Waiting for loadouts: room={0}, ready={1}, skipped={2}, totalHumans={3}."
 msgstr "Aguardando equipamentos: sala={0}, prontos={1}, ignorados={2}, totalHumanos={3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:112
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Waiting for track package readiness: room={0}, trackHash={1}, ready={2}/{3}."
 msgstr "Aguardando prontidão do pacote de pista: sala={0}, trackHash={1}, prontos={2}/{3}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Issues\Issue.cs:21
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Issues/Issue.cs
 msgid "Warning"
 msgstr "Aviso"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:148
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:152
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:160
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:164
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Weather key '{0}' must be greater than zero."
 msgstr "A chave de clima '{0}' deve ser maior que zero."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:170
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Weather key '{0}' must be non-negative."
 msgstr "A chave de clima '{0}' não deve ser negativa."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:79
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "Weather transition seconds must be finite and non-negative."
 msgstr "Os segundos de transição de clima devem ser finitos e não negativos."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:75
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Would you like to download the update? (y/n)"
 msgstr "Gostaria de baixar a atualização? (s/n)"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Vehicles\Catalog\Data.cs:396
+#: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Yamaha YZF-R1"
 msgstr "Yamaha YZF-R1"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Access.cs:17
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Access.cs:27
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:16
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:73
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:15
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Access.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are not in a game room."
 msgstr "Você não está em uma sala de jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:27
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:73
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are not in this game room."
 msgstr "Você não está nesta sala de jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:98
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:210
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 msgid "You are now host of this room."
 msgstr "Você agora é o host desta sala."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:32
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:78
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are temporarily disconnected from this game room."
 msgstr "Você está desconectado temporariamente desta sala de jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:69
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Your call sign is too long for this server."
 msgstr "Seu indicativo de chamada é muito longo para este servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\Names.cs:66
+#: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 #, csharp-format
 msgid "Your call sign is too long. The server does not allow names exceeding {0} characters. Please try a different name."
 msgstr "Seu indicativo de chamada é muito longo. O servidor não permite nomes que excedam {0} caracteres. Por favor, tente um nome diferente."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Moderation\Names.cs:74
+#: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 msgid "Your call sign was rejected because it contains a letter repeated too many times in a row. Please try a different name."
 msgstr "Seu indicativo de chamada foi rejeitado porque contém uma letra repetida muitas vezes seguidas. Por favor, tente um nome diferente."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Messages.cs:71
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Your call sign was rejected by moderation policy."
 msgstr "Seu indicativo de chamada foi rejeitado pela política de moderação."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:227
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version is out-of-date: {0}. This server supports protocol versions {1}. Please update your client."
 msgstr "A versão do protocolo do seu cliente está desatualizada: {0}. Este servidor suporta as versões de protocolo {1}. Por favor, atualize seu cliente."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:232
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version is too new: {0} and does not match this server protocol. This server supports protocol versions {1}. The server needs an update."
 msgstr "A versão do protocolo do seu cliente é muito nova: {0} e não corresponde ao protocolo deste servidor. Este servidor suporta as versões de protocolo {1}. O servidor precisa de uma atualização."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:237
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
 msgstr "A versão do protocolo do seu cliente é {0}. Este servidor suporta as versões de protocolo {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:215
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
 msgstr "A versão do protocolo do seu cliente {0} é mais recente do que a versão do protocolo deste servidor {1}. Este servidor suporta as versões de protocolo {2}. Você pode continuar, mas alguns recursos podem se comportar de maneira diferente ou não funcionar."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:221
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
 msgstr "A versão do protocolo do seu cliente {0} é mais antiga do que a versão do protocolo deste servidor {1}. Este servidor suporta as versões de protocolo {2}. Você pode continuar, mas alguns recursos podem se comportar de maneira diferente ou não funcionar."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:58
+#: top_speed_net/TopSpeed.Server/Tracks/TrackLoader.cs
 #, csharp-format
 msgid "[TrackLoader] Failed to load '{0}'."
 msgstr "[TrackLoader] Falha ao carregar '{0}'."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Tracks\TrackLoader.cs:64
+#: top_speed_net/TopSpeed.Server/Tracks/TrackLoader.cs
 #, csharp-format
 msgid "[TrackLoader] Failed to load '{0}':"
 msgstr "[TrackLoader] Falha ao carregar '{0}':"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:81
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
 #, csharp-format
 msgid "[room]: {0} says: {1}"
 msgstr "[sala]: {0} diz: {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:80
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "all"
 msgstr "todos"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Admin.cs:102
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Admin.cs
 #, csharp-format
 msgid "authoritative players={0}, rooms={1}, stale_epoch_drops={2}, replay_gaps={3}, epoch_rejects={4}, heartbeat_suspicions={5}, start_blocked_insufficient_active={6}, start_blocked_missing_ready={7}, start_blocked_track_not_ready={8}, transport_network_errors={9}, transport_latency_last_ms={10}, transport_latency_avg_ms={11}, transport_latency_max_ms={12}, transport_peer_address_changes={13}"
 msgstr "jogadores autoritativos={0}, salas={1}, descartes por época obsoleta={2}, lacunas de replay={3}, rejeições de época={4}, suspeitas de batimento cardíaco={5}, início bloqueado por ativos insuficientes={6}, início bloqueado por falta de prontos={7}, início bloqueado por pista não pronta={8}, erros de rede de transporte={9}, última latência do transporte ms={10}, média de latência do transporte ms={11}, latência máxima do transporte ms={12}, alterações de endereço de peers do transporte={13}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:90
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "debug"
 msgstr "depuração"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:50
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "easy"
 msgstr "fácil"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:276
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "end_area cannot be empty."
 msgstr "end_area não pode ficar vazio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:84
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "error"
 msgstr "erro"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:51
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "hard"
 msgstr "difícil"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:88
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "info"
 msgstr "informações"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Online.cs:11
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 msgid "main room"
 msgstr "sala principal"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Runtime\Lifecycle.cs:149
+#: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "multiple"
 msgstr "múltiplos"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:193
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:253
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:78
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:92
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.cs:45
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
+#: top_speed_net/TopSpeed.Server/Program.cs
 msgid "none"
 msgstr "nenhum"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Bots\Setup.cs:52
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "normal"
 msgstr "normal"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:148
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "off"
 msgstr "desativado"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Input.cs:147
+#: top_speed_net/TopSpeed.Server/Commands/Input.cs
 msgid "on"
 msgstr "ativado"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Online.cs:82
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 #, csharp-format
 msgid "room {0}"
 msgstr "sala {0}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:147
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "shutting down..."
 msgstr "desligando..."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Shared\Data\Tracks\Parser\Rules.cs:266
+#: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "start_area cannot be empty."
 msgstr "start_area não pode ficar vazio."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Handshake\Protocol.cs:176
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "unknown"
 msgstr "desconhecido"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Program.Args.cs:86
+#: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "warning"
 msgstr "aviso"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:268
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "{0:0.00} GB"
 msgstr "{0:0.00} GB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:272
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "{0:0.00} KB"
 msgstr "{0:0.00} KB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:270
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "{0:0.00} MB"
 msgstr "{0:0.00} MB"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Updates\Runner.cs:273
+#: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
 msgid "{0} B"
 msgstr "{0} B"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:39
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} canceled the current game."
 msgstr "{0} cancelou o jogo atual."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\CreateJoin.cs:31
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "{0} created game room {1}."
 msgstr "{0} criou a sala de jogo {1}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:14
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Announcements.cs
 #, csharp-format
 msgid "{0} has connected to the server."
 msgstr "{0} conectou-se ao servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:32
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Announcements.cs
 #, csharp-format
 msgid "{0} has disconnected from the server."
 msgstr "{0} desconectou-se do servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Membership\Leave.cs:73
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #, csharp-format
 msgid "{0} has left the game."
 msgstr "{0} saiu do jogo."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Players\Announcements.cs:31
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Announcements.cs
 #, csharp-format
 msgid "{0} has lost connection to the server."
 msgstr "{0} perdeu a conexão com o servidor."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Host\GameStart.cs:69
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 #, csharp-format
 msgid "{0} is about to start the game. Choose your vehicle and transmission mode."
 msgstr "{0} está prestes a iniciar o jogo. Escolha o seu veículo e modo de transmissão."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Lifecycle.cs:33
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:52
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 #, csharp-format
 msgid "{0} is ready."
 msgstr "{0} está pronto."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Ready.cs:98
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 #, csharp-format
 msgid "{0} left race preparation."
 msgstr "{0} saiu da preparação da corrida."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Session\Lifecycle.cs:177
+#: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "{0} lost connection. Waiting for reconnect."
 msgstr "{0} perdeu a conexão. Aguardando reconexão."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:60
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} paused the current game."
 msgstr "{0} pausou o jogo atual."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Players.cs:230
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
 #, csharp-format
 msgid "{0} payload mismatch: room={1}, connectionPlayer={2}/{3}, payload={4}/{5}."
 msgstr "{0} incompatibilidade de payload: room={1}, connectionPlayer={2}/{3}, payload={4}/{5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:137
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "{0} players are connected:"
 msgstr "{0} jogadores estão conectados:"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Players.cs:244
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
 #, csharp-format
 msgid "{0} race instance mismatch: room={1}, connectionPlayer={2}/{3}, payloadRaceInstance={4}, roomRaceInstance={5}."
 msgstr "{0} incompatibilidade de instância de corrida: room={1}, connectionPlayer={2}/{3}, payloadRaceInstance={4}, roomRaceInstance={5}."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:61
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} resumed the current game."
 msgstr "{0} retomou o jogo atual."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Room\Messages.cs:41
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
 #, csharp-format
 msgid "{0} says: {1}"
 msgstr "{0} diz: {1}"
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Network\Services\Race\Control.cs:133
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} stopped the current game."
 msgstr "{0} parou o jogo atual."
 
-#: D:\top_speed\top_speed_net\TopSpeed.Server\Commands\Host.cs:141
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "{0}, using protocol version {1}"
 msgstr "{0}, usando a versão de protocolo {1}"

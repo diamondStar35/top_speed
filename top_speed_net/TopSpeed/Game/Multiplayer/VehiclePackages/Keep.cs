@@ -94,40 +94,83 @@ namespace TopSpeed.Game
             var vehiclesFolder = GetClientVehiclesFolder();
             var folderName = ResolveKeptVehicleFolderName(pkg);
             var destination = Path.Combine(vehiclesFolder, folderName);
+            if (!IsInsideVehiclesFolder(destination, vehiclesFolder))
+                return;
+
             // A kept copy of THIS vehicle is excluded before prompting, so an existing folder of the
             // same name means a different vehicle already claimed it; disambiguate with a hash suffix.
             if (Directory.Exists(destination))
             {
                 var suffix = normalizedHash.Length >= 8 ? normalizedHash.Substring(0, 8) : normalizedHash;
                 destination = Path.Combine(vehiclesFolder, folderName + "_" + suffix);
+                if (!IsInsideVehiclesFolder(destination, vehiclesFolder))
+                    return;
             }
 
             if (TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
                 InvalidateLocalVehicleIndex();
         }
 
-        // Reproduce the source folder name ("Chevy Laguna") so a kept vehicle matches the server's
-        // on-disk layout. Falls back to the display name / .tsv basename when the source .tsv sat
-        // directly in the Vehicles root (whose leaf directory name is just "Vehicles").
+        // Reproduce the source folder path ("NASCAR/cup car dodge") so a kept vehicle matches the
+        // server's on-disk layout, and two identically named folders from different packs do not
+        // collapse onto each other locally. The manifest value comes from the server and is
+        // untrusted, so it is normalised the same way sound asset keys are (which rejects "..",
+        // rooted paths and drive letters) and every segment is sanitised individually. Falls back to
+        // the display name / .tsv basename when the source .tsv sat directly in the Vehicles root
+        // (whose leaf directory name is just "Vehicles").
         private static string ResolveKeptVehicleFolderName(DownloadedVehiclePackage pkg)
         {
             var folder = (pkg.Payload?.Manifest?.FolderName ?? string.Empty).Trim();
-            if (string.IsNullOrWhiteSpace(folder) || string.Equals(folder, "Vehicles", StringComparison.OrdinalIgnoreCase))
+            var normalized = VehiclePackageCodec.NormalizeAssetKey(folder);
+            if (!string.IsNullOrWhiteSpace(normalized)
+                && !string.Equals(normalized, "Vehicles", StringComparison.OrdinalIgnoreCase))
             {
-                folder = !string.IsNullOrWhiteSpace(pkg.DisplayName)
-                    ? pkg.DisplayName
-                    : Path.GetFileNameWithoutExtension(pkg.Payload?.Manifest?.TsvFileName ?? string.Empty);
+                var segments = normalized.Split('/');
+                var safeSegments = new List<string>(segments.Length);
+                for (var i = 0; i < segments.Length; i++)
+                {
+                    var sanitized = SanitizeVehicleFolderSegment(segments[i]);
+                    if (sanitized.Length > 0)
+                        safeSegments.Add(sanitized);
+                }
+
+                if (safeSegments.Count > 0)
+                    return string.Join(Path.DirectorySeparatorChar.ToString(), safeSegments);
             }
 
-            var name = string.IsNullOrWhiteSpace(folder) ? "custom-vehicle" : folder;
+            var fallback = !string.IsNullOrWhiteSpace(pkg.DisplayName)
+                ? pkg.DisplayName
+                : Path.GetFileNameWithoutExtension(pkg.Payload?.Manifest?.TsvFileName ?? string.Empty);
+            var fallbackName = SanitizeVehicleFolderSegment(fallback);
+            return fallbackName.Length == 0 ? "custom-vehicle" : fallbackName;
+        }
+
+        // Makes a single path segment safe to create on disk. Returns an empty string when nothing
+        // usable survives, so the caller can drop the segment rather than create a junk folder.
+        private static string SanitizeVehicleFolderSegment(string value)
+        {
+            var name = value ?? string.Empty;
             foreach (var invalid in Path.GetInvalidFileNameChars())
                 name = name.Replace(invalid, '_');
             name = name.Trim().Trim('.');
             if (name.Length == 0)
-                name = "custom-vehicle";
+                return string.Empty;
             if (name.Length > 64)
                 name = name.Substring(0, 64);
             return name;
+        }
+
+        // Defence in depth: the folder path is server-supplied, so confirm the resolved destination
+        // really sits inside the client's own Vehicles folder before creating or writing anything.
+        private static bool IsInsideVehiclesFolder(string candidate, string vehiclesFolder)
+        {
+            var root = Path.GetFullPath(vehiclesFolder);
+            var full = Path.GetFullPath(candidate);
+            if (string.Equals(full, root, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            var prefix = root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+            return full.StartsWith(prefix, StringComparison.OrdinalIgnoreCase);
         }
 
         // Wipes session-only downloaded vehicles left over from a previous run. Kept vehicles

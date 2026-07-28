@@ -8,12 +8,17 @@ namespace TopSpeed.Protocol
 {
     public static class VehiclePackageBuild
     {
+        // vehiclesRoot, when supplied, is the Vehicles folder the file was discovered under. It lets
+        // the manifest carry the vehicle's folder path relative to that root rather than just the
+        // leaf folder, so a client can reproduce the layout instead of flattening every vehicle into
+        // one level (where "NASCAR/cup car dodge" and "IndyCar/cup car dodge" would collide).
         public static bool TryBuildPackageFromVehicleFile(
             string vehicleFile,
             out VehiclePackagePayload payload,
             out byte[] bytes,
             out CustomVehicleTsvData parsed,
-            out string error)
+            out string error,
+            string? vehiclesRoot = null)
         {
             payload = new VehiclePackagePayload();
             bytes = Array.Empty<byte>();
@@ -57,7 +62,7 @@ namespace TopSpeed.Protocol
                     Hash = string.Empty,
                     DisplayName = ClampDisplayName(displayName),
                     TsvFileName = Path.GetFileName(vehicleFile) ?? string.Empty,
-                    FolderName = Path.GetFileName(Path.GetDirectoryName(Path.GetFullPath(vehicleFile))) ?? string.Empty
+                    FolderName = ResolveFolderName(vehicleFile, vehiclesRoot)
                 },
                 TsvText = tsvText,
                 AssetBlobs = assets
@@ -70,6 +75,29 @@ namespace TopSpeed.Protocol
 
             bytes = VehiclePackageCodec.Serialize(payload);
             return true;
+        }
+
+        // "NASCAR/cup car dodge" for a vehicle nested under the Vehicles root, or just the leaf
+        // folder name when the root is unknown or the file sits outside it. A file directly in the
+        // root keeps returning that root's own name, which the client already treats as "no usable
+        // folder" and replaces with the vehicle's display name.
+        private static string ResolveFolderName(string vehicleFile, string? vehiclesRoot)
+        {
+            var directory = Path.GetDirectoryName(Path.GetFullPath(vehicleFile)) ?? string.Empty;
+            var leaf = Path.GetFileName(directory) ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(directory) || string.IsNullOrWhiteSpace(vehiclesRoot))
+                return leaf;
+
+            var root = Path.GetFullPath(vehiclesRoot!);
+            if (!IsPathInsideRoot(directory, root) || string.Equals(directory, root, StringComparison.OrdinalIgnoreCase))
+                return leaf;
+
+            var relative = directory
+                .Substring(root.TrimEnd(Path.DirectorySeparatorChar).Length)
+                .TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                .Replace(Path.DirectorySeparatorChar, '/')
+                .Replace('\\', '/');
+            return string.IsNullOrWhiteSpace(relative) ? leaf : relative;
         }
 
         private static string ResolveVehicleId(CustomVehicleTsvData parsed, string vehicleFile)

@@ -43,7 +43,7 @@ namespace TopSpeed.Server.Network
                 if (HasServerVehiclePackageForSource(file, lastWriteUtc))
                     continue;
 
-                if (!VehiclePackageBuild.TryBuildPackageFromVehicleFile(file, out var payload, out var bytes, out var parsed, out var error))
+                if (!VehiclePackageBuild.TryBuildPackageFromVehicleFile(file, out var payload, out var bytes, out var parsed, out var error, vehiclesRoot))
                 {
                     _logger.Warning(LocalizationService.Format(
                         LocalizationService.Mark("Skipping server vehicle package '{0}': {1}"),

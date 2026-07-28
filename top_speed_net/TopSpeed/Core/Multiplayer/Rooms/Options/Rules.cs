@@ -83,6 +83,12 @@ namespace TopSpeed.Core.Multiplayer
             var authoritativeFlags = NormalizeRoomOptionsGameRulesFlags(_state.Rooms.CurrentRoom.GameRulesFlags);
             _state.RoomDrafts.RoomOptionsAppliedGameRulesFlags = authoritativeFlags;
 
+            // Re-seed a live draft from what the server actually accepted. Leaving the game rules
+            // menu applies the draft but keeps it alive, so without this a rule the server masked
+            // off stays checked until the host exits room options entirely.
+            if (_state.RoomDrafts.RoomOptionsDraftActive)
+                _state.RoomDrafts.RoomOptionsGameRulesFlags = authoritativeFlags;
+
             if (!_state.RoomDrafts.RoomTrackTypeOpenPending)
                 return;
 

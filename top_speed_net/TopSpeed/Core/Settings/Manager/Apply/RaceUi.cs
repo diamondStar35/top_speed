@@ -11,6 +11,7 @@ namespace TopSpeed.Core.Settings
             settings.AutomaticInfo = ReadEnum(race.AutomaticInfo, settings.AutomaticInfo, "race.automaticInfo", issues);
             settings.Copilot = ReadEnum(race.Copilot, settings.Copilot, "race.copilot", issues);
             settings.CurveAnnouncement = ReadEnum(race.CurveAnnouncement, settings.CurveAnnouncement, "race.curveAnnouncement", issues);
+            settings.CurveAnnouncementStyle = ReadEnum(race.CurveAnnouncementStyle, settings.CurveAnnouncementStyle, "race.curveAnnouncementStyle", issues);
             if (race.CurveAnnouncementLeadTimeSeconds.HasValue)
             {
                 settings.CurveAnnouncementLeadTimeSeconds = ClampFloat(

@@ -36,6 +36,12 @@ namespace TopSpeed.Input
         SpeedDependent = 1
     }
 
+    internal enum CurveAnnouncementStyle
+    {
+        Spoken = 0,
+        Tones = 1
+    }
+
     internal enum AutomaticInfoMode
     {
         Off = 0,

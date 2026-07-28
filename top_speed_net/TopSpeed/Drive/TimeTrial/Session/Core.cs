@@ -162,7 +162,7 @@ namespace TopSpeed.Drive.TimeTrial
             _soundFuelingUp = TryLoadPitSound("refueling.ogg");
             _soundExitPitRoad = TryLoadLanguageSound("race\\exitpitroad", allowFallback: false);
             PreloadRaceSpeechSources();
-            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
+            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, LoadRaceCueSound, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
             _panels = new PanelsSubsystem("panels", 100, _input, _panelManager, _radioPanel, SpeakText);
             _playerVehicle = new PlayerVehicleSubsystem(
                 "vehicle",

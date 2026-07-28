@@ -71,6 +71,7 @@ namespace TopSpeed.Core.Settings
                     AutomaticInfo = (int)settings.AutomaticInfo,
                     Copilot = (int)settings.Copilot,
                     CurveAnnouncement = (int)settings.CurveAnnouncement,
+                    CurveAnnouncementStyle = (int)settings.CurveAnnouncementStyle,
                     CurveAnnouncementLeadTimeSeconds = Round3Decimal(settings.CurveAnnouncementLeadTimeSeconds),
                     NumberOfLaps = settings.NrOfLaps,
                     NumberOfComputers = settings.NrOfComputers,

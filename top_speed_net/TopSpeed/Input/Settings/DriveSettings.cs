@@ -33,6 +33,7 @@ namespace TopSpeed.Input
         public AutomaticInfoMode AutomaticInfo { get; set; }
         public CopilotMode Copilot { get; set; }
         public CurveAnnouncementMode CurveAnnouncement { get; set; }
+        public CurveAnnouncementStyle CurveAnnouncementStyle { get; set; }
         public float CurveAnnouncementLeadTimeSeconds { get; set; }
         public int NrOfLaps { get; set; }
         public int NrOfComputers { get; set; }
@@ -126,6 +127,7 @@ namespace TopSpeed.Input
             AutomaticInfo = AutomaticInfoMode.On;
             Copilot = CopilotMode.All;
             CurveAnnouncement = CurveAnnouncementMode.SpeedDependent;
+            CurveAnnouncementStyle = CurveAnnouncementStyle.Spoken;
             CurveAnnouncementLeadTimeSeconds = 1.8f;
             NrOfLaps = 3;
             NrOfComputers = 3;

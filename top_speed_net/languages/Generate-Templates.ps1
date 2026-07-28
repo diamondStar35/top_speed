@@ -86,6 +86,10 @@ function Invoke-TemplateGeneration {
     # would bake the generating machine's checkout location into the template and every developer
     # would rewrite all of them. Pass repository-relative, forward-slashed paths (resolved against
     # --directory) so the templates are identical regardless of who runs this, or on which platform.
+    # The comments are also emitted without line numbers (--add-location=file below): line numbers
+    # shift whenever surrounding code moves, which rewrote thousands of comment lines on every
+    # regeneration without a single translatable string having changed. The file name still tells a
+    # translator where a string lives, and now only changes if the string moves to another file.
     $sourceFiles = @($sourceFiles | ForEach-Object { ConvertTo-RepositoryRelativePath -Path $_ -RepositoryRoot $RepositoryRoot } | Sort-Object -Unique)
 
     $templateDirectory = Split-Path -Parent $TemplatePath
@@ -101,6 +105,7 @@ function Invoke-TemplateGeneration {
             "--from-code=UTF-8",
             "--language=C#",
             "--sort-output",
+            "--add-location=file",
             "--directory", $RepositoryRoot,
             "--output", $TemplatePath,
             "--files-from", $temporaryFileList

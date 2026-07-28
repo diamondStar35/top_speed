@@ -15,6 +15,23 @@ function Resolve-ExecutablePath {
     return $command.Source
 }
 
+function ConvertTo-RepositoryRelativePath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+        [Parameter(Mandatory = $true)]
+        [string]$RepositoryRoot
+    )
+
+    $normalizedRoot = [System.IO.Path]::GetFullPath($RepositoryRoot).TrimEnd([char]'\', [char]'/')
+    $normalizedPath = [System.IO.Path]::GetFullPath($Path)
+    if (-not $normalizedPath.StartsWith($normalizedRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+        throw "Source file '$Path' is outside the repository root '$RepositoryRoot'."
+    }
+
+    return $normalizedPath.Substring($normalizedRoot.Length).TrimStart([char]'\', [char]'/').Replace('\', '/')
+}
+
 function Get-CSharpSourceFiles {
     param(
         [Parameter(Mandatory = $true)]
@@ -55,13 +72,25 @@ function Invoke-TemplateGeneration {
         [Parameter(Mandatory = $true)]
         [string[]]$KeywordArguments,
         [Parameter(Mandatory = $true)]
-        [string]$XGetTextPath
+        [string]$XGetTextPath,
+        [Parameter(Mandatory = $true)]
+        [string]$RepositoryRoot
     )
 
     $sourceFiles = Get-CSharpSourceFiles -SourceDirectories $SourceDirectories
     if ($sourceFiles.Count -eq 0) {
         throw "No C# source files were found for scope '$ScopeName'."
     }
+
+    # xgettext copies each input path verbatim into the "#:" source comments, so absolute paths
+    # would bake the generating machine's checkout location into the template and every developer
+    # would rewrite all of them. Pass repository-relative, forward-slashed paths (resolved against
+    # --directory) so the templates are identical regardless of who runs this, or on which platform.
+    # The comments are also emitted without line numbers (--add-location=file below): line numbers
+    # shift whenever surrounding code moves, which rewrote thousands of comment lines on every
+    # regeneration without a single translatable string having changed. The file name still tells a
+    # translator where a string lives, and now only changes if the string moves to another file.
+    $sourceFiles = @($sourceFiles | ForEach-Object { ConvertTo-RepositoryRelativePath -Path $_ -RepositoryRoot $RepositoryRoot } | Sort-Object -Unique)
 
     $templateDirectory = Split-Path -Parent $TemplatePath
     if (-not (Test-Path -LiteralPath $templateDirectory)) {
@@ -76,6 +105,8 @@ function Invoke-TemplateGeneration {
             "--from-code=UTF-8",
             "--language=C#",
             "--sort-output",
+            "--add-location=file",
+            "--directory", $RepositoryRoot,
             "--output", $TemplatePath,
             "--files-from", $temporaryFileList
         ) + $KeywordArguments
@@ -93,6 +124,7 @@ function Invoke-TemplateGeneration {
 }
 
 $solutionRoot = Split-Path -Parent $PSScriptRoot
+$repositoryRoot = Split-Path -Parent $solutionRoot
 $clientTemplatePath = Join-Path $PSScriptRoot "client/messages.pot"
 $serverTemplatePath = Join-Path $PSScriptRoot "server/messages.pot"
 
@@ -114,7 +146,8 @@ Invoke-TemplateGeneration `
         (Join-Path $solutionRoot "TopSpeed.Shared")
     ) `
     -KeywordArguments $sharedKeywordArguments `
-    -XGetTextPath $xgettextPath
+    -XGetTextPath $xgettextPath `
+    -RepositoryRoot $repositoryRoot
 
 Invoke-TemplateGeneration `
     -ScopeName "server" `
@@ -124,4 +157,5 @@ Invoke-TemplateGeneration `
         (Join-Path $solutionRoot "TopSpeed.Shared")
     ) `
     -KeywordArguments $sharedKeywordArguments `
-    -XGetTextPath $xgettextPath
+    -XGetTextPath $xgettextPath `
+    -RepositoryRoot $repositoryRoot

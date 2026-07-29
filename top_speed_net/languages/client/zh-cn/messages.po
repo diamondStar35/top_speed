@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 22:42-0400\n"
-"PO-Revision-Date: 2026-07-28 13:36\n"
+"PO-Revision-Date: 2026-07-29 03:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -345,7 +345,7 @@ msgstr "巴西"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Brief status reports"
-msgstr ""
+msgstr "简要状态报告"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Brilliant result! You set a new best time."
@@ -502,7 +502,7 @@ msgstr "选择如何继续当前游戏。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Choose how to start this race."
-msgstr ""
+msgstr "选择本场比赛的开始方式。"
 
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 msgid "Choose modifier key"
@@ -603,7 +603,7 @@ msgstr "兼容性警告"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Completing lap {0}"
-msgstr ""
+msgstr "正在完成第 {0} 圈"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure default multiplayer hosting settings, including the server port used by the game."
@@ -874,7 +874,7 @@ msgstr "当前比赛时间"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcement method"
-msgstr ""
+msgstr "弯道播报方式"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcements"
@@ -904,7 +904,7 @@ msgstr "自定义赛道文件路径为空。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 msgid "Custom track issues"
-msgstr ""
+msgstr "自定义赛道问题"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom tracks"
@@ -929,7 +929,7 @@ msgstr "自定义车辆文件必须使用.tsv扩展名。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Custom vehicle issues"
-msgstr ""
+msgstr "自定义车辆问题"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the next global volume category."
@@ -1049,7 +1049,7 @@ msgstr "对话框"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "Disable for this race"
-msgstr ""
+msgstr "本场比赛禁用"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
 msgid "Discard changes"
@@ -1170,7 +1170,7 @@ msgstr "启用HRTF音频"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Enable fuel consumption"
-msgstr ""
+msgstr "启用燃油消耗"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable menu navigation panning"
@@ -1183,7 +1183,7 @@ msgstr "启用菜单循环"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Enable tire wear"
-msgstr ""
+msgstr "启用轮胎磨损"
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Enable update download proxy first."
@@ -1496,7 +1496,7 @@ msgstr "幽灵模式"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
-msgstr ""
+msgstr "幽灵模式：{0}。自定义赛道：{1}。燃油消耗：{2}。轮胎磨损：{3}。已选赛道：{4}。本场比赛将进行 {5}。该房间最多容纳 {6}。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Shortcuts/Catalog.cs
@@ -1637,7 +1637,7 @@ msgstr "键「{1}」的数值「{0}」无效。"
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "无效的维修区值“{0}”。请使用 pit_entry 或 pit_exit。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
@@ -1868,17 +1868,17 @@ msgstr "第 {0} 圈"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching the finish"
-msgstr ""
+msgstr "第 {0} 圈，即将到达终点"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching turn {1}"
-msgstr ""
+msgstr "第 {0} 圈，即将进入第 {1} 个弯道"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, in turn {1}"
-msgstr ""
+msgstr "第 {0} 圈，正在通过第 {1} 个弯道"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Last history item"
@@ -2375,7 +2375,7 @@ msgstr "没有要应用的选项更改。"
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "No pit area"
-msgstr ""
+msgstr "无维修区"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 msgid "No players are currently in this game room."
@@ -2678,15 +2678,15 @@ msgstr "延迟检查已在进行中。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Pit stop"
-msgstr ""
+msgstr "进站"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Pit this time"
-msgstr ""
+msgstr "本次进站"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PitStop.cs
 msgid "Pitting this time"
-msgstr ""
+msgstr "本次正在进站"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Play logo at startup"
@@ -2919,7 +2919,7 @@ msgstr "RZ轴正"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "Race anyway"
-msgstr ""
+msgstr "仍然开始比赛"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Race complete."
@@ -3047,7 +3047,7 @@ msgstr "正在重新连接。现将立即断开连接。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Refuel"
-msgstr ""
+msgstr "加油"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Remove a bot"
@@ -3063,7 +3063,7 @@ msgstr "报告燃油"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Report lap and turn instead of race percentage"
-msgstr ""
+msgstr "播报圈数和弯道，而非比赛完成百分比"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report speed"
@@ -3612,7 +3612,7 @@ msgstr "某些自定义赛道文件无效，已跳过。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
-msgstr ""
+msgstr "部分自定义赛道文件存在问题。含错误的赛道已跳过，含警告的赛道仍会加载。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Some custom vehicle files are invalid and were skipped."
@@ -3620,7 +3620,7 @@ msgstr "某些自定义车辆文件无效，已跳过。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
-msgstr ""
+msgstr "部分自定义车辆文件存在问题。含错误的车辆已跳过，含警告的车辆仍会加载。"
 
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 msgid "Some settings were missing or invalid. Review these details."
@@ -3815,7 +3815,7 @@ msgstr "在公制和英制单位之间切换。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Switch between spoken curve announcements and non-spoken tones. In tones mode each type of curve has its own sound: the tighter the curve the higher the pitch, and the tone plays from the side the curve turns toward, so a left turn is heard on your left. Tones are the same in every language."
-msgstr ""
+msgstr "在语音弯道播报和非语音提示音之间切换。提示音模式中，每种弯道都有独特的声音：弯道越急，音调越高；声音会从弯道转向的一侧播放，因此左转时会从左侧听到。提示音在所有语言中都相同。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Switches chat history to the next category in the shared lobby chat view."
@@ -4034,15 +4034,15 @@ msgstr "无法加载所选赛道。比赛未开始。"
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
-msgstr ""
+msgstr "所选赛道没有维修区，但已启用燃油消耗和轮胎磨损。没有维修区就无法在比赛中加油或更换轮胎。"
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
-msgstr ""
+msgstr "所选赛道没有维修区，但已启用燃油消耗。没有维修区就无法在比赛中加油。"
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
-msgstr ""
+msgstr "所选赛道没有维修区，但已启用轮胎磨损。没有维修区就无法在比赛中更换轮胎。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "The selected vehicle does not support the selected transmission mode."
@@ -4137,7 +4137,7 @@ msgstr "此快捷键菜单没有可重置的绑定。"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PitStop.cs
 msgid "This track has no pit area."
-msgstr ""
+msgstr "此赛道没有维修区。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
@@ -4179,7 +4179,7 @@ msgstr "计时赛。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Tires"
-msgstr ""
+msgstr "轮胎"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle media loop"
@@ -4287,7 +4287,7 @@ msgstr "赛道路径必须指向赛道文件夹内的 .tsm 文件：{0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "赛道将“pit_area = false”设为 false，却同时定义了维修区入口/出口路段；进站已禁用，维修区路段将被忽略。"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Track source path is missing, so sound assets cannot be resolved."
@@ -4738,7 +4738,7 @@ msgstr "启用后，随机车辆选择可以包含自定义车辆。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, spoken status reports are shortened for experienced players: labels such as \"lap percentage\" and \"gear\" are dropped, and the number row gives a quick position rundown."
-msgstr ""
+msgstr "勾选后，面向熟练玩家的语音状态播报会简化：省略“圈数百分比”和“挡位”等标签，车号列表会快速播报名次概况。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "When checked, steering uses Android motion sensors instead of drag gestures."
@@ -4754,7 +4754,7 @@ msgstr "启用后，游戏使用设备的声道数和采样率。需要重启。
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, the number row and player information report a car's lap and the turn it is in or approaching, spoken like a spotter, instead of its race percentage. This applies to your own car and to any other driver you check with the number row. Turns are numbered from the track's curves, so the count may differ from a real circuit's official turn numbers."
-msgstr ""
+msgstr "勾选后，车号列表和玩家信息会像赛车观察员一样播报车辆所在或即将进入的圈数和弯道，而不再播报比赛完成百分比。此设置同时适用于你的车辆，以及你通过车号列表查看的其他车手。弯道按赛道曲线编号，因此数量可能与真实赛道的官方弯道编号不同。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the startup logo audio plays when the game launches."
@@ -4766,7 +4766,7 @@ msgstr "勾选后，更新包下载将通过您的代理URL进行路由。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, cars burn fuel and players must pit to refuel."
-msgstr ""
+msgstr "启用后，车辆会消耗燃油，玩家必须进站加油。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4778,7 +4778,7 @@ msgstr "启用后，油门、刹车和转向将逐步响应，而非瞬间跳到
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, tires wear and lose grip and players must pit to replace them."
-msgstr ""
+msgstr "启用后，轮胎会磨损并失去抓地力，玩家必须进站更换轮胎。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
@@ -4786,11 +4786,11 @@ msgstr "启用后，车辆碰撞被禁用，车辆可以穿过彼此。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
-msgstr ""
+msgstr "启用后，你的车辆会消耗燃油，必须进站加油。关闭后可不受燃油限制比赛。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
-msgstr ""
+msgstr "启用后，你的轮胎会磨损并失去抓地力，必须进站更换轮胎。关闭后可不受轮胎磨损影响比赛。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
@@ -5034,7 +5034,7 @@ msgstr "冷轮胎"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "completing lap {0}"
-msgstr ""
+msgstr "正在完成第 {0} 圈"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 msgid "connections"
@@ -5084,7 +5084,7 @@ msgstr "engine_displacement_l 的值必须在 {0} 到 {1} 升之间。"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 msgid "finished"
-msgstr ""
+msgstr "已完成"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "fixed distance"
@@ -5092,7 +5092,7 @@ msgstr "固定距离"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "fuel consumption off"
-msgstr ""
+msgstr "燃油消耗已关闭"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
@@ -5180,22 +5180,22 @@ msgstr "圈数更改请求"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0}"
-msgstr ""
+msgstr "第 {0} 圈"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching finish"
-msgstr ""
+msgstr "第 {0} 圈，即将到达终点"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching turn {1}"
-msgstr ""
+msgstr "第 {0} 圈，即将进入第 {1} 个弯道"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} turn {1}"
-msgstr ""
+msgstr "第 {0} 圈，第 {1} 个弯道"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "laps only"
@@ -5285,12 +5285,12 @@ msgstr "最佳温度"
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound not found, no sound will play: {0}"
-msgstr ""
+msgstr "未找到可选音效，不会播放声音：{0}"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound problem, no sound will play: {0}"
-msgstr ""
+msgstr "可选音效出现问题，不会播放声音：{0}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "overheated tires"
@@ -5354,7 +5354,7 @@ msgstr "比赛中"
 
 #: top_speed_net/TopSpeed/Menu/Items/RadioButton.cs
 msgid "radio button"
-msgstr "单选框"
+msgstr "单选按钮"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
@@ -5371,12 +5371,12 @@ msgstr "移除机器人请求"
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "required sound not found, will use built in fallback: {0}"
-msgstr ""
+msgstr "未找到必需音效，将使用内置备用音效：{0}"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "required sound problem, will use built in fallback: {0}"
-msgstr ""
+msgstr "所需音效出现问题，将使用内置备用音效：{0}"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "rev_limiter must be between idle_rpm and max_rpm."
@@ -5440,7 +5440,7 @@ msgstr "速度相关"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "spoken"
-msgstr ""
+msgstr "语音"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "start_area cannot be empty."
@@ -5460,7 +5460,7 @@ msgstr "此菜单"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "tire wear off"
-msgstr ""
+msgstr "轮胎磨损已关闭"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_aspect must be between 5 and 150."
@@ -5490,7 +5490,7 @@ msgstr "轮胎磨损率{0:F0}%，{1:F0}度F,{2}，{3}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "tones"
-msgstr ""
+msgstr "提示音"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "top_freq must be greater than or equal to idle_freq."
@@ -5729,12 +5729,12 @@ msgstr "{0} 已从当前房间移除。"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0} {1} {2}"
-msgstr ""
+msgstr "{0} {1} {2}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 #, csharp-format
@@ -5759,7 +5759,7 @@ msgstr "{0}，{1} 游戏，{2} 人，最多 {3} 名玩家"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0}, {1}, using {2}."
-msgstr ""
+msgstr "{0}，{1}，使用 {2}。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
@@ -5784,7 +5784,7 @@ msgstr "{0}：第 {1} 名，用时 {2}。"
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "{0}: {1}"
-msgstr ""
+msgstr "{0}：{1}"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 #, csharp-format

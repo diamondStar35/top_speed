@@ -28,6 +28,13 @@ namespace TopSpeed.Game
             if (_multiplayerVehiclePackagesSeenThisRace.Count == 0)
                 return;
 
+            // Rebuild the picture of what is already saved before deciding what to ask about. The
+            // index is built once and only refreshed when this code saves something itself, so a
+            // player who deleted or edited a vehicle on disk while the game was running would
+            // otherwise be judged against how their Vehicles folder looked earlier in the session:
+            // a vehicle they deleted still counts as saved and is never offered again.
+            InvalidateLocalVehicleIndex();
+
             var toAsk = new List<string>();
             foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
             {

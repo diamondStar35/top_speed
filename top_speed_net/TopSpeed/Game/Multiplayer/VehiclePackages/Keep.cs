@@ -28,13 +28,6 @@ namespace TopSpeed.Game
             if (_multiplayerVehiclePackagesSeenThisRace.Count == 0)
                 return;
 
-            // Rebuild the picture of what is already saved before deciding what to ask about. The
-            // index is built once and only refreshed when this code saves something itself, so a
-            // player who deleted or edited a vehicle on disk while the game was running would
-            // otherwise be judged against how their Vehicles folder looked earlier in the session:
-            // a vehicle they deleted still counts as saved and is never offered again.
-            InvalidateLocalVehicleIndex();
-
             var toAsk = new List<string>();
             foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
             {
@@ -269,7 +262,19 @@ namespace TopSpeed.Game
             if (string.IsNullOrWhiteSpace(normalizedHash))
                 return false;
             EnsureLocalVehicleIndex();
-            return _localVehicleIndex!.ContainsKey(normalizedHash);
+            if (!_localVehicleIndex!.TryGetValue(normalizedHash, out var keptPath))
+                return false;
+
+            // The index is built once per run, and a package downloaded this session keeps pointing
+            // at the session copy, so deleting the saved copy never invalidates anything. Confirm
+            // the file is actually still there before treating this vehicle as saved: a stale hit
+            // would quietly stop us ever offering to save it again. Only the one entry is checked,
+            // so this costs a file probe rather than a rescan of the whole Vehicles folder.
+            if (File.Exists(keptPath))
+                return true;
+
+            InvalidateLocalVehicleIndex();
+            return false;
         }
 
         // Saves the downloaded vehicle into the client's Vehicles folder as a real .tsv + sound

@@ -228,11 +228,15 @@ namespace TopSpeed.Game
             {
                 Directory.Move(backupFolder, existingFolder);
             }
-            catch (IOException)
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
-            }
-            catch (UnauthorizedAccessException)
-            {
+                // Worst case in this flow: the replacement failed AND the original could not be put
+                // back, so the player's only copy is sitting under a name they never chose. Never
+                // delete it to tidy up, and never stay quiet about it: say where it is so they can
+                // rename it back by hand.
+                failureReason = LocalizationService.Format(
+                    LocalizationService.Mark("the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"),
+                    Path.GetFileName(backupFolder));
             }
 
             return false;

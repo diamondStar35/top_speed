@@ -266,15 +266,18 @@ namespace TopSpeed.Game
                 return false;
 
             // The index is built once per run, and a package downloaded this session keeps pointing
-            // at the session copy, so deleting the saved copy never invalidates anything. Confirm
-            // the file is actually still there before treating this vehicle as saved: a stale hit
-            // would quietly stop us ever offering to save it again. Only the one entry is checked,
-            // so this costs a file probe rather than a rescan of the whole Vehicles folder.
+            // at the session copy, so deleting the saved copy never invalidates anything and the
+            // vehicle would never be offered again. The indexed path missing does not by itself mean
+            // the vehicle is gone though: whether it is saved is decided by content hash, not by
+            // where the file sits, so a rename or move must still count as saved. Treat the missing
+            // path only as a sign the index is stale, then let a fresh scan answer by hash. Costs a
+            // file probe in the normal case and a rescan only when something really did change.
             if (File.Exists(keptPath))
                 return true;
 
             InvalidateLocalVehicleIndex();
-            return false;
+            EnsureLocalVehicleIndex();
+            return _localVehicleIndex!.ContainsKey(normalizedHash);
         }
 
         // Saves the downloaded vehicle into the client's Vehicles folder as a real .tsv + sound

@@ -20,16 +20,16 @@ namespace TopSpeed.Game
         // Called when a race finishes: offer to keep each vehicle downloaded this race (deduped).
         private void PromptKeepDownloadedVehicles()
         {
-            if (_multiplayerVehiclePackagesDownloadedThisRace.Count == 0)
+            if (_multiplayerVehiclePackagesSeenThisRace.Count == 0)
                 return;
 
             var toAsk = new List<string>();
-            foreach (var hash in _multiplayerVehiclePackagesDownloadedThisRace)
+            foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
             {
                 if (!IsVehiclePackageKept(hash))
                     toAsk.Add(hash);
             }
-            _multiplayerVehiclePackagesDownloadedThisRace.Clear();
+            _multiplayerVehiclePackagesSeenThisRace.Clear();
 
             // Setting off => never persist (the package stays in the in-memory session cache only).
             if (!_settings.KeepDownloadedVehiclesPrompt || toAsk.Count == 0)
@@ -72,8 +72,8 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes)
-                        KeepVehiclePackageOnDisk(hash);
+                    if (resultId == QuestionId.Yes && !KeepVehiclePackageOnDisk(hash))
+                        AnnounceVehicleKeepFailed(name);
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, keep it")),
@@ -97,7 +97,8 @@ namespace TopSpeed.Game
                 {
                     if (resultId == VehicleKeepBothChoiceId)
                     {
-                        KeepVehiclePackageOnDisk(hash);
+                        if (!KeepVehiclePackageOnDisk(hash))
+                            AnnounceVehicleKeepFailed(name);
                         ShowNextVehicleKeepPrompt();
                         return;
                     }
@@ -130,8 +131,8 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes)
-                        ReplaceKeptVehicleOnDisk(hash, existingFolder);
+                    if (resultId == QuestionId.Yes && !ReplaceKeptVehicleOnDisk(hash, existingFolder))
+                        AnnounceVehicleKeepFailed(name);
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, replace it")),
@@ -158,24 +159,24 @@ namespace TopSpeed.Game
             return true;
         }
 
-        private void ReplaceKeptVehicleOnDisk(string hash, string existingFolder)
+        private bool ReplaceKeptVehicleOnDisk(string hash, string existingFolder)
         {
             var vehiclesFolder = GetClientVehiclesFolder();
             if (!IsInsideVehiclesFolder(existingFolder, vehiclesFolder))
-                return;
+                return false;
 
             var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
             if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
-                return;
+                return false;
             if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
-                return;
+                return false;
 
             // The old vehicle is moved aside rather than deleted outright, so if writing the
             // replacement fails part way through it can be put back instead of leaving the player
             // with neither. The whole folder goes, not just the files being overwritten, so sound
             // files belonging to the replaced vehicle cannot linger and be picked up by the new one.
             if (!TryReserveReplacedVehicleBackupPath(existingFolder, out var backupFolder))
-                return;
+                return false;
 
             try
             {
@@ -183,18 +184,18 @@ namespace TopSpeed.Game
             }
             catch (IOException)
             {
-                return;
+                return false;
             }
             catch (UnauthorizedAccessException)
             {
-                return;
+                return false;
             }
 
             if (TryWriteVehiclePackageFiles(existingFolder, pkg.Payload, out _))
             {
                 TryDeleteDirectory(backupFolder);
                 InvalidateLocalVehicleIndex();
-                return;
+                return true;
             }
 
             // Writing failed: discard the partial copy and restore what the player had.
@@ -209,6 +210,8 @@ namespace TopSpeed.Game
             catch (UnauthorizedAccessException)
             {
             }
+
+            return false;
         }
 
         private static bool TryReserveReplacedVehicleBackupPath(string existingFolder, out string backupFolder)
@@ -258,30 +261,43 @@ namespace TopSpeed.Game
         // Saves the downloaded vehicle into the client's Vehicles folder as a real .tsv + sound
         // files, so it is available offline (time trial / single race) and reused on future
         // servers without re-downloading. Creates the Vehicles folder if it does not exist.
-        private void KeepVehiclePackageOnDisk(string hash)
+        private bool KeepVehiclePackageOnDisk(string hash)
         {
             var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
             if (string.IsNullOrWhiteSpace(normalizedHash))
-                return;
+                return false;
             if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
-                return;
+                return false;
             if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
-                return;
+                return false;
 
             var vehiclesFolder = GetClientVehiclesFolder();
             var folderName = ResolveKeptVehicleFolderName(pkg);
             var destination = Path.Combine(vehiclesFolder, folderName);
             if (!IsInsideVehiclesFolder(destination, vehiclesFolder))
-                return;
+                return false;
 
             // A kept copy of THIS vehicle is excluded before prompting, so an existing folder of the
             // same name means a different vehicle already claimed it and the player chose to keep
             // both; save alongside it under the next free number.
             if (Directory.Exists(destination) && !TryResolveFreeNumberedFolder(vehiclesFolder, folderName, out destination))
-                return;
+                return false;
 
-            if (TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
-                InvalidateLocalVehicleIndex();
+            if (!TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
+                return false;
+
+            InvalidateLocalVehicleIndex();
+            return true;
+        }
+
+        // Saving touches the filesystem and can fail for reasons the player can act on (the folder
+        // being read only, or a file still open), so a failure has to say so rather than look like
+        // the choice was ignored.
+        private void AnnounceVehicleKeepFailed(string name)
+        {
+            _speech.Speak(LocalizationService.Format(
+                LocalizationService.Mark("Could not save the vehicle \"{0}\". Its folder may be read only or in use."),
+                name));
         }
 
         // Reproduce the source folder path ("NASCAR/cup car dodge") so a kept vehicle matches the

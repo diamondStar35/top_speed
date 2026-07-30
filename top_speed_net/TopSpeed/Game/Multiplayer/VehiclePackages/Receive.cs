@@ -87,8 +87,13 @@ namespace TopSpeed.Game
         private readonly Dictionary<string, IncomingVehiclePackageTransfer> _multiplayerVehiclePackageTransfers =
             new Dictionary<string, IncomingVehiclePackageTransfer>(StringComparer.OrdinalIgnoreCase);
 
-        // Hashes downloaded during the current race, for the post-race "keep?" prompt (deduped).
-        private readonly HashSet<string> _multiplayerVehiclePackagesDownloadedThisRace =
+        // Custom vehicles present during the current race, for the post-race "keep?" prompt
+        // (deduped). This tracks every package the race used, not only freshly downloaded ones: a
+        // vehicle downloaded in an earlier race of the same run still sits in the session cache, so
+        // it never downloads again and would otherwise never be offered for keeping even though it
+        // is not saved anywhere permanent. Entries already kept on disk are filtered out when the
+        // prompt is built.
+        private readonly HashSet<string> _multiplayerVehiclePackagesSeenThisRace =
             new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         private void ResetMultiplayerVehiclePackageState()
@@ -109,6 +114,7 @@ namespace TopSpeed.Game
 
             if (TryGetCachedVehiclePackage(hash, out _))
             {
+                _multiplayerVehiclePackagesSeenThisRace.Add(hash);
                 SendVehiclePackageReady(hash);
                 return;
             }
@@ -164,7 +170,11 @@ namespace TopSpeed.Game
             if (!_multiplayerVehiclePackageTransfers.TryGetValue(hash, out var transfer))
             {
                 if (TryGetCachedVehiclePackage(hash, out _))
+                {
+                    _multiplayerVehiclePackagesSeenThisRace.Add(hash);
                     SendVehiclePackageReady(hash);
+                }
+
                 return;
             }
 
@@ -183,7 +193,7 @@ namespace TopSpeed.Game
             if (!TryMaterializeAndCacheVehiclePackage(computedHash, payload, out _))
                 return;
 
-            _multiplayerVehiclePackagesDownloadedThisRace.Add(computedHash);
+            _multiplayerVehiclePackagesSeenThisRace.Add(computedHash);
             SendVehiclePackageReady(computedHash);
         }
 

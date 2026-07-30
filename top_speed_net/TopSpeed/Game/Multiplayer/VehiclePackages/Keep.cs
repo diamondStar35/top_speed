@@ -79,8 +79,8 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes && !KeepVehiclePackageOnDisk(hash))
-                        AnnounceVehicleKeepFailed(name);
+                    if (resultId == QuestionId.Yes && !KeepVehiclePackageOnDisk(hash, out var keepFailure))
+                        AnnounceVehicleKeepFailed(name, keepFailure);
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, keep it")),
@@ -104,8 +104,8 @@ namespace TopSpeed.Game
                 {
                     if (resultId == VehicleKeepBothChoiceId)
                     {
-                        if (!KeepVehiclePackageOnDisk(hash))
-                            AnnounceVehicleKeepFailed(name);
+                        if (!KeepVehiclePackageOnDisk(hash, out var keepBothFailure))
+                            AnnounceVehicleKeepFailed(name, keepBothFailure);
                         ShowNextVehicleKeepPrompt();
                         return;
                     }
@@ -138,8 +138,8 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes && !ReplaceKeptVehicleOnDisk(hash, existingFolder))
-                        AnnounceVehicleKeepFailed(name);
+                    if (resultId == QuestionId.Yes && !ReplaceKeptVehicleOnDisk(hash, existingFolder, out var replaceFailure))
+                        AnnounceVehicleKeepFailed(name, replaceFailure);
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, replace it")),
@@ -166,35 +166,50 @@ namespace TopSpeed.Game
             return true;
         }
 
-        private bool ReplaceKeptVehicleOnDisk(string hash, string existingFolder)
+        private bool ReplaceKeptVehicleOnDisk(string hash, string existingFolder, out string failureReason)
         {
+            failureReason = string.Empty;
             var vehiclesFolder = GetClientVehiclesFolder();
             if (!IsInsideVehiclesFolder(existingFolder, vehiclesFolder))
+            {
+                failureReason = LocalizationService.Mark("the saved copy is not inside the Vehicles folder");
                 return false;
+            }
 
             var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
             if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
+            {
+                failureReason = LocalizationService.Mark("the downloaded copy is no longer loaded");
                 return false;
+            }
+
             if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
+            {
+                failureReason = LocalizationService.Mark("the downloaded copy holds no vehicle file to write");
                 return false;
+            }
 
             // The old vehicle is moved aside rather than deleted outright, so if writing the
             // replacement fails part way through it can be put back instead of leaving the player
             // with neither. The whole folder goes, not just the files being overwritten, so sound
             // files belonging to the replaced vehicle cannot linger and be picked up by the new one.
             if (!TryReserveReplacedVehicleBackupPath(existingFolder, out var backupFolder))
+            {
+                failureReason = LocalizationService.Mark("no free name was available to move the old folder aside");
                 return false;
+            }
 
             try
             {
                 Directory.Move(existingFolder, backupFolder);
             }
-            catch (IOException)
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
-                return false;
-            }
-            catch (UnauthorizedAccessException)
-            {
+                // Moving the folder needs every file in it to be free, sounds included, not just the
+                // .tsv, so name the real error rather than guessing at the cause.
+                failureReason = LocalizationService.Format(
+                    LocalizationService.Mark("the old folder could not be moved aside ({0})"),
+                    ex.Message);
                 return false;
             }
 
@@ -204,6 +219,8 @@ namespace TopSpeed.Game
                 InvalidateLocalVehicleIndex();
                 return true;
             }
+
+            failureReason = LocalizationService.Mark("the replacement files could not be written");
 
             // Writing failed: discard the partial copy and restore what the player had.
             TryDeleteDirectory(existingFolder);
@@ -283,30 +300,51 @@ namespace TopSpeed.Game
         // Saves the downloaded vehicle into the client's Vehicles folder as a real .tsv + sound
         // files, so it is available offline (time trial / single race) and reused on future
         // servers without re-downloading. Creates the Vehicles folder if it does not exist.
-        private bool KeepVehiclePackageOnDisk(string hash)
+        private bool KeepVehiclePackageOnDisk(string hash, out string failureReason)
         {
+            failureReason = string.Empty;
             var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
             if (string.IsNullOrWhiteSpace(normalizedHash))
+            {
+                failureReason = LocalizationService.Mark("the vehicle has no valid identifier");
                 return false;
+            }
+
             if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
+            {
+                failureReason = LocalizationService.Mark("the downloaded copy is no longer loaded");
                 return false;
+            }
+
             if (string.IsNullOrWhiteSpace(pkg.Payload?.TsvText))
+            {
+                failureReason = LocalizationService.Mark("the downloaded copy holds no vehicle file to write");
                 return false;
+            }
 
             var vehiclesFolder = GetClientVehiclesFolder();
             var folderName = ResolveKeptVehicleFolderName(pkg);
             var destination = Path.Combine(vehiclesFolder, folderName);
             if (!IsInsideVehiclesFolder(destination, vehiclesFolder))
+            {
+                failureReason = LocalizationService.Mark("the destination is not inside the Vehicles folder");
                 return false;
+            }
 
             // A kept copy of THIS vehicle is excluded before prompting, so an existing folder of the
             // same name means a different vehicle already claimed it and the player chose to keep
             // both; save alongside it under the next free number.
             if (Directory.Exists(destination) && !TryResolveFreeNumberedFolder(vehiclesFolder, folderName, out destination))
+            {
+                failureReason = LocalizationService.Mark("no free folder name was available");
                 return false;
+            }
 
             if (!TryWriteVehiclePackageFiles(destination, pkg.Payload, out _))
+            {
+                failureReason = LocalizationService.Mark("the files could not be written");
                 return false;
+            }
 
             InvalidateLocalVehicleIndex();
             return true;
@@ -315,10 +353,15 @@ namespace TopSpeed.Game
         // Saving touches the filesystem and can fail for reasons the player can act on (the folder
         // being read only, or a file still open), so a failure has to say so rather than look like
         // the choice was ignored.
-        private void AnnounceVehicleKeepFailed(string name)
+        private void AnnounceVehicleKeepFailed(string name, string failureReason)
         {
             _pendingVehicleKeepFailures ??= new List<string>();
-            _pendingVehicleKeepFailures.Add(name);
+            _pendingVehicleKeepFailures.Add(string.IsNullOrWhiteSpace(failureReason)
+                ? name
+                : LocalizationService.Format(
+                    LocalizationService.Mark("\"{0}\", because {1}"),
+                    name,
+                    LocalizationService.Translate(failureReason)));
         }
 
         // One dialog for every vehicle that could not be saved, shown after the last prompt so it
@@ -333,11 +376,11 @@ namespace TopSpeed.Game
 
             var caption = failures.Count == 1
                 ? LocalizationService.Format(
-                    LocalizationService.Mark("Could not save the vehicle \"{0}\". Its folder may be read only, or a file in it may still be in use."),
+                    LocalizationService.Mark("Could not save the vehicle {0}."),
                     failures[0])
                 : LocalizationService.Format(
-                    LocalizationService.Mark("Could not save these vehicles: {0}. Their folders may be read only, or files in them may still be in use."),
-                    string.Join(", ", failures));
+                    LocalizationService.Mark("Could not save these vehicles: {0}."),
+                    string.Join("; ", failures));
 
             _multiplayerCoordinator.Questions.Show(new Question(
                 LocalizationService.Mark("Vehicle not saved"),

@@ -12,6 +12,11 @@ namespace TopSpeed.Game
     {
         private Queue<string>? _pendingVehicleKeepPrompts;
 
+        // Vehicles that could not be saved, reported together once the prompts are done. Speaking a
+        // failure as it happens does not work: the next prompt (or the return to the menu) announces
+        // itself immediately afterwards and talks over it.
+        private List<string>? _pendingVehicleKeepFailures;
+
         // Set when the server reports the race completed; the actual keep prompt is shown once the
         // race has exited back to the menu (showing it mid-finish loses it to the result dialog and
         // the menu transition, since the race loop does not service question dialogs).
@@ -36,6 +41,7 @@ namespace TopSpeed.Game
                 return;
 
             _pendingVehicleKeepPrompts = new Queue<string>(toAsk);
+            _pendingVehicleKeepFailures = null;
             ShowNextVehicleKeepPrompt();
         }
 
@@ -48,6 +54,7 @@ namespace TopSpeed.Game
             if (_pendingVehicleKeepPrompts == null || _pendingVehicleKeepPrompts.Count == 0)
             {
                 _pendingVehicleKeepPrompts = null;
+                ShowVehicleKeepFailureReport();
                 return;
             }
 
@@ -87,7 +94,7 @@ namespace TopSpeed.Game
             var question = new Question(
                 LocalizationService.Mark("Keep custom vehicle?"),
                 LocalizationService.Format(
-                    LocalizationService.Mark("You already have a vehicle in the folder \"{0}\". What do you want to do with the downloaded \"{1}\"?"),
+                    LocalizationService.Mark("You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"),
                     existingFolderName,
                     name),
                 // Escaping keeps what the player already has: the only destructive option here is
@@ -125,7 +132,7 @@ namespace TopSpeed.Game
             var question = new Question(
                 LocalizationService.Mark("Replace vehicle?"),
                 LocalizationService.Format(
-                    LocalizationService.Mark("This permanently deletes the vehicle in the folder \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"),
+                    LocalizationService.Mark("This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"),
                     existingFolderName,
                     name),
                 QuestionId.No,
@@ -295,9 +302,34 @@ namespace TopSpeed.Game
         // the choice was ignored.
         private void AnnounceVehicleKeepFailed(string name)
         {
-            _speech.Speak(LocalizationService.Format(
-                LocalizationService.Mark("Could not save the vehicle \"{0}\". Its folder may be read only or in use."),
-                name));
+            _pendingVehicleKeepFailures ??= new List<string>();
+            _pendingVehicleKeepFailures.Add(name);
+        }
+
+        // One dialog for every vehicle that could not be saved, shown after the last prompt so it
+        // is not talked over, and dismissible so the player can take it in rather than catch it in
+        // passing. Only appears when something actually failed.
+        private void ShowVehicleKeepFailureReport()
+        {
+            var failures = _pendingVehicleKeepFailures;
+            _pendingVehicleKeepFailures = null;
+            if (failures == null || failures.Count == 0)
+                return;
+
+            var caption = failures.Count == 1
+                ? LocalizationService.Format(
+                    LocalizationService.Mark("Could not save the vehicle \"{0}\". Its folder may be read only, or a file in it may still be in use."),
+                    failures[0])
+                : LocalizationService.Format(
+                    LocalizationService.Mark("Could not save these vehicles: {0}. Their folders may be read only, or files in them may still be in use."),
+                    string.Join(", ", failures));
+
+            _multiplayerCoordinator.Questions.Show(new Question(
+                LocalizationService.Mark("Vehicle not saved"),
+                caption,
+                QuestionId.Ok,
+                _ => { },
+                new QuestionButton(QuestionId.Ok, LocalizationService.Mark("OK"), flags: QuestionButtonFlags.Default)));
         }
 
         // Reproduce the source folder path ("NASCAR/cup car dodge") so a kept vehicle matches the

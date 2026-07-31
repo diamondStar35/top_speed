@@ -69,6 +69,7 @@ namespace TopSpeed.Input
         public bool MenuWrapNavigation { get; set; }
         public string MenuSoundPreset { get; set; } = "1";
         public bool MenuNavigatePanning { get; set; }
+        public bool MenuDigitActivation { get; set; }
         public bool PlayLogoAtStartup { get; set; }
         public bool AutoCheckUpdates { get; set; }
         public string RadioLastFolder { get; set; } = string.Empty;
@@ -164,6 +165,7 @@ namespace TopSpeed.Input
             MenuWrapNavigation = true;
             MenuSoundPreset = "1";
             MenuNavigatePanning = false;
+            MenuDigitActivation = false;
             PlayLogoAtStartup = true;
             AutoCheckUpdates = true;
             RadioLastFolder = string.Empty;

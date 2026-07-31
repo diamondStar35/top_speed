@@ -56,6 +56,21 @@ namespace TopSpeed.Menu
                 screen.MenuNavigatePanning = enabled;
         }
 
+        public void SetMenuDigitActivation(bool enabled)
+        {
+            _menuDigitActivation = enabled;
+            foreach (var screen in _screens.Values)
+                screen.NumberActivationEnabled = enabled;
+        }
+
+        public void SetForceNumberActivation(string menuId, bool forced)
+        {
+            if (string.IsNullOrWhiteSpace(menuId))
+                return;
+            if (_screens.TryGetValue(menuId, out var screen))
+                screen.ForceNumberActivation = forced;
+        }
+
         public void SetMenuAutoFocus(bool enabled)
         {
             _menuAutoFocus = enabled;
@@ -72,7 +87,8 @@ namespace TopSpeed.Menu
             var screen = new MenuScreen(id, items, _audio, _speech, title, titleProvider, _usageHintsEnabled, () => _menuAutoFocus, spec)
             {
                 WrapNavigation = _wrapNavigation,
-                MenuNavigatePanning = _menuNavigatePanning
+                MenuNavigatePanning = _menuNavigatePanning,
+                NumberActivationEnabled = _menuDigitActivation
             };
             screen.SetMenuSoundPreset(_menuSoundPreset);
             return screen;

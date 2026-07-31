@@ -70,6 +70,8 @@ namespace TopSpeed.Menu
         public IReadOnlyList<MenuItem> Items => _items;
         public bool WrapNavigation { get; set; } = true;
         public bool MenuNavigatePanning { get; set; }
+        public bool NumberActivationEnabled { get; set; }
+        public bool ForceNumberActivation { get; set; }
         public string? MusicFile { get; set; }
         public string? NavigateSoundFile { get; set; } = DefaultNavigateSound;
         public string? WrapSoundFile { get; set; } = DefaultWrapSound;

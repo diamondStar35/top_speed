@@ -92,6 +92,7 @@ namespace TopSpeed.Core.Settings
                     MenuWrapNavigation = settings.MenuWrapNavigation,
                     MenuSoundPreset = settings.MenuSoundPreset,
                     MenuNavigatePanning = settings.MenuNavigatePanning,
+                    MenuDigitActivation = settings.MenuDigitActivation,
                     PlayLogoAtStartup = settings.PlayLogoAtStartup,
                     AutoCheckUpdates = settings.AutoCheckUpdates
                 },

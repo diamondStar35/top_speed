@@ -19,6 +19,7 @@ namespace TopSpeed.Menu
         private readonly Func<bool> _usageHintsEnabled;
         private bool _wrapNavigation = true;
         private bool _menuNavigatePanning;
+        private bool _menuDigitActivation;
         private bool _menuAutoFocus = true;
         private string? _menuSoundPreset;
         private bool _menuMusicSuspended;

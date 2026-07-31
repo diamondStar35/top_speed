@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 22:42-0400\n"
-"PO-Revision-Date: 2026-07-28 10:24\n"
+"PO-Revision-Date: 2026-07-31 12:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -345,7 +345,7 @@ msgstr "Brasil"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Brief status reports"
-msgstr ""
+msgstr "Relatório Breve de Status"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Brilliant result! You set a new best time."
@@ -603,7 +603,7 @@ msgstr "Aviso de compatibilidade"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Completing lap {0}"
-msgstr ""
+msgstr "Volta completada {0}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure default multiplayer hosting settings, including the server port used by the game."
@@ -874,7 +874,7 @@ msgstr "Tempo atual de corrida"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcement method"
-msgstr ""
+msgstr "Método de anúncios de curvas"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcements"
@@ -1868,17 +1868,17 @@ msgstr "Volta {0}"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching the finish"
-msgstr ""
+msgstr "Volta {0}, aproximando-se da meta"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching turn {1}"
-msgstr ""
+msgstr "Volta {0}, se aproximando da curva {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, in turn {1}"
-msgstr ""
+msgstr "Volta {0}, na curva {1}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Last history item"
@@ -3063,7 +3063,7 @@ msgstr "Reportar combustível"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Report lap and turn instead of race percentage"
-msgstr ""
+msgstr "Anuncie volta e curvas em vez de porcentagem da corrida"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report speed"
@@ -3815,7 +3815,7 @@ msgstr "Alterne entre unidades métricas e imperiais."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Switch between spoken curve announcements and non-spoken tones. In tones mode each type of curve has its own sound: the tighter the curve the higher the pitch, and the tone plays from the side the curve turns toward, so a left turn is heard on your left. Tones are the same in every language."
-msgstr ""
+msgstr "Alterne entre anúncios de curvas faladas e tons não falados. No modo tons, cada tipo de curva tem o seu próprio som: quanto mais fechada a curva, mais alto é o tom, e o tom é reproduzido do lado em que a curva vira, pelo que se ouve uma curva à esquerda à sua esquerda será o tom. Os tons são os mesmos em todos os idiomas."
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Switches chat history to the next category in the shared lobby chat view."
@@ -4738,7 +4738,7 @@ msgstr "Quando marcado, a seleção aleatória de veículo pode incluir veículo
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, spoken status reports are shortened for experienced players: labels such as \"lap percentage\" and \"gear\" are dropped, and the number row gives a quick position rundown."
-msgstr ""
+msgstr "Quando marcado, os relatórios de Status falados são encurtados para jogadores experientes: rótulos como \"porcentagem de volta\" e \"marcha\" são descartados, e a linha numérica dá um resumo rápido da posição."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "When checked, steering uses Android motion sensors instead of drag gestures."
@@ -4754,7 +4754,7 @@ msgstr "Quando marcado, o jogo usa a contagem de canais e a taxa de amostragem d
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, the number row and player information report a car's lap and the turn it is in or approaching, spoken like a spotter, instead of its race percentage. This applies to your own car and to any other driver you check with the number row. Turns are numbered from the track's curves, so the count may differ from a real circuit's official turn numbers."
-msgstr ""
+msgstr "Quando marcado, a linha numérica e as informações do jogador relatam a volta de um carro e a curva em que está ou se aproxima, falada como um observador, em vez de a porcentagem da corrida. Isso se aplica ao seu próprio carro e a qualquer outro motorista que você verifique com a linha numérica. As curvas são numeradas a partir das curvas da pista, pelo que a contagem pode diferir dos números oficiais das curvas de um circuito real."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the startup logo audio plays when the game launches."
@@ -5034,7 +5034,7 @@ msgstr "pneus frios"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "completing lap {0}"
-msgstr ""
+msgstr "completando a volta {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 msgid "connections"
@@ -5084,7 +5084,7 @@ msgstr "engine_displacement_l deve estar entre {0} e {1} litros."
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 msgid "finished"
-msgstr ""
+msgstr "terminou"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "fixed distance"
@@ -5180,22 +5180,22 @@ msgstr "solicitação de alteração da contagem de voltas"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0}"
-msgstr ""
+msgstr "volta {0}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching finish"
-msgstr ""
+msgstr "volta {0} chegando ao fim"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching turn {1}"
-msgstr ""
+msgstr "volta {0} Se aproximando da curva {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} turn {1}"
-msgstr ""
+msgstr "volta {0} curva {1}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "laps only"
@@ -5440,7 +5440,7 @@ msgstr "dependente da velocidade"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "spoken"
-msgstr ""
+msgstr "fala"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "start_area cannot be empty."
@@ -5490,7 +5490,7 @@ msgstr "pneus {0:F0} por cento de desgaste, {1:F0} graus Fahrenheit, {2}, {3}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "tones"
-msgstr ""
+msgstr "tons"
 
 #: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "top_freq must be greater than or equal to idle_freq."
@@ -5729,12 +5729,12 @@ msgstr "{0} foi removido da sala atual."
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0} {1} {2}"
-msgstr ""
+msgstr "{0} {1} {2}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 #, csharp-format
@@ -5759,7 +5759,7 @@ msgstr "{0}, jogo {1} com {2} pessoas, máximo de {3} jogadores"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0}, {1}, using {2}."
-msgstr ""
+msgstr "{0}, {1}, usando {2}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format

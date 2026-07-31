@@ -34,6 +34,7 @@ namespace TopSpeed.Input
             _allowDrivingInput = true;
             _allowAuxiliaryInput = true;
             _overlayInputBlocked = false;
+            _menuNavigationActive = false;
             _pausedHornInputAllowed = false;
             _controllerIsRacingWheel = false;
             ClearTouchInputState();

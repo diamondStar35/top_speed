@@ -52,5 +52,27 @@ namespace TopSpeed.Drive.Single
 
             return Math.Min(100, (int)((_computerPlayers[player]!.PositionY / (float)(_track.Length * _nrOfLaps)) * 100.0f));
         }
+
+        private float CalculatePlayerPosition(int player)
+        {
+            if (player == _playerNumber)
+                return _car.PositionY;
+
+            if (player > _playerNumber)
+                return _computerPlayers[player - 1]?.PositionY ?? 0f;
+
+            return _computerPlayers[player]?.PositionY ?? 0f;
+        }
+
+        private bool CalculatePlayerFinished(int player)
+        {
+            if (player == _playerNumber)
+                return _finished;
+
+            if (player > _playerNumber)
+                return _computerPlayers[player - 1]?.Finished ?? false;
+
+            return _computerPlayers[player]?.Finished ?? false;
+        }
     }
 }

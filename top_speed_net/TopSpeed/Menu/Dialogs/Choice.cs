@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using TopSpeed.Input;
 using TopSpeed.Localization;
 namespace TopSpeed.Menu
 {
@@ -61,6 +62,12 @@ namespace TopSpeed.Menu
         public string CancelLabel { get; }
         public Action<ChoiceDialogResult>? OnResult { get; }
         public bool OpenAsOverlay { get; set; }
+
+        // Keys that should not drive first-letter navigation while this dialog is open, because they
+        // are bound to actions still live under the overlay (e.g. drive status/horn keys during a
+        // pit stop). Null or empty leaves letter navigation fully enabled.
+        public IReadOnlyCollection<InputKey>? LetterNavReservedKeys { get; set; }
+
         public bool IsCancelable => (Flags & ChoiceDialogFlags.Cancelable) != 0;
         public bool ForcesNumberActivation => (Flags & ChoiceDialogFlags.NumberActivation) != 0;
     }
@@ -96,6 +103,7 @@ namespace TopSpeed.Menu
                 throw new ArgumentNullException(nameof(dialog));
 
             _activeDialog = dialog;
+            ApplyLetterNavigationReservation(dialog);
             var items = new List<MenuItem>
             {
                 new MenuItem(dialog.Title, MenuAction.None)
@@ -148,12 +156,26 @@ namespace TopSpeed.Menu
                 return;
 
             _activeDialog = null;
+            _menu.SetLetterNavigationReservation(null);
             _menu.SetForceNumberActivation(MenuId, false);
 
             if (IsChoiceMenu(_menu.CurrentId) && _menu.CanPop)
                 _menu.PopToPrevious();
 
             dialog.OnResult?.Invoke(result);
+        }
+
+        private void ApplyLetterNavigationReservation(ChoiceDialog dialog)
+        {
+            if (dialog.LetterNavReservedKeys is { Count: > 0 } reservedKeys)
+            {
+                var reserved = new HashSet<InputKey>(reservedKeys);
+                _menu.SetLetterNavigationReservation(reserved.Contains);
+            }
+            else
+            {
+                _menu.SetLetterNavigationReservation(null);
+            }
         }
     }
 }

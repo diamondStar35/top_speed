@@ -33,6 +33,7 @@ namespace TopSpeed.Input
         public AutomaticInfoMode AutomaticInfo { get; set; }
         public CopilotMode Copilot { get; set; }
         public CurveAnnouncementMode CurveAnnouncement { get; set; }
+        public CurveAnnouncementStyle CurveAnnouncementStyle { get; set; }
         public float CurveAnnouncementLeadTimeSeconds { get; set; }
         public int NrOfLaps { get; set; }
         public int NrOfComputers { get; set; }
@@ -40,6 +41,8 @@ namespace TopSpeed.Input
         public UnitSystem Units { get; set; }
         public bool FuelConsumptionEnabled { get; set; }
         public bool TireWearEnabled { get; set; }
+        public bool BriefStatusReports { get; set; }
+        public bool ReportLapAndTurn { get; set; }
         public float MusicVolume { get; set; }
         public AudioVolumeSettings AudioVolumes { get; set; } = new AudioVolumeSettings();
         public bool HrtfAudio { get; set; }
@@ -125,6 +128,7 @@ namespace TopSpeed.Input
             AutomaticInfo = AutomaticInfoMode.On;
             Copilot = CopilotMode.All;
             CurveAnnouncement = CurveAnnouncementMode.SpeedDependent;
+            CurveAnnouncementStyle = CurveAnnouncementStyle.Spoken;
             CurveAnnouncementLeadTimeSeconds = 1.8f;
             NrOfLaps = 3;
             NrOfComputers = 3;
@@ -132,6 +136,8 @@ namespace TopSpeed.Input
             Units = UnitSystem.Metric;
             FuelConsumptionEnabled = false;
             TireWearEnabled = false;
+            BriefStatusReports = false;
+            ReportLapAndTurn = false;
             MusicVolume = 0.6f;
             AudioVolumes = new AudioVolumeSettings();
             AudioVolumes.RestoreDefaults((int)Math.Round(MusicVolume * 100f));

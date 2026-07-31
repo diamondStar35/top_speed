@@ -181,7 +181,7 @@ namespace TopSpeed.Drive.Single
             LoadRaceUiSounds();
             _soundStart = LoadLanguageSound("race\\start321");
 
-            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
+            _trackAudio = new TrackAudioService(_settings, GetRandomSoundBySlot, LoadRaceCueSound, _soundTurnEndDing, QueueTrackInfoSound, (sessionEvent, delay) => _session!.QueueEvent(sessionEvent, delay));
             _panels = new PanelsSubsystem("panels", 110, _input, _panelManager, _radioPanel, SpeakText);
             _playerVehicle = new PlayerVehicleSubsystem(
                 "vehicle",
@@ -233,7 +233,13 @@ namespace TopSpeed.Drive.Single
                 () => _started,
                 SpeakText,
                 CalculatePlayerPerc,
-                HandlePlayerNumberRequest);
+                HandlePlayerNumberRequest,
+                () => _settings.BriefStatusReports,
+                getPlayerPosition: CalculatePlayerPosition,
+                track: _track,
+                getLapLimit: () => _nrOfLaps,
+                reportLapAndTurn: () => _settings.ReportLapAndTurn,
+                isPlayerFinished: CalculatePlayerFinished);
             _exit = new ExitSubsystem(
                 "exit",
                 300,
@@ -291,7 +297,7 @@ namespace TopSpeed.Drive.Single
                 value => _positionComment = value,
                 SpeakIfLoaded,
                 Speak);
-            _collisions = new CollisionsSubsystem("collisions", 150, _track, _car, _computerPlayers, () => _playerNumber, () => _nComputerPlayers, () => _pitStop!.IsGhosted);
+            _collisions = new CollisionsSubsystem("collisions", 150, _track, _car, _computerPlayers, () => _playerNumber, () => _nComputerPlayers, () => _pitStop!.IsGhosted, () => _finished, () => _started);
             _pitStop = new PitStopSubsystem(
                 "pitStop",
                 135,

@@ -201,6 +201,7 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "automaticInfo")] public int? AutomaticInfo { get; set; }
         [DataMember(Name = "copilot")] public int? Copilot { get; set; }
         [DataMember(Name = "curveAnnouncement")] public int? CurveAnnouncement { get; set; }
+        [DataMember(Name = "curveAnnouncementStyle")] public int? CurveAnnouncementStyle { get; set; }
         [DataMember(Name = "curveAnnouncementLeadTimeSeconds")] public decimal? CurveAnnouncementLeadTimeSeconds { get; set; }
         [DataMember(Name = "numberOfLaps")] public int? NumberOfLaps { get; set; }
         [DataMember(Name = "numberOfComputers")] public int? NumberOfComputers { get; set; }
@@ -208,6 +209,8 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "units")] public int? Units { get; set; }
         [DataMember(Name = "fuelConsumptionEnabled")] public bool? FuelConsumptionEnabled { get; set; }
         [DataMember(Name = "tireWearEnabled")] public bool? TireWearEnabled { get; set; }
+        [DataMember(Name = "briefStatusReports")] public bool? BriefStatusReports { get; set; }
+        [DataMember(Name = "reportLapAndTurn")] public bool? ReportLapAndTurn { get; set; }
         [DataMember(Name = "randomCustomTracks")] public bool? RandomCustomTracks { get; set; }
         [DataMember(Name = "randomCustomVehicles")] public bool? RandomCustomVehicles { get; set; }
         [DataMember(Name = "singleRaceCustomVehicles")] public bool? SingleRaceCustomVehicles { get; set; }

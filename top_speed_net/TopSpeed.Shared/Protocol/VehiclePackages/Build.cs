@@ -11,7 +11,8 @@ namespace TopSpeed.Protocol
         // vehiclesRoot, when supplied, is the Vehicles folder the file was discovered under. It lets
         // the manifest carry the vehicle's folder path relative to that root rather than just the
         // leaf folder, so a client can reproduce the layout instead of flattening every vehicle into
-        // one level (where "NASCAR/cup car dodge" and "IndyCar/cup car dodge" would collide).
+        // one level, where two identically named vehicle folders sitting under different grouping
+        // folders would collide.
         public static bool TryBuildPackageFromVehicleFile(
             string vehicleFile,
             out VehiclePackagePayload payload,
@@ -77,7 +78,7 @@ namespace TopSpeed.Protocol
             return true;
         }
 
-        // "NASCAR/cup car dodge" for a vehicle nested under the Vehicles root, or just the leaf
+        // The path from the Vehicles root down to the vehicle's own folder, or just the leaf
         // folder name when the root is unknown or the file sits outside it. A file directly in the
         // root keeps returning that root's own name, which the client already treats as "no usable
         // folder" and replaces with the vehicle's display name.

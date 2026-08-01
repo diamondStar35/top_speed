@@ -60,8 +60,8 @@ namespace TopSpeed.Core
         }
 
         // Entries are named by the metadata inside the file, so two files can present the same name
-        // ("Chevy Laguna" twice, or several unnamed vehicles all reading "Custom vehicle") with
-        // nothing to tell them apart when spoken. Where a name is shared, append each entry's folder
+        // (the same vehicle held twice, or several unnamed ones all falling back to the same generic
+        // label) with nothing to tell them apart when spoken. Where a name is shared, append the folder
         // to ALL of them: appending to only the "copies" would need a guess about which one is the
         // original, and every member needs the hint for the list to be readable anyway. The scan
         // takes at most one file per folder, so the folder path is unique per entry and this can
@@ -102,9 +102,9 @@ namespace TopSpeed.Core
             return result;
         }
 
-        // The entry's folder path beneath the source root ("NASCAR/cup car dodge"), which is what
-        // distinguishes same-named entries. Falls back to the leaf folder if the file somehow sits
-        // outside the root.
+        // The entry's folder path beneath the source root, including any grouping folders above it,
+        // which is what distinguishes same-named entries. Falls back to the leaf folder if the file
+        // somehow sits outside the root.
         private string ResolveRelativeFolder(string file)
         {
             if (string.IsNullOrWhiteSpace(file))

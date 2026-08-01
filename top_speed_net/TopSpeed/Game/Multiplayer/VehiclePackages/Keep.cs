@@ -453,7 +453,7 @@ namespace TopSpeed.Game
                 new QuestionButton(QuestionId.Ok, LocalizationService.Mark("OK"), flags: QuestionButtonFlags.Default)));
         }
 
-        // Reproduce the source folder path ("NASCAR/cup car dodge") so a kept vehicle matches the
+        // Reproduce the source folder path, grouping folders and all, so a kept vehicle matches the
         // server's on-disk layout, and two identically named folders from different packs do not
         // collapse onto each other locally. The manifest value comes from the server and is
         // untrusted, so it is normalised the same way sound asset keys are (which rejects "..",
@@ -487,7 +487,7 @@ namespace TopSpeed.Game
             return fallbackName.Length == 0 ? "custom-vehicle" : fallbackName;
         }
 
-        // "Chevy Laguna 2", then 3, and so on. The folder name is read aloud when two vehicles share
+        // The folder name with " 2" appended, then 3, and so on. It is read aloud when two vehicles share
         // a name, so a plain number beats the content hash this used to append.
         private static bool TryResolveFreeNumberedFolder(string vehiclesFolder, string folderName, out string destination)
         {

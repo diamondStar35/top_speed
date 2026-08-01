@@ -7,7 +7,8 @@ namespace TopSpeed.Protocol
         public string Hash = string.Empty;
         public string DisplayName = string.Empty;
         // Original on-disk names so a kept copy reproduces the source layout (not part of the content
-        // hash). TsvFileName e.g. "chevy laguna.tsv"; FolderName e.g. "Chevy Laguna".
+        // hash). TsvFileName is the vehicle's own file name; FolderName is its folder path relative
+        // to the Vehicles root, so any grouping folders above it are preserved too.
         public string TsvFileName = string.Empty;
         public string FolderName = string.Empty;
     }

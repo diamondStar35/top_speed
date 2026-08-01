@@ -219,8 +219,8 @@ namespace TopSpeed.Game
             }
         }
 
-        // The original .tsv filename from the package (e.g. "chevy laguna.tsv"), sanitized, so a
-        // materialized/kept vehicle keeps its real name instead of a generic "vehicle.tsv".
+        // The vehicle's own .tsv filename from the package, sanitized, so a materialized or kept
+        // vehicle keeps its real name instead of a generic "vehicle.tsv".
         private static string ResolvePackageTsvFileName(VehiclePackagePayload payload)
         {
             var name = Path.GetFileName((payload?.Manifest?.TsvFileName ?? string.Empty).Trim());

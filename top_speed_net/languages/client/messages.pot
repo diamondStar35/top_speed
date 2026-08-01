@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-27 22:42-0400\n"
+"POT-Creation-Date: 2026-07-31 22:22-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5955,16 +5955,6 @@ msgstr ""
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} was removed from the current room."
-msgstr ""
-
-#: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
-#, csharp-format
-msgid "{0} {1}"
-msgstr ""
-
-#: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
-#, csharp-format
-msgid "{0} {1} {2}"
 msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs

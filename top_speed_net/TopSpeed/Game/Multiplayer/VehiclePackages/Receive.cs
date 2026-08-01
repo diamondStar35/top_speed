@@ -229,20 +229,54 @@ namespace TopSpeed.Game
             if (_multiplayerVehiclePackageFailures.Add(hash))
                 return;
 
-            AnnounceCustomVehicleUnavailable(vehicleName);
+            AnnounceCustomVehicleUnavailable(hash, vehicleName);
             SendVehiclePackageReady(hash);
         }
 
         // Phrased from this player's side on purpose. Whoever picked the vehicle could load it on
         // their own machine, so wording it as their vehicle failing would point at the wrong
         // computer and leave them being blamed for a problem that is local to us.
-        private void AnnounceCustomVehicleUnavailable(string vehicleName)
+        private void AnnounceCustomVehicleUnavailable(string hash, string vehicleName)
         {
-            _speech.Speak(string.IsNullOrWhiteSpace(vehicleName)
-                ? LocalizationService.Mark("Your game could not load a custom vehicle another player is using, so you will hear the default car instead.")
-                : LocalizationService.Format(
+            var owner = ResolveCustomVehicleOwnerName(hash);
+            var hasOwner = !string.IsNullOrWhiteSpace(owner);
+            var hasVehicle = !string.IsNullOrWhiteSpace(vehicleName);
+
+            if (hasOwner && hasVehicle)
+            {
+                _speech.Speak(LocalizationService.Format(
+                    LocalizationService.Mark("Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."),
+                    owner,
+                    vehicleName));
+                return;
+            }
+
+            if (hasVehicle)
+            {
+                _speech.Speak(LocalizationService.Format(
                     LocalizationService.Mark("Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."),
                     vehicleName));
+                return;
+            }
+
+            _speech.Speak(LocalizationService.Mark("Your game could not load a custom vehicle another player is using, so you will hear the default car instead."));
+        }
+
+        // Who selected this vehicle, when that is known. Best effort only: the package is sent out
+        // just before the broadcast naming who picked it, so the two can arrive in either order and
+        // the owner may not be known yet. The message drops the name rather than waiting for it.
+        private string? ResolveCustomVehicleOwnerName(string hash)
+        {
+            foreach (var pair in _multiplayerPlayerVehicleHashes)
+            {
+                if (!string.Equals(pair.Value, hash, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                var name = _multiplayerCoordinator.ResolvePlayerName(pair.Key);
+                return string.IsNullOrWhiteSpace(name) ? null : name;
+            }
+
+            return null;
         }
 
         private void SendVehiclePackageReady(string hash)

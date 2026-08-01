@@ -17,6 +17,12 @@ namespace TopSpeed.Game
         // itself immediately afterwards and talks over it.
         private List<string>? _pendingVehicleKeepFailures;
 
+        // Vehicles the player was offered and turned down. Kept for the rest of the run so the same
+        // question is not put to them again after every race. Not persisted: a fresh run offers
+        // again, which is the same lifetime as the in-memory package cache.
+        private readonly HashSet<string> _multiplayerVehicleKeepDeclined =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
         // Set when the server reports the race completed; the actual keep prompt is shown once the
         // race has exited back to the menu (showing it mid-finish loses it to the result dialog and
         // the menu transition, since the race loop does not service question dialogs).
@@ -31,8 +37,21 @@ namespace TopSpeed.Game
             var toAsk = new List<string>();
             foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
             {
-                if (!IsVehiclePackageKept(hash))
-                    toAsk.Add(hash);
+                if (IsVehiclePackageKept(hash))
+                    continue;
+
+                // Asked once and turned down: leave it alone for the rest of the run rather than
+                // raising it again after every race.
+                if (_multiplayerVehicleKeepDeclined.Contains(hash))
+                    continue;
+
+                // The package can go out of the cache mid-race, when the copy it was standing on is
+                // edited or deleted on disk. Offering to save something there is nothing left to
+                // write is just a prompt that can only fail, so skip it.
+                if (!CanSaveVehiclePackage(hash))
+                    continue;
+
+                toAsk.Add(hash);
             }
             _multiplayerVehiclePackagesSeenThisRace.Clear();
 
@@ -79,8 +98,16 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes && !KeepVehiclePackageOnDisk(hash, out var keepFailure))
-                        AnnounceVehicleKeepFailed(name, keepFailure);
+                    if (resultId == QuestionId.Yes)
+                    {
+                        if (!KeepVehiclePackageOnDisk(hash, out var keepFailure))
+                            AnnounceVehicleKeepFailed(name, keepFailure);
+                    }
+                    else
+                    {
+                        DeclineVehiclePackageKeep(hash);
+                    }
+
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, keep it")),
@@ -116,6 +143,9 @@ namespace TopSpeed.Game
                         return;
                     }
 
+                    // Keeping what they already have is a decision, not a deferral, so do not put
+                    // the same choice to them again after the next race.
+                    DeclineVehiclePackageKeep(hash);
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(VehicleKeepBothChoiceId, LocalizationService.Mark("Keep both")),
@@ -138,8 +168,18 @@ namespace TopSpeed.Game
                 QuestionId.No,
                 resultId =>
                 {
-                    if (resultId == QuestionId.Yes && !ReplaceKeptVehicleOnDisk(hash, existingFolder, out var replaceFailure))
-                        AnnounceVehicleKeepFailed(name, replaceFailure);
+                    if (resultId == QuestionId.Yes)
+                    {
+                        if (!ReplaceKeptVehicleOnDisk(hash, existingFolder, out var replaceFailure))
+                            AnnounceVehicleKeepFailed(name, replaceFailure);
+                    }
+                    else
+                    {
+                        // Backing out of the replacement leaves their own copy in place, which is
+                        // the same outcome as keeping it, so treat it as answered.
+                        DeclineVehiclePackageKeep(hash);
+                    }
+
                     ShowNextVehicleKeepPrompt();
                 },
                 new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes, replace it")),
@@ -273,6 +313,25 @@ namespace TopSpeed.Game
             catch (UnauthorizedAccessException)
             {
             }
+        }
+
+        // True when the package is still held in memory with the file content needed to write it out.
+        // The prompt is only worth showing while both are true.
+        private bool CanSaveVehiclePackage(string hash)
+        {
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
+            if (string.IsNullOrWhiteSpace(normalizedHash))
+                return false;
+            if (!_multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg) || pkg == null)
+                return false;
+            return !string.IsNullOrWhiteSpace(pkg.Payload?.TsvText);
+        }
+
+        private void DeclineVehiclePackageKeep(string hash)
+        {
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
+            if (!string.IsNullOrWhiteSpace(normalizedHash))
+                _multiplayerVehicleKeepDeclined.Add(normalizedHash);
         }
 
         // "Kept" = present in the client's own Vehicles folder (also usable offline), matched by

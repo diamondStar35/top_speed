@@ -26,6 +26,13 @@ namespace TopSpeed.Vehicles
         private readonly List<BotEvent> _events;
         private readonly RemoteVehicleAudio _raceAudio;
 
+        // Why this car's custom vehicle could not be loaded, when it fell back to a built-in one.
+        // Null when the vehicle loaded, or when the car was never custom. Kept so the fallback can
+        // be reported rather than silently sounding like the player simply chose the default car.
+        private string? _customVehicleLoadFailure;
+
+        public string? CustomVehicleLoadFailure => _customVehicleLoadFailure;
+
         private ComputerState _state;
         private TrackSurface _surface;
         private int _gear;

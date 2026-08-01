@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TopSpeed.Localization;
 using TopSpeed.Protocol;
 
 namespace TopSpeed.Game
@@ -96,9 +97,15 @@ namespace TopSpeed.Game
         private readonly HashSet<string> _multiplayerVehiclePackagesSeenThisRace =
             new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+        // Packages whose transfer already failed once. A second failure confirms readiness anyway
+        // rather than leaving the whole room waiting on this client.
+        private readonly HashSet<string> _multiplayerVehiclePackageFailures =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
         private void ResetMultiplayerVehiclePackageState()
         {
             _multiplayerVehiclePackageTransfers.Clear();
+            _multiplayerVehiclePackageFailures.Clear();
         }
 
         private void HandleVehiclePackageTransferBegin(PacketVehiclePackageTransferBegin packet)
@@ -179,22 +186,63 @@ namespace TopSpeed.Game
             }
 
             _multiplayerVehiclePackageTransfers.Remove(hash);
+            var vehicleName = transfer.VehicleId;
+
             if (transfer.Offset != transfer.Bytes.Length)
+            {
+                HandleUnusableVehiclePackage(hash, vehicleName);
                 return;
+            }
 
             if (!VehiclePackageCodec.TryDeserialize(transfer.Bytes, out var payload, out _))
+            {
+                HandleUnusableVehiclePackage(hash, vehicleName);
                 return;
+            }
 
             var computedHash = VehiclePackageCodec.ComputeHash(payload);
             if (!string.Equals(computedHash, hash, StringComparison.OrdinalIgnoreCase))
+            {
+                HandleUnusableVehiclePackage(hash, vehicleName);
                 return;
+            }
 
             payload.Manifest.Hash = computedHash;
             if (!TryMaterializeAndCacheVehiclePackage(computedHash, payload, out _))
+            {
+                HandleUnusableVehiclePackage(hash, vehicleName);
                 return;
+            }
 
+            _multiplayerVehiclePackageFailures.Remove(computedHash);
             _multiplayerVehiclePackagesSeenThisRace.Add(computedHash);
             SendVehiclePackageReady(computedHash);
+        }
+
+        // A package that arrived damaged or could not be written is unusable, and returning quietly
+        // left the room waiting on a confirmation that would never come. Give it one more chance
+        // first: the server re-sends to anyone it is still waiting on, and a damaged transfer
+        // usually survives a retry. If it fails again, stop holding everyone up and confirm anyway,
+        // which means racing with the fallback car, so say so rather than letting it be a surprise.
+        private void HandleUnusableVehiclePackage(string hash, string vehicleName)
+        {
+            if (_multiplayerVehiclePackageFailures.Add(hash))
+                return;
+
+            AnnounceCustomVehicleUnavailable(vehicleName);
+            SendVehiclePackageReady(hash);
+        }
+
+        // Phrased from this player's side on purpose. Whoever picked the vehicle could load it on
+        // their own machine, so wording it as their vehicle failing would point at the wrong
+        // computer and leave them being blamed for a problem that is local to us.
+        private void AnnounceCustomVehicleUnavailable(string vehicleName)
+        {
+            _speech.Speak(string.IsNullOrWhiteSpace(vehicleName)
+                ? LocalizationService.Mark("Your game could not load a custom vehicle another player is using, so you will hear the default car instead.")
+                : LocalizationService.Format(
+                    LocalizationService.Mark("Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."),
+                    vehicleName));
         }
 
         private void SendVehiclePackageReady(string hash)

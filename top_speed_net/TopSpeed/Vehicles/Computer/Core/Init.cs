@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TopSpeed.Audio;
 using TopSpeed.Bots;
 using TopSpeed.Common;
@@ -89,9 +90,14 @@ namespace TopSpeed.Vehicles
                 {
                     definition = VehicleLoader.LoadCustom(customVehicleFile!, track.Weather);
                 }
-                catch
+                catch (Exception ex) when (ex is InvalidDataException || ex is IOException || ex is UnauthorizedAccessException)
                 {
-                    // Fall back to a built-in vehicle if the downloaded package fails to load.
+                    // Fall back to a built-in vehicle if the package fails to load, but keep the
+                    // reason: this used to catch everything and discard it, so a car quietly became
+                    // the default one with nothing left to say why. Only the failures a bad or
+                    // unreadable package can actually produce are caught, so a genuine defect still
+                    // surfaces as a crash instead of hiding as a wrong car.
+                    _customVehicleLoadFailure = ex.Message;
                     definition = VehicleLoader.LoadOfficial(vehicleIndex, track.Weather);
                 }
             }

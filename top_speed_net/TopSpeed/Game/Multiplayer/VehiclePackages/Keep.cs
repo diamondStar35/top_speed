@@ -34,6 +34,8 @@ namespace TopSpeed.Game
             if (_multiplayerVehiclePackagesSeenThisRace.Count == 0)
                 return;
 
+            _pendingVehicleKeepFailures = null;
+
             var toAsk = new List<string>();
             foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
             {
@@ -45,23 +47,56 @@ namespace TopSpeed.Game
                 if (_multiplayerVehicleKeepDeclined.Contains(hash))
                     continue;
 
-                // The package can go out of the cache mid-race, when the copy it was standing on is
-                // edited or deleted on disk. Offering to save something there is nothing left to
-                // write is just a prompt that can only fail, so skip it.
+                // Racing with a vehicle needs its file path; saving it needs its contents, and the
+                // two can come apart. Asking anyway would put a question that could only end in an
+                // error, but skipping quietly is worse: there would be no way to tell it apart from
+                // already owning the vehicle or having turned it down earlier. So do not ask, and
+                // say why afterwards.
                 if (!CanSaveVehiclePackage(hash))
+                {
+                    AnnounceVehicleKeepFailed(
+                        ResolveSeenVehicleDisplayName(hash),
+                        LocalizationService.Mark("its downloaded copy is no longer loaded, so there is nothing to save"));
                     continue;
+                }
 
                 toAsk.Add(hash);
             }
             _multiplayerVehiclePackagesSeenThisRace.Clear();
 
-            // Setting off => never persist (the package stays in the in-memory session cache only).
-            if (!_settings.KeepDownloadedVehiclesPrompt || toAsk.Count == 0)
+            // Setting off => never persist (the package stays in the in-memory session cache only),
+            // so there is nothing to report either.
+            if (!_settings.KeepDownloadedVehiclesPrompt)
+            {
+                _pendingVehicleKeepFailures = null;
                 return;
+            }
+
+            // Nothing left to ask about, but anything skipped above still needs reporting.
+            if (toAsk.Count == 0)
+            {
+                ShowVehicleKeepFailureReport();
+                return;
+            }
 
             _pendingVehicleKeepPrompts = new Queue<string>(toAsk);
-            _pendingVehicleKeepFailures = null;
             ShowNextVehicleKeepPrompt();
+        }
+
+        // Best effort name for a vehicle we can no longer save. A package still cached but missing
+        // its contents keeps its name; one gone from the cache entirely has none left to give.
+        private string ResolveSeenVehicleDisplayName(string hash)
+        {
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
+            if (!string.IsNullOrWhiteSpace(normalizedHash)
+                && _multiplayerVehiclePackageCache.TryGetValue(normalizedHash, out var pkg)
+                && pkg != null
+                && !string.IsNullOrWhiteSpace(pkg.DisplayName))
+            {
+                return pkg.DisplayName;
+            }
+
+            return LocalizationService.Translate(LocalizationService.Mark("Custom vehicle"));
         }
 
         private const int VehicleKeepBothChoiceId = 4101;

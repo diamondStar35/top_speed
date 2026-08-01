@@ -55,25 +55,73 @@ namespace TopSpeed.Game
             }
 
             // Reuse a vehicle we already have locally (previously kept, or authored by the user)
-            // when its content hashes to the one the server wants.
+            // when its content still hashes to the one the server wants.
             EnsureLocalVehicleIndex();
-            if (_localVehicleIndex!.TryGetValue(normalizedHash, out var localTsvPath)
-                && File.Exists(localTsvPath)
-                && VehicleTsvParser.TryLoadFromFile(localTsvPath, out var parsed, out _))
-            {
-                package = new DownloadedVehiclePackage
-                {
-                    Hash = normalizedHash,
-                    Vehicle = parsed,
-                    SourceDirectory = parsed.SourceDirectory,
-                    TsvPath = Path.GetFullPath(localTsvPath),
-                    DisplayName = string.IsNullOrWhiteSpace(parsed.Meta?.Name) ? normalizedHash : parsed.Meta!.Name
-                };
-                _multiplayerVehiclePackageCache[normalizedHash] = package;
+            if (TryReuseLocalVehicle(normalizedHash, out package, out var indexLooksStale))
                 return true;
+
+            // The entry pointed at something that is no longer this vehicle, so the index is out of
+            // date. Rebuild once and look again before giving up: the vehicle may simply have moved,
+            // in which case it is still ours and still worth reusing.
+            if (indexLooksStale)
+            {
+                InvalidateLocalVehicleIndex();
+                EnsureLocalVehicleIndex();
+                if (TryReuseLocalVehicle(normalizedHash, out package, out _))
+                    return true;
             }
 
             return false;
+        }
+
+        // Confirms the indexed file still IS the package being asked for before reusing it. The index
+        // records hash to path from when it was last built, so an entry can outlive the content it
+        // describes: deleting a sound the .tsv references, or editing the .tsv, leaves the path valid
+        // and the file still parseable while the vehicle is no longer what the server sent. Trusting
+        // it then hands the race a different car, which is what made a peer show up in the default
+        // vehicle for the one player whose local copy had been broken. Rebuilding the package also
+        // yields its payload, so a locally reused vehicle can still be written out if kept.
+        private bool TryReuseLocalVehicle(string normalizedHash, out DownloadedVehiclePackage package, out bool indexLooksStale)
+        {
+            package = null!;
+            indexLooksStale = false;
+
+            if (!_localVehicleIndex!.TryGetValue(normalizedHash, out var localTsvPath))
+                return false;
+
+            if (!File.Exists(localTsvPath))
+            {
+                indexLooksStale = true;
+                return false;
+            }
+
+            if (!VehiclePackageBuild.TryBuildPackageFromVehicleFile(
+                    localTsvPath,
+                    out var payload,
+                    out _,
+                    out var parsed,
+                    out _,
+                    GetClientVehiclesFolder())
+                || !string.Equals(
+                    VehiclePackageRef.NormalizeHash(payload.Manifest.Hash),
+                    normalizedHash,
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                indexLooksStale = true;
+                return false;
+            }
+
+            package = new DownloadedVehiclePackage
+            {
+                Hash = normalizedHash,
+                Payload = payload,
+                Vehicle = parsed,
+                SourceDirectory = parsed.SourceDirectory,
+                TsvPath = Path.GetFullPath(localTsvPath),
+                DisplayName = string.IsNullOrWhiteSpace(parsed.Meta?.Name) ? normalizedHash : parsed.Meta!.Name
+            };
+            _multiplayerVehiclePackageCache[normalizedHash] = package;
+            return true;
         }
 
         // True when a cached entry still holds the content identified by expectedHash. A downloaded

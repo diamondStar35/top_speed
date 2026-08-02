@@ -56,6 +56,28 @@ namespace TopSpeed.Server.Network
                 _owner.SendVehiclePackageCatalog(player, _owner.BuildVehiclePackageCatalog());
             }
 
+            // A client asks for a package only when it does not already hold that content, so this is
+            // the one place a package is sent. Nothing is pushed: a client that already has the
+            // vehicle never receives it again, which matters most to whoever is paying for the
+            // bandwidth on a metered connection.
+            public void HandleVehiclePackageRequest(PlayerConnection player, PacketVehiclePackageRequest packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+                if (!IsCustomVehicleSelectionEnabled(room))
+                    return;
+
+                var hash = VehiclePackageRef.NormalizeHash(packet.Hash);
+                if (string.IsNullOrWhiteSpace(hash))
+                    return;
+                if (!_owner.TryGetVehiclePackage(hash, out var record) || record == null)
+                    return;
+
+                _owner.SendVehiclePackageToPlayer(player, record);
+            }
+
             public void HandleVehiclePackageReady(PlayerConnection player, PacketVehiclePackageReady packet)
             {
                 if (!player.RoomId.HasValue)

@@ -65,6 +65,13 @@ namespace TopSpeed.Protocol
                 && packet.Hash.Length <= ProtocolConstants.MaxVehicleHashLength;
         }
 
+        public static bool IsValidVehiclePackageRequest(PacketVehiclePackageRequest packet)
+        {
+            return packet != null
+                && !string.IsNullOrWhiteSpace(packet.Hash)
+                && packet.Hash.Length <= ProtocolConstants.MaxVehicleHashLength;
+        }
+
         public static bool IsValidVehiclePackageCatalogRequest(PacketVehiclePackageCatalogRequest packet)
         {
             return packet != null;

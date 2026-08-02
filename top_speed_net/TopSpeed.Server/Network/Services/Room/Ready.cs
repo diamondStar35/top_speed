@@ -46,7 +46,10 @@ namespace TopSpeed.Server.Network
                     player.Car = selectedCar;
                     player.SelectedVehicleHash = selectedVehicleHash;
                     RaceServer.ApplyCustomVehicleDimensions(player, vehicleRecord);
-                    _owner.DistributeVehiclePackageToRoom(room, vehicleRecord);
+                    // The package is deliberately not sent here. Broadcasting the selection below
+                    // tells every client which vehicle to expect, and only those that do not already
+                    // hold it ask for it. Sending it to the whole room regardless meant a player who
+                    // had raced with the vehicle moments earlier downloaded it all over again.
                 }
                 else
                 {

@@ -137,7 +137,10 @@ namespace TopSpeed.Protocol
         VehiclePackageReady = 81,
         VehiclePackageCatalogRequest = 82,
         VehiclePackageCatalog = 83,
-        RoomPlayerVehicle = 84
+        RoomPlayerVehicle = 84,
+        // Client asking for a vehicle package it does not already hold. Packages are sent only in
+        // reply to this, so a client that already has one never receives it again.
+        VehiclePackageRequest = 85
     }
 
     public enum ProtocolMessageCode : byte

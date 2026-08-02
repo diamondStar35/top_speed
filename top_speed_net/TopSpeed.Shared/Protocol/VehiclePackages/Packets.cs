@@ -30,6 +30,14 @@ namespace TopSpeed.Protocol
         public string Hash = string.Empty;
     }
 
+    // Sent by a client that needs a vehicle package it does not already hold, identified by content
+    // hash. The server replies with the transfer; without this it would have to send every package
+    // to everyone and hope they needed it.
+    public sealed class PacketVehiclePackageRequest
+    {
+        public string Hash = string.Empty;
+    }
+
     public sealed class PacketVehiclePackageCatalogRequest
     {
     }

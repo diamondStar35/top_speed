@@ -28,6 +28,11 @@ namespace TopSpeed.Game
             // correct vehicle. markDisconnected:false so it is allowed to be recreated.
             if (!string.Equals(previous ?? string.Empty, hash ?? string.Empty, StringComparison.OrdinalIgnoreCase))
                 _multiplayerRaceRuntime.Mode?.RemoveRemotePlayer(packet.PlayerNumber, markDisconnected: false);
+
+            // Knowing which vehicle to expect is what drives fetching it. Packages are never sent
+            // unasked, so ask now if this content is not already held, and confirm straight away if
+            // it is: either way the server learns whether it still needs to send anything.
+            RequestVehiclePackageIfMissing(hash);
         }
 
         // Materialized custom-vehicle .tsv path for a remote player, or null when they use a
@@ -102,10 +107,18 @@ namespace TopSpeed.Game
         private readonly HashSet<string> _multiplayerVehiclePackageFailures =
             new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+        // Packages already asked for. The announcement naming a vehicle can repeat, and asking again
+        // each time would send the same package over and over, which is what asking is meant to stop.
+        private readonly HashSet<string> _multiplayerVehiclePackageRequests =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // Everything here describes one race, so it is cleared when the race ends. Without this a
+        // package that failed to arrive would never be asked for again for the rest of the run.
         private void ResetMultiplayerVehiclePackageState()
         {
             _multiplayerVehiclePackageTransfers.Clear();
             _multiplayerVehiclePackageFailures.Clear();
+            _multiplayerVehiclePackageRequests.Clear();
         }
 
         private void HandleVehiclePackageTransferBegin(PacketVehiclePackageTransferBegin packet)
@@ -226,8 +239,14 @@ namespace TopSpeed.Game
         // which means racing with the fallback car, so say so rather than letting it be a surprise.
         private void HandleUnusableVehiclePackage(string hash, string vehicleName)
         {
+            // First failure: ask again. Nothing arrives unless it is asked for, so simply waiting
+            // would leave the whole room stuck on this client.
             if (_multiplayerVehiclePackageFailures.Add(hash))
+            {
+                _multiplayerVehiclePackageRequests.Remove(hash);
+                RequestVehiclePackageIfMissing(hash);
                 return;
+            }
 
             AnnounceCustomVehicleUnavailable(hash, vehicleName);
             SendVehiclePackageReady(hash);
@@ -277,6 +296,29 @@ namespace TopSpeed.Game
             }
 
             return null;
+        }
+
+        // Asks for a vehicle package unless it is already held, in which case the server is told it
+        // is not needed. A request is sent at most once per package per race: the announcement that
+        // triggers this can repeat, and re-asking would undo the point of asking at all.
+        private void RequestVehiclePackageIfMissing(string hash)
+        {
+            var normalizedHash = VehiclePackageRef.NormalizeHash(hash);
+            if (string.IsNullOrWhiteSpace(normalizedHash))
+                return;
+
+            if (TryGetCachedVehiclePackage(normalizedHash, out _))
+            {
+                _multiplayerVehiclePackagesSeenThisRace.Add(normalizedHash);
+                SendVehiclePackageReady(normalizedHash);
+                return;
+            }
+
+            if (!_multiplayerVehiclePackageRequests.Add(normalizedHash))
+                return;
+
+            var session = _session;
+            session?.SendVehiclePackageRequest(normalizedHash);
         }
 
         private void SendVehiclePackageReady(string hash)

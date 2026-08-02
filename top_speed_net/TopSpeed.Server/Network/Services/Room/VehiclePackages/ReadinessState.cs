@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TopSpeed.Protocol;
+using TopSpeed.Server.Protocol;
 
 namespace TopSpeed.Server.Network
 {
@@ -46,12 +47,40 @@ namespace TopSpeed.Server.Network
                         continue;
 
                     allReady = false;
-                    if (TryGetVehiclePackage(hash, out var record) && _players.TryGetValue(id, out var player) && player != null)
-                        SendVehiclePackageToPlayer(player, record);
+
+                    // Do not send the package here. Clients ask for what they lack, so pushing it
+                    // would hand it to someone who may already have it. Re-announcing which vehicle
+                    // is expected is enough: a client still missing it asks again, and one that has
+                    // it stays quiet. This costs a hash rather than megabytes.
+                    NudgeVehicleSelection(room, participantIds, id, hash);
                 }
             }
 
             return allReady;
+        }
+
+        // Re-tells one player which participant is using the vehicle they are still missing, so they
+        // ask for it again. Covers the case where the original announcement was acted on before the
+        // client could hold on to it, without the server guessing that a package needs sending.
+        private void NudgeVehicleSelection(GameRoom room, IReadOnlyList<uint> participantIds, uint missingPlayerId, string hash)
+        {
+            if (!_players.TryGetValue(missingPlayerId, out var missingPlayer) || missingPlayer == null)
+                return;
+
+            for (var i = 0; i < participantIds.Count; i++)
+            {
+                if (!_players.TryGetValue(participantIds[i], out var owner) || owner == null)
+                    continue;
+                if (!string.Equals(VehiclePackageRef.NormalizeHash(owner.SelectedVehicleHash), hash, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                SendStream(missingPlayer, PacketSerializer.WriteRoomPlayerVehicle(new PacketRoomPlayerVehicle
+                {
+                    PlayerNumber = owner.PlayerNumber,
+                    Hash = hash
+                }), PacketStream.Room);
+                return;
+            }
         }
 
         private void MarkPlayerVehiclePackageReady(GameRoom room, uint playerId, string hash)

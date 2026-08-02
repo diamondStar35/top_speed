@@ -132,6 +132,14 @@ namespace TopSpeed.Network
             return _sender.TrySend(ClientPacketSerializer.WriteVehiclePackageCatalogRequest(), PacketStream.Room);
         }
 
+        public bool SendVehiclePackageRequest(string hash)
+        {
+            return _sender.TrySend(ClientPacketSerializer.WriteVehiclePackageRequest(new PacketVehiclePackageRequest
+            {
+                Hash = VehiclePackageRef.NormalizeHash(hash)
+            }), PacketStream.Room);
+        }
+
         public bool SendVehiclePackageReady(string hash)
         {
             return _sender.TrySend(ClientPacketSerializer.WriteVehiclePackageReady(new PacketVehiclePackageReady

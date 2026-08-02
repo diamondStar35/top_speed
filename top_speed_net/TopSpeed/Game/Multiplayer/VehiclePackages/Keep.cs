@@ -31,13 +31,20 @@ namespace TopSpeed.Game
         // Called when a race finishes: offer to keep each vehicle downloaded this race (deduped).
         private void PromptKeepDownloadedVehicles()
         {
-            if (_multiplayerVehiclePackagesSeenThisRace.Count == 0)
+            // The race is over, so take a copy of what it used and clear the per-race package
+            // bookkeeping now. Doing it up front rather than on the way out means it still happens
+            // when there turns out to be nothing to ask about.
+            var seenThisRace = new List<string>(_multiplayerVehiclePackagesSeenThisRace);
+            ResetMultiplayerVehiclePackageState();
+            _multiplayerVehiclePackagesSeenThisRace.Clear();
+
+            if (seenThisRace.Count == 0)
                 return;
 
             _pendingVehicleKeepFailures = null;
 
             var toAsk = new List<string>();
-            foreach (var hash in _multiplayerVehiclePackagesSeenThisRace)
+            foreach (var hash in seenThisRace)
             {
                 if (IsVehiclePackageKept(hash))
                     continue;
@@ -62,7 +69,6 @@ namespace TopSpeed.Game
 
                 toAsk.Add(hash);
             }
-            _multiplayerVehiclePackagesSeenThisRace.Clear();
 
             // Setting off => never persist (the package stays in the in-memory session cache only),
             // so there is nothing to report either.

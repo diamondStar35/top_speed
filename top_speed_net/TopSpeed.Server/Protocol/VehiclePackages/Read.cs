@@ -4,6 +4,28 @@ namespace TopSpeed.Server.Protocol
 {
     internal static partial class PacketSerializer
     {
+        public static bool TryReadVehiclePackageRequest(byte[] data, out PacketVehiclePackageRequest packet)
+        {
+            packet = new PacketVehiclePackageRequest();
+            if (data.Length < 2 + 2)
+                return false;
+            if (data[0] != ProtocolConstants.Version || data[1] != (byte)Command.VehiclePackageRequest)
+                return false;
+            try
+            {
+                var reader = new PacketReader(data);
+                reader.ReadByte();
+                reader.ReadByte();
+                packet.Hash = VehiclePackageRef.NormalizeHash(reader.ReadString16());
+                return PacketValidation.IsValidVehiclePackageRequest(packet);
+            }
+            catch
+            {
+                packet = new PacketVehiclePackageRequest();
+                return false;
+            }
+        }
+
         public static bool TryReadVehiclePackageReady(byte[] data, out PacketVehiclePackageReady packet)
         {
             packet = new PacketVehiclePackageReady();

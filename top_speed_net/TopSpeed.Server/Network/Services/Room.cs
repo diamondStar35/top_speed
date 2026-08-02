@@ -91,6 +91,13 @@ namespace TopSpeed.Server.Network
                     else
                         _owner.PacketFail(endPoint, Command.VehiclePackageCatalogRequest);
                 });
+                registry.Add("room", Command.VehiclePackageRequest, (player, payload, endPoint) =>
+                {
+                    if (PacketSerializer.TryReadVehiclePackageRequest(payload, out var vehicleRequest))
+                        HandleVehiclePackageRequest(player, vehicleRequest);
+                    else
+                        _owner.PacketFail(endPoint, Command.VehiclePackageRequest);
+                });
                 registry.Add("room", Command.VehiclePackageReady, (player, payload, endPoint) =>
                 {
                     if (PacketSerializer.TryReadVehiclePackageReady(payload, out var vehicleReady))

@@ -59,12 +59,43 @@ public sealed class FinishVehicleBehaviorTests
             positionY: 1000f,
             elapsed: 0.016f));
 
-        intent.Throttle.Should().Be(0);
         intent.Brake.Should().Be(0);
         intent.Clutch.Should().Be(80);
         intent.Horn.Should().BeTrue();
         intent.GearUp.Should().BeFalse();
         intent.GearDown.Should().BeFalse();
+    }
+
+    // The finish lock holds the car in neutral and never issues a gear change, so drive acceleration
+    // is scaled by a coupling factor of 0 and the throttle cannot move the car. Passing it through is
+    // what lets a finished player rev the engine while waiting for the rest of the field.
+    [Fact]
+    public void FinishLockInputController_PassesThrottleThroughForFreeRevving()
+    {
+        var input = new DriveInput(new DriveSettings());
+        input.SetTouchInputState(
+            steering: 25,
+            throttle: 100,
+            brake: -100,
+            clutch: 80,
+            horn: true,
+            gearUp: true,
+            gearDown: true,
+            startEngine: false);
+        input.Run(new InputState(), 0f);
+        var controller = new FinishLockInputController(input);
+
+        var intent = controller.ReadIntent(new CarControlContext(
+            CarState.Running,
+            started: true,
+            manualTransmission: false,
+            gear: 1,
+            speed: 120f,
+            positionX: 0f,
+            positionY: 1000f,
+            elapsed: 0.016f));
+
+        intent.Throttle.Should().Be(100);
     }
 
     [Fact]

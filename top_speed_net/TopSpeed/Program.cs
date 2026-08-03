@@ -49,6 +49,8 @@ namespace TopSpeed
                            new ClipboardService()))
 #else
                 var window = new WindowHost();
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    SpeechThreadRuntime.SetDispatcher(new UiThreadSpeechDispatcher());
                 var textInput = new TextInputService(window);
                 using (var app = new GameApp(
                            window,

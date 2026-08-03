@@ -27,6 +27,7 @@ namespace TopSpeed.Game
             _menu.SetWrapNavigation(_settings.MenuWrapNavigation);
             _menu.SetMenuSoundPreset(_settings.MenuSoundPreset);
             _menu.SetMenuNavigatePanning(_settings.MenuNavigatePanning);
+            _menu.SetMenuDigitActivation(_settings.MenuDigitActivation);
             _menu.SetMenuAutoFocus(_settings.MenuAutoFocus);
             _menu.ResetShortcutBindings();
             _menuRegistry.RefreshSpeechSettingsMenu();

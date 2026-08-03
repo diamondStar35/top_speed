@@ -225,6 +225,7 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "menuWrapNavigation")] public bool? MenuWrapNavigation { get; set; }
         [DataMember(Name = "menuSoundPreset")] public string? MenuSoundPreset { get; set; }
         [DataMember(Name = "menuNavigatePanning")] public bool? MenuNavigatePanning { get; set; }
+        [DataMember(Name = "menuDigitActivation")] public bool? MenuDigitActivation { get; set; }
         [DataMember(Name = "playLogoAtStartup")] public bool? PlayLogoAtStartup { get; set; }
         [DataMember(Name = "autoCheckUpdates")] public bool? AutoCheckUpdates { get; set; }
     }

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 22:42-0400\n"
-"PO-Revision-Date: 2026-07-28 14:41\n"
+"PO-Revision-Date: 2026-07-29 03:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -556,7 +556,7 @@ msgstr "无效的选项。"
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "无效的维修区值“{0}”。请使用 pit_entry 或 pit_exit。"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid player identification packet."
@@ -1384,7 +1384,7 @@ msgstr "赛道路径必须指向赛道文件夹内的 .tsm 文件：{0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "赛道将“pit_area = false”设为 false，却同时定义了维修区入口/出口路段；进站已禁用，维修区路段将被忽略。"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Track source path is missing, so sound assets cannot be resolved."

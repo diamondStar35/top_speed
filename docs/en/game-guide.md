@@ -759,6 +759,35 @@ If you run a dedicated server, there are two ways custom tracks get added to its
 
 Both paths go through the same catalog, and both are gated by the server's `custom_tracks` flag. Section 14 covers the server-side details.
 
+### Custom vehicles in multiplayer
+Custom vehicles work in multiplayer races too, but unlike a track, every driver can pick a different one, so a single race may need several vehicles rather than one shared between everybody.
+
+For a custom vehicle to be selectable in a room, two things have to be true:
+
+1. The server has `custom_vehicles` turned on. Section 14 describes the server-side flag.
+2. The room host has enabled "Custom vehicles" under Game rules in room options. Unlike "Custom tracks", this rule starts off for a new room, so the host has to turn it on first.
+
+Nothing is downloaded before it is needed. When another driver picks a custom vehicle, your game is told which vehicle it is, then checks whether you already have that exact vehicle, either in your own `Vehicles` folder or from earlier in the same session. If you have it, nothing is transferred at all. Only when you do not have it does your game ask the server to send it.
+
+Vehicles are matched by their contents rather than by their name or their folder, so renaming a vehicle, or moving it into a different folder, does not cause it to be downloaded again. Editing the vehicle does, because an edited vehicle is genuinely a different vehicle. It also means a vehicle you download once is not downloaded again for the rest of the session, however many races you use it in.
+
+If a vehicle cannot be downloaded, or cannot be loaded after it arrives, the race still starts. The driver who chose it is heard in a built-in vehicle instead, and you are told which vehicle was unavailable and who was using it, so one broken vehicle never blocks the room.
+
+### Keeping a custom vehicle you raced against
+After a race that used a downloaded vehicle, the game offers to save it into your own `Vehicles` folder. A kept vehicle becomes yours: it works offline in time trial and single race, appears in your vehicle menus, and is not downloaded again on any server.
+
+If nothing of that name is saved yet, the prompt simply asks whether to keep it.
+
+If you already have a vehicle saved under that name, the prompt offers three choices:
+
+- **Keep both** saves the new vehicle alongside the one you have, in a folder with a number added, so nothing you already had is touched.
+- **Replace mine with the downloaded one** overwrites your existing copy. Because that discards something you had, it asks you to confirm first.
+- **Keep mine** leaves everything as it is and does not save the new vehicle.
+
+Declining to keep a vehicle is remembered, so you are not asked about that same vehicle again later in the session.
+
+Where kept vehicles are stored depends on the platform. On desktop they go in the `Vehicles` folder next to the game executable, where you can manage them like any other file. On Android and iOS they are stored in the app's own data area, kept separate from the files that ship with the game so that updating the app does not remove them. Uninstalling the app does remove them, as it removes all app data.
+
 ## 17. Updater Behavior on Desktop and Android
 The updater is designed to keep the installed game current without making the player manually replace files every time. You can check for updates from the menu, and the game can also check automatically on startup if that setting is enabled.
 

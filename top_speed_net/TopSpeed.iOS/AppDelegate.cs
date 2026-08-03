@@ -23,6 +23,9 @@ public sealed class AppDelegate : UIApplicationDelegate
     {
         IOSLauncher.MarkMainThread();
         IOSLauncher.SetAssetRoot(NSBundle.MainBundle.ResourcePath);
+        // The bundle is read only, so content the player keeps cannot live beside the shipped
+        // assets. Documents is writable and is preserved across app updates.
+        IOSLauncher.SetUserContentRoot(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
         _motionSteering = new IosMotionSteeringSource();
         _documentOpener = new IosDocumentOpener();

@@ -16,7 +16,7 @@ namespace TopSpeed.Vehicles.Loader
         {
             var filePath = Path.IsPathRooted(vehicleFile)
                 ? vehicleFile
-                : Path.Combine(AssetPaths.Root, vehicleFile);
+                : ResolveRelativeVehicleFile(vehicleFile);
             var builtinRoot = Path.Combine(AssetPaths.SoundsRoot, "Vehicles");
 
             if (!VehicleTsvParser.TryLoadFromFile(filePath, out var parsed, out var issues))
@@ -65,6 +65,22 @@ namespace TopSpeed.Vehicles.Loader
             }
 
             return def;
+        }
+
+        // A stored vehicle path can be relative to any content root, so try each and take the first
+        // that exists. Falling back to the asset root when none match keeps the original behaviour
+        // for a path that points at nothing, so the parse below reports it as before.
+        private static string ResolveRelativeVehicleFile(string vehicleFile)
+        {
+            var roots = AssetPaths.ContentRoots;
+            for (var i = 0; i < roots.Count; i++)
+            {
+                var candidate = Path.Combine(roots[i], vehicleFile);
+                if (File.Exists(candidate))
+                    return candidate;
+            }
+
+            return Path.Combine(AssetPaths.Root, vehicleFile);
         }
 
         private static string ResolveRequired(string value, string builtinRoot, string vehicleRoot, VehicleAction action)

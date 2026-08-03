@@ -103,8 +103,12 @@ namespace TopSpeed.Core
         }
 
         // The entry's folder path beneath the source root, including any grouping folders above it,
-        // which is what distinguishes same-named entries. Falls back to the leaf folder if the file
-        // somehow sits outside the root.
+        // which is what distinguishes same-named entries. Entries can come from more than one root
+        // (shipped assets and the player's own folder), so this resolves against whichever root
+        // actually contains the file. Falls back to the leaf folder if the file sits under none of
+        // them. Note that two roots can in principle hold the same relative folder, which would read
+        // alike; that would need a root label to tell apart, and no source ships content in a folder
+        // the player can also write to today.
         private string ResolveRelativeFolder(string file)
         {
             if (string.IsNullOrWhiteSpace(file))
@@ -114,15 +118,21 @@ namespace TopSpeed.Core
             if (directory.Length == 0)
                 return string.Empty;
 
-            var root = Path.GetFullPath(Path.Combine(AssetPaths.Root, _rootFolder));
-            var prefix = root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
-            if (!directory.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                return Path.GetFileName(directory) ?? string.Empty;
+            var roots = AssetPaths.ContentRoots;
+            for (var i = 0; i < roots.Count; i++)
+            {
+                var root = Path.GetFullPath(Path.Combine(roots[i], _rootFolder));
+                var prefix = root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                if (!directory.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    continue;
 
-            return directory
-                .Substring(prefix.Length)
-                .Replace(Path.DirectorySeparatorChar, '/')
-                .Replace('\\', '/');
+                return directory
+                    .Substring(prefix.Length)
+                    .Replace(Path.DirectorySeparatorChar, '/')
+                    .Replace('\\', '/');
+            }
+
+            return Path.GetFileName(directory) ?? string.Empty;
         }
 
         public IReadOnlyList<string> ConsumeIssues()

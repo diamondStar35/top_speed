@@ -50,6 +50,7 @@ public class SdlActivityBase : Activity
 public class MainActivity : SdlActivityBase
 {
     private string? _assetRoot;
+    private string? _userContentRoot;
     private AndroidMotionSteeringSource? _motionSteering;
     private AndroidSpeechThreadDispatcher? _speechDispatcher;
     private AndroidUpdatePackageInstaller? _updateInstaller;
@@ -72,6 +73,7 @@ public class MainActivity : SdlActivityBase
         Window?.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
         EnforceLandscapeOrientation();
         _assetRoot = EnsureRuntimeAssets();
+        _userContentRoot = EnsureUserContentRoot();
         _motionSteering = new AndroidMotionSteeringSource(this);
         _speechDispatcher = new AndroidSpeechThreadDispatcher();
         _updateInstaller = new AndroidUpdatePackageInstaller(this);
@@ -149,6 +151,7 @@ public class MainActivity : SdlActivityBase
         try
         {
             global::TopSpeed.AndroidLauncher.SetAssetRoot(_assetRoot ?? EnsureRuntimeAssets());
+            global::TopSpeed.AndroidLauncher.SetUserContentRoot(_userContentRoot ?? EnsureUserContentRoot());
             global::TopSpeed.AndroidLauncher.Run();
         }
         catch (Exception ex)
@@ -177,9 +180,24 @@ public class MainActivity : SdlActivityBase
         });
     }
 
-    private string EnsureRuntimeAssets()
+    // Content the player acquired (vehicles and tracks kept from a server). Deliberately outside the
+    // unpacked asset tree below, which is deleted wholesale whenever the app version changes; keeping
+    // the two apart is what stops an update from taking the player's own content with it.
+    private string EnsureUserContentRoot()
     {
         var filesRoot = FilesDir?.AbsolutePath;
+        var targetRoot = Path.Combine(
+            string.IsNullOrWhiteSpace(filesRoot) ? AppContext.BaseDirectory : filesRoot!,
+            "user");
+        Directory.CreateDirectory(targetRoot);
+        return targetRoot;
+    }
+
+    private string EnsureRuntimeAssets()
+    {
+        // Unpacked into the no-backup directory: every file here comes straight out of the apk and
+        // can be recreated at any time, so it should never occupy the app's backup quota.
+        var filesRoot = NoBackupFilesDir?.AbsolutePath ?? FilesDir?.AbsolutePath;
         var targetRoot = Path.Combine(
             string.IsNullOrWhiteSpace(filesRoot) ? AppContext.BaseDirectory : filesRoot!,
             "topspeed_assets");

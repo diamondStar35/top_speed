@@ -271,9 +271,13 @@ namespace TopSpeed.Game
             _localVehicleIndex = null;
         }
 
+        // Kept vehicles are written here and nowhere else. This is the player's own content root,
+        // which on platforms that unpack their shipped assets at startup is deliberately a different
+        // folder from the one that unpack step clears when the app updates. On desktop it is the
+        // same folder as the asset root, so this resolves exactly as it always has.
         private static string GetClientVehiclesFolder()
         {
-            return Path.Combine(AssetPaths.Root, "Vehicles");
+            return Path.Combine(AssetPaths.UserContentRoot, "Vehicles");
         }
 
         private static string GetVehiclePackageSessionRoot()

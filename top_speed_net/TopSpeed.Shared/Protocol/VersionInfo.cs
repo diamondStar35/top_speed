@@ -29,8 +29,10 @@ namespace TopSpeed.Protocol
         public const byte CurrentRevision = 1;
 
         // Client supported protocol range (explicit values by design). The minimum stays where it
-        // was: a new client can still use an older server, which sends vehicle packages unasked, so
-        // the request this version adds simply goes unanswered and nothing breaks.
+        // was, and deliberately so: raising it would refuse every server released before this
+        // version, locking players out until each one was updated. Nothing is gained by that.
+        // Servers that old carry no custom-vehicle commands at all, so they never announce a
+        // vehicle, the client never asks for one, and the feature is simply absent as it is today.
         public const ushort ClientMinYear = 2026;
         public const byte ClientMinMonth = 7;
         public const byte ClientMinDay = 13;

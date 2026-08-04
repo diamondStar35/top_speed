@@ -651,7 +651,7 @@ The server has a small set of feature flags that turn major features on or off f
 - `text_chat` enables global and per-room text chat. With it off, the chat shortcuts on clients have no effect and chat history stays empty for everything that happens after the flag is turned off.
 - `voice_chat` enables the voice relay used by the communicator. With it off, communicator transmissions are silently dropped on the server side; clients can still toggle their own communicator on, but no audio reaches other players. Streamed media through the communicator also goes through this flag.
 - `custom_tracks` enables custom track use across the whole server. With it off, room hosts cannot enable the "Custom tracks" game rule, and the server's custom track catalog is not offered to clients. Built-in tracks are unaffected. See section 16 for how custom tracks move between client and server when this is on.
-- `custom_vehicles` enables custom vehicle use across the whole server. With it off, room hosts cannot enable the "Custom vehicles" game rule, and the server's custom vehicle catalog is not offered to clients. Built-in vehicles are unaffected. Unlike the "Custom tracks" game rule, the "Custom vehicles" game rule starts off for a new room, so a host has to turn it on before players can pick a custom vehicle.
+- `custom_vehicles` enables custom vehicle use across the whole server. With it off, room hosts cannot enable the "Custom vehicles" game rule, and the server's custom vehicle catalog is not offered to clients. Built-in vehicles are unaffected. Like every game rule, "Custom vehicles" is off in a new room, so a host has to turn it on before players can pick a custom vehicle.
 
 Changes to feature flags apply to traffic that arrives after the flag is changed. Players already in the middle of a transmission, chat send, or upload usually finish their current action; new ones honor the new flag.
 
@@ -765,13 +765,17 @@ Custom vehicles work in multiplayer races too, but unlike a track, every driver 
 For a custom vehicle to be selectable in a room, two things have to be true:
 
 1. The server has `custom_vehicles` turned on. Section 14 describes the server-side flag.
-2. The room host has enabled "Custom vehicles" under Game rules in room options. Unlike "Custom tracks", this rule starts off for a new room, so the host has to turn it on first.
+2. The room host has enabled "Custom vehicles" under Game rules in room options. Like every game rule, it is off in a new room, so the host has to turn it on first.
 
 Nothing is downloaded before it is needed. When another driver picks a custom vehicle, your game is told which vehicle it is, then checks whether you already have that exact vehicle, either in your own `Vehicles` folder or from earlier in the same session. If you have it, nothing is transferred at all. Only when you do not have it does your game ask the server to send it.
 
 Vehicles are matched by their contents rather than by their name or their folder, so renaming a vehicle, or moving it into a different folder, does not cause it to be downloaded again. Editing the vehicle does, because an edited vehicle is genuinely a different vehicle. It also means a vehicle you download once is not downloaded again for the rest of the session, however many races you use it in.
 
-If a vehicle cannot be downloaded, or cannot be loaded after it arrives, the race still starts. The driver who chose it is heard in a built-in vehicle instead, and you are told which vehicle was unavailable and who was using it, so one broken vehicle never blocks the room.
+If a vehicle cannot be downloaded, or cannot be loaded after it arrives, the race still starts. The driver who chose it is heard in a built-in vehicle instead, and you are told which vehicle was unavailable and who was using it, so one broken vehicle never blocks the room. Only the sound is affected: how a car accelerates, corners and handles is decided by the driver who owns it and sent over the network, so a substituted vehicle still moves exactly as the real one does.
+
+The vehicles offered in a room come from the server. The server operator places `*.tsv` vehicles, with their sound files, in a `Vehicles` folder next to the server executable; changes there are picked up the next time someone lists the custom vehicles.
+
+Unlike custom tracks, there is no way to upload a vehicle to a server. This is deliberate. Uploading would let anyone place a vehicle in the catalog, including one carrying a familiar name but far better performance, so which vehicles a server offers stays with whoever runs it.
 
 ### Keeping a custom vehicle you raced against
 After a race that used a downloaded vehicle, the game offers to save it into your own `Vehicles` folder. A kept vehicle becomes yours: it works offline in time trial and single race, appears in your vehicle menus, and is not downloaded again on any server.

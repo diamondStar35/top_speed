@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-04 14:43\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -292,15 +292,15 @@ msgstr "Pistas personalizadas não estão ativadas para esta sala."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/VehiclePackages/CatalogState.cs
 msgid "Custom vehicle"
-msgstr ""
+msgstr "Vehículo personalizado"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 msgid "Custom vehicle file must use .tsv extension."
-msgstr ""
+msgstr "Arquivo de veículo personalizado deve usar extensão .tsv."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Custom vehicles"
-msgstr ""
+msgstr "Veículos personalizados"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Discovery port"
@@ -388,7 +388,7 @@ msgstr "Conclusão duplicada ignorada: sala={0}, jogador={1}, número={2}."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
-msgstr ""
+msgstr "A chave duplicada '{0}' na seção [{1}] não é permitida."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -398,7 +398,7 @@ msgstr "ID de sala duplicado '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate section [{0}] is not allowed."
-msgstr ""
+msgstr "Seção duplicada [{0}] não é permitida."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -451,7 +451,7 @@ msgstr "Erro"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Failed to load this vehicle file."
-msgstr ""
+msgstr "Falha ao carregar o arquivo do veículo."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
@@ -572,7 +572,7 @@ msgstr "Entrada inválida. Digite s ou n."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "Invalid key '{0}'. Source gear must be within 1..{1}."
-msgstr ""
+msgstr "Chave inválida '{0}'. A marcha de origem deve ser pelo menos 1..{1}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format

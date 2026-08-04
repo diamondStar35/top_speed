@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-04 14:43\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "\"{0}\", because {1}"
-msgstr ""
+msgstr "\"{0}\", pois {1}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "2 degrees"
@@ -849,12 +849,12 @@ msgstr "Não foi possível ler os arquivos da pasta selecionada."
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save the vehicle {0}."
-msgstr ""
+msgstr "Não foi possível salvar o veículo {0}."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save these vehicles: {0}."
-msgstr ""
+msgstr "Não foi possível salvar estes veículos: {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Create a new game"
@@ -952,7 +952,7 @@ msgstr "Problemas de vehículos Personalizados"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom vehicles"
-msgstr ""
+msgstr "Veículos personalizados"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the next global volume category."
@@ -1192,7 +1192,7 @@ msgstr "Ativar áudio HRTF"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable digit navigation globally"
-msgstr ""
+msgstr "Habilitar navegação global de dígitos"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
@@ -1524,7 +1524,7 @@ msgstr "Modo fantasma"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."
-msgstr ""
+msgstr "Modo Fantasma: {0}. Pistas personalizadas: {1}. Veículos personalizados: {2}. Consumo de combustível: {3}. Desgaste dos pneus: {4}. Pista escolhida: {5}. A partida será iniciada por {6}. Esta Sala é limitada a {7} jogadores."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Shortcuts/Catalog.cs
@@ -1796,20 +1796,20 @@ msgstr "Kawasaki Ninja ZX-10R"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep both"
-msgstr ""
+msgstr "Manter ambos"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep custom vehicle?"
-msgstr ""
+msgstr "Manter veículo personalizado?"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep mine"
-msgstr ""
+msgstr "Manter o meu"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Keep the downloaded vehicle \"{0}\" so it does not need downloading again next time?"
-msgstr ""
+msgstr "Manter baixado o veículo \"{0}\" para que não seja necessário baixá-lo novamente da próxima vez?"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
@@ -2051,7 +2051,7 @@ msgstr "Carregando pistas personalizadas do servidor."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Loading custom vehicles from server."
-msgstr ""
+msgstr "Carregando veículos personalizados do servidor."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio file for streaming."
@@ -2387,7 +2387,7 @@ msgstr "Nenhuma pista personalizada encontrada."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "No custom vehicles available on this server."
-msgstr ""
+msgstr "Nenhum veículo personalizado disponível neste servidor."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "No custom vehicles found."
@@ -2484,7 +2484,7 @@ msgstr "Não, continuar correndo"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "No, keep mine"
-msgstr ""
+msgstr "Não, manter o meu"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "No, keep this server"
@@ -2888,7 +2888,7 @@ msgstr "Entrada de teclado progressiva"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "Prompt to keep downloaded custom vehicles"
-msgstr ""
+msgstr "Solicitar a manutenção dos veículos personalizados baixados"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -3121,11 +3121,11 @@ msgstr "Remover bot"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace mine with the downloaded one"
-msgstr ""
+msgstr "Substituir o meu pelo baixado"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace vehicle?"
-msgstr ""
+msgstr "Substituir veículo?"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report distance"
@@ -3563,7 +3563,7 @@ msgstr "Defina os padrões de corrida, como avisos do copiloto, anúncios de cur
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Set the defaults used when you connect to a multiplayer server, including the port and your call sign, and whether you are offered custom vehicles you download."
-msgstr ""
+msgstr "Defina os padrões usados quando você se conecta a um servidor multiplayer, incluindo a porta e o indicador de chamada, e se são oferecidos veículos personalizados que você baixa."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how early speed dependent curve announcements are spoken."
@@ -3723,7 +3723,7 @@ msgstr "O caminho do arquivo de som sai da pasta da pista: {0}"
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Sound asset path escapes the vehicle folder: {0}"
-msgstr ""
+msgstr "O caminho do arquivo de som não está na pasta do veículo: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -4214,7 +4214,7 @@ msgstr "Esta sala de jogo está indisponível porque está cheia."
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"
-msgstr ""
+msgstr "Isso exclui permanentemente o veículo salvo como \"{0}\" e coloca o \"{1}\" baixado lá. Você têm certeza?"
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 msgid "This server does not support required protocol negotiation. Please update your server."
@@ -4456,7 +4456,7 @@ msgstr "Não foi possível resolver o caminho da pasta de pistas personalizadas.
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Unable to resolve custom vehicle folder path."
-msgstr ""
+msgstr "Não é possível resolver o caminho da pasta do veículo personalizado."
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
 msgid "Unable to resolve server address."
@@ -4716,7 +4716,7 @@ msgstr "O caminho do arquivo do veículo está vazio."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Vehicle not saved"
-msgstr ""
+msgstr "O Veículo não pode ser salvo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
@@ -4807,7 +4807,7 @@ msgstr "Quando marcado, o áudio 3D usa a espacialização HRTF para um posicion
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "When checked, after a multiplayer race you are asked whether to keep custom vehicles you downloaded (they are saved to your Vehicles folder and become available offline). When unchecked, downloaded vehicles are never kept after you close the game."
-msgstr ""
+msgstr "Quando marcado, após uma corrida multijogador, é-lhe perguntado se deve manter os veículos personalizados que você baixou (estes são guardados na pasta de veículos e ficam disponíveis offline). Quando desmarcado, os veículos baixados nunca são mantidos depois de fechar o jogo."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, each menu automatically focuses and announces the first item after the title."
@@ -4871,7 +4871,7 @@ msgstr "Quando ativado, os carros queimam combustível e os jogadores devem ir a
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, players can choose custom vehicles offered by this server."
-msgstr ""
+msgstr "Quando ativado, os jogadores podem escolher veículos personalizados oferecidos pelo servidor."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4899,7 +4899,7 @@ msgstr "Quando ativado, seus pneus se desgastam e perdem a aderência e você de
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
-msgstr ""
+msgstr "Quando desmarcado, pressionar uma tecla numérica ativa o item nessa posição em determinadas áreas, como o menu pit stop. Quando marcado, funciona em todos os lugares."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
@@ -4945,7 +4945,7 @@ msgstr "Sim, excluir este servidor"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, keep it"
-msgstr ""
+msgstr "Sim, manter"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
@@ -4961,12 +4961,12 @@ msgstr "Sim, sair da corrida"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, replace it"
-msgstr ""
+msgstr "Sim, Substituir"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
-msgstr ""
+msgstr "Já tem um veículo baixado como \"{0}\". O que você quer fazer com o \"{1}\" baixado?"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "You are already using the latest version."
@@ -5079,17 +5079,17 @@ msgstr "Versão do protocolo do seu cliente: {0}"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
-msgstr ""
+msgstr "Seu jogo não pôde carregar um veículo personalizado que outro jogador está usando, então você ouvirá o carro padrão."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
-msgstr ""
+msgstr "Seu jogo não pôde carregar o veículo personalizado \" {0}\", então você ouvirá o carro padrão."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
-msgstr ""
+msgstr "Seu jogo não pôde carregar o veículo de {0} \"{1}\", então você ouvirá o carro padrão para ele."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your latest run did not beat the best record. Details:"
@@ -5190,7 +5190,7 @@ msgstr "solicitação de lista de pistas personalizadas"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "custom vehicle list request"
-msgstr ""
+msgstr "solicitado a lista de vehículos personalizados"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "default"
@@ -5311,7 +5311,7 @@ msgstr "imperial"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "its downloaded copy is no longer loaded, so there is nothing to save"
-msgstr ""
+msgstr "sua cópia baixada não é mais carregada, portanto, não há nada para salvar"
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "keyboard"
@@ -5396,11 +5396,11 @@ msgstr "pneus novos"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free folder name was available"
-msgstr ""
+msgstr "nenhum nome de pasta livre estava disponível"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free name was available to move the old folder aside"
-msgstr ""
+msgstr "nenhum nome livre estava disponível para mover a pasta antiga"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "none"
@@ -5608,41 +5608,41 @@ msgstr "target_rpm_high deve ser maior ou igual a target_rpm_low em [transmissio
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the destination is not inside the Vehicles folder"
-msgstr ""
+msgstr "o destino não está dentro da pasta Vehicles"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy holds no vehicle file to write"
-msgstr ""
+msgstr "a cópia baixada não contém QUALQUER arquivo do veículo para escrever"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy is no longer loaded"
-msgstr ""
+msgstr "a cópia baixada não pode ser carregada"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the files could not be written"
-msgstr ""
+msgstr "os arquivos não puderam ser salvos"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the old folder could not be moved aside ({0})"
-msgstr ""
+msgstr "a pasta antiga não pôde ser movida ({0})"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"
-msgstr ""
+msgstr "a substituição não pôde ser escrita e o original não pôde ser recolocado. É seguro, na pasta \"{0}\", e pode ser renomeado de volta"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the replacement files could not be written"
-msgstr ""
+msgstr "os arquivos de substituição não puderam ser salvos"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the saved copy is not inside the Vehicles folder"
-msgstr ""
+msgstr "a cópia salva não se encontra na pasta Vehicles"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the vehicle has no valid identifier"
-msgstr ""
+msgstr "o veículo não possui um identificador válido"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "this menu"
@@ -5766,7 +5766,7 @@ msgstr "{0}  diálogo  {1}"
 #: top_speed_net/TopSpeed/Core/Selection/SourceBase.cs
 #, csharp-format
 msgid "{0} ({1})"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format

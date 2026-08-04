@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-27 22:42-0400\n"
-"PO-Revision-Date: 2026-07-28 10:24\n"
+"POT-Creation-Date: 2026-08-04 00:35-0400\n"
+"PO-Revision-Date: 2026-08-04 04:50\n"
 "Last-Translator: \n"
 "Language-Team: Armenian\n"
 "Language: hy_AM\n"
@@ -281,7 +281,6 @@ msgstr ""
 msgid "Custom tracks"
 msgstr ""
 
-#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are disabled on this server."
 msgstr ""
@@ -289,6 +288,18 @@ msgstr ""
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are not enabled for this room."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/VehiclePackages/CatalogState.cs
+msgid "Custom vehicle"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
+msgid "Custom vehicle file must use .tsv extension."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Commands/Host.cs
+msgid "Custom vehicles"
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
@@ -374,9 +385,19 @@ msgstr ""
 msgid "Duplicate finish ignored: room={0}, player={1}, number={2}."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Duplicate key '{0}' in section [{1}] is not allowed."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Duplicate room id '{0}'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Duplicate section [{0}] is not allowed."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
@@ -426,6 +447,10 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Issues/Issue.cs
 msgid "Error"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
+msgid "Failed to load this vehicle file."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
@@ -544,6 +569,20 @@ msgstr ""
 msgid "Invalid input. Enter y or n."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#, csharp-format
+msgid "Invalid key '{0}'. Source gear must be within 1..{1}."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#, csharp-format
+msgid "Invalid key '{0}'. Use upshift_delay_X_Y for adjacent gears."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+msgid "Invalid line. Expected [section] or key=value."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid numeric value '{0}' for key '{1}'."
@@ -616,6 +655,7 @@ msgid "Invalid segment width '{0}'."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Invalid sound asset path: {0}"
 msgstr ""
@@ -628,6 +668,16 @@ msgstr ""
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid sound type '{0}'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#, csharp-format
+msgid "Invalid torque curve key '{0}'. Use format like 2000rpm=200."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#, csharp-format
+msgid "Invalid torque value '{0}' for '{1}'."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
@@ -667,9 +717,54 @@ msgstr ""
 msgid "Kawasaki Ninja ZX-10R"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#, csharp-format
+msgid "Key '{0}' contains a non-float value '{1}'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
+#, csharp-format
+msgid "Key '{0}' in section [{1}] must not be empty."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Key '{0}' is missing a value."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
+#, csharp-format
+msgid "Key '{0}' must be a boolean or 0/1 integer."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
+#, csharp-format
+msgid "Key '{0}' must be a float."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
+#, csharp-format
+msgid "Key '{0}' must be an integer."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#, csharp-format
+msgid "Key '{0}' must contain at least one float value."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
+#, csharp-format
+msgid "Key '{0}' must contain at least one path."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
+#, csharp-format
+msgid "Key '{0}' must contain at least one transmission type."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
+#, csharp-format
+msgid "Key '{0}' value {1} is outside allowed range {2} to {3}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
@@ -682,6 +777,11 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Laps must be between 1 and 500."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Types.cs
+#, csharp-format
+msgid "Line {0}: {1}"
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
@@ -767,6 +867,32 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mini Cooper S"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
+#, csharp-format
+msgid "Missing required key '{0}' in section [{1}]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Missing required section [transmission_atc] for supported type 'atc'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Missing required section [transmission_cvt] for supported type 'cvt'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Missing required section [transmission_dct] for supported type 'dct'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Missing required section [{0}]."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
@@ -897,6 +1023,10 @@ msgstr ""
 #: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Protocol version: {0}"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
+msgid "Provide tire_circumference or all of tire_width, tire_aspect, and tire_rim."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
@@ -1059,6 +1189,22 @@ msgstr ""
 msgid "Section '{0}' requires an id."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+msgid "Section [torque_curve] must define at least two RPM points, or a preset with enough points."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Section [transmission_atc] is unused because supported_types does not include 'atc'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Section [transmission_cvt] is unused because supported_types does not include 'cvt'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Segment '{0}' references room '{1}', but no matching [room:{1}] section or preset exists."
@@ -1116,7 +1262,7 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
-msgid "Server configuration: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.text_chat={4}, features.voice_chat={5}, moderation.maxNameLength={6}, moderation.blockRepeatedLettersInName={7}, moderation.allowDuplicateNames={8}."
+msgid "Server configuration: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.custom_vehicles={4}, features.text_chat={5}, features.voice_chat={6}, moderation.maxNameLength={7}, moderation.blockRepeatedLettersInName={8}, moderation.allowDuplicateNames={9}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
@@ -1192,6 +1338,11 @@ msgstr ""
 msgid "Skipping server track package '{0}': {1}"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/VehiclePackages/LocalPackages.cs
+#, csharp-format
+msgid "Skipping server vehicle package '{0}': {1}"
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Sound '{0}' references end_area '{1}', but no matching segment id exists."
@@ -1205,6 +1356,11 @@ msgstr ""
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Sound asset path escapes the track folder: {0}"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
+#, csharp-format
+msgid "Sound asset path escapes the vehicle folder: {0}"
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
@@ -1281,6 +1437,11 @@ msgstr ""
 msgid "There are no bots to remove."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
+#, csharp-format
+msgid "These features are disabled on this server: {0}."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "This call sign is already in use on this server."
 msgstr ""
@@ -1303,6 +1464,11 @@ msgstr ""
 msgid "This server is full."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Top-level key '{0}' is not supported."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "TopSpeed Server"
 msgstr ""
@@ -1321,6 +1487,16 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "TopSpeed.Server usage:"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#, csharp-format
+msgid "Torque curve RPM '{0:F0}' must be between 300 and 25000."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#, csharp-format
+msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
@@ -1399,6 +1575,10 @@ msgstr ""
 msgid "Unable to resolve custom track folder path."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
+msgid "Unable to resolve custom vehicle folder path."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Unable to resolve server host."
 msgstr ""
@@ -1409,6 +1589,11 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Unable to store track package on server."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Unknown key '{0}' in section [{1}]."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
@@ -1430,6 +1615,11 @@ msgstr ""
 msgid "Unknown section '{0}'."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
+#, csharp-format
+msgid "Unknown section [{0}]."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown segment key '{0}'."
@@ -1440,6 +1630,11 @@ msgstr ""
 msgid "Unknown sound key '{0}'."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#, csharp-format
+msgid "Unknown torque curve preset '{0}'. Valid values: {1}."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "Unknown update error."
 msgstr ""
@@ -1447,6 +1642,16 @@ msgstr ""
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Unknown weather key '{0}'."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
+#, csharp-format
+msgid "Unsupported transmission type '{0}' in supported_types. Valid values: atc, cvt, dct, manual."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
+#, csharp-format
+msgid "Unsupported transmission type '{0}'. Valid values: atc, cvt, dct, manual."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
@@ -1486,8 +1691,26 @@ msgstr ""
 msgid "Value must be between {0} and {1}."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/VehicleDefinition.cs
+msgid "Vehicle"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
+#, csharp-format
+msgid "Vehicle file not found: {0}"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
+msgid "Vehicle file path is empty."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Voice chat"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
+#, csharp-format
+msgid "Waiting for custom vehicle downloads to finish: room={0}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
@@ -1612,6 +1835,26 @@ msgstr ""
 msgid "authoritative players={0}, rooms={1}, stale_epoch_drops={2}, replay_gaps={3}, epoch_rejects={4}, heartbeat_suspicions={5}, start_blocked_insufficient_active={6}, start_blocked_missing_ready={7}, start_blocked_track_not_ready={8}, transport_network_errors={9}, transport_latency_last_ms={10}, transport_latency_avg_ms={11}, transport_latency_max_ms={12}, transport_peer_address_changes={13}"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
+msgid "custom tracks"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
+msgid "custom vehicles"
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "debug"
 msgstr ""
@@ -1624,20 +1867,72 @@ msgstr ""
 msgid "end_area cannot be empty."
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
+#, csharp-format
+msgid "engine_displacement_l must be between {0} and {1} liters."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "error"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
+#, csharp-format
+msgid "fuel must be between {0} and {1} liters."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
+#, csharp-format
+msgid "gear_ratios count ({0}) must match number_of_gears ({1})."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
+msgid "gear_ratios must be non-increasing from gear 1 to last gear."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
+#, csharp-format
+msgid "gear_ratios[{0}] is outside allowed range 0.20 to 8.00."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "hard"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "info"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_atc]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_cvt]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "launch_rpm must not exceed rev_limiter."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 msgid "main room"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "max_rpm must be greater than or equal to idle_rpm."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
+msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
@@ -1662,9 +1957,34 @@ msgstr ""
 msgid "on"
 msgstr ""
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+#, csharp-format
+msgid "pitch_curve_exponent must be between {0} and {1}."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "rev_limiter must be between idle_rpm and max_rpm."
+msgstr ""
+
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 #, csharp-format
 msgid "room {0}"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "shift_freq must be between idle_freq and top_freq."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Transmission.cs
+msgid "shift_on_demand is ignored because supported_types does not include an automatic transmission type."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
@@ -1673,6 +1993,35 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "start_area cannot be empty."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
+msgid "target_rpm_high must be greater than or equal to target_rpm_low in [transmission_cvt]."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
+msgid "tire_aspect must be between 5 and 150."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
+msgid "tire_circumference must be between 0.2 and 5.0 meters."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
+msgid "tire_rim must be between 4 and 30 inches."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
+msgid "tire_width must be between 20 and 450 mm."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
+msgid "top_freq must be greater than or equal to idle_freq."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#, csharp-format
+msgid "top_speed_gear must be within 1..{0}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
@@ -1752,6 +2101,16 @@ msgstr ""
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "{0} lost connection. Waiting for reconnect."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#, csharp-format
+msgid "{0} must be a float between 0 and 2 seconds."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#, csharp-format
+msgid "{0} must be between {1} and {2}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs

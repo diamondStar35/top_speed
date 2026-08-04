@@ -430,6 +430,8 @@ Default server port is used when you enter a host without typing a port.
 
 Default call sign is the name pre-filled in multiplayer connection dialogs.
 
+Prompt to keep downloaded custom vehicles decides whether you are offered the chance to save a custom vehicle after a multiplayer race that used one. It is on by default. With it off you are never asked, and vehicles you download still work for the races that need them but are discarded when you close the game. Section 16 covers keeping vehicles in full.
+
 ### 11.8 Defaults Summary
 On a clean setup, the game starts with practical beginner defaults such as menu hints enabled, menu wrapping enabled, co-pilot enabled, and startup update checks enabled.
 

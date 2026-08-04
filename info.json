@@ -2,20 +2,12 @@
   "version": "2026.7.28.1",
   "serverVersion": "2026.7.28.1",
   "changes": [
-    "You can now check your car's status while the pit stop menu is open. Fuel, tire wear, distance, speed, gear and race progress all answer while you decide whether to refuel, change tires, or both. You can also sound the horn during the whole pit stop, including in the pit box and along the pit roads.",
-    "Status keys now keep working after you finish a race while you wait for the rest of the field, instead of going silent. You can also rev your engine while waiting; the car stays in neutral and cannot move.",
-    "Added a \"Brief status reports\" option in race settings. When turned on, spoken status reports are shortened for players who already know their keys: labels such as \"lap percentage\" and \"gear\" are dropped, and the number row gives a quick rundown.",
-    "Added a \"Report lap and turn instead of race percentage\" option in race settings. The number row and player information then report a car's lap and the turn it is in or approaching, spoken like a spotter, for your own car and any other driver you check.",
-    "Added a \"Curve announcement method\" option in race settings. The copilot can signal upcoming curves with tones instead of speech. The tighter the curve the higher the tone, and each tone plays from the side the curve turns toward.",
-    "Keys that a menu uses to navigate no longer double as driving keys while that menu is open, so a status key mapped to an arrow key moves the menu without also speaking.",
-    "Improved the localization workflow so translation updates are easier to keep current, and added more Spanish, Brazilian Portuguese and Chinese translations.",
     "Fixed a Brazilian Portuguese copilot recording that announced a hard left when the corner ahead was actually a hairpin right. Players using Portuguese were occasionally told the wrong direction; the recording is now used for hard left corners, where it belongs.",
     "Custom vehicles now work in multiplayer races. A room host turns them on with the new \"Custom vehicles\" game rule, and when another driver picks a vehicle you do not have, your game fetches it from the server by itself. Vehicles are matched by what is inside them rather than by their name, so one you already have is never downloaded, renaming or moving a vehicle does not cause it to download again, and a vehicle you do download arrives only once however many races you use it in. If a vehicle cannot be downloaded or cannot be loaded, the race still starts and you are told which vehicle was unavailable and who was using it.",
-    "After a multiplayer race that used a downloaded vehicle, you can save it into your own Vehicles folder and then use it offline in time trial and single race. If you already have a vehicle saved under that name, you can keep both, replace yours with the downloaded one, or keep yours and discard the download.",
+    "After a multiplayer race that used a downloaded vehicle, you can save it into your own Vehicles folder and then use it offline in time trial and single race. If you already have a vehicle saved under that name, you can keep both, replace yours with the downloaded one, or keep yours and discard the download. A \"Prompt to keep downloaded custom vehicles\" checkbox under Options, Server settings turns the offer off if you would rather nothing were saved.",
     "Custom vehicles and tracks you save on Android and iOS are now kept apart from the files that ship with the game, so updating the app no longer deletes them."
   ],
   "serverChanges": [
-    "Improved the localization workflow so translation updates are easier to keep current, and added more Brazilian Portuguese translations, including the pit area and lap limit messages.",
     "Added a custom_vehicles feature that allows or blocks custom vehicles for the whole server, alongside the existing custom_tracks feature. Vehicles placed in a Vehicles folder next to the server executable are offered to rooms that turn the \"Custom vehicles\" game rule on, and a vehicle is sent to a player only when that player asks for one they do not already have."
   ]
 }

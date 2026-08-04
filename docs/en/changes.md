@@ -5,6 +5,22 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## 2026.8.3.1
+### Game Changes
+- Custom vehicles now work in multiplayer races. A room host turns them on with the new "Custom vehicles" game rule, and when another driver picks a vehicle you do not have, your game fetches it from the server by itself. Vehicles are matched by what is inside them rather than by their name, so one you already have is never downloaded, renaming or moving a vehicle does not cause it to download again, and a vehicle you do download arrives only once however many races you use it in. If a vehicle cannot be downloaded or cannot be loaded, the race still starts and you are told which vehicle was unavailable and who was using it.
+- After a multiplayer race that used a downloaded vehicle, you can save it into your own Vehicles folder and then use it offline in time trial and single race. If you already have a vehicle saved under that name, you can keep both, replace yours with the downloaded one, or keep yours and discard the download. A "Prompt to keep downloaded custom vehicles" checkbox under Options, Server settings turns the offer off if you would rather nothing were saved.
+- Custom vehicles and tracks you save on Android and iOS are now kept apart from the files that ship with the game, so updating the app doesn't delete them.
+- Number keys no longer activate menu items in every menu. Pressing a number used to activate the item at that position anywhere in the game, which could fire by accident while you were doing something else; it now happens only where a dialog asks for it. A new "Enable digit navigation globally" checkbox under Options, General turns the old behavior back on everywhere.
+- Fixed the game hanging at startup on macOS when VoiceOver is running. Speech and VoiceOver each ended up waiting on the other, so the game never finished launching.
+- Fixed two input problems on macOS. Keys no longer stay held down after the media file dialog closes, which had left every later Control press reopening the file picker, and Control plus Tab moves between panels again.
+- Fixed a Brazilian Portuguese copilot recording that announced a hard left when the corner ahead was actually a hairpin right. Players using Portuguese were occasionally told the wrong direction; the recording is now used for hard left corners, where it belongs.
+- Added more Spanish, Armenian, Brazilian Portuguese, Vietnamese and Chinese translations.
+
+### Server Changes
+- Added a custom_vehicles feature that allows or blocks custom vehicles for the whole server, alongside the existing custom_tracks feature. Vehicles placed in a Vehicles folder next to the server executable are offered to rooms that turn the "Custom vehicles" game rule on, and a vehicle is sent to a player only when that player asks for one they do not already have.
+- Added more Brazilian Portuguese and Chinese translations.
+
+
 ## 2026.7.28.1
 ### Game Changes
 - You can now check your car's status while the pit stop menu is open. Fuel, tire wear, distance, speed, gear and race progress all answer while you decide whether to refuel, change tires, or both. You can also sound the horn during the whole pit stop, including in the pit box and along the pit roads.

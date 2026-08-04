@@ -1,4 +1,6 @@
 using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using Eto.Drawing;
 using Eto.Forms;
 using TopSpeed.Input;
@@ -52,6 +54,9 @@ namespace TopSpeed.Windowing.Eto
             _root.KeyDown += OnWindowKeyDown;
             _root.KeyUp += OnWindowKeyUp;
             _window.Content = _root;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                TryInstallMacControlTabInterceptor();
         }
 
         public void Run()
@@ -106,7 +111,7 @@ namespace TopSpeed.Windowing.Eto
                 _inputBox.Enabled = true;
                 _root.Content = _inputBox;
                 _textInputActive = true;
-                ReleaseAllModifiers();
+                ReleaseAllKeys();
                 _inputBox.Focus();
             });
         }
@@ -168,8 +173,9 @@ namespace TopSpeed.Windowing.Eto
 
         private void OnWindowKeyUp(object? sender, KeyEventArgs e)
         {
-            if (_textInputActive)
-                return;
+            // Key-ups are processed even while the text input box is active: swallowing
+            // them is how the key that opened the prompt ends up latched down forever in
+            // the event-driven keyboard device.
             EmitKeyUp(e.KeyData);
         }
 
@@ -212,7 +218,7 @@ namespace TopSpeed.Windowing.Eto
 
         private void OnWindowLostFocus(object? sender, EventArgs e)
         {
-            ReleaseAllModifiers();
+            ReleaseAllKeys();
         }
 
         private void EmitKeyDown(Keys keyData)
@@ -227,14 +233,15 @@ namespace TopSpeed.Windowing.Eto
                 KeyUp?.Invoke(key);
         }
 
-        private void ReleaseAllModifiers()
+        // Key-ups delivered while another window is key (a file dialog, the text input
+        // box) never reach this window, so the event-driven keyboard device would keep
+        // those keys latched down forever — and a permanently "held" key re-triggers its
+        // shortcut every time its modifiers come back down. Whenever key-ups may have
+        // gone elsewhere, report every key released so none can stay stuck.
+        internal void ReleaseAllKeys()
         {
-            KeyUp?.Invoke(InputKey.LeftShift);
-            KeyUp?.Invoke(InputKey.RightShift);
-            KeyUp?.Invoke(InputKey.LeftControl);
-            KeyUp?.Invoke(InputKey.RightControl);
-            KeyUp?.Invoke(InputKey.LeftAlt);
-            KeyUp?.Invoke(InputKey.RightAlt);
+            for (var i = 1; i < 256; i++)
+                KeyUp?.Invoke((InputKey)i);
         }
 
         private void InvokeOnUi(Action action)
@@ -272,7 +279,7 @@ namespace TopSpeed.Windowing.Eto
             _inputBox.Visible = false;
             _inputBox.Enabled = false;
             _root.Content = null;
-            ReleaseAllModifiers();
+            ReleaseAllKeys();
         }
 
         private void DisposeInputBoxControl()
@@ -285,6 +292,34 @@ namespace TopSpeed.Windowing.Eto
             _inputBox.KeyUp -= OnInputKeyUp;
             _inputBox.Dispose();
             _inputBox = null;
+        }
+
+        // Cocoa routes Control-modified key presses through the key-equivalent chain
+        // (window tabbing, key-view-loop navigation) before normal key dispatch, so
+        // Control+Tab never reaches this window's KeyDown and panel switching is dead on
+        // macOS. MacControlTabInterceptor sees the event first via a local NSEvent
+        // monitor and feeds it to the game. It is only compiled into osx builds (it needs
+        // MonoMac, which only the Mac Eto platform references), so it is looked up by
+        // name here; on other platforms the lookup finds nothing and this is a no-op.
+        private void TryInstallMacControlTabInterceptor()
+        {
+            try
+            {
+                var type = Type.GetType("TopSpeed.Windowing.Eto.MacControlTabInterceptor");
+                var install = type?.GetMethod("Install", BindingFlags.Public | BindingFlags.Static);
+                install?.Invoke(null, new object[]
+                {
+                    (Func<IntPtr>)(() => NativeHandle),
+                    (Func<bool>)(() => !_textInputActive),
+                    (Action<InputKey>)(key => KeyDown?.Invoke(key)),
+                    (Action<InputKey>)(key => KeyUp?.Invoke(key))
+                });
+            }
+            catch
+            {
+                // Best effort: without the monitor the game still runs, only Control+Tab
+                // stays unavailable because Cocoa consumes it.
+            }
         }
 
         private static string ResolveWindowTitle()

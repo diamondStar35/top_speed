@@ -32,6 +32,10 @@ namespace TopSpeed.Windowing.Eto
                         selectedPath = dialog.FileName;
                 }
 
+                // The keys that launched the dialog were released while the dialog was
+                // key, so their key-ups never reached the game window; clear them so the
+                // shortcut cannot re-trigger on the next modifier press.
+                _window.ReleaseAllKeys();
                 onCompleted(selectedPath);
             });
         }
@@ -56,6 +60,7 @@ namespace TopSpeed.Windowing.Eto
                         selectedFolder = dialog.Directory;
                 }
 
+                _window.ReleaseAllKeys();
                 onCompleted(selectedFolder);
             });
         }

@@ -163,12 +163,11 @@ namespace TopSpeed.Drive.Session.Systems
             var positionText = ResolvePositionText(playerIndex, brief);
             if (positionText != null)
             {
+                // The brief readout is just the slots run together, so it carries no text of its own
+                // to translate. Joining keeps it out of the catalog: a placeholder-only msgid gives a
+                // translator nothing to work with but still lets them reorder or drop a slot.
                 _speakText(brief
-                    ? LocalizationService.Format(
-                        LocalizationService.Mark("{0} {1} {2}"),
-                        positionText,
-                        playerName,
-                        vehicleName)
+                    ? string.Join(" ", positionText, playerName, vehicleName)
                     : LocalizationService.Format(
                         LocalizationService.Mark("{0}, {1}, using {2}."),
                         playerName,
@@ -178,10 +177,7 @@ namespace TopSpeed.Drive.Session.Systems
             }
 
             _speakText(brief
-                ? LocalizationService.Format(
-                    LocalizationService.Mark("{0} {1}"),
-                    playerName,
-                    vehicleName)
+                ? string.Join(" ", playerName, vehicleName)
                 : LocalizationService.Format(
                     LocalizationService.Mark("{0}: {1}, using {2}."),
                     playerName,

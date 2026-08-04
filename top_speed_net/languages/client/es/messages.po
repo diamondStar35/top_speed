@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-27 22:42-0400\n"
-"PO-Revision-Date: 2026-07-28 10:24\n"
+"POT-Creation-Date: 2026-07-31 22:22-0400\n"
+"PO-Revision-Date: 2026-08-03 22:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -5724,16 +5724,6 @@ msgstr "{0} se agregó a la sala actual."
 #, csharp-format
 msgid "{0} was removed from the current room."
 msgstr "{0} fue eliminado de la sala actual."
-
-#: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
-#, csharp-format
-msgid "{0} {1}"
-msgstr ""
-
-#: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
-#, csharp-format
-msgid "{0} {1} {2}"
-msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 #, csharp-format

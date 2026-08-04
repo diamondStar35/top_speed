@@ -23,5 +23,13 @@ namespace TopSpeed.Core.Multiplayer
         public bool RoomTrackCatalogOpenPending;
         public bool RoomTrackUploadReturnToCatalog;
         public PacketTrackPackageCatalogEntry[] RoomTrackCatalog = System.Array.Empty<PacketTrackPackageCatalogEntry>();
+
+        // Custom vehicle loadout (server catalog + the player's pending custom pick).
+        public bool LoadoutVehicleCatalogOpenPending;
+        public PacketVehiclePackageCatalogEntry[] LoadoutVehicleCatalog = System.Array.Empty<PacketVehiclePackageCatalogEntry>();
+        public VehiclePackageRef? PendingLoadoutVehicle;
+        public string PendingLoadoutVehicleDisplay = string.Empty;
+        public bool PendingLoadoutVehicleSupportsAutomatic = true;
+        public bool PendingLoadoutVehicleSupportsManual = true;
     }
 }

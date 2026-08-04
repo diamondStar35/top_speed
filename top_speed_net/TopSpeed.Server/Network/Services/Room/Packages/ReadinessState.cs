@@ -30,6 +30,7 @@ namespace TopSpeed.Server.Network
         private void ResetRoomPackageReadiness(GameRoom room)
         {
             room.TrackReadyPlayers.Clear();
+            ResetRoomVehiclePackageReadiness(room);
         }
 
         private void MarkPlayerPackageReady(GameRoom room, uint playerId)

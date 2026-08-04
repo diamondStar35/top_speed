@@ -37,6 +37,9 @@ namespace TopSpeed.Server.Network
         public uint? RoomId { get; set; }
         public byte PlayerNumber { get; set; }
         public CarType Car { get; set; }
+
+        // Custom vehicle package selected by this player (empty when using a built-in vehicle).
+        public string SelectedVehicleHash { get; set; } = string.Empty;
         public float PositionX { get; set; }
         public float PositionY { get; set; }
         public ushort Speed { get; set; }

@@ -31,6 +31,7 @@ namespace TopSpeed.Core.Multiplayer
         {
             var ghostEnabled = (gameRulesFlags & (uint)RoomGameRules.GhostMode) != 0u;
             var customTracksEnabled = (gameRulesFlags & (uint)RoomGameRules.CustomTracks) != 0u;
+            var customVehiclesEnabled = (gameRulesFlags & (uint)RoomGameRules.CustomVehicles) != 0u;
             var fuelEnabled = (gameRulesFlags & (uint)RoomGameRules.FuelConsumption) != 0u;
             var tireWearEnabled = (gameRulesFlags & (uint)RoomGameRules.TireWear) != 0u;
             var trackDisplay = ResolveTrackAnnouncement(track, trackName);
@@ -47,11 +48,14 @@ namespace TopSpeed.Core.Multiplayer
                     : LocalizationService.Mark("{0} players"),
                 normalizedPlayers);
             return LocalizationService.Format(
-                LocalizationService.Mark("Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."),
+                LocalizationService.Mark("Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."),
                 ghostEnabled
                     ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
                     : LocalizationService.Translate(LocalizationService.Mark("disabled")),
                 customTracksEnabled
+                    ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
+                    : LocalizationService.Translate(LocalizationService.Mark("disabled")),
+                customVehiclesEnabled
                     ? LocalizationService.Translate(LocalizationService.Mark("enabled"))
                     : LocalizationService.Translate(LocalizationService.Mark("disabled")),
                 fuelEnabled
@@ -69,6 +73,7 @@ namespace TopSpeed.Core.Multiplayer
         {
             return flags & ((uint)RoomGameRules.GhostMode
                 | (uint)RoomGameRules.CustomTracks
+                | (uint)RoomGameRules.CustomVehicles
                 | (uint)RoomGameRules.FuelConsumption
                 | (uint)RoomGameRules.TireWear);
         }
@@ -77,6 +82,12 @@ namespace TopSpeed.Core.Multiplayer
         {
             var authoritativeFlags = NormalizeRoomOptionsGameRulesFlags(_state.Rooms.CurrentRoom.GameRulesFlags);
             _state.RoomDrafts.RoomOptionsAppliedGameRulesFlags = authoritativeFlags;
+
+            // Re-seed a live draft from what the server actually accepted. Leaving the game rules
+            // menu applies the draft but keeps it alive, so without this a rule the server masked
+            // off stays checked until the host exits room options entirely.
+            if (_state.RoomDrafts.RoomOptionsDraftActive)
+                _state.RoomDrafts.RoomOptionsGameRulesFlags = authoritativeFlags;
 
             if (!_state.RoomDrafts.RoomTrackTypeOpenPending)
                 return;

@@ -23,6 +23,11 @@ namespace TopSpeed.Core
             return info.Display;
         }
 
+        protected override TrackInfo WithDisplay(TrackInfo info, string display)
+        {
+            return new TrackInfo(info.Key, display);
+        }
+
         protected override (bool Success, TrackInfo Value) ParseCore(string file)
         {
             if (!TrackTsmParser.TryLoadFromFile(file, out var parsed, out var issues))

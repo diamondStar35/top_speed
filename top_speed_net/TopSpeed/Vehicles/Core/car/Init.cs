@@ -118,10 +118,22 @@ namespace TopSpeed.Vehicles
             }
             else
             {
-                definition = VehicleLoader.LoadCustom(vehicleFile!, weather);
-                _carType = definition.CarType;
-                _customFile = definition.CustomFile;
-                _userDefined = true;
+                try
+                {
+                    definition = VehicleLoader.LoadCustom(vehicleFile!, weather);
+                    _carType = definition.CarType;
+                    _customFile = definition.CustomFile;
+                    _userDefined = true;
+                }
+                catch
+                {
+                    // Last-resort guard. The self-heal + re-download path should already have resolved
+                    // a live custom-vehicle file before the race starts, but if one still fails to
+                    // parse here, fall back to a built-in car instead of hard-crashing the race
+                    // (mirrors the computer/remote player path).
+                    definition = VehicleLoader.LoadOfficial(vehicleIndex, weather);
+                    _carType = definition.CarType;
+                }
             }
 
             return definition;

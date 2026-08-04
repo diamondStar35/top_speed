@@ -44,6 +44,7 @@ namespace TopSpeed.Core.Multiplayer
         public static readonly MenuId RoomBrowser = new MenuId("multiplayer_rooms");
         public static readonly MenuId CreateRoom = new MenuId("multiplayer_create_room");
         public static readonly MenuId LoadoutVehicle = new MenuId("multiplayer_loadout_vehicle");
+        public static readonly MenuId LoadoutVehicleCustom = new MenuId("multiplayer_loadout_vehicle_custom");
         public static readonly MenuId LoadoutTransmission = new MenuId("multiplayer_loadout_transmission");
         public static readonly MenuId SavedServers = new MenuId("multiplayer_saved_servers");
         public static readonly MenuId SavedServerForm = new MenuId("multiplayer_saved_server_form");

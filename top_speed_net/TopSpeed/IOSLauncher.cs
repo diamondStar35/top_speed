@@ -23,6 +23,11 @@ namespace TopSpeed
             MobileLauncher.SetAssetRoot(path);
         }
 
+        public static void SetUserContentRoot(string? path)
+        {
+            MobileLauncher.SetUserContentRoot(path);
+        }
+
         public static void Run()
         {
             MobileLauncher.Run();

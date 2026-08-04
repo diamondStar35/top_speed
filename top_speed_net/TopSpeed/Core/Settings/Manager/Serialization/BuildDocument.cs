@@ -83,7 +83,8 @@ namespace TopSpeed.Core.Settings
                     ReportLapAndTurn = settings.ReportLapAndTurn,
                     RandomCustomTracks = settings.RandomCustomTracks,
                     RandomCustomVehicles = settings.RandomCustomVehicles,
-                    SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles
+                    SingleRaceCustomVehicles = settings.SingleRaceCustomVehicles,
+                    KeepDownloadedVehiclesPrompt = settings.KeepDownloadedVehiclesPrompt
                 },
                 Ui = new SettingsUiDocument
                 {

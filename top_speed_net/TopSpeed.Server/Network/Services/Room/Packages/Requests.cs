@@ -38,11 +38,75 @@ namespace TopSpeed.Server.Network
                     _owner._race.TryStartAfterLoadout(room);
             }
 
+            // Any room member may request the vehicle catalog (unlike tracks, every player picks
+            // their own vehicle), so this resolves the player's room rather than a hosted room.
+            public void HandleVehiclePackageCatalogRequest(PlayerConnection player, PacketVehiclePackageCatalogRequest packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+
+                if (!IsCustomVehicleSelectionEnabled(room))
+                {
+                    _owner.SendVehiclePackageCatalog(player, new PacketVehiclePackageCatalog());
+                    return;
+                }
+
+                _owner.SendVehiclePackageCatalog(player, _owner.BuildVehiclePackageCatalog());
+            }
+
+            // A client asks for a package only when it does not already hold that content, so this is
+            // the one place a package is sent. Nothing is pushed: a client that already has the
+            // vehicle never receives it again, which matters most to whoever is paying for the
+            // bandwidth on a metered connection.
+            public void HandleVehiclePackageRequest(PlayerConnection player, PacketVehiclePackageRequest packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+                if (!IsCustomVehicleSelectionEnabled(room))
+                    return;
+
+                var hash = VehiclePackageRef.NormalizeHash(packet.Hash);
+                if (string.IsNullOrWhiteSpace(hash))
+                    return;
+                if (!_owner.TryGetVehiclePackage(hash, out var record) || record == null)
+                    return;
+
+                _owner.SendVehiclePackageToPlayer(player, record);
+            }
+
+            public void HandleVehiclePackageReady(PlayerConnection player, PacketVehiclePackageReady packet)
+            {
+                if (!player.RoomId.HasValue)
+                    return;
+                if (!_owner._rooms.TryGetValue(player.RoomId.Value, out var room))
+                    return;
+
+                var hash = VehiclePackageRef.NormalizeHash(packet.Hash);
+                if (string.IsNullOrWhiteSpace(hash))
+                    return;
+
+                _owner.MarkPlayerVehiclePackageReady(room, player.Id, hash);
+                if (room.PreparingRace)
+                    _owner._race.TryStartAfterLoadout(room);
+            }
+
             private bool IsCustomSelectionEnabled(GameRoom room)
             {
                 return room != null
                     && _owner._config.Features.CustomTracks
                     && (room.GameRulesFlags & (uint)RoomGameRules.CustomTracks) != 0u;
+            }
+
+            // Custom vehicles require both the server-wide feature and the room's game rule.
+            private bool IsCustomVehicleSelectionEnabled(GameRoom room)
+            {
+                return room != null
+                    && _owner._config.Features.CustomVehicles
+                    && (room.GameRulesFlags & (uint)RoomGameRules.CustomVehicles) != 0u;
             }
         }
     }

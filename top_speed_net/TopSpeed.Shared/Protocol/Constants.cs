@@ -16,6 +16,14 @@ namespace TopSpeed.Protocol
         public const int MaxTrackIdLength = 128;
         public const int MaxTrackVersionLength = 64;
         public const int MaxTrackHashLength = 128;
+        public const int MaxVehiclePackageBytes = 32 * 1024 * 1024;
+        public const int MaxVehiclePackageChunkBytes = 900;
+        public const int MaxVehiclePackageCacheEntries = 64;
+        public const int MaxVehiclePackageCatalogEntries = 256;
+        public const int MaxVehiclePackageDisplayNameLength = 160;
+        public const int MaxVehicleIdLength = 128;
+        public const int MaxVehicleVersionLength = 64;
+        public const int MaxVehicleHashLength = 128;
         public const int MaxLiveFrameBytes = 1200;
         public const int LiveSampleRate = 48000;
         public const int LiveFrameMs = 60;

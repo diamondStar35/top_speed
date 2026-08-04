@@ -28,6 +28,14 @@ namespace TopSpeed.Server.Network
             player.MassKg = dimensions.MassKg;
         }
 
+        private static void ApplyCustomVehicleDimensions(PlayerConnection player, VehiclePackageRecord record)
+        {
+            var fallback = GetVehicleDimensions(CarType.Vehicle1);
+            player.WidthM = record != null && record.WidthM > 0f ? record.WidthM : fallback.WidthM;
+            player.LengthM = record != null && record.LengthM > 0f ? record.LengthM : fallback.LengthM;
+            player.MassKg = record != null && record.MassKg > 0f ? record.MassKg : fallback.MassKg;
+        }
+
         private static void ApplyVehicleDimensions(RoomBot bot, CarType car)
         {
             var dimensions = GetVehicleDimensions(car);

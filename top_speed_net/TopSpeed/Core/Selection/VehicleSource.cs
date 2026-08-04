@@ -23,6 +23,11 @@ namespace TopSpeed.Core
             return info.Display;
         }
 
+        protected override CustomVehicleInfo WithDisplay(CustomVehicleInfo info, string display)
+        {
+            return new CustomVehicleInfo(info.Key, display, info.Version, info.Description);
+        }
+
         protected override (bool Success, CustomVehicleInfo Value) ParseCore(string file)
         {
             if (!VehicleTsvParser.TryLoadFromFile(file, out var parsed, out var issues))

@@ -13,12 +13,19 @@ namespace TopSpeed
         private static readonly object Sync = new object();
         private static WindowHost? _window;
         private static string? _assetRoot;
+        private static string? _userContentRoot;
         private static bool _running;
 
         public static void SetAssetRoot(string? path)
         {
             lock (Sync)
                 _assetRoot = path;
+        }
+
+        public static void SetUserContentRoot(string? path)
+        {
+            lock (Sync)
+                _userContentRoot = path;
         }
 
         public static void Run()
@@ -39,6 +46,15 @@ namespace TopSpeed
                 {
                     AssetPaths.SetRoot(configuredRoot);
                     LocalizationBootstrap.SetLanguagesRoot(Path.Combine(configuredRoot!, "languages"));
+                }
+
+                // Left unset on platforms that do not separate the two, which keeps the user content
+                // root pointing at the asset root exactly as before.
+                var configuredUserContentRoot = _userContentRoot;
+                if (!string.IsNullOrWhiteSpace(configuredUserContentRoot))
+                {
+                    Directory.CreateDirectory(configuredUserContentRoot!);
+                    AssetPaths.SetUserContentRoot(configuredUserContentRoot);
                 }
 
                 NativeLibraryBootstrap.Initialize();

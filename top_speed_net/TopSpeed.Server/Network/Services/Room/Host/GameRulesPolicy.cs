@@ -20,8 +20,8 @@ namespace TopSpeed.Server.Network
             | (uint)RoomGameRules.TireWear;
 
         // Rules that start enabled for a brand-new room (others default off / absent bit). Fuel
-        // consumption and tire wear default OFF (per Diamond Star); a host opts in via the rules
-        // menu. Add a bit here to make a rule default on for new rooms.
+        // consumption, tire wear and custom vehicles default OFF (per Diamond Star); a host opts in
+        // via the rules menu. Add a bit here to make a rule default on for new rooms.
         private const uint DefaultOn = (uint)RoomGameRules.None;
 
         public static uint ResolveAllowedGameRules(ServerFeaturesSettings? features)
@@ -29,6 +29,8 @@ namespace TopSpeed.Server.Network
             var allowed = AlwaysAllowed;
             if (features != null && features.CustomTracks)
                 allowed |= (uint)RoomGameRules.CustomTracks;
+            if (features != null && features.CustomVehicles)
+                allowed |= (uint)RoomGameRules.CustomVehicles;
             return allowed;
         }
 

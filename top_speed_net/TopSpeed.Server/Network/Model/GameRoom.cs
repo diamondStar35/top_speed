@@ -58,6 +58,9 @@ namespace TopSpeed.Server.Network
         // disable mask (set when the race starts). Equals GameRulesFlags when there is no override.
         public uint RaceEffectiveGameRulesFlags { get; set; }
         public HashSet<uint> TrackReadyPlayers { get; } = new HashSet<uint>();
+
+        // Per-player set of custom vehicle package hashes that player has confirmed downloaded.
+        public Dictionary<uint, HashSet<string>> VehiclePackageReadyByPlayer { get; } = new Dictionary<uint, HashSet<string>>();
         public HashSet<uint> ActiveRaceParticipantIds { get; } = new HashSet<uint>();
         public List<RoomEventJournalEntry> EventJournal { get; } = new List<RoomEventJournalEntry>();
         public List<byte> RaceResults { get; } = new List<byte>();

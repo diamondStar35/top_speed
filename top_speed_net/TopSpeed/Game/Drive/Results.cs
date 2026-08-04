@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using TopSpeed.Audio;
 using TopSpeed.Core;
@@ -9,9 +10,9 @@ namespace TopSpeed.Game
 {
     internal sealed partial class Game
     {
-        private void ShowRaceResultDialog(DriveResultSummary summary)
+        private void ShowRaceResultDialog(DriveResultSummary summary, Action? onClosed = null)
         {
-            _resultShow.Show(summary);
+            _resultShow.Show(summary, onClosed);
         }
 
         private void PlayRaceWinSound()

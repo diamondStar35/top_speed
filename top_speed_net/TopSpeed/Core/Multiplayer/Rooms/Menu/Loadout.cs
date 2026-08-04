@@ -18,6 +18,9 @@ namespace TopSpeed.Core.Multiplayer
                 items.Add(new MenuItem(vehicleName, MenuAction.None, onActivate: () => CompleteLoadoutVehicleSelection(vehicleIndex)));
             }
 
+            if (IsCurrentRoomCustomVehiclesEnabled())
+                items.Add(new MenuItem(LocalizationService.Mark("Custom"), MenuAction.None, onActivate: OpenLoadoutVehicleCustomMenu));
+
             items.Add(new MenuItem(LocalizationService.Mark("Random vehicle"), MenuAction.None, onActivate: () => CompleteLoadoutVehicleSelection(Algorithm.RandomInt(VehicleCatalog.VehicleCount))));
             _menu.UpdateItems(MultiplayerMenuKeys.LoadoutVehicle, items);
         }

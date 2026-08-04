@@ -17,17 +17,17 @@ namespace TopSpeed.Game
             _fmt = fmt ?? throw new ArgumentNullException(nameof(fmt));
         }
 
-        public ResultPlan Build(DriveResultSummary summary)
+        public ResultPlan Build(DriveResultSummary summary, Action? onClosed = null)
         {
             if (summary == null)
                 throw new ArgumentNullException(nameof(summary));
 
             if (summary.Mode == DriveResultMode.TimeTrial)
-                return BuildTimeTrial(summary);
-            return BuildRace(summary);
+                return BuildTimeTrial(summary, onClosed);
+            return BuildRace(summary, onClosed);
         }
 
-        private ResultPlan BuildRace(DriveResultSummary summary)
+        private ResultPlan BuildRace(DriveResultSummary summary, Action? onClosed = null)
         {
             var localWon = summary.LocalPosition == 1;
             var title = _pick.One(localWon ? ResultCatalog.WinnerTitles : ResultCatalog.NonWinnerTitles);
@@ -50,13 +50,13 @@ namespace TopSpeed.Game
                 caption,
                 QuestionId.Close,
                 items,
-                onResult: null,
+                onResult: onClosed == null ? (Action<int>?)null : _ => onClosed(),
                 new DialogButton(QuestionId.Close, LocalizationService.Mark("Close")));
 
             return new ResultPlan(dialog, playWin: localWon);
         }
 
-        private ResultPlan BuildTimeTrial(DriveResultSummary summary)
+        private ResultPlan BuildTimeTrial(DriveResultSummary summary, Action? onClosed = null)
         {
             var beatRecord = summary.TimeTrialBeatRecord;
             var title = _pick.One(beatRecord ? ResultCatalog.TimeTrialRecordTitles : ResultCatalog.TimeTrialNoRecordTitles);
@@ -71,7 +71,7 @@ namespace TopSpeed.Game
                 caption,
                 QuestionId.Close,
                 items,
-                onResult: null,
+                onResult: onClosed == null ? (Action<int>?)null : _ => onClosed(),
                 new DialogButton(QuestionId.Close, LocalizationService.Mark("Close")));
 
             return new ResultPlan(dialog, playWin: beatRecord);

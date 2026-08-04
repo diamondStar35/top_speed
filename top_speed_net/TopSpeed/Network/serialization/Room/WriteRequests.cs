@@ -133,14 +133,15 @@ namespace TopSpeed.Network
             return WriteGeneral(Command.RoomRemoveBot);
         }
 
-        public static byte[] WriteRoomPlayerReady(CarType car, bool automaticTransmission)
+        public static byte[] WriteRoomPlayerReady(CarType car, bool automaticTransmission, VehiclePackageRef vehicle)
         {
-            var buffer = WritePacketHeader(Command.RoomPlayerReady, 1 + 1);
+            var buffer = WritePacketHeader(Command.RoomPlayerReady, 1 + 1 + MeasureCatalogVehicleRef(vehicle));
             var writer = new PacketWriter(buffer);
             writer.WriteByte(ProtocolConstants.Version);
             writer.WriteByte((byte)Command.RoomPlayerReady);
             writer.WriteByte((byte)car);
             writer.WriteBool(automaticTransmission);
+            WriteCatalogVehicleRef(ref writer, vehicle);
             return buffer;
         }
 

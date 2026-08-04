@@ -141,7 +141,7 @@ public sealed class ServerStressBehaviorTests
         var other = clients[1];
         fixture.Send(host, ClientPacketSerializer.WriteRoomStartRace(0u));
         fixture.DisconnectWithoutResume(other);
-        fixture.Send(host, ClientPacketSerializer.WriteRoomPlayerReady(CarType.Vehicle1, automaticTransmission: true));
+        fixture.Send(host, ClientPacketSerializer.WriteRoomPlayerReady(CarType.Vehicle1, automaticTransmission: true, TopSpeed.Protocol.VehiclePackageRef.None()));
         fixture.Server.Update(0.25f);
 
         var snapshot = fixture.Server.GetStressSnapshotForTest();
@@ -242,7 +242,7 @@ public sealed class ServerStressBehaviorTests
                 for (var offset = 0; offset < playersPerRoom; offset++)
                 {
                     var client = clients[(roomIndex * playersPerRoom) + offset];
-                    Send(client, ClientPacketSerializer.WriteRoomPlayerReady((CarType)((int)CarType.Vehicle1 + (offset % 4)), automaticTransmission: true));
+                    Send(client, ClientPacketSerializer.WriteRoomPlayerReady((CarType)((int)CarType.Vehicle1 + (offset % 4)), automaticTransmission: true, TopSpeed.Protocol.VehiclePackageRef.None()));
                 }
             }
         }

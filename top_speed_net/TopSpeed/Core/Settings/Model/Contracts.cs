@@ -214,6 +214,7 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "randomCustomTracks")] public bool? RandomCustomTracks { get; set; }
         [DataMember(Name = "randomCustomVehicles")] public bool? RandomCustomVehicles { get; set; }
         [DataMember(Name = "singleRaceCustomVehicles")] public bool? SingleRaceCustomVehicles { get; set; }
+        [DataMember(Name = "keepDownloadedVehiclesPrompt")] public bool? KeepDownloadedVehiclesPrompt { get; set; }
     }
 
     [DataContract]

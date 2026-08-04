@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TopSpeed.Localization;
 using TopSpeed.Protocol;
 using TopSpeed.Server.Protocol;
@@ -68,18 +69,24 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
+                // Mask rules this server disallows instead of rejecting the whole request. Rejecting
+                // discarded every other rule the host changed in the same visit, and reported only
+                // the first offending rule. Masking keeps the rest and lets us name them all.
                 var requestedFlags = packet.GameRulesFlags;
-                if (!_owner._config.Features.CustomTracks
-                    && (requestedFlags & (uint)RoomGameRules.CustomTracks) != 0u)
-                {
-                    _owner.SendProtocolMessage(player, ProtocolMessageCode.Failed, LocalizationService.Mark("Custom tracks are disabled on this server."));
-                    return;
-                }
-
                 var allowedFlags = GameRulesPolicy.ResolveAllowedGameRules(_owner._config.Features);
                 var normalizedFlags = requestedFlags & allowedFlags;
+                var disallowedFlags = requestedFlags & ~allowedFlags;
+                if (disallowedFlags != 0u)
+                    SendDisallowedGameRulesMessage(player, disallowedFlags);
+
                 if (room.GameRulesFlags == normalizedFlags)
+                {
+                    // Nothing actually changed, but if the host asked for a disallowed rule, still
+                    // re-announce the authoritative rules so their menu reverts to what is really set.
+                    if (disallowedFlags != 0u)
+                        _owner._notify.RoomLifecycle(room, RoomEventKind.GameRulesChanged);
                     return;
+                }
 
                 room.GameRulesFlags = normalizedFlags;
                 TouchVersion(room);
@@ -89,6 +96,27 @@ namespace TopSpeed.Server.Network
                     _owner.SendPackageCatalogToRoom(room, new PacketTrackPackageCatalog());
                 else
                     _owner.SendPackageCatalogToRoom(room, _owner.BuildTrackPackageCatalog());
+            }
+
+            // Names every rule the host asked for that this server disallows, in one message, so a
+            // host enabling several blocked rules at once hears about all of them rather than the
+            // first alone.
+            private void SendDisallowedGameRulesMessage(PlayerConnection player, uint disallowedFlags)
+            {
+                var names = new List<string>();
+                if ((disallowedFlags & (uint)RoomGameRules.CustomTracks) != 0u)
+                    names.Add(LocalizationService.Translate(LocalizationService.Mark("custom tracks")));
+                if ((disallowedFlags & (uint)RoomGameRules.CustomVehicles) != 0u)
+                    names.Add(LocalizationService.Translate(LocalizationService.Mark("custom vehicles")));
+                if (names.Count == 0)
+                    return;
+
+                _owner.SendProtocolMessage(
+                    player,
+                    ProtocolMessageCode.Failed,
+                    LocalizationService.Format(
+                        LocalizationService.Mark("These features are disabled on this server: {0}."),
+                        string.Join(", ", names)));
             }
         }
     }

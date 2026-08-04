@@ -173,6 +173,9 @@ namespace TopSpeed.Game
                 var laps = _binding.PendingLaps > 0 ? _binding.PendingLaps : _owner._settings.NrOfLaps;
                 var vehicleIndex = Math.Max(0, Math.Min(VehicleCatalog.VehicleCount - 1, _binding.VehicleIndex));
 
+                var localVehicleHash = _owner._multiplayerCoordinator.LocalSelectedCustomVehicleHash;
+                var localVehicleFile = _owner.ResolveCustomVehicleFileByHash(localVehicleHash);
+                var localVehicleName = _owner.ResolveCustomVehicleNameByHash(localVehicleHash);
                 // Prefer the effective rules delivered with this race instance (room rules minus any
                 // host per-race disable); fall back to the room's current rules if not present.
                 var effectiveRules = _binding.HasEffectiveGameRules
@@ -189,12 +192,15 @@ namespace TopSpeed.Game
                     _binding.AutomaticTransmission,
                     laps,
                     vehicleIndex,
-                    null,
+                    localVehicleFile,
+                    localVehicleName,
                     _owner._input.VibrationDevice,
                     _owner._session,
                     _binding.RaceInstanceId,
                     physicsToggles,
-                    number => _owner._multiplayerCoordinator.ResolvePlayerName(number));
+                    number => _owner._multiplayerCoordinator.ResolvePlayerName(number),
+                    number => _owner.ResolveRemoteCustomVehicleFile(number),
+                    number => _owner.ResolveRemoteCustomVehicleName(number));
                 _mode.Initialize();
                 _binding.BindStartedRace();
                 _owner._state = AppState.MultiplayerRace;
@@ -206,23 +212,32 @@ namespace TopSpeed.Game
                 _quitConfirmActive = false;
                 _binding.ClearRaceBinding();
 
+                // Show the "keep downloaded vehicle?" prompt only after the finishing-order result
+                // dialog is closed, so the player reads the results first and the prompt is announced
+                // when it takes focus. If there is no result dialog, prompt immediately.
+                Action? afterResult = null;
+                if (_owner._pendingVehicleKeepPromptAfterRace)
+                {
+                    _owner._pendingVehicleKeepPromptAfterRace = false;
+                    afterResult = _owner.PromptKeepDownloadedVehicles;
+                }
+
+                _owner._input.ResetState();
+                _owner._state = AppState.Menu;
                 if (_owner._session != null)
                 {
-                    _owner._input.ResetState();
-                    _owner._state = AppState.Menu;
                     _owner._multiplayerCoordinator.ShowMultiplayerMenuAfterRace();
-                    if (resultSummary != null)
-                        _owner.ShowRaceResultDialog(resultSummary);
                 }
                 else
                 {
-                    _owner._input.ResetState();
-                    _owner._state = AppState.Menu;
                     _owner._menu.ShowRoot("main");
                     _owner._menu.FadeInMenuMusic();
-                    if (resultSummary != null)
-                        _owner.ShowRaceResultDialog(resultSummary);
                 }
+
+                if (resultSummary != null)
+                    _owner.ShowRaceResultDialog(resultSummary, afterResult);
+                else
+                    afterResult?.Invoke();
             }
 
             public void Disconnect()

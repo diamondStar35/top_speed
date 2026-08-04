@@ -7,9 +7,32 @@ namespace TopSpeed.Core
 {
     internal static class Scan
     {
+        // Searches every content root (shipped assets and, where the platform separates them, the
+        // player's own folder). AssetPaths.ContentRoots collapses to one entry when both are the
+        // same folder, so a desktop install still scans once and cannot report an entry twice.
         public static List<string> Find(string rootFolder, string pattern)
         {
-            var root = Path.Combine(AssetPaths.Root, rootFolder);
+            var roots = AssetPaths.ContentRoots;
+            if (roots.Count == 1)
+                return FindIn(Path.Combine(roots[0], rootFolder), pattern);
+
+            var all = new List<string>();
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (var i = 0; i < roots.Count; i++)
+            {
+                var found = FindIn(Path.Combine(roots[i], rootFolder), pattern);
+                for (var j = 0; j < found.Count; j++)
+                {
+                    if (seen.Add(Path.GetFullPath(found[j])))
+                        all.Add(found[j]);
+                }
+            }
+
+            return all;
+        }
+
+        private static List<string> FindIn(string root, string pattern)
+        {
             if (!Directory.Exists(root))
                 return new List<string>();
 

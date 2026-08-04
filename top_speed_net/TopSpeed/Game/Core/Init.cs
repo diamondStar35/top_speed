@@ -156,6 +156,8 @@ namespace TopSpeed.Game
 
         public void Initialize()
         {
+            // Downloaded custom vehicles that were not explicitly kept do not survive a restart.
+            WipeVehiclePackageSessionCache();
             if (_settings.PlayLogoAtStartup)
             {
                 _logo = new LogoScreen((AudioManager)_audio);

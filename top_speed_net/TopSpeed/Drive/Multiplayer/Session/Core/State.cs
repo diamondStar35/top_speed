@@ -66,6 +66,14 @@ namespace TopSpeed.Drive.Multiplayer
         private readonly TopSpeed.Drive.Panels.VehiclePanelManager _panelManager;
         private uint _raceInstanceId;
         private readonly Func<byte, string> _resolvePlayerName;
+        private readonly Func<byte, string?>? _resolveRemoteVehicleFile;
+        private readonly Func<byte, string?>? _resolveRemoteVehicleName;
+        private readonly string? _localVehicleName;
+        // Remote custom-vehicle creation is deferred until the vehicle package resolves (the
+        // RoomPlayerVehicle broadcast can lag the first snapshot). Counts deferrals per player so a
+        // never-resolving mapping eventually falls back to a built-in car instead of an invisible one.
+        private readonly Dictionary<byte, int> _deferredRemoteVehicleAttempts = new Dictionary<byte, int>();
+        private const int MaxRemoteVehicleDeferralAttempts = 180;
         private readonly int _lapLimit;
         private readonly ParticipantState _participants;
         private readonly SnapshotState _snapshots;

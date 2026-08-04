@@ -83,7 +83,9 @@ namespace TopSpeed.Protocol
 
         public static bool IsValidRoomPlayerReady(PacketRoomPlayerReady packet)
         {
-            return packet != null && IsValidCarType(packet.Car);
+            return packet != null
+                && IsValidCarType(packet.Car)
+                && IsValidVehiclePackageRef(packet.Vehicle);
         }
 
         public static bool IsValidRoomRaceControl(PacketRoomRaceControl packet)

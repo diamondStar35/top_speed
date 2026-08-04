@@ -33,11 +33,35 @@ namespace TopSpeed.Server.Network
                     return;
                 }
 
-                var selectedCar = RaceServer.NormalizeNetworkCar(ready.Car);
-                player.Car = selectedCar;
-                RaceServer.ApplyVehicleDimensions(player, selectedCar);
+                CarType selectedCar;
+                var selectedVehicleHash = string.Empty;
+                // A custom vehicle is only honoured when the server feature and the room's game rule
+                // both allow it; otherwise the selection falls through to the built-in path below.
+                if (ready.Vehicle != null && ready.Vehicle.IsCustomPackage
+                    && IsCustomVehicleSelectionEnabled(room)
+                    && _owner.TryGetVehiclePackage(ready.Vehicle.Hash, out var vehicleRecord))
+                {
+                    selectedCar = CarType.CustomVehicle;
+                    selectedVehicleHash = vehicleRecord.Ref.Hash;
+                    player.Car = selectedCar;
+                    player.SelectedVehicleHash = selectedVehicleHash;
+                    RaceServer.ApplyCustomVehicleDimensions(player, vehicleRecord);
+                    // The package is deliberately not sent here. Broadcasting the selection below
+                    // tells every client which vehicle to expect, and only those that do not already
+                    // hold it ask for it. Sending it to the whole room regardless meant a player who
+                    // had raced with the vehicle moments earlier downloaded it all over again.
+                }
+                else
+                {
+                    selectedCar = RaceServer.NormalizeNetworkCar(ready.Car);
+                    player.Car = selectedCar;
+                    player.SelectedVehicleHash = string.Empty;
+                    RaceServer.ApplyVehicleDimensions(player, selectedCar);
+                }
+
+                _owner.BroadcastPlayerVehicle(room, player.PlayerNumber, selectedVehicleHash);
                 room.PrepareSkips.Remove(player.Id);
-                room.PendingLoadouts[player.Id] = new PlayerLoadout(selectedCar, ready.AutomaticTransmission);
+                room.PendingLoadouts[player.Id] = new PlayerLoadout(selectedCar, ready.AutomaticTransmission, selectedVehicleHash);
                 _owner._logger.Debug(LocalizationService.Format(
                     LocalizationService.Mark("Player ready: room={0}, player={1}, car={2}, automatic={3}, ready={4}/{5}."),
                     room.Id,

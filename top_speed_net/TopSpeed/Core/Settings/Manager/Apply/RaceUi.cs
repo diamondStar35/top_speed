@@ -40,6 +40,8 @@ namespace TopSpeed.Core.Settings
                 settings.RandomCustomVehicles = race.RandomCustomVehicles.Value;
             if (race.SingleRaceCustomVehicles.HasValue)
                 settings.SingleRaceCustomVehicles = race.SingleRaceCustomVehicles.Value;
+            if (race.KeepDownloadedVehiclesPrompt.HasValue)
+                settings.KeepDownloadedVehiclesPrompt = race.KeepDownloadedVehiclesPrompt.Value;
         }
 
         private static void ApplyUi(DriveSettings settings, SettingsUiDocument ui, List<SettingsIssue> issues)

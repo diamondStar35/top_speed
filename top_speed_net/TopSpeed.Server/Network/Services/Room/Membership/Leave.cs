@@ -54,6 +54,7 @@ namespace TopSpeed.Server.Network
                 room.PendingLoadouts.Remove(player.Id);
                 room.PrepareSkips.Remove(player.Id);
                 room.TrackReadyPlayers.Remove(player.Id);
+                room.VehiclePackageReadyByPlayer.Remove(player.Id);
                 room.MediaMap.Remove(player.Id);
                 _owner.StopLive(player, room, notifyRoom: notify);
                 player.IncomingMedia = null;

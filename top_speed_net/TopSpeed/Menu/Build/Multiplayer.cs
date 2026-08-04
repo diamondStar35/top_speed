@@ -118,6 +118,11 @@ namespace TopSpeed.Menu
             return EmptyBackMenu("multiplayer_loadout_vehicle", LocalizationService.Mark("Choose your vehicle"));
         }
 
+        private MenuScreen BuildMultiplayerLoadoutVehicleCustomMenu()
+        {
+            return EmptyBackMenu("multiplayer_loadout_vehicle_custom", LocalizationService.Mark("Select a custom vehicle"));
+        }
+
         private MenuScreen BuildMultiplayerLoadoutTransmissionMenu()
         {
             return EmptyBackMenu("multiplayer_loadout_transmission", LocalizationService.Mark("Choose your transmission mode"));

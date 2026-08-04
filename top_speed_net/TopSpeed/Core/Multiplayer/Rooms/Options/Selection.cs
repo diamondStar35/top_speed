@@ -153,5 +153,33 @@ namespace TopSpeed.Core.Multiplayer
 
             _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
         }
+
+        private bool GetRoomOptionsCustomVehiclesEnabled()
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            return (_state.RoomDrafts.RoomOptionsGameRulesFlags & (uint)RoomGameRules.CustomVehicles) != 0u;
+        }
+
+        private bool IsCurrentRoomCustomVehiclesEnabled()
+        {
+            var authoritativeFlags = NormalizeRoomOptionsGameRulesFlags(_state.Rooms.CurrentRoom.GameRulesFlags);
+            return (authoritativeFlags & (uint)RoomGameRules.CustomVehicles) != 0u;
+        }
+
+        private void SetRoomOptionsCustomVehiclesEnabled(bool enabled)
+        {
+            if (!_state.RoomDrafts.RoomOptionsDraftActive)
+                BeginRoomOptionsDraft();
+
+            var flags = NormalizeRoomOptionsGameRulesFlags(_state.RoomDrafts.RoomOptionsGameRulesFlags);
+            if (enabled)
+                flags |= (uint)RoomGameRules.CustomVehicles;
+            else
+                flags &= ~(uint)RoomGameRules.CustomVehicles;
+
+            _state.RoomDrafts.RoomOptionsGameRulesFlags = flags;
+        }
     }
 }

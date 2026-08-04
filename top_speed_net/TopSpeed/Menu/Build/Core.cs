@@ -83,6 +83,7 @@ namespace TopSpeed.Menu
             _menu.Register(BuildMultiplayerRoomTrackCustomMenu());
             _menu.Register(BuildMultiplayerRoomTrackLocalCustomMenu());
             _menu.Register(BuildMultiplayerLoadoutVehicleMenu());
+            _menu.Register(BuildMultiplayerLoadoutVehicleCustomMenu());
             _menu.Register(BuildMultiplayerLoadoutTransmissionMenu());
 
             _menu.Register(BuildTrackTypeMenu("time_trial_type", DriveMode.TimeTrial));

@@ -39,7 +39,7 @@ namespace TopSpeed.Menu
                 new MenuItem(LocalizationService.Mark("Server settings"),
                     MenuAction.None,
                     nextMenuId: "options_server",
-                    hint: LocalizationService.Mark("Configure default multiplayer hosting settings, including the server port used by the game.")),
+                    hint: LocalizationService.Mark("Set the defaults used when you connect to a multiplayer server, including the port and your call sign, and whether you are offered custom vehicles you download.")),
                 new MenuItem(LocalizationService.Mark("Restore default settings"),
                     MenuAction.None,
                     onActivate: _settingsActions.ShowRestoreDefaultsDialog,

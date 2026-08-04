@@ -790,6 +790,8 @@ If you already have a vehicle saved under that name, the prompt offers three cho
 
 Declining to keep a vehicle is remembered, so you are not asked about that same vehicle again later in the session.
 
+Whether you are asked at all is up to you. Options, then Server settings, has a "Prompt to keep downloaded vehicles" checkbox, which is on by default. Turn it off and you are never asked: downloaded vehicles still work for the races they are needed for, but they are not saved, and they are gone once you close the game.
+
 Where kept vehicles are stored depends on the platform. On desktop they go in the `Vehicles` folder next to the game executable, where you can manage them like any other file. On Android and iOS they are stored in the app's own data area, kept separate from the files that ship with the game so that updating the app does not remove them. Uninstalling the app does remove them, as it removes all app data.
 
 ## 17. Updater Behavior on Desktop and Android

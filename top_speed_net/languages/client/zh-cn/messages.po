@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 22:22-0400\n"
-"PO-Revision-Date: 2026-08-03 22:04\n"
+"POT-Creation-Date: 2026-08-04 00:35-0400\n"
+"PO-Revision-Date: 2026-08-04 04:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -16,6 +16,15 @@ msgstr ""
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /main/top_speed_net/languages/client/messages.pot\n"
 "X-Crowdin-File-ID: 11\n"
+
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
+msgid " "
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "\"{0}\", because {1}"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "2 degrees"
@@ -232,6 +241,7 @@ msgstr "已选择自动房间名称。"
 msgid "Automatic transmission"
 msgstr "自动变速箱"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Automatic transmission is required for this vehicle."
 msgstr "此车辆需要自动变速箱。"
@@ -606,10 +616,6 @@ msgid "Completing lap {0}"
 msgstr "正在完成第 {0} 圈"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
-msgid "Configure default multiplayer hosting settings, including the server port used by the game."
-msgstr "配置默认多人游戏托管设置，包括游戏使用的服务器端口。"
-
-#: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure general gameplay and interface behavior, including units, usage hints, menu behavior, and update checking."
 msgstr "配置通用游戏和界面行为，包括单位、使用提示、菜单行为和更新检查。"
 
@@ -840,6 +846,16 @@ msgstr "复制聚焦的历史记录项"
 msgid "Could not read files from the selected folder."
 msgstr "无法从所选文件夹读取文件。"
 
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "Could not save the vehicle {0}."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "Could not save these vehicles: {0}."
+msgstr ""
+
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Create a new game"
 msgstr "创建新游戏"
@@ -880,6 +896,7 @@ msgstr "弯道播报方式"
 msgid "Curve announcements"
 msgstr "弯道播报"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Custom"
 msgstr "自定义"
@@ -914,7 +931,9 @@ msgstr "自定义赛道"
 msgid "Custom tracks are disabled for this room."
 msgstr "此房间已禁用自定义赛道。"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Custom vehicle"
 msgstr "自定义车辆"
@@ -923,13 +942,17 @@ msgstr "自定义车辆"
 msgid "Custom vehicle errors"
 msgstr "自定义车辆错误"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/File.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 msgid "Custom vehicle file must use .tsv extension."
 msgstr "自定义车辆文件必须使用.tsv扩展名。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Custom vehicle issues"
 msgstr "自定义车辆问题"
+
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+msgid "Custom vehicles"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the next global volume category."
@@ -1125,7 +1148,7 @@ msgstr "正在下载更新..."
 msgid "Ducati Panigale V4"
 msgstr "杜卡迪 Panigale V4"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
 msgstr "不允许在部分 [{1}] 中重复键 '{0}'。"
@@ -1135,7 +1158,7 @@ msgstr "不允许在部分 [{1}] 中重复键 '{0}'。"
 msgid "Duplicate room id '{0}'."
 msgstr "重复的房间 ID「{0}」。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate section [{0}] is not allowed."
 msgstr "不允许重复部分 [{0}]。"
@@ -1166,6 +1189,10 @@ msgstr "编辑用于更新包下载的代理URL。"
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Enable HRTF audio"
 msgstr "启用HRTF音频"
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "Enable digit navigation globally"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
@@ -1328,6 +1355,7 @@ msgstr "加载收音机媒体失败。{0}"
 msgid "Failed to load this track file."
 msgstr "加载此赛道文件失败。"
 
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 msgid "Failed to load this vehicle file."
 msgstr "加载此车辆文件失败。"
@@ -1495,8 +1523,8 @@ msgstr "幽灵模式"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
-msgid "Ghost mode is {0}. Custom tracks are {1}. Fuel consumption is {2}. Tire wear is {3}. The chosen track is {4}. The game will run for {5}. This room is limited to {6}."
-msgstr "幽灵模式：{0}。自定义赛道：{1}。燃油消耗：{2}。轮胎磨损：{3}。已选赛道：{4}。本场比赛将进行 {5}。该房间最多容纳 {6}。"
+msgid "Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Shortcuts/Catalog.cs
@@ -1615,17 +1643,17 @@ msgstr "无效的环境音效值「{0}」。"
 msgid "Invalid boolean '{0}' for key '{1}'."
 msgstr "键「{1}」的布尔值「{0}」无效。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "Invalid key '{0}'. Source gear must be within 1..{1}."
 msgstr "无效键 '{0}'。源挡位必须在 1..{1} 范围内。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "Invalid key '{0}'. Use upshift_delay_X_Y for adjacent gears."
 msgstr "无效键 '{0}'。相邻挡位使用 upshift_delay_X_Y。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 msgid "Invalid line. Expected [section] or key=value."
 msgstr "无效行。应为 [section] 或 key=value。"
 
@@ -1685,6 +1713,7 @@ msgid "Invalid segment width '{0}'."
 msgstr "无效的赛道段宽度「{0}」。"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Invalid sound asset path: {0}"
 msgstr "无效的音效资源路径：{0}"
@@ -1699,12 +1728,12 @@ msgstr "无效的音效随机模式「{0}」。"
 msgid "Invalid sound type '{0}'."
 msgstr "无效的音效类型「{0}」。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Invalid torque curve key '{0}'. Use format like 2000rpm=200."
 msgstr "无效的扭矩曲线键 '{0}'。使用类似2000rpm=200的格式。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Invalid torque value '{0}' for '{1}'."
 msgstr "'{1}' 的无效扭矩值 '{0}'。"
@@ -1765,12 +1794,29 @@ msgstr "KB"
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "川崎 Ninja ZX-10R"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Keep both"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Keep custom vehicle?"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Keep mine"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "Keep the downloaded vehicle \"{0}\" so it does not need downloading again next time?"
+msgstr ""
+
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
 msgid "Key '{0}' contains a non-float value '{1}'."
 msgstr "键 '{0}' 包含非浮点值 '{1}'。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Text.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Key '{0}' in section [{1}] must not be empty."
 msgstr "部分 [{1}] 中的键 '{0}' 不能为空。"
@@ -1780,37 +1826,37 @@ msgstr "部分 [{1}] 中的键 '{0}' 不能为空。"
 msgid "Key '{0}' is missing a value."
 msgstr "键「{0}」缺少值。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Bools.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
 #, csharp-format
 msgid "Key '{0}' must be a boolean or 0/1 integer."
 msgstr "键 '{0}' 必须是布尔值或0/1整数。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Numbers.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' must be a float."
 msgstr "键 '{0}' 必须是浮点数。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Numbers.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' must be an integer."
 msgstr "键 '{0}' 必须是整数。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one float value."
 msgstr "键 '{0}' 必须包含至少一个浮点值。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Text.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one path."
 msgstr "键 '{0}' 必须包含至少一个路径。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one transmission type."
 msgstr "键 '{0}' 必须包含至少一个变速箱类型。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Numbers.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' value {1} is outside allowed range {2} to {3}."
 msgstr "键 '{0}' 的值 {1} 超出允许范围 {2} 到 {3}。"
@@ -1978,7 +2024,7 @@ msgstr "左扳机"
 msgid "Left {0}"
 msgstr "左 {0}"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Types.cs
 #, csharp-format
 msgid "Line {0}: {1}"
 msgstr "第 {0} 行：{1}"
@@ -2002,6 +2048,10 @@ msgstr "加载媒体文件夹"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Loading custom tracks from server."
 msgstr "正在从服务器加载自定义赛道。"
+
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+msgid "Loading custom vehicles from server."
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio file for streaming."
@@ -2062,6 +2112,7 @@ msgstr "手动"
 msgid "Manual transmission"
 msgstr "手动变速箱"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Manual transmission is required for this vehicle."
 msgstr "此车辆需要手动挡。"
@@ -2139,28 +2190,28 @@ msgstr "减号"
 msgid "Missing file: {0}"
 msgstr "缺失文件：{0}"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Types.cs
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Bools.cs
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/FloatCsv.cs
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Numbers.cs
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Readers/Text.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Missing required key '{0}' in section [{1}]."
 msgstr "部分 [{1}] 中缺失必需的键 '{0}'。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_atc] for supported type 'atc'."
 msgstr "支持的类型 'atc' 缺失必需的部分 [transmission_atc]。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_cvt] for supported type 'cvt'."
 msgstr "支持的类型 'cvt' 缺失必需的部分 [transmission_cvt]。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_dct] for supported type 'dct'."
 msgstr "支持的类型 'dct' 缺失必需的部分 [transmission_dct]。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Missing required section [{0}]."
 msgstr "缺失必需的部分 [{0}]。"
@@ -2302,6 +2353,7 @@ msgid "Nissan GT-R Nismo"
 msgstr "日产 GT-R Nismo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "No"
@@ -2332,6 +2384,10 @@ msgstr "未找到控制器。游戏已恢复为键盘输入。"
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 msgid "No custom tracks found."
 msgstr "未找到自定义赛道。"
+
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+msgid "No custom vehicles available on this server."
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "No custom vehicles found."
@@ -2426,6 +2482,10 @@ msgstr "否，继续准备"
 msgid "No, continue racing"
 msgstr "否，继续比赛"
 
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "No, keep mine"
+msgstr ""
+
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "No, keep this server"
 msgstr "否，保留此服务器"
@@ -2452,6 +2512,7 @@ msgstr "跑得不干净，但还能接受。"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Not connected to a server."
 msgstr "未连接到服务器。"
 
@@ -2499,6 +2560,7 @@ msgstr "小键盘等号"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 #: top_speed_net/TopSpeed/Game/Menu/Dialogs.cs
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
@@ -2824,6 +2886,10 @@ msgstr "打印屏幕"
 msgid "Progressive keyboard input"
 msgstr "渐进式键盘输入"
 
+#: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
+msgid "Prompt to keep downloaded custom vehicles"
+msgstr ""
+
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
 msgid "Property '{0}' is outside any section."
@@ -2839,7 +2905,7 @@ msgstr "协议数据包版本不匹配。服务器使用数据包版本 {0}，�
 msgid "Protocol version: {0}"
 msgstr "协议版本：{0}"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "Provide tire_circumference or all of tire_width, tire_aspect, and tire_rim."
 msgstr "请提供 tire_circumference，或同时提供 tire_width、tire_aspect 和 tire_rim。"
 
@@ -3052,6 +3118,14 @@ msgstr "加油"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Remove a bot"
 msgstr "移除机器人"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Replace mine with the downloaded one"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Replace vehicle?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report distance"
@@ -3303,19 +3377,19 @@ msgstr "滚动锁定"
 msgid "Section '{0}' requires an id."
 msgstr "部分「{0}」需要一个 ID。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 msgid "Section [torque_curve] must define at least two RPM points, or a preset with enough points."
 msgstr "[torque_curve] 部分必须定义至少两个转速点，或具有足够点的预设。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_atc] is unused because supported_types does not include 'atc'."
 msgstr "[transmission_atc] 部分未使用，因为 supported_types 不包含 'atc'。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_cvt] is unused because supported_types does not include 'cvt'."
 msgstr "[transmission_cvt] 部分未使用，因为 supported_types 不包含 'cvt'。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
 msgstr "[transmission_dct] 部分未使用，因为 supported_types 不包含 'dct'。"
 
@@ -3357,6 +3431,7 @@ msgid "Select a custom track"
 msgstr "选择自定义赛道"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Select a custom vehicle"
 msgstr "选择自定义车辆"
 
@@ -3485,6 +3560,10 @@ msgstr "设置频率"
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Set race defaults such as copilot callouts, curve announcements, automatic information, laps, computer opponents, and difficulty."
 msgstr "设置比赛默认项，例如领航提示、弯道播报、自动信息、圈数、电脑对手和难度。"
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
+msgid "Set the defaults used when you connect to a multiplayer server, including the port and your call sign, and whether you are offered custom vehicles you download."
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how early speed dependent curve announcements are spoken."
@@ -3640,6 +3719,11 @@ msgstr "音效「{0}」引用了 start_area「{1}」，但不存在匹配的赛�
 #, csharp-format
 msgid "Sound asset path escapes the track folder: {0}"
 msgstr "音效资源路径超出了赛道文件夹范围：{0}"
+
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
+#, csharp-format
+msgid "Sound asset path escapes the vehicle folder: {0}"
+msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -4127,6 +4211,11 @@ msgstr "此对话框无法取消。您需要选择一个选项。"
 msgid "This game room is unavailable because it is full."
 msgstr "房间已满，无法加入。"
 
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"
+msgstr ""
+
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 msgid "This server does not support required protocol negotiation. Please update your server."
 msgstr "此服务器不支持所需的协议协商，请更新您的服务器。"
@@ -4208,17 +4297,17 @@ msgstr "切换流媒体的播放和暂停。"
 msgid "Top Speed"
 msgstr "极速"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Top-level key '{0}' is not supported."
 msgstr "不支持顶级键 '{0}'。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Torque curve RPM '{0:F0}' must be between 300 and 25000."
 msgstr "扭矩曲线RPM '{0:F0}' 必须在300到25000之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
 msgstr "扭矩值 '{0:F1}' 必须在0到5000牛米之间。"
@@ -4365,6 +4454,10 @@ msgstr "无法连接服务器。"
 msgid "Unable to resolve custom track folder path."
 msgstr "无法解析自定义赛道文件夹路径。"
 
+#: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
+msgid "Unable to resolve custom vehicle folder path."
+msgstr ""
+
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
 msgid "Unable to resolve server address."
 msgstr "无法解析服务器地址。"
@@ -4402,7 +4495,7 @@ msgstr "未知错误。"
 msgid "Unknown exception."
 msgstr "未知异常。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Unknown key '{0}' in section [{1}]."
 msgstr "部分 [{1}] 中存在未知键 '{0}'。"
@@ -4426,7 +4519,7 @@ msgstr "未知的房间预设「{0}」。"
 msgid "Unknown section '{0}'."
 msgstr "未知的部分「{0}」。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/Sections.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Unknown section [{0}]."
 msgstr "未知的部分 [{0}]。"
@@ -4441,7 +4534,7 @@ msgstr "未知的赛道段键「{0}」。"
 msgid "Unknown sound key '{0}'."
 msgstr "未知的音效键「{0}」。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Unknown torque curve preset '{0}'. Valid values: {1}."
 msgstr "未知的扭矩曲线预设 '{0}'。有效值：{1}。"
@@ -4464,12 +4557,12 @@ msgstr "不支持点对点模式。"
 msgid "Unsupported settings schema version '{0}'. Expected {1}. Defaults were used."
 msgstr "不支持的设置架构版本 '{0}'，期望版本 {1}。已使用默认值。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Unsupported transmission type '{0}' in supported_types. Valid values: atc, cvt, dct, manual."
 msgstr "supported_types 中的变速箱类型 '{0}' 不受支持。有效值：atc、cvt、dct、manual。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Types.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Unsupported transmission type '{0}'. Valid values: atc, cvt, dct, manual."
 msgstr "不支持的变速箱类型 '{0}'。有效值：atc、cvt、dct、manual。"
@@ -4584,11 +4677,11 @@ msgstr "使用运动传感器转向"
 msgid "Use proxy for update downloads"
 msgstr "为更新下载使用代理"
 
+#: top_speed_net/TopSpeed.Shared/Vehicles/VehicleDefinition.cs
 #: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Network/Participants.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #: top_speed_net/TopSpeed/Drive/Single/Session/Format.cs
 #: top_speed_net/TopSpeed/Vehicles/Car.cs
-#: top_speed_net/TopSpeed/Vehicles/VehicleDefinition.cs
 msgid "Vehicle"
 msgstr "车辆"
 
@@ -4612,14 +4705,18 @@ msgstr "车辆事件声音"
 msgid "Vehicle events"
 msgstr "车辆事件"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/File.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 #, csharp-format
 msgid "Vehicle file not found: {0}"
 msgstr "未找到车辆文件：{0}"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Core/Load/File.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 msgid "Vehicle file path is empty."
 msgstr "车辆文件路径为空。"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Vehicle not saved"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
@@ -4708,6 +4805,10 @@ msgstr "此版本的新功能："
 msgid "When checked, Three-D audio uses HRTF spatialization for more realistic positioning."
 msgstr "启用后，3D音频使用HRTF空间化以获得更真实的定位效果。"
 
+#: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
+msgid "When checked, after a multiplayer race you are asked whether to keep custom vehicles you downloaded (they are saved to your Vehicles folder and become available offline). When unchecked, downloaded vehicles are never kept after you close the game."
+msgstr ""
+
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, each menu automatically focuses and announces the first item after the title."
 msgstr "启用后，每个菜单在标题之后自动聚焦并播报第一个项目。"
@@ -4769,6 +4870,10 @@ msgid "When enabled, cars burn fuel and players must pit to refuel."
 msgstr "启用后，车辆会消耗燃油，玩家必须进站加油。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+msgid "When enabled, players can choose custom vehicles offered by this server."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
 msgstr "启用后，房主可以从此服务器上传并选择自定义赛道。"
 
@@ -4791,6 +4896,10 @@ msgstr "启用后，你的车辆会消耗燃油，必须进站加油。关闭后
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
 msgstr "启用后，你的轮胎会磨损并失去抓地力，必须进站更换轮胎。关闭后可不受轮胎磨损影响比赛。"
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
@@ -4834,6 +4943,10 @@ msgstr "是，取消当前游戏"
 msgid "Yes, delete this server"
 msgstr "是，删除此服务器"
 
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Yes, keep it"
+msgstr ""
+
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
 msgstr "是，离开此游戏房间"
@@ -4845,6 +4958,15 @@ msgstr "是，退出比赛准备"
 #: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
 msgid "Yes, quit the race"
 msgstr "是，退出比赛"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "Yes, replace it"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "You are already using the latest version."
@@ -4955,6 +5077,20 @@ msgstr "您的客户端协议版本是 {0}。此服务器支持的协议版本�
 msgid "Your client protocol version: {0}"
 msgstr "您的客户端协议版本：{0}"
 
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+#, csharp-format
+msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+#, csharp-format
+msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
+msgstr ""
+
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your latest run did not beat the best record. Details:"
 msgstr "本次未能刷新最佳记录。详情："
@@ -4990,15 +5126,15 @@ msgstr "添加机器人请求"
 msgid "all"
 msgstr "全部"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动降挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动换挡转速必须为0或在怠速转速和转速限制器之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
 msgstr "自动升挡转速必须为0或在怠速转速和转速限制器之间。"
 
@@ -5052,6 +5188,10 @@ msgstr "仅弯道"
 msgid "custom track list request"
 msgstr "自定义赛道列表请求"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+msgid "custom vehicle list request"
+msgstr ""
+
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "default"
 msgstr "默认"
@@ -5077,7 +5217,7 @@ msgstr "启用"
 msgid "end_area cannot be empty."
 msgstr "end_area 不能为空。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Parse/Powertrain.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "engine_displacement_l must be between {0} and {1} liters."
 msgstr "engine_displacement_l 的值必须在 {0} 到 {1} 升之间。"
@@ -5094,7 +5234,7 @@ msgstr "固定距离"
 msgid "fuel consumption off"
 msgstr "燃油消耗已关闭"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Parse/Powertrain.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
 msgstr "燃油量必须在 {0} 到 {1} 升之间。"
@@ -5131,16 +5271,16 @@ msgstr "游戏房间"
 msgid "game rules change request"
 msgstr "游戏规则更改请求"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Gears.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 #, csharp-format
 msgid "gear_ratios count ({0}) must match number_of_gears ({1})."
 msgstr "传动比数量（{0}）必须匹配挡位数（{1}）。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Gears.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 msgid "gear_ratios must be non-increasing from gear 1 to last gear."
 msgstr "传动比必须从第1挡到最后挡位递减。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Gears.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 #, csharp-format
 msgid "gear_ratios[{0}] is outside allowed range 0.20 to 8.00."
 msgstr "gear_ratios[{0}] 超出允许范围 0.20 到 8.00。"
@@ -5157,7 +5297,7 @@ msgstr "困难"
 msgid "heavy wear"
 msgstr "严重磨损"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
 msgstr "high_speed_steer_full_kph 必须大于 high_speed_steer_start_kph。"
 
@@ -5168,6 +5308,10 @@ msgstr "热轮胎"
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "imperial"
 msgstr "英制"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "its downloaded copy is no longer loaded, so there is nothing to save"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "keyboard"
@@ -5201,19 +5345,19 @@ msgstr "第 {0} 圈，第 {1} 个弯道"
 msgid "laps only"
 msgstr "仅计圈数"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_atc]."
 msgstr "[transmission_atc] 中 launch_coupling_max 必须大于或等于 launch_coupling_min。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_cvt]."
 msgstr "[transmission_cvt] 中 launch_coupling_max 必须大于或等于 launch_coupling_min。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
 msgstr "[transmission_dct] 中 launch_coupling_max 必须大于或等于 launch_coupling_min。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "launch_rpm must not exceed rev_limiter."
 msgstr "launch_rpm 不得超过 rev_limiter。"
 
@@ -5226,7 +5370,7 @@ msgstr "轻微磨损"
 msgid "main room"
 msgstr "大厅"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "max_rpm must be greater than or equal to idle_rpm."
 msgstr "最大转速必须大于或等于怠速转速。"
 
@@ -5234,7 +5378,7 @@ msgstr "最大转速必须大于或等于怠速转速。"
 msgid "metric"
 msgstr "公制"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Parse/Powertrain.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
 msgstr "min_coupled_rise_full_rpm_per_s 必须大于或等于 min_coupled_rise_idle_rpm_per_s。"
 
@@ -5249,6 +5393,14 @@ msgstr "中度磨损"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "new tires"
 msgstr "新轮胎"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "no free folder name was available"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "no free name was available to move the old folder aside"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "none"
@@ -5305,7 +5457,7 @@ msgstr "面板"
 msgid "paused"
 msgstr "已暂停"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
 msgstr "峰值扭矩转速必须在怠速转速和转速限制器之间。"
 
@@ -5313,7 +5465,7 @@ msgstr "峰值扭矩转速必须在怠速转速和转速限制器之间。"
 msgid "percent"
 msgstr "百分比"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 #, csharp-format
 msgid "pitch_curve_exponent must be between {0} and {1}."
 msgstr "音调曲线指数必须在 {0} 和 {1} 之间。"
@@ -5356,7 +5508,7 @@ msgstr "比赛中"
 msgid "radio button"
 msgstr "单选按钮"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
 msgstr "[transmission_cvt] 中的 ratio_max 必须大于或等于 ratio_min。"
 
@@ -5378,7 +5530,7 @@ msgstr "未找到必需音效，将使用内置备用音效：{0}"
 msgid "required sound problem, will use built in fallback: {0}"
 msgstr "所需音效出现问题，将使用内置备用音效：{0}"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "rev_limiter must be between idle_rpm and max_rpm."
 msgstr "rev_limiter 必须在 idle_rpm 和 max_rpm 之间。"
 
@@ -5414,11 +5566,11 @@ msgstr "房间状态刷新请求"
 msgid "shift on demand"
 msgstr "按需换挡。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "shift_freq must be between idle_freq and top_freq."
 msgstr "换挡频率必须在怠速频率和最高频率之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Transmission.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Transmission.cs
 msgid "shift_on_demand is ignored because supported_types does not include an automatic transmission type."
 msgstr "shift_on_demand 被忽略，因为 supported_types 不包含自动变速箱类型。"
 
@@ -5450,9 +5602,47 @@ msgstr "start_area 不能为空。"
 msgid "switch"
 msgstr "开关"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Transmission/Modes.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "target_rpm_high must be greater than or equal to target_rpm_low in [transmission_cvt]."
 msgstr "[transmission_cvt] 中的 target_rpm_high 必须大于或等于 target_rpm_low。"
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the destination is not inside the Vehicles folder"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the downloaded copy holds no vehicle file to write"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the downloaded copy is no longer loaded"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the files could not be written"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "the old folder could not be moved aside ({0})"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#, csharp-format
+msgid "the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the replacement files could not be written"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the saved copy is not inside the Vehicles folder"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+msgid "the vehicle has no valid identifier"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "this menu"
@@ -5462,19 +5652,19 @@ msgstr "此菜单"
 msgid "tire wear off"
 msgstr "轮胎磨损已关闭"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_aspect must be between 5 and 150."
 msgstr "tire_aspect 必须在 5 到 150 之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_circumference must be between 0.2 and 5.0 meters."
 msgstr "轮胎周长必须在0.2到5.0米之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_rim must be between 4 and 30 inches."
 msgstr "轮胎轮辋必须在4到30英寸之间。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Tires.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_width must be between 20 and 450 mm."
 msgstr "轮胎宽度必须在20到450毫米之间。"
 
@@ -5492,11 +5682,11 @@ msgstr "轮胎磨损率{0:F0}%，{1:F0}度F,{2}，{3}"
 msgid "tones"
 msgstr "提示音"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Validation/Core.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "top_freq must be greater than or equal to idle_freq."
 msgstr "最高频率必须大于或等于怠速频率。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "top_speed_gear must be within 1..{0}."
 msgstr "最高速挡必须在1..{0}范围内。"
@@ -5572,6 +5762,11 @@ msgstr "{0}  对话框"
 #, csharp-format
 msgid "{0}  dialog  {1}"
 msgstr "{0}  对话框  {1}"
+
+#: top_speed_net/TopSpeed/Core/Selection/SourceBase.cs
+#, csharp-format
+msgid "{0} ({1})"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format
@@ -5656,12 +5851,12 @@ msgstr "{0} 分"
 msgid "{0} minutes"
 msgstr "{0} 分"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "{0} must be a float between 0 and 2 seconds."
 msgstr "{0} 必须是 0 到 2 秒之间的浮点数。"
 
-#: top_speed_net/TopSpeed/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
+#: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "{0} must be between {1} and {2}."
 msgstr "{0} 必须在 {1} 和 {2} 之间。"

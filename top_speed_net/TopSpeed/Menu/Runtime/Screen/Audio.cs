@@ -122,6 +122,8 @@ namespace TopSpeed.Menu
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 return null;
+            if (_menuSoundsSilenced)
+                return null;
             var resolvedPath = ResolveMenuSoundPath(fileName);
             if (string.IsNullOrWhiteSpace(resolvedPath))
                 return null;

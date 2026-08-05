@@ -54,6 +54,7 @@ namespace TopSpeed.Menu
         private int _hintToken;
         private bool _disposed;
         private string? _menuSoundPresetRoot;
+        private bool _menuSoundsSilenced;
         private bool _titlePending;
         private int _activeActionIndex = NoSelection;
         private string? _openingAnnouncementOverride;
@@ -199,9 +200,12 @@ namespace TopSpeed.Menu
 
         public void SetMenuSoundPreset(string? preset)
         {
-            var root = ResolveMenuSoundPresetRoot(preset);
-            if (string.Equals(_menuSoundPresetRoot, root, StringComparison.OrdinalIgnoreCase))
+            var silenced = MenuSoundPresets.IsOff(preset);
+            var root = silenced ? null : ResolveMenuSoundPresetRoot(preset);
+            if (silenced == _menuSoundsSilenced
+                && string.Equals(_menuSoundPresetRoot, root, StringComparison.OrdinalIgnoreCase))
                 return;
+            _menuSoundsSilenced = silenced;
             _menuSoundPresetRoot = root;
             _menuSoundPathCache.Clear();
             if (_initialized)

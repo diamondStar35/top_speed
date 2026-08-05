@@ -28,6 +28,10 @@ namespace TopSpeed.Menu
             }
 
             presets.Sort(StringComparer.OrdinalIgnoreCase);
+
+            // Silence is a valid choice alongside the sound packs on disk: the navigate, wrap and edge
+            // cues talk over the screen reader for players who navigate by speech alone.
+            presets.Insert(0, MenuSoundPresets.Off);
             return presets;
         }
 

@@ -47,20 +47,36 @@ namespace TopSpeed.Menu
             CancelHint();
             var opening = _openingAnnouncementOverride ?? Title;
             _openingAnnouncementOverride = null;
-            _waitForTitleSpeechBeforeAutoFocus = !string.IsNullOrWhiteSpace(opening);
-            if (!string.IsNullOrWhiteSpace(opening))
-                _speech.Speak(opening, ResolveTitleSpeakFlag());
-
             _index = NoSelection;
+
             if (_suppressAutoFocus)
             {
                 _suppressAutoFocus = false;
                 ClearAutoFocusPending();
+                SpeakOpening(opening);
+                return;
             }
-            else
-            {
-                QueueAutoFocusFirstItem(force: string.IsNullOrWhiteSpace(opening));
-            }
+
+            QueueAutoFocusFirstItem(force: string.IsNullOrWhiteSpace(opening));
+
+            // Announcing the focused item as a second utterance means it can cut the opening text off
+            // mid-sentence, leaving you with just the button name. Waiting for the first utterance is
+            // not an option: VoiceOver advertises SpeechCapabilities.IsSpeaking but always answers
+            // false, and the timing fallback needs a calibrated rate we do not have yet during setup.
+            // Speaking both as one utterance is the only ordering that holds on every backend.
+            if (_autoFocusPending
+                && !string.IsNullOrWhiteSpace(opening)
+                && TryFocusFirstItemWithOpening(opening))
+                return;
+
+            _waitForTitleSpeechBeforeAutoFocus = !string.IsNullOrWhiteSpace(opening);
+            SpeakOpening(opening);
+        }
+
+        private void SpeakOpening(string opening)
+        {
+            if (!string.IsNullOrWhiteSpace(opening))
+                _speech.Speak(opening, ResolveTitleSpeakFlag());
         }
 
         public void QueueTitleAnnouncement(string? openingAnnouncementOverride = null)

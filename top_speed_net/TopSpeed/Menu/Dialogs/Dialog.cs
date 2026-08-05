@@ -109,7 +109,7 @@ namespace TopSpeed.Menu
             if (updateInPlace)
                 return;
 
-            var announcement = DialogAnnouncement.Compose(dialog.Title, dialog.Caption);
+            var announcement = DialogAnnouncement.Compose(dialog.Title, dialog.Caption, dialog.Items);
             var autoFocus = defaultIndex >= 0;
             _menu.Push(MenuId, announcement, autoFocus ? defaultIndex : null, autoFocus: autoFocus);
         }

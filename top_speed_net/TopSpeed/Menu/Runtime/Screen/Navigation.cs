@@ -221,18 +221,71 @@ namespace TopSpeed.Menu
         {
             if (_items.Count == 0)
                 return;
+            _index = TakeFirstFocusIndex();
+            SaveSelectionForActiveView();
+            _activeActionIndex = NoSelection;
+            PlayNavigateSound();
+            AnnounceCurrent(purge: false, SpeechService.SpeakFlag.NoInterrupt);
+            _justEntered = false;
+        }
+
+        // Focuses the first item but folds its text into the screen's opening announcement, so both are
+        // spoken as a single utterance. See AnnounceTitle for why that matters.
+        private bool TryFocusFirstItemWithOpening(string opening)
+        {
+            if (_items.Count == 0)
+                return false;
+
+            var targetIndex = TakeFirstFocusIndex();
+            _index = targetIndex;
+            SaveSelectionForActiveView();
+            _activeActionIndex = NoSelection;
+
+            // No navigate cue: nothing moved. The item is named as part of the opening announcement
+            // rather than being stepped onto.
+            var item = _items[targetIndex];
+            var displayText = item.GetDisplayText();
+
+            // Clear whatever is still being said (a settings confirmation, "Language set to ...") so the
+            // new screen is heard from its first word rather than replacing it halfway through. Screens
+            // that asked for interruptable speech keep their own flag.
+            var flag = ResolveTitleSpeakFlag();
+            if (flag == SpeechService.SpeakFlag.NoInterrupt)
+                flag = SpeechService.SpeakFlag.NoInterruptButStop;
+            _speech.Speak($"{EndOpeningSentence(opening)}  {displayText}", flag);
+            ScheduleHint(item, targetIndex, displayText);
+            _justEntered = false;
+            ClearAutoFocusPending();
+            return true;
+        }
+
+        // Punctuation is what tells a screen reader where to break. Without it the opening text runs
+        // straight into the item name as one clause ("Main menu Race" rather than "Main menu. Race"),
+        // which is the whole reason the two used to be separate utterances. A full stop keeps them
+        // apart while they stay a single Speak call; text that already ends in punctuation is left
+        // alone so nothing is said twice or read out as a stray character.
+        private const string OpeningSentenceEndings = ".!?:;,\u2026\u3002\uFF01\uFF1F\uFF1A\uFF1B\u3001\uFF0C\u061F\u060C";
+
+        private static string EndOpeningSentence(string opening)
+        {
+            var trimmed = opening.TrimEnd();
+            if (trimmed.Length == 0)
+                return trimmed;
+
+            return OpeningSentenceEndings.IndexOf(trimmed[trimmed.Length - 1]) >= 0
+                ? trimmed
+                : trimmed + ".";
+        }
+
+        private int TakeFirstFocusIndex()
+        {
             var targetIndex = 0;
             if (_pendingFocusIndex.HasValue)
                 targetIndex = Math.Max(0, Math.Min(_items.Count - 1, _pendingFocusIndex.Value));
             else if (ActiveView.KeepSelection && ActiveView.SavedSelection != NoSelection)
                 targetIndex = Math.Max(0, Math.Min(_items.Count - 1, ActiveView.SavedSelection));
             _pendingFocusIndex = null;
-            _index = targetIndex;
-            SaveSelectionForActiveView();
-            _activeActionIndex = NoSelection;
-            PlayNavigateSound();
-            AnnounceCurrent(purge: false, SpeechService.SpeakFlag.NoInterrupt);
-            _justEntered = false;
+            return targetIndex;
         }
 
         private bool SwitchScreen(int delta)

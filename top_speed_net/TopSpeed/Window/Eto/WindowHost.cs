@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using Eto.Drawing;
 using Eto.Forms;
 using TopSpeed.Input;
@@ -11,6 +13,8 @@ namespace TopSpeed.Windowing.Eto
 {
     internal sealed class WindowHost : IWindowHost, IKeyboardEventSource
     {
+        private const int ForcedExitDelayMs = 2000;
+        private int _shutdownStarted;
         private readonly object _textInputLock = new object();
         private readonly Application _application;
         private readonly Form _window;
@@ -64,6 +68,28 @@ namespace TopSpeed.Windowing.Eto
             _application.Run(_window);
         }
 
+        // Puts the keyboard back on the game after another window (a file dialog) has been key.
+        // Without this the game window never regains first responder, so every later key press is
+        // unhandled: macOS plays its alert beep on each arrow key and the game hears nothing.
+        internal void RestoreGameFocus()
+        {
+            InvokeOnUi(() =>
+            {
+                try
+                {
+                    if (!_window.Visible)
+                        return;
+
+                    _window.Focus();
+                    if (!_textInputActive)
+                        _root.Focus();
+                }
+                catch
+                {
+                }
+            });
+        }
+
         public void RequestClose()
         {
             InvokeOnUi(() =>
@@ -75,7 +101,46 @@ namespace TopSpeed.Windowing.Eto
                 catch
                 {
                 }
+
+                // Eto.Mac hides the window but never raises Form.Closed for a programmatic Close(), so
+                // shutdown would never run and the process lingers with no window — the player can then
+                // only end it from Force Quit. Drive the shutdown ourselves instead of waiting for an
+                // event that is not coming.
+                Shutdown();
             });
+        }
+
+        // Runs the close handlers exactly once, whichever way the window went away, then ends the
+        // application. Safe to call from the Eto Closed event and from RequestClose.
+        private void Shutdown()
+        {
+            if (Interlocked.Exchange(ref _shutdownStarted, 1) != 0)
+                return;
+
+            try
+            {
+                Closed?.Invoke();
+            }
+            catch
+            {
+            }
+
+            // Arm the watchdog BEFORE asking the platform to quit: Quit() runs on the UI thread and does
+            // not reliably return here, so anything queued after it would never start. The close
+            // handlers above have already saved and disposed everything, so ending the process is safe.
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(ForcedExitDelayMs).ConfigureAwait(false);
+                Environment.Exit(0);
+            });
+
+            try
+            {
+                (Application.Instance ?? _application).Quit();
+            }
+            catch
+            {
+            }
         }
 
         public void Dispose()
@@ -161,7 +226,7 @@ namespace TopSpeed.Windowing.Eto
 
         private void OnClosed(object? sender, EventArgs e)
         {
-            Closed?.Invoke();
+            Shutdown();
         }
 
         private void OnWindowKeyDown(object? sender, KeyEventArgs e)
@@ -169,6 +234,11 @@ namespace TopSpeed.Windowing.Eto
             if (_textInputActive)
                 return;
             EmitKeyDown(e.KeyData);
+
+            // The game consumed this key. Without marking it handled, Eto forwards the event to the
+            // native view's default keyDown, it walks the responder chain unclaimed, and macOS plays
+            // the alert beep — on every arrow key, all race long.
+            e.Handled = true;
         }
 
         private void OnWindowKeyUp(object? sender, KeyEventArgs e)
@@ -177,6 +247,8 @@ namespace TopSpeed.Windowing.Eto
             // them is how the key that opened the prompt ends up latched down forever in
             // the event-driven keyboard device.
             EmitKeyUp(e.KeyData);
+            if (!_textInputActive)
+                e.Handled = true;
         }
 
         private void OnInputKeyDown(object? sender, KeyEventArgs e)

@@ -36,6 +36,7 @@ namespace TopSpeed.Windowing.Eto
                 // key, so their key-ups never reached the game window; clear them so the
                 // shortcut cannot re-trigger on the next modifier press.
                 _window.ReleaseAllKeys();
+                _window.RestoreGameFocus();
                 onCompleted(selectedPath);
             });
         }
@@ -61,6 +62,7 @@ namespace TopSpeed.Windowing.Eto
                 }
 
                 _window.ReleaseAllKeys();
+                _window.RestoreGameFocus();
                 onCompleted(selectedFolder);
             });
         }

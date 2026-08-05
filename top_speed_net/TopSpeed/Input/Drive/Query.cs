@@ -90,6 +90,15 @@ namespace TopSpeed.Input
             return _menuNavigationActive && _menuNavigationControllerInputs.Contains(axis);
         }
 
+        // Control+Tab and Control+Shift+Tab switch vehicle panels, and Request info is bound to plain
+        // Tab by default. Drive intents ignore modifiers, so without this the panel shortcut would also
+        // fire whatever is mapped to Tab and read the race status out on top of the panel name. Plain
+        // Tab keeps working; only the panel chord is held back.
+        private bool IsPanelSwitchChord(Key key)
+        {
+            return key == Key.Tab && IsCtrlDown();
+        }
+
         // Edge detection without the overlay guard. Intent evaluation applies its own overlay policy
         // in EvaluateIntentTriggerCore (see IsAllowedDuringOverlay), so whitelisted press intents such
         // as the fuel/tire reports must use this directly; routing them through WasPressed would
@@ -206,6 +215,8 @@ namespace TopSpeed.Input
             if (key == Key.Unknown)
                 return false;
             if (IsInputTrappedByMenu(key))
+                return false;
+            if (IsPanelSwitchChord(key))
                 return false;
 
             var active = meta.KeyboardMode == TriggerMode.Hold

@@ -50,6 +50,14 @@ namespace TopSpeed.Windowing.Eto
                 if (!allowIntercept())
                     return theEvent;
 
+                // What goes into the game is a bare InputKey.Tab: the Control modifier is not carried
+                // along, and the input layer reads Control's state separately from the keyboard. So one
+                // press feeds two consumers at once — the panel switch, which checks IsCtrlDown, and
+                // whatever is bound to plain Tab, which ignores modifiers entirely. That is why the
+                // doubled announcement is a macOS-only fault: on every other platform Control+Tab
+                // reaches the window as one modified key event, while here Cocoa eats the chord and it
+                // only arrives at all by being re-injected through this monitor, stripped of its
+                // modifier. See IsPanelSwitchChord in Input/Drive/Query.cs for the guard.
                 if (theEvent.Type == NSEventType.KeyDown)
                     onKeyDown(InputKey.Tab);
                 else if (theEvent.Type == NSEventType.KeyUp)

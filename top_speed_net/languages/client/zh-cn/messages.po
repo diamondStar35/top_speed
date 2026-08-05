@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-05 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "\"{0}\", because {1}"
-msgstr ""
+msgstr "\"{0}\"，因为{1}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "2 degrees"
@@ -849,12 +849,12 @@ msgstr "无法从所选文件夹读取文件。"
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save the vehicle {0}."
-msgstr ""
+msgstr "无法保存车辆 {0}。"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save these vehicles: {0}."
-msgstr ""
+msgstr "无法保存以下车辆：{0}。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Create a new game"
@@ -952,7 +952,7 @@ msgstr "自定义车辆问题"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom vehicles"
-msgstr ""
+msgstr "自定义车辆"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the next global volume category."
@@ -1192,7 +1192,7 @@ msgstr "启用HRTF音频"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable digit navigation globally"
-msgstr ""
+msgstr "启用全局数字键导航"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
@@ -1524,7 +1524,7 @@ msgstr "幽灵模式"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."
-msgstr ""
+msgstr "幽灵模式为{0}。自定义赛道为{1}。自定义车辆为{2}。燃油消耗为{3}。轮胎磨损为{4}。所选赛道为{5}。游戏将进行{6}。此房间限于{7}。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Shortcuts/Catalog.cs
@@ -1796,20 +1796,20 @@ msgstr "川崎 Ninja ZX-10R"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep both"
-msgstr ""
+msgstr "保留两者"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep custom vehicle?"
-msgstr ""
+msgstr "保留自定义车辆？"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep mine"
-msgstr ""
+msgstr "保留我的版本"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Keep the downloaded vehicle \"{0}\" so it does not need downloading again next time?"
-msgstr ""
+msgstr "保留下载的车辆“{0}”，以便下次无需再次下载？"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
@@ -2051,7 +2051,7 @@ msgstr "正在从服务器加载自定义赛道。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Loading custom vehicles from server."
-msgstr ""
+msgstr "正在从服务器加载自定义车辆。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio file for streaming."
@@ -2387,7 +2387,7 @@ msgstr "未找到自定义赛道。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "No custom vehicles available on this server."
-msgstr ""
+msgstr "此服务器没有可用的自定义车辆。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "No custom vehicles found."
@@ -2484,7 +2484,7 @@ msgstr "否，继续比赛"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "No, keep mine"
-msgstr ""
+msgstr "不，保留我的版本"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "No, keep this server"
@@ -2888,7 +2888,7 @@ msgstr "渐进式键盘输入"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "Prompt to keep downloaded custom vehicles"
-msgstr ""
+msgstr "提示是否保留已下载的自定义车辆"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -3121,11 +3121,11 @@ msgstr "移除机器人"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace mine with the downloaded one"
-msgstr ""
+msgstr "用下载的车辆替换我的版本用下载的车辆替换我的版本"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace vehicle?"
-msgstr ""
+msgstr "替换车辆？"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report distance"
@@ -3563,7 +3563,7 @@ msgstr "设置比赛默认项，例如领航提示、弯道播报、自动信息
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Set the defaults used when you connect to a multiplayer server, including the port and your call sign, and whether you are offered custom vehicles you download."
-msgstr ""
+msgstr "设置连接多人服务器时使用的默认值，包括端口、您的呼号，以及是否向您提供下载的自定义车辆。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how early speed dependent curve announcements are spoken."
@@ -3723,7 +3723,7 @@ msgstr "音效资源路径超出了赛道文件夹范围：{0}"
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Sound asset path escapes the vehicle folder: {0}"
-msgstr ""
+msgstr "音频资源路径超出了车辆文件夹：{0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -4214,7 +4214,7 @@ msgstr "房间已满，无法加入。"
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"
-msgstr ""
+msgstr "此操作会永久删除保存为“{0}”的车辆，并将下载的“{1}”替换到该位置。确定吗？"
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 msgid "This server does not support required protocol negotiation. Please update your server."
@@ -4456,7 +4456,7 @@ msgstr "无法解析自定义赛道文件夹路径。"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Unable to resolve custom vehicle folder path."
-msgstr ""
+msgstr "无法解析自定义车辆文件夹路径。"
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
 msgid "Unable to resolve server address."
@@ -4716,7 +4716,7 @@ msgstr "车辆文件路径为空。"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Vehicle not saved"
-msgstr ""
+msgstr "车辆未保存"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
@@ -4807,7 +4807,7 @@ msgstr "启用后，3D音频使用HRTF空间化以获得更真实的定位效果
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "When checked, after a multiplayer race you are asked whether to keep custom vehicles you downloaded (they are saved to your Vehicles folder and become available offline). When unchecked, downloaded vehicles are never kept after you close the game."
-msgstr ""
+msgstr "勾选时，多人比赛结束后会询问您是否保留下载的自定义车辆（它们会保存到您的 Vehicles 文件夹并可离线使用）。取消勾选时，下载的车辆会在您关闭游戏后不予保留。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, each menu automatically focuses and announces the first item after the title."
@@ -4871,7 +4871,7 @@ msgstr "启用后，车辆会消耗燃油，玩家必须进站加油。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, players can choose custom vehicles offered by this server."
-msgstr ""
+msgstr "启用后，玩家可选择该服务器提供的自定义车辆。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
@@ -4899,7 +4899,7 @@ msgstr "启用后，你的轮胎会磨损并失去抓地力，必须进站更换
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
-msgstr ""
+msgstr "未勾选时，在某些区域（如进站菜单）按数字键会激活对应位置的项目。勾选后，该功能在任何位置都可用。"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
@@ -4945,7 +4945,7 @@ msgstr "是，删除此服务器"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, keep it"
-msgstr ""
+msgstr "是，保留它"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
@@ -4961,12 +4961,12 @@ msgstr "是，退出比赛"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, replace it"
-msgstr ""
+msgstr "是，替换它"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
-msgstr ""
+msgstr "您已保存了名为“{0}”的车辆。要如何处理下载的“{1}”？"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "You are already using the latest version."
@@ -5079,17 +5079,17 @@ msgstr "您的客户端协议版本：{0}"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
-msgstr ""
+msgstr "您的游戏无法加载其他玩家正在使用的自定义车辆，因此您将改为听到默认车辆的声音。"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
-msgstr ""
+msgstr "您的游戏无法加载自定义车辆“{0}”，因此您将改为听到默认车辆的声音。"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
-msgstr ""
+msgstr "您的游戏无法加载{0}的车辆“{1}”，因此您将改为听到其默认车辆的声音。"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your latest run did not beat the best record. Details:"
@@ -5190,7 +5190,7 @@ msgstr "自定义赛道列表请求"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "custom vehicle list request"
-msgstr ""
+msgstr "自定义车辆列表请求"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "default"
@@ -5311,7 +5311,7 @@ msgstr "英制"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "its downloaded copy is no longer loaded, so there is nothing to save"
-msgstr ""
+msgstr "其下载副本已不再加载，因此没有可保存的内容"
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "keyboard"
@@ -5396,11 +5396,11 @@ msgstr "新轮胎"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free folder name was available"
-msgstr ""
+msgstr "没有可用的文件夹名称"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free name was available to move the old folder aside"
-msgstr ""
+msgstr "没有可用名称可用于移开旧文件夹"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "none"
@@ -5608,41 +5608,41 @@ msgstr "[transmission_cvt] 中的 target_rpm_high 必须大于或等于 target_r
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the destination is not inside the Vehicles folder"
-msgstr ""
+msgstr "目标位置不在 Vehicles 文件夹内"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy holds no vehicle file to write"
-msgstr ""
+msgstr "下载的副本不包含可写入的车辆文件"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy is no longer loaded"
-msgstr ""
+msgstr "下载的副本已不再加载"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the files could not be written"
-msgstr ""
+msgstr "无法写入文件"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the old folder could not be moved aside ({0})"
-msgstr ""
+msgstr "无法移开旧文件夹（{0}）"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"
-msgstr ""
+msgstr "无法写入替换文件，也无法恢复您的原始文件。原始文件仍安全地位于文件夹“{0}”中，可手动重命名以恢复。"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the replacement files could not be written"
-msgstr ""
+msgstr "无法写入替换文件"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the saved copy is not inside the Vehicles folder"
-msgstr ""
+msgstr "已保存的副本不在 Vehicles 文件夹内"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the vehicle has no valid identifier"
-msgstr ""
+msgstr "车辆没有有效的标识符"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "this menu"
@@ -5766,7 +5766,7 @@ msgstr "{0}  对话框  {1}"
 #: top_speed_net/TopSpeed/Core/Selection/SourceBase.cs
 #, csharp-format
 msgid "{0} ({1})"
-msgstr ""
+msgstr "{0}（{1}）"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format

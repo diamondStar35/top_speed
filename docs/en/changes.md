@@ -5,6 +5,17 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## Unreleased
+### Game Changes
+- Fixed menu and dialog text being cut short on macOS. A screen used to speak its title or explanation and then name the item you were placed on, and the second announcement cut the first off, so often all you heard was the name of a button. Both are now spoken together, so you hear the whole thing whether or not your screen reader can tell the game when it has finished speaking.
+- Dialogs now read out what they say when they open. Their text could previously only be reached by arrowing down through the dialog, so opening one told you nothing but the name of the default button.
+- Fixed a beep on every key press on macOS. Key presses the game had already dealt with were passed on to the system as well, which answered them with its alert sound, so arrow keys beeped throughout a whole race.
+- Fixed the keyboard going dead on macOS after the media file dialog closed. The game window did not take the keyboard back when the dialog went away, so nothing you pressed afterwards reached the game.
+- Fixed the game not quitting on macOS. Choosing to exit closed the window but left the game running with nothing on screen, and Force Quit was the only way to end it.
+- Fixed Control plus Tab reading your race status out on top of the panel name. Switching between vehicle panels also triggered whatever is bound to Tab on its own, which is the information key by default. Tab on its own is unchanged.
+- Added an "off" choice to the menu sounds setting, for players who would rather hear only their screen reader while moving through the menus.
+
+
 ## 2026.8.3.1
 ### Game Changes
 - Custom vehicles now work in multiplayer races. A room host turns them on with the new "Custom vehicles" game rule, and when another driver picks a vehicle you do not have, your game fetches it from the server by itself. Vehicles are matched by what is inside them rather than by their name, so one you already have is never downloaded, renaming or moving a vehicle does not cause it to download again, and a vehicle you do download arrives only once however many races you use it in. If a vehicle cannot be downloaded or cannot be loaded, the race still starts and you are told which vehicle was unavailable and who was using it.

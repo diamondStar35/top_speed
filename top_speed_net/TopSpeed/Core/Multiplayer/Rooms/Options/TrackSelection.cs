@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TopSpeed.Common;
 using TopSpeed.Data;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
@@ -74,27 +73,15 @@ namespace TopSpeed.Core.Multiplayer
 
         private void SelectRandomRoomTrackAny()
         {
-            if (RoomTrackOptions.Length == 0)
-            {
-                SelectRoomTrack(TrackList.RaceTracks[0].Key, true);
-                return;
-            }
-
-            var index = Algorithm.RandomInt(RoomTrackOptions.Length);
-            SelectRoomTrack(RoomTrackOptions[index].Key, true);
+            SelectRoomTrack(TrackPackageRef.RandomBuiltInAny(), LocalizationService.Mark("Random"), true);
         }
 
         private void SelectRandomRoomTrackCategory(TrackCategory category)
         {
-            var tracks = TrackList.GetTracks(category);
-            if (tracks.Count == 0)
-            {
-                SelectRandomRoomTrackAny();
-                return;
-            }
-
-            var index = Algorithm.RandomInt(tracks.Count);
-            SelectRoomTrack(tracks[index].Key, true);
+            var selection = category == TrackCategory.StreetAdventure
+                ? TrackPackageRef.RandomBuiltInAdventure()
+                : TrackPackageRef.RandomBuiltInRace();
+            SelectRoomTrack(selection, LocalizationService.Mark("Random"), true);
         }
 
         private void SelectRoomTrack(string trackKey, bool randomChosen)

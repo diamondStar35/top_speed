@@ -46,6 +46,7 @@ namespace TopSpeed.Server.Network
                     & ((uint)RoomGameRules.FuelConsumption | (uint)RoomGameRules.TireWear);
                 room.RaceEffectiveGameRulesFlags = room.GameRulesFlags & ~raceDisableMask;
 
+                ApplyRandomTrackSelectionForRace(room);
                 _owner._race.TransitionRaceState(room, RoomRaceState.Preparing);
                 room.PendingLoadouts.Clear();
                 room.PrepareSkips.Clear();

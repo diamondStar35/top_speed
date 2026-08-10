@@ -59,8 +59,8 @@ namespace TopSpeed.Server.Network
                     InRoom = true,
                     IsHost = room.HostId == player.Id,
                     RacePaused = room.RacePaused,
-                    Track = CloneTrackRef(room.TrackSelection),
-                    TrackName = room.TrackName,
+                    Track = CloneRoomDisplayTrackRef(room),
+                    TrackName = GetRoomDisplayTrackName(room),
                     Laps = room.Laps,
                     GameRulesFlags = room.GameRulesFlags,
                     Players = BuildRoomPlayers(room)
@@ -95,8 +95,8 @@ namespace TopSpeed.Server.Network
                     PlayersToStart = room.PlayersToStart,
                     RaceState = room.RaceState,
                     RacePaused = room.RacePaused,
-                    Track = CloneTrackRef(room.TrackSelection),
-                    TrackName = room.TrackName,
+                    Track = CloneRoomDisplayTrackRef(room),
+                    TrackName = GetRoomDisplayTrackName(room),
                     Laps = room.Laps,
                     GameRulesFlags = room.GameRulesFlags,
                     Players = BuildRoomPlayers(room)
@@ -150,8 +150,8 @@ namespace TopSpeed.Server.Network
                     PlayerCount = (byte)Math.Min(ProtocolConstants.MaxPlayers, RaceServer.GetRoomParticipantCount(room)),
                     PlayersToStart = room.PlayersToStart,
                     RaceState = room.RaceState,
-                    Track = CloneTrackRef(room.TrackSelection),
-                    TrackName = room.TrackName
+                    Track = CloneRoomDisplayTrackRef(room),
+                    TrackName = GetRoomDisplayTrackName(room)
                 };
             }
 
@@ -195,8 +195,8 @@ namespace TopSpeed.Server.Network
                     PlayersToStart = room.PlayersToStart,
                     RaceState = room.RaceState,
                     RacePaused = room.RacePaused,
-                    Track = CloneTrackRef(room.TrackSelection),
-                    TrackName = room.TrackName,
+                    Track = CloneRoomDisplayTrackRef(room),
+                    TrackName = GetRoomDisplayTrackName(room),
                     Laps = room.Laps,
                     GameRulesFlags = room.GameRulesFlags,
                     RoomName = room.Name
@@ -206,6 +206,25 @@ namespace TopSpeed.Server.Network
             private static TrackPackageRef CloneTrackRef(TrackPackageRef track)
             {
                 return TrackPackageRef.Clone(track);
+            }
+
+            private static TrackPackageRef CloneRoomDisplayTrackRef(GameRoom room)
+            {
+                if (room?.RandomTrackSelection != null && room.RandomTrackSelection.IsRandomBuiltIn)
+                    return TrackPackageRef.Clone(room.RandomTrackSelection);
+
+                return TrackPackageRef.Clone(room?.TrackSelection);
+            }
+
+            private static string GetRoomDisplayTrackName(GameRoom room)
+            {
+                var track = CloneRoomDisplayTrackRef(room);
+                if (track.IsBuiltIn)
+                    return track.BuiltInTrackKey;
+                if (track.IsCustomPackage)
+                    return track.TrackId;
+
+                return room?.TrackName ?? string.Empty;
             }
         }
     }

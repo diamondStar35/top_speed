@@ -56,6 +56,9 @@ namespace TopSpeed.Core.Multiplayer
 
         private static string FormatTrackRefDisplay(TrackPackageRef track)
         {
+            if (track != null && track.IsRandomBuiltIn)
+                return LocalizationService.Translate(LocalizationService.Mark("Random"));
+
             if (track != null && track.IsCustomPackage)
             {
                 var id = string.IsNullOrWhiteSpace(track.TrackId) ? LocalizationService.Mark("Custom track") : track.TrackId;

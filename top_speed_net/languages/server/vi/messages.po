@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-13 07:51\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -55,7 +55,7 @@ msgstr "(trống)"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "A multiplayer race is not currently active."
-msgstr "Hiện không có trận đua mạng nào đang diễn ra."
+msgstr "Hiện không có cuộc đua mạng nào đang diễn ra."
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
@@ -69,7 +69,7 @@ msgstr "Một người chơi"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 msgid "A race is already in progress."
-msgstr "Trận đua đang diễn ra rồi."
+msgstr "Cuộc đua đang diễn ra rồi."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
@@ -78,11 +78,11 @@ msgstr "Tất cả xe đã sẵn sàng: phòng={0} \"{1}\", bắt đầu cuộc 
 
 #: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "All players are ready. Starting game."
-msgstr "Tất cả người chơi đã sẵn sàng. Trận đua bắt đầu."
+msgstr "Tất cả người chơi đã sẵn sàng. Cuộc đua bắt đầu."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Allow duplicate call signs"
-msgstr ""
+msgstr "Cho phép trùng biệt danh (call sign)"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Available commands:"
@@ -90,7 +90,7 @@ msgstr "Các lệnh khả dụng:"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "BMW 3 Series"
-msgstr ""
+msgstr "BMW 3 Series"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Back"
@@ -98,7 +98,7 @@ msgstr "Quay lại"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Block repeated letters in call signs"
-msgstr ""
+msgstr "Chặn ký tự lặp lại liên tiếp trong biệt danh"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "Bot"
@@ -189,7 +189,7 @@ msgstr "Đang kiểm tra cập nhật..."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Choose server architecture:"
-msgstr ""
+msgstr "Chọn kiến trúc máy chủ:"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Choose server language:"
@@ -211,7 +211,7 @@ msgstr "Máy chủ đã đóng kết nối. Lý do: {0}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection closed due to protocol error."
-msgstr ""
+msgstr "Kết nối bị đóng do lỗi giao thức."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection closed."
@@ -224,7 +224,7 @@ msgstr "Đã thiết lập kết nối: id_người_chơi={0}, endpoint={1}, gia
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection lost. Reconnect is available for a short time."
-msgstr ""
+msgstr "Mất kết nối. Tính năng kết nối lại khả dụng trong một khoảng thời gian ngắn."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
@@ -242,26 +242,26 @@ msgstr "Từ chối kết nối do không khớp giao thức."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection rejected by transport policy."
-msgstr ""
+msgstr "Kết nối bị từ chối bởi chính sách vận chuyển."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Connection removed: player={0}, endpoint={1}, room={2}, reason={3}, mappedReason={4}, mappedState={5}."
-msgstr ""
+msgstr "Kết nối đã bị xóa: người_chơi={0}, điểm_cuối={1}, phòng={2}, lý_do={3}, lý_do_ánh_xạ={4}, trạng_thái_ánh_xạ={5}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 #, csharp-format
 msgid "Connection resumed: playerId={0}, endpoint={1}, epoch={2}."
-msgstr ""
+msgstr "Kết nối đã khôi phục: ID_người_chơi={0}, điểm_cuối={1}, kỳ={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Connection setup timed out before authentication."
-msgstr ""
+msgstr "Thiết lập kết nối đã quá thời gian trước khi xác thực."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Connection suspended for reconnect: player={0}, endpoint={1}, room={2}, reason={3}."
-msgstr ""
+msgstr "Kết nối bị tạm dừng để chờ kết nối lại: người_chơi={0}, điểm_cuối={1}, phòng={2}, lý_do={3}."
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 #, csharp-format
@@ -271,40 +271,40 @@ msgstr "Không thể chạy trình cập nhật: {0}"
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/CatalogState.cs
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Identity.cs
 msgid "Custom track"
-msgstr ""
+msgstr "Đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Custom track package is not available on server."
-msgstr ""
+msgstr "Gói đường đua tùy chỉnh không có sẵn trên máy chủ."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Custom tracks"
-msgstr ""
+msgstr "Đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are disabled on this server."
-msgstr ""
+msgstr "Đường đua tùy chỉnh bị tắt trên máy chủ này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Custom tracks are not enabled for this room."
-msgstr ""
+msgstr "Đường đua tùy chỉnh không được bật cho phòng đua này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/VehiclePackages/CatalogState.cs
 msgid "Custom vehicle"
-msgstr ""
+msgstr "Xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 msgid "Custom vehicle file must use .tsv extension."
-msgstr ""
+msgstr "Tệp xe tùy chỉnh phải sử dụng phần mở rộng .tsv."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Custom vehicles"
-msgstr ""
+msgstr "Xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Discovery port"
-msgstr ""
+msgstr "Cổng phát hiện (Discovery port)"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
@@ -364,21 +364,21 @@ msgstr "Loại bỏ gói tin không khớp phiên bản giao thức từ {0}: nh
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped pre-auth packet from unknown endpoint {0}: command={1}, sequence={2}."
-msgstr ""
+msgstr "Đã bỏ qua gói tin trước xác thực từ điểm cuối không rõ {0}: lệnh={1}, chuỗi={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped stale packet epoch from {0}: command={1}, sequence={2}, expectedEpoch={3}, commandEpoch={4}."
-msgstr ""
+msgstr "Đã bỏ qua kỳ gói tin cũ từ {0}: lệnh={1}, chuỗi={2}, kỳ_yêu_cầu={3}, kỳ_lệnh={4}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
 msgid "Dropped stale packet from prior epoch: endpoint={0}, command={1}, sequence={2}, activeEpoch={3}."
-msgstr ""
+msgstr "Đã bỏ qua gói tin cũ từ kỳ trước: điểm_cuối={0}, lệnh={1}, chuỗi={2}, kỳ_hoạt_동={3}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ducati Panigale V4"
-msgstr ""
+msgstr "Ducati Panigale V4"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Completion.cs
 #, csharp-format
@@ -388,7 +388,7 @@ msgstr "Bỏ qua lượt về đích trùng lặp: phòng={0}, người_chơi={1
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate key '{0}' in section [{1}] is not allowed."
-msgstr ""
+msgstr "Không được phép trùng khóa '{0}' trong phần [{1}]."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -398,7 +398,7 @@ msgstr "Trùng ID phòng '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Duplicate section [{0}] is not allowed."
-msgstr ""
+msgstr "Không được phép trùng phần [{0}]."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -426,7 +426,7 @@ msgstr "Nhập cổng discovery (1-65535):"
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Enter max call sign length (1-{0}):"
-msgstr ""
+msgstr "Nhập độ dài biệt danh tối đa (1-{0}):"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Enter max players (1-255):"
@@ -451,7 +451,7 @@ msgstr "Lỗi"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Failed to load this vehicle file."
-msgstr ""
+msgstr "Không thể tải tệp xe này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
@@ -475,20 +475,20 @@ msgstr "Không thể khởi động transport trên cổng {0}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Feature options:"
-msgstr ""
+msgstr "Tùy chọn tính năng:"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Features"
-msgstr ""
+msgstr "Tính năng"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Fiat 500"
-msgstr ""
+msgstr "Fiat 500"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
 msgid "Finish ignored: room={0}, player={1}, number={2}."
-msgstr ""
+msgstr "Bỏ qua tín hiệu về đích: phòng={0}, người_chơi={1}, số={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
@@ -497,11 +497,11 @@ msgstr "Đã ghi nhận về đích: phòng={0}, người_chơi={1}, số={2}, h
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ford Mustang 1969"
-msgstr ""
+msgstr "Ford Mustang 1969"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 msgid "Game room not found."
-msgstr "Không tìm thấy phòng game."
+msgstr "Không tìm thấy phòng đua."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
@@ -515,22 +515,22 @@ msgstr "Độ ẩm phải nằm trong khoảng từ 0 đến 1."
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched player id from {0}: expected={1}, received={2}."
-msgstr ""
+msgstr "Bỏ qua heartbeat từ client có ID người chơi không khớp từ {0}: kỳ_vọng={1}, nhận_được={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
 msgid "Ignored client heartbeat with mismatched session id from {0}: expected={1}, received={2}."
-msgstr ""
+msgstr "Bỏ qua heartbeat từ client có ID phiên không khớp từ {0}: kỳ_vọng={1}, nhận_được={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Ignoring pre-identification command from {0}: {1}."
-msgstr ""
+msgstr "Bỏ qua lệnh chưa định danh từ {0}: {1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Ignoring pre-protocol command from {0}: {1}."
-msgstr ""
+msgstr "Bỏ qua lệnh chưa qua giao thức từ {0}: {1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets.cs
 #, csharp-format
@@ -572,16 +572,16 @@ msgstr "Đầu vào không hợp lệ. Hãy nhập y hoặc n."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "Invalid key '{0}'. Source gear must be within 1..{1}."
-msgstr ""
+msgstr "Khóa không hợp lệ '{0}'. Số nguồn phải nằm trong khoảng 1..{1}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "Invalid key '{0}'. Use upshift_delay_X_Y for adjacent gears."
-msgstr ""
+msgstr "Khóa không hợp lệ '{0}'. Dùng upshift_delay_X_Y cho các số liền kề."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 msgid "Invalid line. Expected [section] or key=value."
-msgstr ""
+msgstr "Dòng không hợp lệ. Cần định dạng [section] hoặc key=value."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -595,11 +595,11 @@ msgstr "Số tùy chọn không hợp lệ."
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "Giá trị pit không hợp lệ '{0}'. Sử dụng pit_entry hoặc pit_exit."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid player identification packet."
-msgstr ""
+msgstr "Gói tin định danh người chơi không hợp lệ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid protocol handshake packet."
@@ -608,7 +608,7 @@ msgstr "Gói tin bắt tay giao thức không hợp lệ."
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Invalid protocol handshake. Reported protocol version {0} is outside declared supported range {1}."
-msgstr ""
+msgstr "Bắt tay giao thức không hợp lệ. Phiên bản giao thức khai báo {0} nằm ngoài phạm vi hỗ trợ {1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "Invalid protocol range in handshake packet."
@@ -658,7 +658,7 @@ msgstr "Độ rộng phân đoạn không hợp lệ '{0}'."
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Invalid sound asset path: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh không hợp lệ: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -673,20 +673,20 @@ msgstr "Loại âm thanh không hợp lệ '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Invalid torque curve key '{0}'. Use format like 2000rpm=200."
-msgstr ""
+msgstr "Khóa đường cong mô-men xoắn không hợp lệ '{0}'. Hãy dùng định dạng như 2000rpm=200."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Invalid torque value '{0}' for '{1}'."
-msgstr ""
+msgstr "Giá trị mô-men xoắn không hợp lệ '{0}' cho '{1}'."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Invalid track package upload request."
-msgstr ""
+msgstr "Yêu cầu tải gói đường đua lên không hợp lệ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Invalid track selection."
-msgstr ""
+msgstr "Lựa chọn đường đua không hợp lệ."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -715,17 +715,17 @@ msgstr "Từ chối tham gia: người_chơi={0}, phòng={1}, đã_đua={2}, đa
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Kawasaki Ninja ZX-10R"
-msgstr ""
+msgstr "Kawasaki Ninja ZX-10R"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
 msgid "Key '{0}' contains a non-float value '{1}'."
-msgstr ""
+msgstr "Khóa '{0}' chứa một giá trị không phải số thực '{1}'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Key '{0}' in section [{1}] must not be empty."
-msgstr ""
+msgstr "Khóa '{0}' trong phần [{1}] không được để trống."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -735,41 +735,41 @@ msgstr "Khóa '{0}' bị thiếu giá trị."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
 #, csharp-format
 msgid "Key '{0}' must be a boolean or 0/1 integer."
-msgstr ""
+msgstr "Khóa '{0}' phải là kiểu boolean hoặc số nguyên 0/1."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' must be a float."
-msgstr ""
+msgstr "Khóa '{0}' phải là số thực."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' must be an integer."
-msgstr ""
+msgstr "Khóa '{0}' phải là số nguyên."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one float value."
-msgstr ""
+msgstr "Khóa '{0}' phải chứa ít nhất một giá trị số thực."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one path."
-msgstr ""
+msgstr "Khóa '{0}' phải chứa ít nhất một đường dẫn."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Key '{0}' must contain at least one transmission type."
-msgstr ""
+msgstr "Khóa '{0}' phải chứa ít nhất một loại hộp số."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Numbers.cs
 #, csharp-format
 msgid "Key '{0}' value {1} is outside allowed range {2} to {3}."
-msgstr ""
+msgstr "Giá trị {1} của khóa '{0}' nằm ngoài phạm vi cho phép từ {2} đến {3}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Lamborghini Aventador"
-msgstr ""
+msgstr "Lamborghini Aventador"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Language"
@@ -777,12 +777,12 @@ msgstr "Ngôn ngữ"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 msgid "Laps must be between 1 and 500."
-msgstr ""
+msgstr "Số vòng đua phải từ 1 đến 500."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Types.cs
 #, csharp-format
 msgid "Line {0}: {1}"
-msgstr ""
+msgstr "Dòng {0}: {1}"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "List connected players and protocol versions."
@@ -791,12 +791,12 @@ msgstr "Liệt kê người chơi đã kết nối và phiên bản giao thức.
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "LiteNetLib network error: endpoint={0}, socketError={1}."
-msgstr ""
+msgstr "Lỗi mạng LiteNetLib: điểm_cuối={0}, lỗi_socket={1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "LiteNetLib peer address changed: old={0}, new={1}."
-msgstr ""
+msgstr "Thay đổi địa chỉ peer LiteNetLib: cũ={0}, mới={1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
@@ -811,7 +811,7 @@ msgstr "Lỗi gửi LiteNetLib: {0}"
 #: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
 msgid "LiteNetLib stop failed: {0}"
-msgstr ""
+msgstr "Dừng LiteNetLib thất bại: {0}"
 
 #: top_speed_net/TopSpeed.Server/Network/Transport/ServerTransport.cs
 #, csharp-format
@@ -837,7 +837,7 @@ msgstr "Kiểm tra cập nhật máy chủ thủ công."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Max players"
-msgstr ""
+msgstr "Số người chơi tối đa"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
@@ -846,16 +846,16 @@ msgstr "Số người chơi tối đa đã cập nhật thành {0}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Maximum call sign length"
-msgstr ""
+msgstr "Độ dài biệt danh tối đa"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Maximum call sign length updated to {0}."
-msgstr ""
+msgstr "Độ dài biệt danh tối đa đã được cập nhật thành {0}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mercedes Sprinter"
-msgstr ""
+msgstr "Mercedes Sprinter"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Message of the day"
@@ -867,7 +867,7 @@ msgstr "Đã cập nhật lời nhắn của ngày."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mini Cooper S"
-msgstr ""
+msgstr "Mini Cooper S"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Bools.cs
@@ -876,41 +876,41 @@ msgstr ""
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/Text.cs
 #, csharp-format
 msgid "Missing required key '{0}' in section [{1}]."
-msgstr ""
+msgstr "Thiếu khóa bắt buộc '{0}' trong phần [{1}]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_atc] for supported type 'atc'."
-msgstr ""
+msgstr "Thiếu phần bắt buộc [transmission_atc] cho loại được hỗ trợ 'atc'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_cvt] for supported type 'cvt'."
-msgstr ""
+msgstr "Thiếu phần bắt buộc [transmission_cvt] cho loại được hỗ trợ 'cvt'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Missing required section [transmission_dct] for supported type 'dct'."
-msgstr ""
+msgstr "Thiếu phần bắt buộc [transmission_dct] cho loại được hỗ trợ 'dct'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Missing required section [{0}]."
-msgstr ""
+msgstr "Thiếu phần bắt buộc [{0}]."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Missing sound asset file: {0}"
-msgstr ""
+msgstr "Thiếu tệp tài nguyên âm thanh: {0}"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Moderation"
-msgstr ""
+msgstr "Quản trị / Kiểm duyệt"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Moderation options:"
-msgstr ""
+msgstr "Tùy chọn quản trị:"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Nissan GT-R Nismo"
-msgstr ""
+msgstr "Nissan GT-R Nismo"
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "No changes were listed for this update."
@@ -949,7 +949,7 @@ msgstr "Người chơi đã vào phòng: phòng={0} \"{1}\", người_chơi={2},
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #, csharp-format
 msgid "Player left room: room={0} \"{1}\", player={2}, notify={3}, roomClosed={4}."
-msgstr ""
+msgstr "Người chơi đã rời phòng: phòng={0} \"{1}\", người_chơi={2}, thông_báo={3}, đóng_phòng={4}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "Player limit must be between 2 and 10."
@@ -984,7 +984,7 @@ msgstr "Người chơi {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Porsche 911 GT3 RS"
-msgstr ""
+msgstr "Porsche 911 GT3 RS"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -1007,12 +1007,12 @@ msgstr "Đàm phán giao thức thất bại."
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, reason={5}"
-msgstr ""
+msgstr "Giao thức bị từ chối: người_chơi={0}, điểm_cuối={1}, phiên_bản_khai_báo={2}, client_hỗ_trợ={3}, máy_chủ_hỗ_trợ={4}, lý_do={5}"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Protocol rejected: player={0}, endpoint={1}, reportedProtocolVersion={2}, clientSupported={3}, serverSupported={4}, status={5}."
-msgstr ""
+msgstr "Giao thức bị từ chối: người_chơi={0}, điểm_cuối={1}, phiên_bản_khai_báo={2}, client_hỗ_trợ={3}, máy_chủ_hỗ_trợ={4}, trạng_thái={5}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
@@ -1027,12 +1027,12 @@ msgstr "Phiên bản giao thức: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "Provide tire_circumference or all of tire_width, tire_aspect, and tire_rim."
-msgstr ""
+msgstr "Cung cấp tire_circumference hoặc đầy đủ tire_width, tire_aspect, và tire_rim."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race completion invariant failed before emit: room={0}, reason={1}."
-msgstr ""
+msgstr "Bất biến hoàn thành cuộc đua thất bại trước khi phát tín hiệu: phòng={0}, lý_do={1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Finish.cs
 #, csharp-format
@@ -1109,15 +1109,15 @@ msgstr "Cuộc đua đã dừng: phòng={0} \"{1}\", kết_quả={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect denied because the remote IP does not match the original session."
-msgstr ""
+msgstr "Kết nối lại bị từ chối vì IP từ xa không khớp với phiên ban đầu."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect denied because the resume token is invalid."
-msgstr ""
+msgstr "Kết nối lại bị từ chối vì mã token khôi phục không hợp lệ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Reconnect window expired."
-msgstr ""
+msgstr "Thời gian chờ kết nối lại đã hết hạn."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
 #, csharp-format
@@ -1132,7 +1132,7 @@ msgstr "Đã xóa bot {0}."
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 #, csharp-format
 msgid "Resume fallback accepted as new session: pendingPlayerId={0}, endpoint={1}, reason={2}."
-msgstr ""
+msgstr "Dự phòng khôi phục được chấp nhận như một phiên mới: ID_người_chơi_chờ={0}, điểm_cuối={1}, lý_do={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Bots.cs
 #, csharp-format
@@ -1142,7 +1142,7 @@ msgstr "Từ chối thêm bot vào phòng: phòng={0}, người_chơi={1}, đã_
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #, csharp-format
 msgid "Room closed: room={0} \"{1}\", reason=last_participant_left."
-msgstr ""
+msgstr "Phòng đua đã đóng: phòng={0} \"{1}\", lý_do=người_chơi_cuối_cùng_đã_rời."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
@@ -1157,7 +1157,7 @@ msgstr "Từ chối đổi luật chơi trong phòng: phòng={0}, người_chơi
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Numbering.cs
 #, csharp-format
 msgid "Room game-start numbers shuffled: room={0}, players={1}, bots={2}."
-msgstr ""
+msgstr "Đã xáo trộn số thứ tự xuất phát: phòng={0}, người_chơi={1}, bot={2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/TrackSettings.cs
 #, csharp-format
@@ -1191,19 +1191,19 @@ msgstr "Phần '{0}' yêu cầu phải có một ID."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 msgid "Section [torque_curve] must define at least two RPM points, or a preset with enough points."
-msgstr ""
+msgstr "Phần [torque_curve] phải định nghĩa ít nhất hai điểm vòng tua (RPM), hoặc một cấu hình cài sẵn có đủ điểm."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_atc] is unused because supported_types does not include 'atc'."
-msgstr ""
+msgstr "Phần [transmission_atc] không được sử dụng vì supported_types không bao gồm 'atc'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_cvt] is unused because supported_types does not include 'cvt'."
-msgstr ""
+msgstr "Phần [transmission_cvt] không được sử dụng vì supported_types không bao gồm 'cvt'."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "Section [transmission_dct] is unused because supported_types does not include 'dct'."
-msgstr ""
+msgstr "Phần [transmission_dct] không được sử dụng vì supported_types không bao gồm 'dct'."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -1244,17 +1244,17 @@ msgstr "Kiến trúc máy chủ"
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server architecture remains {0}."
-msgstr ""
+msgstr "Kiến trúc máy chủ vẫn giữ là {0}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
 msgid "Server architecture set to {0}."
-msgstr ""
+msgstr "Kiến trúc máy chủ đã được đặt thành {0}."
 
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 #, csharp-format
 msgid "Server command failed: kind={0}, sequence={1}, reason={2}."
-msgstr ""
+msgstr "Lệnh máy chủ thất bại: loại={0}, chuỗi={1}, lý_do={2}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server command interface ready. Type \"help\" to get the list of commands."
@@ -1263,7 +1263,7 @@ msgstr "Giao diện dòng lệnh máy chủ đã sẵn sàng. Gõ \"help\" để
 #: top_speed_net/TopSpeed.Server/Program.cs
 #, csharp-format
 msgid "Server configuration: port={0}, discoveryPort={1}, maxPlayers={2}, features.custom_tracks={3}, features.custom_vehicles={4}, features.text_chat={5}, features.voice_chat={6}, moderation.maxNameLength={7}, moderation.blockRepeatedLettersInName={8}, moderation.allowDuplicateNames={9}."
-msgstr ""
+msgstr "Cấu hình máy chủ: cổng={0}, cổng_phát_hiện={1}, số_người_chơi_tối_đa={2}, tính_năng.đường_đua_tùy_chỉnh={3}, tính_năng.xe_tùy_chỉnh={4}, tính_năng.trò_chuyện_văn_bản={5}, tính_năng.trò_chuyện_giọng_nói={6}, quản_trị.độ_dài_tên_tối_đa={7}, quản_trị.chặn_ký_tự_lặp={8}, quản_trị.cho_phép_trùng_tên={9}."
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Server is up-to-date."
@@ -1285,7 +1285,7 @@ msgstr "Tùy chọn máy chủ:"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Server port"
-msgstr ""
+msgstr "Cổng máy chủ"
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format
@@ -1336,12 +1336,12 @@ msgstr "Tắt máy chủ."
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/LocalPackages.cs
 #, csharp-format
 msgid "Skipping server track package '{0}': {1}"
-msgstr ""
+msgstr "Bỏ qua gói đường đua máy chủ '{0}': {1}"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/VehiclePackages/LocalPackages.cs
 #, csharp-format
 msgid "Skipping server vehicle package '{0}': {1}"
-msgstr ""
+msgstr "Bỏ qua gói xe máy chủ '{0}': {1}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -1356,12 +1356,12 @@ msgstr "Âm thanh '{0}' tham chiếu đến start_area '{1}', nhưng không có 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Sound asset path escapes the track folder: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh vượt ra ngoài thư mục đường đua: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Sound asset path escapes the vehicle folder: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh vượt ra ngoài thư mục xe: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -1397,11 +1397,11 @@ msgstr "Đang dừng cuộc đua: phòng={0}, đang_đua={1}, kết_quả={2}."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Text chat"
-msgstr ""
+msgstr "Trò chuyện văn bản"
 
 #: top_speed_net/TopSpeed.Server/Moderation/TextChat.cs
 msgid "Text chat is disabled on this server."
-msgstr ""
+msgstr "Trò chuyện văn bản bị tắt trên máy chủ này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "The current game is already paused."
@@ -1413,7 +1413,7 @@ msgstr "Game hiện tại không bị tạm dừng."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Errors.cs
 msgid "The selected custom track is invalid."
-msgstr ""
+msgstr "Đường đua tùy chỉnh đã chọn không hợp lệ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "The server closed the connection."
@@ -1440,23 +1440,23 @@ msgstr "Không có bot nào để xóa."
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 #, csharp-format
 msgid "These features are disabled on this server: {0}."
-msgstr ""
+msgstr "Các tính năng này bị tắt trên máy chủ này: {0}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "This call sign is already in use on this server."
-msgstr ""
+msgstr "Biệt danh này đã được sử dụng trên máy chủ này."
 
 #: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 msgid "This call sign is already in use on this server. Please choose a different name."
-msgstr ""
+msgstr "Biệt danh này đã được sử dụng trên máy chủ này. Vui lòng chọn tên khác."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 msgid "This game room is currently in progress."
-msgstr "Phòng game này hiện đang diễn ra trận đấu."
+msgstr "Phòng đua này hiện đang diễn ra trận đấu."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "This game room is unavailable because it is full."
-msgstr "Phòng game này không khả dụng vì đã đầy."
+msgstr "Phòng đua này không khả dụng vì đã đầy."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Packets/Core.cs
@@ -1467,7 +1467,7 @@ msgstr "Máy chủ này đã đầy."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Top-level key '{0}' is not supported."
-msgstr ""
+msgstr "Khóa cấp cao nhất '{0}' không được hỗ trợ."
 
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "TopSpeed Server"
@@ -1492,16 +1492,16 @@ msgstr "Cách dùng TopSpeed.Server:"
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Torque curve RPM '{0:F0}' must be between 300 and 25000."
-msgstr ""
+msgstr "Vòng tua RPM đường cong mô-men xoắn '{0:F0}' phải nằm trong khoảng từ 300 đến 25000."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Torque value '{0:F1}' must be between 0 and 5000 Nm."
-msgstr ""
+msgstr "Giá trị mô-men xoắn '{0:F1}' phải nằm trong khoảng từ 0 đến 5000 Nm."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Toyota Camry"
-msgstr ""
+msgstr "Toyota Camry"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
@@ -1513,7 +1513,7 @@ msgstr "Đường đua không được để trống."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Payload.cs
 msgid "Track data is missing."
-msgstr ""
+msgstr "Dữ liệu đường đua bị thiếu."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -1531,27 +1531,27 @@ msgstr "Đường đua phải có ít nhất một phần [segment:<id>]."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package already exists on server."
-msgstr ""
+msgstr "Gói đường đua đã tồn tại trên máy chủ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package hash mismatch."
-msgstr ""
+msgstr "Mã băm (hash) gói đường đua không khớp."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload exceeded declared size."
-msgstr ""
+msgstr "Tải gói đường đua lên vượt quá dung lượng đã khai báo."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload is incomplete."
-msgstr ""
+msgstr "Quá trình tải gói đường đua lên chưa hoàn tất."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package upload ownership changed."
-msgstr ""
+msgstr "Quyền sở hữu tải gói đường đua lên đã thay đổi."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Track package uploaded successfully."
-msgstr ""
+msgstr "Gói đường đua đã tải lên thành công."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Parser.cs
 #, csharp-format
@@ -1560,45 +1560,45 @@ msgstr "Đường dẫn đường đua phải trỏ đến file .tsm bên trong 
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "Đường đua thiết lập 'pit_area = false' nhưng lại định nghĩa các đoạn lối vào/lối ra pit; tính năng vào pit đã bị tắt và các đoạn pit bị bỏ qua."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Track source path is missing, so sound assets cannot be resolved."
-msgstr ""
+msgstr "Thiếu đường dẫn nguồn đường đua, nên không thể xác định tài nguyên âm thanh."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "Transport disconnect observed: player={0}, endpoint={1}, transportReason={2}, socketError={3}, mappedReason={4}, mappedState={5}."
-msgstr ""
+msgstr "Ghi nhận ngắt kết nối vận chuyển: người_chơi={0}, điểm_cuối={1}, lý_do={2}, lỗi_socket={3}, lý_do_ánh_xạ={4}, trạng_thái_ánh_xạ={5}."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Unable to resolve custom track folder path."
-msgstr ""
+msgstr "Không thể phân giải đường dẫn thư mục đường đua tùy chỉnh."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Unable to resolve custom vehicle folder path."
-msgstr ""
+msgstr "Không thể phân giải đường dẫn thư mục xe tùy chỉnh."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Unable to resolve server host."
-msgstr ""
+msgstr "Không thể phân giải tên máy chủ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Recovery.cs
 msgid "Unable to resume the previous multiplayer session."
-msgstr ""
+msgstr "Không thể khôi phục phiên chơi mạng trước đó."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Packages/UploadFlow.cs
 msgid "Unable to store track package on server."
-msgstr ""
+msgstr "Không thể lưu trữ gói đường đua trên máy chủ."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Unknown key '{0}' in section [{1}]."
-msgstr ""
+msgstr "Khóa không rõ '{0}' trong phần [{1}]."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Control.cs
 msgid "Unknown race control request."
-msgstr "Yêu cầu điều khiển trận đua không xác định."
+msgstr "Yêu cầu điều khiển cuộc đua không xác định."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -1618,7 +1618,7 @@ msgstr "Phần không xác định '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
 msgid "Unknown section [{0}]."
-msgstr ""
+msgstr "Phần không rõ [{0}]."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -1633,7 +1633,7 @@ msgstr "Khóa âm thanh không rõ '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Torque/TorqueCurve.cs
 #, csharp-format
 msgid "Unknown torque curve preset '{0}'. Valid values: {1}."
-msgstr ""
+msgstr "Cấu hình cài sẵn đường cong mô-men xoắn không rõ '{0}'. Các giá trị hợp lệ: {1}."
 
 #: top_speed_net/TopSpeed.Server/Updates/Service.cs
 msgid "Unknown update error."
@@ -1647,12 +1647,12 @@ msgstr "Khóa thời tiết không rõ '{0}'."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Unsupported transmission type '{0}' in supported_types. Valid values: atc, cvt, dct, manual."
-msgstr ""
+msgstr "Loại hộp số không được hỗ trợ '{0}' trong supported_types. Các giá trị hợp lệ: atc, cvt, dct, manual."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Types.cs
 #, csharp-format
 msgid "Unsupported transmission type '{0}'. Valid values: atc, cvt, dct, manual."
-msgstr ""
+msgstr "Loại hộp số không được hỗ trợ '{0}'. Các giá trị hợp lệ: atc, cvt, dct, manual."
 
 #: top_speed_net/TopSpeed.Server/Updates/Runner.cs
 msgid "Update check failed."
@@ -1693,25 +1693,25 @@ msgstr "Giá trị phải nằm trong khoảng từ {0} đến {1}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/VehicleDefinition.cs
 msgid "Vehicle"
-msgstr ""
+msgstr "Xe"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 #, csharp-format
 msgid "Vehicle file not found: {0}"
-msgstr ""
+msgstr "Không tìm thấy tệp xe: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 msgid "Vehicle file path is empty."
-msgstr ""
+msgstr "Đường dẫn tệp xe bị trống."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "Voice chat"
-msgstr ""
+msgstr "Trò chuyện giọng nói"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Waiting for custom vehicle downloads to finish: room={0}."
-msgstr ""
+msgstr "Đang chờ tải xuống xe tùy chỉnh hoàn tất: phòng={0}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
@@ -1721,7 +1721,7 @@ msgstr "Đang chờ tải trang bị: phòng={0}, sẵn_sàng={1}, bỏ_qua={2},
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Waiting for track package readiness: room={0}, trackHash={1}, ready={2}/{3}."
-msgstr ""
+msgstr "Đang chờ gói đường đua sẵn sàng: phòng={0}, mã_băm={1}, sẵn_sàng={2}/{3}."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Issues/Issue.cs
 msgid "Warning"
@@ -1747,44 +1747,44 @@ msgstr "Bạn có muốn tải bản cập nhật không? (y/n)"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Yamaha YZF-R1"
-msgstr ""
+msgstr "Yamaha YZF-R1"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Access.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are not in a game room."
-msgstr "Bạn không ở trong phòng game."
+msgstr "Bạn không ở trong phòng đua."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are not in this game room."
-msgstr "Bạn không ở trong phòng game này."
+msgstr "Bạn không ở trong phòng đua này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/Leave.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 msgid "You are now host of this room."
-msgstr ""
+msgstr "Hiện tại bạn là chủ phòng này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
 msgid "You are temporarily disconnected from this game room."
-msgstr ""
+msgstr "Bạn tạm thời bị ngắt kết nối khỏi phòng đua này."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Your call sign is too long for this server."
-msgstr ""
+msgstr "Biệt danh của bạn quá dài so với máy chủ này."
 
 #: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 #, csharp-format
 msgid "Your call sign is too long. The server does not allow names exceeding {0} characters. Please try a different name."
-msgstr ""
+msgstr "Biệt danh của bạn quá dài. Máy chủ không cho phép tên vượt quá {0} ký tự. Vui lòng thử tên khác."
 
 #: top_speed_net/TopSpeed.Server/Moderation/Names.cs
 msgid "Your call sign was rejected because it contains a letter repeated too many times in a row. Please try a different name."
-msgstr ""
+msgstr "Biệt danh của bạn bị từ chối vì chứa ký tự lặp lại quá nhiều lần liên tiếp. Vui lòng thử tên khác."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs
 msgid "Your call sign was rejected by moderation policy."
-msgstr ""
+msgstr "Biệt danh của bạn bị từ chối bởi chính sách quản trị máy chủ."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
@@ -1804,12 +1804,12 @@ msgstr "Phiên bản giao thức của bạn là {0}. Máy chủ này hỗ trợ
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version {0} is newer than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
+msgstr "Phiên bản giao thức client của bạn ({0}) mới hơn phiên bản của máy chủ này ({1}). Máy chủ hỗ trợ các phiên bản {2}. Bạn vẫn có thể tiếp tục, nhưng một số tính năng có thể hoạt động khác biệt hoặc không hoạt động."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 #, csharp-format
 msgid "Your client protocol version {0} is older than this server protocol version {1}. This server supports protocol versions {2}. You can continue, but some features may behave differently or may not work at all."
-msgstr ""
+msgstr "Phiên bản giao thức client của bạn ({0}) cũ hơn phiên bản của máy chủ này ({1}). Máy chủ hỗ trợ các phiên bản {2}. Bạn vẫn có thể tiếp tục, nhưng một số tính năng có thể hoạt động khác biệt hoặc không hoạt động."
 
 #: top_speed_net/TopSpeed.Server/Tracks/TrackLoader.cs
 #, csharp-format
@@ -1833,27 +1833,27 @@ msgstr "all"
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Admin.cs
 #, csharp-format
 msgid "authoritative players={0}, rooms={1}, stale_epoch_drops={2}, replay_gaps={3}, epoch_rejects={4}, heartbeat_suspicions={5}, start_blocked_insufficient_active={6}, start_blocked_missing_ready={7}, start_blocked_track_not_ready={8}, transport_network_errors={9}, transport_latency_last_ms={10}, transport_latency_avg_ms={11}, transport_latency_max_ms={12}, transport_peer_address_changes={13}"
-msgstr ""
+msgstr "người_chơi_xác_thực={0}, phòng={1}, loại_bỏ_kỳ_cũ={2}, khoảng_trống_phát_lại={3}, từ_chối_kỳ={4}, nghi_ngờ_heartbeat={5}, chặn_bắt_đầu_do_thiếu_người_hoạt_động={6}, chặn_bắt_đầu_do_thiếu_sẵn_sàng={7}, chặn_bắt_đầu_do_đường_đua_chưa_sẵn_sàng={8}, lỗi_mạng_vận_chuyển={9}, độ_trễ_mới_nhất_ms={10}, độ_trễ_trung_bình_ms={11}, độ_trễ_tối_đa_ms={12}, thay_đổi_địa_chỉ_peer={13}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 msgid "auto_downshift_rpm must be 0 or between idle_rpm and rev_limiter."
-msgstr ""
+msgstr "auto_downshift_rpm phải bằng 0 hoặc nằm trong khoảng từ idle_rpm đến rev_limiter."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "auto_shift_rpm must be 0 or between idle_rpm and rev_limiter."
-msgstr ""
+msgstr "auto_shift_rpm phải bằng 0 hoặc nằm trong khoảng từ idle_rpm đến rev_limiter."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 msgid "auto_upshift_rpm must be 0 or between idle_rpm and rev_limiter."
-msgstr ""
+msgstr "auto_upshift_rpm phải bằng 0 hoặc nằm trong khoảng từ idle_rpm đến rev_limiter."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "custom tracks"
-msgstr ""
+msgstr "đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/Rules.cs
 msgid "custom vehicles"
-msgstr ""
+msgstr "xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "debug"
@@ -1870,7 +1870,7 @@ msgstr "end_area không được để trống."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "engine_displacement_l must be between {0} and {1} liters."
-msgstr ""
+msgstr "engine_displacement_l phải nằm trong khoảng từ {0} đến {1} lít."
 
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "error"
@@ -1879,21 +1879,21 @@ msgstr "error"
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
-msgstr ""
+msgstr "nhiên liệu phải nằm trong khoảng từ {0} đến {1} lít."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 #, csharp-format
 msgid "gear_ratios count ({0}) must match number_of_gears ({1})."
-msgstr ""
+msgstr "số lượng gear_ratios ({0}) phải khớp với number_of_gears ({1})."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 msgid "gear_ratios must be non-increasing from gear 1 to last gear."
-msgstr ""
+msgstr "gear_ratios phải giảm dần hoặc giữ nguyên từ số 1 đến số cuối cùng."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 #, csharp-format
 msgid "gear_ratios[{0}] is outside allowed range 0.20 to 8.00."
-msgstr ""
+msgstr "gear_ratios[{0}] nằm ngoài phạm vi cho phép từ 0.20 đến 8.00."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Bots/Setup.cs
 msgid "hard"
@@ -1901,7 +1901,7 @@ msgstr "khó"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
-msgstr ""
+msgstr "high_speed_steer_full_kph phải lớn hơn high_speed_steer_start_kph."
 
 #: top_speed_net/TopSpeed.Server/Program.Args.cs
 msgid "info"
@@ -1909,19 +1909,19 @@ msgstr "info"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_atc]."
-msgstr ""
+msgstr "launch_coupling_max phải lớn hơn hoặc bằng launch_coupling_min trong [transmission_atc]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_cvt]."
-msgstr ""
+msgstr "launch_coupling_max phải lớn hơn hoặc bằng launch_coupling_min trong [transmission_cvt]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "launch_coupling_max must be greater than or equal to launch_coupling_min in [transmission_dct]."
-msgstr ""
+msgstr "launch_coupling_max phải lớn hơn hoặc bằng launch_coupling_min trong [transmission_dct]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "launch_rpm must not exceed rev_limiter."
-msgstr ""
+msgstr "launch_rpm không được vượt quá rev_limiter."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 msgid "main room"
@@ -1929,11 +1929,11 @@ msgstr "phòng chính"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "max_rpm must be greater than or equal to idle_rpm."
-msgstr ""
+msgstr "max_rpm phải lớn hơn hoặc bằng idle_rpm."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 msgid "min_coupled_rise_full_rpm_per_s must be greater than or equal to min_coupled_rise_idle_rpm_per_s."
-msgstr ""
+msgstr "min_coupled_rise_full_rpm_per_s phải lớn hơn hoặc bằng min_coupled_rise_idle_rpm_per_s."
 
 #: top_speed_net/TopSpeed.Server/Network/Runtime/Lifecycle.cs
 msgid "multiple"
@@ -1959,20 +1959,20 @@ msgstr "bật"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
-msgstr ""
+msgstr "peak_torque_rpm phải nằm trong khoảng từ idle_rpm đến rev_limiter."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 #, csharp-format
 msgid "pitch_curve_exponent must be between {0} and {1}."
-msgstr ""
+msgstr "pitch_curve_exponent phải nằm trong khoảng từ {0} đến {1}."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
-msgstr ""
+msgstr "ratio_max phải lớn hơn hoặc bằng ratio_min trong [transmission_cvt]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "rev_limiter must be between idle_rpm and max_rpm."
-msgstr ""
+msgstr "rev_limiter phải nằm trong khoảng từ idle_rpm đến max_rpm."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Online.cs
 #, csharp-format
@@ -1981,11 +1981,11 @@ msgstr "phòng {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "shift_freq must be between idle_freq and top_freq."
-msgstr ""
+msgstr "shift_freq phải nằm trong khoảng từ idle_freq đến top_freq."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Transmission.cs
 msgid "shift_on_demand is ignored because supported_types does not include an automatic transmission type."
-msgstr ""
+msgstr "shift_on_demand bị bỏ qua vì supported_types không bao gồm loại hộp số tự động."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 msgid "shutting down..."
@@ -1997,32 +1997,32 @@ msgstr "start_area không được để trống."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Transmission/Modes.cs
 msgid "target_rpm_high must be greater than or equal to target_rpm_low in [transmission_cvt]."
-msgstr ""
+msgstr "target_rpm_high phải lớn hơn hoặc bằng target_rpm_low trong [transmission_cvt]."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_aspect must be between 5 and 150."
-msgstr ""
+msgstr "tire_aspect phải nằm trong khoảng từ 5 đến 150."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_circumference must be between 0.2 and 5.0 meters."
-msgstr ""
+msgstr "tire_circumference phải nằm trong khoảng từ 0.2 đến 5.0 mét."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_rim must be between 4 and 30 inches."
-msgstr ""
+msgstr "tire_rim phải nằm trong khoảng từ 4 đến 30 inch."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_width must be between 20 and 450 mm."
-msgstr ""
+msgstr "tire_width phải nằm trong khoảng từ 20 đến 450 mm."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "top_freq must be greater than or equal to idle_freq."
-msgstr ""
+msgstr "top_freq phải lớn hơn hoặc bằng idle_freq."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "top_speed_gear must be within 1..{0}."
-msgstr ""
+msgstr "top_speed_gear phải nằm trong khoảng 1..{0}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Handshake/Protocol.cs
 msgid "unknown"
@@ -2055,12 +2055,12 @@ msgstr "{0} B"
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} canceled the current game."
-msgstr "{0} đã hủy trận đua hiện tại."
+msgstr "{0} đã hủy cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Membership/CreateJoin.cs
 #, csharp-format
 msgid "{0} created game room {1}."
-msgstr "{0} đã tạo phòng game {1}."
+msgstr "{0} đã tạo phòng đua {1}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Players/Announcements.cs
 #, csharp-format
@@ -2085,7 +2085,7 @@ msgstr "{0} đã mất kết nối với máy chủ."
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Host/GameStart.cs
 #, csharp-format
 msgid "{0} is about to start the game. Choose your vehicle and transmission mode."
-msgstr "{0} chuẩn bị bắt đầu trận đua. Hãy chọn xe và loại hộp số của bạn."
+msgstr "{0} chuẩn bị bắt đầu cuộc đua. Hãy chọn xe và loại hộp số của bạn."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Ready.cs
@@ -2101,22 +2101,22 @@ msgstr "{0} đã thoát phần chuẩn bị đua."
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Lifecycle.cs
 #, csharp-format
 msgid "{0} lost connection. Waiting for reconnect."
-msgstr ""
+msgstr "{0} đã mất kết nối. Đang chờ kết nối lại."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "{0} must be a float between 0 and 2 seconds."
-msgstr ""
+msgstr "{0} phải là số thực từ 0 đến 2 giây."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Policy/PolicyValidation.cs
 #, csharp-format
 msgid "{0} must be between {1} and {2}."
-msgstr ""
+msgstr "{0} phải nằm trong khoảng từ {1} đến {2}."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} paused the current game."
-msgstr "{0} đã tạm dừng trận đua hiện tại."
+msgstr "{0} đã tạm dừng cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Players.cs
 #, csharp-format
@@ -2136,7 +2136,7 @@ msgstr "{0} phiên đua không khớp: phòng={1}, kết_nối={2}/{3}, phiên_�
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} resumed the current game."
-msgstr "{0} đã tiếp tục trận đua hiện tại."
+msgstr "{0} đã tiếp tục cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Room/Messages.cs
 #, csharp-format
@@ -2146,7 +2146,7 @@ msgstr "{0} nói: {1}"
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Control.cs
 #, csharp-format
 msgid "{0} stopped the current game."
-msgstr "{0} đã dừng trận đua hiện tại."
+msgstr "{0} đã dừng cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed.Server/Commands/Host.cs
 #, csharp-format

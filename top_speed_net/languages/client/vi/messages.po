@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-13 07:39\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "\"{0}\", because {1}"
-msgstr ""
+msgstr "\"{0}\", vì {1}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "2 degrees"
@@ -57,7 +57,7 @@ msgstr "Một máy chủ đã lưu bị bỏ qua vì địa chỉ máy chủ b�
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "A track upload is already in progress."
-msgstr ""
+msgstr "Quá trình tải lên đường đua đang được thực hiện."
 
 #: top_speed_net/TopSpeed/Game/Menu/About.cs
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
@@ -66,7 +66,7 @@ msgstr "Giới thiệu"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Accessibility option for clearer left-right cues with HRTF. It attenuates the opposite ear for your own car sounds only."
-msgstr ""
+msgstr "Tùy chọn hỗ trợ tiếp cận giúp nhận biết hướng trái-phải rõ hơn với HRTF. Tùy chọn này suy giảm âm thanh tai đối diện chỉ dành riêng cho tiếng xe của bạn."
 
 #: top_speed_net/TopSpeed/Input/Drive/Map/Actions.cs
 msgid "Action"
@@ -74,7 +74,7 @@ msgstr "Hành động"
 
 #: top_speed_net/TopSpeed/Menu/Items/MenuItem.cs
 msgid "Actions available."
-msgstr ""
+msgstr "Có các hành động khả dụng."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Add"
@@ -94,19 +94,19 @@ msgstr "Điều chỉnh mức cân bằng âm lượng theo danh mục cho tiế
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Adjust the speech rate for the current backend."
-msgstr ""
+msgstr "Điều chỉnh tốc độ đọc cho trình đọc hiện tại."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "All menu shortcuts were reset to defaults."
-msgstr ""
+msgstr "Tất cả phím tắt menu đã được khôi phục về mặc định."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "All players are ready. Starting game."
-msgstr "Tất cả người chơi đã sẵn sàng. Trận đua bắt đầu."
+msgstr "Tất cả người chơi đã sẵn sàng. Cuộc đua bắt đầu."
 
 #: top_speed_net/TopSpeed/Input/ModifierKeys.cs
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
@@ -120,7 +120,7 @@ msgstr "Mỹ"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Amplifies the captured microphone signal before it is sent to other players. 100 is unity gain. Raise this if other players report you sound too quiet; lower it if your voice clips."
-msgstr ""
+msgstr "Khuếch đại tín hiệu micro thu được trước khi gửi đến người chơi khác. 100 là mức khuếch đại gốc. Hãy tăng giá trị này nếu người chơi khác báo tiếng của bạn quá nhỏ; giảm xuống nếu giọng bạn bị xé tiếng."
 
 #: top_speed_net/TopSpeed/Program.cs
 #, csharp-format
@@ -133,15 +133,15 @@ msgstr "Bản cập nhật đang được tải xuống."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Android package installer is not available."
-msgstr ""
+msgstr "Trình cài đặt gói Android không khả dụng."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Android updates require an APK package."
-msgstr ""
+msgstr "Cập nhật Android yêu cầu gói APK."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Announce frequency"
-msgstr ""
+msgstr "Tần suất thông báo"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Apostrophe"
@@ -218,7 +218,7 @@ msgstr "Tự động"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Auto detects wheel pedal direction from resting position."
-msgstr ""
+msgstr "Tự động phát hiện hướng bàn đạp vô-lăng từ vị trí nghỉ."
 
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
@@ -252,7 +252,7 @@ msgstr "Tự động đưa tiêu điểm vào mục đầu tiên của menu"
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Available game rooms"
-msgstr "Các phòng game hiện có"
+msgstr "Các phòng đua hiện có"
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Available servers"
@@ -280,7 +280,7 @@ msgstr "B"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "BMW 3 Series"
-msgstr ""
+msgstr "BMW 3 Series"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Backslash"
@@ -317,7 +317,7 @@ msgstr "Kỷ lục thời gian tính đến hiện tại: {0}."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Apply/Input.cs
 msgid "Binding intent is missing and was ignored."
-msgstr ""
+msgstr "Thiếu mục đích phím gán và đã bị bỏ qua."
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
@@ -326,15 +326,15 @@ msgstr "Cả hai"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Both Alt keys"
-msgstr ""
+msgstr "Cả hai phím Alt"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Both Control keys"
-msgstr ""
+msgstr "Cả hai phím Control"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Both Shift keys"
-msgstr ""
+msgstr "Cả hai phím Shift"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Bots can only be managed by the host in race-with-bots rooms."
@@ -355,7 +355,7 @@ msgstr "Brazil"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Brief status reports"
-msgstr ""
+msgstr "Báo cáo trạng thái ngắn gọn"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Brilliant result! You set a new best time."
@@ -447,7 +447,7 @@ msgstr "Hủy và bỏ qua các thay đổi"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Cancel current game?"
-msgstr "Hủy trận đua hiện tại?"
+msgstr "Hủy cuộc đua hiện tại?"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Cancel room creation"
@@ -463,11 +463,11 @@ msgstr "Thay đổi tùy chọn game"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Change log file"
-msgstr ""
+msgstr "Tệp nhật ký thay đổi"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Change the track used during the race."
-msgstr ""
+msgstr "Thay đổi đường đua sử dụng trong cuộc đua."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Chat message cannot be empty."
@@ -504,27 +504,27 @@ msgstr "Chọn tay cầm"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
-msgstr ""
+msgstr "Chọn mức độ thông báo tự động thông tin cuộc đua, như số vòng đua và vị trí người chơi."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
 msgid "Choose how to proceed with the current game."
-msgstr "Chọn cách tiếp tục với trận đua hiện tại."
+msgstr "Chọn cách tiếp tục với cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Choose how to start this race."
-msgstr ""
+msgstr "Chọn cách bắt đầu cuộc đua này."
 
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 msgid "Choose modifier key"
-msgstr ""
+msgstr "Chọn phím bổ trợ"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Choose the difficulty level for single races."
-msgstr ""
+msgstr "Chọn mức độ khó cho cuộc đua đơn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Choose the language used for menu and spoken interface text."
-msgstr ""
+msgstr "Chọn ngôn ngữ sử dụng cho menu và giao diện thoại."
 
 #: top_speed_net/TopSpeed/Game/Settings/Language.cs
 msgid "Choose the language."
@@ -532,15 +532,15 @@ msgstr "Chọn ngôn ngữ."
 
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 msgid "Choose the microphone used for communicator voice chat."
-msgstr ""
+msgstr "Chọn micro sử dụng cho trò chuyện giọng nói communicator."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Choose the number of laps for this room."
-msgstr ""
+msgstr "Chọn số vòng đua cho phòng này."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Choose the player capacity from 2 to 10."
-msgstr ""
+msgstr "Chọn sức chứa người chơi từ 2 đến 10."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
@@ -549,19 +549,19 @@ msgstr "Chọn loại đường đua"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Choose what information the copilot reports during a race."
-msgstr ""
+msgstr "Chọn thông tin phụ lái (copilot) sẽ báo cáo trong cuộc đua."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Choose whether spoken messages use speech only, braille only, or speech with braille."
-msgstr ""
+msgstr "Chọn thông báo đọc bằng giọng nói, chữ Braille, hay cả giọng nói và chữ Braille."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Choose whether this room is a race with bots, a multiplayer race without bots, or a one-on-one game."
-msgstr ""
+msgstr "Chọn phòng đua có bot, đua nhiều người chơi không có bot, hay trận đấu đối đầu 1v1."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Choose which speech backend to prefer. Automatic lets Prism pick the best available backend."
-msgstr ""
+msgstr "Chọn trình đọc màn hình ưu tiên. Tự động để Prism tự chọn trình đọc tốt nhất hiện có."
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Choose your transmission mode"
@@ -592,19 +592,19 @@ msgstr "Dấu hai chấm"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Communicator"
-msgstr ""
+msgstr "Communicator"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 msgid "Communicator off"
-msgstr ""
+msgstr "Tắt Communicator"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 msgid "Communicator on"
-msgstr ""
+msgstr "Bật Communicator"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Communicator volume"
-msgstr ""
+msgstr "Âm lượng Communicator"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 msgid "Compatibility warning"
@@ -613,7 +613,7 @@ msgstr "Cảnh báo tương thích"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Completing lap {0}"
-msgstr ""
+msgstr "Đang hoàn thành vòng {0}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure general gameplay and interface behavior, including units, usage hints, menu behavior, and update checking."
@@ -625,11 +625,11 @@ msgstr "Cấu hình thiết bị đầu vào, phản hồi lực, hành vi bàn 
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure spatial audio behavior, including HRTF processing, stereo widening, automatic device format detection, and voice input device selection."
-msgstr ""
+msgstr "Cấu hình âm thanh không gian, bao gồm xử lý HRTF, mở rộng stereo, tự động phát hiện định dạng thiết bị và chọn thiết bị đầu vào giọng nói."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
-msgstr "Cấu hình giọng đọc, bao gồm việc chọn bộ đọc màn hình và hiệu chỉnh tốc độ đọc."
+msgstr "Cấu hình giọng đọc, bao gồm việc chọn trình đọc màn hình và hiệu chỉnh tốc độ đọc."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Confirm game options"
@@ -650,7 +650,7 @@ msgstr "Đã kết nối."
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 msgid "Connection attempt canceled."
-msgstr ""
+msgstr "Đã hủy nỗ lực kết nối."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
 msgid "Connection attempt failed."
@@ -659,7 +659,7 @@ msgstr "Nỗ lực kết nối thất bại."
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
 #, csharp-format
 msgid "Connection attempt failed: {0}"
-msgstr ""
+msgstr "Nỗ lực kết nối thất bại: {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 msgid "Connection canceled."
@@ -667,15 +667,15 @@ msgstr "Đã hủy kết nối."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection changed. Reconnecting."
-msgstr ""
+msgstr "Kết nối đã thay đổi. Đang kết nối lại."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection closed by server."
-msgstr ""
+msgstr "Kết nối bị đóng bởi máy chủ."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection closed due to protocol error."
-msgstr ""
+msgstr "Kết nối bị đóng do lỗi giao thức."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 msgid "Connection failed"
@@ -697,11 +697,11 @@ msgstr "Mất kết nối trước khi khởi tạo vòng đua."
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection lost."
-msgstr ""
+msgstr "Mất kết nối."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
 msgid "Connection lost. Reconnecting."
-msgstr ""
+msgstr "Mất kết nối. Đang kết nối lại."
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 msgid "Connection refused by server."
@@ -713,11 +713,11 @@ msgstr "Từ chối kết nối do không khớp giao thức."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection rejected by server."
-msgstr ""
+msgstr "Kết nối bị máy chủ từ chối."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Connection timed out."
-msgstr ""
+msgstr "Kết nối quá thời gian."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Consider that your one free mistake for the session."
@@ -733,7 +733,7 @@ msgstr "Tiếp tục kết nối"
 
 #: top_speed_net/TopSpeed/Input/ModifierKeys.cs
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 #: top_speed_net/TopSpeed/Drive/Panels/ControlPanel.cs
 msgid "Control panel"
@@ -775,7 +775,7 @@ msgstr "Điều khiển"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Controls communicator activation cues and remote voice chat playback. Affects how loud other players sound when they speak through the communicator."
-msgstr ""
+msgstr "Điều chỉnh tín hiệu kích hoạt communicator và âm thanh trò chuyện từ xa. Ảnh hưởng đến âm lượng người chơi khác khi họ nói qua communicator."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Controls engine-related sounds for bots and other players, including engine start and stop."
@@ -823,11 +823,11 @@ msgstr "Đã chép vào khay nhớ tạm."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/History.cs
 msgid "Copied."
-msgstr ""
+msgstr "Đã sao chép."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Copies the currently focused multiplayer history item to the clipboard."
-msgstr ""
+msgstr "Sao chép mục lịch sử nhiều người chơi đang được chọn vào bộ nhớ tạm."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Copilot"
@@ -839,7 +839,7 @@ msgstr "Chép"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Copy focused history item"
-msgstr ""
+msgstr "Sao chép mục lịch sử đang chọn"
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
@@ -849,12 +849,12 @@ msgstr "Không thể đọc file từ thư mục đã chọn."
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save the vehicle {0}."
-msgstr ""
+msgstr "Không thể lưu xe {0}."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save these vehicles: {0}."
-msgstr ""
+msgstr "Không thể lưu các xe này: {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Create a new game"
@@ -862,11 +862,11 @@ msgstr "Tạo game mới"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Create a new game room"
-msgstr "Tạo phòng game mới"
+msgstr "Tạo phòng đua mới"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Create this game room"
-msgstr "Tạo phòng game này"
+msgstr "Tạo phòng đua này"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Current gear"
@@ -890,7 +890,7 @@ msgstr "Thời gian đua hiện tại"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcement method"
-msgstr ""
+msgstr "Phương thức thông báo khúc cua"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Curve announcements"
@@ -917,19 +917,19 @@ msgstr "Lỗi đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadBuild.cs
 msgid "Custom track file path is empty."
-msgstr ""
+msgstr "Đường dẫn tệp đường đua tùy chỉnh bị trống."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 msgid "Custom track issues"
-msgstr ""
+msgstr "Vấn đề về đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom tracks"
-msgstr ""
+msgstr "Đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Custom tracks are disabled for this room."
-msgstr ""
+msgstr "Đường đua tùy chỉnh bị tắt trong phòng này."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
@@ -948,19 +948,19 @@ msgstr "File xe tùy chỉnh phải dùng đuôi .tsv."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Custom vehicle issues"
-msgstr ""
+msgstr "Vấn đề về xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom vehicles"
-msgstr ""
+msgstr "Xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the next global volume category."
-msgstr ""
+msgstr "Chuyển sang danh mục âm lượng tổng thể tiếp theo."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Cycles to the previous global volume category."
-msgstr ""
+msgstr "Chuyển về danh mục âm lượng tổng thể trước đó."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "D-pad down"
@@ -984,27 +984,27 @@ msgstr "Số thập phân"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Decrease media volume"
-msgstr ""
+msgstr "Giảm âm lượng phương tiện"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Decrease volume by 1"
-msgstr ""
+msgstr "Giảm âm lượng 1 đơn vị"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Decrease volume by 10"
-msgstr ""
+msgstr "Giảm âm lượng 10 đơn vị"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Decreases media volume."
-msgstr ""
+msgstr "Giảm âm lượng phương tiện."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Decreases the selected global volume category by one step."
-msgstr ""
+msgstr "Giảm danh mục âm lượng đã chọn đi một nấc."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Decreases the selected global volume category by ten steps."
-msgstr ""
+msgstr "Giảm danh mục âm lượng đã chọn đi mười nấc."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Default (1 degree)"
@@ -1072,7 +1072,7 @@ msgstr "Hộp thoại"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "Disable for this race"
-msgstr ""
+msgstr "Tắt trong cuộc đua này"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
 msgid "Discard changes"
@@ -1094,7 +1094,7 @@ msgstr "Đã ngắt kết nối khỏi máy chủ."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Disconnected."
-msgstr ""
+msgstr "Đã ngắt kết nối."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Divide"
@@ -1102,7 +1102,7 @@ msgstr "Chia"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Do you want to quit race preparation and stay in this game room?"
-msgstr "Bạn có muốn thoát phần chuẩn bị đua và ở lại phòng game này không?"
+msgstr "Bạn có muốn thoát phần chuẩn bị đua và ở lại phòng đua này không?"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Down"
@@ -1138,7 +1138,7 @@ msgstr "Dung lượng đã tải: {0}"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
 msgid "Downloading track..."
-msgstr ""
+msgstr "Đang tải đường đua..."
 
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
 msgid "Downloading update..."
@@ -1146,7 +1146,7 @@ msgstr "Đang tải bản cập nhật..."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ducati Panigale V4"
-msgstr ""
+msgstr "Ducati Panigale V4"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/Sections.cs
 #, csharp-format
@@ -1184,7 +1184,7 @@ msgstr "Sửa"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Edit the proxy URL used for update package downloads."
-msgstr ""
+msgstr "Chỉnh sửa URL proxy sử dụng để tải gói cập nhật."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Enable HRTF audio"
@@ -1192,12 +1192,12 @@ msgstr "Bật âm thanh HRTF"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable digit navigation globally"
-msgstr ""
+msgstr "Bật điều hướng bằng phím số trên toàn hệ thống"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Enable fuel consumption"
-msgstr ""
+msgstr "Bật tiêu thụ nhiên liệu"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable menu navigation panning"
@@ -1210,11 +1210,11 @@ msgstr "Bật cuộn vòng menu"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Enable tire wear"
-msgstr ""
+msgstr "Bật mòn lốp"
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Enable update download proxy first."
-msgstr ""
+msgstr "Hãy bật proxy tải bản cập nhật trước."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Enable usage hints"
@@ -1222,7 +1222,7 @@ msgstr "Bật mẹo sử dụng"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Enables force feedback or vibration if your controller supports it."
-msgstr ""
+msgstr "Bật phản hồi lực hoặc rung nếu tay cầm của bạn hỗ trợ."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "End"
@@ -1248,7 +1248,7 @@ msgstr "Enter"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Enter a room name. Leave it empty to use an automatic name."
-msgstr ""
+msgstr "Nhập tên phòng. Để trống để sử dụng tên tự động."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Enter a room name. Leave this field empty to use an automatic room name."
@@ -1256,7 +1256,7 @@ msgstr "Nhập tên phòng. Để trống trường này để dùng tên phòng
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Enter proxy URL"
-msgstr ""
+msgstr "Nhập URL proxy"
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Enter the IP address or domain manually"
@@ -1338,7 +1338,7 @@ msgstr "Không thể khởi tạo client mạng."
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 #, csharp-format
 msgid "Failed to load communicator media. {0}"
-msgstr ""
+msgstr "Không thể tải phương tiện communicator. {0}"
 
 #: top_speed_net/TopSpeed/Vehicles/loader/Custom.cs
 #, csharp-format
@@ -1394,7 +1394,7 @@ msgstr "Gửi {0} thất bại. Vui lòng kiểm tra mạng của bạn."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 msgid "Failed to stream communicator media to the server."
-msgstr ""
+msgstr "Không thể phát trực tuyến phương tiện communicator lên máy chủ."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Fast (0.50 seconds)"
@@ -1411,11 +1411,11 @@ msgstr "Vòng đua nhanh nhất được ghi nhận trên đường đua này: {
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "Fetching latest changes."
-msgstr ""
+msgstr "Đang lấy các thay đổi mới nhất."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Fiat 500"
-msgstr ""
+msgstr "Fiat 500"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
@@ -1440,11 +1440,11 @@ msgstr "Phần Lan"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "First history item"
-msgstr ""
+msgstr "Mục lịch sử đầu tiên"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "First position achieved. Great race."
-msgstr "Giành được vị trí đầu tiên. Trận đua tuyệt vời."
+msgstr "Giành được vị trí đầu tiên. Cuộc đua tuyệt vời."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Force feedback"
@@ -1452,7 +1452,7 @@ msgstr "Phản hồi lực"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Ford Mustang 1969"
-msgstr ""
+msgstr "Ford Mustang 1969"
 
 #: top_speed_net/TopSpeed/Core/TrackList.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
@@ -1466,12 +1466,12 @@ msgstr "Bờ biển nước Pháp"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
-msgstr ""
+msgstr "Tần số phải nằm trong khoảng từ 0.0 đến 1000.0 theo nấc 0.1."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format
 msgid "Frequency set to {0} MHz."
-msgstr ""
+msgstr "Tần số được đặt thành {0} MHz."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
@@ -1480,7 +1480,7 @@ msgstr "GB"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Game guide"
-msgstr ""
+msgstr "Hướng dẫn chơi game"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Game rules"
@@ -1488,7 +1488,7 @@ msgstr "Luật chơi"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Game rules changed."
-msgstr ""
+msgstr "Luật chơi đã thay đổi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Game type"
@@ -1510,7 +1510,7 @@ msgstr "Số {0}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "General"
-msgstr ""
+msgstr "Cài đặt chung"
 
 #: top_speed_net/TopSpeed/Core/TrackList.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
@@ -1519,12 +1519,12 @@ msgstr "Đức"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Ghost mode"
-msgstr "Chế độ bóng ma"
+msgstr "Chế độ xe ma (ghost)"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."
-msgstr ""
+msgstr "Chế độ xe ma (ghost) là {0}. Đường đua tùy chỉnh là {1}. Xe tùy chỉnh là {2}. Tiêu thụ nhiên liệu là {3}. Mòn lốp là {4}. Đường đua đã chọn là {5}. Cuộc đua sẽ diễn ra trong {6}. Phòng này giới hạn {7}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Shortcuts/Catalog.cs
@@ -1542,11 +1542,11 @@ msgstr "Dấu huyền"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Help"
-msgstr ""
+msgstr "Trợ giúp"
 
 #: top_speed_net/TopSpeed/Game/Menu/Help.cs
 msgid "Help file not found"
-msgstr ""
+msgstr "Không tìm thấy tệp trợ giúp"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Here are the final standings for everyone."
@@ -1562,7 +1562,7 @@ msgstr "Lịch sử"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Hold to transmit voice when voice activation is off."
-msgstr ""
+msgstr "Giữ để nói khi tính năng kích hoạt bằng giọng nói đang tắt."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Home"
@@ -1570,7 +1570,7 @@ msgstr "Home"
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Host is unreachable."
-msgstr ""
+msgstr "Không thể kết nối tới host."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "How many laps should the race be? This applies to single race, time trial, and multiplayer modes."
@@ -1582,11 +1582,11 @@ msgstr "Độ ẩm phải nằm trong khoảng từ 0 đến 1."
 
 #: top_speed_net/TopSpeed/Game/Core/State.cs
 msgid "I really have nothing interesting to put here not even the secret to life except this really long run on sentence that is probably the most boring thing you have ever read but that will help me get an idea of how fast your screen reader is speaking."
-msgstr "Thực ra tôi không có gì thú vị để ghi ở đây cả, kể cả bí quyết cuộc sống, ngoại trừ cái câu dài thòng nhàm chán này nhưng nó sẽ giúp tôi biết bộ đọc màn hình của bạn đọc nhanh cỡ nào."
+msgstr "Thực ra tôi không có gì thú vị để ghi ở đây cả, kể cả bí quyết cuộc sống, ngoại trừ cái câu dài thòng nhàm chán này nhưng nó sẽ giúp tôi biết trình đọc màn hình của bạn đọc nhanh cỡ nào."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "If you leave race preparation now, the current game will be canceled for everyone in this room."
-msgstr "Nếu bạn thoát khỏi phần chuẩn bị đua lúc này, trận đua hiện tại sẽ bị hủy đối với mọi người trong phòng."
+msgstr "Nếu bạn thoát khỏi phần chuẩn bị đua lúc này, cuộc đua hiện tại sẽ bị hủy đối với mọi người trong phòng."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Include custom tracks in randomization"
@@ -1598,27 +1598,27 @@ msgstr "Bao gồm cả xe tùy chỉnh vào lựa chọn ngẫu nhiên"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Increase media volume"
-msgstr ""
+msgstr "Tăng âm lượng phương tiện"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Increase volume by 1"
-msgstr ""
+msgstr "Tăng âm lượng 1 đơn vị"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Increase volume by 10"
-msgstr ""
+msgstr "Tăng âm lượng 10 đơn vị"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Increases media volume."
-msgstr ""
+msgstr "Tăng âm lượng phương tiện."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Increases the selected global volume category by one step."
-msgstr ""
+msgstr "Tăng danh mục âm lượng đã chọn lên một nấc."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Increases the selected global volume category by ten steps."
-msgstr ""
+msgstr "Tăng danh mục âm lượng đã chọn lên mười nấc."
 
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 msgid "Info:"
@@ -1630,7 +1630,7 @@ msgstr "Insert"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Interrupt screen reader speech"
-msgstr "Ngắt lời bộ đọc màn hình"
+msgstr "Ngắt lời trình đọc màn hình"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -1665,7 +1665,7 @@ msgstr "Giá trị số không hợp lệ '{0}' cho khóa '{1}'."
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
-msgstr ""
+msgstr "Giá trị pit không hợp lệ '{0}'. Sử dụng pit_entry hoặc pit_exit."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
@@ -1716,7 +1716,7 @@ msgstr "Độ rộng phân đoạn không hợp lệ '{0}'."
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Invalid sound asset path: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh không hợp lệ: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -1774,7 +1774,7 @@ msgstr "Ý"
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Join a game on the local network"
-msgstr "Tham gia trận đua trên mạng LAN"
+msgstr "Tham gia cuộc đua trên mạng LAN"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
@@ -1792,24 +1792,24 @@ msgstr "KB"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Kawasaki Ninja ZX-10R"
-msgstr ""
+msgstr "Kawasaki Ninja ZX-10R"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep both"
-msgstr ""
+msgstr "Giữ cả hai"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep custom vehicle?"
-msgstr ""
+msgstr "Giữ lại xe tùy chỉnh?"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Keep mine"
-msgstr ""
+msgstr "Giữ xe của tôi"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Keep the downloaded vehicle \"{0}\" so it does not need downloading again next time?"
-msgstr ""
+msgstr "Giữ xe đã tải về \"{0}\" để không cần phải tải lại vào lần sau?"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Readers/FloatCsv.cs
 #, csharp-format
@@ -1875,7 +1875,7 @@ msgstr "Phím gán bàn phím đã được khôi phục về mặc định."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Lamborghini Aventador"
-msgstr ""
+msgstr "Lamborghini Aventador"
 
 #: top_speed_net/TopSpeed/Game/Settings/Language.cs
 #, csharp-format
@@ -1914,42 +1914,42 @@ msgstr "Vòng {0}"
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching the finish"
-msgstr ""
+msgstr "Vòng {0}, đang về đích"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, approaching turn {1}"
-msgstr ""
+msgstr "Vòng {0}, đang tới khúc cua {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "Lap {0}, in turn {1}"
-msgstr ""
+msgstr "Vòng {0}, đang ở khúc cua {1}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Last history item"
-msgstr ""
+msgstr "Mục lịch sử cuối cùng"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "Latest changes"
-msgstr ""
+msgstr "Những thay đổi mới nhất"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "Latest changes are already being fetched."
-msgstr ""
+msgstr "Đang lấy các thay đổi mới nhất."
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "Latest changes request failed."
-msgstr ""
+msgstr "Yêu cầu lấy thay đổi mới nhất thất bại."
 
 #: top_speed_net/TopSpeed/Core/Updates/Service.cs
 #, csharp-format
 msgid "Latest changes request failed: {0}"
-msgstr ""
+msgstr "Yêu cầu lấy thay đổi mới nhất thất bại: {0}"
 
 #: top_speed_net/TopSpeed/Core/Updates/Service.cs
 msgid "Latest changes request timed out."
-msgstr ""
+msgstr "Yêu cầu lấy thay đổi mới nhất đã quá thời gian."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 msgid "Leave server?"
@@ -1957,15 +1957,15 @@ msgstr "Rời máy chủ?"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Leave this game room"
-msgstr "Rời khỏi phòng game này"
+msgstr "Rời khỏi phòng đua này"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Leave this game room?"
-msgstr "Bạn muốn rời phòng game này?"
+msgstr "Bạn muốn rời phòng đua này?"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Leaving game room."
-msgstr "Đang rời phòng game."
+msgstr "Đang rời phòng đua."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Left"
@@ -2022,7 +2022,7 @@ msgstr "Cò trái"
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 #, csharp-format
 msgid "Left {0}"
-msgstr ""
+msgstr "Trái {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Types.cs
 #, csharp-format
@@ -2039,27 +2039,27 @@ msgstr "Phát trực tiếp đã dừng do lỗi giải mã đa phương tiện.
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Load media file"
-msgstr ""
+msgstr "Tải tệp phương tiện"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Load media folder"
-msgstr ""
+msgstr "Tải thư mục phương tiện"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Loading custom tracks from server."
-msgstr ""
+msgstr "Đang tải các đường đua tùy chỉnh từ máy chủ."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Loading custom vehicles from server."
-msgstr ""
+msgstr "Đang tải các xe tùy chỉnh từ máy chủ."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio file for streaming."
-msgstr ""
+msgstr "Tải một tệp âm thanh để phát trực tuyến."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio folder for streaming."
-msgstr ""
+msgstr "Tải một thư mục âm thanh để phát trực tuyến."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
@@ -2136,7 +2136,7 @@ msgstr "Đã hủy gán phím."
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Master audio"
-msgstr ""
+msgstr "Âm thanh tổng"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Master audio volume"
@@ -2150,11 +2150,11 @@ msgstr "Số lượng người chơi tối đa được phép trong phòng này"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Maximum players changed to {0}."
-msgstr ""
+msgstr "Số người chơi tối đa đã đổi thành {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Measure your screen-reader speaking speed again so usage hints and delayed speech timings stay accurate."
-msgstr ""
+msgstr "Đo lại tốc độ đọc của trình đọc màn hình để các gợi ý sử dụng và thời gian đọc trễ luôn chính xác."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Apply/RaceUi.cs
 msgid "Menu sound preset was empty and was reset to default."
@@ -2171,15 +2171,15 @@ msgstr "Âm thanh menu: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mercedes Sprinter"
-msgstr ""
+msgstr "Mercedes Sprinter"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Microphone input gain"
-msgstr ""
+msgstr "Mức khuếch đại micro"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Mini Cooper S"
-msgstr ""
+msgstr "Mini Cooper S"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Minus"
@@ -2219,7 +2219,7 @@ msgstr "Thiếu phần bắt buộc [{0}]."
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Missing sound asset file: {0}"
-msgstr ""
+msgstr "Thiếu tệp tài nguyên âm thanh: {0}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Moderate (0.75 seconds)"
@@ -2227,7 +2227,7 @@ msgstr "Vừa phải (0.75 giây)"
 
 #: top_speed_net/TopSpeed/Input/ModifierKeys.cs
 msgid "Modifier"
-msgstr ""
+msgstr "Phím bổ trợ"
 
 #: top_speed_net/TopSpeed/Input/Mapping/KeyMapManager.cs
 #, csharp-format
@@ -2236,35 +2236,35 @@ msgstr "Gạt hoặc nhấn phím trên tay cầm cho hành động {0}."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the first item in the selected multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến mục đầu tiên trong danh mục lịch sử nhiều người chơi đã chọn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the last item in the selected multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến mục cuối cùng trong danh mục lịch sử nhiều người chơi đã chọn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next item in the selected multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến mục tiếp theo trong danh mục lịch sử nhiều người chơi đã chọn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến danh mục lịch sử nhiều người chơi tiếp theo."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next track in the media playlist."
-msgstr ""
+msgstr "Chuyển đến bài tiếp theo trong danh sách phát."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous item in the selected multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến mục trước đó trong danh mục lịch sử nhiều người chơi đã chọn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous multiplayer history category."
-msgstr ""
+msgstr "Di chuyển đến danh mục lịch sử nhiều người chơi trước đó."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous track in the media playlist."
-msgstr ""
+msgstr "Chuyển về bài trước trong danh sách phát."
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "MultiPlayer game"
@@ -2288,7 +2288,7 @@ msgstr "Nhân"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Music"
-msgstr ""
+msgstr "Nhạc"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Music volume"
@@ -2305,7 +2305,7 @@ msgstr "Hà Lan"
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Network is unreachable."
-msgstr ""
+msgstr "Mạng không thể truy cập."
 
 #: top_speed_net/TopSpeed/Network/Live/Tx.cs
 msgid "Network send failed while sending live frame."
@@ -2334,23 +2334,23 @@ msgstr "Danh mục chat tiếp theo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next history category"
-msgstr ""
+msgstr "Danh mục lịch sử tiếp theo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next history item"
-msgstr ""
+msgstr "Mục lịch sử tiếp theo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next media track"
-msgstr ""
+msgstr "Bài tiếp theo"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Next volume category"
-msgstr ""
+msgstr "Danh mục âm lượng tiếp theo"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Nissan GT-R Nismo"
-msgstr ""
+msgstr "Nissan GT-R Nismo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
@@ -2361,11 +2361,11 @@ msgstr "Không"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "No changes are listed."
-msgstr ""
+msgstr "Không có thay đổi nào được liệt kê."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 msgid "No communicator media loaded."
-msgstr ""
+msgstr "Chưa tải phương tiện communicator nào."
 
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Controller.cs
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Core.cs
@@ -2387,7 +2387,7 @@ msgstr "Không tìm thấy đường đua tùy chỉnh nào."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "No custom vehicles available on this server."
-msgstr ""
+msgstr "Không có xe tùy chỉnh nào trên máy chủ này."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "No custom vehicles found."
@@ -2405,11 +2405,11 @@ msgstr "Chưa chọn thư mục nào."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/RoomUi/RoomList.cs
 msgid "No game rooms are currently available."
-msgstr "Hiện không có phòng game nào khả dụng."
+msgstr "Hiện không có phòng đua nào khả dụng."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
 msgid "No game rooms found"
-msgstr "Không tìm thấy phòng game nào"
+msgstr "Không tìm thấy phòng đua nào"
 
 #: top_speed_net/TopSpeed/Game/Settings/Language.cs
 msgid "No languages are available."
@@ -2431,11 +2431,11 @@ msgstr "Không có thay đổi tùy chọn nào để áp dụng."
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "No pit area"
-msgstr ""
+msgstr "Không có khu vực trạm dừng (pit)"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 msgid "No players are currently in this game room."
-msgstr "Hiện không có người chơi nào trong phòng game này."
+msgstr "Hiện không có người chơi nào trong phòng đua này."
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 msgid "No protocol negotiation response from server. The server may be outdated or incompatible."
@@ -2484,7 +2484,7 @@ msgstr "Không, tiếp tục đua"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "No, keep mine"
-msgstr ""
+msgstr "Không, giữ xe của tôi"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "No, keep this server"
@@ -2492,7 +2492,7 @@ msgstr "Không, giữ lại máy chủ này"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "No, stay in this game room"
-msgstr "Không, ở lại phòng game này"
+msgstr "Không, ở lại phòng đua này"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Normal"
@@ -2518,7 +2518,7 @@ msgstr "Chưa kết nối với máy chủ nào."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Not connected to a server. Returning to main menu."
-msgstr ""
+msgstr "Chưa kết nối tới máy chủ. Đang trở về menu chính."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Not ideal, but still salvageable."
@@ -2544,7 +2544,7 @@ msgstr "Số vòng đua"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Number of laps changed to {0}."
-msgstr ""
+msgstr "Số vòng đua đã đổi thành {0}."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Numpad Comma"
@@ -2597,11 +2597,11 @@ msgstr "Âm thanh sự kiện máy chủ trực tuyến"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Online server events"
-msgstr ""
+msgstr "Sự kiện máy chủ trực tuyến"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Only the host can cancel the current game."
-msgstr "Chỉ chủ phòng mới có thể hủy trận đua hiện tại."
+msgstr "Chỉ chủ phòng mới có thể hủy cuộc đua hiện tại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
@@ -2614,7 +2614,7 @@ msgstr "Chỉ chủ phòng mới có thể thay đổi luật chơi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Only the host can start the game."
-msgstr "Chỉ chủ phòng mới có thể bắt đầu trận đua."
+msgstr "Chỉ chủ phòng mới có thể bắt đầu cuộc đua."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/RoomUi/Online.cs
 msgid "Only you are connected right now."
@@ -2638,7 +2638,7 @@ msgstr "Mở ô nhập tin nhắn cho kênh chat tổng ngoài sảnh."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Opens frequency input for the channel."
-msgstr ""
+msgstr "Mở ô nhập tần số cho kênh."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
@@ -2648,7 +2648,7 @@ msgstr "Tùy chọn"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Other vehicles engine"
-msgstr ""
+msgstr "Động cơ các xe khác"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Other vehicles engine sounds"
@@ -2660,7 +2660,7 @@ msgstr "Âm thanh sự kiện của xe khác"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Other vehicles events"
-msgstr ""
+msgstr "Sự kiện các xe khác"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Outstanding drive. You secured first position."
@@ -2725,7 +2725,7 @@ msgstr "Tạm dừng game"
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Peer session was not found on server."
-msgstr ""
+msgstr "Không tìm thấy phiên kết nối đồng cấp (peer) trên máy chủ."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
@@ -2740,15 +2740,15 @@ msgstr "Đang tiến hành kiểm tra ping."
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Pit stop"
-msgstr ""
+msgstr "Trạm dừng (Pit stop)"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Pit this time"
-msgstr ""
+msgstr "Vào pit lần này"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PitStop.cs
 msgid "Pitting this time"
-msgstr ""
+msgstr "Đang vào pit lần này"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Play logo at startup"
@@ -2756,7 +2756,7 @@ msgstr "Phát logo khi khởi động"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Play or pause media"
-msgstr ""
+msgstr "Phát hoặc tạm dừng phương tiện"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultFmt.cs
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
@@ -2791,7 +2791,7 @@ msgstr "Vui lòng nhập địa chỉ máy chủ."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Please restart the game and try again."
-msgstr ""
+msgstr "Vui lòng khởi động lại game và thử lại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Discovery.cs
 msgid "Please wait. Scanning for servers on the local network."
@@ -2804,7 +2804,7 @@ msgstr "Cuộc tẩu thoát vùng cực"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Porsche 911 GT3 RS"
-msgstr ""
+msgstr "Porsche 911 GT3 RS"
 
 #: top_speed_net/TopSpeed/Core/TrackList.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
@@ -2818,27 +2818,27 @@ msgstr "Đang chuẩn bị đua"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Press ENTER to change."
-msgstr ""
+msgstr "Nhấn ENTER để thay đổi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Press ENTER to enter a room name."
-msgstr ""
+msgstr "Nhấn ENTER để nhập tên phòng."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Press ENTER to select."
-msgstr ""
+msgstr "Nhấn ENTER để chọn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Press ENTER to start."
-msgstr ""
+msgstr "Nhấn ENTER để bắt đầu."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Press ENTER to toggle."
-msgstr ""
+msgstr "Nhấn ENTER để bật/tắt."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Press LEFT or RIGHT to change."
-msgstr ""
+msgstr "Nhấn TRAI hoặc PHAI để thay đổi."
 
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
 msgid "Press OK to close the game and install the update."
@@ -2846,7 +2846,7 @@ msgstr "Nhấn OK để đóng game và cài đặt bản cập nhật."
 
 #: top_speed_net/TopSpeed/Menu/Items/MenuItem.cs
 msgid "Press right arrow to view."
-msgstr ""
+msgstr "Nhấn mũi tên phải để xem."
 
 #: top_speed_net/TopSpeed/Input/Mapping/KeyMapManager.cs
 #, csharp-format
@@ -2856,7 +2856,7 @@ msgstr "Nhấn phím mới cho hành động {0}."
 #: top_speed_net/TopSpeed/Shortcuts/Mapping.cs
 #, csharp-format
 msgid "Press the new shortcut for {0}."
-msgstr ""
+msgstr "Nhấn phím tắt mới cho {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Previous chat category"
@@ -2864,19 +2864,19 @@ msgstr "Danh mục chat trước đó"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous history category"
-msgstr ""
+msgstr "Danh mục lịch sử trước đó"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous history item"
-msgstr ""
+msgstr "Mục lịch sử trước đó"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous media track"
-msgstr ""
+msgstr "Bài trước đó"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Previous volume category"
-msgstr ""
+msgstr "Danh mục âm lượng trước đó"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Print Screen"
@@ -2888,7 +2888,7 @@ msgstr "Hành vi bàn phím tăng dần"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "Prompt to keep downloaded custom vehicles"
-msgstr ""
+msgstr "Hỏi có giữ lại xe tùy chỉnh đã tải về hay không"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -2898,7 +2898,7 @@ msgstr "Thuộc tính '{0}' nằm ngoài tất cả các phần."
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 #, csharp-format
 msgid "Protocol packet version mismatch. Server uses packet version {0}, client expects {1}. Update your client or server."
-msgstr ""
+msgstr "Phiên bản gói giao thức không khớp. Máy chủ dùng phiên bản {0}, client yêu cầu {1}. Hãy cập nhật client hoặc máy chủ của bạn."
 
 #: top_speed_net/TopSpeed/Game/Menu/About.cs
 #, csharp-format
@@ -2911,28 +2911,28 @@ msgstr "Hãy cung cấp tire_circumference hoặc tất cả các thông số ti
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Proxy URL cannot be empty while proxy is enabled."
-msgstr ""
+msgstr "URL proxy không được để trống khi proxy đang bật."
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Proxy URL must be a valid HTTP or HTTPS URL."
-msgstr ""
+msgstr "URL proxy phải là một URL HTTP hoặc HTTPS hợp lệ."
 
 #: top_speed_net/TopSpeed/Game/Settings/Proxy.cs
 msgid "Proxy URL saved."
-msgstr ""
+msgstr "Đã lưu URL proxy."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Proxy URL, currently empty."
-msgstr ""
+msgstr "URL proxy, hiện đang trống."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 #, csharp-format
 msgid "Proxy URL, currently set to {0}"
-msgstr ""
+msgstr "URL proxy, hiện được đặt thành {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Push to talk"
-msgstr ""
+msgstr "Nhấn để nói (Push to talk)"
 
 #: top_speed_net/TopSpeed/Menu/Dialogs/Question.cs
 msgid "Question"
@@ -2985,7 +2985,7 @@ msgstr "Trục RZ cộng"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "Race anyway"
-msgstr ""
+msgstr "Vẫn đua"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Race complete."
@@ -2993,7 +2993,7 @@ msgstr "Cuộc đua kết thúc."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Race paused."
-msgstr ""
+msgstr "Cuộc đua đã tạm dừng."
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
@@ -3002,15 +3002,15 @@ msgstr "Phần trăm chặng đua {0} phần trăm"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Race preparation started."
-msgstr ""
+msgstr "Đã bắt đầu chuẩn bị cuộc đua."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Race preparation was cancelled."
-msgstr ""
+msgstr "Đã hủy chuẩn bị cuộc đua."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Race resumed."
-msgstr ""
+msgstr "Cuộc đua đã tiếp tục."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Race settings"
@@ -3018,7 +3018,7 @@ msgstr "Cài đặt cuộc đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Race started."
-msgstr ""
+msgstr "Cuộc đua đã bắt đầu."
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
@@ -3083,7 +3083,7 @@ msgstr "Sẵn sàng. Đang chờ các người chơi khác."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Recalibrate screen reader rate"
-msgstr "Đo lại tốc độ bộ đọc màn hình"
+msgstr "Đo lại tốc độ trình đọc màn hình"
 
 #: top_speed_net/TopSpeed/Vehicles/RadioController/Load.cs
 msgid "Received media is empty."
@@ -3091,29 +3091,29 @@ msgstr "Nội dung đa phương tiện nhận được bị trống."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
 msgid "Reconnected to server."
-msgstr ""
+msgstr "Đã kết nối lại với máy chủ."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
 msgid "Reconnection canceled."
-msgstr ""
+msgstr "Đã hủy kết nối lại."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
 msgid "Reconnection failed."
-msgstr ""
+msgstr "Kết nối lại thất bại."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
 #, csharp-format
 msgid "Reconnection failed: {0}"
-msgstr ""
+msgstr "Kết nối lại thất bại: {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Reconnection is in progress. Disconnecting now."
-msgstr ""
+msgstr "Đang tiến hành kết nối lại. Đang ngắt kết nối ngay."
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Refuel"
-msgstr ""
+msgstr "Tiếp nhiên liệu"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Remove a bot"
@@ -3121,11 +3121,11 @@ msgstr "Xóa bot"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace mine with the downloaded one"
-msgstr ""
+msgstr "Thay thế xe của tôi bằng xe đã tải về"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Replace vehicle?"
-msgstr ""
+msgstr "Thay thế xe?"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report distance"
@@ -3133,11 +3133,11 @@ msgstr "Báo khoảng cách"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report fuel"
-msgstr ""
+msgstr "Báo cáo nhiên liệu"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Report lap and turn instead of race percentage"
-msgstr ""
+msgstr "Báo cáo vòng đua và khúc cua thay vì phần trăm cuộc đua"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report speed"
@@ -3145,7 +3145,7 @@ msgstr "Báo tốc độ"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report tire state"
-msgstr ""
+msgstr "Báo cáo trạng thái lốp"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Report track name"
@@ -3169,11 +3169,11 @@ msgstr "Đặt lại tất cả phím gán bàn phím"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Reset all menu shortcuts to defaults"
-msgstr ""
+msgstr "Đặt lại tất cả phím tắt menu về mặc định"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Reset all menu shortcuts?"
-msgstr ""
+msgstr "Đặt lại tất cả phím tắt menu?"
 
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 msgid "Reset controller mappings"
@@ -3185,11 +3185,11 @@ msgstr "Đặt lại phím gán bàn phím"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Reset shortcuts in this menu"
-msgstr ""
+msgstr "Đặt lại phím tắt trong menu này"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Reset shortcuts in this menu?"
-msgstr ""
+msgstr "Đặt lại phím tắt trong menu này?"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Restore all controller bindings to their default values."
@@ -3206,11 +3206,11 @@ msgstr "Khôi phục cài đặt mặc định"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Restore every menu shortcut binding to its default value."
-msgstr ""
+msgstr "Khôi phục tất cả gán phím tắt menu về giá trị mặc định."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Restore only the shortcuts in this menu to their default values."
-msgstr ""
+msgstr "Chỉ khôi phục các phím tắt trong menu này về giá trị mặc định."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
 msgid "Resume the game"
@@ -3218,7 +3218,7 @@ msgstr "Tiếp tục game"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Returned to room controls."
-msgstr "Đã trở về bảng điều khiển phòng."
+msgstr "Đã trở về menu quản lý phòng."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 msgid "Review these details before connecting."
@@ -3284,7 +3284,7 @@ msgstr "Cò phải"
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 #, csharp-format
 msgid "Right {0}"
-msgstr ""
+msgstr "Phải {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
@@ -3293,7 +3293,7 @@ msgstr "Điều khiển phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "Room host changed."
-msgstr ""
+msgstr "Chủ phòng đã thay đổi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 #, csharp-format
@@ -3316,7 +3316,7 @@ msgstr "Tùy chọn phòng đã được cập nhật."
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Room removed: {0}."
-msgstr ""
+msgstr "Đã xóa phòng: {0}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Run complete. Better luck on the next attempt."
@@ -3358,15 +3358,15 @@ msgstr "Máy chủ đã lưu bị trống."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Apply/Speech.cs
 msgid "Screen reader rate is not a valid number and was reset to default."
-msgstr "Tốc độ bộ đọc màn hình không hợp lệ và đã được đặt lại về mặc định."
+msgstr "Tốc độ trình đọc màn hình không hợp lệ và đã được đặt lại về mặc định."
 
 #: top_speed_net/TopSpeed/Game/Core/State.cs
 msgid "Screen-reader calibration. You'll be presented with a short piece of text on the next screen. Press ENTER when your screen-reader finishes speaking it."
-msgstr "Hiệu chỉnh bộ đọc màn hình. Bạn sẽ thấy một đoạn văn bản ngắn ở màn hình tiếp theo. Hãy nhấn ENTER ngay khi bộ đọc màn hình đọc xong đoạn văn đó."
+msgstr "Hiệu chỉnh trình đọc màn hình. Bạn sẽ thấy một đoạn văn bản ngắn ở màn hình tiếp theo. Hãy nhấn ENTER ngay khi trình đọc màn hình đọc xong đoạn văn đó."
 
 #: top_speed_net/TopSpeed/Game/Core/State.cs
 msgid "Screen-reader calibration. You'll be presented with a short piece of text on the next screen. Swipe up when your screen-reader finishes speaking it."
-msgstr "Hiệu chỉnh bộ đọc màn hình. Bạn sẽ thấy một đoạn văn bản ngắn ở màn hình tiếp theo. Hãy vuốt lên ngay khi bộ đọc màn hình đọc xong đoạn văn đó."
+msgstr "Hiệu chỉnh trình đọc màn hình. Bạn sẽ thấy một đoạn văn bản ngắn ở màn hình tiếp theo. Hãy vuốt lên ngay khi trình đọc màn hình đọc xong đoạn văn đó."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Scroll Lock"
@@ -3438,12 +3438,12 @@ msgstr "Chọn xe tùy chỉnh"
 #: top_speed_net/TopSpeed/Window/Eto/FileDialogService.cs
 #: top_speed_net/TopSpeed/Window/WinForms/FileDialogService.cs
 msgid "Select a media file"
-msgstr ""
+msgstr "Chọn tệp phương tiện"
 
 #: top_speed_net/TopSpeed/Window/Eto/FileDialogService.cs
 #: top_speed_net/TopSpeed/Window/WinForms/FileDialogService.cs
 msgid "Select a media folder"
-msgstr ""
+msgstr "Chọn thư mục phương tiện"
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
@@ -3465,15 +3465,15 @@ msgstr "Chọn thiết bị đầu vào"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Select the menu sound preset."
-msgstr ""
+msgstr "Chọn cấu hình âm thanh menu."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "Select the microphone used for communicator voice chat in multiplayer."
-msgstr ""
+msgstr "Chọn micro dùng cho trò chuyện giọng nói communicator trong chế độ nhiều người chơi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Select the player capacity for this room. The host can start with fewer players than the specified maximum players, so this is not a hard requirement."
-msgstr ""
+msgstr "Chọn sức chứa người chơi cho phòng này. Chủ phòng có thể bắt đầu cuộc đua với ít người chơi hơn số lượng tối đa chỉ định."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
 msgid "Select transmission mode"
@@ -3481,16 +3481,16 @@ msgstr "Chọn loại hộp số"
 
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 msgid "Select voice input device"
-msgstr ""
+msgstr "Chọn thiết bị đầu vào giọng nói"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Select which voice the current speech backend should use."
-msgstr ""
+msgstr "Chọn giọng đọc mà trình đọc màn hình hiện tại sẽ sử dụng."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 #, csharp-format
 msgid "Selected file: {0}"
-msgstr ""
+msgstr "Tệp đã chọn: {0}"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Semicolon"
@@ -3555,7 +3555,7 @@ msgstr "Phiên bản giao thức máy chủ hỗ trợ: {0} đến {1}"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Set frequency"
-msgstr ""
+msgstr "Đặt tần số"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Set race defaults such as copilot callouts, curve announcements, automatic information, laps, computer opponents, and difficulty."
@@ -3563,23 +3563,23 @@ msgstr "Thiết lập mặc định cho cuộc đua như thông báo từ phụ 
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Set the defaults used when you connect to a multiplayer server, including the port and your call sign, and whether you are offered custom vehicles you download."
-msgstr ""
+msgstr "Cài đặt mặc định khi kết nối với máy chủ nhiều người chơi, bao gồm cổng, biệt danh của bạn, và việc bạn có được cung cấp các xe tùy chỉnh đã tải về hay không."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how early speed dependent curve announcements are spoken."
-msgstr ""
+msgstr "Cài đặt khoảng thời gian thông báo khúc cua theo tốc độ đọc sớm hay muộn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how many computer-controlled cars will race against you."
-msgstr ""
+msgstr "Cài đặt số lượng xe bot do máy điều khiển sẽ đua cùng bạn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Sets how many laps the race will be for single race, time trial, and multiplayer."
-msgstr ""
+msgstr "Cài đặt số vòng đua cho chế độ đua đơn, đua tính giờ và đua nhiều người chơi."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Sets how much small steering movement is ignored around center. Default is 1 degree."
-msgstr ""
+msgstr "Cài đặt mức độ di chuyển vô-lăng nhỏ ở vị trí trung tâm bị bỏ qua. Mặc định là 1 độ."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/ParseErrors.cs
 #, csharp-format
@@ -3614,7 +3614,7 @@ msgstr "Chat chung ở sảnh"
 
 #: top_speed_net/TopSpeed/Input/ModifierKeys.cs
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Shift gear down"
@@ -3635,7 +3635,7 @@ msgstr "Đã hủy gán phím tắt."
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #, csharp-format
 msgid "Shortcuts in {0} were reset to defaults."
-msgstr ""
+msgstr "Các phím tắt trong {0} đã được đặt lại về mặc định."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Selection.cs
@@ -3691,7 +3691,7 @@ msgstr "Một số file đường đua tùy chỉnh không hợp lệ và đã b
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 msgid "Some custom track files reported issues. Tracks with errors were skipped; tracks with warnings still loaded."
-msgstr ""
+msgstr "Một số tệp đường đua tùy chỉnh báo lỗi. Các đường đua có lỗi đã bị bỏ qua; các đường đua có cảnh báo vẫn được tải."
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Some custom vehicle files are invalid and were skipped."
@@ -3699,7 +3699,7 @@ msgstr "Một số file xe tùy chỉnh không hợp lệ và đã bị bỏ qua
 
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
 msgid "Some custom vehicle files reported issues. Vehicles with errors were skipped; vehicles with warnings still loaded."
-msgstr ""
+msgstr "Một số tệp xe tùy chỉnh báo lỗi. Các xe có lỗi đã bị bỏ qua; các xe có cảnh báo vẫn được tải."
 
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 msgid "Some settings were missing or invalid. Review these details."
@@ -3718,12 +3718,12 @@ msgstr "Âm thanh '{0}' tham chiếu đến start_area '{1}', nhưng không có 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 #, csharp-format
 msgid "Sound asset path escapes the track folder: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh vượt ra ngoài thư mục đường đua: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 #, csharp-format
 msgid "Sound asset path escapes the vehicle folder: {0}"
-msgstr ""
+msgstr "Đường dẫn tài nguyên âm thanh vượt ra ngoài thư mục xe: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 #, csharp-format
@@ -3751,11 +3751,11 @@ msgstr "Tây Ban Nha"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks currently active game rules for the current game room."
-msgstr "Đọc các luật chơi đang áp dụng cho phòng game hiện tại."
+msgstr "Đọc các luật chơi đang áp dụng cho phòng đua hiện tại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks the currently selected channel frequency."
-msgstr ""
+msgstr "Đọc tần số kênh đang chọn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks your current ping while you are in multiplayer menus."
@@ -3767,12 +3767,12 @@ msgstr "Giọng đọc"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Speech backend"
-msgstr "Bộ đọc màn hình"
+msgstr "Trình đọc màn hình"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 #, csharp-format
 msgid "Speech backend: {0}"
-msgstr "Bộ đọc: {0}"
+msgstr "Trình đọc: {0}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "Speech mode"
@@ -3792,7 +3792,7 @@ msgstr "Nổ máy"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Start the game"
-msgstr "Bắt đầu trận đua"
+msgstr "Bắt đầu cuộc đua"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Steer left"
@@ -3841,7 +3841,7 @@ msgstr "Âm thanh mặt đường"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Surface loops"
-msgstr ""
+msgstr "Âm thanh bề mặt đường"
 
 #: top_speed_net/TopSpeed/Core/TrackList.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
@@ -3853,53 +3853,53 @@ msgstr "Thụy Điển"
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Swipe left or right with two fingers to change."
-msgstr ""
+msgstr "Vuốt sang trái hoặc phải bằng hai ngón tay để thay đổi."
 
 #: top_speed_net/TopSpeed/Menu/Items/MenuItem.cs
 msgid "Swipe left or right with two fingers to view."
-msgstr ""
+msgstr "Vuốt sang trái hoặc phải bằng hai ngón tay để xem."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
-msgstr ""
+msgstr "Vuốt lên hoặc xuống bằng hai ngón tay để thay đổi 1,0 giây, vuốt sang trái hoặc phải bằng hai ngón tay để thay đổi 0,1 giây, và vuốt lên hoặc xuống bằng ba ngón tay để đạt tối đa hoặc tối thiểu."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
-msgstr ""
+msgstr "Vuốt lên hoặc xuống bằng hai ngón tay để thay đổi 10 đơn vị, vuốt sang trái hoặc phải bằng hai ngón tay để thay đổi 1 đơn vị, và vuốt lên hoặc xuống bằng ba ngón tay để đạt tối đa hoặc tối thiểu."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Swipe up to change."
-msgstr ""
+msgstr "Vuốt lên để thay đổi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "Swipe up to enter a room name."
-msgstr ""
+msgstr "Vuốt lên để nhập tên phòng."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Swipe up to select."
-msgstr ""
+msgstr "Vuốt lên để chọn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Swipe up to start."
-msgstr ""
+msgstr "Vuốt lên để bắt đầu."
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Swipe up to toggle."
-msgstr ""
+msgstr "Vuốt lên để bật/tắt."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Switch between fixed distance and speed dependent curve announcements."
-msgstr ""
+msgstr "Chuyển đổi giữa thông báo khúc cua theo khoảng cách cố định và theo tốc độ."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Switch between metric and imperial units."
-msgstr ""
+msgstr "Chuyển đổi giữa hệ mét và hệ Anh (imperial)."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Switch between spoken curve announcements and non-spoken tones. In tones mode each type of curve has its own sound: the tighter the curve the higher the pitch, and the tone plays from the side the curve turns toward, so a left turn is heard on your left. Tones are the same in every language."
-msgstr ""
+msgstr "Chuyển đổi giữa thông báo khúc cua bằng giọng nói và âm thanh sắc thái (tones). Trong chế độ âm thanh, mỗi loại khúc cua có một âm thanh riêng: cua càng gắt thì cao độ càng cao, và âm thanh phát ra từ hướng rẽ, nên cua trái sẽ nghe ở bên trái. Âm thanh này giống nhau ở mọi ngôn ngữ."
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Switches chat history to the next category in the shared lobby chat view."
@@ -3947,7 +3947,7 @@ msgstr "Đụng chừng đó thì bạn chuẩn bị tiền trả hóa đơn s�
 
 #: top_speed_net/TopSpeed/Shortcuts/Mapping.cs
 msgid "That shortcut is already in use in this shortcut group."
-msgstr ""
+msgstr "Phím tắt đó đã được sử dụng trong nhóm phím tắt này."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "That was a suspicious amount of impact testing."
@@ -4026,7 +4026,7 @@ msgstr "Không rõ nguyên nhân khiến kết nối thất bại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "The current race was stopped."
-msgstr ""
+msgstr "Cuộc đua hiện tại đã dừng."
 
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 msgid "The entire settings file could not be parsed. Defaults were loaded. Review this error before continuing."
@@ -4056,7 +4056,7 @@ msgstr "Khóa input.menuShortcuts.bindings[{0}].key có giá trị không hợp 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Apply/Input.cs
 #, csharp-format
 msgid "The key {0} has invalid value {1} and was ignored."
-msgstr ""
+msgstr "Khóa {0} có giá trị không hợp lệ {1} và đã bị bỏ qua."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Validation/Core.cs
 #, csharp-format
@@ -4086,15 +4086,15 @@ msgstr "Phần thiết lập đua bị thiếu. Đã dùng cài đặt mặc đ�
 
 #: top_speed_net/TopSpeed/Game/Menu/Help.cs
 msgid "The requested help file could not be found."
-msgstr ""
+msgstr "Không tìm thấy tệp trợ giúp được yêu cầu."
 
 #: top_speed_net/TopSpeed/Game/Menu/Help.cs
 msgid "The requested help file could not be opened."
-msgstr ""
+msgstr "Không thể mở tệp trợ giúp được yêu cầu."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Errors.cs
 msgid "The selected custom track is invalid."
-msgstr ""
+msgstr "Đường đua tùy chỉnh đã chọn không hợp lệ."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
@@ -4118,15 +4118,15 @@ msgstr "Không thể tải đường đua đã chọn. Không thể bắt đầu
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but fuel consumption and tire wear are enabled. Without a pit area you cannot refuel or replace tires during the race."
-msgstr ""
+msgstr "Đường đua đã chọn không có khu vực trạm dừng (pit), nhưng tính năng tiêu thụ nhiên liệu và mòn lốp đang được bật. Nếu không có trạm dừng, bạn sẽ không thể tiếp nhiên liệu hoặc thay lốp trong cuộc đua."
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but fuel consumption is enabled. Without a pit area you cannot refuel during the race."
-msgstr ""
+msgstr "Đường đua đã chọn không có khu vực trạm dừng (pit), nhưng tính năng tiêu thụ nhiên liệu đang được bật. Nếu không có trạm dừng, bạn sẽ không thể tiếp nhiên liệu trong cuộc đua."
 
 #: top_speed_net/TopSpeed/Drive/PitAreaWarning.cs
 msgid "The selected track has no pit area, but tire wear is enabled. Without a pit area you cannot replace tires during the race."
-msgstr ""
+msgstr "Đường đua đã chọn không có khu vực trạm dừng (pit), nhưng tính năng mòn lốp đang được bật. Nếu không có trạm dừng, bạn sẽ không thể thay lốp trong cuộc đua."
 
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 msgid "The selected vehicle does not support the selected transmission mode."
@@ -4196,7 +4196,7 @@ msgstr "Giá trị '{0}' cho khóa '{1}' không thể nhận dạng thành kiể
 
 #: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "There are no bots to remove."
-msgstr ""
+msgstr "Không có bot nào để xóa."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "There was commitment, just not to staying on the road."
@@ -4209,12 +4209,12 @@ msgstr "Không thể đóng hộp thoại này. Bạn cần chọn một mục."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/RoomTexts.cs
 msgid "This game room is unavailable because it is full."
-msgstr ""
+msgstr "Phòng đua này không khả dụng vì đã đầy."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"
-msgstr ""
+msgstr "Thao tác này sẽ xóa vĩnh viễn xe đã lưu là \"{0}\" và thay bằng xe đã tải về \"{1}\". Bạn có chắc chắn không?"
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 msgid "This server does not support required protocol negotiation. Please update your server."
@@ -4222,11 +4222,11 @@ msgstr "Máy chủ này không hỗ trợ việc đàm phán giao thức. Vui l�
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "This shortcut menu has no bindings to reset."
-msgstr ""
+msgstr "Menu phím tắt này không có phím gán nào để đặt lại."
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PitStop.cs
 msgid "This track has no pit area."
-msgstr ""
+msgstr "Đường đua này không có khu vực trạm dừng (pit)."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
@@ -4240,11 +4240,11 @@ msgstr "Hành động này sẽ xóa máy chủ đã lưu khỏi danh sách. B�
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #, csharp-format
 msgid "This will restore all shortcuts in {0} to their default values."
-msgstr ""
+msgstr "Thao tác này sẽ khôi phục tất cả phím tắt trong {0} về giá trị mặc định."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "This will restore every menu shortcut binding to its default value."
-msgstr ""
+msgstr "Thao tác này sẽ khôi phục tất cả phím tắt menu về giá trị mặc định."
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Throttle"
@@ -4268,27 +4268,27 @@ msgstr "Đua tính giờ."
 
 #: top_speed_net/TopSpeed/Game/Drive/Pit/PitStopMenu.cs
 msgid "Tires"
-msgstr ""
+msgstr "Lốp xe"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle media loop"
-msgstr ""
+msgstr "Bật/tắt lặp lại phương tiện"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle media shuffle"
-msgstr ""
+msgstr "Bật/tắt phát ngẫu nhiên phương tiện"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle transmission"
-msgstr ""
+msgstr "Bật/tắt truyền động"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle voice activation"
-msgstr ""
+msgstr "Bật/tắt kích hoạt bằng giọng nói"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggles play and pause for streaming media."
-msgstr ""
+msgstr "Bật/tắt phát và tạm dừng phương tiện phát trực tuyến."
 
 #: top_speed_net/TopSpeed/Program.cs
 #: top_speed_net/TopSpeed/Window/Eto/WindowHost.cs
@@ -4314,7 +4314,7 @@ msgstr "Lực mô-men xoắn '{0:F1}' phải từ 0 đến 5000 Nm."
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Toyota Camry"
-msgstr ""
+msgstr "Toyota Camry"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #: top_speed_net/TopSpeed/Tracks/TrackLoadException.cs
@@ -4328,15 +4328,15 @@ msgstr "Bản đồ [meta] phải thiết lập một hồ sơ thời tiết, v�
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Track changed to {0}."
-msgstr ""
+msgstr "Đường đua đã được đổi thành {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Track creation guide"
-msgstr ""
+msgstr "Hướng dẫn tạo đường đua"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Payload.cs
 msgid "Track data is missing."
-msgstr ""
+msgstr "Dữ liệu đường đua bị thiếu."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 #, csharp-format
@@ -4363,11 +4363,11 @@ msgstr "Đường đua phải có ít nhất một phần [segment:<id>]."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track package upload failed."
-msgstr ""
+msgstr "Tải gói đường đua lên thất bại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track package uploaded successfully."
-msgstr ""
+msgstr "Tải gói đường đua lên thành công."
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Parser.cs
 #, csharp-format
@@ -4376,19 +4376,19 @@ msgstr "Đường dẫn đường đua phải trỏ đến file .tsm bên trong 
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Validate.cs
 msgid "Track sets 'pit_area = false' but also defines pit entry/exit segments; pitting is disabled and the pit segments are ignored."
-msgstr ""
+msgstr "Đường đua thiết lập 'pit_area = false' nhưng lại định nghĩa các đoạn lối vào/lối ra pit; tính năng vào pit đã bị tắt và các đoạn pit bị bỏ qua."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Track source path is missing, so sound assets cannot be resolved."
-msgstr ""
+msgstr "Thiếu đường dẫn nguồn đường đua, nên không thể xác định tài nguyên âm thanh."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track upload canceled because the connection was lost."
-msgstr ""
+msgstr "Tải đường đua lên bị hủy vì mất kết nối."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track upload canceled."
-msgstr ""
+msgstr "Đã hủy tải đường đua lên."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Track, currently random chosen."
@@ -4412,19 +4412,19 @@ msgstr "Hộp số không được hỗ trợ"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns media loop mode on or off."
-msgstr ""
+msgstr "Bật hoặc tắt chế độ lặp lại phương tiện."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns media shuffle mode on or off."
-msgstr ""
+msgstr "Bật hoặc tắt chế độ phát ngẫu nhiên phương tiện."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns transmission controls on or off."
-msgstr ""
+msgstr "Bật hoặc tắt các phím điều khiển truyền động."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns voice activation mode on or off."
-msgstr ""
+msgstr "Bật hoặc tắt chế độ kích hoạt bằng giọng nói."
 
 #: top_speed_net/TopSpeed/Game/Menu/Device.cs
 msgid "Unable to activate the selected controller."
@@ -4432,7 +4432,7 @@ msgstr "Không thể kích hoạt tay cầm đã chọn."
 
 #: top_speed_net/TopSpeed/Shortcuts/Mapping.cs
 msgid "Unable to apply the new shortcut."
-msgstr ""
+msgstr "Không thể áp dụng phím tắt mới."
 
 #: top_speed_net/TopSpeed/Game/Menu/About.cs
 msgid "Unable to copy to clipboard."
@@ -4440,23 +4440,23 @@ msgstr "Không thể chép vào khay nhớ tạm."
 
 #: top_speed_net/TopSpeed/Game/Menu/Help.cs
 msgid "Unable to open help file"
-msgstr ""
+msgstr "Không thể mở tệp trợ giúp"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Unable to prepare custom track upload."
-msgstr ""
+msgstr "Không thể chuẩn bị tải lên đường đua tùy chỉnh."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Unable to reach server."
-msgstr ""
+msgstr "Không thể kết nối đến máy chủ."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Assets.cs
 msgid "Unable to resolve custom track folder path."
-msgstr ""
+msgstr "Không thể phân giải đường dẫn thư mục đường đua tùy chỉnh."
 
 #: top_speed_net/TopSpeed.Shared/Protocol/VehiclePackages/Build.cs
 msgid "Unable to resolve custom vehicle folder path."
-msgstr ""
+msgstr "Không thể phân giải đường dẫn thư mục xe tùy chỉnh."
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
 msgid "Unable to resolve server address."
@@ -4469,7 +4469,7 @@ msgstr "Không thể xác định địa chỉ máy chủ: {0}"
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Unable to resolve server host."
-msgstr ""
+msgstr "Không thể phân giải tên máy chủ."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Underline"
@@ -4550,7 +4550,7 @@ msgstr "Khóa thời tiết không rõ '{0}'."
 
 #: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
 msgid "Unsupported peer-to-peer mode."
-msgstr ""
+msgstr "Chế độ peer-to-peer không được hỗ trợ."
 
 #: top_speed_net/TopSpeed/Core/Settings/Manager/Load.cs
 #, csharp-format
@@ -4607,7 +4607,7 @@ msgstr "Không tìm thấy gói cập nhật '{0}' trong bản phát hành mới
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Update package invalid"
-msgstr ""
+msgstr "Gói cập nhật không hợp lệ"
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Update package missing"
@@ -4623,7 +4623,7 @@ msgstr "Không tìm thấy trình cập nhật"
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "Updater unavailable"
-msgstr ""
+msgstr "Trình cập nhật không khả dụng"
 
 #: top_speed_net/TopSpeed/Core/Updates/Service.cs
 msgid "Updates are not available on this platform."
@@ -4631,39 +4631,39 @@ msgstr "Tính năng cập nhật không khả dụng trên nền tảng này."
 
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
 msgid "Upload a local custom track"
-msgstr ""
+msgstr "Tải lên đường đua tùy chỉnh cục bộ"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Upload a local track"
-msgstr ""
+msgstr "Tải lên đường đua cục bộ"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #, csharp-format
 msgid "Uploaded size: {0}"
-msgstr ""
+msgstr "Dung lượng đã tải lên: {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "Uploading track..."
-msgstr ""
+msgstr "Đang tải đường đua lên..."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
-msgstr ""
+msgstr "Dùng phím TRÁI hoặc PHẢI để thay đổi 0,1 giây, PAGE UP hoặc PAGE DOWN để thay đổi 1,0 giây, HOME để đạt tối đa, END để đạt tối thiểu."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
-msgstr ""
+msgstr "Dùng phím TRÁI hoặc PHẢI để thay đổi 1 đơn vị, PAGE UP hoặc PAGE DOWN để thay đổi 10 đơn vị, HOME để đạt tối đa, END để đạt tối thiểu."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "Use LEFT or RIGHT to change."
-msgstr ""
+msgstr "Dùng phím TRÁI hoặc PHẢI để thay đổi."
 
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 msgid "Use both modifier keys"
-msgstr ""
+msgstr "Dùng cả hai phím bổ trợ"
 
 #: top_speed_net/TopSpeed/Input/Drive/Bind.cs
 msgid "Use horn"
@@ -4671,11 +4671,11 @@ msgstr "Bấm còi"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Use motion sensors for steering"
-msgstr ""
+msgstr "Dùng cảm biến chuyển động để lái"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "Use proxy for update downloads"
-msgstr ""
+msgstr "Sử dụng proxy để tải bản cập nhật"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/VehicleDefinition.cs
 #: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Network/Participants.cs
@@ -4687,11 +4687,11 @@ msgstr "Xe"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Vehicle creation guide"
-msgstr ""
+msgstr "Hướng dẫn tạo xe"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Vehicle engine"
-msgstr ""
+msgstr "Động cơ xe"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Volume.cs
 msgid "Vehicle engine sounds"
@@ -4703,7 +4703,7 @@ msgstr "Âm thanh sự kiện của xe"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Vehicle events"
-msgstr ""
+msgstr "Sự kiện xe"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Core/Load/File.cs
 #, csharp-format
@@ -4716,7 +4716,7 @@ msgstr "Đường dẫn file xe bị trống."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Vehicle not saved"
-msgstr ""
+msgstr "Xe chưa được lưu"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
@@ -4729,25 +4729,25 @@ msgstr "Giọng đọc"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 msgid "Voice activation off"
-msgstr ""
+msgstr "Tắt kích hoạt bằng giọng nói"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 msgid "Voice activation on"
-msgstr ""
+msgstr "Bật kích hoạt bằng giọng nói"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 #, csharp-format
 msgid "Voice input device: {0}"
-msgstr ""
+msgstr "Thiết bị đầu vào giọng nói: {0}"
 
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 msgid "Voice input set to automatic."
-msgstr ""
+msgstr "Đầu vào giọng nói được đặt thành tự động."
 
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 #, csharp-format
 msgid "Voice input set to {0}."
-msgstr ""
+msgstr "Đầu vào giọng nói được đặt thành {0}."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 #, csharp-format
@@ -4756,7 +4756,7 @@ msgstr "Giọng đọc: {0}"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 msgid "Volume"
-msgstr ""
+msgstr "Âm lượng"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Volume settings"
@@ -4787,7 +4787,7 @@ msgstr "Giây chuyển đổi thời tiết phải là số hữu hạn và khô
 
 #: top_speed_net/TopSpeed/Game/Menu/Wizard.cs
 msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
-msgstr "Chào mừng bạn đến với thiết lập Top Speed. Ở các màn hình tiếp theo, bạn sẽ được chọn ngôn ngữ và sau đó hiệu chỉnh tốc độ giọng đọc của bộ đọc màn hình."
+msgstr "Chào mừng bạn đến với thiết lập Top Speed. Ở các màn hình tiếp theo, bạn sẽ được chọn ngôn ngữ và sau đó hiệu chỉnh tốc độ giọng đọc của trình đọc màn hình."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
 msgid "What would you like to do?"
@@ -4795,7 +4795,7 @@ msgstr "Bạn muốn làm gì?"
 
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "What's new"
-msgstr ""
+msgstr "Có gì mới"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "What's new in this version:"
@@ -4803,87 +4803,87 @@ msgstr "Những điểm mới trong phiên bản này:"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "When checked, Three-D audio uses HRTF spatialization for more realistic positioning."
-msgstr ""
+msgstr "Khi bật, âm thanh 3D sẽ sử dụng không gian hóa HRTF để giả lập định vị thực tế hơn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Server.cs
 msgid "When checked, after a multiplayer race you are asked whether to keep custom vehicles you downloaded (they are saved to your Vehicles folder and become available offline). When unchecked, downloaded vehicles are never kept after you close the game."
-msgstr ""
+msgstr "Khi bật, sau một cuộc đua nhiều người chơi, bạn sẽ được hỏi có muốn giữ lại các xe tùy chỉnh đã tải về hay không (chúng sẽ được lưu vào thư mục Vehicles và có sẵn khi chơi ngoại tuyến). Khi tắt, các xe đã tải sẽ không bao giờ được giữ lại sau khi bạn đóng game."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, each menu automatically focuses and announces the first item after the title."
-msgstr ""
+msgstr "Khi bật, mỗi menu sẽ tự động tập trung và đọc mục đầu tiên sau tiêu đề."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, menu items can speak usage hints after a short delay."
-msgstr ""
+msgstr "Khi bật, các mục menu có thể đọc gợi ý sử dụng sau một khoảng trễ ngắn."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, menu navigation sounds pan left or right based on the item position."
-msgstr ""
+msgstr "Khi bật, âm thanh điều hướng menu sẽ đảo vế trái hoặc phải dựa theo vị trí của mục."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, menu navigation wraps from the last item to the first."
-msgstr ""
+msgstr "Khi bật, điều hướng menu sẽ xoay vòng từ mục cuối cùng về mục đầu tiên."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "When checked, new spoken messages interrupt the current screen reader speech. Menu titles and usage hints are not affected."
-msgstr ""
+msgstr "Khi bật, các thông báo giọng nói mới sẽ ngắt lời trình đọc màn hình hiện tại. Tiêu đề menu và gợi ý sử dụng không bị ảnh hưởng."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, random track selection can include custom tracks."
-msgstr ""
+msgstr "Khi bật, việc chọn đường đua ngẫu nhiên có thể bao gồm cả đường đua tùy chỉnh."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, random vehicle selection can include custom vehicles."
-msgstr ""
+msgstr "Khi bật, việc chọn xe ngẫu nhiên có thể bao gồm cả xe tùy chỉnh."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, spoken status reports are shortened for experienced players: labels such as \"lap percentage\" and \"gear\" are dropped, and the number row gives a quick position rundown."
-msgstr ""
+msgstr "Khi bật, các báo cáo trạng thái bằng giọng nói được rút ngắn cho người chơi có kinh nghiệm: các nhãn như \"phần trăm vòng đua\" và \"số\" sẽ bỏ qua, và hàng phím số sẽ tóm tắt nhanh vị trí."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "When checked, steering uses Android motion sensors instead of drag gestures."
-msgstr ""
+msgstr "Khi bật, việc lái xe sẽ sử dụng cảm biến chuyển động trên Android thay vì thao tác vuốt kéo."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the game checks for updates automatically after the logo."
-msgstr ""
+msgstr "Khi bật, game sẽ tự động kiểm tra bản cập nhật sau biểu tượng logo."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "When checked, the game uses the device channel count and sample rate. Restart required."
-msgstr ""
+msgstr "Khi bật, game sẽ sử dụng số kênh và tần số lấy mẫu của thiết bị. Cần khởi động lại."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, the number row and player information report a car's lap and the turn it is in or approaching, spoken like a spotter, instead of its race percentage. This applies to your own car and to any other driver you check with the number row. Turns are numbered from the track's curves, so the count may differ from a real circuit's official turn numbers."
-msgstr ""
+msgstr "Khi bật, hàng phím số và thông tin người chơi sẽ báo cáo vòng đua của xe và khúc cua đang đi hoặc sắp tới, đọc giống như trợ lý quan sát (spotter), thay vì phần trăm cuộc đua. Điều này áp dụng cho xe của bạn và bất kỳ tay đua nào khác bạn kiểm tra bằng hàng phím số. Các khúc cua được đếm từ đường đua, nên số đếm có thể khác với số thứ tự chính thức của một giải đua thực tế."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the startup logo audio plays when the game launches."
-msgstr ""
+msgstr "Khi bật, âm thanh logo khởi động sẽ phát khi mở game."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, update package downloads are routed through your proxy URL."
-msgstr ""
+msgstr "Khi bật, việc tải gói cập nhật sẽ được định tuyến qua URL proxy của bạn."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, cars burn fuel and players must pit to refuel."
-msgstr ""
+msgstr "Khi bật, các xe sẽ tiêu thụ nhiên liệu và người chơi phải vào pit để tiếp nhiên liệu."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, players can choose custom vehicles offered by this server."
-msgstr ""
+msgstr "Khi bật, người chơi có thể chọn các xe tùy chỉnh do máy chủ này cung cấp."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
-msgstr ""
+msgstr "Khi bật, chủ phòng có thể tải lên và chọn các đường đua tùy chỉnh từ máy chủ này."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
-msgstr ""
+msgstr "Khi bật, ga, phanh và lái sẽ tăng dần theo thời gian thay vì tăng vọt ngay lập tức lên mức tối đa."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, tires wear and lose grip and players must pit to replace them."
-msgstr ""
+msgstr "Khi bật, lốp xe sẽ bị mòn và giảm độ bám đường, người chơi phải vào pit để thay lốp."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
@@ -4891,19 +4891,19 @@ msgstr "Khi bật, tính năng va chạm sẽ tắt và các xe có thể chạy
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
-msgstr ""
+msgstr "Khi bật, xe của bạn sẽ tiêu thụ nhiên liệu và bạn phải vào pit để tiếp nhiên liệu. Tắt đi để đua không giới hạn nhiên liệu."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
-msgstr ""
+msgstr "Khi bật, lốp xe của bạn sẽ mòn và giảm độ bám, bạn phải vào pit để thay lốp. Tắt đi để đua không bị mòn lốp."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
-msgstr ""
+msgstr "Khi tắt, nhấn phím số sẽ kích hoạt mục ở vị trí đó trong một số khu vực nhất định, chẳng hạn như menu pit stop. Khi bật, tính năng này hoạt động ở mọi nơi."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
-msgstr "Những ai đang có mặt trong phòng game này"
+msgstr "Những ai đang có mặt trong phòng đua này"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is online"
@@ -4927,7 +4927,7 @@ msgstr "Trục Y cộng"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Yamaha YZF-R1"
-msgstr ""
+msgstr "Yamaha YZF-R1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
@@ -4937,7 +4937,7 @@ msgstr "Có"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Yes, cancel the current game"
-msgstr "Có, hủy trận đua hiện tại"
+msgstr "Có, hủy cuộc đua hiện tại"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "Yes, delete this server"
@@ -4945,11 +4945,11 @@ msgstr "Có, xóa máy chủ này"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, keep it"
-msgstr ""
+msgstr "Có, giữ lại"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
-msgstr "Có, rời khỏi phòng game này"
+msgstr "Có, rời khỏi phòng đua này"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Yes, quit race preparation"
@@ -4961,12 +4961,12 @@ msgstr "Có, thoát khỏi cuộc đua"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, replace it"
-msgstr ""
+msgstr "Có, thay thế"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
-msgstr ""
+msgstr "Bạn đã có một xe được lưu là \"{0}\". Bạn muốn làm gì với xe \"{1}\" vừa tải về?"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "You are already using the latest version."
@@ -4979,17 +4979,17 @@ msgstr "Bạn đang sử dụng phiên bản mới nhất."
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 msgid "You are not currently inside a game room."
-msgstr "Hiện tại bạn không ở trong phòng game nào."
+msgstr "Hiện tại bạn không ở trong phòng đua nào."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "You are not in a game room."
-msgstr "Bạn không ở trong phòng game."
+msgstr "Bạn không ở trong phòng đua."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "You are now host of this room."
-msgstr ""
+msgstr "Hiện tại bạn là chủ phòng này."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "You can download the update again or install manually."
@@ -5028,11 +5028,11 @@ msgstr "Bạn cứ chọn sai làn chạy rồi liên tục chứng minh điều
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "You left race preparation and returned to room controls."
-msgstr "Bạn đã thoát phần chuẩn bị đua và quay lại bảng điều khiển phòng."
+msgstr "Bạn đã thoát phần chuẩn bị đua và quay lại menu quản lý phòng."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "You left the game room."
-msgstr "Bạn đã rời phòng game."
+msgstr "Bạn đã rời phòng đua."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You made it through with one clear mistake and no excuse."
@@ -5041,7 +5041,7 @@ msgstr "Bạn đã hoàn thành với một sai lầm rõ rành rành, không c�
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 #, csharp-format
 msgid "You pressed {0}. Choose a modifier option."
-msgstr ""
+msgstr "Bạn đã nhấn {0}. Hãy chọn một tùy chọn phím bổ trợ."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You spent a lot of time negotiating with walls and losing."
@@ -5079,17 +5079,17 @@ msgstr "Phiên bản giao thức của bạn: {0}"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
-msgstr ""
+msgstr "Game của bạn không thể tải xe tùy chỉnh mà người chơi khác đang dùng, nên bạn sẽ nghe thấy tiếng xe mặc định để thay thế."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
-msgstr ""
+msgstr "Game của bạn không thể tải xe tùy chỉnh \"{0}\", nên bạn sẽ nghe thấy tiếng xe mặc định để thay thế."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
-msgstr ""
+msgstr "Game của bạn không thể tải xe \"{1}\" của {0}, nên bạn sẽ nghe thấy tiếng xe mặc định của họ để thay thế."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your latest run did not beat the best record. Details:"
@@ -5119,7 +5119,7 @@ msgstr "Trục Z cộng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "add bot request"
-msgstr ""
+msgstr "yêu cầu thêm bot"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
@@ -5165,12 +5165,12 @@ msgstr "đã chọn"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "cold tires"
-msgstr ""
+msgstr "lốp lạnh"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "completing lap {0}"
-msgstr ""
+msgstr "đang hoàn thành vòng {0}"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 msgid "connections"
@@ -5186,11 +5186,11 @@ msgstr "chỉ khúc cua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "custom track list request"
-msgstr ""
+msgstr "yêu cầu danh sách đường đua tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "custom vehicle list request"
-msgstr ""
+msgstr "yêu cầu danh sách xe tùy chỉnh"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "default"
@@ -5203,7 +5203,7 @@ msgstr "mặc định ({0})"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 msgid "disabled"
-msgstr ""
+msgstr "đã tắt"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "easy"
@@ -5211,7 +5211,7 @@ msgstr "dễ"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 msgid "enabled"
-msgstr ""
+msgstr "đã bật"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "end_area cannot be empty."
@@ -5220,11 +5220,11 @@ msgstr "end_area không được để trống."
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "engine_displacement_l must be between {0} and {1} liters."
-msgstr ""
+msgstr "engine_displacement_l phải nằm trong khoảng từ {0} đến {1} lít."
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 msgid "finished"
-msgstr ""
+msgstr "đã về đích"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "fixed distance"
@@ -5232,44 +5232,44 @@ msgstr "khoảng cách cố định"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "fuel consumption off"
-msgstr ""
+msgstr "tắt tiêu thụ nhiên liệu"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Parse/Powertrain.cs
 #, csharp-format
 msgid "fuel must be between {0} and {1} liters."
-msgstr ""
+msgstr "nhiên liệu phải nằm trong khoảng từ {0} đến {1} lít."
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent"
-msgstr ""
+msgstr "nhiên liệu {0:F1} galon, {1:F0} phần trăm"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "fuel {0:F1} gallons, {1:F0} percent, {2:F1} miles per gallon"
-msgstr ""
+msgstr "nhiên liệu {0:F1} galon, {1:F0} phần trăm, {2:F1} dặm/galon"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent"
-msgstr ""
+msgstr "nhiên liệu {0:F1} lít, {1:F0} phần trăm"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
-msgstr ""
+msgstr "nhiên liệu {0:F1} lít, {1:F0} phần trăm, {2:F1} lít/100 km"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "game cancel request"
-msgstr ""
+msgstr "yêu cầu hủy cuộc đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "game room"
-msgstr "phòng game"
+msgstr "phòng đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 msgid "game rules change request"
-msgstr ""
+msgstr "yêu cầu thay đổi luật chơi"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Gears.cs
 #, csharp-format
@@ -5295,7 +5295,7 @@ msgstr "khó"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "heavy wear"
-msgstr ""
+msgstr "mòn nặng"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "high_speed_steer_full_kph must be greater than high_speed_steer_start_kph."
@@ -5303,7 +5303,7 @@ msgstr "high_speed_steer_full_kph phải lớn hơn high_speed_steer_start_kph."
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "hot tires"
-msgstr ""
+msgstr "lốp nóng"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "imperial"
@@ -5311,7 +5311,7 @@ msgstr "hệ anh"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "its downloaded copy is no longer loaded, so there is nothing to save"
-msgstr ""
+msgstr "bản sao đã tải về của nó không còn được tải, nên không có gì để lưu"
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "keyboard"
@@ -5319,27 +5319,27 @@ msgstr "bàn phím"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 msgid "lap count change request"
-msgstr ""
+msgstr "yêu cầu thay đổi số vòng đua"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0}"
-msgstr ""
+msgstr "vòng {0}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching finish"
-msgstr ""
+msgstr "vòng {0} sắp về đích"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} approaching turn {1}"
-msgstr ""
+msgstr "vòng {0} sắp tới khúc cua {1}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #, csharp-format
 msgid "lap {0} turn {1}"
-msgstr ""
+msgstr "vòng {0} khúc cua {1}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "laps only"
@@ -5363,7 +5363,7 @@ msgstr "launch_rpm không được vượt quá rev_limiter."
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "light wear"
-msgstr ""
+msgstr "mòn nhẹ"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Domain/Online/Map.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
@@ -5388,19 +5388,19 @@ msgstr "bị thiếu"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "moderate wear"
-msgstr ""
+msgstr "mòn vừa"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "new tires"
-msgstr ""
+msgstr "lốp mới"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free folder name was available"
-msgstr ""
+msgstr "không có sẵn tên thư mục trống nào"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free name was available to move the old folder aside"
-msgstr ""
+msgstr "không có sẵn tên trống nào để di chuyển thư mục cũ sang chỗ khác"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "none"
@@ -5428,25 +5428,25 @@ msgstr "đua 1 chọi 1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
 msgid "online players request"
-msgstr ""
+msgstr "yêu cầu danh sách người chơi trực tuyến"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "optimal temperature"
-msgstr ""
+msgstr "nhiệt độ tối ưu"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound not found, no sound will play: {0}"
-msgstr ""
+msgstr "không tìm thấy âm thanh tùy chọn, sẽ không phát âm thanh nào: {0}"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound problem, no sound will play: {0}"
-msgstr ""
+msgstr "sự cố âm thanh tùy chọn, sẽ không phát âm thanh nào: {0}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "overheated tires"
-msgstr ""
+msgstr "lốp quá nhiệt"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 msgid "panel"
@@ -5455,7 +5455,7 @@ msgstr "bảng điều khiển"
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 msgid "paused"
-msgstr ""
+msgstr "đã tạm dừng"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
@@ -5472,7 +5472,7 @@ msgstr "pitch_curve_exponent phải từ {0} đến {1}."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 msgid "player count change request"
-msgstr ""
+msgstr "yêu cầu thay đổi số lượng người chơi"
 
 #: top_speed_net/TopSpeed/Drive/Single/Session/Results.cs
 #, csharp-format
@@ -5482,15 +5482,15 @@ msgstr "người chơi {0}"
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 msgid "playing"
-msgstr ""
+msgstr "đang đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "race preparation withdrawal"
-msgstr ""
+msgstr "rút khỏi chuẩn bị cuộc đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "race start request"
-msgstr ""
+msgstr "yêu cầu bắt đầu cuộc đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
 msgid "race with bots"
@@ -5514,21 +5514,21 @@ msgstr "ratio_max phải lớn hơn hoặc bằng ratio_min trong [transmission_
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
 msgid "ready state"
-msgstr ""
+msgstr "trạng thái sẵn sàng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "remove bot request"
-msgstr ""
+msgstr "yêu cầu xóa bot"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "required sound not found, will use built in fallback: {0}"
-msgstr ""
+msgstr "không tìm thấy âm thanh bắt buộc, sẽ sử dụng âm thanh dự phòng tích hợp: {0}"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "required sound problem, will use built in fallback: {0}"
-msgstr ""
+msgstr "sự cố âm thanh bắt buộc, sẽ sử dụng âm thanh dự phòng tích hợp: {0}"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "rev_limiter must be between idle_rpm and max_rpm."
@@ -5540,7 +5540,7 @@ msgstr "chat phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
 msgid "room create request"
-msgstr ""
+msgstr "yêu cầu tạo phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 msgid "room events"
@@ -5548,19 +5548,19 @@ msgstr "sự kiện phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
 msgid "room join request"
-msgstr ""
+msgstr "yêu cầu tham gia phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "room leave request"
-msgstr ""
+msgstr "yêu cầu rời phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
 msgid "room list request"
-msgstr ""
+msgstr "yêu cầu danh sách phòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 msgid "room state refresh request"
-msgstr ""
+msgstr "yêu cầu làm mới trạng thái phòng"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "shift on demand"
@@ -5592,7 +5592,7 @@ msgstr "dựa vào tốc độ"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "spoken"
-msgstr ""
+msgstr "bằng giọng nói"
 
 #: top_speed_net/TopSpeed.Shared/Data/Tracks/Parser/Rules.cs
 msgid "start_area cannot be empty."
@@ -5608,49 +5608,49 @@ msgstr "target_rpm_high phải lớn hơn hoặc bằng target_rpm_low trong [tr
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the destination is not inside the Vehicles folder"
-msgstr ""
+msgstr "đích đến không nằm trong thư mục Vehicles"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy holds no vehicle file to write"
-msgstr ""
+msgstr "bản sao đã tải về không chứa tệp xe nào để ghi"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the downloaded copy is no longer loaded"
-msgstr ""
+msgstr "bản sao đã tải về không còn được tải"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the files could not be written"
-msgstr ""
+msgstr "không thể ghi các tệp"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the old folder could not be moved aside ({0})"
-msgstr ""
+msgstr "thư mục cũ không thể di chuyển sang chỗ khác ({0})"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"
-msgstr ""
+msgstr "tệp thay thế không thể ghi và bản gốc của bạn không thể khôi phục lại. Nó hiện an toàn trong thư mục \"{0}\" và có thể đổi tên lại thủ công"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the replacement files could not be written"
-msgstr ""
+msgstr "không thể ghi các tệp thay thế"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the saved copy is not inside the Vehicles folder"
-msgstr ""
+msgstr "bản sao đã lưu không nằm trong thư mục Vehicles"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "the vehicle has no valid identifier"
-msgstr ""
+msgstr "xe không có định danh hợp lệ"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "this menu"
-msgstr ""
+msgstr "menu này"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "tire wear off"
-msgstr ""
+msgstr "tắt mòn lốp"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Tires.cs
 msgid "tire_aspect must be between 5 and 150."
@@ -5671,16 +5671,16 @@ msgstr "tire_width phải từ 20 đến 450 mm."
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Celsius, {2}, {3}"
-msgstr ""
+msgstr "lốp mòn {0:F0} phần trăm, {1:F0} độ C, {2}, {3}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
 msgid "tires {0:F0} percent wear, {1:F0} degrees Fahrenheit, {2}, {3}"
-msgstr ""
+msgstr "lốp mòn {0:F0} phần trăm, {1:F0} độ F, {2}, {3}"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "tones"
-msgstr ""
+msgstr "bằng âm thanh sắc thái (tones)"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "top_freq must be greater than or equal to idle_freq."
@@ -5693,23 +5693,23 @@ msgstr "top_speed_gear phải nằm trong khoảng 1..{0}."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
 msgid "track change request"
-msgstr ""
+msgstr "yêu cầu thay đổi đường đua"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload cancel"
-msgstr ""
+msgstr "hủy tải đường đua lên"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload chunk"
-msgstr ""
+msgstr "mảnh dữ liệu tải đường đua lên"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload completion"
-msgstr ""
+msgstr "hoàn tất tải đường đua lên"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload start"
-msgstr ""
+msgstr "bắt đầu tải đường đua lên"
 
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 msgid "unknown"
@@ -5717,11 +5717,11 @@ msgstr "không rõ"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "warming up tires"
-msgstr ""
+msgstr "đang làm nóng lốp"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 msgid "worn tires"
-msgstr ""
+msgstr "lốp đã mòn"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #, csharp-format
@@ -5766,12 +5766,12 @@ msgstr "hộp thoại {0} {1}"
 #: top_speed_net/TopSpeed/Core/Selection/SourceBase.cs
 #, csharp-format
 msgid "{0} ({1})"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format
 msgid "{0} MHz"
-msgstr ""
+msgstr "{0} MHz"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 #, csharp-format
@@ -5782,7 +5782,7 @@ msgstr "{0} Lời nhắn của ngày: {1}."
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
 #, csharp-format
 msgid "{0} Socket error: {1}."
-msgstr ""
+msgstr "{0} Lỗi Socket: {1}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultFmt.cs
 #, csharp-format
@@ -5792,7 +5792,7 @@ msgstr "{0} và {1}"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} changed ready state."
-msgstr ""
+msgstr "{0} đã thay đổi trạng thái sẵn sàng."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
@@ -5822,12 +5822,12 @@ msgstr "{0} khóa '{1}': {2}"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} lap"
-msgstr ""
+msgstr "{0} vòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} laps"
-msgstr ""
+msgstr "{0} vòng"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
@@ -5874,22 +5874,22 @@ msgstr "{0} người đang kết nối."
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 #, csharp-format
 msgid "{0} percent"
-msgstr ""
+msgstr "{0} phần trăm"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 #, csharp-format
 msgid "{0} percent."
-msgstr ""
+msgstr "{0} phần trăm."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} player"
-msgstr ""
+msgstr "{0} người chơi"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} players"
-msgstr ""
+msgstr "{0} người chơi"
 
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultFmt.cs
@@ -5914,12 +5914,12 @@ msgstr "Đã gán {0} thành {1}."
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} was added to the current room."
-msgstr ""
+msgstr "{0} đã được thêm vào phòng hiện tại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} was removed from the current room."
-msgstr ""
+msgstr "{0} đã bị xóa khỏi phòng hiện tại."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
 #, csharp-format
@@ -5944,7 +5944,7 @@ msgstr "{0}, game {1} với {2} người, tối đa {3} người chơi"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0}, {1}, using {2}."
-msgstr ""
+msgstr "{0}, {1}, sử dụng {2}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
@@ -5969,15 +5969,15 @@ msgstr "{0}: vị trí {1}, thời gian {2}."
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "{0}: {1}"
-msgstr ""
+msgstr "{0}: {1}"
 
 #: top_speed_net/TopSpeed/Game/Settings/VolumeShortcuts.cs
 #, csharp-format
 msgid "{0}: {1} percent"
-msgstr ""
+msgstr "{0}: {1} phần trăm"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0}: {1}, using {2}."
-msgstr ""
+msgstr "{0}: {1}, sử dụng {2}."
 

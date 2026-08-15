@@ -33,6 +33,21 @@ namespace TopSpeed.Server.Network
 
                 if (packet.Track.IsBuiltIn)
                 {
+                    if (packet.Track.IsRandomBuiltIn)
+                    {
+                        room.RandomTrackSelection = TrackPackageRef.Clone(packet.Track);
+                        if (!ResolveRandomTrackSelection(room))
+                        {
+                            _owner.SendProtocolMessage(player, ProtocolMessageCode.InvalidTrack, LocalizationService.Mark("Invalid track selection."));
+                            return;
+                        }
+
+                        _owner.BroadcastSelectedTrackToRoom(room);
+                        TouchVersion(room);
+                        _owner._notify.RoomLifecycle(room, RoomEventKind.TrackChanged);
+                        return;
+                    }
+
                     var trackName = (packet.Track.BuiltInTrackKey ?? string.Empty).Trim();
                     if (string.IsNullOrWhiteSpace(trackName))
                     {
@@ -40,6 +55,7 @@ namespace TopSpeed.Server.Network
                         return;
                     }
 
+                    room.RandomTrackSelection = null;
                     SetTrackData(room, trackName);
                 }
                 else
@@ -55,6 +71,8 @@ namespace TopSpeed.Server.Network
                         _owner.SendProtocolMessage(player, ProtocolMessageCode.InvalidTrack, LocalizationService.Mark("Custom track package is not available on server."));
                         return;
                     }
+
+                    room.RandomTrackSelection = null;
                 }
 
                 _owner.BroadcastSelectedTrackToRoom(room);
@@ -88,7 +106,11 @@ namespace TopSpeed.Server.Network
                 room.Laps = packet.Laps;
                 if (room.TrackSelected)
                 {
-                    if (room.TrackSelection != null && room.TrackSelection.IsCustomPackage)
+                    if (room.RandomTrackSelection != null && room.RandomTrackSelection.IsRandomBuiltIn)
+                    {
+                        ResolveRandomTrackSelection(room);
+                    }
+                    else if (room.TrackSelection != null && room.TrackSelection.IsCustomPackage)
                     {
                         if (!SetTrackData(room, room.TrackSelection))
                             SetTrackData(room, "america");

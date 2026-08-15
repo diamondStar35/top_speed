@@ -52,6 +52,7 @@ namespace TopSpeed.Server.Network
         public TrackData? TrackData { get; set; }
         public string TrackName { get; set; }
         public TrackPackageRef TrackSelection { get; set; }
+        public TrackPackageRef? RandomTrackSelection { get; set; }
         public int Laps { get; set; }
         public uint GameRulesFlags { get; set; }
         // Effective rules for the current race instance = GameRulesFlags minus the host's per-race

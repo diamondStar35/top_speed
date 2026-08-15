@@ -36,6 +36,7 @@ namespace TopSpeed.Core.Multiplayer
                 currentTrack = TrackPackageRef.BuiltIn(TrackList.RaceTracks[0].Key);
 
             _state.RoomDrafts.RoomOptionsTrack = CloneTrackRef(currentTrack);
+            _state.RoomDrafts.RoomOptionsTrackRandom = _state.RoomDrafts.RoomOptionsTrack.IsRandomBuiltIn;
             _state.RoomDrafts.RoomOptionsTrackName = _state.RoomDrafts.RoomOptionsTrack.IsBuiltIn
                 ? _state.RoomDrafts.RoomOptionsTrack.BuiltInTrackKey
                 : _state.RoomDrafts.RoomOptionsTrack.TrackId;

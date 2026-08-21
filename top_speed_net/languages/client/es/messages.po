@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 04:50\n"
+"PO-Revision-Date: 2026-08-21 14:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4850,55 +4850,55 @@ msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Audio.cs
 msgid "When checked, the game uses the device channel count and sample rate. Restart required."
-msgstr ""
+msgstr "Cuando está marcado, el juego utiliza el recuento de canales del dispositivo y la frecuencia de muestreo. Se requiere reinicio."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When checked, the number row and player information report a car's lap and the turn it is in or approaching, spoken like a spotter, instead of its race percentage. This applies to your own car and to any other driver you check with the number row. Turns are numbered from the track's curves, so the count may differ from a real circuit's official turn numbers."
-msgstr ""
+msgstr "Cuando está marcada, la fila de números y la información del jugador informan la vuelta de un auto y el giro en el que se encuentra o se aproxima, dicho como un observador, en lugar de su porcentaje de carrera. Esto se aplica a su propio automóvil y a cualquier otro conductor que consulte con la fila numérica. Las curvas están numeradas a partir de las curvas de la pista, por lo que el recuento puede diferir de los números de curvas oficiales de un circuito real."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the startup logo audio plays when the game launches."
-msgstr ""
+msgstr "Cuando está marcado, el audio del logotipo de inicio se reproduce cuando se inicia el juego."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, update package downloads are routed through your proxy URL."
-msgstr ""
+msgstr "Cuando está marcada, las descargas de paquetes de actualización se enrutan a través de la URL de su proxy."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, cars burn fuel and players must pit to refuel."
-msgstr ""
+msgstr "Cuando está activado, los coches queman combustible y los jugadores deben entrar en boxes para repostar."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, players can choose custom vehicles offered by this server."
-msgstr ""
+msgstr "Cuando está habilitado, los jugadores pueden elegir los vehículos personalizados que ofrece este servidor."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
-msgstr ""
+msgstr "Cuando está habilitado, los anfitriones de la sala pueden cargar y seleccionar pistas personalizadas desde este servidor."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
-msgstr ""
+msgstr "Cuando está habilitado, acelera, frena y acelera con el tiempo en lugar de saltar instantáneamente a su valor máximo."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, tires wear and lose grip and players must pit to replace them."
-msgstr ""
+msgstr "Cuando está habilitado, los neumáticos se desgastan y pierden agarre y los jugadores deben entrar en boxes para reemplazarlos."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
-msgstr ""
+msgstr "Cuando está habilitado, las colisiones de vehículos se desactivan y los vehículos pueden atravesarse entre sí."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your car burns fuel and you must pit to refuel. Turn off to race without fuel limits."
-msgstr ""
+msgstr "Cuando está activado, tu coche quema combustible y debes entrar en boxes para repostar. Apágate a correr sin límites de combustible."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "When enabled, your tires wear and lose grip and you must pit to replace them. Turn off to race without tire wear."
-msgstr ""
+msgstr "Cuando está habilitado, los neumáticos se desgastan y pierden agarre y debes entrar en boxes para reemplazarlos. Sal a correr sin desgaste de neumáticos."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
-msgstr ""
+msgstr "Cuando no está marcado, al pulsar una tecla numérica activa el elemento en esa posición en ciertas áreas, como el menú de parada en boxes. Cuando se marca, funciona en todas partes."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
@@ -4926,7 +4926,7 @@ msgstr ""
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Catalog/Data.cs
 msgid "Yamaha YZF-R1"
-msgstr ""
+msgstr "Yamaha YZF-R1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
@@ -4936,7 +4936,7 @@ msgstr "Sí"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Yes, cancel the current game"
-msgstr ""
+msgstr "Sí, cancelar el juego actual"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
 msgid "Yes, delete this server"
@@ -4944,7 +4944,7 @@ msgstr "Sí, eliminar este servidor"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, keep it"
-msgstr ""
+msgstr "Si, mantenlo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
@@ -4960,12 +4960,12 @@ msgstr "Sí, abandonar la carrera"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "Yes, replace it"
-msgstr ""
+msgstr "Sí, reemplázalo"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
-msgstr ""
+msgstr "Ya tienes un vehículo guardado como \"{0}\". ¿Qué quieres hacer con el \"{1}\" descargado?"
 
 #: top_speed_net/TopSpeed/Game/Updates/Check.cs
 msgid "You are already using the latest version."
@@ -4988,7 +4988,7 @@ msgstr "No estás en una sala de juegos."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 msgid "You are now host of this room."
-msgstr ""
+msgstr "Ahora eres el anfitrión de esta sala."
 
 #: top_speed_net/TopSpeed/Game/Updates/Install.cs
 msgid "You can download the update again or install manually."
@@ -4996,25 +4996,25 @@ msgstr "Puedes descargar la actualización nuevamente o instalarla manualmente."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You crashed once."
-msgstr ""
+msgstr "Chocaste una vez."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
 msgid "You crashed {0} times."
-msgstr ""
+msgstr "Chocaste {0} veces."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
 msgid "You finished in {0}."
-msgstr ""
+msgstr "Terminaste en {0}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You fought the course all the way through and still lost."
-msgstr ""
+msgstr "Luchaste durante todo el recorrido y aun así perdiste."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You gave the wall a quick hello and moved on."
-msgstr ""
+msgstr "Saludaste rápidamente a la pared y seguiste adelante."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
@@ -5023,7 +5023,7 @@ msgstr "Te uniste a {0}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You kept finding the wrong line and proving it."
-msgstr ""
+msgstr "Seguiste encontrando la línea equivocada y probándola."
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "You left race preparation and returned to room controls."
@@ -5035,36 +5035,36 @@ msgstr "Saliste de la sala de juegos."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You made it through with one clear mistake and no excuse."
-msgstr ""
+msgstr "Lo lograste con un error claro y sin excusa."
 
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 #, csharp-format
 msgid "You pressed {0}. Choose a modifier option."
-msgstr ""
+msgstr "Pulsó {0}. Elija una opción de modificador."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You spent a lot of time negotiating with walls and losing."
-msgstr ""
+msgstr "Pasaste mucho tiempo negociando con muros y perdiendo."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You spent more time recovering than driving cleanly."
-msgstr ""
+msgstr "Pasó más tiempo recuperándose que conduciendo limpiamente."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You treated the entire event like an extended crash montage."
-msgstr ""
+msgstr "Trataste todo el evento como un montaje de choque extendido."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You were driving like the brakes were optional."
-msgstr ""
+msgstr "Conducías como si los frenos fueran opcionales."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You were driving like the corners had something against you."
-msgstr ""
+msgstr "Conducías como si las curvas tuvieran algo en tu contra."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "You were supposed to follow the road, not sample it repeatedly."
-msgstr ""
+msgstr "Se suponía que debías seguir el camino, no probarlo repetidamente."
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
 #, csharp-format
@@ -5078,35 +5078,35 @@ msgstr "Versión del protocolo de tu cliente: {0}"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
-msgstr ""
+msgstr "Tu juego no pudo cargar un vehículo personalizado que esté usando otro jugador, por lo que escucharás el auto predeterminado."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
-msgstr ""
+msgstr "Tu juego no pudo cargar el vehículo personalizado \"{0}\", por lo que escucharás el auto predeterminado en su lugar."
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
-msgstr ""
+msgstr "Tu juego no pudo cargar el vehículo \"{1}\" de {0}, por lo que escucharás el auto predeterminado para ellos."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your latest run did not beat the best record. Details:"
-msgstr ""
+msgstr "Tu última carrera no superó el mejor récord. Detalles:"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 msgid "Your new result details:"
-msgstr ""
+msgstr "Detalles de su nuevo resultado:"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
 msgid "Your quickest lap this run: {0}."
-msgstr ""
+msgstr "Tu vuelta más rápida en esta carrera: {0}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format
 msgid "Your time: {0}."
-msgstr ""
+msgstr "Tu tiempo: {0}."
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "Z minus"
@@ -5140,7 +5140,7 @@ msgstr "auto_upshift_rpm debe ser 0 o estar entre idle_rpm y rev_limiter."
 #: top_speed_net/TopSpeed/Drive/Session/Systems/CoreRequests.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Speech.cs
 msgid "automatic"
-msgstr ""
+msgstr "automático"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
 msgid "available"
@@ -5177,7 +5177,7 @@ msgstr "conexiones"
 
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 msgid "controller"
-msgstr ""
+msgstr "controlador"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
 msgid "curves only"
@@ -5395,11 +5395,11 @@ msgstr ""
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free folder name was available"
-msgstr ""
+msgstr "no hay ningún nombre de carpeta libre disponible"
 
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 msgid "no free name was available to move the old folder aside"
-msgstr ""
+msgstr "no hay ningún nombre libre disponible para mover la carpeta antigua a un lado"
 
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
 msgid "none"
@@ -5431,17 +5431,17 @@ msgstr ""
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "optimal temperature"
-msgstr ""
+msgstr "temperatura óptima"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound not found, no sound will play: {0}"
-msgstr ""
+msgstr "No se encontró sonido opcional, no se reproducirá ningún sonido: {0}"
 
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
 #, csharp-format
 msgid "optional sound problem, no sound will play: {0}"
-msgstr ""
+msgstr "Problema de sonido opcional, no se reproduce ningún sonido: {0}"
 
 #: top_speed_net/TopSpeed/Drive/Session/Systems/TireTemperatureStatus.cs
 msgid "overheated tires"
@@ -5454,7 +5454,7 @@ msgstr "panel"
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
 msgid "paused"
-msgstr ""
+msgstr "pausado"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/Parsing/Build/Validation/Core.cs
 msgid "peak_torque_rpm must be between idle_rpm and rev_limiter."
@@ -5943,7 +5943,7 @@ msgstr "{0}, {1} juego con {2} personas, máximo {3} jugadores"
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #, csharp-format
 msgid "{0}, {1}, using {2}."
-msgstr ""
+msgstr "{0}, {1}, usando {2}."
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultCatalog.cs
 #, csharp-format

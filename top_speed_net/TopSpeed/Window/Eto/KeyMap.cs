@@ -1,3 +1,4 @@
+using System;
 using Eto.Forms;
 using TopSpeed.Input;
 
@@ -65,6 +66,26 @@ namespace TopSpeed.Windowing.Eto
                 case Keys.None:
                 {
                     var modifiers = keyData & Keys.ModifierMask;
+
+                    // Shift plus a key often produces a keysym of its own on X11 - ISO_Left_Tab for
+                    // Tab, exclam for 1, asciitilde for the backtick - and Eto's GTK layer translates
+                    // none of them, so the press arrives carrying modifier bits and no key at all.
+                    // Every one of them looks identical here, so which key it was cannot be recovered.
+                    //
+                    // Guessing a modifier from the bits is worse than admitting that. Every real
+                    // modifier press on GTK arrives with its own key part, so nothing here is a
+                    // modifier going down; inferring one invented a press and then a release while the
+                    // key was still held, which reported Left Shift as let go mid-hold and dropped the
+                    // clutch. Report nothing instead: an unidentifiable key does nothing, rather than
+                    // something wrong.
+                    if (OperatingSystem.IsLinux())
+                    {
+                        key = InputKey.Unknown;
+                        return false;
+                    }
+
+                    // macOS may genuinely deliver bare modifier events; no evidence either way, so its
+                    // behaviour is left exactly as it was.
                     if (modifiers == Keys.Shift)
                     {
                         key = InputKey.LeftShift;

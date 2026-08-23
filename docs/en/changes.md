@@ -5,6 +5,10 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
+## Unreleased (2026.8.22)
+### Game Changes
+- Linux: Fixed the clutch letting go if you pressed Tab while holding Shift. The game took it as the Shift key being let go even though you were still holding it, so the clutch came up and the next gear change ground. It only happened with the left Shift key, which is why it could look intermittent.
+
 ## 2026.8.3.1
 ### Game Changes
 - Custom vehicles now work in multiplayer races. A room host turns them on with the new "Custom vehicles" game rule, and when another driver picks a vehicle you do not have, your game fetches it from the server by itself. Vehicles are matched by what is inside them rather than by their name, so one you already have is never downloaded, renaming or moving a vehicle does not cause it to download again, and a vehicle you do download arrives only once however many races you use it in. If a vehicle cannot be downloaded or cannot be loaded, the race still starts and you are told which vehicle was unavailable and who was using it.

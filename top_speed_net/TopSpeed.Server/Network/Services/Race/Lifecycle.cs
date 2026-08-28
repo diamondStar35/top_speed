@@ -240,6 +240,9 @@ namespace TopSpeed.Server.Network
                     bot.EngineFrequency = bot.AudioProfile.IdleFrequency;
                     bot.Horning = false;
                     bot.HornSecondsRemaining = 0f;
+                    bot.HornCooldownSeconds = 0f;
+                    bot.Braking = false;
+                    bot.DriverState = default;
                     bot.BackfireArmed = true;
                     bot.BackfirePulseSeconds = 0f;
                     bot.PositionX = RaceServer.CalculateStartX(bot.PlayerNumber, bot.WidthM, laneHalfWidth);
@@ -340,6 +343,9 @@ namespace TopSpeed.Server.Network
                     bot.EngineFrequency = bot.AudioProfile.IdleFrequency;
                     bot.Horning = false;
                     bot.HornSecondsRemaining = 0f;
+                    bot.HornCooldownSeconds = 0f;
+                    bot.Braking = false;
+                    bot.DriverState = default;
                     bot.BackfireArmed = true;
                     bot.BackfirePulseSeconds = 0f;
                     bot.PhysicsState = new BotPhysicsState

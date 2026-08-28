@@ -32,41 +32,17 @@ namespace TopSpeed.Physics.Powertrain
                 return new AutomaticShiftRuntimeResult(false, input.CurrentGear, cooldown);
             }
 
-            var currentAccel = ComputeNetAccelForGear(
-                input.PowertrainConfig,
-                input.CurrentGear,
-                input.Gears,
-                input.SpeedMps,
-                input.Throttle,
-                input.SurfaceTractionModifier,
-                input.LongitudinalGripFactor,
-                input.DriveRatioOverride);
+            var currentAccel = ComputeNetAccelForGear(in input, input.CurrentGear, input.DriveRatioOverride);
             var currentRpm = Calculator.RpmAtSpeed(
                 input.PowertrainConfig,
                 input.SpeedMps,
                 input.CurrentGear,
                 input.DriveRatioOverride);
             var upAccel = input.CurrentGear < input.Gears
-                ? ComputeNetAccelForGear(
-                    input.PowertrainConfig,
-                    input.CurrentGear + 1,
-                    input.Gears,
-                    input.SpeedMps,
-                    input.Throttle,
-                    input.SurfaceTractionModifier,
-                    input.LongitudinalGripFactor,
-                    driveRatioOverride: null)
+                ? ComputeNetAccelForGear(in input, input.CurrentGear + 1, driveRatioOverride: null)
                 : float.NegativeInfinity;
             var downAccel = input.CurrentGear > 1
-                ? ComputeNetAccelForGear(
-                    input.PowertrainConfig,
-                    input.CurrentGear - 1,
-                    input.Gears,
-                    input.SpeedMps,
-                    input.Throttle,
-                    input.SurfaceTractionModifier,
-                    input.LongitudinalGripFactor,
-                    driveRatioOverride: null)
+                ? ComputeNetAccelForGear(in input, input.CurrentGear - 1, driveRatioOverride: null)
                 : float.NegativeInfinity;
 
             var decision = AutomaticTransmissionLogic.Decide(
@@ -98,32 +74,60 @@ namespace TopSpeed.Physics.Powertrain
                 inGearDelaySeconds);
         }
 
+        /// <summary>
+        /// Nominal step used purely to evaluate the longitudinal model; the acceleration it
+        /// reports does not depend on it.
+        /// </summary>
+        private const float ProbeElapsedSeconds = 1f / 120f;
+
+        /// <summary>
+        /// Acceleration the car would actually get in this gear.
+        /// <para>
+        /// This must go through <see cref="LongitudinalStep"/> rather than
+        /// <see cref="Calculator.DriveAccel"/>. The latter omits coupled driveline drag, which
+        /// grows with gear ratio and engine speed, so near a gear's ceiling it reports over a
+        /// m/s2 of acceleration for a car that has in fact stopped accelerating. Comparing gears
+        /// on those numbers left the transmission convinced the current gear was still pulling
+        /// hard, so it never upshifted and the car stayed pinned at partial speed - Vehicle3
+        /// never left second gear. Sharing one model is what keeps the decision honest.
+        /// </para>
+        /// </summary>
         private static float ComputeNetAccelForGear(
-            Config config,
+            in AutomaticShiftRuntimeInput input,
             int gear,
-            int gears,
-            float speedMps,
-            float throttle,
-            float surfaceTractionModifier,
-            float longitudinalGripFactor,
             float? driveRatioOverride)
         {
-            var rpm = Calculator.RpmAtSpeed(config, speedMps, gear, driveRatioOverride);
+            var config = input.PowertrainConfig;
+            var rpm = Calculator.RpmAtSpeed(config, input.SpeedMps, gear, driveRatioOverride);
             if (rpm <= 0f)
                 return float.NegativeInfinity;
-            if (rpm > config.RevLimiter && gear < gears)
+            if (rpm > config.RevLimiter && gear < input.Gears)
                 return float.NegativeInfinity;
 
-            return Calculator.DriveAccel(
+            var result = LongitudinalStep.Compute(new LongitudinalStepInput(
                 config,
+                ProbeElapsedSeconds,
+                input.SpeedMps,
+                input.Throttle,
+                brake: 0f,
+                input.SurfaceTractionModifier,
+                surfaceBrakeModifier: 1f,
+                surfaceRollingResistanceModifier: 1f,
+                input.LongitudinalGripFactor,
                 gear,
-                speedMps,
-                throttle,
-                surfaceTractionModifier,
-                longitudinalGripFactor,
-                rollingResistanceModifier: 1f,
+                inReverse: false,
+                isNeutral: false,
+                input.TransmissionType,
+                input.DrivelineCouplingFactor,
+                creepAccelerationMps2: 0f,
+                currentEngineRpm: rpm,
+                requestDrive: true,
+                requestBrake: false,
+                applyEngineBraking: true,
                 resistanceEnvironment: ResistanceEnvironment.Calm,
-                driveRatioOverride);
+                driveRatioOverride));
+
+            return result.DriveAccelerationMps2;
         }
     }
 }

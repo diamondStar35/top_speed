@@ -32,6 +32,7 @@ namespace TopSpeed.Vehicles
         float WidthM { get; }
         float LengthM { get; }
         float MassKg { get; }
+        float LateralVelocityMps { get; }
         float SpeedKmh { get; }
         float EngineRpm { get; }
         float EngineHorsepower { get; }

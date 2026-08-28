@@ -1,3 +1,4 @@
+using System;
 using TopSpeed.Audio;
 using TopSpeed.Bots;
 using TopSpeed.Common;
@@ -14,6 +15,12 @@ namespace TopSpeed.Vehicles
 
         public void Run(float elapsed, float playerX, float playerY)
         {
+            Run(elapsed, playerX, playerY, Array.Empty<BotVehicleObservation>());
+        }
+
+        public void Run(float elapsed, float playerX, float playerY, BotVehicleObservation[] traffic)
+        {
+            _hornCooldownSeconds = Math.Max(0f, _hornCooldownSeconds - elapsed);
             RefreshCategoryVolumes();
             if (_positionY < 0f)
                 _positionY = 0f;
@@ -33,7 +40,7 @@ namespace TopSpeed.Vehicles
 
             if (_state == ComputerState.Running && _started())
             {
-                AI();
+                AI(elapsed, traffic);
                 if (_currentBrake != 0 && _surface == TrackSurface.Asphalt)
                 {
                     if (!_soundBrake.IsPlaying)

@@ -58,6 +58,11 @@ namespace TopSpeed.Vehicles
     {
         private const float DownshiftReentryBandFraction = 0.70f;
 
+        /// <summary>
+        /// Acceleration below which the current gear is treated as having nothing left to give.
+        /// </summary>
+        private const float GearExhaustedAccelMps2 = 0.05f;
+
         public static AutomaticShiftDecision Decide(in AutomaticShiftInput input, TransmissionPolicy? policy)
         {
             var p = policy ?? TransmissionPolicy.Default;
@@ -76,10 +81,16 @@ namespace TopSpeed.Vehicles
             var bestGear = input.CurrentGear;
             var bestAccel = input.CurrentAccel;
 
+            // A gear that has stopped accelerating must never be able to trap the car. Without
+            // this the "hold the intended top-speed gear until near the limit" preference becomes
+            // circular: the taller gear is refused until a speed that only the taller gear can
+            // reach, and the car sits below its real top speed for the rest of the race.
+            var currentGearExhausted = input.CurrentAccel <= GearExhaustedAccelMps2;
+
             if (input.CurrentGear < input.Gears)
             {
                 if (input.CurrentRpm >= upshiftRpm &&
-                    CanConsiderUpshift(in input, p, intendedTopSpeedGear, nearTopSpeed) &&
+                    CanConsiderUpshift(in input, p, intendedTopSpeedGear, nearTopSpeed, currentGearExhausted) &&
                     input.UpAccel > bestAccel)
                 {
                     bestAccel = input.UpAccel;
@@ -89,7 +100,7 @@ namespace TopSpeed.Vehicles
 
             if (input.CurrentGear < input.Gears && input.CurrentRpm >= input.RevLimiter * 0.995f)
             {
-                if (CanForceUpshiftAtLimiter(in input, p, intendedTopSpeedGear, nearTopSpeed))
+                if (CanForceUpshiftAtLimiter(in input, p, intendedTopSpeedGear, nearTopSpeed, currentGearExhausted))
                     return UpshiftDecision(input.CurrentGear, input.Gears, p);
             }
 
@@ -105,6 +116,18 @@ namespace TopSpeed.Vehicles
             }
 
             if (bestGear > input.CurrentGear && bestAccel > input.CurrentAccel * (1f + p.UpshiftHysteresis))
+            {
+                return UpshiftDecision(input.CurrentGear, input.Gears, p);
+            }
+
+            // The proportional hysteresis above cannot be cleared once both gears are down to a
+            // fraction of a m/s2, so an exhausted gear needs an absolute comparison to escape.
+            // The margin matters: a taller gear that is only marginally better right now can still
+            // have a lower terminal speed, and taking it would cost the car speed rather than
+            // gain it.
+            if (currentGearExhausted &&
+                bestGear > input.CurrentGear &&
+                bestAccel > input.CurrentAccel + GearExhaustedAccelMps2)
             {
                 return UpshiftDecision(input.CurrentGear, input.Gears, p);
             }
@@ -135,7 +158,8 @@ namespace TopSpeed.Vehicles
             in AutomaticShiftInput input,
             TransmissionPolicy policy,
             int intendedTopSpeedGear,
-            bool nearTopSpeed)
+            bool nearTopSpeed,
+            bool currentGearExhausted)
         {
             var nextGear = input.CurrentGear + 1;
             if (nextGear > input.Gears)
@@ -143,6 +167,7 @@ namespace TopSpeed.Vehicles
 
             if (!policy.AllowOverdriveAboveGameTopSpeed &&
                 nextGear > intendedTopSpeedGear &&
+                !currentGearExhausted &&
                 input.SpeedMps < input.ReferenceTopSpeedMps * 0.999f)
             {
                 return false;
@@ -151,7 +176,8 @@ namespace TopSpeed.Vehicles
             if (policy.AllowOverdriveAboveGameTopSpeed &&
                 nextGear > intendedTopSpeedGear &&
                 policy.PreferIntendedTopSpeedGearNearLimit &&
-                !nearTopSpeed)
+                !nearTopSpeed &&
+                !currentGearExhausted)
             {
                 return false;
             }
@@ -166,19 +192,21 @@ namespace TopSpeed.Vehicles
             in AutomaticShiftInput input,
             TransmissionPolicy policy,
             int intendedTopSpeedGear,
-            bool nearTopSpeed)
+            bool nearTopSpeed,
+            bool currentGearExhausted)
         {
             var nextGear = input.CurrentGear + 1;
             if (nextGear > input.Gears)
                 return false;
 
-            if (!policy.AllowOverdriveAboveGameTopSpeed && nextGear > intendedTopSpeedGear)
+            if (!policy.AllowOverdriveAboveGameTopSpeed && nextGear > intendedTopSpeedGear && !currentGearExhausted)
                 return false;
 
             if (policy.AllowOverdriveAboveGameTopSpeed &&
                 nextGear > intendedTopSpeedGear &&
                 policy.PreferIntendedTopSpeedGearNearLimit &&
-                !nearTopSpeed)
+                !nearTopSpeed &&
+                !currentGearExhausted)
             {
                 return false;
             }

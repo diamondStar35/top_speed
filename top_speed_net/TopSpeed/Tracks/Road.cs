@@ -47,28 +47,28 @@ namespace TopSpeed.Tracks
             _prevRelPos = _relPos;
             _relPos = seg.RelPos;
             _currentRoad = seg.Index >= 0 ? seg.Index : 0;
-            return new Road
-            {
-                Left = seg.Left,
-                Right = seg.Right,
-                Surface = seg.Surface,
-                Type = seg.Type,
-                Length = seg.Length
-            };
+            return ToRoad(model, seg);
         }
 
         public Road RoadComputer(float position)
         {
             if (_lapDistance == 0)
                 Initialize();
-            var seg = GetRoadModel().At(position);
+            var model = GetRoadModel();
+            return ToRoad(model, model.At(position));
+        }
+
+        private static Road ToRoad(RoadModel model, RoadSeg seg)
+        {
             return new Road
             {
                 Left = seg.Left,
                 Right = seg.Right,
                 Surface = seg.Surface,
                 Type = seg.Type,
-                Length = seg.Length
+                Length = seg.Length,
+                DriftPerMeter = model.CenterDriftPerMeter(seg.Type),
+                SegmentRemainingM = Math.Max(1f, seg.Length - seg.RelPos)
             };
         }
 

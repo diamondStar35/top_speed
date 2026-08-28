@@ -19,7 +19,8 @@ namespace TopSpeed.Physics.Powertrain
             float elapsedSeconds,
             float cooldownSeconds,
             bool shiftOnDemandActive = false,
-            float? driveRatioOverride = null)
+            float? driveRatioOverride = null,
+            float drivelineCouplingFactor = 1f)
         {
             PowertrainConfig = powertrainConfig ?? throw new ArgumentNullException(nameof(powertrainConfig));
             TransmissionPolicy = transmissionPolicy ?? TransmissionPolicy.Default;
@@ -35,6 +36,7 @@ namespace TopSpeed.Physics.Powertrain
             CooldownSeconds = cooldownSeconds;
             ShiftOnDemandActive = shiftOnDemandActive;
             DriveRatioOverride = driveRatioOverride;
+            DrivelineCouplingFactor = drivelineCouplingFactor;
         }
 
         public Config PowertrainConfig { get; }
@@ -51,6 +53,12 @@ namespace TopSpeed.Physics.Powertrain
         public float CooldownSeconds { get; }
         public bool ShiftOnDemandActive { get; }
         public float? DriveRatioOverride { get; }
+
+        /// <summary>
+        /// Live driveline coupling, so the gear comparison sees the same partial engagement the
+        /// longitudinal step will apply.
+        /// </summary>
+        public float DrivelineCouplingFactor { get; }
     }
 
     public readonly struct AutomaticShiftRuntimeResult

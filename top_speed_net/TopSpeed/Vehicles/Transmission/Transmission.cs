@@ -32,7 +32,8 @@ namespace TopSpeed.Vehicles
                     elapsed,
                     _autoShiftCooldown,
                     shiftOnDemandActive: IsShiftOnDemandActive(),
-                    _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null));
+                    _effectiveDriveRatioOverride > 0f ? _effectiveDriveRatioOverride : (float?)null,
+                    _drivelineCouplingFactor));
             _autoShiftCooldown = shiftResult.CooldownSeconds;
             if (shiftResult.Changed)
                 ShiftAutomaticGear(shiftResult.Gear, shiftResult.CooldownSeconds, shiftResult.ShiftDirection, shiftResult.InGearDelaySeconds);

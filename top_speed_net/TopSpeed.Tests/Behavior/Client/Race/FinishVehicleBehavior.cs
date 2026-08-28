@@ -188,6 +188,7 @@ public sealed class FinishVehicleBehaviorTests
         public float WidthM => 2f;
         public float LengthM => 4f;
         public float MassKg => 1000f;
+        public float LateralVelocityMps => 0f;
         public float SpeedKmh => 0f;
         public float EngineRpm => 0f;
         public float EngineHorsepower => 0f;

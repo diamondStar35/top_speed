@@ -21,6 +21,15 @@ namespace TopSpeed.Tracks
             public TrackSurface Surface;
             public TrackType Type;
             public float Length;
+
+            /// <summary>
+            /// Signed lateral drift of the corridor per meter travelled forwards.
+            /// See <see cref="RoadModel.CenterDriftPerMeter(TrackType, float)"/>.
+            /// </summary>
+            public float DriftPerMeter;
+
+            /// <summary>Distance from this point to the end of its segment.</summary>
+            public float SegmentRemainingM;
         }
 
         private readonly AudioManager _audio;

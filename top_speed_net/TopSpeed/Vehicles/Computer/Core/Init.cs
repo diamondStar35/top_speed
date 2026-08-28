@@ -48,13 +48,13 @@ namespace TopSpeed.Vehicles
             _gear = 1;
             _state = ComputerState.Stopped;
             _horning = false;
+            _hornCooldownSeconds = 0f;
             _difficulty = (int)settings.Difficulty;
+            _driverState = default;
             _prevFrequency = 0;
             _prevBrakeFrequency = 0;
             _brakeFrequency = 0;
-            _laneWidth = 0;
             _relPos = 0f;
-            _nextRelPos = 0f;
             _diffX = 0;
             _diffY = 0;
             _currentSteering = 0;
@@ -301,6 +301,8 @@ namespace TopSpeed.Vehicles
                 overrunCurveExponent: build.OverrunCurveExponent,
                 engineBrakeTransferEfficiency: build.EngineBrakeTransferEfficiency,
                 tireWearConfig: definition.TireWearConfig);
+
+            _capabilities = BotCapabilities.From(_physicsConfig);
 
             _raceAudio = raceAudio.CreateRemote(definition);
             BindAudio(_raceAudio);

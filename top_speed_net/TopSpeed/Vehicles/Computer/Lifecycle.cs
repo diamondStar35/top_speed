@@ -18,8 +18,9 @@ namespace TopSpeed.Vehicles
             _tireCarcassTemperatureC = float.NaN;
             _tireSmoothedInputs = default;
             _surfaceTemperatureC = float.NaN;
+            _driverState = default;
+            _drivingPreviewRefreshSeconds = 0f;
             _trackLength = trackLength;
-            _laneWidth = _track.LaneWidth;
             _remoteNetInit = false;
             _remoteTargetX = _positionX;
             _remoteTargetY = _positionY;
@@ -94,6 +95,7 @@ namespace TopSpeed.Vehicles
             _gear = 1;
             _positionX = newPosition;
             _state = ComputerState.Crashing;
+            _driverState = default;
             if (scheduleRestart)
                 PushEvent(BotEventType.CarRestart, _soundCrash.LengthSeconds + 1.25f);
         }
@@ -104,6 +106,7 @@ namespace TopSpeed.Vehicles
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
             _positionX = newPosition;
+            Bots.BotDrivingPlanner.NotifyContact(ref _driverState);
             _soundMiniCrash.Play(loop: false);
         }
 
@@ -130,6 +133,7 @@ namespace TopSpeed.Vehicles
                 _speed = 0;
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
+            Bots.BotDrivingPlanner.NotifyContact(ref _driverState);
             if (!_soundBump.IsPlaying)
                 _soundBump.Play(loop: false);
             Horn();

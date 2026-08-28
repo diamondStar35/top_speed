@@ -58,6 +58,40 @@ namespace TopSpeed.Data
         public float LapDistance { get; }
         public float LapCenter { get; }
         public float LaneHalfWidth => _laneHalfWidth;
+        public float CurveScale => _curveScale;
+
+        /// <summary>
+        /// Signed lateral drift of the road corridor per meter travelled forwards.
+        /// A curve here is modelled as the whole corridor translating sideways, so this is
+        /// the lateral speed (per unit forward speed) a car must hold to stay on the road.
+        /// Positive drifts right, negative drifts left.
+        /// </summary>
+        public static float CenterDriftPerMeter(TrackType type, float curveScale)
+        {
+            switch (type)
+            {
+                case TrackType.EasyLeft:
+                    return -curveScale / 2f;
+                case TrackType.Left:
+                    return -curveScale * 2f / 3f;
+                case TrackType.HardLeft:
+                    return -curveScale;
+                case TrackType.HairpinLeft:
+                    return -curveScale * 3f / 2f;
+                case TrackType.EasyRight:
+                    return curveScale / 2f;
+                case TrackType.Right:
+                    return curveScale * 2f / 3f;
+                case TrackType.HardRight:
+                    return curveScale;
+                case TrackType.HairpinRight:
+                    return curveScale * 3f / 2f;
+                default:
+                    return 0f;
+            }
+        }
+
+        public float CenterDriftPerMeter(TrackType type) => CenterDriftPerMeter(type, _curveScale);
 
         public float Wrap(float position)
         {

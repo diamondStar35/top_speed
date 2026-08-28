@@ -6,25 +6,64 @@ namespace TopSpeed.Vehicles
 {
     internal sealed partial class ComputerPlayer
     {
-        private void AI()
+        private void AI(float elapsed, BotVehicleObservation[] traffic)
         {
-            var road = _track.RoadComputer(_positionY);
-            var laneHalfWidth = Math.Max(0.1f, Math.Abs(road.Right - road.Left) * 0.5f);
-            _relPos = BotRaceRules.CalculateRelativeLanePosition(_positionX, road.Left, laneHalfWidth);
-            var nextRoad = _track.RoadComputer(_positionY + CallLength);
-            var nextLaneHalfWidth = Math.Max(0.1f, Math.Abs(nextRoad.Right - nextRoad.Left) * 0.5f);
-            _nextRelPos = BotRaceRules.CalculateRelativeLanePosition(_positionX, nextRoad.Left, nextLaneHalfWidth);
-            BotSharedModel.GetControlInputs(_difficulty, _random, road.Type, nextRoad.Type, _relPos, out var throttle, out var steering);
-            _currentThrottle = (int)Math.Round(throttle);
-            _currentSteering = (int)Math.Round(steering);
+            RefreshRoadPreview(elapsed);
+
+            var ego = new BotEgoState(_positionX, _positionY, _speed, _lateralVelocityMps, _yawRateRad, _gear, _effectiveDriveRatio);
+            var input = new BotDrivingInput(
+                (BotDrivingDifficulty)_difficulty,
+                (uint)((_playerNumber + 1) * 397 ^ (_random + 1) * 7919),
+                (uint)_playerNumber,
+                elapsed,
+                in ego,
+                in _capabilities,
+                _drivingRoadPreview,
+                traffic);
+            var control = BotDrivingPlanner.Step(ref _driverState, in input);
+            _currentThrottle = (int)Math.Round(control.Throttle);
+            _currentBrake = (int)Math.Round(control.Brake);
+            _currentSteering = (int)Math.Round(control.Steering);
+        }
+
+        /// <summary>
+        /// The sample under the car is refreshed every tick because the steering loop reads the
+        /// corridor from it; the lookahead ladder only needs the planner's cadence.
+        /// </summary>
+        private void RefreshRoadPreview(float elapsed)
+        {
+            _drivingPreviewRefreshSeconds -= elapsed;
+            var rebuildLadder = _drivingPreviewRefreshSeconds <= 0f;
+            if (rebuildLadder)
+            {
+                _drivingPreviewRefreshSeconds = BotRoadSampling.RefreshIntervalSeconds;
+                BotRoadSampling.FillDistances(_speed, _drivingPreviewDistances);
+            }
+
+            var count = rebuildLadder ? _drivingRoadPreview.Length : 1;
+            for (var i = 0; i < count; i++)
+            {
+                var distance = _drivingPreviewDistances[i];
+                var sample = _track.RoadComputer(_positionY + distance);
+                _drivingRoadPreview[i] = new BotRoadPreview(
+                    distance,
+                    sample.Left,
+                    sample.Right,
+                    sample.Surface,
+                    sample.Type,
+                    sample.DriftPerMeter,
+                    sample.SegmentRemainingM);
+            }
         }
 
         private void Horn()
         {
+            if (_hornCooldownSeconds > 0f)
+                return;
             var duration = Algorithm.RandomInt(80);
+            _hornCooldownSeconds = 2f;
             PushEvent(BotEventType.StartHorn, 0.3f);
             PushEvent(BotEventType.StopHorn, 0.5f + duration / 80.0f);
         }
     }
 }
-

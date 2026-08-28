@@ -33,7 +33,8 @@ namespace TopSpeed.Bots
                     elapsed,
                     state.AutoShiftCooldownSeconds,
                     shiftOnDemandActive: false,
-                    driveRatioOverride));
+                    driveRatioOverride,
+                    state.AutomaticCouplingFactor));
             state.AutoShiftCooldownSeconds = shiftResult.CooldownSeconds;
             if (shiftResult.Changed)
                 state.Gear = shiftResult.Gear;

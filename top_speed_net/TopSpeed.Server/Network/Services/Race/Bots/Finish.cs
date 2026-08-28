@@ -14,6 +14,9 @@ namespace TopSpeed.Server.Network
             bot.EngineFrequency = bot.AudioProfile.IdleFrequency;
             bot.Horning = false;
             bot.HornSecondsRemaining = 0f;
+            bot.HornCooldownSeconds = 0f;
+            bot.Braking = false;
+            bot.DriverState = default;
             bot.BackfirePulseSeconds = 0f;
             bot.BackfireArmed = true;
             bot.RacePhase = BotRacePhase.Normal;

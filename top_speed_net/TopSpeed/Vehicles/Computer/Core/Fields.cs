@@ -93,9 +93,7 @@ namespace TopSpeed.Vehicles
         private int _frequency;
         private int _prevBrakeFrequency;
         private int _brakeFrequency;
-        private float _laneWidth;
         private float _relPos;
-        private float _nextRelPos;
         private float _diffX;
         private float _diffY;
         private int _currentSteering;
@@ -111,8 +109,14 @@ namespace TopSpeed.Vehicles
         private TireWearSmoothedInputs _tireSmoothedInputs;
         private float _surfaceTemperatureC;
         private int _difficulty;
+        private BotDriverState _driverState;
+        private BotCapabilities _capabilities;
+        private readonly float[] _drivingPreviewDistances = BotRoadSampling.CreateDistances();
+        private readonly BotRoadPreview[] _drivingRoadPreview = BotRoadSampling.CreatePreview();
+        private float _drivingPreviewRefreshSeconds;
         private bool _finished;
         private bool _horning;
+        private float _hornCooldownSeconds;
         private bool _networkBackfireActive;
         private bool _remoteEngineStartPending;
         private float _remoteEngineStartRemaining;

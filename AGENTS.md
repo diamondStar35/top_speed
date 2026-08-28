@@ -52,6 +52,21 @@ Rule: packet handlers update store/runtime state first; menu/speech effects happ
 - Longitudinal tire wear input is normalized through `top_speed_net/TopSpeed.Shared/Physics/Tires/Wear/InputSignals.cs`; both player and bot physics must use this shared mapper so normal acceleration is not treated as tire slide.
 - Player-car integration lives in `top_speed_net/TopSpeed/Vehicles/Physics/TireWear.cs`; it consumes live weather from `Track.GetActiveWeatherProfile()` and models both tire and surface temperature.
 - Bot integration lives in `top_speed_net/TopSpeed.Shared/Bots/Physics/` (`BotPhysicsInput`, `BotPhysicsState`, `BotPhysicsConfig`, `BotPhysics.Step`) and must stay behaviorally aligned with player-car tire wear semantics.
+
+### Automatic transmission
+
+- `AutomaticTransmissionLogic.Decide` compares gears using `AutomaticShiftRuntime.ComputeNetAccelForGear`, which **must** evaluate acceleration through `LongitudinalStep.Compute`, not `Calculator.DriveAccel`. The latter omits coupled driveline drag, so near a gear's ceiling it reports acceleration the car will not get, and the transmission concludes it has no reason to upshift.
+- Nothing may leave a car permanently in a gear that has stopped accelerating. The `PreferIntendedTopSpeedGearNearLimit` preference is gated on `currentGearExhausted` for exactly this reason: without it the taller gear is withheld until a speed only the taller gear can reach.
+- Manual driving does not use this path at all (`ClampSpeedAndTransmission` caps speed per gear via `GearSpeedLimiter` instead), so a defect here is invisible in manual play and shows up only for bots and automatic-transmission players. Validate changes against both.
+
+### Bot driving
+
+- The bot driver is `BotDrivingPlanner.Step` in `top_speed_net/TopSpeed.Shared/Bots/Driving/`, split into `Speed/` (corner limits, braking profile, car following), `Lateral/` (line choice and traffic cost) and `Control/` (pedals, steering, safety). It is a pure, deterministic function: same state plus same input always yields the same output.
+- Both hosts must feed it identically — offline via `TopSpeed/Vehicles/Computer/Ai.cs`, online via `TopSpeed.Server/Network/Services/Race/Bots/Drive.cs` — using `BotRoadSampling` for the lookahead ladder. Refresh sample 0 every tick (the steering loop reads the corridor from it) and the rest at `BotRoadSampling.RefreshIntervalSeconds`.
+- Corner and braking limits are derived from the shared physics (`Calculator.DriveAccel`, `Calculator.BrakeDecelKph`, the tire model's lateral envelope), never tabulated. The constants in `Driving/Speed/Corner.cs` mirror `Physics/Tires/{Yaw,Step}.cs` and must be updated together with them.
+- Bots never aim at another car. There is no ramming or blocking behaviour; difficulty changes grip/brake confidence, reaction lag, headway and line quality, not recklessness.
+- Hosts must call `BotDrivingPlanner.NotifyContact` when a bot is bumped, so it settles instead of collecting the next car.
+- Driving changes must be validated with the closed-loop harness `TopSpeed.Tests/Harness/Shared/Bots/BotRaceHarness.cs` (collisions, off-road events, brake duty cycle, stranded bots), not only single-step assertions.
 - Custom vehicle tire wear tuning is parsed from `[tire_model]` in `top_speed_net/TopSpeed/Vehicles/Parsing/` using explicit keys for wear/thermal behavior (for example `wear_slip_rate_per_s`, `temp_optimal_end_c`, `heat_cornering_c_per_s`, `exchange_wet_road_per_c_per_s`).
 - In-race tire state speech is bound through `DriveIntent.ReportTireState` and handled in `Drive/Session/Systems/CoreRequests.cs`; default keyboard binding is `V` and must not alter `GearDown` behavior.
 

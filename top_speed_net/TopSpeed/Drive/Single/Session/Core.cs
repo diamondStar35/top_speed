@@ -250,6 +250,7 @@ namespace TopSpeed.Drive.Single
                 100,
                 _computerPlayers,
                 _nComputerPlayers,
+                _playerNumber,
                 _car,
                 _track,
                 _nrOfLaps,
@@ -258,6 +259,7 @@ namespace TopSpeed.Drive.Single
                 RecordFinish,
                 AnnounceFinishOrder,
                 CheckFinish,
+                () => !_finished && !(_pitStop?.IsGhosted ?? false),
                 progressSeconds => _session!.QueueEvent(new Event(Events.ProgressFinish), 1.0f + _speakTime - progressSeconds));
             _progress = new ProgressSubsystem(
                 "progress",

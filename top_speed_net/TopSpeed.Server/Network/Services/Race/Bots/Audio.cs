@@ -39,12 +39,15 @@ namespace TopSpeed.Server.Network
 
         private void TriggerBotHorn(RoomBot bot, string reason, float minDurationSeconds = 0.2f)
         {
+            if (bot.HornCooldownSeconds > 0f)
+                return;
             var duration = minDurationSeconds + (_random.Next(80) / 80.0f);
             if (duration <= bot.HornSecondsRemaining)
                 return;
 
             bot.Horning = true;
             bot.HornSecondsRemaining = duration;
+            bot.HornCooldownSeconds = 2f;
             if (string.Equals(reason, "overtake", StringComparison.Ordinal))
                 _botHornOvertakeEvents++;
             else if (string.Equals(reason, "bump", StringComparison.Ordinal))

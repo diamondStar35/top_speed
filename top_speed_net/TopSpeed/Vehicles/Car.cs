@@ -39,6 +39,7 @@ namespace TopSpeed.Vehicles
         public float WidthM => _widthM;
         public float LengthM => _lengthM;
         public float MassKg => _massKg;
+        public float LateralVelocityMps => _lateralVelocityMps;
 
         public float SpeedKmh => _engine.SpeedKmh;
         public float EngineRpm => _engine.Rpm;

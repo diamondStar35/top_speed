@@ -214,6 +214,12 @@ namespace TopSpeed.Server.Network
             state.PositionY = bot.PositionY;
             state.SpeedKph = bot.SpeedKph;
             bot.PhysicsState = state;
+
+            // Contact throws the car sideways; let the driver settle before it goes hunting for a
+            // gap again, otherwise one bump immediately collects the next car.
+            var driverState = bot.DriverState;
+            TopSpeed.Bots.BotDrivingPlanner.NotifyContact(ref driverState);
+            bot.DriverState = driverState;
         }
 
     }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TopSpeed.Bots;
 using TopSpeed.Data;
 using TopSpeed.Protocol;
 
@@ -27,6 +29,8 @@ namespace TopSpeed.Server.Network
                 if (roadModel.LapDistance <= 0f || raceDistance <= 0f)
                     continue;
 
+                var traffic = BuildBotTrafficSnapshot(room);
+
                 foreach (var bot in room.Bots)
                 {
                     UpdateBotSignals(bot, deltaSeconds);
@@ -45,9 +49,44 @@ namespace TopSpeed.Server.Network
                     if (TryAdvanceRestartPhase(room, bot, deltaSeconds))
                         continue;
 
-                    SimulateBotRaceStep(room, bot, roadModel, raceDistance, deltaSeconds);
+                    SimulateBotRaceStep(room, bot, roadModel, raceDistance, deltaSeconds, traffic);
                 }
             }
+        }
+
+        private BotVehicleObservation[] BuildBotTrafficSnapshot(GameRoom room)
+        {
+            var traffic = new List<BotVehicleObservation>(room.PlayerIds.Count + room.Bots.Count);
+            foreach (var id in room.PlayerIds)
+            {
+                if (!_players.TryGetValue(id, out var player) || player.State != PlayerState.Racing)
+                    continue;
+                traffic.Add(new BotVehicleObservation(
+                    player.Id,
+                    isHuman: true,
+                    player.PositionX,
+                    player.PositionY,
+                    player.Speed,
+                    player.WidthM,
+                    player.LengthM));
+            }
+
+            for (var i = 0; i < room.Bots.Count; i++)
+            {
+                var bot = room.Bots[i];
+                if (bot.State != PlayerState.Racing)
+                    continue;
+                traffic.Add(new BotVehicleObservation(
+                    bot.Id,
+                    isHuman: false,
+                    bot.PositionX,
+                    bot.PositionY,
+                    bot.SpeedKph,
+                    bot.WidthM,
+                    bot.LengthM,
+                    bot.PhysicsState.LateralVelocityMps));
+            }
+            return traffic.ToArray();
         }
 
     }

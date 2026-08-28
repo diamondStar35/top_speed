@@ -16,7 +16,6 @@ namespace TopSpeed.Server.Network
         private const float ServerSnapshotIntervalSeconds = 1f / 60f;
         private const float CleanupIntervalSeconds = 1.0f;
         private const float BotRaceStartDelaySeconds = 6.5f;
-        private const float BotAiLookaheadMeters = 30.0f;
         private const float BotHornMinDistanceMeters = 100.0f;
         private const float BotBackfirePulseSeconds = 0.1f;
         private static readonly TimeSpan ConnectTimeout = ConnectionRecoveryRules.DefaultConnectTimeout;

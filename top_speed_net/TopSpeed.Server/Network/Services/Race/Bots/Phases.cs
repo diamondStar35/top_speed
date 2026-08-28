@@ -12,6 +12,8 @@ namespace TopSpeed.Server.Network
     {
         private static void UpdateBotSignals(RoomBot bot, float deltaSeconds)
         {
+            if (bot.HornCooldownSeconds > 0f)
+                bot.HornCooldownSeconds = Math.Max(0f, bot.HornCooldownSeconds - deltaSeconds);
             if (bot.BackfirePulseSeconds > 0f)
             {
                 bot.BackfirePulseSeconds -= deltaSeconds;
@@ -65,6 +67,7 @@ namespace TopSpeed.Server.Network
             bot.SpeedKph = 0f;
             bot.EngineFrequency = bot.AudioProfile.IdleFrequency;
             bot.BackfireArmed = true;
+            bot.Braking = false;
             _botStartEvents++;
             _logger.Debug(LocalizationService.Format(
                 LocalizationService.Mark("Bot started racing: room={0}, bot={1}, number={2}."),
@@ -91,6 +94,7 @@ namespace TopSpeed.Server.Network
             bot.HornSecondsRemaining = 0f;
             bot.BackfirePulseSeconds = 0f;
             bot.BackfireArmed = true;
+            bot.Braking = false;
             if (bot.CrashRecoverySeconds > 0f)
                 return true;
 
@@ -125,6 +129,7 @@ namespace TopSpeed.Server.Network
             bot.HornSecondsRemaining = 0f;
             bot.BackfirePulseSeconds = 0f;
             bot.BackfireArmed = true;
+            bot.Braking = false;
             if (bot.StartDelaySeconds > 0f)
             {
                 bot.StartDelaySeconds -= deltaSeconds;

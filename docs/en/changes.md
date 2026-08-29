@@ -5,9 +5,13 @@ This file tracks new changes to the game for both client and server to make it e
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
 
-## Unreleased (2026.8.22)
-### Game Changes
-- Linux: Fixed the clutch letting go if you pressed Tab while holding Shift. The game took it as the Shift key being let go even though you were still holding it, so the clutch came up and the next gear change ground. It only happened with the left Shift key, which is why it could look intermittent.
+##2026.8.29
+###Game Changes
+- Rewrote bot driving behavior. Bots learn how to use brakes when necessary, slow down or accelerate based on incoming turns, avoid obstacles, and hard difficulty mode is a serious hard mode now.
+- Fixed a long-standing bug where when another vehicle crosses the finish line, the player would only hear it's sound and the sound would get cut completely instead of slowing down.
+
+###Server Changes
+- Fixed vehicle finish line behavior
 
 ## 2026.8.3.1
 ### Game Changes

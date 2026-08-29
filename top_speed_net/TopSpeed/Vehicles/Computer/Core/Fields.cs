@@ -90,6 +90,7 @@ namespace TopSpeed.Vehicles
 
         private int _random;
         private int _prevFrequency;
+        private bool _engineShutdownActive;
         private int _frequency;
         private int _prevBrakeFrequency;
         private int _brakeFrequency;

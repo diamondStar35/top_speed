@@ -20,7 +20,7 @@ namespace TopSpeed.Server.Network
 
             public bool ResolveBotFinish(GameRoom room, RoomBot bot, float finishY, out byte finishOrder)
             {
-                ServerBotFinish.StopMotion(bot, finishY);
+                ServerBotFinish.BeginStop(bot, finishY);
                 return ResolveParticipantFinish(room, bot.Id, bot.PlayerNumber, CaptureFinishTimeMs(room), out finishOrder);
             }
 

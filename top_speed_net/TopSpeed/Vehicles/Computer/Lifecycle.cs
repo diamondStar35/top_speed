@@ -20,6 +20,7 @@ namespace TopSpeed.Vehicles
             _surfaceTemperatureC = float.NaN;
             _driverState = default;
             _drivingPreviewRefreshSeconds = 0f;
+            CancelEngineShutdown();
             _trackLength = trackLength;
             _remoteNetInit = false;
             _remoteTargetX = _positionX;
@@ -86,6 +87,7 @@ namespace TopSpeed.Vehicles
             _lateralVelocityMps = 0f;
             _yawRateRad = 0f;
             _soundCrash.Play(loop: false);
+            CancelEngineShutdown();
             _soundEngine.Stop();
             _soundEngine.SeekToStart();
             _soundEngine.SetPanPercent(0);

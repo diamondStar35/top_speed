@@ -13,7 +13,13 @@ namespace TopSpeed.Server.Bots
     {
         Normal = 0,
         Crashing = 1,
-        Restarting = 2
+        Restarting = 2,
+
+        /// <summary>
+        /// Finished, but still rolling to a halt. Snapshots keep reporting a falling speed and a
+        /// falling engine note so listeners hear the car wind down instead of cutting out.
+        /// </summary>
+        Stopping = 3
     }
 
     internal readonly struct BotAudioProfile

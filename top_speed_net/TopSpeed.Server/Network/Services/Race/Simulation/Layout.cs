@@ -70,6 +70,7 @@ namespace TopSpeed.Server.Network
                 },
                 State = bot.State,
                 EngineRunning = (bot.State == PlayerState.Racing && bot.RacePhase == BotRacePhase.Normal)
+                    || bot.RacePhase == BotRacePhase.Stopping
                     || bot.EngineStartSecondsRemaining > 0f,
                 Braking = bot.Braking,
                 Horning = bot.Horning,

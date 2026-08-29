@@ -18,6 +18,47 @@ namespace TopSpeed.Vehicles
             Run(elapsed, playerX, playerY, Array.Empty<BotVehicleObservation>());
         }
 
+        /// <summary>
+        /// Advances the audio engine model from the car's current motion. Shared by the racing and
+        /// settling paths so a car that is slowing down actually sounds like it.
+        /// </summary>
+        private void SyncEngineFromMotion(float elapsed, int throttleInput, bool combustionEnabled = true)
+        {
+            var driveRatioOverride = _effectiveDriveRatio > 0f ? _effectiveDriveRatio : (float?)null;
+            var throttle = System.Math.Max(0f, System.Math.Min(100f, throttleInput)) / 100f;
+            var syncState = EngineStateRuntime.Resolve(
+                new EngineStateRuntimeInput(
+                    _physicsConfig.Powertrain,
+                    _activeTransmissionType,
+                    isNeutralGear: false,
+                    combustionEnabled,
+                    engineStalled: false,
+                    drivelineLocked: _automaticCouplingFactor >= 0.98f,
+                    drivelineDisengaged: _automaticCouplingFactor <= 0.05f,
+                    _speed / 3.6f,
+                    throttle,
+                    _automaticCouplingFactor,
+                    switchingGear: 0,
+                    _engine.Rpm,
+                    Calculator.RpmAtSpeed(
+                        _physicsConfig.Powertrain,
+                        _speed / 3.6f,
+                        _gear,
+                        driveRatioOverride)));
+
+            _engine.SyncFromSpeed(
+                _speed,
+                _gear,
+                elapsed,
+                throttleInput,
+                inReverse: false,
+                couplingMode: (EngineCouplingMode)syncState.CouplingMode,
+                couplingFactor: _automaticCouplingFactor,
+                driveRatioOverride: driveRatioOverride,
+                minimumCoupledRpm: syncState.MinimumCoupledRpm,
+                combustionEnabled: combustionEnabled);
+        }
+
         public void Run(float elapsed, float playerX, float playerY, BotVehicleObservation[] traffic)
         {
             _hornCooldownSeconds = Math.Max(0f, _hornCooldownSeconds - elapsed);
@@ -102,37 +143,7 @@ namespace TopSpeed.Vehicles
                 _surfaceTemperatureC = physicsState.SurfaceTemperatureC;
                 _speedDiff = _speed - beforeSpeed;
 
-                var driveRatioOverride = _effectiveDriveRatio > 0f ? _effectiveDriveRatio : (float?)null;
-                var syncState = EngineStateRuntime.Resolve(
-                    new EngineStateRuntimeInput(
-                        _physicsConfig.Powertrain,
-                        _activeTransmissionType,
-                        isNeutralGear: false,
-                        combustionEnabled: true,
-                        engineStalled: false,
-                        drivelineLocked: _automaticCouplingFactor >= 0.98f,
-                        drivelineDisengaged: _automaticCouplingFactor <= 0.05f,
-                        _speed / 3.6f,
-                        System.Math.Max(0f, System.Math.Min(100f, _currentThrottle)) / 100f,
-                        _automaticCouplingFactor,
-                        switchingGear: 0,
-                        _engine.Rpm,
-                        Calculator.RpmAtSpeed(
-                            _physicsConfig.Powertrain,
-                            _speed / 3.6f,
-                            _gear,
-                            driveRatioOverride)));
-
-                _engine.SyncFromSpeed(
-                    _speed,
-                    _gear,
-                    elapsed,
-                    _currentThrottle,
-                    inReverse: false,
-                    couplingMode: (EngineCouplingMode)syncState.CouplingMode,
-                    couplingFactor: _automaticCouplingFactor,
-                    driveRatioOverride: driveRatioOverride,
-                    minimumCoupledRpm: syncState.MinimumCoupledRpm);
+                SyncEngineFromMotion(elapsed, _currentThrottle);
                 UpdateEngineFreq();
 
                 if (_frame % 4 == 0)
@@ -179,7 +190,10 @@ namespace TopSpeed.Vehicles
                         driveRatioOverride: _effectiveDriveRatio > 0f ? _effectiveDriveRatio : (float?)null));
                 _speed = System.Math.Max(0f, _speed + longitudinal.SpeedDeltaKph);
                 _speedDiff = longitudinal.SpeedDeltaKph;
-                UpdateEngineFreq();
+                // Same shape as Car.RunStoppingDynamics: the engine keeps turning and winds down
+                // while the car settles, and the loop is only faded once the engine has died.
+                BeginEngineShutdown(_speed);
+                AdvanceEngineShutdown(elapsed);
                 if (_frame % 4 == 0)
                 {
                     _frame = 0;
@@ -188,8 +202,12 @@ namespace TopSpeed.Vehicles
                 {
                     _speed = 0f;
                     _speedDiff = 0f;
-                    _state = ComputerState.Stopped;
-                    _soundEngine.Stop();
+                    if (!_engineShutdownActive)
+                    {
+                        _state = ComputerState.Stopped;
+                        if (_soundEngine.IsPlaying)
+                            _soundEngine.Stop(EngineShutdownFadeSeconds);
+                    }
                 }
                 _frame++;
             }

@@ -59,6 +59,12 @@ Rule: packet handlers update store/runtime state first; menu/speech effects happ
 - Nothing may leave a car permanently in a gear that has stopped accelerating. The `PreferIntendedTopSpeedGearNearLimit` preference is gated on `currentGearExhausted` for exactly this reason: without it the taller gear is withheld until a speed only the taller gear can reach.
 - Manual driving does not use this path at all (`ClampSpeedAndTransmission` caps speed per gear via `GearSpeedLimiter` instead), so a defect here is invisible in manual play and shows up only for bots and automatic-transmission players. Validate changes against both.
 
+### Finishing and engine shutdown
+
+- A car that finishes must be heard winding down, never cut off. The sequence is the one `Car.Stop` runs: keep syncing the engine with `combustionEnabled: false` (which drops its minimum operational rpm to zero) so it dies on its own friction and inertia, then fade the loop with the shared shutdown fade. `ComputerPlayer` runs the same sequence for bots and networked cars - do not add a second, different stop path.
+- The server retires a finished bot into `BotRacePhase.Stopping` and keeps simulating it until it comes to rest, reporting `EngineRunning` and a falling engine frequency throughout. Freezing a finisher server-side drops it from racing note to silence in one snapshot for every listener.
+- Networked cars never advance an engine model (their pitch is server-authoritative), so a client-side shutdown must be seeded from the speed the car was doing *before* the snapshot that stopped it.
+
 ### Bot driving
 
 - The bot driver is `BotDrivingPlanner.Step` in `top_speed_net/TopSpeed.Shared/Bots/Driving/`, split into `Speed/` (corner limits, braking profile, car following), `Lateral/` (line choice and traffic cost) and `Control/` (pedals, steering, safety). It is a pure, deterministic function: same state plus same input always yields the same output.

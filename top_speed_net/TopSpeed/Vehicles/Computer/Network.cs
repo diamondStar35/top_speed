@@ -26,6 +26,10 @@ namespace TopSpeed.Vehicles
             var incomingX = positionX;
             var incomingY = Math.Max(0f, positionY);
             var incomingSpeed = Math.Max(0f, speed);
+            // Captured before interpolation overwrites it: the server snaps a finisher to a
+            // standstill in one packet, so this is the last speed the car was actually doing and
+            // therefore the note the listener is hearing right now.
+            var speedBeforeUpdateKph = _remoteNetInit ? _speed : incomingSpeed;
             _trackLength = trackLength;
             var preserveCrashState = _state == ComputerState.Crashing && !engineRunning;
             var preserveFinishStoppingState = _finished && _state == ComputerState.Stopping && !engineRunning;
@@ -100,8 +104,20 @@ namespace TopSpeed.Vehicles
             {
                 _remoteEngineStartPending = false;
                 _remoteEngineStartRemaining = 0f;
-                if (!preserveFinishStoppingState && _soundEngine.IsPlaying)
-                    _soundEngine.Stop();
+                // A running engine that stops is a shutdown, not a mute. Winding it down here
+                // rather than at the finish event also removes the ordering hazard: the snapshot
+                // that reports the engine off can arrive before the finish packet, and cutting the
+                // loop on it is what made a finishing car vanish mid-note.
+                if (preserveCrashState)
+                {
+                    CancelEngineShutdown();
+                    if (_soundEngine.IsPlaying)
+                        _soundEngine.Stop();
+                }
+                else if (_soundEngine.IsPlaying)
+                {
+                    BeginEngineShutdown(speedBeforeUpdateKph);
+                }
             }
 
             if (braking)
@@ -142,7 +158,7 @@ namespace TopSpeed.Vehicles
 
             if (preserveCrashState)
                 _state = ComputerState.Crashing;
-            else if (preserveFinishStoppingState)
+            else if (preserveFinishStoppingState || _engineShutdownActive)
                 _state = ComputerState.Stopping;
             else if (_remoteEngineStartPending)
                 _state = ComputerState.Starting;
@@ -157,6 +173,11 @@ namespace TopSpeed.Vehicles
             _trackLength = trackLength;
             AdvanceRemoteInterpolation(elapsed);
             UpdateSpatialAudio(playerX, playerY, _trackLength, elapsed);
+            // Covers a car told to stop without a further snapshot - a finish event, or the race
+            // ending - which would otherwise sit on its last note until the sound was torn down.
+            if (_state == ComputerState.Stopping)
+                BeginEngineShutdown(_speed);
+            AdvanceEngineShutdown(elapsed);
             if (_remoteEngineStartPending)
             {
                 _remoteEngineStartRemaining -= Math.Max(0f, elapsed);

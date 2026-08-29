@@ -137,6 +137,44 @@ namespace TopSpeed.Server.Network
         }
 
         /// <summary>
+        /// Brings a finished bot to rest under braking, exactly as a locally simulated bot does in
+        /// its settling state. Listeners keep receiving a falling speed and engine note, so the car
+        /// audibly winds down instead of vanishing mid-note.
+        /// </summary>
+        private static void SimulateBotStoppingStep(RoomBot bot, RoadModel roadModel, float deltaSeconds)
+        {
+            var road = roadModel.At(bot.PositionY);
+            var physicsState = bot.PhysicsState;
+            physicsState.PositionX = bot.PositionX;
+            physicsState.PositionY = bot.PositionY;
+            physicsState.SpeedKph = bot.SpeedKph;
+            if (physicsState.Gear <= 0)
+                physicsState.Gear = 1;
+
+            var physicsInput = new BotPhysicsInput(
+                deltaSeconds,
+                road.Surface,
+                throttle: 0,
+                brake: -100,
+                steering: 0,
+                ambientTemperatureC: float.NaN,
+                rainGain: 0f,
+                stormGain: 0f,
+                windGain: 0f);
+            BotPhysics.Step(bot.PhysicsConfig, ref physicsState, in physicsInput);
+
+            bot.PhysicsState = physicsState;
+            bot.PositionX = physicsState.PositionX;
+            bot.PositionY = physicsState.PositionY;
+            bot.SpeedKph = physicsState.SpeedKph;
+            bot.Braking = bot.SpeedKph > 0.05f;
+            bot.EngineFrequency = CalculateBotEngineFrequency(bot, out _);
+
+            if (bot.SpeedKph <= 0.05f)
+                ServerBotFinish.CompleteStop(bot);
+        }
+
+        /// <summary>
         /// The sample under the car is refreshed every tick because the steering loop reads the
         /// corridor from it; the lookahead ladder only needs the planner's cadence.
         /// </summary>

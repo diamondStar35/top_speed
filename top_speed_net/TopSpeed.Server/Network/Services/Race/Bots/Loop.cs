@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TopSpeed.Bots;
 using TopSpeed.Data;
 using TopSpeed.Protocol;
+using TopSpeed.Server.Bots;
 
 namespace TopSpeed.Server.Network
 {
@@ -35,7 +36,15 @@ namespace TopSpeed.Server.Network
                 {
                     UpdateBotSignals(bot, deltaSeconds);
 
-                    if (bot.State == PlayerState.Finished || bot.State == PlayerState.NotReady)
+                    if (bot.State == PlayerState.Finished)
+                    {
+                        // A finished bot is still a car on the road until it stops rolling.
+                        if (bot.RacePhase == BotRacePhase.Stopping)
+                            SimulateBotStoppingStep(bot, roadModel, deltaSeconds);
+                        continue;
+                    }
+
+                    if (bot.State == PlayerState.NotReady)
                         continue;
 
                     if (TryAdvanceAwaitingStart(room, bot, deltaSeconds))

@@ -225,7 +225,7 @@ public sealed class ServerRaceScenarioBehaviorTests
     }
 
     [Fact]
-    public void ServerBotFinish_ShouldStopMotionAndSignals()
+    public void ServerBotFinish_ShouldRollToAHaltAndClearSignals()
     {
         var bot = new RoomBot
         {
@@ -253,19 +253,29 @@ public sealed class ServerRaceScenarioBehaviorTests
             }
         };
 
-        ServerBotFinish.StopMotion(bot, 1000f);
+        ServerBotFinish.BeginStop(bot, 1000f);
 
         bot.State.Should().Be(PlayerState.Finished);
         bot.PositionY.Should().Be(1000f);
-        bot.SpeedKph.Should().Be(0f);
         bot.Horning.Should().BeFalse();
         bot.HornSecondsRemaining.Should().Be(0f);
         bot.BackfirePulseSeconds.Should().Be(0f);
         bot.BackfireArmed.Should().BeTrue();
-        bot.RacePhase.Should().Be(BotRacePhase.Normal);
+
+        // The car keeps its speed and rolls to a halt; freezing it here is what made a finishing
+        // rival drop from a racing note to silence in one snapshot for every listener.
+        bot.RacePhase.Should().Be(BotRacePhase.Stopping);
+        bot.SpeedKph.Should().Be(150f);
+        bot.PhysicsState.SpeedKph.Should().Be(150f);
         bot.PhysicsState.PositionY.Should().Be(1000f);
+
+        ServerBotFinish.CompleteStop(bot);
+
+        bot.RacePhase.Should().Be(BotRacePhase.Normal);
+        bot.SpeedKph.Should().Be(0f);
         bot.PhysicsState.SpeedKph.Should().Be(0f);
         bot.PhysicsState.Gear.Should().Be(1);
+        bot.EngineFrequency.Should().Be(bot.AudioProfile.IdleFrequency);
     }
 
     private static RoomRaceResultStatus[] SnapshotStatuses(GameRoom room)

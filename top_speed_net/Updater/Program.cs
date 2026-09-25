@@ -12,6 +12,25 @@ namespace TopSpeed.Updater
         private const int ExtractRetryCount = 24;
         private const int ExtractRetryDelayMs = 250;
 
+        /// <summary>
+        /// What a file is called while it is being written, beside the one it will replace. The
+        /// replacement is a rename, never a rewrite of the existing file: a program that has been
+        /// run and is then rewritten in place is refused by macOS however valid its new contents,
+        /// and a file rewritten under a process still mapping it kills that process on Linux.
+        /// A rename gives the folder a new file and leaves the old one to whoever still holds it.
+        /// </summary>
+        private const string PendingSuffix = ".new";
+
+        /// <summary>
+        /// Where a file goes when it cannot be deleted to make room, which on Windows is a
+        /// program that is running: this one, replacing itself. Renaming a running program is
+        /// allowed there where deleting it is not. Swept up on the next run.
+        /// </summary>
+        private const string SupersededSuffix = ".superseded";
+
+        /// <summary>The name this program shipped under before it could replace itself.</summary>
+        private const string LegacyUpdaterStem = "Updater";
+
         private static int Main(string[] args)
         {
             var safeArgs = args ?? Array.Empty<string>();
@@ -121,11 +140,23 @@ namespace TopSpeed.Updater
             if (!Directory.Exists(targetDir))
                 throw new DirectoryNotFoundException($"Target directory was not found: {targetDir}");
 
+            SweepLeftovers(targetDir, enableLog, logPath);
+
+            // The first run after the old updater rewrites every file, changed or not. The old
+            // one rewrote files in place, and macOS can refuse to run a program whose file was
+            // rewritten that way however correct its contents; the only cure is a new file, which
+            // this run gives every file. From then on nothing is ever rewritten in place, so a file
+            // that has not changed can safely be left alone.
+            var refreshEverything = File.Exists(Path.Combine(targetDir, ResolveExecutableFileName(LegacyUpdaterStem)));
+            if (refreshEverything)
+                Log(enableLog, logPath, "First run after the old updater: every file is replaced.");
+
             using (var archive = ZipFile.OpenRead(zipPath))
             {
                 var bundlePayloadPrefix = ResolveBundlePayloadPrefix(options, archive, targetDir);
                 Log(enableLog, logPath, $"Archive opened. entries={archive.Entries.Count}, bundlePrefix={bundlePayloadPrefix}");
                 var extractedCount = 0;
+                var unchangedCount = 0;
                 for (var i = 0; i < archive.Entries.Count; i++)
                 {
                     var entry = archive.Entries[i];
@@ -152,15 +183,134 @@ namespace TopSpeed.Updater
                     if (!string.IsNullOrWhiteSpace(parent))
                         Directory.CreateDirectory(parent);
 
+                    if (!refreshEverything && IsAlreadyInPlace(entry, destination))
+                    {
+                        Log(enableLog, logPath, $"Unchanged, left alone: {entry.FullName}");
+                        unchangedCount++;
+                        continue;
+                    }
+
                     ExtractEntryWithRetry(entry, destination, enableLog, logPath);
                     extractedCount++;
                 }
 
-                Log(enableLog, logPath, $"Archive extraction finished. extracted={extractedCount}");
+                Log(enableLog, logPath, $"Archive extraction finished. extracted={extractedCount}, unchanged={unchangedCount}");
             }
 
             File.Delete(zipPath);
             Log(enableLog, logPath, "Deleted update zip.");
+
+            RemoveLegacyUpdater(targetDir, enableLog, logPath);
+        }
+
+        /// <summary>
+        /// Deletes what an earlier run left behind: a file renamed aside because it was running at
+        /// the time, and a file written but never renamed into place because the run did not finish.
+        /// Neither is ever read again.
+        /// Only where the file it was made from is sitting beside it, so that nothing is removed
+        /// but what this program wrote. A leftover without one belongs to a file that is missing
+        /// altogether, and the next update to reach that file restores it and takes the leftover
+        /// with it on the run after.
+        /// Best effort throughout: anything still held is left for the run after.
+        /// </summary>
+        private static void SweepLeftovers(string targetDir, bool enableLog, string logPath)
+        {
+            foreach (var suffix in new[] { PendingSuffix, SupersededSuffix })
+            {
+                string[] leftovers;
+                try
+                {
+                    leftovers = Directory.GetFiles(targetDir, "*" + suffix, SearchOption.AllDirectories);
+                }
+                catch (IOException)
+                {
+                    continue;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    continue;
+                }
+
+                foreach (var leftover in leftovers)
+                {
+                    if (!File.Exists(leftover.Substring(0, leftover.Length - suffix.Length)))
+                        continue;
+
+                    try
+                    {
+                        File.Delete(leftover);
+                        Log(enableLog, logPath, $"Removed leftover file: {leftover}");
+                    }
+                    catch (IOException)
+                    {
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Once this program runs under its current name, the copy under the old one has done
+        /// its last job: the old copy skipped itself when it unpacked updates, so the only way a
+        /// folder ever got this one was through that copy, and nothing starts it again after.
+        /// Only when this process is not itself the old copy, which is also what keeps this from
+        /// touching a game folder, where the updater still goes by the old name.
+        /// </summary>
+        private static void RemoveLegacyUpdater(string targetDir, bool enableLog, string logPath)
+        {
+            string? ownPath;
+            try
+            {
+                ownPath = Process.GetCurrentProcess().MainModule?.FileName;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ownPath))
+                return;
+
+            var ownStem = Path.GetFileNameWithoutExtension(ownPath);
+            if (string.Equals(ownStem, LegacyUpdaterStem, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            var legacyExecutable = Path.Combine(targetDir, ResolveExecutableFileName(LegacyUpdaterStem));
+            if (!File.Exists(legacyExecutable))
+                return;
+
+            foreach (var name in new[] { legacyExecutable, legacyExecutable + ".config", Path.Combine(targetDir, LegacyUpdaterStem + ".pdb") })
+            {
+                try
+                {
+                    if (File.Exists(name))
+                    {
+                        File.Delete(name);
+                        Log(enableLog, logPath, $"Removed legacy updater file: {name}");
+                    }
+                }
+                catch (IOException)
+                {
+                }
+                catch (UnauthorizedAccessException)
+                {
+                }
+            }
+
+            var legacySymbols = Path.Combine(targetDir, LegacyUpdaterStem + ".dSYM");
+            try
+            {
+                if (Directory.Exists(legacySymbols))
+                    Directory.Delete(legacySymbols, recursive: true);
+            }
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
         }
 
         private static string ResolveBundlePayloadPrefix(UpdaterOptions options, ZipArchive archive, string targetDir)
@@ -242,7 +392,9 @@ namespace TopSpeed.Updater
             {
                 try
                 {
-                    entry.ExtractToFile(destination, overwrite: true);
+                    var pending = destination + PendingSuffix;
+                    entry.ExtractToFile(pending, overwrite: true);
+                    MoveIntoPlace(pending, destination);
                     if (attempt > 1)
                         Log(enableLog, logPath, $"Extract retry succeeded for {destination} on attempt {attempt}.");
                     return;
@@ -264,6 +416,119 @@ namespace TopSpeed.Updater
             throw new IOException(
                 $"Failed to extract '{entry.FullName}' to '{destination}' after {ExtractRetryCount} attempts.",
                 lastError);
+        }
+
+        /// <summary>
+        /// Whether the file already on disk is the one in the archive, byte for byte, so that a
+        /// file that has not changed between releases is not written again. Most files in a
+        /// release are such files: the runtime, the libraries, the sounds. Leaving them alone
+        /// means fewer writes, and it means a program still running from one of them, or still
+        /// mapping it, is never disturbed for nothing.
+        /// </summary>
+        private static bool IsAlreadyInPlace(ZipArchiveEntry entry, string destination)
+        {
+            try
+            {
+                var existing = new FileInfo(destination);
+                if (!existing.Exists || existing.Length != entry.Length)
+                    return false;
+
+                using (var fromArchive = entry.Open())
+                using (var onDisk = existing.OpenRead())
+                {
+                    var a = new byte[81920];
+                    var b = new byte[81920];
+                    while (true)
+                    {
+                        var readA = ReadFully(fromArchive, a);
+                        var readB = ReadFully(onDisk, b);
+                        if (readA != readB)
+                            return false;
+                        if (readA == 0)
+                            return true;
+                        for (var i = 0; i < readA; i++)
+                        {
+                            if (a[i] != b[i])
+                                return false;
+                        }
+                    }
+                }
+            }
+            catch (IOException)
+            {
+                return false;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Fills the buffer as far as the stream allows; a short read is only the end.</summary>
+        private static int ReadFully(Stream stream, byte[] buffer)
+        {
+            var total = 0;
+            while (total < buffer.Length)
+            {
+                var read = stream.Read(buffer, total, buffer.Length - total);
+                if (read <= 0)
+                    break;
+                total += read;
+            }
+
+            return total;
+        }
+
+        /// <summary>
+        /// Puts the freshly written file where the old one was, by renaming. The old file is
+        /// deleted or renamed aside rather than overwritten, so the folder only ever holds whole
+        /// files and a program still running from the old one keeps it until it exits.
+        /// </summary>
+        private static void MoveIntoPlace(string pending, string destination)
+        {
+#if NET472
+            if (File.Exists(destination))
+                MakeRoom(destination);
+
+            File.Move(pending, destination);
+#else
+            try
+            {
+                File.Move(pending, destination, overwrite: true);
+            }
+            catch (IOException) when (File.Exists(destination))
+            {
+                // Windows will not replace a program that is running, and the one program that
+                // may be running here is this one. It will move, though, where it will not go.
+                MakeRoom(destination);
+                File.Move(pending, destination);
+            }
+            catch (UnauthorizedAccessException) when (File.Exists(destination))
+            {
+                MakeRoom(destination);
+                File.Move(pending, destination);
+            }
+#endif
+        }
+
+        private static void MakeRoom(string destination)
+        {
+            try
+            {
+                File.Delete(destination);
+                return;
+            }
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+
+            var aside = destination + SupersededSuffix;
+            if (File.Exists(aside))
+                File.Delete(aside);
+            File.Move(destination, aside);
         }
 
         private static string ResolveGamePath(string targetDir, string gameExeName)

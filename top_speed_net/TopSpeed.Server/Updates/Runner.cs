@@ -112,7 +112,20 @@ namespace TopSpeed.Server.Updates
         private bool StartUpdater(string zipPath)
         {
             var root = AppContext.BaseDirectory;
+
+            // The updater under its current name replaces every file in the folder, itself
+            // included, so it is told to skip nothing. A folder installed before it had that name
+            // still has the old one, which rewrites files in place and cannot replace itself, so
+            // it is told to skip itself as it always was; the archive it unpacks carries the new
+            // one under the new name, which it does not skip, and every update after uses that.
             var updaterPath = ResolveExecutablePath(root, _config.UpdaterEntryName);
+            var skipEntryName = string.Empty;
+            if (!File.Exists(updaterPath))
+            {
+                updaterPath = ResolveExecutablePath(root, ServerUpdateConfig.LegacyUpdaterEntryName);
+                skipEntryName = ServerUpdateConfig.LegacyUpdaterEntryName;
+            }
+
             if (!File.Exists(updaterPath))
             {
                 ConsoleSink.WriteLineFormat(
@@ -139,8 +152,12 @@ namespace TopSpeed.Server.Updates
                 startInfo.ArgumentList.Add(root);
                 startInfo.ArgumentList.Add("--game");
                 startInfo.ArgumentList.Add(_config.ServerEntryName);
-                startInfo.ArgumentList.Add("--skip");
-                startInfo.ArgumentList.Add(_config.UpdaterEntryName);
+                if (skipEntryName.Length > 0)
+                {
+                    startInfo.ArgumentList.Add("--skip");
+                    startInfo.ArgumentList.Add(skipEntryName);
+                }
+
                 Process.Start(startInfo);
                 return true;
             }

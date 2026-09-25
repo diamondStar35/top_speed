@@ -5,7 +5,13 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>TopSpeed.Updater</RootNamespace>
-    <AssemblyName>Updater</AssemblyName>
+    <AssemblyName>TopSpeedUpdater</AssemblyName>
+    <!-- An updater whose code has not changed must build to the same bytes, so the next update
+         leaves it alone instead of replacing it. Two things stamped every build differently: the
+         git commit id, and the release version, which MSBuild picks up from the VERSION variable
+         the release workflow sets for its own scripts. -->
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">

@@ -57,9 +57,16 @@ namespace TopSpeed.Core.Updates
                 $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest",
                 "TopSpeed-{runtime}-Release-v-{version}{ext}",
                 runtimeAssetTag,
-                "Updater",
+                "TopSpeedUpdater",
                 "TopSpeed");
         }
+
+        /// <summary>
+        /// The name the updater shipped under before it could replace itself. Every install from
+        /// before then still has one, and it is what runs the first update after, since the new
+        /// one only arrives by being unpacked by the old.
+        /// </summary>
+        public const string LegacyUpdaterEntryName = "Updater";
 
         private static string ResolveRuntimeAssetTag()
         {

@@ -391,16 +391,16 @@
     <PropertyGroup>
       <_UpdaterProjectPath>$(MSBuildThisFileDirectory)../Updater/Updater.csproj</_UpdaterProjectPath>
       <_UpdaterOutputPath>$([System.IO.Path]::GetFullPath('$(OutDir)'))</_UpdaterOutputPath>
-      <_UpdaterStagingPath>$([System.IO.Path]::GetFullPath('$(IntermediateOutputPath)updater-build/'))</_UpdaterStagingPath>
+      <_UpdaterStagingPath>$([System.IO.Path]::GetFullPath('$(IntermediateOutputPath)updater-build'))</_UpdaterStagingPath>
       <_UpdaterIntermediatePath>obj/TopSpeedUpdater/</_UpdaterIntermediatePath>
       <_UpdaterTargetFramework Condition="'$(RuntimeIdentifier)' == 'win-x64'">net472</_UpdaterTargetFramework>
       <_UpdaterTargetFramework Condition="'$(_UpdaterTargetFramework)' == ''">net10.0</_UpdaterTargetFramework>
     </PropertyGroup>
     <RemoveDir Directories="$(_UpdaterStagingPath)" Condition="Exists('$(_UpdaterStagingPath)')" />
-    <MSBuild Projects="$(_UpdaterProjectPath)" Targets="Restore;Build" Properties="Configuration=$(Configuration);TargetFramework=$(_UpdaterTargetFramework);OutDir=$(_UpdaterStagingPath);BaseIntermediateOutputPath=$(_UpdaterIntermediatePath)" Condition="'$(_UpdaterTargetFramework)' == 'net472'" />
-    <MSBuild Projects="$(_UpdaterProjectPath)" Targets="Restore;Publish" Properties="Configuration=$(Configuration);TargetFramework=$(_UpdaterTargetFramework);RuntimeIdentifier=$(RuntimeIdentifier);SelfContained=true;PublishDir=$(_UpdaterStagingPath);BaseIntermediateOutputPath=$(_UpdaterIntermediatePath);UseNativeAotUpdater=$(UseNativeAotUpdater);UseTrimmedUpdater=$(UseTrimmedUpdater)" Condition="'$(_UpdaterTargetFramework)' != 'net472'" />
+    <Exec Command="dotnet build &quot;$(_UpdaterProjectPath)&quot; --configuration $(Configuration) --framework net472 -p:OutDir=&quot;$(_UpdaterStagingPath)&quot; -p:BaseIntermediateOutputPath=$(_UpdaterIntermediatePath)" Condition="'$(_UpdaterTargetFramework)' == 'net472'" />
+    <Exec Command="dotnet publish &quot;$(_UpdaterProjectPath)&quot; --configuration $(Configuration) --framework $(_UpdaterTargetFramework) --runtime $(RuntimeIdentifier) -p:SelfContained=true -p:PublishDir=&quot;$(_UpdaterStagingPath)&quot; -p:BaseIntermediateOutputPath=$(_UpdaterIntermediatePath) -p:UseNativeAotUpdater=$(UseNativeAotUpdater) -p:UseTrimmedUpdater=$(UseTrimmedUpdater)" Condition="'$(_UpdaterTargetFramework)' != 'net472'" />
     <ItemGroup>
-      <_UpdaterPublishedFiles Include="$(_UpdaterStagingPath)**\*" />
+      <_UpdaterPublishedFiles Include="$(_UpdaterStagingPath)\**\*" />
     </ItemGroup>
     <Copy SourceFiles="@(_UpdaterPublishedFiles)" DestinationFiles="@(_UpdaterPublishedFiles->'$(_UpdaterOutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
@@ -409,16 +409,16 @@
     <PropertyGroup>
       <_UpdaterProjectPath>$(MSBuildThisFileDirectory)../Updater/Updater.csproj</_UpdaterProjectPath>
       <_PublishDestinationPath>$([System.IO.Path]::GetFullPath('$(PublishDir)'))</_PublishDestinationPath>
-      <_UpdaterPublishStagingPath>$([System.IO.Path]::GetFullPath('$(IntermediateOutputPath)updater-publish/'))</_UpdaterPublishStagingPath>
+      <_UpdaterPublishStagingPath>$([System.IO.Path]::GetFullPath('$(IntermediateOutputPath)updater-publish'))</_UpdaterPublishStagingPath>
       <_UpdaterPublishIntermediatePath>obj/TopSpeedUpdaterPublish/</_UpdaterPublishIntermediatePath>
       <_UpdaterTargetFramework Condition="'$(RuntimeIdentifier)' == 'win-x64'">net472</_UpdaterTargetFramework>
       <_UpdaterTargetFramework Condition="'$(_UpdaterTargetFramework)' == ''">net10.0</_UpdaterTargetFramework>
     </PropertyGroup>
     <RemoveDir Directories="$(_UpdaterPublishStagingPath)" Condition="Exists('$(_UpdaterPublishStagingPath)')" />
-    <MSBuild Projects="$(_UpdaterProjectPath)" Targets="Restore;Build" Properties="Configuration=$(Configuration);TargetFramework=$(_UpdaterTargetFramework);OutDir=$(_UpdaterPublishStagingPath);BaseIntermediateOutputPath=$(_UpdaterPublishIntermediatePath)" Condition="'$(_UpdaterTargetFramework)' == 'net472'" />
-    <MSBuild Projects="$(_UpdaterProjectPath)" Targets="Restore;Publish" Properties="Configuration=$(Configuration);TargetFramework=$(_UpdaterTargetFramework);RuntimeIdentifier=$(RuntimeIdentifier);SelfContained=true;PublishDir=$(_UpdaterPublishStagingPath);BaseIntermediateOutputPath=$(_UpdaterPublishIntermediatePath);UseNativeAotUpdater=$(UseNativeAotUpdater);UseTrimmedUpdater=$(UseTrimmedUpdater)" Condition="'$(_UpdaterTargetFramework)' != 'net472'" />
+    <Exec Command="dotnet build &quot;$(_UpdaterProjectPath)&quot; --configuration $(Configuration) --framework net472 -p:OutDir=&quot;$(_UpdaterPublishStagingPath)&quot; -p:BaseIntermediateOutputPath=$(_UpdaterPublishIntermediatePath)" Condition="'$(_UpdaterTargetFramework)' == 'net472'" />
+    <Exec Command="dotnet publish &quot;$(_UpdaterProjectPath)&quot; --configuration $(Configuration) --framework $(_UpdaterTargetFramework) --runtime $(RuntimeIdentifier) -p:SelfContained=true -p:PublishDir=&quot;$(_UpdaterPublishStagingPath)&quot; -p:BaseIntermediateOutputPath=$(_UpdaterPublishIntermediatePath) -p:UseNativeAotUpdater=$(UseNativeAotUpdater) -p:UseTrimmedUpdater=$(UseTrimmedUpdater)" Condition="'$(_UpdaterTargetFramework)' != 'net472'" />
     <ItemGroup>
-      <_UpdaterPublishedFiles Include="$(_UpdaterPublishStagingPath)**\*" />
+      <_UpdaterPublishedFiles Include="$(_UpdaterPublishStagingPath)\**\*" />
     </ItemGroup>
     <Copy SourceFiles="@(_UpdaterPublishedFiles)" DestinationFiles="@(_UpdaterPublishedFiles->'$(_PublishDestinationPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>

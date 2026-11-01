@@ -5981,3 +5981,21 @@ msgstr "{0}: {1} por cento"
 msgid "{0}: {1}, using {2}."
 msgstr "{0}: {1}, usando {2}."
 
+msgid "Are you sure you want to exit the game?"
+msgstr "Tem certeza de que deseja sair do jogo?"
+
+msgid "Confirm before exiting the game"
+msgstr "Confirmar antes de sair do jogo"
+
+msgid "Exit game?"
+msgstr "Sair do jogo?"
+
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr "Quando marcado, o jogo solicita confirmação antes de sair."
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "No"
+msgstr "Não"
+

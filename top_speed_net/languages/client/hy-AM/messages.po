@@ -5986,3 +5986,21 @@ msgstr ""
 msgid "{0}: {1}, using {2}."
 msgstr ""
 
+msgid "Are you sure you want to exit the game?"
+msgstr "Վստա՞հ եք, որ ցանկանում եք դուրս գալ խաղից:"
+
+msgid "Confirm before exiting the game"
+msgstr "Հաստատել խաղից դուրս գալուց առաջ"
+
+msgid "Exit game?"
+msgstr "Դուրս գալ խաղից?"
+
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr "Նշված լինելու դեպքում խաղը դուրս գալուց առաջ հաստատում կխնդրի։"
+
+msgid "Yes"
+msgstr "Այո"
+
+msgid "No"
+msgstr "Ոչ"
+

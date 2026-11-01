@@ -4230,3 +4230,21 @@ msgstr "{0}: در جایگاه {1} با {2} به پایان رساند."
 #, csharp-format
 msgid "{0}: position {1}, time {2}."
 msgstr "{0}: جایگاه {1}، زمان {2}."
+
+msgid "Are you sure you want to exit the game?"
+msgstr "آیا مطمئن هستید که می‌خواهید از بازی خارج شوید؟"
+
+msgid "Confirm before exiting the game"
+msgstr "تأیید قبل از خروج از بازی"
+
+msgid "Exit game?"
+msgstr "خروج از بازی؟"
+
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr "وقتی علامت زده شود، بازی پیش از خروج تأیید می‌خواهد."
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "خیر"

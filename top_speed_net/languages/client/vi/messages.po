@@ -5981,3 +5981,21 @@ msgstr "{0}: {1} phần trăm"
 msgid "{0}: {1}, using {2}."
 msgstr "{0}: {1}, sử dụng {2}."
 
+msgid "Are you sure you want to exit the game?"
+msgstr "Bạn có chắc chắn muốn thoát trò chơi không?"
+
+msgid "Confirm before exiting the game"
+msgstr "Xác nhận trước khi thoát trò chơi"
+
+msgid "Exit game?"
+msgstr "Thoát trò chơi?"
+
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr "Khi được chọn, trò chơi sẽ yêu cầu xác nhận trước khi thoát."
+
+msgid "Yes"
+msgstr "Có"
+
+msgid "No"
+msgstr "Không"
+

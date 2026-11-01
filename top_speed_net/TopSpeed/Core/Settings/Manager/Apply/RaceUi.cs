@@ -60,6 +60,8 @@ namespace TopSpeed.Core.Settings
                 settings.PlayLogoAtStartup = ui.PlayLogoAtStartup.Value;
             if (ui.AutoCheckUpdates.HasValue)
                 settings.AutoCheckUpdates = ui.AutoCheckUpdates.Value;
+            if (ui.ConfirmExit.HasValue)
+                settings.ConfirmExit = ui.ConfirmExit.Value;
 
             if (ui.MenuSoundPreset == null)
                 return;

@@ -1,5 +1,6 @@
 using TopSpeed.Menu;
 using TopSpeed.Core;
+using TopSpeed.Localization;
 
 namespace TopSpeed.Game
 {
@@ -10,7 +11,7 @@ namespace TopSpeed.Game
             switch (action)
             {
                 case MenuAction.Exit:
-                    ExitRequested?.Invoke();
+                    RequestExit();
                     break;
                 case MenuAction.QuickStart:
                     PrepareQuickStart();
@@ -19,6 +20,30 @@ namespace TopSpeed.Game
                 default:
                     break;
             }
+        }
+
+        private void RequestExit()
+        {
+            if (!_settings.ConfirmExit)
+            {
+                ExitRequested?.Invoke();
+                return;
+            }
+
+            if (_multiplayerCoordinator.Questions.IsQuestionMenu(_menu.CurrentId))
+                return;
+
+            _multiplayerCoordinator.Questions.Show(new Question(
+                LocalizationService.Mark("Exit game?"),
+                LocalizationService.Mark("Are you sure you want to exit the game?"),
+                QuestionId.No,
+                resultId =>
+                {
+                    if (resultId == QuestionId.Yes)
+                        ExitRequested?.Invoke();
+                },
+                new QuestionButton(QuestionId.Yes, LocalizationService.Mark("Yes")),
+                new QuestionButton(QuestionId.No, LocalizationService.Mark("No"), flags: QuestionButtonFlags.Default)));
         }
 
         private bool UpdateModalOperations()

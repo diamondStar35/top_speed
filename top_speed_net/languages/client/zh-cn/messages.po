@@ -5981,3 +5981,21 @@ msgstr "{0}：{1}%"
 msgid "{0}: {1}, using {2}."
 msgstr "{0}：{1}，使用 {2}。"
 
+msgid "Are you sure you want to exit the game?"
+msgstr "您确定要退出游戏吗？"
+
+msgid "Confirm before exiting the game"
+msgstr "退出游戏前确认"
+
+msgid "Exit game?"
+msgstr "退出游戏？"
+
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr "选中后，游戏会在退出前请求确认。"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"
+

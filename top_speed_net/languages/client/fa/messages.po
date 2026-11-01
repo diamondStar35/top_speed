@@ -4242,9 +4242,3 @@ msgstr "خروج از بازی؟"
 
 msgid "When checked, the game asks for confirmation before exiting."
 msgstr "وقتی علامت زده شود، بازی پیش از خروج تأیید می‌خواهد."
-
-msgid "Yes"
-msgstr "بله"
-
-msgid "No"
-msgstr "خیر"

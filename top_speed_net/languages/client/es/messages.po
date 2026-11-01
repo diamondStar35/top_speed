@@ -5992,9 +5992,4 @@ msgstr "¿Salir del juego?"
 msgid "When checked, the game asks for confirmation before exiting."
 msgstr "Cuando está marcada, el juego solicita confirmación antes de salir."
 
-msgid "Yes"
-msgstr "Sí"
-
-msgid "No"
-msgstr "No"
 

@@ -5998,9 +5998,4 @@ msgstr "Դուրս գալ խաղից?"
 msgid "When checked, the game asks for confirmation before exiting."
 msgstr "Նշված լինելու դեպքում խաղը դուրս գալուց առաջ հաստատում կխնդրի։"
 
-msgid "Yes"
-msgstr "Այո"
-
-msgid "No"
-msgstr "Ոչ"
 

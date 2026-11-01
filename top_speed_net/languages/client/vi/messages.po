@@ -5993,9 +5993,4 @@ msgstr "Thoát trò chơi?"
 msgid "When checked, the game asks for confirmation before exiting."
 msgstr "Khi được chọn, trò chơi sẽ yêu cầu xác nhận trước khi thoát."
 
-msgid "Yes"
-msgstr "Có"
-
-msgid "No"
-msgstr "Không"
 

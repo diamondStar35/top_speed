@@ -95,7 +95,8 @@ namespace TopSpeed.Core.Settings
                     MenuNavigatePanning = settings.MenuNavigatePanning,
                     MenuDigitActivation = settings.MenuDigitActivation,
                     PlayLogoAtStartup = settings.PlayLogoAtStartup,
-                    AutoCheckUpdates = settings.AutoCheckUpdates
+                    AutoCheckUpdates = settings.AutoCheckUpdates,
+                    ConfirmExit = settings.ConfirmExit
                 },
                 Speech = new SettingsSpeechDocument
                 {

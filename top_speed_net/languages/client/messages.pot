@@ -6233,3 +6233,27 @@ msgstr ""
 #, csharp-format
 msgid "{0}: {1}, using {2}."
 msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Are you sure you want to exit the game?"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "Confirm before exiting the game"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Exit game?"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Yes"
+msgstr ""
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "No"
+msgstr ""

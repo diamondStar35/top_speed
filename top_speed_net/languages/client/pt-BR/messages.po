@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-04 14:43\n"
+"POT-Creation-Date: 2026-11-18 23:28+0200\n"
+"PO-Revision-Date: 2026-11-18 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -154,6 +154,10 @@ msgstr "Aplicações"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 msgid "Are you sure you want to disconnect?"
 msgstr "Tem certeza de que deseja desconectar?"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Are you sure you want to exit the game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Are you sure you want to leave the current room?"
@@ -630,6 +634,10 @@ msgstr "Configure o comportamento de áudio espacial, incluindo processamento HR
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
 msgstr "Configure o comportamento da fala, incluindo a seleção do backend e a calibração do leitor de tela."
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "Confirm before exiting the game"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Confirm game options"
@@ -1330,6 +1338,10 @@ msgstr "Pilotagem excelente. Você superou seu recorde anterior."
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Exit Game"
 msgstr "Sair do Jogo"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Exit game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 msgid "Failed to initialize network client."
@@ -2353,6 +2365,7 @@ msgid "Nissan GT-R Nismo"
 msgstr "Nissan GT-R Nismo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
@@ -3061,6 +3074,7 @@ msgstr "Rally no deserto"
 msgid "Rally hills"
 msgstr "Rally nas colinas"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
@@ -4846,6 +4860,10 @@ msgid "When checked, steering uses Android motion sensors instead of drag gestur
 msgstr "Quando marcado, a direção usa os sensores de movimento do Android em vez de gestos de arrastar."
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the game checks for updates automatically after the logo."
 msgstr "Quando marcado, o jogo verifica se há atualizações automaticamente após o logotipo."
 
@@ -4930,6 +4948,7 @@ msgid "Yamaha YZF-R1"
 msgstr "Yamaha YZF-R1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Yes"

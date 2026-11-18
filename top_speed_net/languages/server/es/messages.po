@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-21 14:56\n"
+"POT-Creation-Date: 2026-11-18 23:28+0200\n"
+"PO-Revision-Date: 2026-11-18 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1105,6 +1105,11 @@ msgstr ""
 #: top_speed_net/TopSpeed.Server/Network/Services/Race/Lifecycle.cs
 #, csharp-format
 msgid "Race stopped: room={0} \"{1}\", results={2}."
+msgstr ""
+
+#: top_speed_net/TopSpeed.Server/Network/Services/Room/Tracks/RandomSelection.cs
+#, csharp-format
+msgid "Random room track selected: room={0} \"{1}\", track={2}."
 msgstr ""
 
 #: top_speed_net/TopSpeed.Server/Network/Services/Session/Messages.cs

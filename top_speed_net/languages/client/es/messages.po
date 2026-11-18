@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-21 14:56\n"
+"POT-Creation-Date: 2026-11-18 23:28+0200\n"
+"PO-Revision-Date: 2026-11-18 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -154,6 +154,10 @@ msgstr ""
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 msgid "Are you sure you want to disconnect?"
 msgstr "¿Estás seguro de que quieres desconectarte?"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Are you sure you want to exit the game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Are you sure you want to leave the current room?"
@@ -629,6 +633,10 @@ msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "Confirm before exiting the game"
 msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
@@ -1330,6 +1338,10 @@ msgstr ""
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Exit Game"
 msgstr "Salir del juego"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Exit game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 msgid "Failed to initialize network client."
@@ -2353,6 +2365,7 @@ msgid "Nissan GT-R Nismo"
 msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
@@ -3061,6 +3074,7 @@ msgstr "Desierto de rally"
 msgid "Rally hills"
 msgstr "Colinas de rally"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
@@ -4845,6 +4859,10 @@ msgid "When checked, steering uses Android motion sensors instead of drag gestur
 msgstr ""
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the game checks for updates automatically after the logo."
 msgstr ""
 
@@ -4929,6 +4947,7 @@ msgid "Yamaha YZF-R1"
 msgstr "Yamaha YZF-R1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Yes"

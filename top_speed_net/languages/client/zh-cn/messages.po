@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 00:35-0400\n"
-"PO-Revision-Date: 2026-08-05 09:58\n"
+"POT-Creation-Date: 2026-11-18 23:28+0200\n"
+"PO-Revision-Date: 2026-11-18 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -154,6 +154,10 @@ msgstr "上下文菜单"
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 msgid "Are you sure you want to disconnect?"
 msgstr "确定要断开连接吗？"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Are you sure you want to exit the game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 msgid "Are you sure you want to leave the current room?"
@@ -630,6 +634,10 @@ msgstr "配置空间音频行为，包括HRTF处理、立体声扩展、自动�
 #: top_speed_net/TopSpeed/Menu/Build/Options/Main.cs
 msgid "Configure speech behavior, including screen-reader backend selection and screen-reader calibration."
 msgstr "配置语音行为，包括屏幕阅读器后端选择和屏幕阅读器校准。"
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "Confirm before exiting the game"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 msgid "Confirm game options"
@@ -1330,6 +1338,10 @@ msgstr "驾驶出色，超越了自己的历史最佳！"
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 msgid "Exit Game"
 msgstr "退出游戏"
+
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
+msgid "Exit game?"
+msgstr ""
 
 #: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
 msgid "Failed to initialize network client."
@@ -2353,6 +2365,7 @@ msgid "Nissan GT-R Nismo"
 msgstr "日产 GT-R Nismo"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
@@ -3061,6 +3074,7 @@ msgstr "沙漠拉力赛"
 msgid "Rally hills"
 msgstr "丘陵拉力赛"
 
+#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
@@ -4846,6 +4860,10 @@ msgid "When checked, steering uses Android motion sensors instead of drag gestur
 msgstr "启用后，转向将使用 Android 动作传感器，而不是拖动手势。"
 
 #: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
+msgid "When checked, the game asks for confirmation before exiting."
+msgstr ""
+
+#: top_speed_net/TopSpeed/Menu/Build/Options/Game.cs
 msgid "When checked, the game checks for updates automatically after the logo."
 msgstr "启用后，游戏将在徽标画面后自动检查更新。"
 
@@ -4930,6 +4948,7 @@ msgid "Yamaha YZF-R1"
 msgstr "雅马哈 YZF-R1"
 
 #: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 msgid "Yes"

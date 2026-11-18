@@ -44,9 +44,11 @@ jobs:
           pull_request_body: "Automated localization sync from Crowdin."
           pull_request_labels: "localization,l10n"
           commit_message: "Sync translations from Crowdin [skip ci]"
+          github_user_name: "github-actions[bot]"
+          github_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
           crowdin_branch_name: main
           config: crowdin.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

@@ -228,6 +228,7 @@ namespace TopSpeed.Core.Settings
         [DataMember(Name = "menuDigitActivation")] public bool? MenuDigitActivation { get; set; }
         [DataMember(Name = "playLogoAtStartup")] public bool? PlayLogoAtStartup { get; set; }
         [DataMember(Name = "autoCheckUpdates")] public bool? AutoCheckUpdates { get; set; }
+        [DataMember(Name = "confirmExit")] public bool? ConfirmExit { get; set; }
     }
 
     [DataContract]

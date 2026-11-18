@@ -73,6 +73,7 @@ namespace TopSpeed.Input
         public bool MenuDigitActivation { get; set; }
         public bool PlayLogoAtStartup { get; set; }
         public bool AutoCheckUpdates { get; set; }
+        public bool ConfirmExit { get; set; }
         public string RadioLastFolder { get; set; } = string.Empty;
         public bool RadioShuffle { get; set; }
         public Dictionary<string, Key> ShortcutKeyBindings { get; set; } = new Dictionary<string, Key>(StringComparer.Ordinal);
@@ -170,6 +171,7 @@ namespace TopSpeed.Input
             MenuDigitActivation = false;
             PlayLogoAtStartup = true;
             AutoCheckUpdates = true;
+            ConfirmExit = false;
             RadioLastFolder = string.Empty;
             RadioShuffle = false;
             ShortcutKeyBindings = new Dictionary<string, Key>(StringComparer.Ordinal);

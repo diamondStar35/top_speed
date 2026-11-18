@@ -7,6 +7,8 @@ files:
   - source: /top_speed_net/languages/client/messages.pot
     translation: /top_speed_net/languages/client/%locale%/messages.po
     skip_untranslated_strings: false
+    excluded_target_languages:
+      - hy-AM
     languages_mapping:
       locale:
         zh-CN: zh-cn
@@ -16,6 +18,8 @@ files:
   - source: /top_speed_net/languages/server/messages.pot
     translation: /top_speed_net/languages/server/%locale%/messages.po
     skip_untranslated_strings: false
+    excluded_target_languages:
+      - hy-AM
     languages_mapping:
       locale:
         zh-CN: zh-cn

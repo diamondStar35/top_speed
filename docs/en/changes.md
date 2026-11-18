@@ -4,6 +4,10 @@ This file tracks new changes to the game for both client and server to make it e
 
 The game versioning follows a specific pattern by using year.month.day.revision, where revision is an incremental number if there is more than one release in a single day.
 
+## 2026.11.1.1
+### Game Changes
+- Added an optional confirmation before leaving the game. Turn it on in Options, General to prevent accidental exits from the main menu.
+
 
 ##2026.8.29
 ###Game Changes

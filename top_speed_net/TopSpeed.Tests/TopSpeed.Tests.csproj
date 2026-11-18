@@ -27,5 +27,6 @@
     <ProjectReference Include="..\TopSpeed.Server\TopSpeed.Server.csproj" />
     <ProjectReference Include="..\TopSpeed\TopSpeed.csproj" />
     <ProjectReference Include="..\TS.Sdl\TS.Sdl.csproj" />
+    <ProjectReference Include="..\Updater\Updater.csproj" />
   </ItemGroup>
 </Project>

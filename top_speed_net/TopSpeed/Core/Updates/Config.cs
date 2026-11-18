@@ -8,6 +8,7 @@ namespace TopSpeed.Core.Updates
     {
         private const string RepoOwner = "diamondStar35";
         private const string RepoName = "top_speed";
+        public const string LegacyUpdaterEntryName = "Updater";
 
         public UpdateConfig(
             string infoUrl,
@@ -57,7 +58,7 @@ namespace TopSpeed.Core.Updates
                 $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest",
                 "TopSpeed-{runtime}-Release-v-{version}{ext}",
                 runtimeAssetTag,
-                "Updater",
+                "TopSpeedUpdater",
                 "TopSpeed");
         }
 

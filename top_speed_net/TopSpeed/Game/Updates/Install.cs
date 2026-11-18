@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using TopSpeed.Core.Updates;
 using TopSpeed.Localization;
 using TopSpeed.Runtime;
 
@@ -16,6 +17,13 @@ namespace TopSpeed.Game
             var root = AppContext.BaseDirectory;
             var updaterDir = TrimTrailingDirectorySeparator(root);
             var updaterPath = ResolveExecutablePath(root, _updateConfig.UpdaterEntryName);
+            var skipArgument = string.Empty;
+            if (!File.Exists(updaterPath))
+            {
+                // Old installations must still be able to unpack the new updater's filename.
+                updaterPath = ResolveExecutablePath(root, UpdateConfig.LegacyUpdaterEntryName);
+                skipArgument = $" --skip \"{UpdateConfig.LegacyUpdaterEntryName}\"";
+            }
             if (!File.Exists(updaterPath))
             {
                 var expectedUpdaterFileName = RuntimeAssetResolver.ResolveExecutableFileName(_updateConfig.UpdaterEntryName);
@@ -44,7 +52,7 @@ namespace TopSpeed.Game
             {
                 var currentProcess = Process.GetCurrentProcess();
                 var args =
-                    $"--pid {currentProcess.Id} --zip \"{_updateZipPath}\" --dir \"{updaterDir}\" --game \"{_updateConfig.GameEntryName}\" --skip \"{_updateConfig.UpdaterEntryName}\"";
+                    $"--pid {currentProcess.Id} --zip \"{_updateZipPath}\" --dir \"{updaterDir}\" --game \"{_updateConfig.GameEntryName}\"{skipArgument}";
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = updaterPath,
@@ -118,19 +126,8 @@ namespace TopSpeed.Game
 
         private static string ResolveExecutablePath(string root, string executableStem)
         {
-            var fileName = RuntimeAssetResolver.ResolveExecutableFileName(executableStem);
-            var directPath = Path.Combine(root, fileName);
-            if (File.Exists(directPath))
-                return directPath;
-
-            var matches = Directory.GetFiles(root, fileName, SearchOption.AllDirectories);
-            if (matches.Length == 0)
-                return directPath;
-            if (matches.Length == 1)
-                return matches[0];
-
-            Array.Sort(matches, StringComparer.OrdinalIgnoreCase);
-            return matches[0];
+            // A private worker from an interrupted update is not the installed updater.
+            return Path.Combine(root, RuntimeAssetResolver.ResolveExecutableFileName(executableStem));
         }
 
         private static string TrimTrailingDirectorySeparator(string path)

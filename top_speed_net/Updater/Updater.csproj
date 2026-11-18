@@ -5,7 +5,8 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>TopSpeed.Updater</RootNamespace>
-    <AssemblyName>Updater</AssemblyName>
+    <!-- The legacy updater skips its own filename; a new name lets it deliver this replacement. -->
+    <AssemblyName>TopSpeedUpdater</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">

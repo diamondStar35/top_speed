@@ -113,6 +113,12 @@ namespace TopSpeed.Server.Updates
         {
             var root = AppContext.BaseDirectory;
             var updaterPath = ResolveExecutablePath(root, _config.UpdaterEntryName);
+            var legacy = false;
+            if (!File.Exists(updaterPath))
+            {
+                updaterPath = ResolveExecutablePath(root, ServerUpdateConfig.LegacyUpdaterEntryName);
+                legacy = true;
+            }
             if (!File.Exists(updaterPath))
             {
                 ConsoleSink.WriteLineFormat(
@@ -139,8 +145,11 @@ namespace TopSpeed.Server.Updates
                 startInfo.ArgumentList.Add(root);
                 startInfo.ArgumentList.Add("--game");
                 startInfo.ArgumentList.Add(_config.ServerEntryName);
-                startInfo.ArgumentList.Add("--skip");
-                startInfo.ArgumentList.Add(_config.UpdaterEntryName);
+                if (legacy)
+                {
+                    startInfo.ArgumentList.Add("--skip");
+                    startInfo.ArgumentList.Add(ServerUpdateConfig.LegacyUpdaterEntryName);
+                }
                 Process.Start(startInfo);
                 return true;
             }
@@ -156,19 +165,7 @@ namespace TopSpeed.Server.Updates
 
         private static string ResolveExecutablePath(string root, string executableStem)
         {
-            var fileName = RuntimeAssetResolver.ResolveExecutableFileName(executableStem);
-            var directPath = Path.Combine(root, fileName);
-            if (File.Exists(directPath))
-                return directPath;
-
-            var matches = Directory.GetFiles(root, fileName, SearchOption.AllDirectories);
-            if (matches.Length == 0)
-                return directPath;
-            if (matches.Length == 1)
-                return matches[0];
-
-            Array.Sort(matches, StringComparer.OrdinalIgnoreCase);
-            return matches[0];
+            return Path.Combine(root, RuntimeAssetResolver.ResolveExecutableFileName(executableStem));
         }
 
         private static bool TryPromptYesNo(string prompt, out bool value)

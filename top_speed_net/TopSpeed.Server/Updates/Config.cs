@@ -10,6 +10,7 @@ namespace TopSpeed.Server.Updates
     {
         private const string RepoOwner = "diamondStar35";
         private const string RepoName = "top_speed";
+        public const string LegacyUpdaterEntryName = "Updater";
         public const string AutoRuntimeAssetTag = "auto";
 
         private static readonly RuntimeAssetOption[] RuntimeOptions =
@@ -58,7 +59,7 @@ namespace TopSpeed.Server.Updates
             $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest",
             "TopSpeed.Server-{runtime}-Release-v-{version}.zip",
             ResolveRuntimeAssetTag(configuredRuntimeAssetTag),
-            "Updater",
+            "TopSpeedUpdater",
             "TopSpeed.Server");
         }
 

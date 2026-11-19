@@ -3,14 +3,26 @@ name: Release Build
 on:
   push:
     branches: [ "main", "master" ]
-    paths-ignore:
-      - ".gitignore"
+    paths:
+      - "info.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-build
+  cancel-in-progress: false
 
 jobs:
   metadata:
     name: Release Metadata
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     outputs:
+      should_release: ${{ steps.release_plan.outputs.should_release }}
+      release_tag: ${{ steps.release_plan.outputs.release_tag }}
+      release_assets: ${{ steps.release_plan.outputs.release_assets }}
       version: ${{ steps.release_info.outputs.version }}
       server_version: ${{ steps.release_info.outputs.server_version }}
       game_zip_win: ${{ steps.release_info.outputs.game_zip_win }}
@@ -26,8 +38,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 0
-          submodules: recursive
+          sparse-checkout: /info.json
+          sparse-checkout-cone-mode: false
 
       - name: Read Release Info
         id: release_info
@@ -119,8 +131,73 @@ jobs:
           $serverChanges | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "EOF" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
+      - name: Check whether these versions need a release
+        id: release_plan
+        uses: actions/github-script@v8
+        env:
+          VERSION: ${{ steps.release_info.outputs.version }}
+          SERVER_VERSION: ${{ steps.release_info.outputs.server_version }}
+        with:
+          script: &release_plan |
+            const version = process.env.VERSION;
+            const serverVersion = process.env.SERVER_VERSION;
+            const tag = `v${version}-server-v${serverVersion}`;
+            const gameRuntimes = [
+              ['windows-x64', 'zip'], ['linux-x64', 'zip'], ['mac-x64', 'zip'], ['mac-arm64', 'zip'],
+              ['android-arm64', 'apk'], ['android-arm', 'apk'], ['ios-arm64', 'ipa']
+            ];
+            const serverRuntimes = [
+              'win-x64', 'linux-x64', 'linux-arm64', 'linux-arm32', 'linux-musl-x64',
+              'linux-musl-arm64', 'linux-x86-fdd', 'mac-x64', 'mac-arm64'
+            ];
+            const expected = [
+              ...gameRuntimes.map(([runtime, ext]) => `TopSpeed-${runtime}-Release-v-${version}.${ext}`),
+              ...serverRuntimes.map(runtime => `TopSpeed.Server-${runtime}-Release-v-${serverVersion}.zip`)
+            ];
+            const complete = release => expected.every(name => (release.assets ?? []).some(
+              asset => asset.name === name && asset.state === 'uploaded' && asset.size > 0
+            ));
+            async function optional(request) {
+              try { return (await request()).data; }
+              catch (error) { if (error.status === 404) return null; throw error; }
+            }
+            let release = await optional(() => github.rest.repos.getReleaseByTag({ ...context.repo, tag }));
+            if (!release) {
+              // The tag endpoint omits drafts; authenticated listing includes them.
+              const releases = await github.paginate(github.rest.repos.listReleases, {
+                ...context.repo, per_page: 100
+              });
+              release = releases.find(item => item.tag_name === tag);
+            }
+            let shouldRelease = true;
+            if (release && !release.draft) {
+              if (!complete(release)) throw new Error(`Published release '${tag}' is incomplete; it will not be overwritten.`);
+              shouldRelease = false;
+            }
+            if (!release) {
+              const latest = await optional(() => github.rest.repos.getLatestRelease(context.repo));
+              if (latest?.tag_name === 'release-build' && !latest.draft && complete(latest)) shouldRelease = false;
+            }
+            if (shouldRelease) {
+              const commit = await optional(() => github.rest.repos.getCommit({ ...context.repo, ref: tag }));
+              if (commit && commit.sha !== context.sha) {
+                throw new Error(`Tag '${tag}' belongs to another commit. Rerun its original workflow or bump the version; tags will not be moved.`);
+              }
+              if (release?.draft && !commit && release.target_commitish !== context.sha) {
+                throw new Error(`Draft '${tag}' belongs to another commit. Rerun its original workflow or bump the version.`);
+              }
+            }
+            core.setOutput('should_release', shouldRelease);
+            core.setOutput('release_tag', tag);
+            core.setOutput('release_assets', JSON.stringify(expected));
+            const message = shouldRelease ? `Build ${tag}.` : 'Both versions are already released; skipping platform builds.';
+            core.info(message);
+            await core.summary.addHeading('Release plan').addRaw(message).write();
+
   translations:
     name: Compile Translations
+    needs: metadata
+    if: needs.metadata.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -128,7 +205,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          submodules: recursive
+          sparse-checkout: top_speed_net/languages
 
       - name: Install gettext
         shell: bash
@@ -176,6 +253,7 @@ jobs:
 
   build_windows:
     name: Build Windows ${{ matrix.target_name }}
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - translations
@@ -261,6 +339,7 @@ jobs:
 
   build_mac:
     name: Build macOS ${{ matrix.target_name }}
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - translations
@@ -371,6 +450,7 @@ jobs:
 
   build_linux:
     name: Build Linux ${{ matrix.target_name }}
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - translations
@@ -497,6 +577,7 @@ jobs:
 
   build_android:
     name: Build Android ${{ matrix.target_name }}
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - translations
@@ -610,10 +691,13 @@ jobs:
 
   build_ios:
     name: Build iOS ${{ matrix.target_name }}
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - translations
     runs-on: macos-15
+    env:
+      DOTNET_MULTILEVEL_LOOKUP: "0"
     strategy:
       fail-fast: false
       matrix:
@@ -639,6 +723,9 @@ jobs:
 
       - name: Setup build environment
         uses: ./.github/actions/setup-build-env
+        env:
+          # Keep the pinned .NET 10 workload set separate from preinstalled .NET 11 manifests.
+          DOTNET_INSTALL_DIR: ${{ runner.temp }}/topspeed-dotnet-ios
         with:
           dotnet-version: 10.0.x
           python-version: "3.x"
@@ -736,7 +823,15 @@ jobs:
           echo "xcrun_nocache=true" >> "$GITHUB_ENV"
 
       - name: Install iOS workload set
-        run: dotnet workload install ios --version ${{ matrix.workload_set_version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk_version="$(dotnet --version)"
+          if [[ "$sdk_version" != 10.0.* ]]; then
+            echo "Expected .NET 10 from the isolated SDK installation; selected '$sdk_version'." >&2
+            exit 1
+          fi
+          dotnet workload install ios --version ${{ matrix.workload_set_version }}
 
       - name: Print iOS toolchain versions
         shell: bash
@@ -873,6 +968,7 @@ jobs:
 
   release:
     name: Publish Release
+    if: needs.metadata.outputs.should_release == 'true'
     needs:
       - metadata
       - build_windows
@@ -883,13 +979,26 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      VERSION: ${{ needs.metadata.outputs.version }}
+      SERVER_VERSION: ${{ needs.metadata.outputs.server_version }}
+      RELEASE_TAG: ${{ needs.metadata.outputs.release_tag }}
+      RELEASE_ASSETS: ${{ needs.metadata.outputs.release_assets }}
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          submodules: recursive
+          sparse-checkout: /info.json
+          sparse-checkout-cone-mode: false
+
+      - name: Recheck release before publishing
+        id: release_plan
+        uses: actions/github-script@v8
+        with:
+          script: *release_plan
 
       - name: Download release artifacts
+        if: steps.release_plan.outputs.should_release == 'true'
         uses: actions/download-artifact@v7
         with:
           pattern: release-assets-*
@@ -897,28 +1006,23 @@ jobs:
           merge-multiple: true
 
       - name: Verify downloaded release artifacts
-        shell: bash
-        run: |
-          set -euo pipefail
-          find release-assets -type f \( -name '*.zip' -o -name '*.apk' -o -name '*.ipa' \) | sort
-          test -f "release-assets/${{ needs.metadata.outputs.game_zip_win }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_zip_linux }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_zip_mac_x64 }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_zip_mac_arm64 }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_apk_android_arm64 }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_apk_android_arm32 }}"
-          test -f "release-assets/${{ needs.metadata.outputs.game_ipa_ios_arm64 }}"
-          test -f "release-assets/TopSpeed.Server-win-x64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-x64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-arm64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-arm32-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-musl-x64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-musl-arm64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-linux-x86-fdd-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-mac-x64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
-          test -f "release-assets/TopSpeed.Server-mac-arm64-Release-v-${{ needs.metadata.outputs.server_version }}.zip"
+        id: verify_assets
+        if: steps.release_plan.outputs.should_release == 'true'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('node:fs');
+            const assets = JSON.parse(process.env.RELEASE_ASSETS);
+            const files = assets.map(name => `release-assets/${name}`);
+            for (const file of files) {
+              if (!fs.statSync(file).isFile() || fs.statSync(file).size === 0) {
+                throw new Error(`Missing or empty release artifact: ${file}`);
+              }
+            }
+            core.setOutput('files', files.join('\n'));
 
       - name: Generate Commit Log
+        if: steps.release_plan.outputs.should_release == 'true'
         id: changelog
         shell: pwsh
         run: |
@@ -927,56 +1031,26 @@ jobs:
           $log | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "EOF" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
-      - name: Update Tag
+      - name: Create versioned tag without moving existing tags
+        if: steps.release_plan.outputs.should_release == 'true'
         shell: bash
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git tag -fa release-build -m "Latest Release Build"
-          git push -f origin release-build
+          set -euo pipefail
+          if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
+            test "$(git rev-parse "$RELEASE_TAG^{commit}")" = "$GITHUB_SHA"
+          else
+            git tag "$RELEASE_TAG" "$GITHUB_SHA"
+          fi
+          git push origin "refs/tags/$RELEASE_TAG"
 
-      - name: Clean Existing Release Assets
-        uses: actions/github-script@v8
+      - name: Upload draft release
+        id: upload_release
+        if: steps.release_plan.outputs.should_release == 'true'
+        uses: softprops/action-gh-release@v3
         with:
-          script: |
-            const tag = "release-build";
-            let release;
-            try {
-              const releaseResponse = await github.rest.repos.getReleaseByTag({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                tag
-              });
-              release = releaseResponse.data;
-            } catch (error) {
-              if (error.status === 404) {
-                core.info(`Release '${tag}' does not exist yet. Skipping asset cleanup.`);
-                return;
-              }
-              throw error;
-            }
-
-            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              release_id: release.id,
-              per_page: 100
-            });
-
-            for (const asset of assets) {
-              core.info(`Deleting old release asset: ${asset.name}`);
-              await github.rest.repos.deleteReleaseAsset({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                asset_id: asset.id
-              });
-            }
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: release-build
-          name: Release Build v${{ needs.metadata.outputs.version }}
+          tag_name: ${{ needs.metadata.outputs.release_tag }}
+          target_commitish: ${{ github.sha }}
+          name: Release Build v${{ needs.metadata.outputs.version }} (Server v${{ needs.metadata.outputs.server_version }})
           body: |
             Game version: ${{ needs.metadata.outputs.version }}
             Server version: ${{ needs.metadata.outputs.server_version }}
@@ -992,9 +1066,29 @@ jobs:
 
             ---
             *Build from commit ${{ github.sha }}*
-          draft: false
+          draft: true
           prerelease: false
-          files: |
-            release-assets/**/*.zip
-            release-assets/**/*.apk
-            release-assets/**/*.ipa
+          fail_on_unmatched_files: true
+          files: ${{ steps.verify_assets.outputs.files }}
+
+      - name: Publish completed release as latest
+        if: steps.release_plan.outputs.should_release == 'true'
+        uses: actions/github-script@v8
+        env:
+          RELEASE_ID: ${{ steps.upload_release.outputs.id }}
+        with:
+          script: |
+            const releaseId = Number(process.env.RELEASE_ID);
+            if (!Number.isSafeInteger(releaseId) || releaseId <= 0) throw new Error('Invalid release upload ID.');
+            const { data: release } = await github.rest.repos.getRelease({ ...context.repo, release_id: releaseId });
+            if (release.tag_name !== process.env.RELEASE_TAG) throw new Error('Uploaded release does not match the planned tag.');
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
+              ...context.repo, release_id: releaseId, per_page: 100
+            });
+            const expected = JSON.parse(process.env.RELEASE_ASSETS);
+            if (!expected.every(name => assets.some(asset => asset.name === name && asset.state === 'uploaded' && asset.size > 0))) {
+              throw new Error('Release upload is incomplete; keeping the release as a draft.');
+            }
+            if (release.draft) {
+              await github.rest.repos.updateRelease({ ...context.repo, release_id: releaseId, draft: false, make_latest: 'true' });
+            }

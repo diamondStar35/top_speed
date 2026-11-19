@@ -120,10 +120,9 @@ namespace TopSpeed.Vehicles
                 }
             }
 
+            _raceAudio.UpdateBraking(braking, _track.RoadComputer(incomingY).Surface);
             if (braking)
             {
-                if (!_soundBrake.IsPlaying)
-                    _soundBrake.Play(loop: true);
                 var speedRatio = NormalizeSpeedByTopSpeed(incomingSpeed, 1f);
                 var targetBrakeFrequency = (int)(11025 + (22050 * speedRatio));
                 if (_prevBrakeFrequency != targetBrakeFrequency)
@@ -131,10 +130,6 @@ namespace TopSpeed.Vehicles
                     _soundBrake.SetFrequency(targetBrakeFrequency);
                     _prevBrakeFrequency = targetBrakeFrequency;
                 }
-            }
-            else if (_soundBrake.IsPlaying)
-            {
-                _soundBrake.Stop();
             }
 
             if (horning)

@@ -82,15 +82,7 @@ namespace TopSpeed.Vehicles
             if (_state == ComputerState.Running && _started())
             {
                 AI(elapsed, traffic);
-                if (_currentBrake != 0 && _surface == TrackSurface.Asphalt)
-                {
-                    if (!_soundBrake.IsPlaying)
-                        _soundBrake.Play(loop: true);
-                }
-                else if (_soundBrake.IsPlaying)
-                {
-                    _soundBrake.Stop();
-                }
+                _raceAudio.UpdateBraking(_currentBrake != 0, _track.RoadComputer(_positionY).Surface);
 
                 var beforeSpeed = _speed;
                 var physicsState = new BotPhysicsState

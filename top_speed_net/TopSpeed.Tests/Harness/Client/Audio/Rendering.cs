@@ -18,6 +18,7 @@ internal sealed class AudioRenderingHarness : IAudioSources, IDisposable
     private readonly SoundAsset _tone;
     private readonly AudioBus _vehicles;
     private readonly AudioBus _track;
+    private readonly AudioBus _world;
     private readonly BalanceMeter _vehicleMeter;
     private readonly BalanceMeter _trackMeter;
     private readonly bool _useRecordings;
@@ -36,6 +37,7 @@ internal sealed class AudioRenderingHarness : IAudioSources, IDisposable
         Output.UpdateListener(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY, Vector3.Zero);
         _vehicles = Output.CreateBus(AudioEngineOptions.VehiclesBusName);
         _track = Output.CreateBus(AudioEngineOptions.TrackBusName);
+        _world = Output.CreateBus(AudioEngineOptions.WorldBusName);
         _vehicleMeter = new BalanceMeter(Output.SoundFlowFormat);
         _trackMeter = new BalanceMeter(Output.SoundFlowFormat);
         _vehicles.Mixer.AddAnalyzer(_vehicleMeter);
@@ -79,6 +81,7 @@ internal sealed class AudioRenderingHarness : IAudioSources, IDisposable
     {
         AudioEngineOptions.VehiclesBusName => _vehicles,
         AudioEngineOptions.TrackBusName => _track,
+        AudioEngineOptions.WorldBusName => _world,
         _ => throw new ArgumentException("Unexpected vehicle audio bus.", nameof(name))
     };
 

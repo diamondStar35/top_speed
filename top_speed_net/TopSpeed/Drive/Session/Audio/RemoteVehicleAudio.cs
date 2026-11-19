@@ -1,4 +1,5 @@
 using System;
+using TopSpeed.Data;
 using TS.Audio;
 
 namespace TopSpeed.Drive.Session.Audio
@@ -33,6 +34,19 @@ namespace TopSpeed.Drive.Session.Audio
         public Source MiniCrash { get; }
         public Source Bump { get; }
         public Source? Backfire { get; }
+
+        public void UpdateBraking(bool braking, TrackSurface surface)
+        {
+            if (braking && surface == TrackSurface.Asphalt)
+            {
+                if (!Brake.IsPlaying)
+                    Brake.Play(loop: true);
+            }
+            else if (Brake.IsPlaying)
+            {
+                Brake.Stop();
+            }
+        }
 
         public void Dispose()
         {

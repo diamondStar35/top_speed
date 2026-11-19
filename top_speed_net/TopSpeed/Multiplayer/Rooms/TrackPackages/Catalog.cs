@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TopSpeed.Common;
 using TopSpeed.Localization;
 using TopSpeed.Menu;
 using TopSpeed.Protocol;
@@ -83,25 +84,46 @@ namespace TopSpeed.Core.Multiplayer
 
         private void RebuildRoomTrackCustomMenu()
         {
-            var items = new List<MenuItem>();
             var tracks = _state.RoomDrafts.RoomTrackCatalog ?? Array.Empty<PacketTrackPackageCatalogEntry>();
-            for (var i = 0; i < tracks.Length; i++)
+            var items = BuildRoomTrackCustomItems(tracks, SelectRoomTrack, OpenRoomTrackLocalCustomMenu);
+            var preserveSelection = string.Equals(_menu.CurrentId, MultiplayerMenuKeys.RoomTrackCustom, StringComparison.Ordinal);
+            _menu.UpdateItems(MultiplayerMenuKeys.RoomTrackCustom, items, preserveSelection);
+        }
+
+        internal static List<MenuItem> BuildRoomTrackCustomItems(
+            IReadOnlyList<PacketTrackPackageCatalogEntry> tracks,
+            Action<TrackPackageRef, string, bool> selectTrack,
+            Action uploadLocalTrack)
+        {
+            var items = new List<MenuItem>();
+            var customTracks = new List<PacketTrackPackageCatalogEntry>();
+            for (var i = 0; i < tracks.Count; i++)
             {
                 var track = tracks[i];
                 if (!PacketValidation.IsValidTrackPackageCatalogEntry(track))
                     continue;
 
+                customTracks.Add(track);
+
                 var display = string.IsNullOrWhiteSpace(track.DisplayName)
                     ? FormatTrackRefDisplay(track.Track)
                     : track.DisplayName;
-                items.Add(new MenuItem(display, MenuAction.None, onActivate: () => SelectRoomTrack(track.Track, display, false)));
+                items.Add(new MenuItem(display, MenuAction.None, onActivate: () => selectTrack(track.Track, display, false)));
             }
 
-            items.Add(new MenuItem(LocalizationService.Mark("Upload a local track"), MenuAction.None, onActivate: OpenRoomTrackLocalCustomMenu));
-            items.Add(new MenuItem(LocalizationService.Mark("Random"), MenuAction.None, onActivate: SelectRandomRoomTrackAny));
-
-            var preserveSelection = string.Equals(_menu.CurrentId, MultiplayerMenuKeys.RoomTrackCustom, StringComparison.Ordinal);
-            _menu.UpdateItems(MultiplayerMenuKeys.RoomTrackCustom, items, preserveSelection);
+            items.Add(new MenuItem(LocalizationService.Mark("Upload a local track"), MenuAction.None, onActivate: uploadLocalTrack));
+            if (customTracks.Count > 0)
+            {
+                items.Add(new MenuItem(LocalizationService.Mark("Random"), MenuAction.None, onActivate: () =>
+                {
+                    var track = customTracks[Algorithm.RandomInt(customTracks.Count)];
+                    var display = string.IsNullOrWhiteSpace(track.DisplayName)
+                        ? FormatTrackRefDisplay(track.Track)
+                        : track.DisplayName;
+                    selectTrack(track.Track, display, false);
+                }));
+            }
+            return items;
         }
 
         private void OpenRoomTrackLocalCustomMenu()

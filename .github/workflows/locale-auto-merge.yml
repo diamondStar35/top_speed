@@ -1,6 +1,7 @@
 name: Locale Auto Merge
 
 on:
+  workflow_dispatch:
   pull_request_target:
     types:
       - opened
@@ -45,24 +46,20 @@ jobs:
               if (pr) {
                 prNumbers.add(pr.number);
               }
-            } else if (context.eventName === "workflow_run") {
-              const prs = context.payload.workflow_run?.pull_requests || [];
-              for (const pr of prs) {
-                prNumbers.add(pr.number);
-              }
+            } else if (["workflow_run", "workflow_dispatch"].includes(context.eventName)) {
+              // Workflow runs can contain stale PR references. Discover the current locale
+              // PR in this repository even when the event lists unrelated pull requests.
+              const openPrs = await github.paginate(github.rest.pulls.list, {
+                owner,
+                repo,
+                state: "open",
+                head: `${owner}:${expectedHeadBranch}`,
+                per_page: 100
+              });
 
-              if (prNumbers.size === 0) {
-                const { data: openPrs } = await github.rest.pulls.list({
-                  owner,
-                  repo,
-                  state: "open",
-                  per_page: 100
-                });
-
-                for (const pr of openPrs) {
-                  if (pr.head?.ref === expectedHeadBranch) {
-                    prNumbers.add(pr.number);
-                  }
+              for (const pr of openPrs) {
+                if (pr.head?.ref === expectedHeadBranch) {
+                  prNumbers.add(pr.number);
                 }
               }
             } else if (context.eventName === "check_suite") {

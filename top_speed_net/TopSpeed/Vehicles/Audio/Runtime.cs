@@ -1,4 +1,3 @@
-using System;
 using TopSpeed.Data;
 
 namespace TopSpeed.Vehicles
@@ -7,80 +6,21 @@ namespace TopSpeed.Vehicles
     {
         public virtual void BrakeSound()
         {
-            switch (_surface)
+            _surfaceVolume.Apply(_settings, _raceAudio, _speed, braking: true);
+            if (_surface == TrackSurface.Asphalt)
             {
-                case TrackSurface.Asphalt:
-                    if (!_soundBrake.IsPlaying)
-                    {
-                        SetSurfaceLoopVolumePercent(_soundAsphalt, 90);
-                        _soundBrake.Play(loop: true);
-                    }
-                    break;
-                case TrackSurface.Gravel:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    if (_speed <= 50.0f)
-                        SetSurfaceLoopVolumePercent(_soundGravel, (int)(100 - (10 - (_speed / 5))));
-                    else
-                        SetSurfaceLoopVolumePercent(_soundGravel, 100);
-                    break;
-                case TrackSurface.Water:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    if (_speed <= 50.0f)
-                        SetSurfaceLoopVolumePercent(_soundWater, (int)(100 - (10 - (_speed / 5))));
-                    else
-                        SetSurfaceLoopVolumePercent(_soundWater, 100);
-                    break;
-                case TrackSurface.Sand:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    if (_speed <= 50.0f)
-                        SetSurfaceLoopVolumePercent(_soundSand, (int)(100 - (10 - (_speed / 5))));
-                    else
-                        SetSurfaceLoopVolumePercent(_soundSand, 100);
-                    break;
-                case TrackSurface.Snow:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    if (_speed <= 50.0f)
-                        SetSurfaceLoopVolumePercent(_soundSnow, (int)(100 - (10 - (_speed / 5))));
-                    else
-                        SetSurfaceLoopVolumePercent(_soundSnow, 100);
-                    break;
+                if (!_soundBrake.IsPlaying)
+                    _soundBrake.Play(loop: true);
             }
+            else if (_soundBrake.IsPlaying)
+                _soundBrake.Stop();
         }
 
         public virtual void BrakeCurveSound()
         {
-            switch (_surface)
-            {
-                case TrackSurface.Asphalt:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    SetSurfaceLoopVolumePercent(_soundAsphalt, 92 * Math.Abs(_currentSteering) / 100);
-                    break;
-                case TrackSurface.Gravel:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    SetSurfaceLoopVolumePercent(_soundGravel, 92 * Math.Abs(_currentSteering) / 100);
-                    break;
-                case TrackSurface.Water:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    SetSurfaceLoopVolumePercent(_soundWater, 92 * Math.Abs(_currentSteering) / 100);
-                    break;
-                case TrackSurface.Sand:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    SetSurfaceLoopVolumePercent(_soundSand, 92 * Math.Abs(_currentSteering) / 100);
-                    break;
-                case TrackSurface.Snow:
-                    if (_soundBrake.IsPlaying)
-                        _soundBrake.Stop();
-                    SetSurfaceLoopVolumePercent(_soundSnow, 92 * Math.Abs(_currentSteering) / 100);
-                    break;
-            }
+            if (_soundBrake.IsPlaying)
+                _soundBrake.Stop();
+            _surfaceVolume.Apply(_settings, _raceAudio, _speed, braking: false);
         }
 
         public virtual bool Backfiring() => AnyBackfirePlaying();

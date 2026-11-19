@@ -19,10 +19,18 @@ device. They compare surface positioning with the engine across the road, exerci
 surface recordings at driving pitch, and cover HRTF and stereo widening both enabled and disabled.
 Surface playback is also checked with the engine stopped.
 
+`SurfaceVolumeBehaviorTests` check that steering never quiets the surface below its normal level,
+that the small steering boost fades in and out consistently across frame rates, and that surface
+changes, braking, and volume settings preserve the cue.
+
 For a listening check, drive left and right on each surface, then repeat while coasting with the
 engine switched off. Check that the surface cue follows the car, including when changing surface
 away from the center of the road. Repeat with HRTF and stereo widening enabled and disabled, and
 confirm that the surface volume control and speed-dependent pitch still behave normally.
+With progressive keyboard input or an analog controller, make small steering adjustments above
+half the vehicle's top speed and check that the surface never drops out. Hold a turn, then release
+it: the surface should become slightly louder and return smoothly to its normal level. Repeat
+with ordinary keyboard input, while braking, and while coasting with the engine off.
 
 ## Updater process checks
 

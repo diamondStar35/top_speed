@@ -44,6 +44,7 @@ namespace TopSpeed.Vehicles
             _runtimeContext = new CarRuntimeContext();
             _physicsModel = new Default();
             _audioFlow = new Flow();
+            _surfaceVolume = new SurfaceVolume();
             _eventProcessor = new Processor(
                 HandleEventCarStart,
                 HandleEventCarRestart,

@@ -9,6 +9,7 @@ using Xunit;
 namespace TopSpeed.Tests;
 
 [Trait("Category", "Behavior")]
+[Collection("Audio rendering")]
 public sealed class SurfaceAudioBehaviorTests
 {
     [Theory]

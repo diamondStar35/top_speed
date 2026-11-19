@@ -71,6 +71,7 @@ namespace TopSpeed.Vehicles
             var brakingInput = Math.Max(0, -_currentBrake);
             var isBraking = brakingInput >= 15 && _speed > 0;
             var speedRatio = NormalizeSpeedByTopSpeed(_speed, 1f);
+            _surfaceVolume.Update(_currentSteering, _lastAudioElapsed);
             if (isBraking)
             {
                 BrakeSound();
@@ -80,19 +81,9 @@ namespace TopSpeed.Vehicles
                     _currentSteering = (_currentSteering * 2) / 3;
                 }
             }
-            else if (_currentSteering != 0 && _speed > _topSpeed / 2)
-            {
-                BrakeCurveSound();
-            }
             else
             {
-                if (_soundBrake.IsPlaying)
-                    _soundBrake.Stop();
-                SetSurfaceLoopVolumePercent(_soundAsphalt, 90);
-                SetSurfaceLoopVolumePercent(_soundGravel, 90);
-                SetSurfaceLoopVolumePercent(_soundWater, 90);
-                SetSurfaceLoopVolumePercent(_soundSand, 90);
-                SetSurfaceLoopVolumePercent(_soundSnow, 90);
+                BrakeCurveSound();
             }
         }
 

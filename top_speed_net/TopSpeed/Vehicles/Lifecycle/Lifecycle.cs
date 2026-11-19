@@ -22,6 +22,7 @@ namespace TopSpeed.Vehicles
             _lastAudioX = positionX;
             _lastAudioY = _positionY;
             _lastAudioElapsed = 0f;
+            _surfaceVolume.Reset();
             _vibration?.PlayEffect(VibrationEffectType.Spring);
         }
 

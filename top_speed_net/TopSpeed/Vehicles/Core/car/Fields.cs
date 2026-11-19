@@ -36,6 +36,7 @@ namespace TopSpeed.Vehicles
         private readonly EventQueue _events;
         private readonly Processor _eventProcessor;
         private readonly IFlow _audioFlow;
+        private readonly SurfaceVolume _surfaceVolume;
         private readonly CarRuntimeContext _runtimeContext;
         private readonly IVibrationDevice? _vibration;
         private readonly PlayerVehicleAudio _raceAudio;

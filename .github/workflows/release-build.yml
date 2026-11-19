@@ -30,8 +30,6 @@ jobs:
       game_zip_mac_x64: ${{ steps.release_info.outputs.game_zip_mac_x64 }}
       game_zip_mac_arm64: ${{ steps.release_info.outputs.game_zip_mac_arm64 }}
       game_apk_android_arm64: ${{ steps.release_info.outputs.game_apk_android_arm64 }}
-      game_apk_android_arm32: ${{ steps.release_info.outputs.game_apk_android_arm32 }}
-      game_ipa_ios_arm64: ${{ steps.release_info.outputs.game_ipa_ios_arm64 }}
       android_version_code: ${{ steps.release_info.outputs.android_version_code }}
       changes_md: ${{ steps.release_info.outputs.changes_md }}
       server_changes_md: ${{ steps.release_info.outputs.server_changes_md }}
@@ -121,8 +119,6 @@ jobs:
           "game_zip_mac_x64=TopSpeed-mac-x64-Release-v-$version.zip" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "game_zip_mac_arm64=TopSpeed-mac-arm64-Release-v-$version.zip" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "game_apk_android_arm64=TopSpeed-android-arm64-Release-v-$version.apk" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          "game_apk_android_arm32=TopSpeed-android-arm-Release-v-$version.apk" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          "game_ipa_ios_arm64=TopSpeed-ios-arm64-Release-v-$version.ipa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "android_version_code=$androidVersionCode" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "changes_md<<EOF" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           $changes | Out-File -FilePath $env:GITHUB_OUTPUT -Append
@@ -144,7 +140,7 @@ jobs:
             const tag = `v${version}-server-v${serverVersion}`;
             const gameRuntimes = [
               ['windows-x64', 'zip'], ['linux-x64', 'zip'], ['mac-x64', 'zip'], ['mac-arm64', 'zip'],
-              ['android-arm64', 'apk'], ['android-arm', 'apk'], ['ios-arm64', 'ipa']
+              ['android-arm64', 'apk']
             ];
             const serverRuntimes = [
               'win-x64', 'linux-x64', 'linux-arm64', 'linux-arm32', 'linux-musl-x64',
@@ -593,9 +589,6 @@ jobs:
           - target_name: android-arm64
             runtime_id: android-arm64
             artifact_name: release-assets-android-arm64
-          - target_name: android-arm
-            runtime_id: android-arm
-            artifact_name: release-assets-android-arm
     defaults:
       run:
         working-directory: top_speed_net
@@ -661,11 +654,7 @@ jobs:
             -p:ApplicationVersion="$ANDROID_VERSION_CODE" \
             -p:SkipTranslationCompilation=true
 
-          if [[ "$rid" == "android-arm64" ]]; then
-            apk_name="TopSpeed-android-arm64-Release-v-$VERSION.apk"
-          else
-            apk_name="TopSpeed-android-arm-Release-v-$VERSION.apk"
-          fi
+          apk_name="TopSpeed-android-arm64-Release-v-$VERSION.apk"
 
           rid_root="TopSpeed.Android/bin/Release/net10.0-android/$rid"
           apk_path="$(find "$rid_root" -type f -name '*Signed.apk' | sort | head -n 1)"
@@ -695,7 +684,8 @@ jobs:
 
   build_ios:
     name: Build iOS ${{ matrix.target_name }}
-    if: needs.metadata.outputs.should_release == 'true'
+    # Retain the iOS build steps for future use, but exclude iOS from releases for now.
+    if: ${{ false }}
     needs:
       - metadata
       - translations
@@ -979,7 +969,6 @@ jobs:
       - build_mac
       - build_linux
       - build_android
-      - build_ios
     runs-on: ubuntu-latest
     permissions:
       contents: write

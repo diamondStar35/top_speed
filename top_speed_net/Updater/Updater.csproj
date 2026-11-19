@@ -9,10 +9,6 @@
     <AssemblyName>TopSpeedUpdater</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64;linux-arm64;linux-arm;linux-musl-x64;linux-musl-arm64</RuntimeIdentifiers>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0' and '$(RuntimeIdentifier)' != ''">
     <UseNativeAotUpdater Condition="'$(UseNativeAotUpdater)' == ''">false</UseNativeAotUpdater>
     <UseTrimmedUpdater Condition="'$(UseTrimmedUpdater)' == ''">false</UseTrimmedUpdater>

@@ -7,7 +7,7 @@ function Resolve-ExecutablePath {
         [string]$Name
     )
 
-    $command = Get-Command $Name -CommandType Application -ErrorAction SilentlyContinue
+    $command = Get-Command $Name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($null -eq $command -or [string]::IsNullOrWhiteSpace($command.Source)) {
         throw "Required tool '$Name' was not found in PATH. Install GNU gettext and ensure '$Name' is available."
     }
@@ -38,7 +38,7 @@ function Get-CSharpSourceFiles {
         [string[]]$SourceDirectories
     )
 
-    $rgCommand = Get-Command rg -CommandType Application -ErrorAction SilentlyContinue
+    $rgCommand = Get-Command rg -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($null -ne $rgCommand) {
         $files = & $rgCommand.Source --files @SourceDirectories -g "*.cs" -g "!**/bin/**" -g "!**/obj/**"
         return @($files | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object -Unique)

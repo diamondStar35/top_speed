@@ -4,15 +4,15 @@ Top Speed is an audio-only racing game written in C# (.NET 10). The repo hosts a
 
 ## Project Structure & Module Organization
 
-The .NET solution lives at [`top_speed_net/TopSpeed.sln`](top_speed_net/TopSpeed.sln). All paths below are relative to the repository root.
+The default desktop/server solution lives at [`top_speed_net/TopSpeed.sln`](top_speed_net/TopSpeed.sln). Android and iOS hosts are built directly from their projects. See [readme.md](readme.md) for the development commands and source map. All paths below are relative to the repository root.
 
-### Solution projects
+### Projects
 
 - `top_speed_net/TopSpeed/` — client game. Conditional `TargetFramework`: `net10.0-windows` on Windows, `net10.0` on Linux/macOS, `Library` for mobile host builds (`AndroidHostBuild=true` / `IOSHostBuild=true`).
-- `top_speed_net/TopSpeed.Server/` — dedicated server, `net10.0`. Publish profiles are selected via `-p:ServerPublishProfile=...` (see [Build, test & publish](#build-test--publish)).
+- `top_speed_net/TopSpeed.Server/` — dedicated server, `net10.0`. Ordinary Debug and Release builds are framework-dependent; deployment runtimes are selected via `-p:ServerPublishProfile=...` (see [Build, test & publish](#build-test--publish)).
 - `top_speed_net/TopSpeed.Shared/` — shared protocol, localization, vehicle/track data, physics, runtime helpers. Targets `netstandard2.0` so it can be referenced from every client/server/mobile target without conditional compilation.
 - `top_speed_net/TopSpeed.Tests/` — unified xUnit test project (`net10.0-windows`) covering shared, server, and client logic. Uses xUnit + FluentAssertions + FsCheck + Verify. Tests are part of the solution and must build clean.
-- `top_speed_net/TopSpeed.Android/` — Android host (`net10.0-android`). Builds via [`top_speed_net/scripts/build/android.sh`](top_speed_net/scripts/build/android.sh).
+- `top_speed_net/TopSpeed.Android/` — Android host (`net10.0-android`). Not in the default .sln; build its project directly or use [`top_speed_net/scripts/build/android.sh`](top_speed_net/scripts/build/android.sh).
 - `top_speed_net/TopSpeed.iOS/` — iOS host (`net10.0-ios`). Not in the .sln; built directly via `dotnet publish` or release CI.
 - `top_speed_net/TS.Audio/` — audio engine wrapper (mixer, buses, effects, DSP) on `net10.0`.
 - `top_speed_net/TS.Sdl/` — SDL bindings used by the client/test harness (`net10.0`).
@@ -35,16 +35,21 @@ Rule: room ownership stays in `Room`, race ownership stays in `Race`, packet emi
 
 ### Client multiplayer (`top_speed_net/TopSpeed/`)
 
-Multiplayer is split into state, dispatch, runtime, and UI reactions:
+Multiplayer lives under `Multiplayer/`, split into state, dispatch, runtime, transport, and UI reactions. File organization groups the feature together; existing namespaces and partial types are preserved:
 
-- `Game/Multiplayer/Dispatch/` — packet registration, decoding, and routing.
-- `Game/Multiplayer/Race/` — multiplayer race runtime and binding state.
-- `Core/Multiplayer/Coordinator/State/Rooms/` — authoritative room store and room drafts.
-- `Core/Multiplayer/Coordinator/RoomSync/Handlers/` — packet-to-store reducers.
-- `Core/Multiplayer/Coordinator/RoomUi/` — room UI/menu/speech reactions after store changes.
-- `Core/Multiplayer/Domain/Rooms/` and `Domain/Online/` — multiplayer domain models.
+- `Multiplayer/Application/Dispatch/` — packet registration, decoding, and routing.
+- `Multiplayer/Application/Race/` — multiplayer race runtime and binding state.
+- `Multiplayer/Racing/` — multiplayer driving sessions and runtime state.
+- `Multiplayer/Network/` — client transport and packet serialization (`Serialization/`).
+- `Multiplayer/Coordinator/State/Rooms/` — authoritative room store and room drafts.
+- `Multiplayer/Coordinator/RoomSync/Handlers/` — packet-to-store reducers.
+- `Multiplayer/Coordinator/RoomUi/` — room UI/menu/speech reactions after store changes.
+- `Multiplayer/Domain/Rooms/` and `Domain/Online/` — multiplayer domain models.
 
 Rule: packet handlers update store/runtime state first; menu/speech effects happen second. Do not mix room state mutation with UI side effects in the same method.
+
+Player-car definition and fields live under `Vehicles/Car/`; engine, torque, and transmission code
+live under `Vehicles/Powertrain/`; vehicle-loading integration lives under `Vehicles/Loading/`.
 
 ### Vehicle tire wear, weather, and reporting
 
@@ -73,7 +78,7 @@ Rule: packet handlers update store/runtime state first; menu/speech effects happ
 - Bots never aim at another car. There is no ramming or blocking behaviour; difficulty changes grip/brake confidence, reaction lag, headway and line quality, not recklessness.
 - Hosts must call `BotDrivingPlanner.NotifyContact` when a bot is bumped, so it settles instead of collecting the next car.
 - Driving changes must be validated with the closed-loop harness `TopSpeed.Tests/Harness/Shared/Bots/BotRaceHarness.cs` (collisions, off-road events, brake duty cycle, stranded bots), not only single-step assertions.
-- Custom vehicle tire wear tuning is parsed from `[tire_model]` in `top_speed_net/TopSpeed/Vehicles/Parsing/` using explicit keys for wear/thermal behavior (for example `wear_slip_rate_per_s`, `temp_optimal_end_c`, `heat_cornering_c_per_s`, `exchange_wet_road_per_c_per_s`).
+- Custom vehicle tire wear tuning is parsed from `[tire_model]` in `top_speed_net/TopSpeed.Shared/Vehicles/Parsing/` and consumed by `TopSpeed/Vehicles/Loading/`, using explicit keys for wear/thermal behavior (for example `wear_slip_rate_per_s`, `temp_optimal_end_c`, `heat_cornering_c_per_s`, `exchange_wet_road_per_c_per_s`).
 - In-race tire state speech is bound through `DriveIntent.ReportTireState` and handled in `Drive/Session/Systems/CoreRequests.cs`; default keyboard binding is `V` and must not alter `GearDown` behavior.
 
 ### Menu, dialog, and localization
@@ -110,6 +115,7 @@ dotnet test    top_speed_net/TopSpeed.Tests/TopSpeed.Tests.csproj -c Debug --no-
 ```
 
 Notes:
+- The default solution contains the desktop client, server, shared libraries, updater, and tests. Mobile hosts and the upstream Steam Audio native NuGet packaging project are opt-in. The solution exposes Debug and Release with Any CPU; runtime-specific release artifacts are selected by publish arguments.
 - The test project targets `net10.0-windows` and therefore only runs on Windows. The release CI's Windows job (`top_speed_net/scripts/build/windows.ps1`) runs `dotnet test ... --framework net10.0-windows` as part of the build gate.
 - `top_speed_net/Directory.Build.props` excludes `obj/**` from default item discovery; do not assume it appears in glob results.
 - `top_speed_net/NuGet.Config` clears Visual Studio fallback package folders. Use the standard NuGet feed; do not check in package binaries.

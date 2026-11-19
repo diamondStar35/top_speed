@@ -16,7 +16,7 @@ public sealed class MultiplayerNetworkArchitectureInvariants
         var root = FindTopSpeedNetRoot();
         var scopes = new[]
         {
-            Path.Combine(root, "TopSpeed", "Core", "Multiplayer"),
+            Path.Combine(root, "TopSpeed", "Multiplayer"),
             Path.Combine(root, "TopSpeed.Server", "Network")
         };
 
@@ -54,7 +54,7 @@ public sealed class MultiplayerNetworkArchitectureInvariants
     public void ClientRoomSyncHandlers_ShouldAvoidDirectMenuAndSpeechCalls()
     {
         var root = FindTopSpeedNetRoot();
-        var handlersRoot = Path.Combine(root, "TopSpeed", "Core", "Multiplayer", "Coordinator", "RoomSync", "Handlers");
+        var handlersRoot = Path.Combine(root, "TopSpeed", "Multiplayer", "Coordinator", "RoomSync", "Handlers");
         var forbiddenTokens = new[]
         {
             "_menu.",

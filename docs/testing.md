@@ -4,6 +4,13 @@
 All automated tests now live under `top_speed_net/TopSpeed.Tests`.
 
 ## Build and run tests (Windows)
+
+The default solution builds the desktop client, server, libraries, updater, and tests. Android and iOS
+are explicit project builds and require their own workloads. From `top_speed_net`, the usual build
+is `dotnet build -c Release`; this does not evaluate mobile projects. Debug and Release configurations
+also apply consistently to the server. See [the development guide](../readme.md) for the source map
+and platform-specific entry points.
+
 `dotnet build top_speed_net/TopSpeed.sln -c Debug`
 
 `dotnet test top_speed_net/TopSpeed.Tests/TopSpeed.Tests.csproj -c Debug -f net10.0-windows --no-build`

@@ -179,7 +179,11 @@ jobs:
               if (latest?.tag_name === 'release-build' && !latest.draft && complete(latest)) shouldRelease = false;
             }
             if (shouldRelease) {
-              const commit = await optional(() => github.rest.repos.getCommit({ ...context.repo, ref: tag }));
+              // Missing refs return 404; the commit endpoint returns 422 for an unknown tag.
+              const tagRef = await optional(() => github.rest.git.getRef({ ...context.repo, ref: `tags/${tag}` }));
+              const commit = tagRef
+                ? (await github.rest.repos.getCommit({ ...context.repo, ref: `refs/tags/${tag}` })).data
+                : null;
               if (commit && commit.sha !== context.sha) {
                 throw new Error(`Tag '${tag}' belongs to another commit. Rerun its original workflow or bump the version; tags will not be moved.`);
               }

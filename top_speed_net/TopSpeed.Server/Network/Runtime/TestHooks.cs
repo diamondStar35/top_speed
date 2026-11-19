@@ -51,6 +51,20 @@ namespace TopSpeed.Server.Network
 
     internal sealed partial class RaceServer
     {
+        internal void AddRoomForTest(GameRoom room, params PlayerConnection[] players)
+        {
+            lock (_lock)
+            {
+                _rooms.Add(room.Id, room);
+                foreach (var player in players)
+                {
+                    _players.Add(player.Id, player);
+                    room.PlayerIds.Add(player.Id);
+                    player.RoomId = room.Id;
+                }
+            }
+        }
+
         internal void InjectPacketForTest(IPEndPoint endPoint, byte[] payload)
         {
             OnPacket(endPoint, payload);

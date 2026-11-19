@@ -24,8 +24,9 @@ namespace TopSpeed.Server.Network
                 if (definitions == null || definitions.Length == 0)
                     continue;
 
-                var laneHalfWidth = GetLaneHalfWidth(room);
-                var roadModel = new RoadModel(definitions, laneHalfWidth);
+                // Segment widths change the available road, not its curve scale. Match the
+                // client and collision model instead of scaling every turn by the grid width.
+                var roadModel = new RoadModel(definitions);
                 var raceDistance = GetRaceDistance(room);
                 if (roadModel.LapDistance <= 0f || raceDistance <= 0f)
                     continue;

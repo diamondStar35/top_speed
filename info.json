@@ -1,11 +1,11 @@
 {
   "version": "2026.8.29.1",
-  "serverVersion": "2026.8.29.1",
+  "serverVersion": "2026.11.19.1",
   "changes": [
     "Rewrote bot driving behavior. Bots learn how to use brakes when necessary, slow down or accelerate based on incoming turns, avoid obstacles, and hard difficulty mode is a serious hard mode now.",
     "Fixed a long-standing bug where when another vehicle crosses the finish line, the player would only hear it's sound and the sound would get cut completely instead of slowing down."
   ],
   "serverChanges": [
-    "Fix vehicle finish line behavior"
+    "Hopefully fixed bot behaviors on some tracks where they wouldn't plan and turn properly on the road."
   ]
 }

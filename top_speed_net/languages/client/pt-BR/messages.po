@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: top_speed\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-18 23:28+0200\n"
-"PO-Revision-Date: 2026-11-18 21:33\n"
+"PO-Revision-Date: 2026-11-19 04:22\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Crowdin-File: /main/top_speed_net/languages/client/messages.pot\n"
 "X-Crowdin-File-ID: 11\n"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
 msgid " "
 msgstr ""
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "\"{0}\", because {1}"
 msgstr "\"{0}\", pois {1}"
@@ -55,7 +55,7 @@ msgstr "Uma nova versão do Top Speed foi encontrada. Sua versão atual é a {0}
 msgid "A saved server entry was ignored because the host is empty."
 msgstr "Uma entrada de servidor salva foi ignorada porque o host está vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "A track upload is already in progress."
 msgstr "O envio de uma pista já está em andamento."
 
@@ -80,11 +80,11 @@ msgstr "Ações disponíveis."
 msgid "Add"
 msgstr "Adicionar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Add a bot"
 msgstr "Adicionar bot"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Menu.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Menu.cs
 msgid "Add a new server"
 msgstr "Adicionar novo servidor"
 
@@ -139,7 +139,7 @@ msgstr "O instalador de pacotes do Android não está disponível."
 msgid "Android updates require an APK package."
 msgstr "As atualizações do Android exigem um pacote APK."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Announce frequency"
 msgstr "Anunciar frequência"
 
@@ -151,7 +151,7 @@ msgstr "Apóstrofo"
 msgid "Applications"
 msgstr "Aplicações"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Session.cs
 msgid "Are you sure you want to disconnect?"
 msgstr "Tem certeza de que deseja desconectar?"
 
@@ -159,15 +159,15 @@ msgstr "Tem certeza de que deseja desconectar?"
 msgid "Are you sure you want to exit the game?"
 msgstr ""
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Are you sure you want to leave the current room?"
 msgstr "Tem certeza de que deseja sair da sala atual?"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Are you sure you want to quit this multiplayer race?"
 msgstr "Tem certeza de que deseja sair desta corrida multiplayer?"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Are you sure you would like to discard all changes?"
 msgstr "Tem certeza de que deseja descartar todas as alterações?"
 
@@ -203,7 +203,7 @@ msgstr "A essa altura, todo mundo conseguia ouvir os erros."
 msgid "At this rate the crash sound is becoming your theme music."
 msgstr "Nesse ritmo, o som de batida está se tornando sua música tema."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Attempting to connect, please wait..."
 msgstr "Tentando conectar, por favor aguarde..."
 
@@ -237,16 +237,16 @@ msgstr "Formato automático do dispositivo de áudio"
 msgid "Automatic race information"
 msgstr "Informações automáticas da corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Automatic room name selected."
 msgstr "Nome de sala automático selecionado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Loadout.cs
 msgid "Automatic transmission"
 msgstr "Transmissão automática"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Automatic transmission is required for this vehicle."
 msgstr "A transmissão automática é obrigatória para este veículo."
 
@@ -277,8 +277,8 @@ msgstr "Tempo médio para esta pista ao longo de {0} voltas: {1}."
 msgid "Average {0}-lap time for this track: {1}."
 msgstr "Tempo médio de {0} voltas para esta pista: {1}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "B"
 msgstr "B"
 
@@ -340,7 +340,7 @@ msgstr "Ambas as teclas Control"
 msgid "Both Shift keys"
 msgstr "Ambas as teclas Shift"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Bots can only be managed by the host in race-with-bots rooms."
 msgstr "Os bots só podem ser gerenciados pelo host em salas de corrida com bots."
 
@@ -429,12 +429,10 @@ msgstr "Botão 8"
 msgid "Button 9"
 msgstr "Botão 9"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Call sign cannot be empty."
 msgstr "O indicador de chamada não pode estar vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
 #: top_speed_net/TopSpeed/Game/Settings/Audio.cs
 #: top_speed_net/TopSpeed/Game/Settings/Language.cs
@@ -442,18 +440,20 @@ msgstr "O indicador de chamada não pode estar vazio."
 #: top_speed_net/TopSpeed/Input/Mapping/Handler/Keyboard.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
 #: top_speed_net/TopSpeed/Menu/Dialogs/Choice.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Cancel and discard changes"
 msgstr "Cancelar e descartar alterações"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Cancel current game?"
 msgstr "Cancelar o jogo atual?"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Cancel room creation"
 msgstr "Cancelar criação da sala"
 
@@ -461,7 +461,7 @@ msgstr "Cancelar criação da sala"
 msgid "Caps Lock"
 msgstr "Caps Lock"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Change game options"
 msgstr "Alterar opções do jogo"
 
@@ -469,11 +469,11 @@ msgstr "Alterar opções do jogo"
 msgid "Change log file"
 msgstr "Arquivo changelog"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Change the track used during the race."
 msgstr "Alterar a pista usada durante a corrida."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Chat message cannot be empty."
 msgstr "A mensagem de chat não pode estar vazia."
 
@@ -485,7 +485,7 @@ msgstr "Buscar atualizações"
 msgid "Check for updates on startup"
 msgstr "Buscar atualizações ao iniciar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Check ping"
 msgstr "Verificar ping"
 
@@ -510,11 +510,11 @@ msgstr "Escolha o controle"
 msgid "Choose how much automatic race information is spoken, such as lap numbers and player positions."
 msgstr "Escolha quanta informação automática da corrida é falada, como números de voltas e posições dos jogadores."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Choose how to proceed with the current game."
 msgstr "Escolha como proceder com o jogo atual."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Choose how to start this race."
 msgstr "Escolha como iniciar esta corrida."
 
@@ -538,11 +538,11 @@ msgstr "Escolha o idioma."
 msgid "Choose the microphone used for communicator voice chat."
 msgstr "Escolha o microfone usado para o chat de voz do comunicador."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Choose the number of laps for this room."
 msgstr "Escolha o número de voltas para esta sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Choose the player capacity from 2 to 10."
 msgstr "Escolha a capacidade de jogadores de 2 a 10."
 
@@ -559,7 +559,7 @@ msgstr "Escolha quais informações o copiloto relata durante uma corrida."
 msgid "Choose whether spoken messages use speech only, braille only, or speech with braille."
 msgstr "Escolha se as mensagens faladas usarão apenas fala, apenas braille ou fala e braille."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Choose whether this room is a race with bots, a multiplayer race without bots, or a one-on-one game."
 msgstr "Escolha se esta sala é uma corrida com bots, uma corrida multiplayer sem bots ou um jogo um contra um."
 
@@ -598,11 +598,11 @@ msgstr "Dois-pontos"
 msgid "Communicator"
 msgstr "Comunicador"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 msgid "Communicator off"
 msgstr "Comunicador desligado"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 msgid "Communicator on"
 msgstr "Comunicador ligado"
 
@@ -610,7 +610,7 @@ msgstr "Comunicador ligado"
 msgid "Communicator volume"
 msgstr "Volume do comunicador"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Compatibility warning"
 msgstr "Aviso de compatibilidade"
 
@@ -639,7 +639,7 @@ msgstr "Configure o comportamento da fala, incluindo a seleção do backend e a 
 msgid "Confirm before exiting the game"
 msgstr ""
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Confirm game options"
 msgstr "Confirmar opções do jogo"
 
@@ -647,83 +647,83 @@ msgstr "Confirmar opções do jogo"
 msgid "Congratulations! You have made it to the first position."
 msgstr "Parabéns! Você chegou à primeira posição."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Connected to server."
 msgstr "Conectado ao servidor."
 
-#: top_speed_net/TopSpeed/Network/Connect/Result/ConnectResult.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Result/ConnectResult.cs
 msgid "Connected."
 msgstr "Conectado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/PendingOperations.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 msgid "Connection attempt canceled."
 msgstr "Tentativa de conexão cancelada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/PendingOperations.cs
 msgid "Connection attempt failed."
 msgstr "Tentativa de conexão falhou."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/PendingOperations.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/PendingOperations.cs
 #, csharp-format
 msgid "Connection attempt failed: {0}"
 msgstr "Tentativa de conexão falhou: {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Connection canceled."
 msgstr "Conexão cancelada."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection changed. Reconnecting."
 msgstr "Conexão alterada. Reconectando."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection closed by server."
 msgstr "Conexão encerrada pelo servidor."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection closed due to protocol error."
 msgstr "Conexão encerrada devido a erro de protocolo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Connection failed"
 msgstr "Conexão falhou"
 
-#: top_speed_net/TopSpeed/Network/Connect/Result/ConnectResult.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Result/ConnectResult.cs
 msgid "Connection failed."
 msgstr "Conexão falhou."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 #, csharp-format
 msgid "Connection failed: {0}"
 msgstr "Conexão falhou: {0}"
 
-#: top_speed_net/TopSpeed/Network/Connect/Result/ConnectResult.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Result/ConnectResult.cs
 msgid "Connection lost before session initialization."
 msgstr "Conexão perdida antes da inicialização da sessão."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection lost."
 msgstr "Conexão perdida."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Reconnect.cs
 msgid "Connection lost. Reconnecting."
 msgstr "Conexão perdida. Reconectando."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Poll.cs
 msgid "Connection refused by server."
 msgstr "Conexão recusada pelo servidor."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 msgid "Connection refused due to protocol mismatch."
 msgstr "Conexão recusada devido a incompatibilidade de protocolo."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection rejected by server."
 msgstr "Conexão rejeitada pelo servidor."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Connection timed out."
 msgstr "A conexão expirou."
 
@@ -735,7 +735,7 @@ msgstr "Considere este o seu único erro gratuito para esta sessão."
 msgid "Continue"
 msgstr "Continuar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Continue connection"
 msgstr "Continuar conexão"
 
@@ -829,11 +829,11 @@ msgstr "Controla os sons do seu próprio motor e acelerador, incluindo a partida
 msgid "Copied to clipboard."
 msgstr "Copiado para a área de transferência."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/History.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/History.cs
 msgid "Copied."
 msgstr "Copiado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Copies the currently focused multiplayer history item to the clipboard."
 msgstr "Copia o item do histórico multiplayer atualmente focado para a área de transferência."
 
@@ -845,21 +845,21 @@ msgstr "Copiloto"
 msgid "Copy"
 msgstr "Copiar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Copy focused history item"
 msgstr "Copiar item em foco do histórico"
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Could not read files from the selected folder."
 msgstr "Não foi possível ler os arquivos da pasta selecionada."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save the vehicle {0}."
 msgstr "Não foi possível salvar o veículo {0}."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Could not save these vehicles: {0}."
 msgstr "Não foi possível salvar estes veículos: {0}."
@@ -868,11 +868,11 @@ msgstr "Não foi possível salvar estes veículos: {0}."
 msgid "Create a new game"
 msgstr "Criar um novo jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Create a new game room"
 msgstr "Criar uma nova sala de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Create this game room"
 msgstr "Criar esta sala de jogo"
 
@@ -904,18 +904,18 @@ msgstr "Método de anúncios de curvas"
 msgid "Curve announcements"
 msgstr "Anúncios de curva"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Loadout.cs
 msgid "Custom"
 msgstr "Personalizado"
 
 #: top_speed_net/TopSpeed.Shared/Protocol/TrackPackages/Build/Identity.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Core/Selection/TrackSource.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/State.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/State.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Formatting.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/TrackSelection.cs
 msgid "Custom track"
 msgstr "Pista personalizada"
 
@@ -923,7 +923,7 @@ msgstr "Pista personalizada"
 msgid "Custom track errors"
 msgstr "Erros de pista personalizada"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadBuild.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadBuild.cs
 msgid "Custom track file path is empty."
 msgstr "O caminho do arquivo da pista personalizada está vazio."
 
@@ -931,18 +931,18 @@ msgstr "O caminho do arquivo da pista personalizada está vazio."
 msgid "Custom track issues"
 msgstr "Problemas de pistas personalizadas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom tracks"
 msgstr "Pistas personalizadas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Custom tracks are disabled for this room."
 msgstr "As pistas personalizadas estão desativadas para esta sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Core/Selection/VehicleSource.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Custom vehicle"
 msgstr "Veículo personalizado"
 
@@ -958,7 +958,7 @@ msgstr "O arquivo de veículo personalizado deve usar a extensão .tsv."
 msgid "Custom vehicle issues"
 msgstr "Problemas de vehículos Personalizados"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Custom vehicles"
 msgstr "Veículos personalizados"
 
@@ -990,7 +990,7 @@ msgstr "D-pad para cima"
 msgid "Decimal"
 msgstr "Decimal"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Decrease media volume"
 msgstr "Diminuir volume da mídia"
 
@@ -1002,7 +1002,7 @@ msgstr "Diminuir volume em 1"
 msgid "Decrease volume by 10"
 msgstr "Diminuir volume em 10"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Decreases media volume."
 msgstr "Diminui o volume da mídia."
 
@@ -1018,20 +1018,20 @@ msgstr "Diminui a categoria de volume global selecionada em dez níveis."
 msgid "Default (1 degree)"
 msgstr "Padrão (1 grau)"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 msgid "Default call sign cleared."
 msgstr "Indicador de chamada padrão limpo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 #, csharp-format
 msgid "Default call sign set to {0}."
 msgstr "Indicador de chamada padrão definido como {0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Default call sign, currently empty."
 msgstr "Indicador de chamada padrão, atualmente vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 #, csharp-format
 msgid "Default call sign, currently set to {0}"
 msgstr "Indicador de chamada padrão, atualmente {0}"
@@ -1045,12 +1045,12 @@ msgstr "Indicador de chamada padrão: não definido"
 msgid "Default call sign: {0}"
 msgstr "Indicador de chamada padrão: {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 #, csharp-format
 msgid "Default server port reset to {0}."
 msgstr "Porta padrão do servidor redefinida para {0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 #, csharp-format
 msgid "Default server port set to {0}."
 msgstr "Porta padrão do servidor definida para {0}."
@@ -1064,12 +1064,12 @@ msgstr "Porta padrão do servidor: {0}"
 msgid "Defaults restored."
 msgstr "Padrões restaurados."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Menu.cs
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Menu.cs
 msgid "Delete"
 msgstr "Excluir"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Delete.cs
 msgid "Delete this server?"
 msgstr "Excluir este servidor?"
 
@@ -1077,30 +1077,30 @@ msgstr "Excluir este servidor?"
 msgid "Dialog"
 msgstr "Diálogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Disable for this race"
 msgstr "Desativar para esta corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Discard changes"
 msgstr "Descartar alterações"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Disconnect"
 msgstr "Desconectar"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Disconnect from server"
 msgstr "Desconectar do servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Dispatch/Control.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Dispatch/Control.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Session.cs
 msgid "Disconnected from server."
 msgstr "Desconectado do servidor."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Disconnected."
 msgstr "Desconectado."
 
@@ -1108,7 +1108,7 @@ msgstr "Desconectado."
 msgid "Divide"
 msgstr "Dividir"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Do you want to quit race preparation and stay in this game room?"
 msgstr "Você quer cancelar a configuração da corrida e continuar na sala?"
 
@@ -1138,13 +1138,13 @@ msgstr "O download demorou demais ou foi cancelado."
 msgid "Download update"
 msgstr "Baixar atualização"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/DownloadProgress.cs
 #, csharp-format
 msgid "Downloaded size: {0}"
 msgstr "Tamanho baixado: {0}"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/DownloadProgress.cs
 msgid "Downloading track..."
 msgstr "Baixando pista..."
 
@@ -1186,7 +1186,7 @@ msgstr "ID de som '{0}' duplicado."
 msgid "Duplicate weather id '{0}'."
 msgstr "ID de clima '{0}' duplicado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Menu.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Menu.cs
 msgid "Edit"
 msgstr "Editar"
 
@@ -1202,8 +1202,8 @@ msgstr "Ativar áudio HRTF"
 msgid "Enable digit navigation globally"
 msgstr "Habilitar navegação global de dígitos"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Enable fuel consumption"
 msgstr "Ativar Consumo de combustível"
 
@@ -1215,8 +1215,8 @@ msgstr "Ativar estéreo na navegação do menu"
 msgid "Enable menu wrapping"
 msgstr "Ativar repetição do menu"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Enable tire wear"
 msgstr "Ativar Desgaste dos Pneus"
 
@@ -1254,11 +1254,11 @@ msgstr "English country"
 msgid "Enter"
 msgstr "Enter"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Enter a room name. Leave it empty to use an automatic name."
 msgstr "Digite um nome para a sala. Deixe vazio para usar um nome automático."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Enter a room name. Leave this field empty to use an automatic room name."
 msgstr "Digite um nome para a sala. Deixe vazio para usar um nome automático."
 
@@ -1270,43 +1270,43 @@ msgstr "Digite a URL do Proxy"
 msgid "Enter the IP address or domain manually"
 msgstr "Digite o endereço IP ou domínio manualmente"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Draft.cs
 msgid "Enter the default call sign for this server. Leave empty to use the global default call sign."
 msgstr "Digite o indicador de chamada padrão para este servidor. Deixe vazio para usar o indicador de chamada global padrão."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connection.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connection.cs
 msgid "Enter the default call sign used when connecting to servers. Leave empty to clear it."
 msgstr "Digite o indicador de chamada padrão usado ao conectar a servidores. Deixe vazio para limpar."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connection.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connection.cs
 msgid "Enter the default server port used for manual connections."
 msgstr "Insira a porta do servidor padrão usada para conexões manuais."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 msgid "Enter the server IP address or domain."
 msgstr "Digite o endereço IP ou domínio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Draft.cs
 msgid "Enter the server IP address or host name."
 msgstr "Digite o endereço IP ou nome do host do servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Draft.cs
 msgid "Enter the server name."
 msgstr "Digite o nome do servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Draft.cs
 msgid "Enter the server port, or leave empty for default."
 msgstr "Digite a porta do servidor ou deixe embranco para padrão."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
 msgid "Enter your call sign."
 msgstr "Digite seu indicador de chamada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Enter your global chat message."
 msgstr "Digite sua mensagem no chat global."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Enter your room chat message."
 msgstr "Digite sua mensagem no chat da sala."
 
@@ -1343,16 +1343,16 @@ msgstr "Sair do Jogo"
 msgid "Exit game?"
 msgstr ""
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 msgid "Failed to initialize network client."
 msgstr "Falha ao inicializar o cliente de rede."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 #, csharp-format
 msgid "Failed to load communicator media. {0}"
 msgstr "Falha ao carregar mídia do comunicador. {0}"
 
-#: top_speed_net/TopSpeed/Vehicles/loader/Custom.cs
+#: top_speed_net/TopSpeed/Vehicles/Loading/Custom.cs
 #, csharp-format
 msgid "Failed to load custom vehicle '{0}'. {1}"
 msgstr "Falha ao carregar veículo personalizado '{0}'. {1}"
@@ -1377,34 +1377,34 @@ msgstr "Falha ao carregar este arquivo de veículo."
 msgid "Failed to load track '{0}'."
 msgstr "Falha ao carregar a pista '{0}'."
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Failed to open local radio media for live streaming."
 msgstr "Falha ao abrir mídia de rádio local para transmissão ao vivo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Failed to send chat message."
 msgstr "Falha ao enviar mensagem de chat."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 msgid "Failed to send handshake."
 msgstr "Falha ao enviar handshake."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 #, csharp-format
 msgid "Failed to send handshake: {0}"
 msgstr "Falha ao enviar handshake: {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
 msgid "Failed to send room chat message."
 msgstr "Falha ao enviar mensagem de chat da sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Helpers.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Quit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Quit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Helpers.cs
 #, csharp-format
 msgid "Failed to send {0}. Please check your connection."
 msgstr "Falha ao enviar {0}. Verifique sua conexão."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Failed to stream communicator media to the server."
 msgstr "Falha ao transmitir mídia do comunicador para o servidor."
 
@@ -1429,9 +1429,9 @@ msgstr "Buscando as últimas alterações."
 msgid "Fiat 500"
 msgstr "Fiat 500"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/DownloadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #, csharp-format
 msgid "File size: {0}"
 msgstr "Tamanho do arquivo: {0}"
@@ -1450,7 +1450,7 @@ msgstr "Os resultados finais estão prontos."
 msgid "Finland"
 msgstr "Finlândia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "First history item"
 msgstr "Primeiro item do histórico"
 
@@ -1476,17 +1476,17 @@ msgstr "França"
 msgid "French coast"
 msgstr "Costa francesa"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 msgid "Frequency must be between 0.0 and 1000.0 in 0.1 steps."
 msgstr "A frequência deve estar entre 0,0 e 1000,0 em passos de 0,1."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format
 msgid "Frequency set to {0} MHz."
 msgstr "Frequência definida para {0} MHz."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "GB"
 msgstr "GB"
 
@@ -1494,15 +1494,15 @@ msgstr "GB"
 msgid "Game guide"
 msgstr "Guia do jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Game rules"
 msgstr "Regras do jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Game rules changed."
 msgstr "Regras do jogo alteradas."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Game type"
 msgstr "Tipo de jogo"
 
@@ -1529,11 +1529,11 @@ msgstr "Geral"
 msgid "Germany"
 msgstr "Alemanha"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Ghost mode"
 msgstr "Modo fantasma"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "Ghost mode is {0}. Custom tracks are {1}. Custom vehicles are {2}. Fuel consumption is {3}. Tire wear is {4}. The chosen track is {5}. The game will run for {6}. This room is limited to {7}."
 msgstr "Modo Fantasma: {0}. Pistas personalizadas: {1}. Veículos personalizados: {2}. Consumo de combustível: {3}. Desgaste dos pneus: {4}. Pista escolhida: {5}. A partida será iniciada por {6}. Esta Sala é limitada a {7} jogadores."
@@ -1543,8 +1543,8 @@ msgstr "Modo Fantasma: {0}. Pistas personalizadas: {1}. Veículos personalizados
 msgid "Global shortcuts"
 msgstr "Atalhos globais"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
 #: top_speed_net/TopSpeed/Menu/Runtime/Screen/Core.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Go back"
 msgstr "Voltar"
 
@@ -1572,7 +1572,7 @@ msgstr "Aqui estão os resultados finais."
 msgid "History"
 msgstr "Histórico"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Hold to transmit voice when voice activation is off."
 msgstr "Segure para transmitir voz quando a ativação por voz estiver desligada."
 
@@ -1580,7 +1580,7 @@ msgstr "Segure para transmitir voz quando a ativação por voz estiver desligada
 msgid "Home"
 msgstr "Início"
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Host is unreachable."
 msgstr "O host está inacessível."
 
@@ -1596,7 +1596,7 @@ msgstr "A umidade deve estar entre 0 e 1."
 msgid "I really have nothing interesting to put here not even the secret to life except this really long run on sentence that is probably the most boring thing you have ever read but that will help me get an idea of how fast your screen reader is speaking."
 msgstr "Realmente não tenho nada interessante para colocar aqui nem mesmo o segredo da vida exceto esta frase muito longa e sem pontuação que é provavelmente a coisa mais chata que você já leu mas que vai me ajudar a ter uma ideia de quão rápido o seu leitor de tela está falando."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "If you leave race preparation now, the current game will be canceled for everyone in this room."
 msgstr "Se você sair da preparação da corrida agora, o jogo atual será cancelado para todos nesta sala."
 
@@ -1608,7 +1608,7 @@ msgstr "Incluir pistas personalizadas na randomização"
 msgid "Include custom vehicles in randomization"
 msgstr "Incluir veículos personalizados na randomização"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Increase media volume"
 msgstr "Aumentar volume da mídia"
 
@@ -1620,7 +1620,7 @@ msgstr "Aumentar volume em 1"
 msgid "Increase volume by 10"
 msgstr "Aumentar volume em 10"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Increases media volume."
 msgstr "Aumenta o volume da mídia."
 
@@ -1679,8 +1679,8 @@ msgstr "Valor numérico inválido '{0}' para a chave '{1}'."
 msgid "Invalid pit value '{0}'. Use pit_entry or pit_exit."
 msgstr "Valor de pit inválido ' {0}'. Use pit_entry ou pit_exit."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Prompt.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Prompt.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Draft.cs
 msgid "Invalid port. Enter a number between 1 and 65535."
 msgstr "Porta inválida. Insira um número entre 1 e 65535."
 
@@ -1788,8 +1788,8 @@ msgstr "Itália"
 msgid "Join a game on the local network"
 msgstr "Entrar em um jogo na rede local"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Join an existing game"
 msgstr "Entrar em um jogo existente"
 
@@ -1797,8 +1797,8 @@ msgstr "Entrar em um jogo existente"
 msgid "Joystick"
 msgstr "Joystick"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "KB"
 msgstr "KB"
 
@@ -1806,19 +1806,19 @@ msgstr "KB"
 msgid "Kawasaki Ninja ZX-10R"
 msgstr "Kawasaki Ninja ZX-10R"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Keep both"
 msgstr "Manter ambos"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Keep custom vehicle?"
 msgstr "Manter veículo personalizado?"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Keep mine"
 msgstr "Manter o meu"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "Keep the downloaded vehicle \"{0}\" so it does not need downloading again next time?"
 msgstr "Manter baixado o veículo \"{0}\" para que não seja necessário baixá-lo novamente da próxima vez?"
@@ -1938,7 +1938,7 @@ msgstr "Volta {0}, se aproximando da curva {1}"
 msgid "Lap {0}, in turn {1}"
 msgstr "Volta {0}, na curva {1}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Last history item"
 msgstr "Último item do histórico"
 
@@ -1963,19 +1963,19 @@ msgstr "A solicitação das últimas alterações falhou: {0}"
 msgid "Latest changes request timed out."
 msgstr "A solicitação das últimas alterações expirou."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Session.cs
 msgid "Leave server?"
 msgstr "Sair do servidor?"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Leave this game room"
 msgstr "Sair desta sala de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Leave this game room?"
 msgstr "Sair desta sala de jogo?"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Leaving game room."
 msgstr "Saindo da sala de jogo."
 
@@ -2041,50 +2041,50 @@ msgstr "Esquerdo {0}"
 msgid "Line {0}: {1}"
 msgstr "Linha {0}: {1}"
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Live streaming stopped because Opus encoding failed."
 msgstr "A transmissão ao vivo parou porque a codificação Opus falhou."
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Live streaming stopped because media decoding failed."
 msgstr "A transmissão ao vivo parou porque a decodificação de mídia falhou."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Load media file"
 msgstr "Carregar arquivo de mídia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Load media folder"
 msgstr "Carregar pasta de mídia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Loading custom tracks from server."
 msgstr "Carregando pistas personalizadas do servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Loading custom vehicles from server."
 msgstr "Carregando veículos personalizados do servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio file for streaming."
 msgstr "Carrega um arquivo de áudio para transmissão."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Loads an audio folder for streaming."
 msgstr "Carrega uma pasta de áudio para transmissão."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Loop mode off."
 msgstr "Modo de repetição desativado."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Loop mode on."
 msgstr "Modo de repetição ativado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "MB"
 msgstr "MB"
 
@@ -2120,12 +2120,12 @@ msgstr "Gerenciar servidores salvos"
 msgid "Manual"
 msgstr "Manual"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Loadout.cs
 msgid "Manual transmission"
 msgstr "Transmissão manual"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Manual transmission is required for this vehicle."
 msgstr "A transmissão manual é obrigatória para este veículo."
 
@@ -2154,12 +2154,12 @@ msgstr "Áudio mestre"
 msgid "Master audio volume"
 msgstr "Volume de áudio mestre"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Maximum players allowed in this room"
 msgstr "Máximo de jogadores permitidos nesta sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Maximum players changed to {0}."
 msgstr "Máximo de jogadores alterado para {0}."
@@ -2246,35 +2246,35 @@ msgstr "Modificador"
 msgid "Move or press the controller control for {0}."
 msgstr "Mova ou pressione o controle do controle para {0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the first item in the selected multiplayer history category."
 msgstr "Move para o primeiro item na categoria de histórico multiplayer selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the last item in the selected multiplayer history category."
 msgstr "Move para o último item na categoria de histórico multiplayer selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next item in the selected multiplayer history category."
 msgstr "Move para o próximo item na categoria de histórico multiplayer selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next multiplayer history category."
 msgstr "Move para a próxima categoria de histórico multiplayer."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the next track in the media playlist."
 msgstr "Move para a próxima faixa na playlist de mídia."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous item in the selected multiplayer history category."
 msgstr "Move para o item anterior na categoria de histórico multiplayer selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous multiplayer history category."
 msgstr "Move para a categoria de histórico multiplayer anterior."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Moves to the previous track in the media playlist."
 msgstr "Move para a faixa anterior na playlist de mídia."
 
@@ -2286,7 +2286,7 @@ msgstr "Jogo multiplayer"
 msgid "Multiplayer lobby"
 msgstr "Lobby multiplayer"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Multiplayer shortcuts"
 msgstr "Atalhos de multiplayer"
 
@@ -2315,24 +2315,24 @@ msgstr "O volume da música não é um número válido e foi redefinido para o p
 msgid "Netherlands"
 msgstr "Países Baixos"
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Network is unreachable."
 msgstr "A rede está inacessível."
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Network send failed while sending live frame."
 msgstr "O envio pela rede falhou ao enviar o frame ao vivo."
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Network send failed while sending live start."
 msgstr "O envio pela rede falhou ao enviar o início ao vivo."
 
-#: top_speed_net/TopSpeed/Network/Live/Tx.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Live/Tx.cs
 msgid "Network send failed while sending live stop."
 msgstr "O envio pela rede falhou ao enviar a parada ao vivo."
 
-#: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Runtime/Audio.cs
-#: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Systems/Sync.cs
+#: top_speed_net/TopSpeed/Multiplayer/Racing/Session/Runtime/Audio.cs
+#: top_speed_net/TopSpeed/Multiplayer/Racing/Session/Systems/Sync.cs
 msgid "Network send failed. Please check your connection."
 msgstr "O envio pela rede falhou. Verifique sua conexão."
 
@@ -2344,15 +2344,15 @@ msgstr "Nova versão encontrada."
 msgid "Next chat category"
 msgstr "Próxima categoria de chat"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next history category"
 msgstr "Próxima categoria de histórico"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next history item"
 msgstr "Próximo item do histórico"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Next media track"
 msgstr "Próxima faixa de mídia"
 
@@ -2364,11 +2364,11 @@ msgstr "Próxima categoria de volume"
 msgid "Nissan GT-R Nismo"
 msgstr "Nissan GT-R Nismo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 #: top_speed_net/TopSpeed/Game/Menu/Action.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Session.cs
 msgid "No"
 msgstr "Não"
 
@@ -2376,7 +2376,7 @@ msgstr "Não"
 msgid "No changes are listed."
 msgstr "Nenhuma alteração está listada."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "No communicator media loaded."
 msgstr "Nenhuma mídia do comunicador carregada."
 
@@ -2393,12 +2393,12 @@ msgstr "Nenhum controle encontrado"
 msgid "No controllers were found. The game has reverted to keyboard input."
 msgstr "Nenhum controle foi encontrado. O jogo voltou ao uso do teclado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "No custom tracks found."
 msgstr "Nenhuma pista personalizada encontrada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "No custom vehicles available on this server."
 msgstr "Nenhum veículo personalizado disponível neste servidor."
 
@@ -2407,20 +2407,20 @@ msgid "No custom vehicles found."
 msgstr "Nenhum veículo personalizado encontrado."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "No folder playlist loaded."
 msgstr "Nenhuma playlist de pasta carregada."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "No folder was selected."
 msgstr "Nenhuma pasta foi selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/RoomUi/RoomList.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/RoomUi/RoomList.cs
 msgid "No game rooms are currently available."
 msgstr "Nenhuma sala de jogo está disponível no momento."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "No game rooms found"
 msgstr "Nenhuma sala de jogo encontrada"
 
@@ -2432,13 +2432,13 @@ msgstr "Nenhum idioma está disponível."
 msgid "No media file selected."
 msgstr "Nenhum arquivo de mídia selecionado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Screens.cs
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Screens.cs
 msgid "No messages yet."
 msgstr "Ainda não há mensagens."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "No option changes to apply."
 msgstr "Nenhuma alteração de opção para aplicar."
 
@@ -2446,11 +2446,11 @@ msgstr "Nenhuma alteração de opção para aplicar."
 msgid "No pit area"
 msgstr "Nenhuma área do pit"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Players.cs
 msgid "No players are currently in this game room."
 msgstr "Nenhum jogador está nesta sala de jogo no momento."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 msgid "No protocol negotiation response from server. The server may be outdated or incompatible."
 msgstr "Sem resposta de negociação de protocolo do servidor. O servidor pode estar desatualizado ou incompatível."
 
@@ -2458,15 +2458,15 @@ msgstr "Sem resposta de negociação de protocolo do servidor. O servidor pode e
 msgid "No radio media loaded."
 msgstr "Nenhuma mídia de rádio carregada."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 msgid "No response from server. The server may be offline or unreachable."
 msgstr "Sem resposta do servidor. O servidor pode estar offline ou inacessível."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 msgid "No server address was provided."
 msgstr "Nenhum endereço de servidor foi fornecido."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Discovery.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Discovery.cs
 msgid "No servers were found on the local network. You can enter an address manually."
 msgstr "Nenhum servidor foi encontrado na rede local. Você pode inserir um endereço manualmente."
 
@@ -2479,7 +2479,7 @@ msgid "No shortcuts in this group."
 msgstr "Nenhum atalho neste grupo."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "No supported audio files were found in the selected folder."
 msgstr "Nenhum arquivo de áudio suportado foi encontrado na pasta selecionada."
 
@@ -2487,23 +2487,23 @@ msgstr "Nenhum arquivo de áudio suportado foi encontrado na pasta selecionada."
 msgid "No updates found"
 msgstr "Nenhuma atualização encontrada"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "No, continue preparing"
 msgstr "Não, continuar preparando"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "No, continue racing"
 msgstr "Não, continuar correndo"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "No, keep mine"
 msgstr "Não, manter o meu"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Delete.cs
 msgid "No, keep this server"
 msgstr "Não, manter este servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "No, stay in this game room"
 msgstr "Não, ficar nesta sala de jogo"
 
@@ -2515,21 +2515,21 @@ msgstr "Normal"
 msgid "Not a clean run, but still recoverable."
 msgstr "Não foi uma corrida limpa, mas ainda dá para se recuperar."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Ping.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Ping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "Not connected to a server."
 msgstr "Não conectado a um servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Not connected to a server. Returning to main menu."
 msgstr "Não conectado a um servidor. Retornando ao menu principal."
 
@@ -2549,12 +2549,12 @@ msgstr "Num Lock"
 msgid "Number of computer players"
 msgstr "Número de jogadores controlados pelo computador"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Number of laps"
 msgstr "Número de voltas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Number of laps changed to {0}."
 msgstr "Número de voltas alterado para {0}."
@@ -2571,12 +2571,12 @@ msgstr "Enter do teclado numérico"
 msgid "Numpad Equals"
 msgstr "Igual do teclado numérico"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
 #: top_speed_net/TopSpeed/Game/Menu/Dialogs.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Game/Settings/Issues.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "OK"
 msgstr "OK"
 
@@ -2596,7 +2596,7 @@ msgstr "Uma batida ainda é demais, mas poderia ser pior."
 msgid "One crash."
 msgstr "Uma batida."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Core.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Core.cs
 msgid "One-on-one without bots"
 msgstr "Um contra um sem bots"
 
@@ -2612,50 +2612,50 @@ msgstr "Sons de eventos do servidor online"
 msgid "Online server events"
 msgstr "Eventos do servidor online"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Only the host can cancel the current game."
 msgstr "Somente o host pode cancelar o jogo atual."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Only the host can change game options."
 msgstr "Somente o host pode alterar as opções do jogo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Only the host can change game rules."
 msgstr "Somente o host pode alterar as regras do jogo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Only the host can start the game."
 msgstr "Somente o host pode iniciar o jogo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/RoomUi/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/RoomUi/Online.cs
 msgid "Only you are connected right now."
 msgstr "Somente você está conectado agora."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Open global chat"
 msgstr "Abrir chat global"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Open room chat"
 msgstr "Abrir chat da sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Opens chat input for the current room chat when you are inside a room."
 msgstr "Abre o campo de entrada de chat para o chat da sala atual quando você está dentro de uma sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Opens chat input for the global multiplayer lobby chat."
 msgstr "Abre o campo de entrada de chat para o chat do lobby multiplayer global."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Opens frequency input for the channel."
 msgstr "Abre o campo de entrada de frequência para o canal."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 #: top_speed_net/TopSpeed/Menu/Build/Core.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Options"
 msgstr "Opções"
 
@@ -2732,22 +2732,22 @@ msgstr "Painel"
 msgid "Pause"
 msgstr "Pausar"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Pause the game"
 msgstr "Pausar o jogo"
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Peer session was not found on server."
 msgstr "A sessão de peer não foi encontrada no servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/DownloadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #, csharp-format
 msgid "Percentage: {0}%"
 msgstr "Porcentagem: {0}%"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Ping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Ping.cs
 msgid "Ping check already in progress."
 msgstr "Verificação de ping já em andamento."
 
@@ -2767,29 +2767,29 @@ msgstr "Tempo do Pit"
 msgid "Play logo at startup"
 msgstr "Reproduzir logo na inicialização"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Play or pause media"
 msgstr "Reproduzir ou pausar mídia"
 
 #: top_speed_net/TopSpeed/Game/Drive/Results/ResultFmt.cs
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 msgid "Player"
 msgstr "Jogador"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/State/Rooms/Apply.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Domain/Online/Map.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/State/Rooms/Apply.cs
+#: top_speed_net/TopSpeed/Multiplayer/Domain/Online/Map.cs
 msgid "Player "
 msgstr "Jogador "
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/State/Rooms/Store.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
-#: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Network/Participants.cs
-#: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Runtime/Results.cs
 #: top_speed_net/TopSpeed/Drive/Session/Systems/PlayerInfo.cs
 #: top_speed_net/TopSpeed/Drive/Single/Session/Format.cs
 #: top_speed_net/TopSpeed/Drive/TimeTrial/Session/Format.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/State/Rooms/Store.cs
+#: top_speed_net/TopSpeed/Multiplayer/Racing/Session/Network/Participants.cs
+#: top_speed_net/TopSpeed/Multiplayer/Racing/Session/Runtime/Results.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Players.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 #, csharp-format
 msgid "Player {0}"
 msgstr "Jogador {0}"
@@ -2798,7 +2798,7 @@ msgstr "Jogador {0}"
 msgid "Players in room"
 msgstr "Jogadores na sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Please enter a server address."
 msgstr "Por favor, insira um endereço de servidor."
 
@@ -2806,7 +2806,7 @@ msgstr "Por favor, insira um endereço de servidor."
 msgid "Please restart the game and try again."
 msgstr "Por favor, reinicie o jogo e tente novamente."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Discovery.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Discovery.cs
 msgid "Please wait. Scanning for servers on the local network."
 msgstr "Por favor, aguarde. Procurando servidores na rede local."
 
@@ -2824,16 +2824,16 @@ msgstr "Porsche 911 GT3 RS"
 msgid "Portugal"
 msgstr "Portugal"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 msgid "Preparing to race"
 msgstr "Preparando para a corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Press ENTER to change."
 msgstr "Pressione ENTER para alterar."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Press ENTER to enter a room name."
 msgstr "Pressione ENTER para inserir um nome de sala."
 
@@ -2875,15 +2875,15 @@ msgstr "Pressione o novo atalho para {0}."
 msgid "Previous chat category"
 msgstr "Categoria de chat anterior"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous history category"
 msgstr "Categoria de histórico anterior"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous history item"
 msgstr "Item de histórico anterior"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Previous media track"
 msgstr "Faixa de mídia anterior"
 
@@ -2908,7 +2908,7 @@ msgstr "Solicitar a manutenção dos veículos personalizados baixados"
 msgid "Property '{0}' is outside any section."
 msgstr "A propriedade '{0}' está fora de qualquer seção."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
 #, csharp-format
 msgid "Protocol packet version mismatch. Server uses packet version {0}, client expects {1}. Update your client or server."
 msgstr "Incompatibilidade de versão do pacote de protocolo. O servidor usa a versão de pacote {0}, o cliente espera {1}. Atualize seu cliente ou servidor."
@@ -2943,7 +2943,7 @@ msgstr "URL do proxy, atualmente vazia."
 msgid "Proxy URL, currently set to {0}"
 msgstr "URL do proxy, atualmente definida para {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Push to talk"
 msgstr "Pressionar para falar"
 
@@ -2959,15 +2959,15 @@ msgstr "Corrida rápida"
 msgid "Quick start."
 msgstr "Corrida Rápida."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Quit race preparation?"
 msgstr "Sair da preparação da corrida?"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Quit race?"
 msgstr "Sair da corrida?"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Quit the race"
 msgstr "Sair da corrida"
 
@@ -2995,8 +2995,8 @@ msgstr "RZ menos"
 msgid "RZ plus"
 msgstr "RZ mais"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
 #: top_speed_net/TopSpeed/Game/Drive/Setup.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Race anyway"
 msgstr "Corrida de qualquer jeito"
 
@@ -3004,7 +3004,7 @@ msgstr "Corrida de qualquer jeito"
 msgid "Race complete."
 msgstr "Corrida concluída."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Race paused."
 msgstr "Corrida pausada."
 
@@ -3013,15 +3013,15 @@ msgstr "Corrida pausada."
 msgid "Race percentage {0} percent"
 msgstr "Porcentagem da corrida {0} por cento"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Race preparation started."
 msgstr "Preparação da corrida iniciada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Race preparation was cancelled."
 msgstr "A preparação da corrida foi cancelada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Race resumed."
 msgstr "Corrida retomada."
 
@@ -3029,7 +3029,7 @@ msgstr "Corrida retomada."
 msgid "Race settings"
 msgstr "Configurações da corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Race started."
 msgstr "Corrida iniciada."
 
@@ -3038,16 +3038,16 @@ msgstr "Corrida iniciada."
 msgid "Race time {0}"
 msgstr "Tempo da corrida {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/TrackSelection.cs
 msgid "Race track"
 msgstr "Pista de corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Core.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Core.cs
 msgid "Race with bots"
 msgstr "Corrida com bots"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Core.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Core.cs
 msgid "Race without bots"
 msgstr "Corrida sem bots"
 
@@ -3074,24 +3074,24 @@ msgstr "Rally no deserto"
 msgid "Rally hills"
 msgstr "Rally nas colinas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Vehicles.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Formatting.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/TrackSelection.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Random"
 msgstr "Aleatório"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Loadout.cs
 msgid "Random transmission mode"
 msgstr "Modo de transmissão aleatório"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Loadout.cs
 msgid "Random vehicle"
 msgstr "Veículo aleatório"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
 msgid "Ready. Waiting for other players."
 msgstr "Pronto. Aguardando outros jogadores."
 
@@ -3103,25 +3103,25 @@ msgstr "Recalibrar velocidade do leitor de tela"
 msgid "Received media is empty."
 msgstr "A mídia recebida está vazia."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Reconnect.cs
 msgid "Reconnected to server."
 msgstr "Reconectado ao servidor."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Connection/Reconnector.cs
 msgid "Reconnection canceled."
 msgstr "Reconexão cancelada."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Reconnect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Connection/Reconnector.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Reconnect.cs
 msgid "Reconnection failed."
 msgstr "Reconexão falhou."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Connection/Reconnector.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Connection/Reconnector.cs
 #, csharp-format
 msgid "Reconnection failed: {0}"
 msgstr "Reconexão falhou: {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Reconnection is in progress. Disconnecting now."
 msgstr "Reconexão em andamento. Desconectando agora."
 
@@ -3129,15 +3129,15 @@ msgstr "Reconexão em andamento. Desconectando agora."
 msgid "Refuel"
 msgstr "Reabastecer"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Remove a bot"
 msgstr "Remover bot"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Replace mine with the downloaded one"
 msgstr "Substituir o meu pelo baixado"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Replace vehicle?"
 msgstr "Substituir veículo?"
 
@@ -3226,15 +3226,15 @@ msgstr "Restaurar cada mapeamento de atalho de menu para seu valor padrão."
 msgid "Restore only the shortcuts in this menu to their default values."
 msgstr "Restaurar apenas os atalhos deste menu para seus valores padrão."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Resume the game"
 msgstr "Retomar o jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Returned to room controls."
 msgstr "Retornou aos controles da sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "Review these details before connecting."
 msgstr "Revise estes detalhes antes de conectar."
 
@@ -3300,34 +3300,34 @@ msgstr "Gatilho direito"
 msgid "Right {0}"
 msgstr "{0} Direito"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 #: top_speed_net/TopSpeed/Menu/Build/Multiplayer.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Room controls"
 msgstr "Controles da sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "Room host changed."
 msgstr "O host da sala mudou."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 #, csharp-format
 msgid "Room name set to {0}."
 msgstr "Nome da sala definido para {0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Room name, currently automatic"
 msgstr "Nome da sala, atualmente automático"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 #, csharp-format
 msgid "Room name, currently {0}"
 msgstr "Nome da sala, atualmente {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "Room options updated."
 msgstr "Opções da sala atualizadas."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Room removed: {0}."
 msgstr "Sala removida: {0}."
@@ -3350,23 +3350,23 @@ msgstr "Hora do rush"
 msgid "Russia"
 msgstr "Rússia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Save changes"
 msgstr "Salvar alterações"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Save changes before closing?"
 msgstr "Salvar alterações antes de fechar?"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Save server"
 msgstr "Salvar servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Save server changes"
 msgstr "Salvar alterações do servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Menu.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Menu.cs
 msgid "Saved server host is empty."
 msgstr "O host do servidor salvo está vazio."
 
@@ -3485,7 +3485,7 @@ msgstr "Selecione a predefinição de som do menu."
 msgid "Select the microphone used for communicator voice chat in multiplayer."
 msgstr "Selecione o microfone usado para o chat de voz do comunicador no modo multiplayer."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Select the player capacity for this room. The host can start with fewer players than the specified maximum players, so this is not a hard requirement."
 msgstr "Selecione a capacidade de jogadores para esta sala. O host pode começar com menos jogadores do que o máximo especificado, portanto isso não é uma exigência estrita."
 
@@ -3514,20 +3514,20 @@ msgstr "Ponto e vírgula"
 msgid "Seriously? You could have done much better than that."
 msgstr "Sério? Você poderia ter feito muito melhor do que isso."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Server IP or host cannot be empty."
 msgstr "O IP ou host do servidor não pode estar vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Server IP or host, currently empty."
 msgstr "IP ou host do servidor, atualmente vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 #, csharp-format
 msgid "Server IP or host, currently set to {0}"
 msgstr "IP ou host do servidor, atualmente definido para {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Delete.cs
 msgid "Server deleted."
 msgstr "Servidor excluído."
 
@@ -3535,25 +3535,25 @@ msgstr "Servidor excluído."
 msgid "Server details"
 msgstr "Detalhes do servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Server name, currently empty."
 msgstr "Nome do servidor, atualmente vazio."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 #, csharp-format
 msgid "Server name, currently set to {0}"
 msgstr "Nome do servidor, atualmente definido como {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Server port, currently empty."
 msgstr "Porta do servidor, atualmente vazia."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 #, csharp-format
 msgid "Server port, currently set to {0}"
 msgstr "Porta do servidor, atualmente definida como {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Form.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Form.cs
 msgid "Server saved."
 msgstr "Servidor salvo."
 
@@ -3561,13 +3561,13 @@ msgstr "Servidor salvo."
 msgid "Server settings"
 msgstr "Configurações do servidor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 #, csharp-format
 msgid "Server supported protocol versions: {0} to {1}"
 msgstr "Versões de protocolo suportadas pelo servidor: {0} a {1}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Set frequency"
 msgstr "Definir frequência"
 
@@ -3653,13 +3653,13 @@ msgstr "Os atalhos em {0} foram redefinidos para os padrões."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Selection.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Shuffle mode off."
 msgstr "Modo aleatório desativado."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Selection.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "Shuffle mode on."
 msgstr "Modo aleatório ativado."
 
@@ -3763,15 +3763,15 @@ msgstr "Espaço"
 msgid "Spain"
 msgstr "Espanha"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks currently active game rules for the current game room."
 msgstr "Fala as regras de jogo atualmente ativas para a sala de jogo atual."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks the currently selected channel frequency."
 msgstr "Fala a frequência do canal atualmente selecionada."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Speaks your current ping while you are in multiplayer menus."
 msgstr "Fala o seu ping atual enquanto você está nos menus multiplayer."
 
@@ -3804,7 +3804,7 @@ msgstr "Antecedência de anúncio de curva dependente da velocidade"
 msgid "Start the engine"
 msgstr "Ligar o motor"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Start the game"
 msgstr "Iniciar o jogo"
 
@@ -3828,12 +3828,12 @@ msgstr "Alargamento estéreo para o próprio carro"
 msgid "Stop"
 msgstr "Parar"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Stop the game"
 msgstr "Parar o jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Tracks.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/TrackSelection.cs
 msgid "Street adventure"
 msgstr "Aventura nas ruas"
 
@@ -3862,10 +3862,10 @@ msgstr "Loops de superfície"
 msgid "Sweden"
 msgstr "Suécia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Swipe left or right with two fingers to change."
 msgstr "Deslize para a esquerda ou para a direita com dois dedos para alterar."
 
@@ -3877,17 +3877,17 @@ msgstr "Deslize para a esquerda ou para a direita com dois dedos para visualizar
 msgid "Swipe up or down with two fingers to change by 1.0 second, swipe left or right with two fingers to change by 0.1 seconds, and swipe up or down with three fingers for maximum or minimum."
 msgstr "Deslize para cima ou para baixo com dois dedos para alterar em 1,0 segundo, deslize para a esquerda ou para a direita com dois dedos para alterar em 0,1 segundo e deslize para cima ou para baixo com três dedos para o máximo ou mínimo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Swipe up or down with two fingers to change by 10, swipe left or right with two fingers to change by 1, and swipe up or down with three fingers for maximum or minimum."
 msgstr "Deslize para cima ou para baixo com dois dedos para alterar em 10, deslize para a esquerda ou para a direita com dois dedos para alterar em 1 e deslize para cima ou para baixo com três dedos para o máximo ou mínimo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Swipe up to change."
 msgstr "Deslize para cima para alterar."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "Swipe up to enter a room name."
 msgstr "Deslize para cima para inserir o nome da sala."
 
@@ -4034,11 +4034,11 @@ msgstr "O carro estremeceu, e você também deveria."
 msgid "The car was trying to race. You were trying something else."
 msgstr "O carro estava tentando correr. Você estava tentando outra coisa."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "The connection attempt failed for an unknown reason."
 msgstr "A tentativa de conexão falhou por um motivo desconhecido."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "The current race was stopped."
 msgstr "A corrida atual foi interrompida."
 
@@ -4085,7 +4085,7 @@ msgstr "Os mecânicos vão precisar de uma noite muito longa."
 msgid "The network section is missing. Defaults were used for network settings."
 msgstr "A seção de rede está ausente. Os padrões foram usados para as configurações de rede."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Ping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Ping.cs
 #, csharp-format
 msgid "The ping took {0} milliseconds."
 msgstr "O ping levou {0} milissegundos."
@@ -4111,17 +4111,17 @@ msgid "The selected custom track is invalid."
 msgstr "A pista personalizada selecionada é inválida."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "The selected folder does not exist."
 msgstr "A pasta selecionada não existe."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playlist.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "The selected folder path is invalid."
 msgstr "O caminho da pasta selecionada é inválido."
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Selection.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 #: top_speed_net/TopSpeed/Vehicles/RadioController/Load.cs
 msgid "The selected media file does not exist."
 msgstr "O arquivo de mídia selecionado não existe."
@@ -4146,20 +4146,20 @@ msgstr "A pista selecionada não tem área de pit, mas o desgaste dos pneus est�
 msgid "The selected vehicle does not support the selected transmission mode."
 msgstr "O veículo selecionado não suporta o modo de transmissão selecionado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 msgid "The server and client are compatible, but not an exact match."
 msgstr "O servidor e o cliente são compatíveis, mas não uma correspondência exata."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Poll.cs
 msgid "The server refused the connection."
 msgstr "O servidor recusou a conexão."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Poll.cs
 #, csharp-format
 msgid "The server refused the connection. Details: {0}."
 msgstr "O servidor recusou a conexão. Detalhes: {0}."
 
-#: top_speed_net/TopSpeed/Network/Connect/Result/ConnectResult.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Result/ConnectResult.cs
 msgid "The server supports an older protocol range. You can continue, but some features may behave differently."
 msgstr "O servidor suporta uma faixa de protocolo mais antiga. Você pode continuar, mas alguns recursos podem se comportar de maneira diferente."
 
@@ -4225,12 +4225,12 @@ msgstr "Este diálogo não pode ser cancelado. Você precisa escolher uma opçã
 msgid "This game room is unavailable because it is full."
 msgstr "Esta sala de jogo está indisponível porque está cheia."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "This permanently deletes the vehicle saved as \"{0}\" and puts the downloaded \"{1}\" there instead. Are you sure?"
 msgstr "Isso exclui permanentemente o veículo salvo como \"{0}\" e coloca o \"{1}\" baixado lá. Você têm certeza?"
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Poll.cs
 msgid "This server does not support required protocol negotiation. Please update your server."
 msgstr "Este servidor não suporta a negociação de protocolo exigida. Por favor, atualize seu servidor."
 
@@ -4242,12 +4242,12 @@ msgstr "Este menu de atalhos não possui mapeamentos para redefinir."
 msgid "This track has no pit area."
 msgstr "Esta pista não tem área de pit."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
 #: top_speed_net/TopSpeed/Menu/Build/Drive/Transmission.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
 msgid "This vehicle does not support the selected transmission mode."
 msgstr "Este veículo não suporta o modo de transmissão selecionado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Delete.cs
 msgid "This will remove the saved server entry from the list. Are you sure you would like to continue?"
 msgstr "Isso removerá a entrada do servidor salvo da lista. Tem certeza de que gostaria de continuar?"
 
@@ -4284,23 +4284,23 @@ msgstr "Contra o tempo."
 msgid "Tires"
 msgstr "Pneus"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle media loop"
 msgstr "Alternar repetição de mídia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle media shuffle"
 msgstr "Alternar modo aleatório de mídia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle transmission"
 msgstr "Alternar transmissão"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggle voice activation"
 msgstr "Alternar ativação por voz"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Toggles play and pause for streaming media."
 msgstr "Alterna a reprodução e pausa da transmissão de mídia."
 
@@ -4339,7 +4339,7 @@ msgstr "Pista"
 msgid "Track [meta] must define a weather profile reference, for example 'weather = default'."
 msgstr "O [meta] da pista deve definir uma referência de perfil climático, por exemplo 'weather = default'."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "Track changed to {0}."
 msgstr "Pista alterada para {0}."
@@ -4375,11 +4375,11 @@ msgstr "Erro de carregamento da pista"
 msgid "Track must include at least one [segment:<id>] section."
 msgstr "A pista deve incluir pelo menos uma seção [segment:<id>]."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track package upload failed."
 msgstr "O envio do pacote de pista falhou."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track package uploaded successfully."
 msgstr "Pacote de pista enviado com sucesso."
 
@@ -4396,25 +4396,25 @@ msgstr "A pista define 'pit_area = false', mas também define segmentos de entra
 msgid "Track source path is missing, so sound assets cannot be resolved."
 msgstr "O caminho de origem da pista está ausente, portanto os arquivos de som não podem ser resolvidos."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track upload canceled because the connection was lost."
 msgstr "O envio de pista foi cancelado porque a conexão foi perdida."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Track upload canceled."
 msgstr "Envio de pista cancelado."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Track, currently random chosen."
 msgstr "Pista, atualmente escolhida de forma aleatória."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 #, csharp-format
 msgid "Track, currently {0}."
 msgstr "Pista, atualmente {0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/TrackPackages/DownloadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/TrackPackages/DownloadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #: top_speed_net/TopSpeed/Tracks/TrackLoadException.cs
 #, csharp-format
 msgid "Track: {0}"
@@ -4424,19 +4424,19 @@ msgstr "Pista: {0}"
 msgid "Transmission not supported"
 msgstr "Transmissão não suportada"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns media loop mode on or off."
 msgstr "Ativa ou desativa o modo de repetição de mídia."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns media shuffle mode on or off."
 msgstr "Ativa ou desativa o modo aleatório de mídia."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns transmission controls on or off."
 msgstr "Ativa ou desativa os controles de transmissão."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
 msgid "Turns voice activation mode on or off."
 msgstr "Ativa ou desativa o modo de ativação por voz."
 
@@ -4456,11 +4456,11 @@ msgstr "Não foi possível copiar para a área de transferência."
 msgid "Unable to open help file"
 msgstr "Não foi possível abrir o arquivo de ajuda"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "Unable to prepare custom track upload."
 msgstr "Não foi possível preparar o envio da pista personalizada."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Unable to reach server."
 msgstr "Não foi possível alcançar o servidor."
 
@@ -4472,16 +4472,16 @@ msgstr "Não foi possível resolver o caminho da pasta de pistas personalizadas.
 msgid "Unable to resolve custom vehicle folder path."
 msgstr "Não é possível resolver o caminho da pasta do veículo personalizado."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 msgid "Unable to resolve server address."
 msgstr "Não foi possível resolver o endereço do servidor."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 #, csharp-format
 msgid "Unable to resolve server address: {0}"
 msgstr "Não foi possível resolver o endereço do servidor: {0}"
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Unable to resolve server host."
 msgstr "Não foi possível resolver o host do servidor."
 
@@ -4493,10 +4493,10 @@ msgstr "Sublinhado"
 msgid "Units"
 msgstr "Unidades"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Formatting.cs
 #: top_speed_net/TopSpeed/Game/Updates/Dialog.cs
 #: top_speed_net/TopSpeed/Input/Display/Text.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Formatting.cs
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -4514,7 +4514,7 @@ msgstr "Exceção desconhecida."
 msgid "Unknown key '{0}' in section [{1}]."
 msgstr "Chave desconhecida '{0}' na seção [{1}]."
 
-#: top_speed_net/TopSpeed/Vehicles/loader/Custom.cs
+#: top_speed_net/TopSpeed/Vehicles/Loading/Custom.cs
 msgid "Unknown parse error."
 msgstr "Erro de análise desconhecido."
 
@@ -4562,7 +4562,7 @@ msgstr "Erro de atualização desconhecido."
 msgid "Unknown weather key '{0}'."
 msgstr "Chave climática desconhecida '{0}'."
 
-#: top_speed_net/TopSpeed/Network/DisconnectMapping.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/DisconnectMapping.cs
 msgid "Unsupported peer-to-peer mode."
 msgstr "Modo ponto a ponto (peer-to-peer) não suportado."
 
@@ -4647,16 +4647,16 @@ msgstr "As atualizações não estão disponíveis nesta plataforma."
 msgid "Upload a local custom track"
 msgstr "Enviar uma pista personalizada local"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "Upload a local track"
 msgstr "Enviar uma pista local"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 #, csharp-format
 msgid "Uploaded size: {0}"
 msgstr "Tamanho enviado: {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadProgress.cs
 msgid "Uploading track..."
 msgstr "Enviando pista..."
 
@@ -4664,14 +4664,14 @@ msgstr "Enviando pista..."
 msgid "Use LEFT or RIGHT to change by 0.1 seconds, PAGE UP or PAGE DOWN to change by 1.0 second, HOME for maximum, END for minimum."
 msgstr "Use ESQUERDA ou DIREITA para alterar em 0,1 segundo, PAGE UP ou PAGE DOWN para alterar em 1,0 segundo, HOME para o máximo, END para o mínimo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Use LEFT or RIGHT to change by 1, PAGE UP or PAGE DOWN to change by 10, HOME for maximum, END for minimum."
 msgstr "Use ESQUERDA ou DIREITA para alterar em 1, PAGE UP ou PAGE DOWN para alterar em 10, HOME para o máximo, END para o mínimo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
 #: top_speed_net/TopSpeed/Menu/Build/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "Use LEFT or RIGHT to change."
 msgstr "Use ESQUERDA ou DIREITA para alterar."
 
@@ -4692,10 +4692,10 @@ msgid "Use proxy for update downloads"
 msgstr "Usar proxy para downloads de atualizações"
 
 #: top_speed_net/TopSpeed.Shared/Vehicles/VehicleDefinition.cs
-#: top_speed_net/TopSpeed/Drive/Multiplayer/Session/Network/Participants.cs
 #: top_speed_net/TopSpeed/Drive/Session/Text/SessionText.cs
 #: top_speed_net/TopSpeed/Drive/Single/Session/Format.cs
-#: top_speed_net/TopSpeed/Vehicles/Car.cs
+#: top_speed_net/TopSpeed/Multiplayer/Racing/Session/Network/Participants.cs
+#: top_speed_net/TopSpeed/Vehicles/Car/Core.cs
 msgid "Vehicle"
 msgstr "Veículo"
 
@@ -4728,12 +4728,12 @@ msgstr "Arquivo de veículo não encontrado: {0}"
 msgid "Vehicle file path is empty."
 msgstr "O caminho do arquivo do veículo está vazio."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Vehicle not saved"
 msgstr "O Veículo não pode ser salvo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Lifecycle/Shortcuts.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "View game rules"
 msgstr "Visualizar regras do jogo"
 
@@ -4741,11 +4741,11 @@ msgstr "Visualizar regras do jogo"
 msgid "Voice"
 msgstr "Voz"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 msgid "Voice activation off"
 msgstr "Ativação por voz desativada"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 msgid "Voice activation on"
 msgstr "Ativação por voz ativada"
 
@@ -4803,7 +4803,7 @@ msgstr "Os segundos de transição climática devem ser finitos e não negativos
 msgid "Welcome to Top Speed setup. On the next screens, you will choose your language and then calibrate the screen-reader speaking rate."
 msgstr "Bem-vindo à configuração do Top Speed. Nas próximas telas, você escolherá seu idioma e depois calibrará a velocidade de fala do leitor de tela."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "What would you like to do?"
 msgstr "O que você gostaria de fazer?"
 
@@ -4883,15 +4883,15 @@ msgstr "Quando marcado, o áudio do logotipo de inicialização é reproduzido q
 msgid "When checked, update package downloads are routed through your proxy URL."
 msgstr "Quando marcado, os downloads dos pacotes de atualização são roteados através do seu URL de proxy."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, cars burn fuel and players must pit to refuel."
 msgstr "Quando ativado, os carros queimam combustível e os jogadores devem ir até o pit para abastecer."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, players can choose custom vehicles offered by this server."
 msgstr "Quando ativado, os jogadores podem escolher veículos personalizados oferecidos pelo servidor."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, room hosts can upload and select custom tracks from this server."
 msgstr "Quando ativado, os hosts da sala podem enviar e selecionar pistas personalizadas a partir deste servidor."
 
@@ -4899,11 +4899,11 @@ msgstr "Quando ativado, os hosts da sala podem enviar e selecionar pistas person
 msgid "When enabled, throttle, brake, and steering ramp in over time instead of jumping instantly to full value."
 msgstr "Quando ativado, o acelerador, o freio e a direção aumentam gradualmente ao longo do tempo, em vez de saltarem instantaneamente para o valor máximo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, tires wear and lose grip and players must pit to replace them."
 msgstr "Quando ativado, os pneus desgastam e perdem a aderência e os jogadores devem ir até o pit para substituí-los."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
 msgid "When enabled, vehicle collisions are disabled and vehicles can pass through each other."
 msgstr "Quando ativado, as colisões entre veículos são desativadas e os veículos podem passar uns pelos outros."
 
@@ -4919,11 +4919,11 @@ msgstr "Quando ativado, seus pneus se desgastam e perdem a aderência e você de
 msgid "When unchecked, pressing a number key activates the item at that position in certain areas, such as the pit stop menu. When checked, it works everywhere."
 msgstr "Quando desmarcado, pressionar uma tecla numérica ativa o item nessa posição em determinadas áreas, como o menu pit stop. Quando marcado, funciona em todos os lugares."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is currently present in this game room"
 msgstr "Quem está presente atualmente nesta sala de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
 msgid "Who is online"
 msgstr "Quem está online"
 
@@ -4947,42 +4947,42 @@ msgstr "Y mais"
 msgid "Yamaha YZF-R1"
 msgstr "Yamaha YZF-R1"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Session.cs
 #: top_speed_net/TopSpeed/Game/Menu/Action.cs
 #: top_speed_net/TopSpeed/Game/Settings/Input.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Controls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Session.cs
 msgid "Yes"
 msgstr "Sim"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Yes, cancel the current game"
 msgstr "Sim, cancelar o jogo atual"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/SavedServers/Delete.cs
+#: top_speed_net/TopSpeed/Multiplayer/SavedServers/Delete.cs
 msgid "Yes, delete this server"
 msgstr "Sim, excluir este servidor"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Yes, keep it"
 msgstr "Sim, manter"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "Yes, leave this game room"
 msgstr "Sim, sair desta sala de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "Yes, quit race preparation"
 msgstr "Sim, sair da preparação da corrida"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Race/Runtime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Race/Runtime.cs
 msgid "Yes, quit the race"
 msgstr "Sim, sair da corrida"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "Yes, replace it"
 msgstr "Sim, Substituir"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "You already have a vehicle saved as \"{0}\". What do you want to do with the downloaded \"{1}\"?"
 msgstr "Já tem um veículo baixado como \"{0}\". O que você quer fazer com o \"{1}\" baixado?"
@@ -4991,22 +4991,22 @@ msgstr "Já tem um veículo baixado como \"{0}\". O que você quer fazer com o \
 msgid "You are already using the latest version."
 msgstr "Você já está usando a versão mais recente."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/LobbyAndControls.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Menus.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/LobbyAndControls.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Players.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Menus.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 msgid "You are not currently inside a game room."
 msgstr "Você não está em uma sala de jogo no momento."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Chat/Input.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Chat/Input.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "You are not in a game room."
 msgstr "Você não está em uma sala de jogo."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "You are now host of this room."
 msgstr "Você agora é o host desta sala."
 
@@ -5036,7 +5036,7 @@ msgstr "Você lutou contra o percurso do início ao fim e ainda assim perdeu."
 msgid "You gave the wall a quick hello and moved on."
 msgstr "Você deu um rápido alô para a parede e seguiu em frente."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "You joined {0}."
 msgstr "Você entrou em {0}."
@@ -5045,11 +5045,11 @@ msgstr "Você entrou em {0}."
 msgid "You kept finding the wrong line and proving it."
 msgstr "Você continuou encontrando o traçado errado e provando isso."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "You left race preparation and returned to room controls."
 msgstr "Você saiu da preparação da corrida e retornou aos controles da sala."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "You left the game room."
 msgstr "Você saiu da sala de jogo."
 
@@ -5086,26 +5086,26 @@ msgstr "Você estava pilotando como se as curvas tivessem algo contra você."
 msgid "You were supposed to follow the road, not sample it repeatedly."
 msgstr "Era para você seguir a estrada, não colher amostras dela repetidamente."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Helpers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Helpers.cs
 #, csharp-format
 msgid "Your client protocol version is {0}. This server supports protocol versions {1}."
 msgstr "A versão do protocolo do seu cliente é {0}. Este servidor suporta as versões de protocolo {1}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 #, csharp-format
 msgid "Your client protocol version: {0}"
 msgstr "Versão do protocolo do seu cliente: {0}"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Receive.cs
 msgid "Your game could not load a custom vehicle another player is using, so you will hear the default car instead."
 msgstr "Seu jogo não pôde carregar um veículo personalizado que outro jogador está usando, então você ouvirá o carro padrão."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load the custom vehicle \"{0}\", so you will hear the default car instead."
 msgstr "Seu jogo não pôde carregar o veículo personalizado \" {0}\", então você ouvirá o carro padrão."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Receive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Receive.cs
 #, csharp-format
 msgid "Your game could not load {0}'s vehicle \"{1}\", so you will hear the default car for them instead."
 msgstr "Seu jogo não pôde carregar o veículo de {0} \"{1}\", então você ouvirá o carro padrão para ele."
@@ -5136,12 +5136,12 @@ msgstr "Z menos"
 msgid "Z plus"
 msgstr "Z mais"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "add bot request"
 msgstr "solicitação de adição de bot"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
 #: top_speed_net/TopSpeed/Menu/Build/Options/Drive.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
 msgid "all"
 msgstr "tudo"
 
@@ -5162,7 +5162,7 @@ msgstr "auto_upshift_rpm deve ser 0 ou estar entre idle_rpm e rev_limiter."
 msgid "automatic"
 msgstr "automático"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 msgid "available"
 msgstr "disponível"
 
@@ -5191,7 +5191,7 @@ msgstr "pneus frios"
 msgid "completing lap {0}"
 msgstr "completando a volta {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
 msgid "connections"
 msgstr "conexões"
 
@@ -5203,11 +5203,11 @@ msgstr "controle"
 msgid "curves only"
 msgstr "apenas curvas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/Catalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/Catalog.cs
 msgid "custom track list request"
 msgstr "solicitação de lista de pistas personalizadas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/VehiclePackages/LoadoutCatalog.cs
 msgid "custom vehicle list request"
 msgstr "solicitado a lista de vehículos personalizados"
 
@@ -5220,7 +5220,7 @@ msgstr "padrão"
 msgid "default ({0})"
 msgstr "padrão ({0})"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 msgid "disabled"
 msgstr "desativado"
 
@@ -5228,7 +5228,7 @@ msgstr "desativado"
 msgid "easy"
 msgstr "fácil"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 msgid "enabled"
 msgstr "ativado"
 
@@ -5278,15 +5278,15 @@ msgstr "combustível {0:F1} litros, {1:F0} por cento"
 msgid "fuel {0:F1} liters, {1:F0} percent, {2:F1} liters per 100 kilometers"
 msgstr "combustível {0:F1} litros, {1:F0} por cento, {2:F1} litros por 100 quilômetros"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "game cancel request"
 msgstr "solicitação de cancelamento de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 msgid "game room"
 msgstr "sala de jogo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "game rules change request"
 msgstr "solicitação de alteração das regras do jogo"
 
@@ -5304,7 +5304,7 @@ msgstr "gear_ratios não devem ser crescentes da marcha 1 até a última marcha.
 msgid "gear_ratios[{0}] is outside allowed range 0.20 to 8.00."
 msgstr "gear_ratios[{0}] está fora do intervalo permitido de 0.20 a 8.00."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
 msgid "global chat"
 msgstr "bate-papo global"
 
@@ -5328,7 +5328,7 @@ msgstr "pneus quentes"
 msgid "imperial"
 msgstr "imperial"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "its downloaded copy is no longer loaded, so there is nothing to save"
 msgstr "sua cópia baixada não é mais carregada, portanto, não há nada para salvar"
 
@@ -5336,7 +5336,7 @@ msgstr "sua cópia baixada não é mais carregada, portanto, não há nada para 
 msgid "keyboard"
 msgstr "teclado"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "lap count change request"
 msgstr "solicitação de alteração da contagem de voltas"
 
@@ -5384,8 +5384,8 @@ msgstr "launch_rpm não deve exceder rev_limiter."
 msgid "light wear"
 msgstr "desgaste leve"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Domain/Online/Map.cs
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Domain/Online/Map.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 msgid "main room"
 msgstr "sala principal"
 
@@ -5413,11 +5413,11 @@ msgstr "desgaste moderado"
 msgid "new tires"
 msgstr "pneus novos"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "no free folder name was available"
 msgstr "nenhum nome de pasta livre estava disponível"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "no free name was available to move the old folder aside"
 msgstr "nenhum nome livre estava disponível para mover a pasta antiga"
 
@@ -5441,11 +5441,11 @@ msgstr "desativado"
 msgid "on"
 msgstr "ativado"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "one-on-one"
 msgstr "um contra um"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 msgid "online players request"
 msgstr "solicitação de jogadores online"
 
@@ -5472,7 +5472,7 @@ msgid "panel"
 msgstr "painel"
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "paused"
 msgstr "pausado"
 
@@ -5489,7 +5489,7 @@ msgstr "por cento"
 msgid "pitch_curve_exponent must be between {0} and {1}."
 msgstr "pitch_curve_exponent deve estar entre {0} e {1}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "player count change request"
 msgstr "solicitação de alteração da contagem de jogadores"
 
@@ -5499,27 +5499,27 @@ msgid "player {0}"
 msgstr "jogador {0}"
 
 #: top_speed_net/TopSpeed/Drive/Panels/RadioPanel/Playback.cs
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 msgid "playing"
 msgstr "reproduzindo"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/LoadoutExit.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/LoadoutExit.cs
 msgid "race preparation withdrawal"
 msgstr "retirada da preparação da corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "race start request"
 msgstr "solicitação de início de corrida"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "race with bots"
 msgstr "corrida com bots"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "race without bots"
 msgstr "corrida sem bots"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 msgid "racing"
 msgstr "correndo"
 
@@ -5531,11 +5531,11 @@ msgstr "botão de opção"
 msgid "ratio_max must be greater than or equal to ratio_min in [transmission_cvt]."
 msgstr "ratio_max deve ser maior ou igual a ratio_min em [transmission_cvt]."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Loadout.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Loadout.cs
 msgid "ready state"
 msgstr "estado de pronto"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "remove bot request"
 msgstr "solicitação de remoção de bot"
 
@@ -5553,31 +5553,31 @@ msgstr "problema de som necessário, usará fallback embutido: {0}"
 msgid "rev_limiter must be between idle_rpm and max_rpm."
 msgstr "rev_limiter deve estar entre idle_rpm e max_rpm."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
 msgid "room chat"
 msgstr "bate-papo da sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Create.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Create.cs
 msgid "room create request"
 msgstr "solicitação de criação de sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/Buffers.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/Buffers.cs
 msgid "room events"
 msgstr "eventos da sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "room join request"
 msgstr "solicitação de entrada na sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Actions/Room.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Actions/Room.cs
 msgid "room leave request"
 msgstr "solicitação de saída da sala"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 msgid "room list request"
 msgstr "solicitação de lista de salas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/TrackSelection.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/TrackSelection.cs
 msgid "room state refresh request"
 msgstr "solicitação de atualização do estado da sala"
 
@@ -5625,41 +5625,41 @@ msgstr "interruptor"
 msgid "target_rpm_high must be greater than or equal to target_rpm_low in [transmission_cvt]."
 msgstr "target_rpm_high deve ser maior ou igual a target_rpm_low em [transmission_cvt]."
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the destination is not inside the Vehicles folder"
 msgstr "o destino não está dentro da pasta Vehicles"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the downloaded copy holds no vehicle file to write"
 msgstr "a cópia baixada não contém QUALQUER arquivo do veículo para escrever"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the downloaded copy is no longer loaded"
 msgstr "a cópia baixada não pode ser carregada"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the files could not be written"
 msgstr "os arquivos não puderam ser salvos"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the old folder could not be moved aside ({0})"
 msgstr "a pasta antiga não pôde ser movida ({0})"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 #, csharp-format
 msgid "the replacement could not be written and your original could not be put back. It is safe, in the folder \"{0}\", and can be renamed back by hand"
 msgstr "a substituição não pôde ser escrita e o original não pôde ser recolocado. É seguro, na pasta \"{0}\", e pode ser renomeado de volta"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the replacement files could not be written"
 msgstr "os arquivos de substituição não puderam ser salvos"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the saved copy is not inside the Vehicles folder"
 msgstr "a cópia salva não se encontra na pasta Vehicles"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/VehiclePackages/Keep.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/VehiclePackages/Keep.cs
 msgid "the vehicle has no valid identifier"
 msgstr "o veículo não possui um identificador válido"
 
@@ -5710,23 +5710,23 @@ msgstr "top_freq deve ser maior ou igual a idle_freq."
 msgid "top_speed_gear must be within 1..{0}."
 msgstr "top_speed_gear deve estar entre 1..{0}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Draft.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Draft.cs
 msgid "track change request"
 msgstr "solicitação de alteração de pista"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload cancel"
 msgstr "cancelamento de envio de pista"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload chunk"
 msgstr "fragmento de envio de pista"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload completion"
 msgstr "conclusão de envio de pista"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/TrackPackages/UploadRuntime.cs
 msgid "track upload start"
 msgstr "início de envio de pista"
 
@@ -5787,18 +5787,18 @@ msgstr "{0}  diálogo  {1}"
 msgid "{0} ({1})"
 msgstr "{0} ({1})"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Coordinator/Communicator.cs
+#: top_speed_net/TopSpeed/Multiplayer/Coordinator/Communicator.cs
 #, csharp-format
 msgid "{0} MHz"
 msgstr "{0} MHz"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Connection/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Connection/Connect.cs
 #, csharp-format
 msgid "{0} Message of the day: {1}."
 msgstr "{0} Mensagem do dia: {1}."
 
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Connect.cs
-#: top_speed_net/TopSpeed/Network/Connect/Connector/Poll.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Connect.cs
+#: top_speed_net/TopSpeed/Multiplayer/Network/Connect/Connector/Poll.cs
 #, csharp-format
 msgid "{0} Socket error: {1}."
 msgstr "{0} Erro de socket: {1}."
@@ -5808,7 +5808,7 @@ msgstr "{0} Erro de socket: {1}."
 msgid "{0} and {1}"
 msgstr "{0} e {1}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} changed ready state."
 msgstr "{0} alterou o estado de pronto."
@@ -5818,7 +5818,7 @@ msgstr "{0} alterou o estado de pronto."
 msgid "{0} crashes."
 msgstr "{0} batidas."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 #, csharp-format
 msgid "{0} game with {1} people, maximum {2} players"
 msgstr "jogo {0} com {1} pessoas, máximo de {2} jogadores"
@@ -5828,7 +5828,7 @@ msgstr "jogo {0} com {1} pessoas, máximo de {2} jogadores"
 msgid "{0} has no shortcuts."
 msgstr "{0} não tem atalhos."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} joined the current room."
 msgstr "{0} entrou na sala atual."
@@ -5838,17 +5838,17 @@ msgstr "{0} entrou na sala atual."
 msgid "{0} key '{1}': {2}"
 msgstr "{0} chave '{1}': {2}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} lap"
 msgstr "{0} volta"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} laps"
 msgstr "{0} voltas"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} left the current room."
 msgstr "{0} saiu da sala atual."
@@ -5885,7 +5885,7 @@ msgstr "{0} deve estar entre {1} e {2}."
 msgid "{0} panel"
 msgstr "painel {0}"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Online.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Online.cs
 #, csharp-format
 msgid "{0} people are connected."
 msgstr "{0} pessoas estão conectadas."
@@ -5895,17 +5895,17 @@ msgstr "{0} pessoas estão conectadas."
 msgid "{0} percent"
 msgstr "{0} por cento"
 
-#: top_speed_net/TopSpeed/Game/Multiplayer/Communicator/Runtime/MediaLocal.cs
+#: top_speed_net/TopSpeed/Multiplayer/Application/Communicator/Runtime/MediaLocal.cs
 #, csharp-format
 msgid "{0} percent."
 msgstr "{0} por cento."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} player"
 msgstr "{0} jogador"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Options/Rules.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Options/Rules.cs
 #, csharp-format
 msgid "{0} players"
 msgstr "{0} jogadores"
@@ -5930,32 +5930,32 @@ msgstr "{0} segundos"
 msgid "{0} set to {1}."
 msgstr "{0} definido para {1}."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} was added to the current room."
 msgstr "{0} foi adicionado à sala atual."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Chat/HistoryText.cs
+#: top_speed_net/TopSpeed/Multiplayer/Chat/HistoryText.cs
 #, csharp-format
 msgid "{0} was removed from the current room."
 msgstr "{0} foi removido da sala atual."
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Menu/Players.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Menu/Players.cs
 #, csharp-format
 msgid "{0}, host"
 msgstr "{0}, host"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 #, csharp-format
 msgid "{0}, in progress"
 msgstr "{0}, em andamento"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 #, csharp-format
 msgid "{0}, room is full"
 msgstr "{0}, a sala está cheia"
 
-#: top_speed_net/TopSpeed/Core/Multiplayer/Rooms/Browser.cs
+#: top_speed_net/TopSpeed/Multiplayer/Rooms/Browser.cs
 #, csharp-format
 msgid "{0}, {1} game with {2} people, maximum {3} players"
 msgstr "{0}, jogo {1} com {2} pessoas, máximo de {3} jogadores"

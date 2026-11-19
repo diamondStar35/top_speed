@@ -12,10 +12,10 @@ namespace TopSpeed.Drive.Session.Audio
 {
     internal sealed class RaceAudioFactory
     {
-        private readonly AudioManager _audio;
+        private readonly IAudioSources _audio;
         private readonly string _legacyRoot;
 
-        public RaceAudioFactory(AudioManager audio)
+        public RaceAudioFactory(IAudioSources audio)
         {
             _audio = audio ?? throw new ArgumentNullException(nameof(audio));
             _legacyRoot = Path.Combine(AssetPaths.SoundsRoot, "Legacy");
@@ -121,7 +121,7 @@ namespace TopSpeed.Drive.Session.Audio
         private Source CreateLegacyTrackLoop(string fileName)
         {
             var path = Path.Combine(_legacyRoot, fileName);
-            return CreateVehicleSoundRequired(path, AudioEngineOptions.TrackBusName, looped: true, spatialize: false, allowHrtf: false);
+            return CreateVehicleSoundRequired(path, AudioEngineOptions.TrackBusName, looped: true, spatialize: true, allowHrtf: true);
         }
 
         private Source CreateLegacyVehicleLoop(string fileName, bool allowHrtf)

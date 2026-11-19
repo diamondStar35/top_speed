@@ -99,24 +99,8 @@ namespace TopSpeed.Vehicles
             SetSpatial("player.fuelWarning", _soundFuelWarning, enginePos, velocity);
             SetSpatial("player.wipers", _soundWipers, vehiclePos, velocity);
 
-            switch (_surface)
-            {
-                case TrackSurface.Asphalt:
-                    SetSpatial("player.surface.asphalt", _soundAsphalt, vehiclePos, velocity);
-                    break;
-                case TrackSurface.Gravel:
-                    SetSpatial("player.surface.gravel", _soundGravel, vehiclePos, velocity);
-                    break;
-                case TrackSurface.Water:
-                    SetSpatial("player.surface.water", _soundWater, vehiclePos, velocity);
-                    break;
-                case TrackSurface.Sand:
-                    SetSpatial("player.surface.sand", _soundSand, vehiclePos, velocity);
-                    break;
-                case TrackSurface.Snow:
-                    SetSpatial("player.surface.snow", _soundSnow, vehiclePos, velocity);
-                    break;
-            }
+            // Surface audio carries the same road-position cue when the engine is silent.
+            _raceAudio.UpdateSurfaceTransform(enginePos, velocity);
         }
 
         private static Vector3 PlaceOnArc(float listenerX, float listenerZ, float angle, float forwardOffset)

@@ -130,41 +130,16 @@ namespace TopSpeed.Vehicles.Audio
         }
 
         public void ApplyPan(
-            TrackSurface surface,
             int pan,
             Source soundHorn,
             Source soundBrake,
             Source? soundBackfire,
-            Source? soundWipers,
-            Source soundAsphalt,
-            Source soundGravel,
-            Source soundWater,
-            Source soundSand,
-            Source soundSnow)
+            Source? soundWipers)
         {
             soundHorn.SetPanPercent(pan);
             soundBrake.SetPanPercent(pan);
             soundBackfire?.SetPanPercent(pan);
             soundWipers?.SetPanPercent(pan);
-
-            switch (surface)
-            {
-                case TrackSurface.Asphalt:
-                    soundAsphalt.SetPanPercent(pan);
-                    break;
-                case TrackSurface.Gravel:
-                    soundGravel.SetPanPercent(pan);
-                    break;
-                case TrackSurface.Water:
-                    soundWater.SetPanPercent(pan);
-                    break;
-                case TrackSurface.Sand:
-                    soundSand.SetPanPercent(pan);
-                    break;
-                case TrackSurface.Snow:
-                    soundSnow.SetPanPercent(pan);
-                    break;
-            }
         }
 
         public int CalculatePan(float relativePosition)

@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using TS.Audio;
 
 namespace TopSpeed.Drive.Session.Audio
@@ -64,6 +65,16 @@ namespace TopSpeed.Drive.Session.Audio
         public Source FuelWarning { get; }
         public Source[] BackfireVariants { get; }
         public bool HasWipers => Wipers != null;
+
+        public void UpdateSurfaceTransform(Vector3 position, Vector3 velocity)
+        {
+            // Keep inactive loops positioned too, so changing surface preserves the cue.
+            Asphalt.SetTransform(position, velocity);
+            Gravel.SetTransform(position, velocity);
+            Water.SetTransform(position, velocity);
+            Sand.SetTransform(position, velocity);
+            Snow.SetTransform(position, velocity);
+        }
 
         public void Dispose()
         {

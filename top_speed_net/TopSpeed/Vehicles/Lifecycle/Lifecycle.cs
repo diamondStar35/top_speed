@@ -224,27 +224,22 @@ namespace TopSpeed.Vehicles
             {
                 case TrackSurface.Asphalt:
                     _soundAsphalt.Stop();
-                    _soundAsphalt.SetPanPercent(0);
                     SetSurfaceLoopVolumePercent(_soundAsphalt, 90);
                     break;
                 case TrackSurface.Gravel:
                     _soundGravel.Stop();
-                    _soundGravel.SetPanPercent(0);
                     SetSurfaceLoopVolumePercent(_soundGravel, 90);
                     break;
                 case TrackSurface.Water:
                     _soundWater.Stop();
-                    _soundWater.SetPanPercent(0);
                     SetSurfaceLoopVolumePercent(_soundWater, 90);
                     break;
                 case TrackSurface.Sand:
                     _soundSand.Stop();
-                    _soundSand.SetPanPercent(0);
                     SetSurfaceLoopVolumePercent(_soundSand, 90);
                     break;
                 case TrackSurface.Snow:
                     _soundSnow.Stop();
-                    _soundSnow.SetPanPercent(0);
                     SetSurfaceLoopVolumePercent(_soundSnow, 90);
                     break;
             }

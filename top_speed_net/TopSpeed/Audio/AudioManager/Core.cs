@@ -8,7 +8,7 @@ using TS.Audio;
 
 namespace TopSpeed.Audio
 {
-    internal sealed partial class AudioManager : IGameAudio
+    internal sealed partial class AudioManager : IGameAudio, IAudioSources
     {
         private readonly AudioEngine _engine;
         private readonly ManualResetEventSlim _updateWake = new ManualResetEventSlim(false);

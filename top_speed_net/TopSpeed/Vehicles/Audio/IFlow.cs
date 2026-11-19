@@ -47,17 +47,11 @@ namespace TopSpeed.Vehicles.Audio
             Source soundSnow);
 
         void ApplyPan(
-            TrackSurface surface,
             int pan,
             Source soundHorn,
             Source soundBrake,
             Source? soundBackfire,
-            Source? soundWipers,
-            Source soundAsphalt,
-            Source soundGravel,
-            Source soundWater,
-            Source soundSand,
-            Source soundSnow);
+            Source? soundWipers);
 
         int CalculatePan(float relativePosition);
 

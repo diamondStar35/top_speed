@@ -12,6 +12,18 @@ The unified project covers shared, client, server, and updater behavior. Updater
 invalid packages cannot change installed files, custom drafts survive updates, and worker cleanup
 does not remove unrelated files.
 
+## Surface audio checks
+
+`SurfaceAudioBehaviorTests` render audio through a silent backend, without using a physical audio
+device. They compare surface positioning with the engine across the road, exercise all five shipped
+surface recordings at driving pitch, and cover HRTF and stereo widening both enabled and disabled.
+Surface playback is also checked with the engine stopped.
+
+For a listening check, drive left and right on each surface, then repeat while coasting with the
+engine switched off. Check that the surface cue follows the car, including when changing surface
+away from the center of the road. Repeat with HRTF and stereo widening enabled and disabled, and
+confirm that the surface volume control and speed-dependent pitch still behave normally.
+
 ## Updater process checks
 
 The process harness uses disposable installations and a small test application, never the real game.

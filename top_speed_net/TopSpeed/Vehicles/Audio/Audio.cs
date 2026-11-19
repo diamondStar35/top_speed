@@ -159,17 +159,11 @@ namespace TopSpeed.Vehicles
         private void ApplyPan(int pan)
         {
             _audioFlow.ApplyPan(
-                _surface,
                 pan,
                 _soundHorn,
                 _soundBrake,
                 _soundBackfire,
-                _soundWipers,
-                _soundAsphalt,
-                _soundGravel,
-                _soundWater,
-                _soundSand,
-                _soundSnow);
+                _soundWipers);
         }
 
         private int CalculatePan(float relPos)

@@ -38,6 +38,7 @@ namespace TopSpeed.Vehicles
             {
                 if (updateAudioThisFrame)
                 {
+                    UpdateSpatialAudio(road);
                     if (_surface == TrackSurface.Asphalt && road.Surface != TrackSurface.Asphalt)
                     {
                         _soundAsphalt.Stop();
@@ -70,7 +71,6 @@ namespace TopSpeed.Vehicles
                         : (_positionX - road.Left) / roadWidth;
                     _panPos = CalculatePan(_relPos);
                     ApplyPan(_panPos);
-                    UpdateSpatialAudio(road);
 
                     if (_vibration != null)
                     {

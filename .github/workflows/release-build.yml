@@ -1043,7 +1043,7 @@ jobs:
         with:
           tag_name: ${{ needs.metadata.outputs.release_tag }}
           target_commitish: ${{ github.sha }}
-          name: Release Build v${{ needs.metadata.outputs.version }} (Server v${{ needs.metadata.outputs.server_version }})
+          name: Top Speed Remake v${{ needs.metadata.outputs.version }} (Server v${{ needs.metadata.outputs.server_version }})
           body: |
             Game version: ${{ needs.metadata.outputs.version }}
             Server version: ${{ needs.metadata.outputs.server_version }}
